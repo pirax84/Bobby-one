@@ -1,3 +1,4 @@
+import { useS } from "./store";
 export interface Src { label: string; url?: string; tel?: string; note?: string }
 export interface Country { code: string; name: string; sources: Src[] }
 const W: Src[] = [
@@ -52,6 +53,7 @@ export function guessCountry(): string {
 }
 export function locate(): Promise<string> {
   return new Promise((res, rej) => {
+    if (useS.getState().settings.geoOn === false) return rej(new Error("off"));
     if (!navigator.geolocation) return rej(new Error("unsupported"));
     navigator.geolocation.getCurrentPosition(async (p) => {
       try { const r = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${p.coords.latitude}&longitude=${p.coords.longitude}&localityLanguage=en`); const j = await r.json(); if (j.countryCode) return res(String(j.countryCode).toUpperCase()); } catch {}

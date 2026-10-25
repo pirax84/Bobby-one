@@ -25,7 +25,7 @@ export async function askAll(): Promise<{ notif: PermState; geo: PermState; mic:
   let geo: PermState = "default"; let country: string | undefined;
   try { const { locate } = await import("./country"); country = await locate(); geo = "granted"; } catch (e: any) { geo = e?.message === "denied" ? "denied" : "default"; }
   const mic = await askMic();
-  if (country) useS.getState().set({ country });
+  useS.getState().set({ geoOn: true, micOn: true, ...(country ? { country } : {}) });
   if (notif === "granted") useS.getState().set({ notif: true });
   return { notif, geo, mic, country };
 }

@@ -43,9 +43,11 @@ export async function pickVoice(lang: string): Promise<SpeechSynthesisVoice | un
 }
 export const ERR: Record<string, string> = {
   "not-allowed": "Le micro est bloqué. Autorisez le micro dans votre navigateur (le site doit être en https).",
+  off: "Le micro est désactivé. Vous pouvez le réactiver dans Paramètres > Notifications et autorisations.",
   "no-speech": "Je n'ai rien entendu, réessayez.", unsupported: "Ce navigateur ne gère pas le micro. Essayez Chrome (Android) ou Safari (iPhone).", x: "Le micro ne fonctionne pas pour le moment.",
 };
 export function listen(lang: string, done: (t: string) => void, fail: (e: string) => void, end?: () => void) {
+  if (useS.getState().settings.micOn === false) { fail("off"); end?.(); return null; }
   const R = typeof window !== "undefined" ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition : null;
   if (!R) { fail("unsupported"); end?.(); return null; }
   const r = new R(); r.lang = LANGS[lang]?.tts || "fr-FR"; r.interimResults = false; r.maxAlternatives = 1;
