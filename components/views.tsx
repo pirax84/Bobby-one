@@ -55,7 +55,7 @@ function ShareCard() {
   return (<section className="card p-5 flex flex-col sm:flex-row items-center gap-5">
     <img src="/bobby-qr.png" alt={t("QR code de Bobby One")} width={150} height={150} className="rounded-2xl bg-white p-1 shrink-0" style={{ width: 150, height: 150 }} />
     <div className="flex-1 min-w-0 text-center sm:text-start space-y-3"><div><h2 className="font-semibold">{t("Faites connaître Bobby à vos proches")}</h2><p className="text-sm text-mute">{t("Ils scannent ce code avec leur téléphone : Bobby s'ouvre et ils peuvent l'installer.")}</p></div>
-      <div className="flex flex-wrap gap-2 justify-center sm:justify-start"><a href="/bobby-qr.png" download="bobby-one-qr.png" className="btn"><Download size={18} />{t("Télécharger")}</a><button type="button" className="btn2" onClick={share}><Share2 size={16} />{t("Partager")}</button></div></div></section>);
+      <div className="flex flex-wrap gap-2 justify-center sm:justify-start"><a href="/bobby-qr.png" download="bobby-one-qr.png" className="btn"><Download size={18} />{t("Télécharger")}</a><button type="button" className="btn2" onClick={share}><Share2 size={16} />{t("Partager")}</button><button type="button" className="btn2" onClick={async () => { try { await navigator.clipboard.writeText(URL_); notify("Lien copié : collez-le dans un message."); } catch { notify("Impossible de copier ici.", "warn"); } }}>{t("Copier le lien")}</button></div><p className="text-xs text-mute break-all" dir="ltr">bobby-one-six.vercel.app</p></div></section>);
 }
 
 export function HomeV() {
