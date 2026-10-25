@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Upload, Phone, PhoneOff, ChevronDown, ClipboardPaste, Mic as MicI, Volume2, Download, Share2, History, ArrowRight, Sparkles } from "lucide-react";
+import { Users, Search, Upload, Phone, PhoneOff, ChevronDown, ClipboardPaste, Mic as MicI, Volume2, Download, Share2, History, ArrowRight, Sparkles } from "lucide-react";
 import { analyzeText, analyzeUrl, ageLabel, hash, META, looksLikeUrl, scoreNumber, levelOf, Result, UrlResult } from "@/lib/engine";
 import { useS, View } from "@/lib/store";
 import { useT, toFr, LANGS } from "@/lib/i18n";
@@ -10,6 +10,7 @@ import { Explain } from "./Explain";
 import { Where, useCountry } from "./Where";
 import { COUNTRIES, locate } from "@/lib/country";
 import { ocr, decodeQr } from "@/lib/vision";
+import { contactsSupported, findContact, pickContacts } from "@/lib/contacts";
 import { askNotif, askMic, notifState, alertDanger, PermState } from "@/lib/perm";
 import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
@@ -184,12 +185,12 @@ export function QrV() {
 
 export function CallsV() {
   const t = useT(); const scan = useScan(); const vo = useS((x) => x.settings.voice !== false), lg = useS((x) => x.settings.lang); const bump = useS((s) => s.bump); const notify = useS((s) => s.notify);
-  const [q, setQ] = useState(""); const [f, setF] = useState("all"); const [inc, setInc] = useState<(typeof CALLS)[0] | null>(null); const [num, setNum] = useState(""); const [nr, setNr] = useState<ReturnType<typeof scoreNumber>>(null); const [ne, setNe] = useState("");
+  const [q, setQ] = useState(""); const [f, setF] = useState("all"); const [inc, setInc] = useState<(typeof CALLS)[0] | null>(null); const contacts = useS((x) => x.contacts); const setContacts = useS((x) => x.setContacts); const [kc, setKc] = useState(""); const [num, setNum] = useState(""); const [nr, setNr] = useState<ReturnType<typeof scoreNumber>>(null); const [ne, setNe] = useState("");
   const list = CALLS.filter((c) => (f === "all" || c.kind === f) && (c.n + c.name + t(c.name)).toLowerCase().includes(q.toLowerCase()));
   const rec = (k: string) => (k === "safe" ? "Vous pouvez répondre." : k === "unknown" ? "Laissez sonner, répondez seulement si vous attendez un appel." : "Ne répondez pas. Je vous conseille de bloquer ce numéro.");
   const phrase = (k: string) => (k === "scam" ? "Attention, appel suspect. Je pense qu'il s'agit probablement d'une arnaque. Ne répondez pas." : k === "safe" ? "Ce numéro semble fiable." : "Numéro inconnu. Soyez prudent avant de répondre.");
   const sim = () => { const c = CALLS[Math.floor(Math.random() * CALLS.length)]; setInc(c); if (vo) speak(phrase(c.kind), lg); };
-  const check = () => { const x = scoreNumber(num, CALLS); if (!x) { setNr(null); setNe("Entrez un numéro complet, par exemple +33 6 12 34 56 78."); return; } setNe(""); setNr(x); scan("call", num, { score: x.score, level: x.level, reasons: [], tips: [] }); if (vo) speak(phrase(x.kind), lg); };
+  const check = () => { setKc(""); const k = findContact(num, contacts); if (k) { setNr(null); setNe(""); setKc(k.n); return; } const x = scoreNumber(num, CALLS); if (!x) { setNr(null); setNe("Entrez un numéro complet, par exemple +33 6 12 34 56 78."); return; } setNe(""); setNr(x); scan("call", num, { score: x.score, level: x.level, reasons: [], tips: [] }); if (vo) speak(phrase(x.kind), lg); };
   const close = () => { stopSpeak(); setInc(null); };
   useEffect(() => { if (!inc) return; const k = (e: KeyboardEvent) => e.key === "Escape" && close(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [inc]);
   return (<div><Title t="Protection appels" d="Je vous dis qui appelle avant que vous décrochiez." />
@@ -197,8 +198,14 @@ export function CallsV() {
     <div className="card p-5 mb-4 space-y-3"><label htmlFor="num" className="font-semibold block">{t("Vérifier un numéro")}</label>
       <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={check}>{t("Vérifier")}</button></div>
       {ne && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(ne)}</p>}
+      {kc && <div className="rounded-2xl p-4 flex items-center gap-3" style={{ background: "rgba(34,197,94,.14)" }}><span aria-hidden="true">✅</span><p className="font-medium">{t("Ce numéro est dans vos contacts")} : <span dir="auto">{kc}</span></p></div>}
       {nr && <div className="flex items-center gap-4 pt-2"><Gauge score={nr.score} size={72} /><div className="flex-1 min-w-0"><Badge lv={nr.level} /><p className="font-semibold mt-1">{t(nr.name)} · {nr.reports} {t("signalements")}</p><p className="text-sm text-mute">{t(rec(nr.kind))}</p></div></div>}
       <button type="button" className="btn2" onClick={sim}><Phone size={16} />{t("Simuler un appel entrant")}</button></div>
+    <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Mes contacts")}</h2>
+      <p className="text-sm text-mute">{t("Choisissez des contacts de votre téléphone : Bobby saura que leurs numéros sont connus. Rien n'est envoyé : la liste reste sur votre téléphone.")}</p>
+      <div className="flex flex-wrap gap-2"><button type="button" className="btn2" onClick={async () => { if (!contactsSupported()) { notify("Ce navigateur ne permet pas d'importer les contacts. Utilisez Chrome sur Android.", "warn"); return; } try { const c = await pickContacts(); if (c.length) { const m = new Map(contacts.map((x) => [x.n + x.t.join(), x])); c.forEach((x) => m.set(x.n + x.t.join(), x)); setContacts([...m.values()]); notify(c.length + " " + (c.length > 1 ? "contacts ajoutés." : "contact ajouté.")); } } catch (e: any) { if (e?.name !== "AbortError") notify("Je n'ai pas pu accéder aux contacts.", "warn"); } }}><Users size={16} />{t("Importer des contacts")}</button>
+        {contacts.length > 0 && <button type="button" className="btn2" onClick={() => { setContacts([]); setKc(""); notify("Contacts retirés de Bobby."); }}>{t("Retirer mes contacts")}</button>}</div>
+      {contacts.length > 0 && <p className="text-sm">{contacts.length} {t(contacts.length > 1 ? "contacts importés" : "contact importé")}</p>}</div>
     <div className="flex flex-col sm:flex-row gap-3 mb-4"><div className="relative flex-1"><Search size={16} className="absolute start-4 top-4 text-mute" /><input className="inp ps-10" aria-label={t("Rechercher un numéro…")} placeholder={t("Rechercher un numéro…")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
       <div className="flex gap-2 flex-wrap">{[["all", "Tous"], ["safe", "Sûrs"], ["unknown", "Inconnus"], ["scam", "Arnaques"]].map(([k, l]) => <button type="button" key={k} onClick={() => setF(k)} aria-pressed={f === k} className={"btn2 " + (f === k ? "on" : "")}>{t(l)}</button>)}</div></div>
     <div className="space-y-3">{list.map((c) => (<div key={c.n} className="card p-4 flex items-center gap-4"><Gauge score={c.score} size={60} /><div className="flex-1 min-w-0"><p className="font-semibold" dir="ltr">{c.n}</p><p className="text-sm text-mute">{t(c.name)} · {c.reports} {t("signalements")}</p><p className="text-sm mt-1">{t(rec(c.kind))}</p></div><Badge lv={levelOf(c.score)} /></div>))}{!list.length && <p className="text-mute">{t("Aucun numéro trouvé.")}</p>}</div>

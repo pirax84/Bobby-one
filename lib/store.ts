@@ -12,6 +12,7 @@ interface S {
   pending: string | null; ask: (t: string) => void;
   incoming: string | null; setIncoming: (x: string | null) => void;
   history: Scan[]; addScan: (s: Omit<Scan, "id" | "at">) => void; clearHistory: () => void;
+  contacts: { n: string; t: string[] }[]; setContacts: (c: { n: string; t: string[] }[]) => void;
   sharedFile: File | null; setSharedFile: (f: File | null) => void;
   toast: Toast | null; notify: (text: string, tone?: Toast["tone"]) => void;
 }
@@ -24,6 +25,7 @@ export const useS = create<S>()(persist((set) => ({
   incoming: null, setIncoming: (incoming) => set({ incoming }),
   reported: [], report: (x) => set((s) => ({ reported: [x, ...s.reported] })),
   history: [], addScan: (x) => set((s) => ({ history: [{ ...x, id: Date.now() + Math.random(), at: Date.now() }, ...s.history].slice(0, 12) })), clearHistory: () => set({ history: [] }),
+  contacts: [], setContacts: (contacts) => set({ contacts }),
   sharedFile: null, setSharedFile: (sharedFile) => set({ sharedFile }),
   toast: null, notify: (text, tone = "ok") => { const id = tid++; set({ toast: { id, text, tone } }); setTimeout(() => set((s) => (s.toast?.id === id ? { toast: null } : s)), 3800); },
-}), { name: "bobby-one", version: 4, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; if (v < 4) o = { ...o, settings: { ...o.settings, voiceName: "", pitch: 0.75 } }; return o; }, partialize: (s) => ({ onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));
+}), { name: "bobby-one", version: 4, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; if (v < 4) o = { ...o, settings: { ...o.settings, voiceName: "", pitch: 0.75 } }; return o; }, partialize: (s) => ({ contacts: s.contacts, onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));
