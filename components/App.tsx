@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutGrid } from "lucide-react";
+import { LayoutGrid, Download } from "lucide-react";
 import { useS, View } from "@/lib/store";
 import { NAV, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
 import { useT, LANGS, RTL } from "@/lib/i18n";
@@ -10,9 +10,35 @@ const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: 
 const STEPS = [["Bonjour, je suis Bobby.", "Je suis votre gardien personnel. Je vérifie messages, sites, appels et QR codes avant que vous ne fassiez une erreur."], ["Simple, comme une conversation", "Collez un message ou une adresse, je vous dis en clair si vous pouvez avoir confiance. Sans jargon."], ["Bobby veille sur vous.", "Protégez aussi vos proches grâce au mode famille et aux alertes de la communauté."], ["Quelques autorisations", "Pour mieux vous protéger, Bobby peut vous envoyer des alertes, connaître votre pays et écouter votre voix. Tout est facultatif."]];
 const BOTTOM: View[] = ["home", "calls", "chat", "community"];
 const DESC = (id: View) => NAV.find((n) => n.id === id)!;
+function InstallGate() {
+  const t = useT(); const { settings, set } = useS(); const [ev, setEv] = useState<any>(null); const [done, setDone] = useState(false); const [ios, setIos] = useState(false);
+  useEffect(() => {
+    const on = (e: any) => { e.preventDefault(); setEv(e); }; const d = () => setDone(true);
+    window.addEventListener("beforeinstallprompt", on); window.addEventListener("appinstalled", d); setIos(/iphone|ipad|ipod/i.test(navigator.userAgent));
+    return () => { window.removeEventListener("beforeinstallprompt", on); window.removeEventListener("appinstalled", d); };
+  }, []);
+  const install = async () => { if (!ev) return; ev.prompt(); try { const c = await ev.userChoice; if (c?.outcome === "accepted") setDone(true); } catch {} setEv(null); };
+  return (<main className="min-h-dvh grid place-items-center p-6 text-center" style={{ background: "var(--solid)" }}><div className="max-w-md w-full space-y-6">
+    <div className="flex justify-center"><img src="/bobby-logo.svg" alt="Bobby One — Bobby veille sur vous." width={220} height={220} className="rounded-[44px]" style={{ width: 220, height: 220 }} /></div>
+    <p className="text-xl font-semibold -mt-2" style={{ color: "var(--brand2)" }}>{t("Bobby veille sur vous.")}</p>
+    {done ? <><h1 className="text-2xl font-bold">{t("Bobby One est installé !")}</h1><p className="text-mute text-lg">{t("Fermez cette page et ouvrez Bobby One depuis l'icône sur votre écran d'accueil.")}</p></> : <>
+      <h1 className="text-2xl font-bold">{t("Installez Bobby One")}</h1>
+      <p className="text-mute text-lg">{t("Pour vous protéger, Bobby doit être installé sur votre appareil. Cela prend quelques secondes.")}</p>
+      {ev ? <button type="button" className="btn w-full !min-h-14 text-lg" onClick={install}><Download size={22} />{t("Télécharger et installer l'application")}</button>
+        : ios ? <div className="card p-5 text-start space-y-2"><p className="font-semibold">{t("Sur iPhone :")}</p><p>1. {t("Touchez le bouton Partager (le carré avec une flèche) en bas de l'écran.")}</p><p>2. {t("Choisissez « Sur l'écran d'accueil ».")}</p><p>3. {t("Touchez Ajouter, puis ouvrez Bobby One depuis l'icône.")}</p></div>
+        : <div className="card p-5 text-start space-y-2"><p className="font-semibold">{t("Pour installer :")}</p><p>1. {t("Ouvrez le menu de votre navigateur (⋮ ou ⋯).")}</p><p>2. {t("Choisissez « Installer l'application » ou « Ajouter à l'écran d'accueil ».")}</p><p>3. {t("Ouvrez ensuite Bobby One depuis l'icône.")}</p></div>}
+      <p className="text-sm text-mute">{t("Déjà installée ? Ouvrez Bobby One depuis l'icône de votre écran d'accueil, pas depuis le navigateur.")}</p></>}
+    <select className="inp max-w-[240px] mx-auto" aria-label="Langue / Language" value={settings.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select>
+  </div></main>);
+}
+
 export default function App() {
   const { view, go, onboarded, finish, settings, set, setIncoming, setSharedFile } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
-  const t = useT();
+  const t = useT(); const [installed, setInstalled] = useState(false);
+  useEffect(() => {
+    const isApp = () => !!(window.matchMedia?.("(display-mode: standalone)").matches || window.matchMedia?.("(display-mode: fullscreen)").matches || window.matchMedia?.("(display-mode: minimal-ui)").matches || (navigator as any).standalone); setInstalled(isApp());
+    const mq = window.matchMedia?.("(display-mode: standalone)"); const on = () => setInstalled(isApp()); mq?.addEventListener?.("change", on); return () => mq?.removeEventListener?.("change", on);
+  }, []);
   useEffect(() => {
     setOk(true);
     // Partage vers Bobby (Android) : ?text= ?url= ?title= ou ?go=
@@ -28,6 +54,7 @@ export default function App() {
   useEffect(() => { if (first.current) { first.current = false; return; } if (!onboarded || settings.voice === false) return; const n = NAV.find((x) => x.id === view)!; speak(t(n.label) + ". " + t(n.desc), settings.lang); }, [view]);
   useEffect(() => { document.documentElement.classList.toggle("light", settings.theme === "light"); }, [settings.theme]);
   if (!ok) return null;
+  if (!installed) return <InstallGate />;
   const V = VIEWS[view];
   const nav = (id: View) => { go(id); setMore(false); window.scrollTo({ top: 0 }); };
   const groups = ["", "Vérifier", "Protéger"]; const inMore = !BOTTOM.includes(view);

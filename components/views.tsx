@@ -185,10 +185,28 @@ export function QrV() {
       {res && <><div className="rounded-2xl p-4 text-sm break-all card"><b>{t("Contenu décodé")} :</b> <span dir="ltr">{p}</span></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
 }
 
+function ContactSheet({ contacts, home, blocked, onClose, onRemove, onAdd }: { contacts: { n: string; t: string[] }[]; home: string; blocked: string[]; onClose: () => void; onRemove: (i: number) => void; onAdd: () => void }) {
+  const t = useT(); const [q, setQ] = useState(""); const [open, setOpen] = useState<string>("");
+  useEffect(() => { const k = (e: KeyboardEvent) => e.key === "Escape" && onClose(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, []);
+  const list = contacts.map((c, i) => ({ c, i })).filter(({ c }) => !q || (c.n + c.t.join(" ")).toLowerCase().includes(q.toLowerCase())).sort((a, b) => a.c.n.localeCompare(b.c.n));
+  return (<div role="dialog" aria-modal="true" aria-label={t("Mes contacts")} className="fixed inset-0 z-[70] flex flex-col" style={{ background: "var(--solid)" }}>
+    <div className="flex items-center gap-3 p-4 border-b" style={{ borderColor: "var(--line, #ffffff22)" }}><button type="button" className="btn2" onClick={onClose}>← {t("Retour")}</button><h2 className="text-xl font-bold flex-1">{t("Mes contacts")} ({contacts.length})</h2><button type="button" className="btn2" onClick={onAdd}>＋</button></div>
+    <div className="p-4"><input className="inp" aria-label={t("Chercher un contact")} placeholder={t("Chercher un contact")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
+    <ul className="flex-1 overflow-y-auto px-4 pb-8 space-y-3">{list.length === 0 && <li className="text-mute text-center py-8">{t("Aucun contact trouvé.")}</li>}
+      {list.map(({ c, i }) => { const key = c.n + i; const isOpen = open === key; return (<li key={key} className="card p-4">
+        <div className="flex items-center gap-4"><div className="w-12 h-12 rounded-full grid place-items-center text-xl font-bold text-white shrink-0" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}>{(c.n[0] || "?").toUpperCase()}</div>
+          <div className="min-w-0 flex-1"><p className="text-lg font-semibold break-words" dir="auto">{c.n}</p>{c.t.map((x) => <p key={x} className="text-base text-mute" dir="ltr">{x}</p>)}</div>
+          <button type="button" className="btn" onClick={() => setOpen(isOpen ? "" : key)}>{isOpen ? t("Fermer") : t("Vérifier")}</button></div>
+        {isOpen && <div className="mt-4 space-y-3">{c.t.map((x) => { const r = analyzeNumber(x, home, blocked); return (<div key={x} className="rounded-2xl p-4 space-y-2" style={{ background: "var(--soft)" }}><p className="font-semibold text-base" dir="ltr">{x}</p>
+          <p className="text-base">✅ {t("Ce numéro est dans vos contacts")} : <span dir="auto">{c.n}</span></p>
+          {r.ok ? <><p className="text-base">{t("Pays")} : {t(r.country)}</p><p className="text-base">{t("Type")} : {t(r.kind)}</p><p className="text-sm text-mute">{t("Si quelqu'un se fait passer pour ce contact, raccrochez et rappelez-le sur son numéro habituel.")}</p></> : <p className="text-base">{t(r.err)}</p>}</div>); })}
+          <button type="button" className="btn2" onClick={() => { onRemove(i); setOpen(""); }}>{t("Retirer ce contact")}</button></div>}</li>); })}</ul></div>);
+}
+
 export function CallsV() {
   const t = useT(); const scan = useScan(); const notify = useS((s) => s.notify); const bump = useS((s) => s.bump); const report = useS((s) => s.report);
   const contacts = useS((x) => x.contacts); const setContacts = useS((x) => x.setContacts); const blocked = useS((x) => x.blockedNums); const setBlocked = useS((x) => x.setBlockedNums);
-  const home = useCountry(); const [num, setNum] = useState(""); const [ne, setNe] = useState(""); const [kc, setKc] = useState(""); const [nr, setNr] = useState<NumResult | null>(null);
+  const home = useCountry(); const [sheet, setSheet] = useState(false); const [num, setNum] = useState(""); const [ne, setNe] = useState(""); const [kc, setKc] = useState(""); const [nr, setNr] = useState<NumResult | null>(null);
   const HEAD: Record<string, string> = { safe: "✅ Ce numéro semble correct.", careful: "⚠️ Numéro inconnu : soyez prudent avant de répondre.", suspicious: "⚠️ Ce numéro est suspect. Ne le rappelez pas.", danger: "🔴 Ce numéro est dangereux. Ne répondez pas." };
   const check = (v = num) => {
     setNum(v); setKc(""); setNr(null); setNe(""); const x = analyzeNumber(v, home, blocked); const k = x.ok ? contacts.find((c) => c.t.some((tt) => { const y = analyzeNumber(tt, home); return y.ok && y.e164 === x.e164; })) : undefined; if (k) { setKc(k.n); return; }
@@ -210,9 +228,9 @@ export function CallsV() {
     <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Mes contacts")}</h2>
       <p className="text-sm text-mute">{t("Choisissez des contacts de votre téléphone : Bobby saura que leurs numéros sont connus. Rien n'est envoyé : la liste reste sur votre téléphone.")}</p>
       <div className="flex flex-wrap gap-2"><button type="button" className="btn2" onClick={pick}><Users size={16} />{t("Importer des contacts")}</button>
-        {contacts.length > 0 && <button type="button" className="btn2" onClick={() => { setContacts([]); setKc(""); notify("Contacts retirés de Bobby."); }}>{t("Retirer mes contacts")}</button>}</div>
-      {contacts.length > 0 && <><p className="text-sm">{contacts.length} {t(contacts.length > 1 ? "contacts importés" : "contact importé")}</p>
-        <ul className="space-y-2 max-h-72 overflow-y-auto pe-1">{contacts.map((c, i) => <li key={c.n + i} className="flex items-center gap-3 p-3 rounded-2xl" style={{ background: "var(--soft)" }}><div className="w-9 h-9 rounded-full grid place-items-center font-bold text-white shrink-0" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}>{(c.n[0] || "?").toUpperCase()}</div><div className="min-w-0 flex-1"><p className="font-medium truncate" dir="auto">{c.n}</p><p className="text-xs text-mute truncate" dir="ltr">{c.t.join(" · ")}</p></div><button type="button" className="btn2 !min-h-9 !py-1" onClick={() => { check(c.t[0]); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{t("Vérifier")}</button><button type="button" className="btn2 !min-h-9 !py-1" aria-label={t("Retirer")} onClick={() => setContacts(contacts.filter((_, j) => j !== i))}>✕</button></li>)}</ul></>}</div>
+        {contacts.length > 0 && <button type="button" className="btn" onClick={() => setSheet(true)}>{t("Voir mes contacts")} ({contacts.length})</button>}
+        {contacts.length > 0 && <button type="button" className="btn2" onClick={() => { setContacts([]); setKc(""); notify("Contacts retirés de Bobby."); }}>{t("Retirer mes contacts")}</button>}</div></div>
+    {sheet && <ContactSheet contacts={contacts} home={home} blocked={blocked} onClose={() => setSheet(false)} onRemove={(i) => setContacts(contacts.filter((_, j) => j !== i))} onAdd={pick} />}
     {blocked.length > 0 && <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Numéros que j'ai marqués dangereux")}</h2><ul className="space-y-2">{blocked.map((b) => <li key={b} className="flex items-center gap-3 p-3 rounded-2xl" style={{ background: "var(--soft)" }}><span className="flex-1" dir="ltr">{b}</span><button type="button" className="btn2 !min-h-9 !py-1" onClick={() => setBlocked(blocked.filter((x) => x !== b))}>{t("Retirer")}</button></li>)}</ul></div>}
     <div className="mt-2"><Where title="Sources officielles pour signaler un appel ou un SMS" /></div></div>);
 }
