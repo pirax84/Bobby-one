@@ -1,4 +1,5 @@
 "use client";
+import { Explain } from "./Explain";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Bot, Mic as MicI, Volume2, VolumeX, Home, MessageSquareWarning, Globe, Image as Img, QrCode, PhoneCall, Siren, Users, Radio, Settings, Loader2, Check, X } from "lucide-react";
@@ -32,7 +33,7 @@ export function Gauge({ score, size = 140 }: { score: number; size?: number }) {
     <div className="absolute inset-0 grid place-items-center font-bold" style={{ color: c, fontSize: size / 3.9 }}>{score}</div></div>);
 }
 export const Badge = ({ lv }: { lv: string }) => { const m = META[lv as keyof typeof META]; const t = useT(); return <span className="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" style={{ background: m.color + "22", color: m.color }}>{t(m.label)}</span>; };
-export function Title({ t, d }: { t: string; d: string }) { const T = useT(); return <div className="mb-5"><h1 className="text-2xl md:text-3xl font-bold tracking-tight">{T(t)}</h1><p className="text-mute mt-1">{T(d)}</p></div>; }
+export function Title({ t, d }: { t: string; d: string }) { const T = useT(); const v = useS((x) => x.view); return <div className="mb-5"><h1 className="text-2xl md:text-3xl font-bold tracking-tight">{T(t)}</h1><p className="text-mute mt-1">{T(d)}</p><Explain id={v} /></div>; }
 export const Toggle = ({ on, f, label }: { on: boolean; f: () => void; label?: string }) => (<button type="button" role="switch" aria-checked={on} aria-label={label} onClick={f} className="flex items-center w-12 h-7 rounded-full p-1 transition-colors shrink-0" style={{ background: on ? "var(--brand)" : "var(--bd)", justifyContent: on ? "flex-end" : "flex-start" }}><span className="block w-5 h-5 rounded-full bg-white" /></button>);
 
 export function Busy({ steps }: { steps: string[] }) {

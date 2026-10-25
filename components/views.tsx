@@ -6,6 +6,7 @@ import { analyzeText, analyzeUrl, ageLabel, hash, META, looksLikeUrl, scoreNumbe
 import { useS, View } from "@/lib/store";
 import { useT, toFr, LANGS } from "@/lib/i18n";
 import { CALLS, THREATS, FEED, TOP, REP, FAMILY } from "@/lib/data";
+import { Explain } from "./Explain";
 import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -77,6 +78,7 @@ export function HomeV() {
     <section className="card p-5 md:p-6 space-y-4">
       <div className="flex items-center gap-4"><motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 3 }}><Bobby s={60} /></motion.div>
         <div className="min-w-0"><h1 className="text-xl md:text-3xl font-bold tracking-tight">{t("Bonjour, je suis Bobby.")}</h1><p className="text-mute">{t("Je vérifie ce qui mérite votre confiance.")}</p></div></div>
+      <Explain id="home" compact />
       <label htmlFor="quick" className="block text-sm font-medium">{t("Collez ici un message, un lien ou une adresse à vérifier")}</label>
       <textarea id="quick" className="inp min-h-28 resize-y" placeholder={t("Collez ici le message à vérifier…")} value={q} onChange={(e) => { setQ(e.target.value); setErr(""); }} />
       {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
@@ -177,7 +179,7 @@ export function ThreatsV() {
   return (<div><Title t="Centre des menaces" d="Apprenez à reconnaître les arnaques les plus courantes." />
     <div className="relative mb-4"><Search size={16} className="absolute start-4 top-4 text-mute" /><input className="inp ps-10" aria-label={t("Rechercher une menace…")} placeholder={t("Rechercher une menace…")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
     <div className="space-y-3">{list.map((x) => (<div key={x.id} className="card overflow-hidden"><button type="button" aria-expanded={o === x.id} className="w-full p-5 flex items-center justify-between gap-3 text-start" onClick={() => setO(o === x.id ? "" : x.id)}><div><p className="font-semibold">{t(x.id)}</p><p className="text-sm text-mute">{t(x.d)}</p></div><ChevronDown className={"transition shrink-0 " + (o === x.id ? "rotate-180" : "")} /></button>
-      {o === x.id && <div className="px-5 pb-5 space-y-3"><div><p className="text-xs text-mute mb-1">{t("Exemples")}</p>{x.ex.map((e) => <p key={e} className="text-sm">• {t(e)}</p>)}</div><p className="text-sm rounded-2xl p-3" style={{ background: "var(--soft)" }}>💡 {t(x.tip)}</p></div>}</div>))}{!list.length && <p className="text-mute">{t("Aucun résultat.")}</p>}</div></div>);
+      {o === x.id && <div className="px-5 pb-5 space-y-3"><Explain id={"threat:" + x.id} compact /><div><p className="text-xs text-mute mb-1">{t("Exemples")}</p>{x.ex.map((e) => <p key={e} className="text-sm">• {t(e)}</p>)}</div><p className="text-sm rounded-2xl p-3" style={{ background: "var(--soft)" }}>💡 {t(x.tip)}</p></div>}</div>))}{!list.length && <p className="text-mute">{t("Aucun résultat.")}</p>}</div></div>);
 }
 
 export function FamilyV() {
