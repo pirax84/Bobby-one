@@ -1,0 +1,11 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+:root{--bg:#070B14;--card:#101828;--fg:#F8FAFC;--mute:#94A3B8;--bd:rgba(255,255,255,.08)}
+.light{--bg:#F4F6FA;--card:#FFFFFF;--fg:#0F172A;--mute:#64748B;--bd:rgba(15,23,42,.1)}
+body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,sans-serif}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:24px}
+.btn{background:#00D084;color:#04120C;font-weight:600;border-radius:16px;padding:.75rem 1.25rem;transition:.2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}.btn:disabled{opacity:.5}
+.btn2{border:1px solid var(--bd);border-radius:16px;padding:.55rem 1rem;transition:.2s;font-size:.9rem}
+.btn2:hover,.btn2.on{background:rgba(0,208,132,.15);border-color:#00D084}
+.inp{width:100%;background:transparent;border:1px solid var(--bd);border-radius:16px;padding:.8rem 1rem;outline:none;color:var(--fg)}
+.inp:focus{border-color:#00D084}
