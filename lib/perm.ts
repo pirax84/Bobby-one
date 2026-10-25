@@ -7,7 +7,7 @@ export async function askMic(): Promise<PermState> {
 export function alertDanger(body: string) {
   try {
     if (typeof Notification === "undefined" || Notification.permission !== "granted") return;
-    const opts: any = { body, icon: "/icon-192.png", badge: "/icon-192.png", tag: "bobby-alert", vibrate: [200, 100, 200] };
+    const opts: any = { body, icon: "/icon-192.png", badge: "/badge-96.png", tag: "bobby-alert", vibrate: [200, 100, 200] };
     if ("serviceWorker" in navigator) navigator.serviceWorker.ready.then((r) => r.showNotification("Bobby : attention, danger", opts)).catch(() => new Notification("Bobby : attention, danger", opts));
     else new Notification("Bobby : attention, danger", opts);
   } catch {}

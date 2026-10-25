@@ -120,7 +120,7 @@ export function TextV() {
   const run = async () => { setB(true); setR(null); await wait(850); const x = analyzeText(v); scan("text", v, x); setR(x); setV(""); setB(false); };
   return (<div><Title t="Analyse des messages" d="SMS, mails, WhatsApp, Telegram : copiez le message, puis collez-le ici." />
     <div className="card p-5 space-y-4"><textarea className="inp min-h-40 resize-y" aria-label={t("Message à vérifier")} placeholder={t("Collez ici le message à vérifier…")} value={v} onChange={(e) => { setV(e.target.value); setR(null); }} />
-      <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /><button type="button" className="btn2" onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) { setV(x); setR(null); } } catch {} }}>{t("Coller")}</button></div>
+      <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /><button type="button" className="btn2" onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) { setV(x); setR(null); } } catch {} }}>{t("Coller")}</button><ImportBtn onText={(x) => { setV(x.slice(0, 5000)); setR(null); }} /></div>
       <p className="text-xs text-mute">{t("Android ne permet pas à Bobby de lire vos SMS tout seul. Gardez le doigt sur le message, choisissez Copier, puis revenez ici et touchez Coller. Ou touchez Partager → Bobby One.")}</p>
       <div className="flex gap-2 flex-wrap"><button type="button" className="btn flex-1 sm:flex-none" disabled={v.trim().length < 5 || b} onClick={run}>{t("Analyser avec Bobby")}</button>{v && <button type="button" className="btn2" onClick={() => { setV(""); setR(null); }}>{t("Effacer")}</button>}</div></div>
     <div className="mt-5">{b && <Busy steps={STEPS_T} />}{r && <Report r={r} />}</div></div>);
@@ -130,7 +130,7 @@ export function WebV() {
   const t = useT(); const scan = useScan(); const [u, setU] = useState(""); const [r, setR] = useState<UrlResult | null>(null); const [lv, setLv] = useState<Live | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
   const run = async (v = u) => { setU(v); setErr(""); setR(null); setB(true); const x0 = analyzeUrl(v); const l = x0 ? await live(v) : null; await wait(500); setB(false); if (!x0) { setErr("Cette adresse ne me semble pas valide. Exemple : exemple.fr"); return; } const x = applyLive(x0, l); scan("web", x.domain, x); setLv(l); setR(x); setU(""); };
   return (<div><Title t="Analyse site web" d="Collez l'adresse d'un site avant d'y entrer vos informations." />
-    <div className="card p-5 space-y-4"><div className="flex gap-2 flex-col sm:flex-row"><input className="inp" dir="ltr" inputMode="url" aria-label={t("Adresse du site")} placeholder="https://…" value={u} onChange={(e) => setU(e.target.value)} onKeyDown={(e) => e.key === "Enter" && u && run()} /><button type="button" className="btn" disabled={!u || b} onClick={() => run()}>{t("Vérifier")}</button><Mic onText={(x) => setU(x.replace(/\s+/g, "").replace(/point/gi, "."))} /></div>
+    <div className="card p-5 space-y-4"><div className="flex gap-2 flex-col sm:flex-row"><input className="inp" dir="ltr" inputMode="url" aria-label={t("Adresse du site")} placeholder="https://…" value={u} onChange={(e) => setU(e.target.value)} onKeyDown={(e) => e.key === "Enter" && u && run()} /><button type="button" className="btn" disabled={!u || b} onClick={() => run()}>{t("Vérifier")}</button><ImportBtn onText={(x) => { const m = x.match(/(?:https?:\/\/|www\.)[^\s"'<>)]+|\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}(?:\/[^\s"'<>)]*)?/i); if (m) { setU(m[0]); setErr(""); } else setErr("Je ne trouve pas d'adresse de site dans ce fichier."); }} /><Mic onText={(x) => setU(x.replace(/\s+/g, "").replace(/point/gi, "."))} /></div>
       <div className="flex flex-wrap gap-2">{EX_W.map((x) => <button type="button" key={x} className="btn2" dir="ltr" onClick={() => run(x)}>{x.replace(/https?:\/\//, "")}</button>)}</div>{err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}</div>
     <div className="mt-5">{b && <Busy steps={STEPS_W} />}{r && <WebReport r={r} lv={lv} />}</div></div>);
 }
@@ -185,6 +185,26 @@ export function QrV() {
       {res && <><div className="rounded-2xl p-4 text-sm break-all card"><b>{t("Contenu décodé")} :</b> <span dir="ltr">{p}</span></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
 }
 
+// Bouton « ＋ Importer » : ouvre l'explorateur de fichiers de l'appareil (téléphone ou ordinateur).
+// Un fichier texte est lu tel quel ; une image est lue (texte + QR code) ; on renvoie le texte trouvé.
+function ImportBtn({ onText, label = "Importer" }: { onText: (x: string) => void; label?: string }) {
+  const t = useT(); const ref = useRef<HTMLInputElement>(null); const [busy, setBusy] = useState(false); const [err, setErr] = useState("");
+  const onFile = async (f?: File | null) => {
+    if (!f) return; setErr(""); setBusy(true);
+    try {
+      let txt = "";
+      if (f.type.startsWith("image/")) { let o = ""; try { o = await ocr(f); } catch { setErr("Je n'ai pas pu charger la lecture des images. Vérifiez votre connexion internet et réessayez."); } const c = await decodeQr(f).catch(() => null); txt = [o, c || ""].join("\n").trim(); }
+      else if (/^(text\/|message\/)|\.(txt|eml|csv|vcf|html?|url|md|json)$/i.test(f.type + f.name)) txt = (await f.text()).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 20000);
+      else { setErr("Ce type de fichier n'est pas pris en charge. Choisissez une image (capture d'écran, photo) ou un fichier texte."); }
+      if (txt) onText(txt); else if (!err && (f.type.startsWith("image/") || /text|message/.test(f.type))) setErr("Je ne trouve rien à lire dans ce fichier.");
+    } catch { setErr("Je n'ai pas pu lire ce fichier."); }
+    setBusy(false); if (ref.current) ref.current.value = "";
+  };
+  return (<><button type="button" className="btn2" disabled={busy} aria-label={t(label)} onClick={() => ref.current?.click()}>＋ {t(busy ? "Lecture…" : label)}</button>
+    <input ref={ref} type="file" accept="image/*,.txt,.eml,.csv,.vcf,.html,.htm,.url,.md,text/*" className="hidden" onChange={(e) => onFile(e.target.files?.[0])} />
+    {err && <p className="basis-full text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}</>);
+}
+
 function ContactSheet({ contacts, home, blocked, onClose, onRemove, onAdd }: { contacts: { n: string; t: string[] }[]; home: string; blocked: string[]; onClose: () => void; onRemove: (i: number) => void; onAdd: () => void }) {
   const t = useT(); const [q, setQ] = useState(""); const [open, setOpen] = useState<string>("");
   useEffect(() => { const k = (e: KeyboardEvent) => e.key === "Escape" && onClose(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, []);
@@ -217,7 +237,7 @@ export function CallsV() {
   const pick = async () => { if (!contactsSupported()) { notify("Ce navigateur ne permet pas d'importer les contacts. Utilisez Chrome sur Android.", "warn"); return; } try { const c = await pickContacts(); if (c.length) { const m = new Map(contacts.map((x) => [x.n + x.t.join(), x])); c.forEach((x) => m.set(x.n + x.t.join(), x)); setContacts([...m.values()]); notify(c.length + " " + (c.length > 1 ? "contacts ajoutés." : "contact ajouté.")); } } catch (e: any) { if (e?.name !== "AbortError") notify("Je n'ai pas pu accéder aux contacts.", "warn"); } };
   return (<div><Title t="Protection appels" d="Je vous dis qui appelle avant que vous décrochiez." />
     <div className="card p-5 mb-4 space-y-3"><label htmlFor="num" className="font-semibold block">{t("Vérifier un numéro")}</label>
-      <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={() => check()}>{t("Vérifier")}</button>{num && <button type="button" className="btn2" onClick={() => { setNum(""); setNr(null); setKc(""); setNe(""); }}>{t("Effacer")}</button>}</div>
+      <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={() => check()}>{t("Vérifier")}</button><ImportBtn onText={(x) => { const f = x.match(/\+?\d[\d\s().-]{6,}\d/g); if (f) { setNum(f[0].trim()); setNr(null); setKc(""); setNe(""); } else setNe("Je ne trouve pas de numéro de téléphone dans ce fichier."); }} />{num && <button type="button" className="btn2" onClick={() => { setNum(""); setNr(null); setKc(""); setNe(""); }}>{t("Effacer")}</button>}</div>
       <p className="text-xs text-mute">{t("Android ne permet pas à Bobby de lire votre journal d'appels. Copiez le numéro depuis votre journal d'appels, puis collez-le ici.")}</p>
       {ne && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(ne)}</p>}</div>
     {kc && <div className="card p-5 mb-4 flex items-center gap-3" style={{ borderColor: "#22C55E88" }}><span aria-hidden="true" className="text-2xl">✅</span><p className="font-medium">{t("Ce numéro est dans vos contacts")} : <span dir="auto">{kc}</span></p></div>}
