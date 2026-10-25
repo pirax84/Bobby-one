@@ -19,7 +19,7 @@ interface S {
 }
 let tid = 1;
 export const useS = create<S>()(persist((set) => ({
-  view: "home", go: (view) => set({ view }), onboarded: false, finish: () => set({ onboarded: true }),
+  view: "home", go: (view) => set({ view: view === "qr" ? "image" : view }), onboarded: false, finish: () => set({ onboarded: true }),
   protectedToday: 0, blocked: 0, bump: (bad) => set((s) => ({ protectedToday: s.protectedToday + 1, blocked: s.blocked + (bad ? 1 : 0) })),
   settings: { lang: "Français", notif: true, privacy: true, theme: "dark", security: "Renforcé", voice: false, deep: true, pitch: 0.75, rate: 0.92 }, set: (p) => set((s) => ({ settings: { ...s.settings, ...p } })),
   pending: null, ask: (t) => set({ view: "chat", pending: t }),

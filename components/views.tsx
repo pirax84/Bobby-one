@@ -89,7 +89,7 @@ export function HomeV() {
   const avg = history.length ? Math.round(history.reduce((a, h) => a + h.score, 0) / history.length) : null;
   const stats: [string, string | number, string, View][] = [["Moyenne de mes vérifications", avg === null ? "—" : avg + "/100", avg === null ? "var(--mute)" : META[levelOf(avg)].color, "threats"], ["Vérifications faites", protectedToday, "var(--brand)", "text"], ["Menaces détectées", blocked, "#EF4444", "calls"], ["Mes signalements", reported.length, "#F59E0B", "community"]];
   const code = LANGS[lang]?.code || "fr"; const days = Array.from({ length: 7 }, (_, i) => { try { return new Intl.DateTimeFormat(code, { weekday: "narrow" }).format(new Date(2024, 0, 1 + i)); } catch { return "·"; } }); const bars = [12, 18, 9, 24, 15, 31, 20];
-  const tools = NAV.filter((n) => ["text", "web", "image", "qr", "calls", "threats"].includes(n.id));
+  const tools = NAV.filter((n) => ["text", "web", "image", "calls", "threats"].includes(n.id));
   return (<div className="space-y-5">
     <InstallCard />
     <section className="card p-5 md:p-6 space-y-4">
@@ -160,29 +160,11 @@ export function ImageV() {
     setB(false);
   };
   useEffect(() => { if (shared) { const f = shared; setShared(null); go(f); } }, [shared]);
-  return (<div><Title t="Analyse image" d="Ajoutez une capture d'écran : je lis le texte pour vous." />
-    <div className="card p-5 space-y-4"><Drop label="Choisir une image" onFile={go} /><p className="text-xs text-mute">{t("Bobby lit le vrai texte de votre image. La première lecture peut prendre quelques secondes et demande internet.")}</p></div>
+  return (<div><Title t="Analyse image et QR code" d="Une capture, une photo ou un QR code : je lis le texte et je regarde où mène le code." />
+    <div className="card p-5 space-y-4"><Drop label="Choisir une image ou un QR code" onFile={go} /><p className="text-xs text-mute">{t("Bobby lit le vrai texte de votre image. La première lecture peut prendre quelques secondes et demande internet.")}</p></div>
     <div className="mt-5 space-y-4">{b && <Busy steps={["Bobby lit le texte de l'image…", "Je cherche les signes d'arnaque…", "Je calcule le score de confiance…"]} />}{b && pct > 0 && <p className="text-xs text-mute">{Math.round(pct * 100)} %</p>}
       {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
       {res && <><div className="card p-5 flex gap-4">{img && <img src={img} alt="" className="w-24 h-24 object-cover rounded-2xl shrink-0" />}<div className="min-w-0"><p className="text-xs text-mute mb-1">{t("Texte détecté")}</p><p className="text-sm italic break-words" dir="auto">« {txt.slice(0, 500)} »</p>{qr && <p className="text-sm mt-2 break-all" dir="ltr">QR : {qr}</p>}</div></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
-}
-
-export function QrV() {
-  const t = useT(); const scan = useScan(); const [p, setP] = useState(""); const [res, setRes] = useState<{ r: Result | UrlResult; web: boolean; lv: Live | null } | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
-  const go = async (f: File) => {
-    setRes(null); setErr(""); setP(""); setB(true);
-    try {
-      const code = await decodeQr(f);
-      if (!code) { setErr("Je ne trouve aucun QR code lisible dans cette image. Essayez une photo plus nette, bien droite, avec le QR code entier."); setB(false); return; }
-      setP(code); const x = await analyzeAny(code); scan("qr", code, x.r); setRes(x);
-    } catch { setErr("Une erreur est survenue en lisant le QR code. Réessayez."); }
-    setB(false);
-  };
-  return (<div><Title t="Analyse QR code" d="Je regarde où mène un QR code avant que vous le scanniez." />
-    <div className="card p-5 space-y-4"><Drop label="Choisir l'image d'un QR code" onFile={go} /><p className="text-xs text-mute">{t("Prenez le QR code en photo (ou une capture d'écran), puis choisissez l'image ici. Je lis le vrai contenu.")}</p></div>
-    <div className="mt-5 space-y-4">{b && <Busy steps={["Bobby décode le QR code…", "Je vérifie la destination…", "Je calcule le score de confiance…"]} />}
-      {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
-      {res && <><div className="rounded-2xl p-4 text-sm break-all card"><b>{t("Contenu décodé")} :</b> <span dir="ltr">{p}</span></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
 }
 
 // Bouton « ＋ Importer » : ouvre l'explorateur de fichiers de l'appareil (téléphone ou ordinateur).
@@ -200,7 +182,7 @@ function ImportBtn({ onText, label = "Importer" }: { onText: (x: string) => void
     } catch { setErr("Je n'ai pas pu lire ce fichier."); }
     setBusy(false); if (ref.current) ref.current.value = "";
   };
-  return (<><button type="button" className="btn2" disabled={busy} aria-label={t(label)} onClick={() => ref.current?.click()}>＋ {t(busy ? "Lecture…" : label)}</button>
+  return (<><button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand) 22%, transparent)", borderColor: "var(--brand)", color: "var(--fg, inherit)" }} disabled={busy} aria-label={t(label)} onClick={() => ref.current?.click()}>＋ {t(busy ? "Lecture…" : label)}</button>
     <input ref={ref} type="file" accept="image/*,.txt,.eml,.csv,.vcf,.html,.htm,.url,.md,text/*" className="hidden" onChange={(e) => onFile(e.target.files?.[0])} />
     {err && <p className="basis-full text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}</>);
 }
@@ -237,8 +219,9 @@ export function CallsV() {
   const pick = async () => { if (!contactsSupported()) { notify("Ce navigateur ne permet pas d'importer les contacts. Utilisez Chrome sur Android.", "warn"); return; } try { const c = await pickContacts(); if (c.length) { const m = new Map(contacts.map((x) => [x.n + x.t.join(), x])); c.forEach((x) => m.set(x.n + x.t.join(), x)); setContacts([...m.values()]); notify(c.length + " " + (c.length > 1 ? "contacts ajoutés." : "contact ajouté.")); } } catch (e: any) { if (e?.name !== "AbortError") notify("Je n'ai pas pu accéder aux contacts.", "warn"); } };
   return (<div><Title t="Protection appels" d="Je vous dis qui appelle avant que vous décrochiez." />
     <div className="card p-5 mb-4 space-y-3"><label htmlFor="num" className="font-semibold block">{t("Vérifier un numéro")}</label>
-      <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={() => check()}>{t("Vérifier")}</button><ImportBtn onText={(x) => { const f = x.match(/\+?\d[\d\s().-]{6,}\d/g); if (f) { setNum(f[0].trim()); setNr(null); setKc(""); setNe(""); } else setNe("Je ne trouve pas de numéro de téléphone dans ce fichier."); }} />{num && <button type="button" className="btn2" onClick={() => { setNum(""); setNr(null); setKc(""); setNe(""); }}>{t("Effacer")}</button>}</div>
-      <p className="text-xs text-mute">{t("Android ne permet pas à Bobby de lire votre journal d'appels. Copiez le numéro depuis votre journal d'appels, puis collez-le ici.")}</p>
+      <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={() => check()}>{t("Vérifier")}</button>{num && <button type="button" className="btn2" onClick={() => { setNum(""); setNr(null); setKc(""); setNe(""); }}>{t("Effacer")}</button>}</div>
+      <div className="flex flex-wrap gap-1.5"><ImportBtn onText={(x) => { const f = x.match(/\+?\d[\d\s().-]{6,}\d/g); if (f) { setNum(f[0].trim()); setNr(null); setKc(""); setNe(""); } else setNe("Je ne trouve pas de numéro de téléphone dans ce fichier."); }} /><button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand2) 22%, transparent)", borderColor: "var(--brand2)" }} onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) check(x.trim()); else setNe("Rien à coller : copiez d'abord un numéro."); } catch { setNe("Je n'ai pas pu lire ce que vous avez copié. Collez le numéro dans la case."); } }}>{t("Coller le numéro")}</button><button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand2) 22%, transparent)", borderColor: "var(--brand2)" }} onClick={async () => { if (!contactsSupported()) { notify("Ce navigateur ne permet pas de choisir un contact. Utilisez Chrome sur Android.", "warn"); return; } try { const c = await pickContacts(); if (c[0]?.t[0]) check(c[0].t[0]); } catch (e: any) { if (e?.name !== "AbortError") notify("Je n'ai pas pu accéder aux contacts.", "warn"); } }}>{t("Choisir un contact")}</button></div>
+      <p className="text-xs text-mute">{t("Android ne permet pas à un site installé de lire votre journal d'appels. Copiez un numéro depuis votre journal, puis touchez « Coller le numéro », ou choisissez un contact.")}</p>
       {ne && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(ne)}</p>}</div>
     {kc && <div className="card p-5 mb-4 flex items-center gap-3" style={{ borderColor: "#22C55E88" }}><span aria-hidden="true" className="text-2xl">✅</span><p className="font-medium">{t("Ce numéro est dans vos contacts")} : <span dir="auto">{kc}</span></p></div>}
     {nr && <div className="mb-4"><Report r={{ score: nr.score, level: nr.level, reasons: nr.reasons, tips: nr.tips }} headline={HEAD[nr.level]}>
@@ -247,7 +230,7 @@ export function CallsV() {
       {nr.level !== "danger" || nr.kind !== "Marqué par vous" ? <button type="button" className="btn2" onClick={mark}>{t("Marquer ce numéro comme dangereux")}</button> : null}</Report></div>}
     <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Mes contacts")}</h2>
       <p className="text-sm text-mute">{t("Choisissez des contacts de votre téléphone : Bobby saura que leurs numéros sont connus. Rien n'est envoyé : la liste reste sur votre téléphone.")}</p>
-      <div className="flex flex-wrap gap-2"><button type="button" className="btn2" onClick={pick}><Users size={16} />{t("Importer des contacts")}</button>
+      <div className="flex flex-wrap gap-2"><button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand) 22%, transparent)", borderColor: "var(--brand)" }} onClick={pick}><Users size={16} />{t("Importer des contacts")}</button>
         {contacts.length > 0 && <button type="button" className="btn" onClick={() => setSheet(true)}>{t("Voir mes contacts")} ({contacts.length})</button>}
         {contacts.length > 0 && <button type="button" className="btn2" onClick={() => { setContacts([]); setKc(""); notify("Contacts retirés de Bobby."); }}>{t("Retirer mes contacts")}</button>}</div></div>
     {sheet && <ContactSheet contacts={contacts} home={home} blocked={blocked} onClose={() => setSheet(false)} onRemove={(i) => setContacts(contacts.filter((_, j) => j !== i))} onAdd={pick} />}

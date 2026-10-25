@@ -15,8 +15,7 @@ export const NAV: { id: View; label: string; icon: any; desc: string; group: str
   { id: "chat", label: "Parler à Bobby", icon: Bot, desc: "Posez-moi vos questions", group: "" },
   { id: "text", label: "Analyse des messages", icon: MessageSquareWarning, desc: "SMS, mails, WhatsApp, Telegram", group: "Vérifier" },
   { id: "web", label: "Analyse site web", icon: Globe, desc: "Ce site est-il fiable ?", group: "Vérifier" },
-  { id: "image", label: "Analyse image", icon: Img, desc: "Capture d'écran, photo", group: "Vérifier" },
-  { id: "qr", label: "Analyse QR code", icon: QrCode, desc: "Où mène ce code ?", group: "Vérifier" },
+  { id: "image", label: "Analyse image et QR code", icon: Img, desc: "Capture, photo ou QR code", group: "Vérifier" },
   { id: "calls", label: "Protection appels", icon: PhoneCall, desc: "Qui vous appelle ?", group: "Protéger" },
   { id: "threats", label: "Centre des menaces", icon: Siren, desc: "Reconnaître les arnaques", group: "Protéger" },
   { id: "family", label: "Famille", icon: Users, desc: "Protéger vos proches", group: "Protéger" },
@@ -62,7 +61,7 @@ export function ToastHost() {
   const toast = useS((s) => s.toast); const t = useT(); const col = { ok: "#22C55E", warn: "#F59E0B", bad: "#EF4444", info: "var(--brand)" };
   return (<div className="fixed top-3 inset-x-0 z-[70] flex justify-center px-4 pointer-events-none" style={{ paddingTop: "env(safe-area-inset-top)" }}><AnimatePresence>{toast && <motion.div key={toast.id} role="status" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -30, opacity: 0 }} className="card px-4 py-3 text-sm font-medium flex items-center gap-2 shadow-lg" style={{ background: "var(--solid)", borderColor: col[toast.tone] }}><span className="w-2 h-2 rounded-full" style={{ background: col[toast.tone] }} />{t(toast.text)}</motion.div>}</AnimatePresence></div>);
 }
-const GO: [RegExp, View][] = [[/accueil/i, "home"], [/texte|message|sms|mail/i, "text"], [/site|web|lien/i, "web"], [/image|photo|capture/i, "image"], [/qr/i, "qr"], [/appel|t[ée]l[ée]phone|num[ée]ro/i, "calls"], [/menace|danger/i, "threats"], [/famille|proches/i, "family"], [/communaut[ée]|signal/i, "community"], [/r[ée]glage|param[èe]tre|option/i, "settings"]];
+const GO: [RegExp, View][] = [[/accueil/i, "home"], [/texte|message|sms|mail/i, "text"], [/site|web|lien/i, "web"], [/image|photo|capture|qr/i, "image"], [/appel|t[ée]l[ée]phone|num[ée]ro/i, "calls"], [/menace|danger/i, "threats"], [/famille|proches/i, "family"], [/communaut[ée]|signal/i, "community"], [/r[ée]glage|param[èe]tre|option/i, "settings"]];
 export function Fab() {
   const { settings: s, set, go, ask } = useS(); const t = useT(); const [lis, setLis] = useState(false); const [msg, setMsg] = useState(""); const vo = s.voice !== false;
   const hear = () => {
