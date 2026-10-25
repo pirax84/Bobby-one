@@ -42,17 +42,17 @@ function InstallCard() {
 }
 
 export function HomeV() {
-  const { go, protectedToday, blocked, history, incoming, setIncoming, clearHistory, notify } = useS(); const t = useT(); const lang = useS((s) => s.settings.lang); const scan = useScan();
+  const { go, protectedToday, blocked, reported, history, incoming, setIncoming, clearHistory, notify } = useS(); const t = useT(); const lang = useS((s) => s.settings.lang); const scan = useScan();
   const [q, setQ] = useState(""); const [res, setRes] = useState<{ r: Result | UrlResult; web: boolean } | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
   const check = async (v = q) => {
     const x = v.trim(); if (x.length < 3) { setErr("Écrivez ou collez d'abord un message ou une adresse."); return; }
     setErr(""); setRes(null); setB(true); await wait(900);
-    const u = looksLikeUrl(x) ? analyzeUrl(x) : null; const r = u || analyzeText(x); scan(u ? "web" : "text", x, r); setRes({ r, web: !!u }); setB(false);
+    const u = looksLikeUrl(x) ? analyzeUrl(x) : null; const r = u || analyzeText(x); scan(u ? "web" : "text", x, r); setRes({ r, web: !!u }); setQ(""); setB(false);
   };
   useEffect(() => { if (incoming) { const x = incoming; setIncoming(null); setQ(x); check(x); } }, [incoming]);
   const paste = async () => { try { const x = await navigator.clipboard.readText(); if (x) { setQ(x); setRes(null); setErr(""); } else notify("Le presse-papiers est vide.", "warn"); } catch { notify("Impossible de coller ici : faites un appui long dans la case, puis « Coller ».", "warn"); } };
-  const avg = history.length ? Math.round(history.reduce((a, h) => a + h.score, 0) / history.length) : 87;
-  const stats: [string, string | number, string, View][] = [["Score de confiance", avg + "/100", META[levelOf(avg)].color, "threats"], ["Protégé aujourd'hui", protectedToday, "var(--brand)", "text"], ["Menaces bloquées", blocked, "#EF4444", "calls"], ["Alertes communauté", 42, "#F59E0B", "community"]];
+  const avg = history.length ? Math.round(history.reduce((a, h) => a + h.score, 0) / history.length) : null;
+  const stats: [string, string | number, string, View][] = [["Score de confiance", avg === null ? "—" : avg + "/100", avg === null ? "var(--mute)" : META[levelOf(avg)].color, "threats"], ["Vérifications faites", protectedToday, "var(--brand)", "text"], ["Menaces détectées", blocked, "#EF4444", "calls"], ["Mes signalements", reported.length, "#F59E0B", "community"]];
   const code = LANGS[lang]?.code || "fr"; const days = Array.from({ length: 7 }, (_, i) => { try { return new Intl.DateTimeFormat(code, { weekday: "narrow" }).format(new Date(2024, 0, 1 + i)); } catch { return "·"; } }); const bars = [12, 18, 9, 24, 15, 31, 20];
   const tools = NAV.filter((n) => ["text", "web", "image", "qr", "calls", "threats"].includes(n.id));
   return (<div className="space-y-5">
@@ -63,7 +63,7 @@ export function HomeV() {
       <textarea id="quick" className="inp min-h-28 resize-y" placeholder={t("Collez ici le message à vérifier…")} value={q} onChange={(e) => { setQ(e.target.value); setErr(""); }} />
       {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
       <div className="flex flex-wrap gap-2"><button type="button" className="btn flex-1 sm:flex-none" disabled={b} onClick={() => check()}><Sparkles size={18} />{t("Vérifier avec Bobby")}</button>
-        <button type="button" className="btn2" onClick={paste}><ClipboardPaste size={16} />{t("Coller")}</button><Mic onText={(x) => { setQ((o) => (o + " " + x).trim()); setRes(null); }} /></div>
+        <button type="button" className="btn2" onClick={paste}><ClipboardPaste size={16} />{t("Coller")}</button>{q && <button type="button" className="btn2" onClick={() => { setQ(""); setRes(null); setErr(""); }}>{t("Effacer")}</button>}<Mic onText={(x) => { setQ((o) => (o + " " + x).trim()); setRes(null); }} /></div>
       <div><p className="text-xs text-mute mb-2">{t("Essayez avec un exemple")}</p><Chips items={[...EX_T, { l: "Faux site", v: "amazon-verify-compte.xyz" }]} on={(v) => { setQ(v); setRes(null); setErr(""); }} /></div>
     </section>
     {b && <Busy steps={STEPS_T} />}
@@ -75,23 +75,22 @@ export function HomeV() {
     {history.length > 0 && <section className="card p-5"><div className="flex items-center justify-between mb-3"><h2 className="font-semibold flex items-center gap-2"><History size={18} />{t("Vérifications récentes")}</h2><button type="button" className="text-sm text-mute underline" onClick={clearHistory}>{t("Effacer")}</button></div>
       <ul className="space-y-3">{history.slice(0, 5).map((h) => <li key={h.id} className="flex items-center gap-3"><Gauge score={h.score} size={44} /><div className="min-w-0 flex-1"><p className="text-sm truncate" dir="auto">{h.label}</p><p className="text-xs text-mute">{new Date(h.at).toLocaleTimeString(code, { hour: "2-digit", minute: "2-digit" })}</p></div><Badge lv={h.level} /></li>)}</ul></section>}
     <section className="card p-5 flex gap-4"><div className="ico"><Share2 size={22} /></div><div><p className="font-semibold">{t("Vérifiez sans ouvrir Bobby")}</p><p className="text-sm text-mute">{t("Sur Android, une fois Bobby installé : dans n'importe quelle application, touchez Partager, puis choisissez Bobby One. Je vérifie le message ou le lien tout de suite.")}</p></div></section>
-    <section className="card p-5"><h2 className="font-semibold mb-4">{t("Menaces repérées cette semaine")}</h2><div className="flex items-end gap-3 h-36">{bars.map((v, i) => (<div key={i} className="flex-1 flex flex-col items-center gap-2"><motion.div initial={{ height: 0 }} animate={{ height: v * 3.6 }} transition={{ delay: i * .06 }} className="w-full rounded-xl" style={{ background: "linear-gradient(var(--brand),var(--brand2))" }} /><span className="text-xs text-mute">{days[i]}</span></div>))}</div></section>
   </div>);
 }
 
 export function TextV() {
   const t = useT(); const scan = useScan(); const [v, setV] = useState(""); const [r, setR] = useState<Result | null>(null); const [b, setB] = useState(false);
-  const run = async () => { setB(true); setR(null); await wait(850); const x = analyzeText(v); scan("text", v, x); setR(x); setB(false); };
+  const run = async () => { setB(true); setR(null); await wait(850); const x = analyzeText(v); scan("text", v, x); setR(x); setV(""); setB(false); };
   return (<div><Title t="Analyse texte" d="Collez un SMS, un mail ou un message WhatsApp." />
     <div className="card p-5 space-y-4"><textarea className="inp min-h-40 resize-y" aria-label={t("Message à vérifier")} placeholder={t("Collez ici le message à vérifier…")} value={v} onChange={(e) => { setV(e.target.value); setR(null); }} />
       <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /></div>
-      <button type="button" className="btn w-full sm:w-auto" disabled={v.trim().length < 5 || b} onClick={run}>{t("Analyser avec Bobby")}</button></div>
+      <div className="flex gap-2 flex-wrap"><button type="button" className="btn flex-1 sm:flex-none" disabled={v.trim().length < 5 || b} onClick={run}>{t("Analyser avec Bobby")}</button>{v && <button type="button" className="btn2" onClick={() => { setV(""); setR(null); }}>{t("Effacer")}</button>}</div></div>
     <div className="mt-5">{b && <Busy steps={STEPS_T} />}{r && <Report r={r} />}</div></div>);
 }
 
 export function WebV() {
   const t = useT(); const scan = useScan(); const [u, setU] = useState(""); const [r, setR] = useState<UrlResult | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
-  const run = async (v = u) => { setU(v); setErr(""); setR(null); setB(true); await wait(850); const x = analyzeUrl(v); setB(false); if (!x) { setErr("Cette adresse ne me semble pas valide. Exemple : exemple.fr"); return; } scan("web", x.domain, x); setR(x); };
+  const run = async (v = u) => { setU(v); setErr(""); setR(null); setB(true); await wait(850); const x = analyzeUrl(v); setB(false); if (!x) { setErr("Cette adresse ne me semble pas valide. Exemple : exemple.fr"); return; } scan("web", x.domain, x); setR(x); setU(""); };
   return (<div><Title t="Analyse site web" d="Collez l'adresse d'un site avant d'y entrer vos informations." />
     <div className="card p-5 space-y-4"><div className="flex gap-2 flex-col sm:flex-row"><input className="inp" dir="ltr" inputMode="url" aria-label={t("Adresse du site")} placeholder="https://…" value={u} onChange={(e) => setU(e.target.value)} onKeyDown={(e) => e.key === "Enter" && u && run()} /><button type="button" className="btn" disabled={!u || b} onClick={() => run()}>{t("Vérifier")}</button><Mic onText={(x) => setU(x.replace(/\s+/g, "").replace(/point/gi, "."))} /></div>
       <div className="flex flex-wrap gap-2">{EX_W.map((x) => <button type="button" key={x} className="btn2" dir="ltr" onClick={() => run(x)}>{x.replace(/https?:\/\//, "")}</button>)}</div>{err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}</div>
