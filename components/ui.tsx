@@ -25,7 +25,7 @@ export const NAV: { id: View; label: string; icon: any; desc: string; group: str
   { id: "threats", label: "Centre des menaces", icon: Siren, desc: "Reconnaître les arnaques", group: "Protéger" },
   { id: "family", label: "Famille", icon: Users, desc: "Protéger vos proches", group: "Protéger" },
   { id: "community", label: "Communauté", icon: Radio, desc: "Signalements en direct", group: "Protéger" },
-  { id: "settings", label: "Réglages", icon: Settings, desc: "Personnaliser Bobby", group: "" },
+  { id: "settings", label: "Paramètres", icon: Settings, desc: "Personnaliser Bobby", group: "" },
 ];
 export const Bobby = ({ s = 48 }: { s?: number }) => (
   <img src="/bobby.svg" alt="" aria-hidden="true" width={s} height={s} className="shrink-0" style={{ width: s, height: s }} />

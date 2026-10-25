@@ -5,7 +5,7 @@ const D: Record<string, string[]> = {
   "Analyse texte": ["Text analysis", "Análisis de texto", "Textanalyse"], "Analyse site web": ["Website analysis", "Análisis de sitio web", "Website-Analyse"],
   "Analyse image": ["Image analysis", "Análisis de imagen", "Bildanalyse"], "Analyse QR code": ["QR code analysis", "Análisis de código QR", "QR-Code-Analyse"],
   "Protection appels": ["Call protection", "Protección de llamadas", "Anrufschutz"], "Centre des menaces": ["Threat center", "Centro de amenazas", "Bedrohungszentrum"],
-  "Famille": ["Family", "Familia", "Familie"], "Communauté": ["Community", "Comunidad", "Gemeinschaft"], "Réglages": ["Settings", "Ajustes", "Einstellungen"],
+  "Famille": ["Family", "Familia", "Familie"], "Communauté": ["Community", "Comunidad", "Gemeinschaft"], "Paramètres": ["Settings", "Ajustes", "Einstellungen"],
   "Votre tableau de bord": ["Your dashboard", "Su panel", "Ihr Dashboard"], "Posez-moi vos questions": ["Ask me anything", "Hágame preguntas", "Stellen Sie mir Fragen"],
   "SMS, mails, WhatsApp": ["SMS, emails, WhatsApp", "SMS, correos, WhatsApp", "SMS, E-Mails, WhatsApp"], "Ce site est-il fiable ?": ["Is this site trustworthy?", "¿Es fiable este sitio?", "Ist diese Seite vertrauenswürdig?"],
   "Capture d'écran, photo": ["Screenshot, photo", "Captura, foto", "Screenshot, Foto"], "Où mène ce code ?": ["Where does this code lead?", "¿A dónde lleva este código?", "Wohin führt dieser Code?"],

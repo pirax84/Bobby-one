@@ -18,11 +18,29 @@ export const speak = async (txt: string, lang: string, onend?: () => void) => {
     } catch { noHq = true; }
   }
   if (!window.speechSynthesis) { onend?.(); return; }
-  const u = new SpeechSynthesisUtterance(clean); const tts = LANGS[lang]?.tts || "fr-FR"; u.lang = tts;
-  const st = useS.getState().settings; const code = tts.slice(0, 2); const pool = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code));
-  const sc = (v: SpeechSynthesisVoice) => (v.name === st.voiceName ? 100 : 0) + (MALE.test(v.name) ? 10 : 0) + (GOOD.test(v.name) ? 6 : 0) + (v.localService ? 0 : 1);
-  const vv = [...pool].sort((x, y) => sc(y) - sc(x))[0]; if (vv) u.voice = vv; u.pitch = st.pitch ?? 0.75; u.rate = st.rate ?? 0.92; if (onend) u.onend = onend; window.speechSynthesis.speak(u);
+  const tts = LANGS[lang]?.tts || "fr-FR"; const vv = await pickVoice(lang); if (my !== token) return;
+  const st = useS.getState().settings;
+  // Même voix, même vitesse, même tonalité partout : le texte est découpé en phrases lues l'une après l'autre.
+  const parts = clean.match(/[^.!?。！？]+[.!?。！？]*/g)?.map((x) => x.trim()).filter(Boolean) || [clean];
+  const chunks: string[] = []; for (const p of parts) { if (p.length <= 200) chunks.push(p); else for (let i = 0; i < p.length; i += 200) chunks.push(p.slice(i, i + 200)); }
+  chunks.forEach((c, i) => { const u = new SpeechSynthesisUtterance(c); u.lang = vv?.lang || tts; if (vv) u.voice = vv; u.pitch = st.pitch ?? 0.75; u.rate = st.rate ?? 0.92; if (i === chunks.length - 1 && onend) u.onend = onend; window.speechSynthesis.speak(u); });
 };
+// Liste des voix du téléphone : elle arrive parfois avec un petit retard, on l'attend pour que la voix soit toujours la même.
+export function loadVoices(): Promise<SpeechSynthesisVoice[]> {
+  return new Promise((res) => {
+    const sy = typeof window !== "undefined" ? window.speechSynthesis : undefined; if (!sy) return res([]);
+    const now = sy.getVoices(); if (now.length) return res(now);
+    let done = false; const fin = () => { if (done) return; done = true; sy.removeEventListener?.("voiceschanged", fin); res(sy.getVoices()); };
+    sy.addEventListener?.("voiceschanged", fin); setTimeout(fin, 1500);
+  });
+}
+export const voicesFor = (all: SpeechSynthesisVoice[], lang: string) => { const code = (LANGS[lang]?.tts || "fr-FR").slice(0, 2); return all.filter((v) => v.lang.toLowerCase().replace("_", "-").startsWith(code)); };
+// Les voix « du téléphone » (locales) obéissent à la vitesse et à la tonalité ; beaucoup de voix « réseau » les ignorent.
+export async function pickVoice(lang: string): Promise<SpeechSynthesisVoice | undefined> {
+  const st = useS.getState().settings; const pool = voicesFor(await loadVoices(), lang);
+  const sc = (v: SpeechSynthesisVoice) => (v.name === st.voiceName ? 1000 : 0) + (v.localService ? 50 : 0) + (MALE.test(v.name) ? 10 : 0) + (GOOD.test(v.name) ? 3 : 0);
+  return [...pool].sort((x, y) => sc(y) - sc(x) || x.name.localeCompare(y.name))[0];
+}
 export const ERR: Record<string, string> = {
   "not-allowed": "Le micro est bloqué. Autorisez le micro dans votre navigateur (le site doit être en https).",
   "no-speech": "Je n'ai rien entendu, réessayez.", unsupported: "Ce navigateur ne gère pas le micro. Essayez Chrome (Android) ou Safari (iPhone).", x: "Le micro ne fonctionne pas pour le moment.",

@@ -13,8 +13,9 @@ import { ocr, decodeQr } from "@/lib/vision";
 import { contactsSupported, pickContacts } from "@/lib/contacts";
 import { platformOf } from "@/lib/platforms";
 import { analyzeNumber, NumResult } from "@/lib/numbers";
-import { askNotif, askMic, notifState, alertDanger, PermState } from "@/lib/perm";
+import { askNotif, askMic, notifState, alertDanger, clearBobbyNotifications, PermState } from "@/lib/perm";
 import { NAV, usePhone, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
+import { loadVoices, voicesFor, pickVoice } from "@/lib/voice";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const STEPS_T = ["Bobby lit votre message…", "Je cherche les signes d'arnaque…", "Je calcule le score de confiance…"];
@@ -323,29 +324,59 @@ export function PermissionsCard({ compact = false }: { compact?: boolean }) {
   const Row2 = ({ title, desc, st, onClick }: { title: string; desc: string; st: PermState; onClick: () => void }) => (<div className="flex items-center gap-3 py-3 border-b last:border-0" style={{ borderColor: "var(--bd)" }}><div className="flex-1 min-w-0"><p className="font-medium">{t(title)}</p><p className="text-xs text-mute">{t(desc)}</p><p className="text-xs mt-1">{t(lab(st))}</p></div>{st !== "granted" && st !== "unsupported" && <button type="button" className="btn2" onClick={onClick}>{t("Autoriser")}</button>}</div>);
   return (<div className={compact ? "text-start" : "card p-5"}>
     {!compact && <h2 className="font-semibold mb-1">{t("Autorisations de Bobby")}</h2>}
-    <Row2 title="Alertes (notifications)" desc="Pour vous prévenir tout de suite quand un message ou un site est dangereux." st={n} onClick={async () => { const x = await askNotif(); setN(x); if (x === "granted") { set({ notif: true }); alertDanger("Les alertes de Bobby sont activées."); } }} />
+    <Row2 title="Alertes (notifications)" desc="Pour vous prévenir tout de suite quand un message ou un site est dangereux." st={n} onClick={async () => { const x = await askNotif(); setN(x); if (x === "granted") { set({ notif: true }); notify("Alertes activées. Bobby vous préviendra en cas de danger."); } }} />
     <Row2 title="Localisation" desc="Pour connaître votre pays et afficher les bonnes sources officielles." st={g} onClick={async () => { try { const c = await locate(); set({ country: c }); setG("granted"); notify("Pays trouvé : " + (COUNTRIES.find((x) => x.code === c)?.name || c)); } catch (e: any) { setG(e?.message === "denied" ? "denied" : "default"); notify("Je n'ai pas pu vous localiser. Choisissez votre pays dans les réglages.", "warn"); } }} />
     <Row2 title="Micro" desc="Pour parler à Bobby avec votre voix." st={m} onClick={async () => setM(await askMic())} />
     {!compact && <div className="rounded-2xl p-4 mt-4 text-sm space-y-2" style={{ background: "var(--soft)" }}><p className="font-semibold">{t("Ce que Bobby ne peut pas faire (et pourquoi)")}</p><p>{t("Une application installée depuis internet n'a pas le droit de lire vos SMS, votre journal d'appels, vos photos, vos mails, ni les messages de WhatsApp, Telegram, Instagram, Messenger, TikTok, Snapchat ou des autres réseaux sociaux. Votre téléphone l'interdit, pour votre sécurité.")}</p><p>{t("Ce qui marche : touchez Partager dans n'importe quelle application (message, mail, WhatsApp, Telegram, réseaux sociaux, photos), puis choisissez Bobby One. Bobby lit alors le message ou l'image que vous lui envoyez.")}</p></div>}
   </div>);
 }
 
+function VoiceSlider({ label, lo, hi, min, max, value, on }: { label: string; lo: string; hi: string; min: number; max: number; value: number; on: (v: number) => void }) {
+  const t = useT(); const lang = useS((x) => x.settings.lang); const tm = useRef<any>(null); const STEP = 0.05;
+  const test = () => { clearTimeout(tm.current); tm.current = setTimeout(() => speak("Bonjour, je suis Bobby. Je veille sur vous.", lang), 450); };
+  const set = (v: number) => { const x = Math.min(max, Math.max(min, Math.round(v / STEP) * STEP)); on(Math.round(x * 100) / 100); test(); };
+  return (<div className="py-4 border-b space-y-2" style={{ borderColor: "var(--bd)" }}><div className="flex justify-between items-center"><span>{t(label)}</span><span className="font-semibold tabular-nums" dir="ltr">{value.toFixed(2)}</span></div>
+    <div className="flex items-center gap-2"><button type="button" className="btn2 !min-w-12 text-xl" aria-label={t(lo)} onClick={() => set(value - 0.1)}>−</button><input type="range" className="big flex-1" aria-label={t(label)} min={min} max={max} step={STEP} value={value} onChange={(e) => set(parseFloat(e.target.value))} /><button type="button" className="btn2 !min-w-12 text-xl" aria-label={t(hi)} onClick={() => set(value + 0.1)}>＋</button></div>
+    <div className="flex justify-between text-xs text-mute"><span>{t(lo)}</span><span>{t(hi)}</span></div></div>);
+}
+function VoiceBox() {
+  const { settings: s, set } = useS(); const t = useT(); const [vs, setVs] = useState<{ n: string; local: boolean }[]>([]); const [cur, setCur] = useState("");
+  useEffect(() => { let ok = true; loadVoices().then(async (all) => { if (!ok) return; setVs(voicesFor(all, s.lang).map((v) => ({ n: v.name, local: v.localService }))); const v = await pickVoice(s.lang); if (ok) setCur(v ? v.name + (v.localService ? "" : " (réseau)") : ""); }); return () => { ok = false; }; }, [s.lang, s.voiceName]);
+  return (<div className="py-4 border-b space-y-3" style={{ borderColor: "var(--bd)" }}><div className="flex items-center justify-between gap-3 flex-wrap"><span>{t("Voix de Bobby")}</span><div className="flex gap-2"><select className="inp max-w-[240px]" aria-label={t("Voix de Bobby")} value={s.voiceName || ""} onChange={(e) => set({ voiceName: e.target.value })}><option value="">{t("Automatique (voix masculine du téléphone)")}</option>{vs.map((v) => <option key={v.n} value={v.n}>{v.n}{v.local ? "" : " (réseau)"}</option>)}</select><button type="button" className="btn2" onClick={() => speak("Bonjour, je suis Bobby. Je veille sur vous.", s.lang)}><Volume2 size={16} />{t("Tester")}</button></div></div>
+    {cur && <p className="text-xs text-mute">{t("Voix utilisée partout dans Bobby")} : <span dir="ltr">{cur}</span></p>}
+    <p className="text-xs text-mute">{t("Les voix « réseau » ignorent souvent la vitesse et la tonalité. Si rien ne change, choisissez une voix sans « (réseau) ».")}</p></div>);
+}
+
 export function SettingsV() {
-  const { settings: s, set, clearHistory, notify } = useS(); const t = useT();
-  const Row = ({ l, children }: { l: string; children: React.ReactNode }) => <div className="flex items-center justify-between gap-4 py-4 border-b" style={{ borderColor: "var(--bd)" }}><span>{t(l)}</span>{children}</div>;
-  return (<div><Title t="Réglages" d="Personnalisez Bobby comme vous le souhaitez." />
-    <div className="space-y-4"><div className="card px-5 md:px-6"><Row l="Langue"><select className="inp max-w-[220px]" aria-label={t("Langue")} value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select></Row>
-      <Row l="Mon pays (pour les sources officielles)"><CountryPick /></Row>
-      <Row l="Bobby parle sur tous les écrans"><Toggle label={t("Bobby parle sur tous les écrans")} on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) stopSpeak(); }} /></Row>
-      <Row l="Vitesse de la voix"><div className="flex items-center gap-2 text-xs text-mute">{t("Lent")}<input type="range" aria-label={t("Vitesse de la voix")} min="0.6" max="1.4" step="0.05" value={s.rate ?? 0.92} onChange={(e) => set({ rate: parseFloat(e.target.value) })} />{t("Rapide")}</div></Row>
-      <Row l="Tonalité de la voix"><div className="flex items-center gap-2 text-xs text-mute">{t("Grave")}<input type="range" aria-label={t("Tonalité de la voix")} min="0.5" max="1.3" step="0.05" value={s.pitch ?? 0.75} onChange={(e) => set({ pitch: parseFloat(e.target.value) })} />{t("Aiguë")}</div></Row>
-      <Row l="Écouter la voix"><button type="button" className="btn2" onClick={() => speak("Bonjour, je suis Bobby. Je veille sur vous.", s.lang)}><Volume2 size={16} />{t("Tester")}</button></Row>
-      <Row l="Notifications d'alerte"><Toggle label={t("Notifications d'alerte")} on={s.notif} f={() => set({ notif: !s.notif })} /></Row>
-      <Row l="Confidentialité renforcée (rien n'est envoyé)"><Toggle label={t("Confidentialité renforcée (rien n'est envoyé)")} on={s.privacy} f={() => set({ privacy: !s.privacy })} /></Row>
-      <Row l="Thème"><div className="flex gap-2">{(["dark", "light"] as const).map((x) => <button type="button" key={x} aria-pressed={s.theme === x} className={"btn2 " + (s.theme === x ? "on" : "")} onClick={() => set({ theme: x })}>{t(x === "dark" ? "Sombre" : "Clair")}</button>)}</div></Row>
-      <Row l="Niveau de sécurité"><div className="flex gap-2 flex-wrap justify-end">{(["Standard", "Renforcé", "Maximum"] as const).map((x) => <button type="button" key={x} aria-pressed={s.security === x} className={"btn2 " + (s.security === x ? "on" : "")} onClick={() => set({ security: x })}>{t(x)}</button>)}</div></Row>
+  const { settings: s, set, clearHistory, notify, contacts, setContacts, setBlockedNums } = useS(); const t = useT(); const [cat, setCat] = useState<string>(""); const [sure, setSure] = useState(false);
+  const Row = ({ l, children }: { l: string; children: React.ReactNode }) => <div className="flex items-center justify-between gap-4 py-4 border-b last:border-0" style={{ borderColor: "var(--bd)" }}><span>{t(l)}</span>{children}</div>;
+  const CATS: [string, string, string][] = [["lang", "🌍", "Langue et pays"], ["voice", "🔊", "Voix de Bobby"], ["notif", "🔔", "Notifications et autorisations"], ["look", "🎨", "Apparence"], ["sec", "🛡️", "Sécurité"], ["data", "🔒", "Mes données et confidentialité"], ["about", "ℹ️", "À propos"]];
+  const DESCS: Record<string, string> = { lang: "Langue de l'application, pays pour les sources officielles", voice: "Parler ou non, voix, vitesse, tonalité", notif: "Alertes, mode fantôme, micro, localisation", look: "Thème clair ou sombre", sec: "Niveau de vigilance de Bobby", data: "Historique, contacts, supprimer mes données", about: "Version et limites de Bobby" };
+  const wipe = async () => { try { localStorage.clear(); sessionStorage.clear(); if ("caches" in window) for (const k of await caches.keys()) await caches.delete(k); const rs = await navigator.serviceWorker?.getRegistrations?.(); rs?.forEach((r) => r.unregister()); await clearBobbyNotifications(); } catch {} location.href = "/"; };
+  const body = (c: string) => {
+    if (c === "lang") return (<div className="card px-5 md:px-6"><Row l="Langue"><select className="inp max-w-[220px]" aria-label={t("Langue")} value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select></Row><Row l="Mon pays (pour les sources officielles)"><CountryPick /></Row></div>);
+    if (c === "voice") return (<div className="card px-5 md:px-6"><Row l="Bobby parle sur tous les écrans"><Toggle label={t("Bobby parle sur tous les écrans")} on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) stopSpeak(); }} /></Row>
+      <VoiceBox />
+      <VoiceSlider label="Vitesse de la voix" lo="Lent" hi="Rapide" min={0.6} max={1.4} value={s.rate ?? 0.92} on={(v) => set({ rate: v })} />
+      <VoiceSlider label="Tonalité de la voix" lo="Grave" hi="Aiguë" min={0.5} max={1.3} value={s.pitch ?? 0.75} on={(v) => set({ pitch: v })} /></div>);
+    if (c === "notif") return (<div className="space-y-4"><div className="card px-5 md:px-6"><Row l="Notifications d'alerte"><Toggle label={t("Notifications d'alerte")} on={s.notif} f={() => set({ notif: !s.notif })} /></Row>
+      <Row l="Mode fantôme (cacher la notification de Bobby)"><Toggle label={t("Mode fantôme")} on={s.ghost !== false} f={() => { const g = s.ghost === false; set({ ghost: g }); if (g) clearBobbyNotifications(); }} /></Row>
+      <p className="text-xs text-mute pb-3">{t("En mode fantôme, une alerte de danger s'affiche quelques secondes puis disparaît toute seule de la barre du haut. Sans le mode fantôme, elle reste jusqu'à ce que vous la fermiez.")}</p>
+      <div className="pb-4"><button type="button" className="btn2" onClick={async () => { await clearBobbyNotifications(); notify("Notification retirée de la barre du haut."); }}>{t("Retirer la notification maintenant")}</button></div></div><PermissionsCard /></div>);
+    if (c === "look") return (<div className="card px-5 md:px-6"><Row l="Thème"><div className="flex gap-2">{(["dark", "light"] as const).map((x) => <button type="button" key={x} aria-pressed={s.theme === x} className={"btn2 " + (s.theme === x ? "on" : "")} onClick={() => set({ theme: x })}>{t(x === "dark" ? "Sombre" : "Clair")}</button>)}</div></Row></div>);
+    if (c === "sec") return (<div className="card px-5 md:px-6"><Row l="Niveau de sécurité"><div className="flex gap-2 flex-wrap justify-end">{(["Standard", "Renforcé", "Maximum"] as const).map((x) => <button type="button" key={x} aria-pressed={s.security === x} className={"btn2 " + (s.security === x ? "on" : "")} onClick={() => set({ security: x })}>{t(x)}</button>)}</div></Row></div>);
+    if (c === "data") return (<div className="card px-5 md:px-6"><Row l="Confidentialité renforcée (rien n'est envoyé)"><Toggle label={t("Confidentialité renforcée (rien n'est envoyé)")} on={s.privacy} f={() => set({ privacy: !s.privacy })} /></Row>
       <Row l="Historique des vérifications"><button type="button" className="btn2" onClick={() => { clearHistory(); notify("Historique effacé."); }}>{t("Effacer")}</button></Row>
-      <div className="py-5 flex items-center gap-4"><Bobby s={48} /><div><p className="font-semibold">{t("À propos de Bobby One")}</p><p className="text-sm text-mute">{t("Version 1.2 · « Bobby veille sur vous. » Analyse par règles intégrées et listes de fraude en ligne. La base de numéros de téléphone et la liste communautaire sont encore des exemples.")}</p></div></div></div><PermissionsCard /></div></div>);
+      <Row l="Mes contacts importés"><button type="button" className="btn2" disabled={!contacts.length} onClick={() => { setContacts([]); notify("Contacts retirés de Bobby."); }}>{t("Retirer")} ({contacts.length})</button></Row>
+      <Row l="Numéros que j'ai marqués dangereux"><button type="button" className="btn2" onClick={() => { setBlockedNums([]); notify("Liste vidée."); }}>{t("Vider")}</button></Row>
+      <div className="py-4 space-y-2"><p className="font-semibold">{t("Supprimer toutes mes données")}</p><p className="text-sm text-mute">{t("Bobby n'a pas de compte : tout est gardé sur votre appareil. Ce bouton efface tout (historique, contacts, réglages, signalements) et remet Bobby à zéro.")}</p>
+        {!sure ? <button type="button" className="btn2" onClick={() => setSure(true)}>{t("Supprimer toutes mes données")}</button> : <div className="flex gap-2 flex-wrap"><button type="button" className="btn" style={{ background: "#DC2626" }} onClick={wipe}>{t("Oui, tout supprimer")}</button><button type="button" className="btn2" onClick={() => setSure(false)}>{t("Annuler")}</button></div>}</div></div>);
+    return (<div className="card p-5 flex items-center gap-4"><Bobby s={48} /><div><p className="font-semibold">{t("À propos de Bobby One")}</p><p className="text-sm text-mute">{t("Version 1.3 · « Bobby veille sur vous. » Analyse par règles intégrées et listes de fraude en ligne (OpenPhish, Google Safe Browsing). Il n'y a pas de base mondiale de numéros frauduleux : pour un numéro, Bobby applique les règles officielles de numérotation.")}</p></div></div>);
+  };
+  const cur = CATS.find((c) => c[0] === cat);
+  return (<div><Title t="Paramètres" d="Personnalisez Bobby comme vous le souhaitez." />
+    {!cur ? <div className="space-y-3">{CATS.map(([id, ic, l]) => <button type="button" key={id} className="card p-4 w-full flex items-center gap-4 text-start" onClick={() => setCat(id)}><span aria-hidden="true" className="text-2xl w-10 text-center">{ic}</span><span className="flex-1 min-w-0"><span className="block font-semibold">{t(l)}</span><span className="block text-sm text-mute">{t(DESCS[id])}</span></span><span aria-hidden="true" className="text-mute text-xl">›</span></button>)}</div>
+    : <div className="space-y-4"><div className="flex items-center gap-3"><button type="button" className="btn2" onClick={() => { setCat(""); setSure(false); }}>← {t("Retour")}</button><h2 className="text-xl font-bold">{cur[1]} {t(cur[2])}</h2></div>{body(cur[0])}</div>}</div>);
 }
 
 export function BotV() {

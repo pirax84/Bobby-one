@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutGrid, Download } from "lucide-react";
+import { LayoutGrid, Download, Settings as Cog } from "lucide-react";
 import { useS, View } from "@/lib/store";
+import { clearBobbyNotifications } from "@/lib/perm";
 import { NAV as NAV_ALL, usePhone, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
 import { useT, LANGS, RTL } from "@/lib/i18n";
 import { PermissionsCard, BotV, HomeV, TextV, WebV, ImageV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
@@ -39,6 +40,7 @@ export default function App() {
     const isApp = () => !!(window.matchMedia?.("(display-mode: standalone)").matches || window.matchMedia?.("(display-mode: fullscreen)").matches || window.matchMedia?.("(display-mode: minimal-ui)").matches || (navigator as any).standalone); setInstalled(isApp());
     const mq = window.matchMedia?.("(display-mode: standalone)"); const on = () => setInstalled(isApp()); mq?.addEventListener?.("change", on); return () => mq?.removeEventListener?.("change", on);
   }, []);
+  useEffect(() => { if (useS.getState().settings.ghost !== false) clearBobbyNotifications(); }, []);
   useEffect(() => {
     setOk(true);
     // Partage vers Bobby (Android) : ?text= ?url= ?title= ou ?go=
@@ -67,7 +69,7 @@ export default function App() {
       <div className="mt-auto pt-4">{item(NAV.find((n) => n.id === "settings")!)}</div>
     </aside>
     <main className="flex-1 min-w-0 p-4 md:p-8 pb-32 md:pb-8 pt-[max(1rem,env(safe-area-inset-top))] max-w-4xl mx-auto w-full">
-      <div className="md:hidden flex items-center gap-3 mb-5"><Bobby s={36} /><p className="font-bold">Bobby One</p></div>
+      <div className="md:hidden flex items-center gap-3 mb-5"><Bobby s={36} /><p className="font-bold flex-1">Bobby One</p><button type="button" aria-label={t("Paramètres")} aria-current={view === "settings" ? "page" : undefined} onClick={() => nav("settings")} className="w-11 h-11 rounded-full grid place-items-center border" style={{ borderColor: "var(--bd)", background: view === "settings" ? "var(--soft)" : "transparent", color: view === "settings" ? "var(--brand)" : "var(--mute)" }}><Cog size={22} /></button></div>
       <AnimatePresence mode="wait" initial={false}><motion.div key={view} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: .15 }}><V /></motion.div></AnimatePresence>
     </main>
     <nav aria-label="Navigation" className="md:hidden fixed inset-x-3 z-[45] bottom-[max(.75rem,env(safe-area-inset-bottom))] h-16 rounded-[28px] border backdrop-blur-xl flex items-center justify-between px-2 shadow-2xl" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>
@@ -76,7 +78,7 @@ export default function App() {
       {(["community"] as View[]).map((id) => { const n = DESC(id); const on = view === id; return <button type="button" key={id} onClick={() => nav(id)} aria-current={on ? "page" : undefined} aria-label={t(n.label)} className="relative flex-1 h-12 grid place-items-center active:scale-90 transition-transform">{on && <motion.span layoutId="pill" className="absolute inset-x-1 inset-y-0.5 rounded-2xl" style={{ background: "var(--soft)" }} />}<span className="relative flex flex-col items-center gap-0.5" style={{ color: on ? "var(--brand)" : "var(--mute)" }}><n.icon size={24} strokeWidth={on ? 2.4 : 1.9} /><span className="text-xs font-medium">{t(n.label)}</span></span></button>; })}
       <button type="button" onClick={() => setMore(!more)} aria-expanded={more} aria-label={t("Menu")} className="relative flex-1 h-12 grid place-items-center active:scale-90 transition-transform">{(inMore || more) && <motion.span layoutId="pill" className="absolute inset-x-1 inset-y-0.5 rounded-2xl" style={{ background: "var(--soft)" }} />}<span className="relative flex flex-col items-center gap-0.5" style={{ color: inMore || more ? "var(--brand)" : "var(--mute)" }}><LayoutGrid size={24} strokeWidth={inMore || more ? 2.4 : 1.9} /><span className="text-xs font-medium">{t("Menu")}</span></span></button></nav>
     <AnimatePresence>{more && <><motion.div key="bg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setMore(false)} />
-      <motion.div key="m" role="dialog" aria-label={t("Menu")} initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }} transition={{ type: "spring", damping: 24, stiffness: 300 }} className="md:hidden fixed bottom-28 inset-x-3 z-50 rounded-[28px] border p-4 grid grid-cols-3 gap-3" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>{NV.filter((n) => !BOTTOM.includes(n.id)).map((n) => <button type="button" key={n.id} onClick={() => nav(n.id)} className="flex flex-col items-center gap-2 p-3 rounded-3xl text-center text-xs font-medium active:scale-95 transition-transform" style={{ background: view === n.id ? "var(--soft)" : "var(--card)", color: view === n.id ? "var(--brand)" : "var(--fg)" }}><span className="w-12 h-12 rounded-2xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}><n.icon size={24} /></span>{t(n.label)}</button>)}</motion.div></>}</AnimatePresence>
+      <motion.div key="m" role="dialog" aria-label={t("Menu")} initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }} transition={{ type: "spring", damping: 24, stiffness: 300 }} className="md:hidden fixed bottom-28 inset-x-3 z-50 rounded-[28px] border p-4 grid grid-cols-3 gap-3" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>{NV.filter((n) => !BOTTOM.includes(n.id) && n.id !== "settings").map((n) => <button type="button" key={n.id} onClick={() => nav(n.id)} className="flex flex-col items-center gap-2 p-3 rounded-3xl text-center text-xs font-medium active:scale-95 transition-transform" style={{ background: view === n.id ? "var(--soft)" : "var(--card)", color: view === n.id ? "var(--brand)" : "var(--fg)" }}><span className="w-12 h-12 rounded-2xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}><n.icon size={24} /></span>{t(n.label)}</button>)}</motion.div></>}</AnimatePresence>
     <ToastHost />
     {onboarded && <Fab />}
     <AnimatePresence>{(!onboarded || !setup) && <motion.div role="dialog" aria-modal="true" exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/80 overflow-y-auto"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-7 max-w-md w-full text-center space-y-5" style={{ background: "var(--solid)" }}>
