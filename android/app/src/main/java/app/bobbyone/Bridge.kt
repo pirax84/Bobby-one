@@ -90,6 +90,8 @@ class Bridge(private val a: MainActivity) {
         }
     }
 
+    @JavascriptInterface fun speak(text: String, lang: String, pitch: Float, rate: Float) { a.runOnUiThread { a.speakText(text, lang, pitch, rate) } }
+    @JavascriptInterface fun stopSpeak() { a.runOnUiThread { a.stopSpeaking() } }
     @JavascriptInterface fun listen(lang: String) { a.runOnUiThread { a.startListening(lang) } }
     @JavascriptInterface fun stopListen() { a.runOnUiThread { a.stopListening() } }
 

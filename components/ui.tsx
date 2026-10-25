@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Bot, Mic as MicI, Volume2, VolumeX, Home, MessageSquareWarning, Globe, Image as Img, QrCode, PhoneCall, Siren, Users, Radio, Settings, Loader2, Check, X } from "lucide-react";
 import { META, levelOf, Result } from "@/lib/engine";
+import { isApp, nSpeak, nStopSpeak } from "@/lib/native";
 import { useS, type View } from "@/lib/store";
 import { useT, toFr } from "@/lib/i18n";
 import { speak, stopSpeak, listen, ERR } from "@/lib/voice";

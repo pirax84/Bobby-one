@@ -11,6 +11,7 @@ import android.os.Environment
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.speech.tts.TextToSpeech
 import android.util.Base64
 import android.view.View
 import android.webkit.CookieManager
@@ -146,7 +147,23 @@ class MainActivity : Activity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() { if (web.canGoBack()) web.goBack() else super.onBackPressed() }
 
-    override fun onDestroy() { recognizer?.destroy(); super.onDestroy() }
+    private var tts: TextToSpeech? = null
+    private var ttsReady = false
+    fun speakText(text: String, lang: String, pitch: Float, rate: Float) {
+        val go = {
+            tts?.let { t ->
+                try {
+                    t.language = java.util.Locale.forLanguageTag(lang)
+                    t.setPitch(pitch); t.setSpeechRate(rate)
+                    t.speak(text, TextToSpeech.QUEUE_FLUSH, null, "bobby")
+                } catch (e: Exception) { }
+            }
+        }
+        if (tts == null) { tts = TextToSpeech(applicationContext) { st -> ttsReady = st == TextToSpeech.SUCCESS; if (ttsReady) go() } }
+        else if (ttsReady) go()
+    }
+    fun stopSpeaking() { try { tts?.stop() } catch (e: Exception) { } }
+    override fun onDestroy() { recognizer?.destroy(); tts?.shutdown(); super.onDestroy() }
 
     private fun js(code: String) { runOnUiThread { web.evaluateJavascript(code, null) } }
     private fun heard(text: String, err: String) { js("window.__bobbyListen && window.__bobbyListen(" + JSONObject.quote(text) + "," + JSONObject.quote(err) + ")") }

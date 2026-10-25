@@ -31,6 +31,8 @@ export function takeSharedImage(): File | null {
   const d = String(call("takeSharedImage") || ""); const m = d.match(/^data:([^;]+);base64,(.*)$/); if (!m) return null;
   try { const bin = atob(m[2]); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new File([u], "partage", { type: m[1] }); } catch { return null; }
 }
+export const nSpeak = (text: string, lang: string, pitch: number, rate: number) => call("speak", text, lang, pitch, rate);
+export const nStopSpeak = () => call("stopSpeak");
 // Micro : reconnaissance vocale Android (le WebView n'a pas celle de Chrome).
 export function nListen(lang: string, done: (t: string) => void, fail: (e: string) => void, end?: () => void) {
   const w = window as any;
