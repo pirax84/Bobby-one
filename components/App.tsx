@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MoreHorizontal } from "lucide-react";
 import { useS, View } from "@/lib/store";
-import { NAV, Bobby, speak, Fab } from "./ui";
+import { NAV, Bobby, speak, playClip, Fab } from "./ui";
 import { useT, LANGS } from "@/lib/i18n";
 import { BotV, HomeV, TextV, WebV, ImageV, QrV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
 const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: TextV, web: WebV, image: ImageV, qr: QrV, calls: CallsV, threats: ThreatsV, family: FamilyV, community: CommunityV, settings: SettingsV };
@@ -14,7 +14,7 @@ export default function App() {
   useEffect(() => setOk(true), []);
   useEffect(() => { document.documentElement.dir = settings.lang === "العربية" ? "rtl" : "ltr"; document.documentElement.lang = LANGS[settings.lang]?.code || "fr"; }, [settings.lang]);
   const first = useRef(true);
-  useEffect(() => { if (first.current) { first.current = false; return; } if (!onboarded || settings.voice === false) return; const n = NAV.find((x) => x.id === view)!; speak(t(n.label) + ". " + t(n.desc), settings.lang); }, [view]);
+  useEffect(() => { if (first.current) { first.current = false; return; } if (!onboarded || settings.voice === false) return; const n = NAV.find((x) => x.id === view)!; const txt = view === "home" ? "Bonjour, je suis Bobby. Je veille sur vous." : n.label + ". " + n.desc; if (view === "home") playClip(6, settings.lang, txt); else speak(txt, settings.lang); }, [view]);
   useEffect(() => { document.documentElement.classList.toggle("light", settings.theme === "light"); }, [settings.theme]);
   if (!ok) return null;
   const V = VIEWS[view]; const main = NAV.slice(0, 5), rest = NAV.slice(5);

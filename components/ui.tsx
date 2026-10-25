@@ -50,6 +50,13 @@ export const speak = async (txt: string, lang: string, onend?: () => void) => {
   const sc = (v: SpeechSynthesisVoice) => (v.name === st.voiceName ? 100 : 0) + (MALE.test(v.name) ? 10 : 0) + (GOOD.test(v.name) ? 6 : 0) + (v.localService ? 0 : 1);
   const vv = [...pool].sort((x, y) => sc(y) - sc(x))[0]; if (vv) u.voice = vv; u.pitch = st.pitch ?? 0.75; u.rate = 0.92; if (onend) u.onend = onend; window.speechSynthesis.speak(u);
 };
+export const playClip = (n: number, lang: string, fallback: string, onend?: () => void) => {
+  if (typeof window === "undefined") { onend?.(); return; }
+  if (lang !== "Français") { speak(fallback, lang, onend); return; }
+  stopSpeak(); const a = new Audio(`/voice/${n}.mp3`); audio = a; a.onended = () => onend?.();
+  a.play().catch(() => { audio = null; speak(fallback, lang, onend); });
+};
+const CLIP: Record<string, number> = { safe: 1, careful: 2, suspicious: 3, danger: 4 };
 export const ERR: Record<string, string> = {
   "not-allowed": "Le micro est bloqué. Sur téléphone, il faut ouvrir l'adresse en https (version en ligne) et autoriser le micro.",
   "no-speech": "Je n'ai rien entendu, réessayez.", unsupported: "Ce navigateur ne gère pas le micro. Essayez Chrome (Android) ou Safari (iPhone).", x: "Le micro ne fonctionne pas pour le moment.",
@@ -68,7 +75,7 @@ export function Mic({ onText }: { onText: (t: string) => void }) {
 export const Badge = ({ lv }: { lv: string }) => { const m = META[lv as keyof typeof META]; const t = useT(); return <span className="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" style={{ background: m.color + "22", color: m.color }}>{t(m.label)}</span>; };
 export function Report({ r, children }: { r: Result; children?: React.ReactNode }) {
   const m = META[r.level]; const t = useT(); const lang = useS((x) => x.settings.lang); const vo = useS((x) => x.settings.voice !== false); const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => { setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 150); if (vo) speak(`${m.bobby} Score de confiance : ${r.score} sur 100. ${r.tips[0]}`, lang); }, []);
+  useEffect(() => { setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 150); if (vo) playClip(CLIP[r.level], lang, `${m.bobby} Score de confiance : ${r.score} sur 100. ${r.tips[0]}`); }, []);
   return (<motion.div ref={ref} style={{ scrollMarginTop: 16, borderColor: m.color + "77" }} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="card p-6 space-y-5" >
     <div className="flex items-center gap-5"><Gauge score={r.score} /><div><Badge lv={r.level} /><p className="mt-3 text-lg font-medium">{t(m.bobby)}</p><p className="text-sm text-mute mt-1">{t("Score de confiance")} : {r.score}/100</p></div></div>
     <button className="btn2" onClick={() => speak(m.bobby + " " + r.reasons.join(" ") + " " + r.tips.join(" "), lang)}>🔊 {t("Écouter Bobby")}</button>
