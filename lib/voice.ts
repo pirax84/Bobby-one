@@ -21,7 +21,7 @@ export const speak = async (txt: string, lang: string, onend?: () => void) => {
   const u = new SpeechSynthesisUtterance(clean); const tts = LANGS[lang]?.tts || "fr-FR"; u.lang = tts;
   const st = useS.getState().settings; const code = tts.slice(0, 2); const pool = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code));
   const sc = (v: SpeechSynthesisVoice) => (v.name === st.voiceName ? 100 : 0) + (MALE.test(v.name) ? 10 : 0) + (GOOD.test(v.name) ? 6 : 0) + (v.localService ? 0 : 1);
-  const vv = [...pool].sort((x, y) => sc(y) - sc(x))[0]; if (vv) u.voice = vv; u.pitch = st.pitch ?? 0.75; u.rate = 0.92; if (onend) u.onend = onend; window.speechSynthesis.speak(u);
+  const vv = [...pool].sort((x, y) => sc(y) - sc(x))[0]; if (vv) u.voice = vv; u.pitch = st.pitch ?? 0.75; u.rate = st.rate ?? 0.92; if (onend) u.onend = onend; window.speechSynthesis.speak(u);
 };
 export const ERR: Record<string, string> = {
   "not-allowed": "Le micro est bloqué. Autorisez le micro dans votre navigateur (le site doit être en https).",

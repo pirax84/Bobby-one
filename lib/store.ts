@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 export type View = "home" | "chat" | "text" | "web" | "image" | "qr" | "calls" | "threats" | "family" | "community" | "settings";
-export interface Settings { lang: string; notif: boolean; privacy: boolean; theme: "dark" | "light"; security: "Standard" | "Renforcé" | "Maximum"; voice?: boolean; voiceName?: string; deep?: boolean; pitch?: number; }
+export interface Settings { lang: string; notif: boolean; privacy: boolean; theme: "dark" | "light"; security: "Standard" | "Renforcé" | "Maximum"; voice?: boolean; voiceName?: string; deep?: boolean; pitch?: number; rate?: number; }
 export interface Scan { id: number; kind: "text" | "web" | "image" | "qr" | "call"; label: string; score: number; level: string; at: number; }
 export interface Toast { id: number; text: string; tone: "ok" | "warn" | "bad" | "info"; }
 interface S {
@@ -18,7 +18,7 @@ let tid = 1;
 export const useS = create<S>()(persist((set) => ({
   view: "home", go: (view) => set({ view }), onboarded: false, finish: () => set({ onboarded: true }),
   protectedToday: 0, blocked: 0, bump: (bad) => set((s) => ({ protectedToday: s.protectedToday + 1, blocked: s.blocked + (bad ? 1 : 0) })),
-  settings: { lang: "Français", notif: true, privacy: true, theme: "dark", security: "Renforcé", voice: false, deep: true, pitch: 0.75 }, set: (p) => set((s) => ({ settings: { ...s.settings, ...p } })),
+  settings: { lang: "Français", notif: true, privacy: true, theme: "dark", security: "Renforcé", voice: false, deep: true, pitch: 0.75, rate: 0.92 }, set: (p) => set((s) => ({ settings: { ...s.settings, ...p } })),
   pending: null, ask: (t) => set({ view: "chat", pending: t }),
   incoming: null, setIncoming: (incoming) => set({ incoming }),
   reported: [], report: (x) => set((s) => ({ reported: [x, ...s.reported] })),
