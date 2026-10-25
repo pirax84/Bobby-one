@@ -9,6 +9,8 @@ import { CALLS, THREATS, FEED, TOP, REP, FAMILY } from "@/lib/data";
 import { Explain } from "./Explain";
 import { Where, useCountry } from "./Where";
 import { COUNTRIES, locate } from "@/lib/country";
+import { ocr, decodeQr } from "@/lib/vision";
+import { askNotif, askMic, notifState, alertDanger, PermState } from "@/lib/perm";
 import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -20,7 +22,7 @@ const EX_T = [
   { l: "Message d'ami", v: "Salut ! On se retrouve à 19h au restaurant comme prévu ? Bises." },
 ];
 const EX_W = ["https://www.impots.gouv.fr", "http://amazon-verify-compte.xyz/connexion", "promo-ps5-fr.top"];
-function useScan() { const { bump, addScan } = useS(); return (kind: any, label: string, r: Result) => { bump(r.score < 60); addScan({ kind, label: label.replace(/\s+/g, " ").slice(0, 70), score: r.score, level: r.level }); }; }
+function useScan() { const { bump, addScan, settings } = useS(); return (kind: any, label: string, r: Result) => { bump(r.score < 60); if (r.score < 40 && settings.notif) alertDanger(META[r.level].bobby + " " + (r.reasons[0] || "")); addScan({ kind, label: label.replace(/\s+/g, " ").slice(0, 70), score: r.score, level: r.level }); }; }
 
 interface Live { ok: boolean; listed: boolean | null; sources: string[]; ageDays: number | null }
 async function live(u: string): Promise<Live | null> {
@@ -107,7 +109,7 @@ export function HomeV() {
     {history.length > 0 && <section className="card p-5"><div className="flex items-center justify-between mb-3"><h2 className="font-semibold flex items-center gap-2"><History size={18} />{t("Vérifications récentes")}</h2><button type="button" className="text-sm text-mute underline" onClick={clearHistory}>{t("Effacer")}</button></div>
       <ul className="space-y-3">{history.slice(0, 5).map((h) => <li key={h.id} className="flex items-center gap-3"><Gauge score={h.score} size={44} /><div className="min-w-0 flex-1"><p className="text-sm truncate" dir="auto">{h.label}</p><p className="text-xs text-mute">{new Date(h.at).toLocaleTimeString(code, { hour: "2-digit", minute: "2-digit" })}</p></div><Badge lv={h.level} /></li>)}</ul></section>}
     <ShareCard />
-    <section className="card p-5 flex gap-4"><div className="ico"><Share2 size={22} /></div><div><p className="font-semibold">{t("Vérifiez sans ouvrir Bobby")}</p><p className="text-sm text-mute">{t("Sur Android, une fois Bobby installé : dans n'importe quelle application, touchez Partager, puis choisissez Bobby One. Je vérifie le message ou le lien tout de suite.")}</p></div></section>
+    <section className="card p-5 flex gap-4"><div className="ico"><Share2 size={22} /></div><div><p className="font-semibold">{t("Vérifiez sans ouvrir Bobby")}</p><p className="text-sm text-mute">{t("Une fois Bobby installé (Android) : dans WhatsApp, Telegram, SMS, mails, réseaux sociaux ou la galerie photo, touchez Partager, puis choisissez Bobby One. Je vérifie le message, le lien ou l'image tout de suite.")}</p></div></section>
   </div>);
 }
 
@@ -130,37 +132,54 @@ export function WebV() {
     <div className="mt-5">{b && <Busy steps={STEPS_W} />}{r && <WebReport r={r} lv={lv} />}</div></div>);
 }
 
-const OCR = ["URGENT : votre colis est bloqué. Payez 2,99 € de frais de douane sur http://colis-laposte-suivi.xyz/payer avant ce soir.", "Rappel : rendez-vous chez le Dr Martin mardi à 14h30. Merci de confirmer par SMS.", "Félicitations ! Vous avez gagné un iPhone. Confirmez vos informations bancaires et le code SMS reçu.", "Offre télétravail sans expérience : gagnez 3000 € par mois. Envoyez votre IBAN pour commencer."];
 const Drop = ({ label, onFile }: { label: string; onFile: (f: File) => void }) => { const t = useT(); return <label className="grid place-items-center gap-2 border-2 border-dashed rounded-3xl p-8 cursor-pointer text-mute text-center transition hover:border-[var(--brand)]" style={{ borderColor: "var(--bd)" }}><Upload /><span>{t(label)}</span><input type="file" accept="image/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) onFile(f); e.target.value = ""; }} /></label>; };
+const URL_RE = /(https?:\/\/[^\s"'<>]+|\b(?:[a-z0-9-]+\.)+(?:com|fr|net|org|xyz|top|click|info|shop|io|co|be|ch|ca|uk|de|es|it|icu|live|buzz)\b[^\s"'<>]*)/i;
+async function analyzeAny(text: string): Promise<{ r: Result | UrlResult; web: boolean; lv: Live | null }> {
+  const t0 = analyzeText(text); const m = text.match(URL_RE);
+  if (!m) return { r: t0, web: false, lv: null };
+  const u0 = analyzeUrl(m[0]); if (!u0) return { r: t0, web: false, lv: null };
+  const lv = await live(m[0]); const u = applyLive(u0, lv);
+  if (u.score < t0.score) return { r: { ...u, reasons: [...u.reasons, ...t0.reasons.filter((x) => !u.reasons.includes(x))] } as UrlResult, web: true, lv };
+  return { r: { ...t0, reasons: [...t0.reasons, ...u.reasons.filter((x) => !t0.reasons.includes(x))] }, web: false, lv };
+}
 export function ImageV() {
-  const t = useT(); const scan = useScan(); const [img, setImg] = useState(""); const [txt, setTxt] = useState(""); const [r, setR] = useState<Result | null>(null); const [b, setB] = useState(false);
-  const go = async (seed: string, src: string) => { setImg(src); setR(null); setB(true); await wait(1100); const x0 = OCR[hash(seed) % OCR.length]; const x = analyzeText(x0); scan("image", x0, x); setTxt(x0); setR(x); setB(false); };
+  const t = useT(); const scan = useScan(); const shared = useS((s) => s.sharedFile); const setShared = useS((s) => s.setSharedFile);
+  const [img, setImg] = useState(""); const [txt, setTxt] = useState(""); const [res, setRes] = useState<{ r: Result | UrlResult; web: boolean; lv: Live | null } | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState(""); const [pct, setPct] = useState(0); const [qr, setQr] = useState("");
+  const go = async (f: File) => {
+    setImg(URL.createObjectURL(f)); setRes(null); setErr(""); setTxt(""); setQr(""); setPct(0); setB(true);
+    try {
+      let text = ""; try { text = await ocr(f, setPct); } catch { setErr("Je n'ai pas pu charger la lecture des images. Vérifiez votre connexion internet et réessayez."); setB(false); return; }
+      const code = await decodeQr(f).catch(() => null); if (code) setQr(code);
+      const all = [text, code || ""].join("\n").trim();
+      if (all.replace(/\s/g, "").length < 8) { setErr("Je ne trouve pas de texte lisible dans cette image. Essayez une capture plus nette."); setB(false); return; }
+      setTxt(text); const x = await analyzeAny(all); scan("image", text || code || "image", x.r); setRes(x);
+    } catch { setErr("Une erreur est survenue en lisant l'image. Réessayez."); }
+    setB(false);
+  };
+  useEffect(() => { if (shared) { const f = shared; setShared(null); go(f); } }, [shared]);
   return (<div><Title t="Analyse image" d="Ajoutez une capture d'écran : je lis le texte pour vous." />
-    <div className="card p-5 space-y-4"><Drop label="Choisir une image" onFile={(f) => go(f.name + f.size, URL.createObjectURL(f))} />
-      <div className="flex flex-wrap gap-2">{OCR.map((_, i) => <button type="button" key={i} className="btn2" onClick={() => go("ex" + i + "x", "")}>{t("Image d'exemple")} {i + 1}</button>)}</div></div>
-    <div className="mt-5 space-y-4">{b && <Busy steps={["Bobby lit le texte de l'image…", "Je cherche les signes d'arnaque…", "Je calcule le score de confiance…"]} />}
-      {r && <><div className="card p-5 flex gap-4">{img && <img src={img} alt="" className="w-24 h-24 object-cover rounded-2xl" />}<div className="min-w-0"><p className="text-xs text-mute mb-1">{t("Texte détecté")} · <span style={{ color: "#F59E0B" }}>{t("lecture simulée (démo)")}</span></p><p className="text-sm italic">« {t(txt)} »</p></div></div><Report r={r} /></>}</div></div>);
+    <div className="card p-5 space-y-4"><Drop label="Choisir une image" onFile={go} /><p className="text-xs text-mute">{t("Bobby lit le vrai texte de votre image. La première lecture peut prendre quelques secondes et demande internet.")}</p></div>
+    <div className="mt-5 space-y-4">{b && <Busy steps={["Bobby lit le texte de l'image…", "Je cherche les signes d'arnaque…", "Je calcule le score de confiance…"]} />}{b && pct > 0 && <p className="text-xs text-mute">{Math.round(pct * 100)} %</p>}
+      {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
+      {res && <><div className="card p-5 flex gap-4">{img && <img src={img} alt="" className="w-24 h-24 object-cover rounded-2xl shrink-0" />}<div className="min-w-0"><p className="text-xs text-mute mb-1">{t("Texte détecté")}</p><p className="text-sm italic break-words" dir="auto">« {txt.slice(0, 500)} »</p>{qr && <p className="text-sm mt-2 break-all" dir="ltr">QR : {qr}</p>}</div></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
 }
 
-const QRS = ["https://paiement-parking-secure.top/pay?id=8841", "https://www.service-public.fr/", "http://192.168.4.12/login", "https://amazon-verify-compte.xyz/connexion"];
-async function decodeQr(f: File): Promise<string | null | "none"> {
-  try { const BD = (window as any).BarcodeDetector; if (!BD) return null; const det = new BD({ formats: ["qr_code"] }); const bmp = await createImageBitmap(f); const res = await det.detect(bmp); return res[0]?.rawValue || "none"; } catch { return null; }
-}
 export function QrV() {
-  const t = useT(); const scan = useScan(); const [p, setP] = useState(""); const [r, setR] = useState<UrlResult | Result | null>(null); const [web, setWeb] = useState(true); const [sim, setSim] = useState(false); const [b, setB] = useState(false); const [err, setErr] = useState("");
-  const show = (c: string, simulated: boolean) => { const u = looksLikeUrl(c) ? analyzeUrl(c) : null; const x = u || analyzeText(c); scan("qr", c, x); setP(c); setWeb(!!u); setR(x); setSim(simulated); };
-  const go = async (seed: string, f?: File) => {
-    setR(null); setErr(""); setB(true); await wait(900);
-    const d = f ? await decodeQr(f) : null;
-    if (d === "none") setErr("Je ne trouve aucun QR code dans cette image. Essayez une photo plus nette.");
-    else if (d) show(d, false); else show(QRS[hash(seed) % QRS.length], true);
+  const t = useT(); const scan = useScan(); const [p, setP] = useState(""); const [res, setRes] = useState<{ r: Result | UrlResult; web: boolean; lv: Live | null } | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
+  const go = async (f: File) => {
+    setRes(null); setErr(""); setP(""); setB(true);
+    try {
+      const code = await decodeQr(f);
+      if (!code) { setErr("Je ne trouve aucun QR code lisible dans cette image. Essayez une photo plus nette, bien droite, avec le QR code entier."); setB(false); return; }
+      setP(code); const x = await analyzeAny(code); scan("qr", code, x.r); setRes(x);
+    } catch { setErr("Une erreur est survenue en lisant le QR code. Réessayez."); }
     setB(false);
   };
   return (<div><Title t="Analyse QR code" d="Je regarde où mène un QR code avant que vous le scanniez." />
-    <div className="card p-5 space-y-4"><Drop label="Choisir l'image d'un QR code" onFile={(f) => go(f.name + f.size, f)} />
-      <div className="flex flex-wrap gap-2">{QRS.map((_, i) => <button type="button" key={i} className="btn2" onClick={() => go("qr" + i + "z")}>{t("QR d'exemple")} {i + 1}</button>)}</div>{err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}</div>
-    <div className="mt-5">{b && <Busy steps={["Bobby décode le QR code…", "Je vérifie la destination…", "Je calcule le score de confiance…"]} />}
-      {r && (() => { const body = <div className="rounded-2xl p-4 text-sm space-y-1 break-words" style={{ background: "var(--soft)" }}><p><b>{t("Contenu décodé")} :</b> <span dir="ltr">{p}</span></p>{web && <p><b>{t("Destination")} :</b> <span dir="ltr">{(r as UrlResult).domain}</span></p>}<p><b>{t("Niveau de risque")} :</b> {t(META[r.level].label)}</p>{sim && <p style={{ color: "#F59E0B" }}>{t("Lecture simulée (démo) : votre navigateur ne sait pas lire les QR codes.")}</p>}</div>; return <Report r={r}>{body}</Report>; })()}</div></div>);
+    <div className="card p-5 space-y-4"><Drop label="Choisir l'image d'un QR code" onFile={go} /><p className="text-xs text-mute">{t("Prenez le QR code en photo (ou une capture d'écran), puis choisissez l'image ici. Je lis le vrai contenu.")}</p></div>
+    <div className="mt-5 space-y-4">{b && <Busy steps={["Bobby décode le QR code…", "Je vérifie la destination…", "Je calcule le score de confiance…"]} />}
+      {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
+      {res && <><div className="rounded-2xl p-4 text-sm break-all card"><b>{t("Contenu décodé")} :</b> <span dir="ltr">{p}</span></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
 }
 
 export function CallsV() {
@@ -236,11 +255,26 @@ function VoicePick() {
   return (<div className="flex gap-2 flex-wrap justify-end"><select className="inp max-w-[200px]" aria-label={t("Voix de Bobby")} value={s.voiceName || ""} onChange={(e) => set({ voiceName: e.target.value })}><option value="">{t("Automatique (voix masculine)")}</option>{vs.map((n) => <option key={n} value={n}>{n}</option>)}</select><button type="button" className="btn2" onClick={() => speak("Bonjour, je suis Bobby. Je veille sur vous.", s.lang)}><Volume2 size={16} />{t("Tester")}</button></div>);
 }
 
+
+export function PermissionsCard({ compact = false }: { compact?: boolean }) {
+  const t = useT(); const { set, notify, settings } = useS(); const [n, setN] = useState<PermState>("default"); const [g, setG] = useState<PermState>("default"); const [m, setM] = useState<PermState>("default");
+  useEffect(() => { setN(notifState()); try { (navigator as any).permissions?.query({ name: "geolocation" }).then((x: any) => setG(x.state)); (navigator as any).permissions?.query({ name: "microphone" }).then((x: any) => setM(x.state)); } catch {} }, []);
+  const lab = (x: PermState) => (x === "granted" ? "✅ Autorisé" : x === "denied" ? "⛔ Refusé (à changer dans les réglages du téléphone)" : x === "unsupported" ? "Non disponible ici" : "Pas encore autorisé");
+  const Row2 = ({ title, desc, st, onClick }: { title: string; desc: string; st: PermState; onClick: () => void }) => (<div className="flex items-center gap-3 py-3 border-b last:border-0" style={{ borderColor: "var(--bd)" }}><div className="flex-1 min-w-0"><p className="font-medium">{t(title)}</p><p className="text-xs text-mute">{t(desc)}</p><p className="text-xs mt-1">{t(lab(st))}</p></div>{st !== "granted" && st !== "unsupported" && <button type="button" className="btn2" onClick={onClick}>{t("Autoriser")}</button>}</div>);
+  return (<div className={compact ? "text-start" : "card p-5"}>
+    {!compact && <h2 className="font-semibold mb-1">{t("Autorisations de Bobby")}</h2>}
+    <Row2 title="Alertes (notifications)" desc="Pour vous prévenir tout de suite quand un message ou un site est dangereux." st={n} onClick={async () => { const x = await askNotif(); setN(x); if (x === "granted") { set({ notif: true }); alertDanger("Les alertes de Bobby sont activées."); } }} />
+    <Row2 title="Localisation" desc="Pour connaître votre pays et afficher les bonnes sources officielles." st={g} onClick={async () => { try { const c = await locate(); set({ country: c }); setG("granted"); notify("Pays trouvé : " + (COUNTRIES.find((x) => x.code === c)?.name || c)); } catch (e: any) { setG(e?.message === "denied" ? "denied" : "default"); notify("Je n'ai pas pu vous localiser. Choisissez votre pays dans les réglages.", "warn"); } }} />
+    <Row2 title="Micro" desc="Pour parler à Bobby avec votre voix." st={m} onClick={async () => setM(await askMic())} />
+    {!compact && <div className="rounded-2xl p-4 mt-4 text-sm space-y-2" style={{ background: "var(--soft)" }}><p className="font-semibold">{t("Ce que Bobby ne peut pas faire (et pourquoi)")}</p><p>{t("Une application installée depuis internet n'a pas le droit de lire vos SMS, votre journal d'appels, vos photos, vos mails, ni les messages de WhatsApp, Telegram, Instagram, Messenger, TikTok, Snapchat ou des autres réseaux sociaux. Votre téléphone l'interdit, pour votre sécurité.")}</p><p>{t("Ce qui marche : touchez Partager dans n'importe quelle application (message, mail, WhatsApp, Telegram, réseaux sociaux, photos), puis choisissez Bobby One. Bobby lit alors le message ou l'image que vous lui envoyez.")}</p></div>}
+  </div>);
+}
+
 export function SettingsV() {
   const { settings: s, set, clearHistory, notify } = useS(); const t = useT();
   const Row = ({ l, children }: { l: string; children: React.ReactNode }) => <div className="flex items-center justify-between gap-4 py-4 border-b" style={{ borderColor: "var(--bd)" }}><span>{t(l)}</span>{children}</div>;
   return (<div><Title t="Réglages" d="Personnalisez Bobby comme vous le souhaitez." />
-    <div className="card px-5 md:px-6"><Row l="Langue"><select className="inp max-w-[220px]" aria-label={t("Langue")} value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select></Row>
+    <div className="space-y-4"><div className="card px-5 md:px-6"><Row l="Langue"><select className="inp max-w-[220px]" aria-label={t("Langue")} value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select></Row>
       <Row l="Mon pays (pour les sources officielles)"><CountryPick /></Row>
       <Row l="Bobby parle sur tous les écrans"><Toggle label={t("Bobby parle sur tous les écrans")} on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) stopSpeak(); }} /></Row>
       <Row l="Vitesse de la voix"><div className="flex items-center gap-2 text-xs text-mute">{t("Lent")}<input type="range" aria-label={t("Vitesse de la voix")} min="0.6" max="1.4" step="0.05" value={s.rate ?? 0.92} onChange={(e) => set({ rate: parseFloat(e.target.value) })} />{t("Rapide")}</div></Row>
@@ -251,7 +285,7 @@ export function SettingsV() {
       <Row l="Thème"><div className="flex gap-2">{(["dark", "light"] as const).map((x) => <button type="button" key={x} aria-pressed={s.theme === x} className={"btn2 " + (s.theme === x ? "on" : "")} onClick={() => set({ theme: x })}>{t(x === "dark" ? "Sombre" : "Clair")}</button>)}</div></Row>
       <Row l="Niveau de sécurité"><div className="flex gap-2 flex-wrap justify-end">{(["Standard", "Renforcé", "Maximum"] as const).map((x) => <button type="button" key={x} aria-pressed={s.security === x} className={"btn2 " + (s.security === x ? "on" : "")} onClick={() => set({ security: x })}>{t(x)}</button>)}</div></Row>
       <Row l="Historique des vérifications"><button type="button" className="btn2" onClick={() => { clearHistory(); notify("Historique effacé."); }}>{t("Effacer")}</button></Row>
-      <div className="py-5 flex items-center gap-4"><Bobby s={48} /><div><p className="font-semibold">{t("À propos de Bobby One")}</p><p className="text-sm text-mute">{t("Version 1.1 · « Bobby veille sur vous. » Prototype de démonstration : les analyses sont simulées.")}</p></div></div></div></div>);
+      <div className="py-5 flex items-center gap-4"><Bobby s={48} /><div><p className="font-semibold">{t("À propos de Bobby One")}</p><p className="text-sm text-mute">{t("Version 1.2 · « Bobby veille sur vous. » Analyse par règles intégrées et listes de fraude en ligne. La base de numéros de téléphone et la liste communautaire sont encore des exemples.")}</p></div></div></div><PermissionsCard /></div></div>);
 }
 
 export function BotV() {

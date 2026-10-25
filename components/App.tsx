@@ -5,21 +5,22 @@ import { LayoutGrid } from "lucide-react";
 import { useS, View } from "@/lib/store";
 import { NAV, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
 import { useT, LANGS, RTL } from "@/lib/i18n";
-import { BotV, HomeV, TextV, WebV, ImageV, QrV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
+import { PermissionsCard, BotV, HomeV, TextV, WebV, ImageV, QrV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
 const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: TextV, web: WebV, image: ImageV, qr: QrV, calls: CallsV, threats: ThreatsV, family: FamilyV, community: CommunityV, settings: SettingsV };
-const STEPS = [["Bonjour, je suis Bobby.", "Je suis votre gardien personnel. Je vérifie messages, sites, appels et QR codes avant que vous ne fassiez une erreur."], ["Simple, comme une conversation", "Collez un message ou une adresse, je vous dis en clair si vous pouvez avoir confiance. Sans jargon."], ["Bobby veille sur vous.", "Protégez aussi vos proches grâce au mode famille et aux alertes de la communauté."]];
+const STEPS = [["Bonjour, je suis Bobby.", "Je suis votre gardien personnel. Je vérifie messages, sites, appels et QR codes avant que vous ne fassiez une erreur."], ["Simple, comme une conversation", "Collez un message ou une adresse, je vous dis en clair si vous pouvez avoir confiance. Sans jargon."], ["Bobby veille sur vous.", "Protégez aussi vos proches grâce au mode famille et aux alertes de la communauté."], ["Quelques autorisations", "Pour mieux vous protéger, Bobby peut vous envoyer des alertes, connaître votre pays et écouter votre voix. Tout est facultatif."]];
 const BOTTOM: View[] = ["home", "calls", "chat", "community"];
 const DESC = (id: View) => NAV.find((n) => n.id === id)!;
 export default function App() {
-  const { view, go, onboarded, finish, settings, set, setIncoming } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
+  const { view, go, onboarded, finish, settings, set, setIncoming, setSharedFile } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
   const t = useT();
   useEffect(() => {
     setOk(true);
     // Partage vers Bobby (Android) : ?text= ?url= ?title= ou ?go=
     try {
       const p = new URLSearchParams(location.search); const x = [p.get("title"), p.get("text"), p.get("url")].filter(Boolean).join(" ").trim(); const g = p.get("go") as View;
-      if (x) { go("home"); setIncoming(x); } else if (g && g in VIEWS) go(g);
-      if (x || g) history.replaceState(null, "", location.pathname);
+      if (p.get("share") === "image" && "caches" in window) { caches.open("bobby-share").then(async (c) => { const r = await c.match("/shared-image"); if (r) { const b = await r.blob(); await c.delete("/shared-image"); setSharedFile(new File([b], "partage", { type: b.type || "image/png" })); go("image"); } }).catch(() => {}); }
+      else if (x) { go("home"); setIncoming(x); } else if (g && g in VIEWS) go(g);
+      if (x || g || p.get("share")) history.replaceState(null, "", location.pathname);
     } catch {}
   }, []);
   useEffect(() => { document.documentElement.dir = RTL.includes(settings.lang) ? "rtl" : "ltr"; document.documentElement.lang = LANGS[settings.lang]?.code || "fr"; }, [settings.lang]);
@@ -53,8 +54,8 @@ export default function App() {
     <AnimatePresence>{!onboarded && <motion.div role="dialog" aria-modal="true" exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/80 overflow-y-auto"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-7 max-w-md w-full text-center space-y-5" style={{ background: "var(--solid)" }}>
       <div className="flex justify-center"><img src="/bobby-logo.svg" alt="Bobby One" width={176} height={176} className="rounded-[40px]" style={{ width: 176, height: 176 }} /></div>
       {step === 0 && <select className="inp max-w-[240px] mx-auto" aria-label="Langue / Language" value={settings.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select>}
-      <h2 className="text-2xl font-bold">{t(STEPS[step][0])}</h2><p className="text-mute">{t(STEPS[step][1])}</p>
+      <h2 className="text-2xl font-bold">{t(STEPS[step][0])}</h2><p className="text-mute">{t(STEPS[step][1])}</p>{step === STEPS.length - 1 && <PermissionsCard compact />}
       <div className="flex justify-center gap-2">{STEPS.map((_, i) => <span key={i} className="h-2 rounded-full transition-all" style={{ width: i === step ? 24 : 8, background: i === step ? "var(--brand)" : "var(--bd)" }} />)}</div>
-      <div className="flex gap-3 justify-center"><button type="button" className="btn2" onClick={() => { stopSpeak(); finish(); }}>{t("Passer")}</button><button type="button" className="btn" onClick={() => { if (step < 2) setStep(step + 1); else { finish(); if (settings.voice !== false) speak(t("Bonjour, je suis Bobby. Je veille sur vous."), settings.lang); } }}>{t(step < 2 ? "Suivant" : "Commencer")}</button></div></motion.div></motion.div>}</AnimatePresence>
+      <div className="flex gap-3 justify-center"><button type="button" className="btn2" onClick={() => { stopSpeak(); finish(); }}>{t("Passer")}</button><button type="button" className="btn" onClick={() => { if (step < STEPS.length - 1) setStep(step + 1); else { finish(); if (settings.voice !== false) speak(t("Bonjour, je suis Bobby. Je veille sur vous."), settings.lang); } }}>{t(step < STEPS.length - 1 ? "Suivant" : "Commencer")}</button></div></motion.div></motion.div>}</AnimatePresence>
   </div>);
 }
