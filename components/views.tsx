@@ -16,7 +16,8 @@ import { analyzeNumber, NumResult } from "@/lib/numbers";
 import { askNotif, askMic, notifState, alertDanger, clearBobbyNotifications, PermState } from "@/lib/perm";
 import { NAV, usePhone, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 import { LEGAL } from "@/lib/legal";
-import { native, CallEntry, SmsEntry } from "@/lib/native";
+import { isApp, has as nHas } from "@/lib/native";
+import { NativeCalls, NativeInbox } from "./NativeLists";
 import { loadVoices, voicesFor, pickVoice } from "@/lib/voice";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -121,37 +122,13 @@ export function HomeV() {
   </div>);
 }
 
-const fmtDate = (d: number, lang: string) => { try { return new Intl.DateTimeFormat(LANGS[lang]?.code || "fr", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(d)); } catch { return ""; } };
-// Journal d'appels : visible seulement dans la vraie application Android.
-function CallLogCard({ onCheck }: { onCheck: (n: string) => void }) {
-  const t = useT(); const lang = useS((x) => x.settings.lang); const contacts = useS((x) => x.contacts); const [list, setList] = useState<CallEntry[] | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
-  if (!native()) return null;
-  const known = (n: string) => contacts.some((c) => c.t.some((x) => x.replace(/\D/g, "").slice(-9) === n.replace(/\D/g, "").slice(-9)));
-  const load = async () => { setB(true); setErr(""); try { setList(await native()!.getCallLog(60)); } catch { setErr("Je n'ai pas pu lire le journal d'appels. Autorisez l'accès aux appels dans les réglages du téléphone."); } setB(false); };
-  const ICON: Record<string, string> = { in: "↙️", out: "↗️", missed: "❌", rejected: "🚫" };
-  return (<div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Mon journal d'appels")}</h2>
-    <button type="button" className="btn2 font-semibold self-start" style={{ background: "color-mix(in srgb, var(--brand) 22%, transparent)", borderColor: "var(--brand)" }} disabled={b} onClick={load}>＋ {t(b ? "Lecture…" : list ? "Actualiser" : "Importer mon journal d'appels")}</button>
-    {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
-    {list && !list.length && <p className="text-sm text-mute">{t("Aucun appel trouvé.")}</p>}
-    {list && list.length > 0 && <ul className="space-y-2 max-h-96 overflow-y-auto pe-1">{list.map((c, i) => <li key={c.number + c.date + i} className="flex items-center gap-3 p-3 rounded-2xl" style={{ background: "var(--soft)" }}><span aria-hidden="true">{ICON[c.type] || "📞"}</span><div className="min-w-0 flex-1"><p className="font-medium truncate" dir="auto">{c.name || c.number}</p><p className="text-xs text-mute" dir="ltr">{c.name ? c.number + " · " : ""}{fmtDate(c.date, lang)}{!c.name && !known(c.number) ? " · " + t("inconnu") : ""}</p></div><button type="button" className="btn2 !min-h-9 !py-1" onClick={() => { onCheck(c.number); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{t("Vérifier")}</button></li>)}</ul>}</div>);
-}
-// SMS reçus : visibles seulement dans la vraie application Android.
-function SmsCard({ onPick }: { onPick: (body: string) => void }) {
-  const t = useT(); const lang = useS((x) => x.settings.lang); const [list, setList] = useState<SmsEntry[] | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
-  if (!native()) return null;
-  const load = async () => { setB(true); setErr(""); try { setList(await native()!.getSms(40)); } catch { setErr("Je n'ai pas pu lire vos SMS. Autorisez l'accès aux SMS dans les réglages du téléphone."); } setB(false); };
-  return (<div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Mes SMS reçus")}</h2>
-    <button type="button" className="btn2 font-semibold self-start" style={{ background: "color-mix(in srgb, var(--brand) 22%, transparent)", borderColor: "var(--brand)" }} disabled={b} onClick={load}>＋ {t(b ? "Lecture…" : list ? "Actualiser" : "Importer mes SMS")}</button>
-    {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
-    {list && !list.length && <p className="text-sm text-mute">{t("Aucun SMS trouvé.")}</p>}
-    {list && list.length > 0 && <ul className="space-y-2 max-h-96 overflow-y-auto pe-1">{list.map((m, i) => <li key={m.address + m.date + i} className="flex items-center gap-3 p-3 rounded-2xl" style={{ background: "var(--soft)" }}><div className="min-w-0 flex-1"><p className="font-medium truncate" dir="auto">{m.address}</p><p className="text-sm text-mute line-clamp-2 break-words" dir="auto">{m.body}</p><p className="text-xs text-mute">{fmtDate(m.date, lang)}</p></div><button type="button" className="btn2 !min-h-9 !py-1" onClick={() => { onPick(m.address + " : " + m.body); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{t("Analyser")}</button></li>)}</ul>}</div>);
-}
-
 export function TextV() {
-  const t = useT(); const scan = useScan(); const [v, setV] = useState(""); const [r, setR] = useState<Result | null>(null); const [b, setB] = useState(false);
+  const t = useT(); const scan = useScan(); const [v, setV] = useState(""); const [r, setR] = useState<Result | null>(null); const [b, setB] = useState(false); const [auto, setAuto] = useState(0); const runRef = useRef<() => void>(() => {});
+  useEffect(() => { if (auto) setTimeout(() => runRef.current(), 0); }, [auto]);
   const run = async () => { setB(true); setR(null); await wait(850); const x = analyzeText(v); scan("text", v, x); setR(x); setV(""); setB(false); };
+  runRef.current = run;
   return (<div><Title t="Analyse des messages" d="SMS, mails, WhatsApp, Telegram : copiez le message, puis collez-le ici." />
-    <SmsCard onPick={(x) => { setV(x.slice(0, 5000)); setR(null); }} />
+    {isApp() && <NativeInbox onPick={(x) => { setV(x.slice(0, 5000)); setR(null); setAuto((k) => k + 1); }} />}
     <div className="card p-5 space-y-4"><div className="flex flex-wrap gap-1.5"><ImportBtn onText={(x) => { setV(x.slice(0, 5000)); setR(null); }} /></div><textarea className="inp min-h-40 resize-y" aria-label={t("Message à vérifier")} placeholder={t("Collez ici le message à vérifier…")} value={v} onChange={(e) => { setV(e.target.value); setR(null); }} />
       <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /><button type="button" className="btn2" onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) { setV(x); setR(null); } } catch {} }}>{t("Coller")}</button></div>
       <p className="text-xs text-mute">{t("Android ne permet pas à Bobby de lire vos SMS tout seul. Gardez le doigt sur le message, choisissez Copier, puis revenez ici et touchez Coller. Ou touchez Partager → Bobby One.")}</p>
@@ -251,7 +228,7 @@ export function CallsV() {
   const mark = () => { if (!nr) return; setBlocked([nr.e164, ...blocked.filter((b) => b !== nr.e164)]); report("Numéros|" + nr.e164); bump(true); notify("Numéro marqué comme dangereux. Bobby vous le dira à chaque vérification."); setNr(analyzeNumber(nr.e164, home, [nr.e164, ...blocked]) as NumResult); };
   const pick = useContactImport();
   return (<div><Title t="Protection appels" d="Je vous dis qui appelle avant que vous décrochiez." />
-    <CallLogCard onCheck={(n) => check(n)} />
+    {isApp() && <NativeCalls onCheck={(n) => check(n)} />}
     <div className="card p-5 mb-4 space-y-3"><label htmlFor="num" className="font-semibold block">{t("Vérifier un numéro")}</label>
       <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={() => check()}>{t("Vérifier")}</button>{num && <button type="button" className="btn2" onClick={() => { setNum(""); setNr(null); setKc(""); setNe(""); }}>{t("Effacer")}</button>}</div>
       <div className="flex flex-wrap gap-1.5"><ImportBtn onText={(x) => { const f = x.match(/\+?\d[\d\s().-]{6,}\d/g); if (f) { setNum(f[0].trim()); setNr(null); setKc(""); setNe(""); } else setNe("Je ne trouve pas de numéro de téléphone dans ce fichier."); }} /><button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand2) 22%, transparent)", borderColor: "var(--brand2)" }} onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) check(x.trim()); else setNe("Rien à coller : copiez d'abord un numéro."); } catch { setNe("Je n'ai pas pu lire ce que vous avez copié. Collez le numéro dans la case."); } }}>{t("Coller le numéro")}</button><button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand2) 22%, transparent)", borderColor: "var(--brand2)" }} onClick={async () => { if (!contactsSupported()) { notify("Ce navigateur ne permet pas de choisir un contact. Utilisez Chrome sur Android.", "warn"); return; } try { const c = await pickContacts(); if (c[0]?.t[0]) check(c[0].t[0]); } catch (e: any) { if (e?.name !== "AbortError") notify("Je n'ai pas pu accéder aux contacts.", "warn"); } }}>{t("Choisir un contact")}</button></div>
@@ -349,7 +326,7 @@ function VoicePick() {
 
 export function PermissionsCard({ compact = false }: { compact?: boolean }) {
   const t = useT(); const { set, notify, settings } = useS(); const [n, setN] = useState<PermState>("default"); const [g, setG] = useState<PermState>("default"); const [m, setM] = useState<PermState>("default");
-  useEffect(() => { setN(notifState()); try { (navigator as any).permissions?.query({ name: "geolocation" }).then((x: any) => setG(x.state)); (navigator as any).permissions?.query({ name: "microphone" }).then((x: any) => setM(x.state)); } catch {} }, []);
+  useEffect(() => { setN(notifState()); if (isApp()) { setG(nHas("geo") ? "granted" : "default"); setM(nHas("mic") ? "granted" : "default"); return; } try { (navigator as any).permissions?.query({ name: "geolocation" }).then((x: any) => setG(x.state)); (navigator as any).permissions?.query({ name: "microphone" }).then((x: any) => setM(x.state)); } catch {} }, []);
   const lab = (x: PermState) => (x === "granted" ? "✅ Autorisé" : x === "denied" ? "⛔ Refusé (à changer dans les réglages du téléphone)" : x === "unsupported" ? "Non disponible ici" : "Pas encore autorisé");
   const Row2 = ({ title, desc, st, on, onToggle }: { title: string; desc: string; st: PermState; on: boolean; onToggle: (next: boolean) => void }) => (<div className="flex items-center gap-3 py-3 border-b last:border-0" style={{ borderColor: "var(--bd)" }}><div className="flex-1 min-w-0"><p className="font-medium">{t(title)}</p><p className="text-xs text-mute">{t(desc)}</p><p className="text-xs mt-1">{t(lab(st))}</p></div>{st !== "unsupported" && <Toggle label={t(title)} on={on} f={() => onToggle(!on)} />}</div>);
   return (<div className={compact ? "text-start" : "card p-5"}>
@@ -357,7 +334,7 @@ export function PermissionsCard({ compact = false }: { compact?: boolean }) {
     <Row2 title="Alertes (notifications)" desc="Pour vous prévenir tout de suite quand un message ou un site est dangereux." st={n} on={n === "granted" && settings.notif} onToggle={async (next) => { if (!next) { set({ notif: false }); return; } const x = n === "granted" ? "granted" : await askNotif(); setN(x); if (x === "granted") { set({ notif: true }); notify("Alertes activées. Bobby vous préviendra en cas de danger."); } else notify("Notifications refusées. Pour les autoriser, ouvrez les réglages du téléphone.", "warn"); }} />
     <Row2 title="Localisation" desc="Pour connaître votre pays et afficher les bonnes sources officielles." st={g} on={g === "granted" && settings.geoOn !== false} onToggle={async (next) => { if (!next) { set({ geoOn: false }); return; } set({ geoOn: true }); try { const c = await locate(); set({ country: c }); setG("granted"); notify("Pays trouvé : " + (COUNTRIES.find((x) => x.code === c)?.name || c)); } catch (e: any) { setG(e?.message === "denied" ? "denied" : "default"); notify("Je n'ai pas pu vous localiser. Choisissez votre pays dans les paramètres.", "warn"); } }} />
     <Row2 title="Micro" desc="Pour parler à Bobby avec votre voix." st={m} on={m === "granted" && settings.micOn !== false} onToggle={async (next) => { if (!next) { set({ micOn: false }); return; } set({ micOn: true }); const x = m === "granted" ? "granted" : await askMic(); setM(x); if (x !== "granted") notify("Micro refusé. Pour l'autoriser, ouvrez les réglages du téléphone.", "warn"); }} />
-    {!compact && <div className="rounded-2xl p-4 mt-4 text-sm space-y-2" style={{ background: "var(--soft)" }}><p className="font-semibold">{t("Ce que Bobby ne peut pas faire (et pourquoi)")}</p><p>{t("Une application installée depuis internet n'a pas le droit de lire vos SMS, votre journal d'appels, vos photos, vos mails, ni les messages de WhatsApp, Telegram, Instagram, Messenger, TikTok, Snapchat ou des autres réseaux sociaux. Votre téléphone l'interdit, pour votre sécurité.")}</p><p>{t("Ce qui marche : touchez Partager dans n'importe quelle application (message, mail, WhatsApp, Telegram, réseaux sociaux, photos), puis choisissez Bobby One. Bobby lit alors le message ou l'image que vous lui envoyez.")}</p></div>}
+    {!compact && !isApp() && <div className="rounded-2xl p-4 mt-4 text-sm space-y-2" style={{ background: "var(--soft)" }}><p className="font-semibold">{t("Ce que Bobby ne peut pas faire (et pourquoi)")}</p><p>{t("Une application installée depuis internet n'a pas le droit de lire vos SMS, votre journal d'appels, vos photos, vos mails, ni les messages de WhatsApp, Telegram, Instagram, Messenger, TikTok, Snapchat ou des autres réseaux sociaux. Votre téléphone l'interdit, pour votre sécurité.")}</p><p>{t("Ce qui marche : touchez Partager dans n'importe quelle application (message, mail, WhatsApp, Telegram, réseaux sociaux, photos), puis choisissez Bobby One. Bobby lit alors le message ou l'image que vous lui envoyez.")}</p></div>}
   </div>);
 }
 

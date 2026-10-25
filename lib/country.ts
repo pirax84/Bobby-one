@@ -51,8 +51,10 @@ export function guessCountry(): string {
   try { const r = (navigator.language || "").split("-")[1]; if (r) return r.toUpperCase(); } catch {}
   return "XX";
 }
+import { isApp, ensure as nEnsure } from "./native";
 export function locate(): Promise<string> {
-  return new Promise((res, rej) => {
+  return new Promise(async (res, rej) => {
+    if (isApp() && !(await nEnsure("geo", 60000))) return rej(new Error("denied"));
     if (useS.getState().settings.geoOn === false) return rej(new Error("off"));
     if (!navigator.geolocation) return rej(new Error("unsupported"));
     navigator.geolocation.getCurrentPosition(async (p) => {

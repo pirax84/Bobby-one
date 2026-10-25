@@ -46,8 +46,10 @@ export const ERR: Record<string, string> = {
   off: "Le micro est désactivé. Vous pouvez le réactiver dans Paramètres > Notifications et autorisations.",
   "no-speech": "Je n'ai rien entendu, réessayez.", unsupported: "Ce navigateur ne gère pas le micro. Essayez Chrome (Android) ou Safari (iPhone).", x: "Le micro ne fonctionne pas pour le moment.",
 };
+import { isApp, has as nHas, ensure as nEnsure, nListen } from "./native";
 export function listen(lang: string, done: (t: string) => void, fail: (e: string) => void, end?: () => void) {
   if (useS.getState().settings.micOn === false) { fail("off"); end?.(); return null; }
+  if (isApp()) { if (!nHas("mic")) { nEnsure("mic", 60000).then((ok) => { if (ok) nListen(LANGS[lang]?.tts || "fr-FR", done, fail, end); else { fail("not-allowed"); end?.(); } }); return null; } return nListen(LANGS[lang]?.tts || "fr-FR", done, fail, end); }
   const R = typeof window !== "undefined" ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition : null;
   if (!R) { fail("unsupported"); end?.(); return null; }
   const r = new R(); r.lang = LANGS[lang]?.tts || "fr-FR"; r.interimResults = false; r.maxAlternatives = 1;

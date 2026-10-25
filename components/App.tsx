@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, Download, Settings as Cog } from "lucide-react";
 import { useS, View } from "@/lib/store";
 import { clearBobbyNotifications, askAll } from "@/lib/perm";
+import { isApp as inApp, takeSharedImage, setBlocklist } from "@/lib/native";
 import { LEGAL } from "@/lib/legal";
 import { FlashHost } from "./Flash";
 import { NAV as NAV_ALL, usePhone, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
@@ -39,16 +40,19 @@ export default function App() {
   const { view, go, onboarded, setup, finish, settings, set, setIncoming, setSharedFile } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
   const t = useT(); const [installed, setInstalled] = useState(false); const [asking, setAsking] = useState(false); const [pk, setPk] = useState(0); const phone = usePhone();
   useEffect(() => {
-    const isApp = () => !!(window.matchMedia?.("(display-mode: standalone)").matches || window.matchMedia?.("(display-mode: fullscreen)").matches || window.matchMedia?.("(display-mode: minimal-ui)").matches || (navigator as any).standalone); setInstalled(isApp());
+    const isApp = () => inApp() || !!(window.matchMedia?.("(display-mode: standalone)").matches || window.matchMedia?.("(display-mode: fullscreen)").matches || window.matchMedia?.("(display-mode: minimal-ui)").matches || (navigator as any).standalone); setInstalled(isApp());
     const mq = window.matchMedia?.("(display-mode: standalone)"); const on = () => setInstalled(isApp()); mq?.addEventListener?.("change", on); return () => mq?.removeEventListener?.("change", on);
   }, []);
+  const blockedNums = useS((x) => x.blockedNums);
+  useEffect(() => { if (inApp()) setBlocklist(blockedNums); }, [blockedNums]);
   useEffect(() => { if (useS.getState().settings.ghost !== false) clearBobbyNotifications(); }, []);
   useEffect(() => {
     setOk(true);
     // Partage vers Bobby (Android) : ?text= ?url= ?title= ou ?go=
     try {
       const p = new URLSearchParams(location.search); const x = [p.get("title"), p.get("text"), p.get("url")].filter(Boolean).join(" ").trim(); const g = p.get("go") as View;
-      if (p.get("share") === "image" && "caches" in window) { caches.open("bobby-share").then(async (c) => { const r = await c.match("/shared-image"); if (r) { const b = await r.blob(); await c.delete("/shared-image"); setSharedFile(new File([b], "partage", { type: b.type || "image/png" })); go("image"); } }).catch(() => {}); }
+      if (p.get("share") === "nativeimage") { const f = takeSharedImage(); if (f) { setSharedFile(f); go("image"); } }
+      else if (p.get("share") === "image" && "caches" in window) { caches.open("bobby-share").then(async (c) => { const r = await c.match("/shared-image"); if (r) { const b = await r.blob(); await c.delete("/shared-image"); setSharedFile(new File([b], "partage", { type: b.type || "image/png" })); go("image"); } }).catch(() => {}); }
       else if (x) { go("home"); setIncoming(x); } else if (g && g in VIEWS) go(g);
       if (x || g || p.get("share")) history.replaceState(null, "", location.pathname);
     } catch {}
