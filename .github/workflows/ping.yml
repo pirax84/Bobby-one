@@ -1,7 +1,0 @@
-name: ping
-on: workflow_dispatch
-jobs:
-  p:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo hello && echo "ANDROID_HOME=$ANDROID_HOME" && ls $ANDROID_HOME/platforms || true
