@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Bot, Home, MessageSquareWarning, Globe, Image as Img, QrCode, PhoneCall, Siren, Users, Radio, Settings } from "lucide-react";
+import { Bot, Mic as MicI, Volume2, VolumeX, Home, MessageSquareWarning, Globe, Image as Img, QrCode, PhoneCall, Siren, Users, Radio, Settings } from "lucide-react";
 import { META, levelOf, Result } from "@/lib/engine";
 import { useS, type View } from "@/lib/store";
 export const NAV: { id: View; label: string; icon: any; desc: string }[] = [
@@ -28,11 +28,12 @@ export function Gauge({ score, size = 140 }: { score: number; size?: number }) {
       <motion.circle cx={size / 2} cy={size / 2} r={r} stroke={c} strokeWidth="10" fill="none" strokeLinecap="round" strokeDasharray={C} initial={{ strokeDashoffset: C }} animate={{ strokeDashoffset: C * (1 - score / 100) }} transition={{ duration: 1 }} /></svg>
     <div className="absolute inset-0 grid place-items-center text-3xl font-bold" style={{ color: c }}>{score}</div></div>);
 }
-const MALE = /thomas|paul|daniel|henri|antoine|jean|guy|david|mark|alex|jorge|diego|jan|stefan|conrad|male|homme|nicolas|oliver|arthur|reed/i;
+const GOOD = /natural|neural|online|premium|enhanced|studio|wavenet/i;
+const MALE = /remy|rémy|claude|fabrice|gerard|jerome|thomas|paul|daniel|henri|antoine|jean|guy|david|mark|alex|jorge|diego|jan|stefan|conrad|male|homme|nicolas|oliver|arthur|reed/i;
 const LG: Record<string, string> = { English: "en-US", Español: "es-ES", Deutsch: "de-DE" };
 export const speak = (txt: string, lang: string, onend?: () => void) => {
   if (typeof window === "undefined" || !window.speechSynthesis) { onend?.(); return; }
-  window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt.replace(/[^\p{L}\p{N}\s.,'’:;!?%€«»()\/-]/gu, "")); u.lang = LG[lang] || "fr-FR"; const st = useS.getState().settings; const code = (LG[lang] || "fr-FR").slice(0, 2); const pool = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code)); const vv = pool.find((v) => v.name === st.voiceName) || pool.find((v) => MALE.test(v.name)) || pool[0]; if (vv) u.voice = vv; u.pitch = st.deep === false ? 1 : 0.55; u.rate = st.deep === false ? .95 : .88; if (onend) u.onend = onend; window.speechSynthesis.speak(u);
+  window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt.replace(/[^\p{L}\p{N}\s.,'’:;!?%€«»()\/-]/gu, "")); u.lang = LG[lang] || "fr-FR"; const st = useS.getState().settings; const code = (LG[lang] || "fr-FR").slice(0, 2); const pool = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code)); const sc = (v: SpeechSynthesisVoice) => (v.name === st.voiceName ? 100 : 0) + (MALE.test(v.name) ? 10 : 0) + (GOOD.test(v.name) ? 6 : 0) + (v.localService ? 0 : 1); const vv = [...pool].sort((a, b) => sc(b) - sc(a))[0]; if (vv) u.voice = vv; u.pitch = st.pitch ?? 0.75; u.rate = 0.92; if (onend) u.onend = onend; window.speechSynthesis.speak(u);
 };
 export const ERR: Record<string, string> = {
   "not-allowed": "Le micro est bloqué. Sur téléphone, il faut ouvrir l'adresse en https (version en ligne) et autoriser le micro.",
@@ -63,3 +64,21 @@ export function Report({ r, children }: { r: Result; children?: React.ReactNode 
 }
 export const Title = ({ t, d }: { t: string; d: string }) => (<div className="mb-6"><h1 className="text-2xl md:text-3xl font-bold">{t}</h1><p className="text-mute mt-1">{d}</p></div>);
 export const Toggle = ({ on, f }: { on: boolean; f: () => void }) => (<button onClick={f} aria-pressed={on} className="w-12 h-7 rounded-full p-1 transition" style={{ background: on ? "#00D084" : "var(--bd)" }}><span className="block w-5 h-5 rounded-full bg-white transition" style={{ transform: on ? "translateX(20px)" : "none" }} /></button>);
+
+const GO: [RegExp, View][] = [[/accueil/i, "home"], [/texte|message|sms|mail/i, "text"], [/site|web|lien/i, "web"], [/image|photo|capture/i, "image"], [/qr/i, "qr"], [/appel|t[ée]l[ée]phone|num[ée]ro/i, "calls"], [/menace|danger/i, "threats"], [/famille|proches/i, "family"], [/communaut[ée]|signal/i, "community"], [/r[ée]glage|param[èe]tre|option/i, "settings"]];
+export function Fab() {
+  const { settings: s, set, go, ask } = useS(); const [lis, setLis] = useState(false); const [msg, setMsg] = useState(""); const vo = s.voice !== false;
+  const hear = () => {
+    if (lis) return; window.speechSynthesis?.cancel(); setMsg(""); setLis(true);
+    listen(s.lang, (t) => {
+      const hit = GO.find(([r]) => r.test(t));
+      if (/ouvr|va |aller|montre|affiche|retour|accueil/i.test(t) && hit) { go(hit[1]); const n = NAV.find((x) => x.id === hit[1])!; if (vo) speak("D'accord, j'ouvre " + n.label, s.lang); } else ask(t);
+    }, (e) => { setMsg(ERR[e] || ERR.x); setTimeout(() => setMsg(""), 7000); }, () => setLis(false));
+  };
+  return (<div className="fixed right-4 bottom-24 md:bottom-6 z-[45] flex flex-col items-end gap-3">
+    {lis && <div className="card px-4 py-2 text-sm">Je vous écoute…</div>}
+    {msg && <div className="card px-4 py-2 text-sm max-w-[260px]" style={{ color: "#F59E0B" }}>{msg}</div>}
+    <button aria-label={vo ? "Couper la voix de Bobby" : "Activer la voix de Bobby"} title={vo ? "Lecture à voix haute : activée" : "Lecture à voix haute : coupée"} onClick={() => { set({ voice: !vo }); if (vo) window.speechSynthesis?.cancel(); }} className="w-12 h-12 rounded-full grid place-items-center shadow-lg border" style={{ background: vo ? "#00D084" : "var(--card)", color: vo ? "#04120C" : "var(--fg)", borderColor: "var(--bd)" }}>{vo ? <Volume2 size={22} /> : <VolumeX size={22} />}</button>
+    <button aria-label="Parler à Bobby" title="Parler à Bobby" onClick={hear} className={"w-14 h-14 rounded-full grid place-items-center shadow-lg " + (lis ? "animate-pulse" : "")} style={{ background: lis ? "#EF4444" : "#00D084", color: "#04120C" }}><MicI size={26} /></button>
+  </div>);
+}

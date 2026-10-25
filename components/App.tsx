@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MoreHorizontal } from "lucide-react";
 import { useS, View } from "@/lib/store";
-import { NAV, Bobby, speak } from "./ui";
+import { NAV, Bobby, speak, Fab } from "./ui";
 import { useT } from "@/lib/i18n";
 import { BotV, HomeV, TextV, WebV, ImageV, QrV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
 const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: TextV, web: WebV, image: ImageV, qr: QrV, calls: CallsV, threats: ThreatsV, family: FamilyV, community: CommunityV, settings: SettingsV };
@@ -31,6 +31,7 @@ export default function App() {
       {main.slice(0, 4).map((n) => <button key={n.id} onClick={() => nav(n.id)} className="flex flex-col items-center gap-1 text-[11px] px-2 py-1" style={{ color: view === n.id ? "#00D084" : "var(--mute)" }}><n.icon size={22} /><span className="max-w-[64px] truncate">{t(n.label).replace(/^Analyse /, "")}</span></button>)}
       <button onClick={() => setMore(!more)} className="flex flex-col items-center gap-1 text-[11px] px-2 py-1 text-mute"><MoreHorizontal size={22} />Plus</button></nav>
     <AnimatePresence>{more && <motion.div initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }} className="md:hidden card fixed bottom-20 inset-x-3 z-40 p-3 grid grid-cols-2 gap-2">{[NAV[4], ...rest].map((n) => <button key={n.id} onClick={() => nav(n.id)} className="flex items-center gap-2 p-3 rounded-2xl text-sm" style={{ background: "var(--bd)" }}><n.icon size={18} color="#00D084" />{t(n.label)}</button>)}</motion.div>}</AnimatePresence>
+    {onboarded && <Fab />}
     <AnimatePresence>{!onboarded && <motion.div exit={{ opacity: 0 }} className="fixed inset-0 z-50 grid place-items-center p-4 bg-black/80"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-8 max-w-md w-full text-center space-y-5"><div className="flex justify-center"><Bobby s={88} /></div><h2 className="text-2xl font-bold">{STEPS[step][0]}</h2><p className="text-mute">{STEPS[step][1]}</p>
       <div className="flex justify-center gap-2">{STEPS.map((_, i) => <span key={i} className="h-2 rounded-full transition-all" style={{ width: i === step ? 24 : 8, background: i === step ? "#00D084" : "var(--bd)" }} />)}</div>
       <div className="flex gap-3 justify-center"><button className="btn2" onClick={finish}>Passer</button><button className="btn" onClick={() => (step < 2 ? setStep(step + 1) : finish())}>{step < 2 ? "Suivant" : "Commencer"}</button></div></motion.div></motion.div>}</AnimatePresence>

@@ -131,7 +131,7 @@ export function SettingsV() {
       {s.lang !== "Français" && <p className="text-sm text-mute py-3">{t("Le menu et les écrans principaux changent de langue. Les analyses de Bobby restent en français pour le moment.")}</p>}
       <Row l="Bobby parle sur tous les écrans"><Toggle on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) window.speechSynthesis?.cancel(); }} /></Row>
       <Row l="Voix de Bobby"><VoicePick /></Row>
-      <Row l="Voix grave (style Jarvis)"><Toggle on={s.deep !== false} f={() => set({ deep: s.deep === false })} /></Row>
+      <Row l="Gravité de la voix"><div className="flex items-center gap-2 text-xs text-mute">Grave<input type="range" min="0.5" max="1" step="0.05" value={s.pitch ?? 0.75} onChange={(e) => set({ pitch: parseFloat(e.target.value) })} />Normal</div></Row>
       <Row l="Notifications d'alerte"><Toggle on={s.notif} f={() => set({ notif: !s.notif })} /></Row>
       <Row l="Confidentialité renforcée (rien n'est envoyé)"><Toggle on={s.privacy} f={() => set({ privacy: !s.privacy })} /></Row>
       <Row l="Thème"><div className="flex gap-2">{(["dark", "light"] as const).map((x) => <button key={x} className={"btn2 " + (s.theme === x ? "on" : "")} onClick={() => set({ theme: x })}>{t(x === "dark" ? "Sombre" : "Clair")}</button>)}</div></Row>
@@ -158,6 +158,7 @@ export function BotV() {
   const hear = () => { setErr(""); setLis(true); rec.current = listen(lang, (t) => send(t), (e) => { setErr(ERR[e] || ERR.x); cv.current = false; setConvo(false); }, () => setLis(false)); };
   const send = (x = i) => { if (!x.trim()) return; const a = reply(x); setM((o) => [...o, { me: true, t: x }]); setI(""); setTimeout(() => { setM((o) => [...o, { me: false, t: a }]); if (vo) speak(a, lang, () => { if (cv.current) hear(); }); else if (cv.current) hear(); }, 500); };
   const toggleConvo = () => { if (convo) { cv.current = false; setConvo(false); rec.current?.abort?.(); window.speechSynthesis?.cancel(); } else { cv.current = true; setConvo(true); if (!vo) set({ voice: true }); hear(); } };
+  const pending = useS((x) => x.pending); useEffect(() => { if (pending) { useS.setState({ pending: null }); send(pending); } }, [pending]);
   return (<div><Title t="Parler à Bobby" d="Écrivez ou parlez à Bobby : il vous répond à voix haute." />
     <div className="card p-4"><div ref={box} className="h-[45vh] overflow-y-auto space-y-3 pr-1">{m.map((x, k) => <div key={k} className={"flex " + (x.me ? "justify-end" : "gap-2")}>{!x.me && <Bobby s={32} />}<p className="max-w-[85%] rounded-2xl px-4 py-2 text-sm" style={x.me ? { background: "#00D084", color: "#04120C" } : { background: "var(--bd)" }}>{x.t}</p></div>)}</div>
       <div className="flex flex-wrap gap-2 mt-3"><button className={"btn2 " + (lis ? "on" : "")} disabled={lis} onClick={hear}>🎤 {lis ? "Je vous écoute…" : "Parler à Bobby"}</button><button className={"btn2 " + (convo ? "on" : "")} onClick={toggleConvo}>🗣️ {convo ? "Arrêter la conversation" : "Conversation vocale"}</button>
