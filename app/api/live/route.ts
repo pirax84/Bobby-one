@@ -1,3 +1,4 @@
+import { platformOf } from "@/lib/platforms";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 // Vérification en ligne d'un site : listes de sites frauduleux + âge réel du nom de domaine.
@@ -54,7 +55,8 @@ export async function GET(req: Request) {
   const u = new URL(req.url).searchParams.get("u") || ""; const h = host(u);
   if (!h || !h.includes(".")) return Response.json({ ok: false }, { status: 400 });
   const full = /^https?:/i.test(u) ? u : "https://" + u;
-  const [op, gsb, age] = await Promise.all([openphish(h), safeBrowsing(full), ageDays(h)]);
+  const platform = platformOf(h);
+  const [op, gsb, age] = await Promise.all([openphish(h), safeBrowsing(full), platform ? Promise.resolve(null) : ageDays(h)]);
   const used = [op !== null && "OpenPhish", gsb !== null && "Google Safe Browsing"].filter(Boolean);
-  return Response.json({ ok: true, host: h, listed: op === true || gsb === true ? true : used.length ? false : null, sources: used, ageDays: age }, { headers: { "Cache-Control": "no-store" } });
+  return Response.json({ ok: true, host: h, listed: op === true || gsb === true ? true : used.length ? false : null, sources: used, ageDays: age, platform }, { headers: { "Cache-Control": "no-store" } });
 }
