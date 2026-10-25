@@ -27,7 +27,7 @@ const EX_T = [
   { l: "Message d'ami", v: "Salut ! On se retrouve à 19h au restaurant comme prévu ? Bises." },
 ];
 const EX_W = ["https://www.impots.gouv.fr", "http://amazon-verify-compte.xyz/connexion", "promo-ps5-fr.top"];
-function useScan() { const { bump, addScan, settings } = useS(); return (kind: any, label: string, r: Result) => { bump(r.score < 60); if (r.score < 40 && settings.notif) alertDanger(META[r.level].bobby + " " + (r.reasons[0] || "")); addScan({ kind, label: label.replace(/\s+/g, " ").slice(0, 70), score: r.score, level: r.level }); }; }
+function useScan() { const { bump, addScan, settings, setFlashing } = useS(); return (kind: any, label: string, r: Result) => { bump(r.score < 60); if (settings.flash !== false) setFlashing({ level: r.level, score: r.score }); if (r.score < 40 && settings.notif) alertDanger(META[r.level].bobby + " " + (r.reasons[0] || "")); addScan({ kind, label: label.replace(/\s+/g, " ").slice(0, 70), score: r.score, level: r.level }); }; }
 
 interface Live { ok: boolean; listed: boolean | null; sources: string[]; ageDays: number | null }
 async function live(u: string): Promise<Live | null> {
@@ -368,6 +368,7 @@ export function SettingsV() {
       <VoiceSlider label="Tonalité de la voix" lo="Grave" hi="Aiguë" min={0.5} max={1.3} value={s.pitch ?? 0.75} on={(v) => set({ pitch: v })} /></div>);
     if (c === "notif") return (<div className="space-y-4"><div className="card px-5 md:px-6"><Row l="Notifications d'alerte"><Toggle label={t("Notifications d'alerte")} on={s.notif} f={() => set({ notif: !s.notif })} /></Row>
       <Row l="Mode fantôme (cacher la notification de Bobby)"><Toggle label={t("Mode fantôme")} on={s.ghost !== false} f={() => { const g = s.ghost === false; set({ ghost: g }); if (g) clearBobbyNotifications(); }} /></Row>
+      <Row l="Flash de couleur sur les résultats"><Toggle label={t("Flash de couleur sur les résultats")} on={s.flash !== false} f={() => set({ flash: s.flash === false })} /></Row>
       <p className="text-xs text-mute pb-3">{t("En mode fantôme, une alerte de danger s'affiche quelques secondes puis disparaît toute seule de la barre du haut. Sans le mode fantôme, elle reste jusqu'à ce que vous la fermiez.")}</p>
       <div className="pb-4"><button type="button" className="btn2" onClick={async () => { await clearBobbyNotifications(); notify("Notification retirée de la barre du haut."); }}>{t("Retirer la notification maintenant")}</button></div></div><PermissionsCard /></div>);
     if (c === "look") return (<div className="card px-5 md:px-6"><Row l="Thème"><div className="flex gap-2">{(["dark", "light"] as const).map((x) => <button type="button" key={x} aria-pressed={s.theme === x} className={"btn2 " + (s.theme === x ? "on" : "")} onClick={() => set({ theme: x })}>{t(x === "dark" ? "Sombre" : "Clair")}</button>)}</div></Row></div>);

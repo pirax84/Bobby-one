@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 export type View = "home" | "chat" | "text" | "web" | "image" | "qr" | "calls" | "threats" | "family" | "community" | "settings";
-export interface Settings { lang: string; notif: boolean; privacy: boolean; theme: "dark" | "light"; security: "Standard" | "Renforcé" | "Maximum"; voice?: boolean; voiceName?: string; deep?: boolean; pitch?: number; rate?: number; country?: string; ghost?: boolean; micOn?: boolean; geoOn?: boolean; }
+export interface Settings { lang: string; notif: boolean; privacy: boolean; theme: "dark" | "light"; security: "Standard" | "Renforcé" | "Maximum"; voice?: boolean; voiceName?: string; deep?: boolean; pitch?: number; rate?: number; country?: string; ghost?: boolean; micOn?: boolean; flash?: boolean; geoOn?: boolean; }
 export interface Scan { id: number; kind: "text" | "web" | "image" | "qr" | "call"; label: string; score: number; level: string; at: number; }
 export interface Toast { id: number; text: string; tone: "ok" | "warn" | "bad" | "info"; }
 interface S {
@@ -15,6 +15,7 @@ interface S {
   blockedNums: string[]; setBlockedNums: (b: string[]) => void;
   contacts: { n: string; t: string[] }[]; setContacts: (c: { n: string; t: string[] }[]) => void;
   sharedFile: File | null; setSharedFile: (f: File | null) => void;
+  flashing: { level: string; score: number; id: number } | null; setFlashing: (f: { level: string; score: number } | null) => void;
   toast: Toast | null; notify: (text: string, tone?: Toast["tone"]) => void;
 }
 let tid = 1;
@@ -29,5 +30,6 @@ export const useS = create<S>()(persist((set) => ({
   blockedNums: [], setBlockedNums: (blockedNums) => set({ blockedNums }),
   contacts: [], setContacts: (contacts) => set({ contacts }),
   sharedFile: null, setSharedFile: (sharedFile) => set({ sharedFile }),
+  flashing: null, setFlashing: (f) => set({ flashing: f ? { ...f, id: Date.now() } : null }),
   toast: null, notify: (text, tone = "ok") => { const id = tid++; set({ toast: { id, text, tone } }); setTimeout(() => set((s) => (s.toast?.id === id ? { toast: null } : s)), 3800); },
 }), { name: "bobby-one", version: 4, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; if (v < 4) o = { ...o, settings: { ...o.settings, voiceName: "", pitch: 0.75 } }; return o; }, partialize: (s) => ({ setup: s.setup, emergency: s.emergency, blockedNums: s.blockedNums, contacts: s.contacts, onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));

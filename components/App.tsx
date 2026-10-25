@@ -5,6 +5,7 @@ import { LayoutGrid, Download, Settings as Cog } from "lucide-react";
 import { useS, View } from "@/lib/store";
 import { clearBobbyNotifications, askAll } from "@/lib/perm";
 import { LEGAL } from "@/lib/legal";
+import { FlashHost } from "./Flash";
 import { NAV as NAV_ALL, usePhone, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
 import { useT, LANGS, RTL } from "@/lib/i18n";
 import { PermissionsCard, BotV, HomeV, TextV, WebV, ImageV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
@@ -80,7 +81,7 @@ export default function App() {
       <button type="button" onClick={() => setMore(!more)} aria-expanded={more} aria-label={t("Menu")} className="relative flex-1 h-12 grid place-items-center active:scale-90 transition-transform">{(inMore || more) && <motion.span layoutId="pill" className="absolute inset-x-1 inset-y-0.5 rounded-2xl" style={{ background: "var(--soft)" }} />}<span className="relative flex flex-col items-center gap-0.5" style={{ color: inMore || more ? "var(--brand)" : "var(--mute)" }}><LayoutGrid size={24} strokeWidth={inMore || more ? 2.4 : 1.9} /><span className="text-xs font-medium">{t("Menu")}</span></span></button></nav>
     <AnimatePresence>{more && <><motion.div key="bg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setMore(false)} />
       <motion.div key="m" role="dialog" aria-label={t("Menu")} initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }} transition={{ type: "spring", damping: 24, stiffness: 300 }} className="md:hidden fixed bottom-28 inset-x-3 z-50 rounded-[28px] border p-4 grid grid-cols-3 gap-3" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>{NV.filter((n) => !BOTTOM.includes(n.id) && n.id !== "settings").map((n) => <button type="button" key={n.id} onClick={() => nav(n.id)} className="flex flex-col items-center gap-2 p-3 rounded-3xl text-center text-xs font-medium active:scale-95 transition-transform" style={{ background: view === n.id ? "var(--soft)" : "var(--card)", color: view === n.id ? "var(--brand)" : "var(--fg)" }}><span className="w-12 h-12 rounded-2xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}><n.icon size={24} /></span>{t(n.label)}</button>)}</motion.div></>}</AnimatePresence>
-    <ToastHost />
+    <ToastHost /><FlashHost />
     {onboarded && <Fab />}
     <AnimatePresence>{(!onboarded || !setup) && <motion.div role="dialog" aria-modal="true" exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/80 overflow-y-auto"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-7 max-w-md w-full text-center space-y-5" style={{ background: "var(--solid)" }}>
       <div className="flex justify-center"><img src="/bobby-logo.svg" alt="Bobby One" width={176} height={176} className="rounded-[40px]" style={{ width: 176, height: 176 }} /></div>
