@@ -21,10 +21,14 @@ const D: Record<string, string[]> = {
   "À propos de Bobby One": ["About Bobby One", "Acerca de Bobby One", "Über Bobby One"],
   "Le menu et les écrans principaux changent de langue. Les analyses de Bobby restent en français pour le moment.": ["The menu and main screens change language. Bobby's analyses stay in French for now.", "El menú y las pantallas principales cambian de idioma. Los análisis de Bobby siguen en francés por ahora.", "Menü und Hauptbildschirme wechseln die Sprache. Bobbys Analysen bleiben vorerst auf Französisch."],
 };
+export const RTL = ["العربية", "اردو", "فارسی"];
 export const LANGS: Record<string, { code: string; tts: string }> = {
   "Français": { code: "fr", tts: "fr-FR" }, "English": { code: "en", tts: "en-US" }, "Español": { code: "es", tts: "es-ES" }, "Deutsch": { code: "de", tts: "de-DE" },
   "Português": { code: "pt", tts: "pt-BR" }, "Italiano": { code: "it", tts: "it-IT" }, "العربية": { code: "ar", tts: "ar-SA" }, "中文": { code: "zh-CN", tts: "zh-CN" },
   "हिन्दी": { code: "hi", tts: "hi-IN" }, "Русский": { code: "ru", tts: "ru-RU" }, "日本語": { code: "ja", tts: "ja-JP" },
+  "Türkçe": { code: "tr", tts: "tr-TR" }, "Nederlands": { code: "nl", tts: "nl-NL" }, "Polski": { code: "pl", tts: "pl-PL" }, "한국어": { code: "ko", tts: "ko-KR" },
+  "Bahasa Indonesia": { code: "id", tts: "id-ID" }, "Tiếng Việt": { code: "vi", tts: "vi-VN" }, "বাংলা": { code: "bn", tts: "bn-BD" }, "اردو": { code: "ur", tts: "ur-PK" },
+  "فارسی": { code: "fa", tts: "fa-IR" }, "ไทย": { code: "th", tts: "th-TH" }, "Українська": { code: "uk", tts: "uk-UA" }, "Română": { code: "ro", tts: "ro-RO" },
 };
 const IDX: Record<string, number> = { English: 0, Español: 1, Deutsch: 2 };
 let cache: Record<string, string> = {};
