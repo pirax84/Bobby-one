@@ -6,7 +6,7 @@ import { analyzeText, analyzeUrl, ageLabel, hash, META, Result, UrlResult } from
 import { useS, View } from "@/lib/store";
 import { useT, toFr, LANGS } from "@/lib/i18n";
 import { CALLS, THREATS, FEED, TOP, REP, FAMILY } from "@/lib/data";
-import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, speak, playClip, stopSpeak, Mic, listen, ERR } from "./ui";
+import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const Busy = ({ t }: { t: string }) => { const ref = useRef<HTMLDivElement>(null); useEffect(() => { ref.current?.scrollIntoView({ behavior: "smooth", block: "center" }); }, []); return <div ref={ref} className="card p-6 flex items-center gap-3 text-mute"><Loader2 className="animate-spin" size={18} />{t}</div>; };
@@ -75,7 +75,7 @@ export function CallsV() {
   const lv = (s: number) => (s >= 85 ? "safe" : s >= 60 ? "careful" : s >= 40 ? "suspicious" : "danger");
   const rec = (k: string) => (k === "safe" ? "Vous pouvez répondre." : k === "unknown" ? "Laissez sonner, répondez seulement si vous attendez un appel." : "Ne répondez pas. Je vous conseille de bloquer ce numéro.");
   return (<div><Title t="Protection appels" d="Je vous dis qui appelle avant que vous décrochiez." />
-    <button className="btn mb-4" onClick={() => { const c = CALLS[Math.floor(Math.random() * CALLS.length)]; setInc(c); if (vo) playClip(c.kind === "scam" ? 5 : c.kind === "safe" ? 7 : 8, lg, c.kind === "scam" ? "Attention, appel suspect. Ne répondez pas." : c.kind === "safe" ? "Ce numéro semble fiable." : "Numéro inconnu. Soyez prudent avant de répondre."); }}><Phone size={18} />Simuler un appel entrant</button>
+    <button className="btn mb-4" onClick={() => { const c = CALLS[Math.floor(Math.random() * CALLS.length)]; setInc(c); if (vo) speak(c.kind === "scam" ? "Attention, appel suspect. Je pense qu'il s'agit probablement d'une arnaque. Ne répondez pas." : c.kind === "safe" ? "Ce numéro semble fiable." : "Numéro inconnu. Soyez prudent avant de répondre.", lg); }}><Phone size={18} />Simuler un appel entrant</button>
     <div className="flex flex-col sm:flex-row gap-3 mb-4"><div className="relative flex-1"><Search size={16} className="absolute left-4 top-4 text-mute" /><input className="inp pl-10" placeholder="Rechercher un numéro…" value={q} onChange={(e) => setQ(e.target.value)} /></div>
       <div className="flex gap-2 flex-wrap">{[["all", "Tous"], ["safe", "Sûrs"], ["unknown", "Inconnus"], ["scam", "Arnaques"]].map(([k, l]) => <button key={k} onClick={() => setF(k)} className={"btn2 " + (f === k ? "on" : "")}>{l}</button>)}</div></div>
     <div className="space-y-3">{list.map((c) => (<div key={c.n} className="card p-4 flex items-center gap-4"><Gauge score={c.score} size={64} /><div className="flex-1 min-w-0"><p className="font-semibold">{c.n}</p><p className="text-sm text-mute">{c.name} · {c.reports} signalements</p><p className="text-sm mt-1">{rec(c.kind)}</p></div><Badge lv={lv(c.score)} /></div>))}{!list.length && <p className="text-mute">Aucun numéro trouvé.</p>}</div>
