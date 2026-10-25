@@ -22,14 +22,33 @@ async function safeBrowsing(url: string): Promise<boolean | null> {
     if (!r.ok) return null; const j = await r.json(); return !!j.matches?.length;
   } catch { return null; }
 }
-async function ageDays(h: string): Promise<number | null> {
+const SLD = new Set(["co", "com", "org", "net", "gov", "ac", "edu", "or", "ne"]);
+const registrable = (h: string) => { const p = h.split("."); const n = p.length >= 3 && p[p.length - 1].length === 2 && SLD.has(p[p.length - 2]) ? 3 : 2; return p.slice(-n).join("."); };
+let bootstrap: { at: number; map: Map<string, string> } | null = null;
+async function rdapBase(tld: string): Promise<string | null> {
   try {
-    const parts = h.split("."); const dom = parts.slice(-2).join(".");
-    const r = await fetch(`https://rdap.org/domain/${dom}`, { signal: AbortSignal.timeout(5000), headers: { Accept: "application/rdap+json" } });
-    if (!r.ok) return null; const j = await r.json();
-    const ev = (j.events || []).find((e: any) => e.eventAction === "registration"); if (!ev?.eventDate) return null;
-    return Math.max(0, Math.floor((Date.now() - new Date(ev.eventDate).getTime()) / 86400000));
+    if (!bootstrap || Date.now() - bootstrap.at > 86400_000) {
+      const r = await fetch("https://data.iana.org/rdap/dns.json", { signal: AbortSignal.timeout(5000) }); if (!r.ok) throw new Error("boot");
+      const j = await r.json(); const map = new Map<string, string>();
+      for (const [tlds, urls] of j.services || []) for (const t of tlds) map.set(String(t).toLowerCase(), String(urls[0]));
+      bootstrap = { at: Date.now(), map };
+    }
+    return bootstrap.map.get(tld) || null;
   } catch { return null; }
+}
+const created = (j: any): number | null => {
+  const ev = (j?.events || []).find((e: any) => e.eventAction === "registration"); if (!ev?.eventDate) return null;
+  const t = new Date(ev.eventDate).getTime(); return Number.isFinite(t) ? Math.max(0, Math.floor((Date.now() - t) / 86400000)) : null;
+};
+async function ageDays(h: string): Promise<number | null> {
+  const dom = registrable(h); const tld = dom.split(".").pop() || "";
+  const urls: string[] = [];
+  const base = await rdapBase(tld); if (base) urls.push(base.replace(/\/?$/, "/") + "domain/" + dom);
+  urls.push("https://rdap.org/domain/" + dom);
+  for (const u of urls) {
+    try { const r = await fetch(u, { signal: AbortSignal.timeout(6000), headers: { Accept: "application/rdap+json, application/json" }, redirect: "follow" }); if (!r.ok) continue; const a = created(await r.json()); if (a !== null) return a; } catch {}
+  }
+  return null;
 }
 export async function GET(req: Request) {
   const u = new URL(req.url).searchParams.get("u") || ""; const h = host(u);

@@ -36,7 +36,7 @@ function applyLive(r: UrlResult, lv: Live | null): UrlResult {
 function WebReport({ r, lv }: { r: UrlResult; lv?: Live | null }) {
   const t = useT(); const { report, notify } = useS();
   const listed = !lv ? "Indisponible" : lv.listed === true ? "⚠️ Signalé" : lv.listed === false ? "Non listé" : "Indisponible";
-  return (<Report r={r}>
+  return (<Report r={r} noun="site">
     <div className="grid grid-cols-3 gap-2 text-center">{[["Domaine", r.domain], ["Ancienneté", ageLabel(lv?.ageDays, t)], ["Listes de fraude en ligne", t(listed)]].map(([a, v]) => <div key={a} className="rounded-2xl p-3 min-w-0" style={{ background: "var(--soft)" }}><p className="text-xs text-mute">{t(a)}</p><p className="font-semibold text-sm break-words">{v}</p></div>)}</div>
     <p className="text-xs text-mute">{lv?.sources?.length ? t("Listes consultées") + " : " + lv.sources.join(", ") + ". " : ""}{t("« Non listé » ne veut pas dire « sûr » : les faux sites changent chaque jour.")}</p>
     {r.score < 60 && <button type="button" className="btn2" onClick={() => { report("Sites|" + r.domain); notify("Merci ! Signalement envoyé à la communauté."); }}>{t("Signaler ce site à la communauté")}</button>}

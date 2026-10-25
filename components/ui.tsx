@@ -42,11 +42,11 @@ export function Busy({ steps }: { steps: string[] }) {
   useEffect(() => { ref.current?.scrollIntoView({ behavior: "smooth", block: "center" }); const id = setInterval(() => setI((x) => Math.min(x + 1, steps.length - 1)), 650); return () => clearInterval(id); }, []);
   return <div ref={ref} role="status" className="card p-6 space-y-4"><div className="flex items-center gap-3 text-mute"><Loader2 className="animate-spin" size={20} style={{ color: "var(--brand)" }} /><span>{t(steps[i])}</span></div><div className="h-2 rounded-full skeleton" /><div className="h-2 w-2/3 rounded-full skeleton" /></div>;
 }
-export function Report({ r, children, speakIt = true }: { r: Result; children?: React.ReactNode; speakIt?: boolean }) {
+export function Report({ r, children, speakIt = true, noun = "message" }: { r: Result; children?: React.ReactNode; speakIt?: boolean; noun?: string }) {
   const m = META[r.level]; const t = useT(); const lang = useS((x) => x.settings.lang); const vo = useS((x) => x.settings.voice !== false); const ref = useRef<HTMLDivElement>(null);
   useEffect(() => { const id = setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120); if (vo && speakIt) speak(`${m.bobby} ${r.tips[0]}`, lang); return () => clearTimeout(id); }, []);
   return (<motion.div ref={ref} aria-live="polite" style={{ scrollMarginTop: 80, borderColor: m.color + "88" }} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="card p-5 md:p-6 space-y-5">
-    <div className="flex items-center gap-5"><Gauge score={r.score} size={116} /><div className="min-w-0"><Badge lv={r.level} /><p className="mt-3 text-lg font-semibold leading-snug">{t(m.bobby)}</p><p className="text-sm text-mute mt-1">{t("Score de confiance")} : {r.score}/100</p></div></div>
+    <div className="flex items-center gap-5"><Gauge score={r.score} size={116} /><div className="min-w-0"><Badge lv={r.level} /><p className="mt-3 text-lg font-semibold leading-snug">{t(m.bobby.replace("message", noun))}</p><p className="text-sm text-mute mt-1">{t("Score de confiance")} : {r.score}/100</p></div></div>
     {children}
     <div><h4 className="font-semibold mb-2">{t("Pourquoi ?")}</h4><ul className="space-y-1.5 text-mute text-sm">{r.reasons.map((x, i) => <li key={i} className="flex gap-2"><span aria-hidden="true">•</span><span>{t(x)}</span></li>)}</ul></div>
     <div><h4 className="font-semibold mb-2">{t("Mes conseils")}</h4><ul className="space-y-2 text-sm">{r.tips.map((x, i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0" style={{ color: "var(--brand)" }} /><span>{t(x)}</span></li>)}</ul></div>
