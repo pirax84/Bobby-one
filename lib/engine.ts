@@ -50,4 +50,14 @@ export function analyzeUrl(raw: string): UrlResult | null {
   const reputation = score >= 85 ? "Excellente" : score >= 60 ? "Moyenne" : score >= 40 ? "Mauvaise" : "Très mauvaise — signalé";
   return { score, level: levelOf(score), reasons, tips, domain: h, ageDays, reputation };
 }
-export const ageLabel = (d: number) => (d < 60 ? `${d} jours` : d < 730 ? `${Math.round(d / 30)} mois` : `${Math.round(d / 365)} ans`);
+export const ageLabel = (d: number, t: (s: string) => string = (s) => s) => (d < 60 ? `${d} ${t("jours")}` : d < 730 ? `${Math.round(d / 30)} ${t("mois")}` : `${Math.round(d / 365)} ${t("ans")}`);
+export const looksLikeUrl = (s: string) => { const x = s.trim(); return !/\s/.test(x) && (/^https?:\/\//i.test(x) || /^(www\.)?[\w-]+(\.[\w-]+)+(\/\S*)?$/i.test(x)); };
+export interface CallResult { score: number; level: Level; name: string; reports: number; kind: "safe" | "unknown" | "scam"; }
+export function scoreNumber(raw: string, known: { n: string; name: string; score: number; reports: number; kind: string }[]): CallResult | null {
+  const d = raw.replace(/[^\d+]/g, ""); const digits = d.replace(/\D/g, ""); if (digits.length < 6) return null;
+  const hit = known.find((c) => c.n.replace(/\D/g, "").endsWith(digits.slice(-9)) || digits.endsWith(c.n.replace(/\D/g, "").slice(-9)));
+  if (hit) return { score: hit.score, level: levelOf(hit.score), name: hit.name, reports: hit.reports, kind: hit.kind as any };
+  let pen = 0; if (/^\+?(225|224|212|216|237|221|44|7|234|91|86)/.test(d)) pen += 25; if (/^(\+33|0033|0)?9/.test(d)) pen += 12; if (/^(\+?33|0)?[67]/.test(d)) pen += 6;
+  const score = clamp(70 - pen + (hash(digits) % 12)); const reports = score < 50 ? 8 + (hash(digits) % 40) : hash(digits) % 4;
+  return { score, level: levelOf(score), name: score < 50 ? "Numéro douteux" : "Numéro inconnu", reports, kind: score < 50 ? "scam" : "unknown" };
+}

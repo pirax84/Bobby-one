@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest", icons: { icon: "/icon-192.png", apple: "/apple-touch-icon.png" },
   appleWebApp: { capable: true, title: "Bobby One", statusBarStyle: "black-translucent" },
 };
-export const viewport: Viewport = { themeColor: "#070B14", width: "device-width", initialScale: 1, viewportFit: "cover" };
+export const viewport: Viewport = { themeColor: "#070912", width: "device-width", initialScale: 1, viewportFit: "cover" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (<html lang="fr"><body><Pwa />{children}</body></html>);
 }

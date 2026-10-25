@@ -90,30 +90,62 @@ export const LANGS: Record<string, { code: string; tts: string }> = {
   "Bosanski": { code: "bs", tts: "bs-BA" },
 };
 const IDX: Record<string, number> = { English: 0, Español: 1, Deutsch: 2 };
+const dict = (l: string, s: string) => { const i = IDX[l]; return i === undefined ? undefined : D[s]?.[i]; };
 let cache: Record<string, string> = {};
-try { if (typeof window !== "undefined") cache = JSON.parse(localStorage.getItem("bobby-tr") || "{}"); } catch {}
-const save = () => { try { localStorage.setItem("bobby-tr", JSON.stringify(cache)); } catch {} };
+try { if (typeof window !== "undefined") cache = JSON.parse(localStorage.getItem("bobby-tr2") || "{}"); } catch {}
+let saveT: any = null;
+const save = () => { if (saveT) return; saveT = setTimeout(() => { saveT = null; try { localStorage.setItem("bobby-tr2", JSON.stringify(cache)); } catch {} }, 400); };
 const useTv = create<{ v: number }>(() => ({ v: 0 }));
-const pend = new Set<string>();
-async function call(from: string, to: string, s: string): Promise<string | null> {
+const queue = new Map<string, { l: string; s: string }>();
+const waiters = new Map<string, ((v: string) => void)[]>();
+const failedAt = new Map<string, number>();
+let timer: any = null;
+const key = (l: string, s: string) => l + "|" + s;
+
+async function one(from: string, to: string, s: string): Promise<string | null> {
+  try { const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(s)}`); if (r.ok) { const j = await r.json(); const o = j[0].map((x: any) => x[0]).join(""); if (o) return o; } } catch {}
   try { const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(s)}&langpair=${from}|${to}`); const j = await r.json(); const o = j?.responseData?.translatedText; if (o && !/MYMEMORY WARNING|INVALID|QUERY LENGTH/i.test(o)) return o; } catch {}
-  try { const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(s)}`); const j = await r.json(); const o = j[0].map((x: any) => x[0]).join(""); if (o) return o; } catch {}
   return null;
 }
-const dict = (l: string, s: string) => { const i = IDX[l]; return i === undefined ? undefined : D[s]?.[i]; };
-export async function translate(l: string, s: string): Promise<string> {
-  const code = LANGS[l]?.code; if (!s.trim() || !code || code === "fr") return s;
-  const d = dict(l, s); if (d) return d; const k = l + "|" + s; if (cache[k]) return cache[k];
-  const o = await call("fr", code, s); if (o) { cache[k] = o; save(); return o; } return s;
+function finish(l: string, s: string, out: string | null) {
+  const k = key(l, s);
+  if (out) { cache[k] = out; save(); failedAt.delete(k); } else failedAt.set(k, Date.now());
+  queue.delete(k); const w = waiters.get(k); waiters.delete(k); w?.forEach((f) => f(out || s));
+}
+async function runBatch(l: string, arr: string[]) {
+  const code = LANGS[l]?.code; if (!code || code === "fr") { arr.forEach((s) => finish(l, s, s)); return; }
+  const clean = arr.map((s) => s.replace(/\s*\n+\s*/g, " "));
+  let done = false;
+  if (arr.length > 1) {
+    try {
+      const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=${code}&dt=t&q=${encodeURIComponent(clean.join("\n"))}`);
+      if (r.ok) { const j = await r.json(); const parts = j[0].map((x: any) => x[0]).join("").split("\n"); if (parts.length === arr.length) { arr.forEach((s, i) => finish(l, s, parts[i].trim() || null)); done = true; } }
+    } catch {}
+  }
+  if (!done) await Promise.all(arr.map(async (s, i) => finish(l, s, await one("fr", code, clean[i]))));
+}
+async function flush() {
+  timer = null; const items = [...queue.values()]; const byLang = new Map<string, string[]>();
+  items.forEach(({ l, s }) => { const a = byLang.get(l) || []; a.push(s); byLang.set(l, a); });
+  const jobs: Promise<void>[] = [];
+  byLang.forEach((list, l) => { let cur: string[] = [], len = 0; const out: string[][] = []; list.forEach((s) => { if (cur.length && (len + s.length > 1100 || cur.length >= 40)) { out.push(cur); cur = []; len = 0; } cur.push(s); len += s.length + 1; }); if (cur.length) out.push(cur); out.forEach((c) => jobs.push(runBatch(l, c))); });
+  await Promise.all(jobs); useTv.setState((x) => ({ v: x.v + 1 }));
+}
+const enqueue = (l: string, s: string) => { const k = key(l, s); if (queue.has(k)) return; const f = failedAt.get(k); if (f && Date.now() - f < 60000) return; queue.set(k, { l, s }); if (!timer) timer = setTimeout(flush, 40); };
+const worth = (s: string) => /\p{L}/u.test(s);
+
+export function translate(l: string, s: string): Promise<string> {
+  const code = LANGS[l]?.code; if (!s || !s.trim() || !code || code === "fr" || !worth(s)) return Promise.resolve(s);
+  const d = dict(l, s); if (d) return Promise.resolve(d); const k = key(l, s); if (cache[k]) return Promise.resolve(cache[k]);
+  return new Promise((res) => { const w = waiters.get(k) || []; w.push(res); waiters.set(k, w); enqueue(l, s); });
 }
 export async function toFr(l: string, s: string): Promise<string> {
   const code = LANGS[l]?.code; if (!s.trim() || !code || code === "fr") return s;
-  return (await call(code, "fr", s)) || s;
+  return (await one(code, "fr", s)) || s;
 }
 export const tr = (l: string, s: string) => {
-  if (!s || l === "Français") return s; const d = dict(l, s); if (d) return d;
-  const k = l + "|" + s; if (cache[k]) return cache[k];
-  if (!pend.has(k)) { pend.add(k); translate(l, s).then(() => useTv.setState((x) => ({ v: x.v + 1 }))); }
-  return s;
+  if (!s || l === "Français" || !worth(s)) return s; const d = dict(l, s); if (d) return d;
+  const k = key(l, s); if (cache[k]) return cache[k]; enqueue(l, s); return s;
 };
 export const useT = () => { const l = useS((s) => s.settings.lang); useTv((x) => x.v); return (s: string) => tr(l, s); };
+export const useLang = () => useS((s) => s.settings.lang);
