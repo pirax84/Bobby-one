@@ -218,8 +218,6 @@ export function SettingsV() {
   return (<div><Title t="Réglages" d="Personnalisez Bobby comme vous le souhaitez." />
     <div className="card px-5 md:px-6"><Row l="Langue"><select className="inp max-w-[220px]" aria-label={t("Langue")} value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select></Row>
       <Row l="Bobby parle sur tous les écrans"><Toggle label={t("Bobby parle sur tous les écrans")} on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) stopSpeak(); }} /></Row>
-      <Row l="Voix de Bobby"><VoicePick /></Row>
-      <Row l="Gravité de la voix"><div className="flex items-center gap-2 text-xs text-mute">{t("Grave")}<input type="range" aria-label={t("Gravité de la voix")} min="0.5" max="1" step="0.05" value={s.pitch ?? 0.75} onChange={(e) => set({ pitch: parseFloat(e.target.value) })} />{t("Normal")}</div></Row>
       <Row l="Notifications d'alerte"><Toggle label={t("Notifications d'alerte")} on={s.notif} f={() => set({ notif: !s.notif })} /></Row>
       <Row l="Confidentialité renforcée (rien n'est envoyé)"><Toggle label={t("Confidentialité renforcée (rien n'est envoyé)")} on={s.privacy} f={() => set({ privacy: !s.privacy })} /></Row>
       <Row l="Thème"><div className="flex gap-2">{(["dark", "light"] as const).map((x) => <button type="button" key={x} aria-pressed={s.theme === x} className={"btn2 " + (s.theme === x ? "on" : "")} onClick={() => set({ theme: x })}>{t(x === "dark" ? "Sombre" : "Clair")}</button>)}</div></Row>
