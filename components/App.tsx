@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, Download, Settings as Cog } from "lucide-react";
 import { useS, View } from "@/lib/store";
-import { clearBobbyNotifications } from "@/lib/perm";
+import { clearBobbyNotifications, askAll } from "@/lib/perm";
+import { LEGAL } from "@/lib/legal";
 import { NAV as NAV_ALL, usePhone, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
 import { useT, LANGS, RTL } from "@/lib/i18n";
 import { PermissionsCard, BotV, HomeV, TextV, WebV, ImageV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
@@ -18,7 +19,7 @@ function InstallGate() {
     window.addEventListener("beforeinstallprompt", on); window.addEventListener("appinstalled", d); setIos(/iphone|ipad|ipod/i.test(navigator.userAgent));
     return () => { window.removeEventListener("beforeinstallprompt", on); window.removeEventListener("appinstalled", d); };
   }, []);
-  const install = async () => { if (!ev) return; ev.prompt(); try { const c = await ev.userChoice; if (c?.outcome === "accepted") setDone(true); } catch {} setEv(null); };
+  const install = async () => { if (!ev) return; ev.prompt(); try { const c = await ev.userChoice; if (c?.outcome === "accepted") setDone(true); } catch {} setEv(null); askAll().catch(() => {}); };
   return (<main className="min-h-dvh grid place-items-center p-6 text-center" style={{ background: "var(--solid)" }}><div className="max-w-md w-full space-y-6">
     <div className="flex justify-center"><img src="/bobby-logo.svg" alt="Bobby One — Bobby veille sur vous." width={220} height={220} className="rounded-[44px]" style={{ width: 220, height: 220 }} /></div>
     <p className="text-xl font-semibold -mt-2" style={{ color: "var(--brand2)" }}>{t("Bobby veille sur vous.")}</p>
@@ -35,7 +36,7 @@ function InstallGate() {
 
 export default function App() {
   const { view, go, onboarded, setup, finish, settings, set, setIncoming, setSharedFile } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
-  const t = useT(); const [installed, setInstalled] = useState(false); const phone = usePhone();
+  const t = useT(); const [installed, setInstalled] = useState(false); const [asking, setAsking] = useState(false); const [pk, setPk] = useState(0); const phone = usePhone();
   useEffect(() => {
     const isApp = () => !!(window.matchMedia?.("(display-mode: standalone)").matches || window.matchMedia?.("(display-mode: fullscreen)").matches || window.matchMedia?.("(display-mode: minimal-ui)").matches || (navigator as any).standalone); setInstalled(isApp());
     const mq = window.matchMedia?.("(display-mode: standalone)"); const on = () => setInstalled(isApp()); mq?.addEventListener?.("change", on); return () => mq?.removeEventListener?.("change", on);
@@ -84,7 +85,7 @@ export default function App() {
     <AnimatePresence>{(!onboarded || !setup) && <motion.div role="dialog" aria-modal="true" exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/80 overflow-y-auto"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-7 max-w-md w-full text-center space-y-5" style={{ background: "var(--solid)" }}>
       <div className="flex justify-center"><img src="/bobby-logo.svg" alt="Bobby One" width={176} height={176} className="rounded-[40px]" style={{ width: 176, height: 176 }} /></div>
       {step === 0 && <select className="inp max-w-[240px] mx-auto" aria-label="Langue / Language" value={settings.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select>}
-      <h2 className="text-2xl font-bold">{t(STEPS[step][0])}</h2><p className="text-mute">{t(STEPS[step][1])}</p>{step === STEPS.length - 1 && <PermissionsCard compact />}
+      <h2 className="text-2xl font-bold">{t(STEPS[step][0])}</h2><p className="text-mute">{t(STEPS[step][1])}</p>{step === STEPS.length - 1 && <><button type="button" className="btn w-full" disabled={asking} onClick={async () => { setAsking(true); await askAll(); setAsking(false); setPk((k) => k + 1); }}>{t(asking ? "Autorisation en cours…" : "Tout autoriser (notifications, position, micro)")}</button><PermissionsCard compact key={pk} /><details className="text-start text-sm"><summary className="cursor-pointer text-mute">{t("En continuant, vous acceptez les conditions d'utilisation. Lire")}</summary><div className="mt-2 max-h-48 overflow-y-auto space-y-2">{LEGAL.map(([h, x]) => <div key={h}><p className="font-semibold">{t(h)}</p><p className="text-mute">{t(x)}</p></div>)}</div></details></>}
       <div className="flex justify-center gap-2">{STEPS.map((_, i) => <span key={i} className="h-2 rounded-full transition-all" style={{ width: i === step ? 24 : 8, background: i === step ? "var(--brand)" : "var(--bd)" }} />)}</div>
       <div className="flex gap-3 justify-center"><button type="button" className="btn2" onClick={() => { stopSpeak(); finish(); }}>{t("Passer")}</button><button type="button" className="btn" onClick={() => { if (step < STEPS.length - 1) setStep(step + 1); else { finish(); if (settings.voice !== false) speak(t("Bonjour, je suis Bobby. Je veille sur vous."), settings.lang); } }}>{t(step < STEPS.length - 1 ? "Suivant" : "Commencer")}</button></div></motion.div></motion.div>}</AnimatePresence>
   </div>);

@@ -18,3 +18,14 @@ export function alertDanger(body: string) {
     else new Notification("Bobby : attention, danger", opts);
   } catch {}
 }
+
+// Demande d'un coup les autorisations utiles (notifications, position, micro). Chaque refus est sans conséquence.
+export async function askAll(): Promise<{ notif: PermState; geo: PermState; mic: PermState; country?: string }> {
+  const notif = notifState() === "granted" ? "granted" : await askNotif();
+  let geo: PermState = "default"; let country: string | undefined;
+  try { const { locate } = await import("./country"); country = await locate(); geo = "granted"; } catch (e: any) { geo = e?.message === "denied" ? "denied" : "default"; }
+  const mic = await askMic();
+  if (country) useS.getState().set({ country });
+  if (notif === "granted") useS.getState().set({ notif: true });
+  return { notif, geo, mic, country };
+}

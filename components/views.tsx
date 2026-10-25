@@ -9,12 +9,13 @@ import { THREATS, FEED, TOP, REP } from "@/lib/data";
 import { Explain } from "./Explain";
 import { Where, useCountry } from "./Where";
 import { COUNTRIES, locate } from "@/lib/country";
-import { ocr, decodeQr } from "@/lib/vision";
+import { ocr, decodeQr, realText } from "@/lib/vision";
 import { contactsSupported, pickContacts } from "@/lib/contacts";
 import { platformOf } from "@/lib/platforms";
 import { analyzeNumber, NumResult } from "@/lib/numbers";
 import { askNotif, askMic, notifState, alertDanger, clearBobbyNotifications, PermState } from "@/lib/perm";
 import { NAV, usePhone, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
+import { LEGAL } from "@/lib/legal";
 import { loadVoices, voicesFor, pickVoice } from "@/lib/voice";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -157,9 +158,9 @@ export function ImageV() {
     try {
       let text = ""; try { text = await ocr(f, setPct); } catch { setErr("Je n'ai pas pu charger la lecture des images. Vérifiez votre connexion internet et réessayez."); setB(false); return; }
       const code = await decodeQr(f).catch(() => null); if (code) setQr(code);
-      const all = [text, code || ""].join("\n").trim();
-      if (all.replace(/\s/g, "").length < 8) { setErr("Je ne trouve pas de texte lisible dans cette image. Essayez une capture plus nette."); setB(false); return; }
-      setTxt(text); const x = await analyzeAny(all); scan("image", text || code || "image", x.r); setRes(x);
+      const all = (code ? [realText(text) ? text : "", code] : [text]).join("\n").trim();
+      if (!code && !realText(text)) { setErr("Je ne trouve ni texte lisible, ni QR code lisible dans cette image. S'il s'agit d'un QR code : photo bien droite, entière, bien éclairée et sans reflet (les QR codes décorés avec un logo sont parfois plus difficiles à lire). Sinon, essayez une capture plus nette."); setB(false); return; }
+      setTxt(realText(text) ? text : ""); const x = await analyzeAny(all); scan("image", text || code || "image", x.r); setRes(x);
     } catch { setErr("Une erreur est survenue en lisant l'image. Réessayez."); }
     setB(false);
   };
@@ -168,7 +169,7 @@ export function ImageV() {
     <div className="card p-5 space-y-4"><Drop label="Choisir une image ou un QR code" onFile={go} /><p className="text-xs text-mute">{t("Bobby lit le vrai texte de votre image. La première lecture peut prendre quelques secondes et demande internet.")}</p></div>
     <div className="mt-5 space-y-4">{b && <Busy steps={["Bobby lit le texte de l'image…", "Je cherche les signes d'arnaque…", "Je calcule le score de confiance…"]} />}{b && pct > 0 && <p className="text-xs text-mute">{Math.round(pct * 100)} %</p>}
       {err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
-      {res && <><div className="card p-5 flex gap-4">{img && <img src={img} alt="" className="w-24 h-24 object-cover rounded-2xl shrink-0" />}<div className="min-w-0"><p className="text-xs text-mute mb-1">{t("Texte détecté")}</p><p className="text-sm italic break-words" dir="auto">« {txt.slice(0, 500)} »</p>{qr && <p className="text-sm mt-2 break-all" dir="ltr">QR : {qr}</p>}</div></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
+      {res && <><div className="card p-5 flex gap-4">{img && <img src={img} alt="" className="w-24 h-24 object-cover rounded-2xl shrink-0" />}<div className="min-w-0">{txt && <><p className="text-xs text-mute mb-1">{t("Texte détecté")}</p><p className="text-sm italic break-words" dir="auto">« {txt.slice(0, 500)} »</p></>}{qr && <p className="text-sm mt-2 break-all" dir="ltr">QR : {qr}</p>}</div></div>{res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />}</>}</div></div>);
 }
 
 // Bouton « ＋ Importer » : ouvre l'explorateur de fichiers de l'appareil (téléphone ou ordinateur).
@@ -179,7 +180,7 @@ function ImportBtn({ onText, label = "Importer" }: { onText: (x: string) => void
     if (!f) return; setErr(""); setBusy(true);
     try {
       let txt = "";
-      if (f.type.startsWith("image/")) { let o = ""; try { o = await ocr(f); } catch { setErr("Je n'ai pas pu charger la lecture des images. Vérifiez votre connexion internet et réessayez."); } const c = await decodeQr(f).catch(() => null); txt = [o, c || ""].join("\n").trim(); }
+      if (f.type.startsWith("image/")) { let o = ""; try { o = await ocr(f); } catch { setErr("Je n'ai pas pu charger la lecture des images. Vérifiez votre connexion internet et réessayez."); } const c = await decodeQr(f).catch(() => null); txt = [realText(o) ? o : "", c || ""].join("\n").trim(); }
       else if (/^(text\/|message\/)|\.(txt|eml|csv|vcf|html?|url|md|json)$/i.test(f.type + f.name)) txt = (await f.text()).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 20000);
       else { setErr("Ce type de fichier n'est pas pris en charge. Choisissez une image (capture d'écran, photo) ou un fichier texte."); }
       if (txt) onText(txt); else if (!err && (f.type.startsWith("image/") || /text|message/.test(f.type))) setErr("Je ne trouve rien à lire dans ce fichier.");
@@ -347,11 +348,17 @@ function VoiceBox() {
     <p className="text-xs text-mute">{t("Les voix « réseau » ignorent souvent la vitesse et la tonalité. Si rien ne change, choisissez une voix sans « (réseau) ».")}</p></div>);
 }
 
+export function LegalBox() {
+  const t = useT();
+  return (<div className="card p-5 space-y-4"><p className="text-sm rounded-2xl p-3" style={{ background: "var(--soft)" }}>{t("Ce texte est général : il s'applique dans la limite permise par la loi de votre pays. Il est traduit automatiquement ; en cas de doute, le texte français fait foi.")}</p>
+    {LEGAL.map(([h, x]) => <div key={h} className="space-y-1"><h3 className="font-semibold">{t(h)}</h3><p className="text-sm text-mute">{t(x)}</p></div>)}</div>);
+}
+
 export function SettingsV() {
   const { settings: s, set, clearHistory, notify, contacts, setContacts, setBlockedNums } = useS(); const t = useT(); const [cat, setCat] = useState<string>(""); const [sure, setSure] = useState(false);
   const Row = ({ l, children }: { l: string; children: React.ReactNode }) => <div className="flex items-center justify-between gap-4 py-4 border-b last:border-0" style={{ borderColor: "var(--bd)" }}><span>{t(l)}</span>{children}</div>;
-  const CATS: [string, string, string][] = [["lang", "🌍", "Langue et pays"], ["voice", "🔊", "Voix de Bobby"], ["notif", "🔔", "Notifications et autorisations"], ["look", "🎨", "Apparence"], ["sec", "🛡️", "Sécurité"], ["data", "🔒", "Mes données et confidentialité"], ["about", "ℹ️", "À propos"]];
-  const DESCS: Record<string, string> = { lang: "Langue de l'application, pays pour les sources officielles", voice: "Parler ou non, voix, vitesse, tonalité", notif: "Alertes, mode fantôme, micro, localisation", look: "Thème clair ou sombre", sec: "Niveau de vigilance de Bobby", data: "Historique, contacts, supprimer mes données", about: "Version et limites de Bobby" };
+  const CATS: [string, string, string][] = [["lang", "🌍", "Langue et pays"], ["voice", "🔊", "Voix de Bobby"], ["notif", "🔔", "Notifications et autorisations"], ["look", "🎨", "Apparence"], ["sec", "🛡️", "Sécurité"], ["data", "🔒", "Mes données et confidentialité"], ["legal", "⚖️", "Informations légales"], ["about", "ℹ️", "À propos"]];
+  const DESCS: Record<string, string> = { lang: "Langue de l'application, pays pour les sources officielles", voice: "Parler ou non, voix, vitesse, tonalité", notif: "Alertes, mode fantôme, micro, localisation", look: "Thème clair ou sombre", sec: "Niveau de vigilance de Bobby", data: "Historique, contacts, supprimer mes données", legal: "Conditions d'utilisation, responsabilité, données", about: "Version et limites de Bobby" };
   const wipe = async () => { try { localStorage.clear(); sessionStorage.clear(); if ("caches" in window) for (const k of await caches.keys()) await caches.delete(k); const rs = await navigator.serviceWorker?.getRegistrations?.(); rs?.forEach((r) => r.unregister()); await clearBobbyNotifications(); } catch {} location.href = "/"; };
   const body = (c: string) => {
     if (c === "lang") return (<div className="card px-5 md:px-6"><Row l="Langue"><select className="inp max-w-[220px]" aria-label={t("Langue")} value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select></Row><Row l="Mon pays (pour les sources officielles)"><CountryPick /></Row></div>);
@@ -371,6 +378,7 @@ export function SettingsV() {
       <Row l="Numéros que j'ai marqués dangereux"><button type="button" className="btn2" onClick={() => { setBlockedNums([]); notify("Liste vidée."); }}>{t("Vider")}</button></Row>
       <div className="py-4 space-y-2"><p className="font-semibold">{t("Supprimer toutes mes données")}</p><p className="text-sm text-mute">{t("Bobby n'a pas de compte : tout est gardé sur votre appareil. Ce bouton efface tout (historique, contacts, réglages, signalements) et remet Bobby à zéro.")}</p>
         {!sure ? <button type="button" className="btn2" onClick={() => setSure(true)}>{t("Supprimer toutes mes données")}</button> : <div className="flex gap-2 flex-wrap"><button type="button" className="btn" style={{ background: "#DC2626" }} onClick={wipe}>{t("Oui, tout supprimer")}</button><button type="button" className="btn2" onClick={() => setSure(false)}>{t("Annuler")}</button></div>}</div></div>);
+    if (c === "legal") return <LegalBox />;
     return (<div className="card p-5 flex items-center gap-4"><Bobby s={48} /><div><p className="font-semibold">{t("À propos de Bobby One")}</p><p className="text-sm text-mute">{t("Version 1.3 · « Bobby veille sur vous. » Analyse par règles intégrées et listes de fraude en ligne (OpenPhish, Google Safe Browsing). Il n'y a pas de base mondiale de numéros frauduleux : pour un numéro, Bobby applique les règles officielles de numérotation.")}</p></div></div>);
   };
   const cur = CATS.find((c) => c[0] === cat);
