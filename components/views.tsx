@@ -2,15 +2,16 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Search, Upload, Phone, PhoneOff, ChevronDown, ClipboardPaste, Mic as MicI, Volume2, Download, Share2, History, ArrowRight, Sparkles } from "lucide-react";
-import { analyzeText, analyzeUrl, ageLabel, hash, META, looksLikeUrl, scoreNumber, levelOf, Result, UrlResult } from "@/lib/engine";
+import { analyzeText, analyzeUrl, ageLabel, hash, META, looksLikeUrl, levelOf, Result, UrlResult } from "@/lib/engine";
 import { useS, View } from "@/lib/store";
 import { useT, toFr, LANGS } from "@/lib/i18n";
-import { CALLS, THREATS, FEED, TOP, REP, FAMILY } from "@/lib/data";
+import { THREATS, FEED, TOP, REP, FAMILY } from "@/lib/data";
 import { Explain } from "./Explain";
 import { Where, useCountry } from "./Where";
 import { COUNTRIES, locate } from "@/lib/country";
 import { ocr, decodeQr } from "@/lib/vision";
-import { contactsSupported, findContact, pickContacts } from "@/lib/contacts";
+import { contactsSupported, pickContacts } from "@/lib/contacts";
+import { analyzeNumber, NumResult } from "@/lib/numbers";
 import { askNotif, askMic, notifState, alertDanger, PermState } from "@/lib/perm";
 import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
@@ -117,9 +118,10 @@ export function HomeV() {
 export function TextV() {
   const t = useT(); const scan = useScan(); const [v, setV] = useState(""); const [r, setR] = useState<Result | null>(null); const [b, setB] = useState(false);
   const run = async () => { setB(true); setR(null); await wait(850); const x = analyzeText(v); scan("text", v, x); setR(x); setV(""); setB(false); };
-  return (<div><Title t="Analyse texte" d="Collez un SMS, un mail ou un message WhatsApp." />
+  return (<div><Title t="Analyse des messages" d="SMS, mails, WhatsApp, Telegram : copiez le message, puis collez-le ici." />
     <div className="card p-5 space-y-4"><textarea className="inp min-h-40 resize-y" aria-label={t("Message à vérifier")} placeholder={t("Collez ici le message à vérifier…")} value={v} onChange={(e) => { setV(e.target.value); setR(null); }} />
-      <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /></div>
+      <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /><button type="button" className="btn2" onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) { setV(x); setR(null); } } catch {} }}>{t("Coller")}</button></div>
+      <p className="text-xs text-mute">{t("Android ne permet pas à Bobby de lire vos SMS tout seul. Gardez le doigt sur le message, choisissez Copier, puis revenez ici et touchez Coller. Ou touchez Partager → Bobby One.")}</p>
       <div className="flex gap-2 flex-wrap"><button type="button" className="btn flex-1 sm:flex-none" disabled={v.trim().length < 5 || b} onClick={run}>{t("Analyser avec Bobby")}</button>{v && <button type="button" className="btn2" onClick={() => { setV(""); setR(null); }}>{t("Effacer")}</button>}</div></div>
     <div className="mt-5">{b && <Busy steps={STEPS_T} />}{r && <Report r={r} />}</div></div>);
 }
@@ -184,34 +186,35 @@ export function QrV() {
 }
 
 export function CallsV() {
-  const t = useT(); const scan = useScan(); const vo = useS((x) => x.settings.voice !== false), lg = useS((x) => x.settings.lang); const bump = useS((s) => s.bump); const notify = useS((s) => s.notify);
-  const [q, setQ] = useState(""); const [f, setF] = useState("all"); const [inc, setInc] = useState<(typeof CALLS)[0] | null>(null); const contacts = useS((x) => x.contacts); const setContacts = useS((x) => x.setContacts); const [kc, setKc] = useState(""); const [num, setNum] = useState(""); const [nr, setNr] = useState<ReturnType<typeof scoreNumber>>(null); const [ne, setNe] = useState("");
-  const list = CALLS.filter((c) => (f === "all" || c.kind === f) && (c.n + c.name + t(c.name)).toLowerCase().includes(q.toLowerCase()));
-  const rec = (k: string) => (k === "safe" ? "Vous pouvez répondre." : k === "unknown" ? "Laissez sonner, répondez seulement si vous attendez un appel." : "Ne répondez pas. Je vous conseille de bloquer ce numéro.");
-  const phrase = (k: string) => (k === "scam" ? "Attention, appel suspect. Je pense qu'il s'agit probablement d'une arnaque. Ne répondez pas." : k === "safe" ? "Ce numéro semble fiable." : "Numéro inconnu. Soyez prudent avant de répondre.");
-  const sim = () => { const c = CALLS[Math.floor(Math.random() * CALLS.length)]; setInc(c); if (vo) speak(phrase(c.kind), lg); };
-  const check = () => { setKc(""); const k = findContact(num, contacts); if (k) { setNr(null); setNe(""); setKc(k.n); return; } const x = scoreNumber(num, CALLS); if (!x) { setNr(null); setNe("Entrez un numéro complet, par exemple +33 6 12 34 56 78."); return; } setNe(""); setNr(x); scan("call", num, { score: x.score, level: x.level, reasons: [], tips: [] }); if (vo) speak(phrase(x.kind), lg); };
-  const close = () => { stopSpeak(); setInc(null); };
-  useEffect(() => { if (!inc) return; const k = (e: KeyboardEvent) => e.key === "Escape" && close(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [inc]);
+  const t = useT(); const scan = useScan(); const notify = useS((s) => s.notify); const bump = useS((s) => s.bump); const report = useS((s) => s.report);
+  const contacts = useS((x) => x.contacts); const setContacts = useS((x) => x.setContacts); const blocked = useS((x) => x.blockedNums); const setBlocked = useS((x) => x.setBlockedNums);
+  const home = useCountry(); const [num, setNum] = useState(""); const [ne, setNe] = useState(""); const [kc, setKc] = useState(""); const [nr, setNr] = useState<NumResult | null>(null);
+  const HEAD: Record<string, string> = { safe: "✅ Ce numéro semble correct.", careful: "⚠️ Numéro inconnu : soyez prudent avant de répondre.", suspicious: "⚠️ Ce numéro est suspect. Ne le rappelez pas.", danger: "🔴 Ce numéro est dangereux. Ne répondez pas." };
+  const check = (v = num) => {
+    setNum(v); setKc(""); setNr(null); setNe(""); const x = analyzeNumber(v, home, blocked); const k = x.ok ? contacts.find((c) => c.t.some((tt) => { const y = analyzeNumber(tt, home); return y.ok && y.e164 === x.e164; })) : undefined; if (k) { setKc(k.n); return; }
+     if (!x.ok) { setNe(x.err); return; }
+    setNr(x); scan("call", v, { score: x.score, level: x.level, reasons: x.reasons, tips: x.tips });
+  };
+  const mark = () => { if (!nr) return; setBlocked([nr.e164, ...blocked.filter((b) => b !== nr.e164)]); report("Numéros|" + nr.e164); bump(true); notify("Numéro marqué comme dangereux. Bobby vous le dira à chaque vérification."); setNr(analyzeNumber(nr.e164, home, [nr.e164, ...blocked]) as NumResult); };
+  const pick = async () => { if (!contactsSupported()) { notify("Ce navigateur ne permet pas d'importer les contacts. Utilisez Chrome sur Android.", "warn"); return; } try { const c = await pickContacts(); if (c.length) { const m = new Map(contacts.map((x) => [x.n + x.t.join(), x])); c.forEach((x) => m.set(x.n + x.t.join(), x)); setContacts([...m.values()]); notify(c.length + " " + (c.length > 1 ? "contacts ajoutés." : "contact ajouté.")); } } catch (e: any) { if (e?.name !== "AbortError") notify("Je n'ai pas pu accéder aux contacts.", "warn"); } };
   return (<div><Title t="Protection appels" d="Je vous dis qui appelle avant que vous décrochiez." />
-    <p className="text-sm rounded-2xl p-3 mb-4" style={{ background: "var(--soft)" }}>⚠️ {t("Pour l'instant, ces numéros sont des exemples : Bobby n'est pas encore relié à une vraie base de numéros frauduleux. Pour un numéro réel, utilisez les sources officielles de votre pays ci-dessous.")}</p>
     <div className="card p-5 mb-4 space-y-3"><label htmlFor="num" className="font-semibold block">{t("Vérifier un numéro")}</label>
-      <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={check}>{t("Vérifier")}</button></div>
-      {ne && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(ne)}</p>}
-      {kc && <div className="rounded-2xl p-4 flex items-center gap-3" style={{ background: "rgba(34,197,94,.14)" }}><span aria-hidden="true">✅</span><p className="font-medium">{t("Ce numéro est dans vos contacts")} : <span dir="auto">{kc}</span></p></div>}
-      {nr && <div className="flex items-center gap-4 pt-2"><Gauge score={nr.score} size={72} /><div className="flex-1 min-w-0"><Badge lv={nr.level} /><p className="font-semibold mt-1">{t(nr.name)} · {nr.reports} {t("signalements")}</p><p className="text-sm text-mute">{t(rec(nr.kind))}</p></div></div>}
-      <button type="button" className="btn2" onClick={sim}><Phone size={16} />{t("Simuler un appel entrant")}</button></div>
+      <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={() => check()}>{t("Vérifier")}</button>{num && <button type="button" className="btn2" onClick={() => { setNum(""); setNr(null); setKc(""); setNe(""); }}>{t("Effacer")}</button>}</div>
+      <p className="text-xs text-mute">{t("Android ne permet pas à Bobby de lire votre journal d'appels. Copiez le numéro depuis votre journal d'appels, puis collez-le ici.")}</p>
+      {ne && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(ne)}</p>}</div>
+    {kc && <div className="card p-5 mb-4 flex items-center gap-3" style={{ borderColor: "#22C55E88" }}><span aria-hidden="true" className="text-2xl">✅</span><p className="font-medium">{t("Ce numéro est dans vos contacts")} : <span dir="auto">{kc}</span></p></div>}
+    {nr && <div className="mb-4"><Report r={{ score: nr.score, level: nr.level, reasons: nr.reasons, tips: nr.tips }} headline={HEAD[nr.level]}>
+      <div className="grid grid-cols-2 gap-2 text-center">{[["Pays", nr.country], ["Type", nr.kind]].map(([a, v]) => <div key={a} className="rounded-2xl p-3 min-w-0" style={{ background: "var(--soft)" }}><p className="text-xs text-mute">{t(a)}</p><p className="font-semibold text-sm break-words">{t(v)}</p></div>)}</div>
+      <p className="text-xs text-mute">{t("Je n'ai pas de liste de numéros frauduleux : mon analyse s'appuie sur les règles officielles de numérotation. Pour un numéro précis, utilisez les sources officielles ci-dessous.")}</p>
+      {nr.level !== "danger" || nr.kind !== "Marqué par vous" ? <button type="button" className="btn2" onClick={mark}>{t("Marquer ce numéro comme dangereux")}</button> : null}</Report></div>}
     <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Mes contacts")}</h2>
       <p className="text-sm text-mute">{t("Choisissez des contacts de votre téléphone : Bobby saura que leurs numéros sont connus. Rien n'est envoyé : la liste reste sur votre téléphone.")}</p>
-      <div className="flex flex-wrap gap-2"><button type="button" className="btn2" onClick={async () => { if (!contactsSupported()) { notify("Ce navigateur ne permet pas d'importer les contacts. Utilisez Chrome sur Android.", "warn"); return; } try { const c = await pickContacts(); if (c.length) { const m = new Map(contacts.map((x) => [x.n + x.t.join(), x])); c.forEach((x) => m.set(x.n + x.t.join(), x)); setContacts([...m.values()]); notify(c.length + " " + (c.length > 1 ? "contacts ajoutés." : "contact ajouté.")); } } catch (e: any) { if (e?.name !== "AbortError") notify("Je n'ai pas pu accéder aux contacts.", "warn"); } }}><Users size={16} />{t("Importer des contacts")}</button>
+      <div className="flex flex-wrap gap-2"><button type="button" className="btn2" onClick={pick}><Users size={16} />{t("Importer des contacts")}</button>
         {contacts.length > 0 && <button type="button" className="btn2" onClick={() => { setContacts([]); setKc(""); notify("Contacts retirés de Bobby."); }}>{t("Retirer mes contacts")}</button>}</div>
-      {contacts.length > 0 && <p className="text-sm">{contacts.length} {t(contacts.length > 1 ? "contacts importés" : "contact importé")}</p>}</div>
-    <div className="flex flex-col sm:flex-row gap-3 mb-4"><div className="relative flex-1"><Search size={16} className="absolute start-4 top-4 text-mute" /><input className="inp ps-10" aria-label={t("Rechercher un numéro…")} placeholder={t("Rechercher un numéro…")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
-      <div className="flex gap-2 flex-wrap">{[["all", "Tous"], ["safe", "Sûrs"], ["unknown", "Inconnus"], ["scam", "Arnaques"]].map(([k, l]) => <button type="button" key={k} onClick={() => setF(k)} aria-pressed={f === k} className={"btn2 " + (f === k ? "on" : "")}>{t(l)}</button>)}</div></div>
-    <div className="space-y-3">{list.map((c) => (<div key={c.n} className="card p-4 flex items-center gap-4"><Gauge score={c.score} size={60} /><div className="flex-1 min-w-0"><p className="font-semibold" dir="ltr">{c.n}</p><p className="text-sm text-mute">{t(c.name)} · {c.reports} {t("signalements")}</p><p className="text-sm mt-1">{t(rec(c.kind))}</p></div><Badge lv={levelOf(c.score)} /></div>))}{!list.length && <p className="text-mute">{t("Aucun numéro trouvé.")}</p>}</div>
-    <div className="mt-5"><Where title="Sources officielles pour signaler un appel ou un SMS" /></div>
-    <AnimatePresence>{inc && (<motion.div role="dialog" aria-modal="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] grid place-items-center p-4 bg-black/70"><motion.div initial={{ scale: .92 }} animate={{ scale: 1 }} className="card p-6 w-full max-w-sm text-center space-y-4" style={{ background: "var(--solid)" }}><p className="text-mute text-sm">{t("Appel entrant")}</p><p className="text-xl font-bold" dir="ltr">{inc.n}</p><div className="flex justify-center"><Gauge score={inc.score} /></div><p className="font-medium">{t(inc.kind === "scam" ? "🔴 Je pense qu'il s'agit probablement d'une arnaque." : inc.kind === "safe" ? "✅ Ce numéro semble fiable." : "⚠️ Soyez prudent avant de répondre.")}</p><p className="text-sm text-mute">{t(inc.name)} · {inc.reports} {t("signalements")}</p>
-      <div className="flex gap-3"><button type="button" className="btn2 flex-1 justify-center" onClick={() => { bump(false); close(); }}>{t("Répondre")}</button><button type="button" className="btn flex-1" onClick={() => { bump(true); close(); notify("Numéro bloqué."); }}><PhoneOff size={16} />{t("Bloquer")}</button></div></motion.div></motion.div>)}</AnimatePresence></div>);
+      {contacts.length > 0 && <><p className="text-sm">{contacts.length} {t(contacts.length > 1 ? "contacts importés" : "contact importé")}</p>
+        <ul className="space-y-2 max-h-72 overflow-y-auto pe-1">{contacts.map((c, i) => <li key={c.n + i} className="flex items-center gap-3 p-3 rounded-2xl" style={{ background: "var(--soft)" }}><div className="w-9 h-9 rounded-full grid place-items-center font-bold text-white shrink-0" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}>{(c.n[0] || "?").toUpperCase()}</div><div className="min-w-0 flex-1"><p className="font-medium truncate" dir="auto">{c.n}</p><p className="text-xs text-mute truncate" dir="ltr">{c.t.join(" · ")}</p></div><button type="button" className="btn2 !min-h-9 !py-1" onClick={() => { check(c.t[0]); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{t("Vérifier")}</button><button type="button" className="btn2 !min-h-9 !py-1" aria-label={t("Retirer")} onClick={() => setContacts(contacts.filter((_, j) => j !== i))}>✕</button></li>)}</ul></>}</div>
+    {blocked.length > 0 && <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Numéros que j'ai marqués dangereux")}</h2><ul className="space-y-2">{blocked.map((b) => <li key={b} className="flex items-center gap-3 p-3 rounded-2xl" style={{ background: "var(--soft)" }}><span className="flex-1" dir="ltr">{b}</span><button type="button" className="btn2 !min-h-9 !py-1" onClick={() => setBlocked(blocked.filter((x) => x !== b))}>{t("Retirer")}</button></li>)}</ul></div>}
+    <div className="mt-2"><Where title="Sources officielles pour signaler un appel ou un SMS" /></div></div>);
 }
 
 export function ThreatsV() {
