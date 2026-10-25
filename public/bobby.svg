@@ -1,12 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-<defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"><defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B7CFF"/><stop offset="1" stop-color="#38BDF8"/></linearGradient><radialGradient id="glow" cx="50%" cy="38%" r="60%"><stop offset="0" stop-color="#8B7CFF" stop-opacity=".55"/><stop offset="1" stop-color="#070912" stop-opacity="0"/></radialGradient><radialGradient id="disc" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#2A2F66"/><stop offset="1" stop-color="#10142A"/></radialGradient></defs><rect width="512" height="512" fill="#070912"/><rect width="512" height="512" fill="url(#glow)"/><defs><clipPath id="sh"><path d="M256 40 C322 76 386 88 442 90 C442 252 418 382 256 474 C94 382 70 252 70 90 C126 88 190 76 256 40Z"/></clipPath></defs><path d="M256 40 C322 76 386 88 442 90 C442 252 418 382 256 474 C94 382 70 252 70 90 C126 88 190 76 256 40Z" fill="url(#disc)"/><g clip-path="url(#sh)"><g transform="translate(77 70) scale(0.7)"><defs>
 <radialGradient id="bg" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#FFF4E6"/><stop offset="1" stop-color="#F6D9B8"/></radialGradient>
 <linearGradient id="or" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4A04A"/><stop offset="1" stop-color="#E8873A"/></linearGradient>
 <radialGradient id="wh" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F3ECE4"/></radialGradient>
 <clipPath id="circ"><circle cx="256" cy="256" r="240"/></clipPath>
 <clipPath id="face"><path id="fp" d="M256 128 C330 124 392 150 410 214 C428 268 414 330 372 372 C340 404 300 420 256 420 C212 420 172 404 140 372 C98 330 84 268 102 214 C120 150 182 124 256 128Z"/></clipPath>
 </defs>
-<circle cx="256" cy="256" r="240" fill="url(#bg)"/>
+
 <g clip-path="url(#circ)">
 <!-- chest -->
 <path d="M120 512 C130 430 180 394 256 394 C332 394 382 430 392 512Z" fill="url(#wh)"/>
@@ -51,5 +50,4 @@
 <!-- paws -->
 <ellipse cx="196" cy="478" rx="48" ry="42" fill="url(#wh)"/><ellipse cx="316" cy="478" rx="48" ry="42" fill="url(#wh)"/>
 </g>
-<circle cx="256" cy="256" r="240" fill="none" stroke="#E8873A" stroke-width="8"/>
-</svg>
+</g></g><path d="M256 40 C322 76 386 88 442 90 C442 252 418 382 256 474 C94 382 70 252 70 90 C126 88 190 76 256 40Z" fill="none" stroke="url(#vg)" stroke-width="16" stroke-linejoin="round"/></svg>

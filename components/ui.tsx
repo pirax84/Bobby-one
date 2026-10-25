@@ -22,7 +22,7 @@ export const NAV: { id: View; label: string; icon: any; desc: string; group: str
   { id: "settings", label: "Réglages", icon: Settings, desc: "Personnaliser Bobby", group: "" },
 ];
 export const Bobby = ({ s = 48 }: { s?: number }) => (
-  <img src="/bobby.svg" alt="" aria-hidden="true" width={s} height={s} className="rounded-full shrink-0" style={{ width: s, height: s }} />
+  <img src="/bobby.svg" alt="" aria-hidden="true" width={s} height={s} className="shrink-0" style={{ width: s, height: s }} />
 );
 export function Gauge({ score, size = 140 }: { score: number; size?: number }) {
   const c = META[levelOf(score)].color, r = size / 2 - 10, C = 2 * Math.PI * r;

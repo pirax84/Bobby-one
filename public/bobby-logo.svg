@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"><defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B7CFF"/><stop offset="1" stop-color="#38BDF8"/></linearGradient><linearGradient id="vh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8B7CFF"/><stop offset="1" stop-color="#38BDF8"/></linearGradient><radialGradient id="glow" cx="50%" cy="38%" r="60%"><stop offset="0" stop-color="#8B7CFF" stop-opacity=".55"/><stop offset="1" stop-color="#070912" stop-opacity="0"/></radialGradient><radialGradient id="disc" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#2A2F66"/><stop offset="1" stop-color="#10142A"/></radialGradient></defs><rect width="512" height="512" fill="#070912"/><rect width="512" height="512" fill="url(#glow)"/><g transform="translate(96 -6) scale(.625)"><defs><clipPath id="sh"><path d="M256 40 C322 76 386 88 442 90 C442 252 418 382 256 474 C94 382 70 252 70 90 C126 88 190 76 256 40Z"/></clipPath></defs><path d="M256 40 C322 76 386 88 442 90 C442 252 418 382 256 474 C94 382 70 252 70 90 C126 88 190 76 256 40Z" fill="url(#disc)"/><g clip-path="url(#sh)"><g transform="translate(77 70) scale(0.7)"><defs>
+<radialGradient id="bg" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#FFF4E6"/><stop offset="1" stop-color="#F6D9B8"/></radialGradient>
+<linearGradient id="or" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4A04A"/><stop offset="1" stop-color="#E8873A"/></linearGradient>
+<radialGradient id="wh" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F3ECE4"/></radialGradient>
+<clipPath id="circ"><circle cx="256" cy="256" r="240"/></clipPath>
+<clipPath id="face"><path id="fp" d="M256 128 C330 124 392 150 410 214 C428 268 414 330 372 372 C340 404 300 420 256 420 C212 420 172 404 140 372 C98 330 84 268 102 214 C120 150 182 124 256 128Z"/></clipPath>
+</defs>
+
+<g clip-path="url(#circ)">
+<!-- chest -->
+<path d="M120 512 C130 430 180 394 256 394 C332 394 382 430 392 512Z" fill="url(#wh)"/>
+<path d="M120 512 C122 470 140 440 168 420 C150 450 150 480 160 512Z" fill="url(#or)"/>
+<path d="M392 512 C390 470 372 440 344 420 C362 450 362 480 352 512Z" fill="url(#or)"/>
+<!-- ears -->
+<path d="M118 232 C100 160 112 100 136 62 C176 80 214 108 236 138 C190 152 146 186 118 232Z" fill="url(#or)"/>
+<path d="M394 232 C412 160 400 100 376 62 C336 80 298 108 276 138 C322 152 366 186 394 232Z" fill="url(#or)"/>
+<path d="M138 190 C128 148 134 112 146 92 C172 106 192 124 206 142 C176 154 154 170 138 190Z" fill="#F2A7A0"/>
+<path d="M374 190 C384 148 378 112 366 92 C340 106 320 124 306 142 C336 154 358 170 374 190Z" fill="#F2A7A0"/>
+<!-- head base orange -->
+<path d="M256 128 C330 124 392 150 410 214 C428 268 414 330 372 372 C340 404 300 420 256 420 C212 420 172 404 140 372 C98 330 84 268 102 214 C120 150 182 124 256 128Z" fill="url(#or)"/>
+<g clip-path="url(#face)">
+<!-- white blaze, muzzle, chin -->
+<path d="M256 120 C282 132 296 170 304 214 C312 250 340 262 352 300 C362 336 330 372 300 396 C282 410 270 420 256 424 C242 420 230 410 212 396 C182 372 150 336 160 300 C172 262 200 250 208 214 C216 170 230 132 256 120Z" fill="url(#wh)"/>
+<!-- cheek white patches -->
+<ellipse cx="190" cy="318" rx="52" ry="46" fill="#FFFFFF" opacity=".95"/>
+<ellipse cx="322" cy="318" rx="52" ry="46" fill="#FFFFFF" opacity=".95"/>
+</g>
+<!-- forehead stripes -->
+<g stroke="#D9712B" stroke-width="7" stroke-linecap="round" fill="none" opacity=".9">
+<path d="M256 134 L256 160"/><path d="M232 138 C228 150 226 160 226 170"/><path d="M280 138 C284 150 286 160 286 170"/>
+<path d="M120 236 C138 238 152 244 164 254"/><path d="M116 262 C136 262 150 268 160 276"/><path d="M126 290 C142 290 152 294 160 302"/>
+<path d="M392 236 C374 238 360 244 348 254"/><path d="M396 262 C376 262 362 268 352 276"/><path d="M386 290 C370 290 360 294 352 302"/>
+</g>
+<!-- eyes -->
+<g>
+<ellipse cx="196" cy="244" rx="28" ry="30" fill="#2A1710"/><ellipse cx="316" cy="244" rx="28" ry="30" fill="#2A1710"/>
+<ellipse cx="196" cy="246" rx="19" ry="21" fill="#5A3320"/><ellipse cx="316" cy="246" rx="19" ry="21" fill="#5A3320"/>
+<circle cx="196" cy="246" r="12" fill="#150B07"/><circle cx="316" cy="246" r="12" fill="#150B07"/>
+<circle cx="205" cy="234" r="8" fill="#fff"/><circle cx="325" cy="234" r="8" fill="#fff"/>
+<circle cx="188" cy="256" r="3.5" fill="#fff" opacity=".8"/><circle cx="308" cy="256" r="3.5" fill="#fff" opacity=".8"/>
+<path d="M164 232 C176 212 212 210 226 228" stroke="#2A1710" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M348 232 C336 212 300 210 286 228" stroke="#2A1710" stroke-width="5" fill="none" stroke-linecap="round"/>
+</g>
+<!-- nose & mouth -->
+<path d="M234 296 C234 286 278 286 278 296 C278 308 266 320 256 324 C246 320 234 308 234 296Z" fill="#F29DA4"/>
+<path d="M240 292 C248 288 264 288 272 292" stroke="#fff" stroke-width="4" opacity=".55" fill="none" stroke-linecap="round"/>
+<path d="M256 324 L256 338 M256 338 C246 350 232 350 224 342 M256 338 C266 350 280 350 288 342" stroke="#C78E8A" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+<!-- whiskers -->
+<g stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".9"><path d="M214 318 C180 310 150 312 128 322"/><path d="M214 330 C182 332 156 342 138 356"/><path d="M298 318 C332 310 362 312 384 322"/><path d="M298 330 C330 332 356 342 374 356"/></g>
+<!-- paws -->
+<ellipse cx="196" cy="478" rx="48" ry="42" fill="url(#wh)"/><ellipse cx="316" cy="478" rx="48" ry="42" fill="url(#wh)"/>
+</g>
+</g></g><path d="M256 40 C322 76 386 88 442 90 C442 252 418 382 256 474 C94 382 70 252 70 90 C126 88 190 76 256 40Z" fill="none" stroke="url(#vg)" stroke-width="16" stroke-linejoin="round"/></g><text x="256" y="452" text-anchor="middle" font-size="62" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="800" fill="#fff" letter-spacing="4">BOBBY <tspan fill="url(#vh)">ONE</tspan></text><rect x="196" y="470" width="120" height="6" rx="3" fill="url(#vh)"/></svg>
