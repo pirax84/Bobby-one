@@ -18,10 +18,10 @@ let tid = 1;
 export const useS = create<S>()(persist((set) => ({
   view: "home", go: (view) => set({ view }), onboarded: false, finish: () => set({ onboarded: true }),
   protectedToday: 0, blocked: 0, bump: (bad) => set((s) => ({ protectedToday: s.protectedToday + 1, blocked: s.blocked + (bad ? 1 : 0) })),
-  settings: { lang: "Français", notif: true, privacy: true, theme: "dark", security: "Renforcé", voice: true, deep: true, pitch: 0.75 }, set: (p) => set((s) => ({ settings: { ...s.settings, ...p } })),
+  settings: { lang: "Français", notif: true, privacy: true, theme: "dark", security: "Renforcé", voice: false, deep: true, pitch: 0.75 }, set: (p) => set((s) => ({ settings: { ...s.settings, ...p } })),
   pending: null, ask: (t) => set({ view: "chat", pending: t }),
   incoming: null, setIncoming: (incoming) => set({ incoming }),
   reported: [], report: (x) => set((s) => ({ reported: [x, ...s.reported] })),
   history: [], addScan: (x) => set((s) => ({ history: [{ ...x, id: Date.now() + Math.random(), at: Date.now() }, ...s.history].slice(0, 12) })), clearHistory: () => set({ history: [] }),
   toast: null, notify: (text, tone = "ok") => { const id = tid++; set({ toast: { id, text, tone } }); setTimeout(() => set((s) => (s.toast?.id === id ? { toast: null } : s)), 3800); },
-}), { name: "bobby-one", version: 2, migrate: (st: any, v: number) => (v < 2 ? { ...st, protectedToday: 0, blocked: 0, history: [] } : st), partialize: (s) => ({ onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));
+}), { name: "bobby-one", version: 3, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; return o; }, partialize: (s) => ({ onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));

@@ -70,7 +70,7 @@ export function Fab() {
       if (/ouvr|va |aller|montre|affiche|retour|accueil/i.test(f) && hit) { go(hit[1]); const n = NAV.find((x) => x.id === hit[1])!; if (vo) speak("D'accord, j'ouvre " + n.label, s.lang); } else ask(t0);
     }, (e) => { setMsg(ERR[e] || ERR.x); setTimeout(() => setMsg(""), 7000); }, () => setLis(false));
   };
-  return (<div className="fixed end-4 z-[45] flex flex-col items-end gap-3 bottom-[calc(5.75rem+env(safe-area-inset-bottom))] md:bottom-6">
+  return (<div className="fixed end-4 z-[45] flex flex-col items-end gap-3 bottom-[calc(6.5rem+env(safe-area-inset-bottom))] md:bottom-6">
     {lis && <div className="card px-4 py-2 text-sm" role="status">{t("Je vous écoute…")}</div>}
     {msg && <div className="card px-4 py-2 text-sm max-w-[260px]" style={{ color: "#F59E0B" }}>{t(msg)}</div>}
     <button type="button" aria-label={t(vo ? "Couper la voix de Bobby" : "Activer la voix de Bobby")} aria-pressed={vo} onClick={() => { set({ voice: !vo }); if (vo) stopSpeak(); }} className="w-11 h-11 rounded-full grid place-items-center shadow-lg border" style={{ background: vo ? "var(--soft)" : "var(--solid)", color: vo ? "var(--brand)" : "var(--mute)", borderColor: vo ? "var(--brand)" : "var(--bd)" }}>{vo ? <Volume2 size={20} /> : <VolumeX size={20} />}</button>
