@@ -14,7 +14,7 @@ import { contactsSupported, pickContacts } from "@/lib/contacts";
 import { platformOf } from "@/lib/platforms";
 import { analyzeNumber, NumResult } from "@/lib/numbers";
 import { askNotif, askMic, notifState, alertDanger, PermState } from "@/lib/perm";
-import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
+import { NAV, usePhone, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const STEPS_T = ["Bobby lit votre message…", "Je cherche les signes d'arnaque…", "Je calcule le score de confiance…"];
@@ -92,7 +92,7 @@ export function HomeV() {
   const avg = history.length ? Math.round(history.reduce((a, h) => a + h.score, 0) / history.length) : null;
   const stats: [string, string | number, string, View][] = [["Moyenne de mes vérifications", avg === null ? "—" : avg + "/100", avg === null ? "var(--mute)" : META[levelOf(avg)].color, "threats"], ["Vérifications faites", protectedToday, "var(--brand)", "text"], ["Menaces détectées", blocked, "#EF4444", "calls"], ["Mes signalements", reported.length, "#F59E0B", "community"]];
   const code = LANGS[lang]?.code || "fr"; const days = Array.from({ length: 7 }, (_, i) => { try { return new Intl.DateTimeFormat(code, { weekday: "narrow" }).format(new Date(2024, 0, 1 + i)); } catch { return "·"; } }); const bars = [12, 18, 9, 24, 15, 31, 20];
-  const tools = NAV.filter((n) => ["text", "web", "image", "calls", "threats"].includes(n.id));
+  const phoneUi = usePhone(); const tools = NAV.filter((n) => ["text", "web", "image", "calls", "threats"].includes(n.id) && (phoneUi || n.id !== "calls"));
   return (<div className="space-y-5">
     <InstallCard />
     <section className="card p-5 md:p-6 space-y-4">
@@ -122,8 +122,8 @@ export function TextV() {
   const t = useT(); const scan = useScan(); const [v, setV] = useState(""); const [r, setR] = useState<Result | null>(null); const [b, setB] = useState(false);
   const run = async () => { setB(true); setR(null); await wait(850); const x = analyzeText(v); scan("text", v, x); setR(x); setV(""); setB(false); };
   return (<div><Title t="Analyse des messages" d="SMS, mails, WhatsApp, Telegram : copiez le message, puis collez-le ici." />
-    <div className="card p-5 space-y-4"><textarea className="inp min-h-40 resize-y" aria-label={t("Message à vérifier")} placeholder={t("Collez ici le message à vérifier…")} value={v} onChange={(e) => { setV(e.target.value); setR(null); }} />
-      <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /><button type="button" className="btn2" onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) { setV(x); setR(null); } } catch {} }}>{t("Coller")}</button><ImportBtn onText={(x) => { setV(x.slice(0, 5000)); setR(null); }} /></div>
+    <div className="card p-5 space-y-4"><div className="flex flex-wrap gap-1.5"><ImportBtn onText={(x) => { setV(x.slice(0, 5000)); setR(null); }} /></div><textarea className="inp min-h-40 resize-y" aria-label={t("Message à vérifier")} placeholder={t("Collez ici le message à vérifier…")} value={v} onChange={(e) => { setV(e.target.value); setR(null); }} />
+      <div className="flex flex-wrap gap-2"><Chips items={EX_T} on={(x) => { setV(x); setR(null); }} /><Mic onText={(x) => { setV((o) => (o + " " + x).trim()); setR(null); }} /><button type="button" className="btn2" onClick={async () => { try { const x = await navigator.clipboard.readText(); if (x) { setV(x); setR(null); } } catch {} }}>{t("Coller")}</button></div>
       <p className="text-xs text-mute">{t("Android ne permet pas à Bobby de lire vos SMS tout seul. Gardez le doigt sur le message, choisissez Copier, puis revenez ici et touchez Coller. Ou touchez Partager → Bobby One.")}</p>
       <div className="flex gap-2 flex-wrap"><button type="button" className="btn flex-1 sm:flex-none" disabled={v.trim().length < 5 || b} onClick={run}>{t("Analyser avec Bobby")}</button>{v && <button type="button" className="btn2" onClick={() => { setV(""); setR(null); }}>{t("Effacer")}</button>}</div></div>
     <div className="mt-5">{b && <Busy steps={STEPS_T} />}{r && <Report r={r} />}</div></div>);
@@ -264,11 +264,15 @@ export function FamilyV() {
   const sms = (tel: string, body: string) => "sms:" + tel.replace(/[^\d+]/g, "") + "?&body=" + encodeURIComponent(body);
   const em = contacts.find((c) => c.n + "|" + c.t[0] === emergency);
   const shareAll = async () => { try { if ((navigator as any).share) await (navigator as any).share({ text: alertTxt }); else { await navigator.clipboard.writeText(alertTxt); notify("Message copié : collez-le dans une conversation."); } } catch {} };
+  const phone = usePhone();
+  if (!phone) return (<div><Title t="Protection famille" d="Prévenez vos proches des arnaques, en un geste." />
+    <div className="card p-5 space-y-3"><h2 className="font-semibold">{t("À quoi ça sert ?")}</h2><p className="text-sm text-mute">{t("Choisir ses proches dans ses contacts et leur écrire par SMS ne marche que sur un téléphone. Sur ordinateur, vous pouvez copier un message et l'envoyer vous-même (mail, WhatsApp, etc.).")}</p>
+      <div className="flex flex-wrap gap-1.5">{[["Copier le message d'invitation", invite], ["Copier le conseil de prudence", alertTxt]].map(([l, x]) => <button type="button" key={l} className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand) 22%, transparent)", borderColor: "var(--brand)" }} onClick={async () => { try { await navigator.clipboard.writeText(x); notify("Message copié : collez-le dans une conversation."); } catch { notify("Je n'ai pas pu copier le message.", "warn"); } }}>{t(l)}</button>)}</div></div></div>);
   return (<div><Title t="Protection famille" d="Prévenez vos proches des arnaques, en un geste." />
     <div className="card p-5 mb-4 space-y-2"><h2 className="font-semibold">{t("À quoi ça sert ?")}</h2>
       <p className="text-sm text-mute">{t("Les arnaques visent surtout les parents, les grands-parents et les enfants. Ici, vous choisissez vos proches dans vos contacts. Pour chacun, vous pouvez : l'inviter à installer Bobby, lui envoyer un conseil de prudence, ou le définir comme contact d'urgence à appeler en un clic.")}</p></div>
     <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Mes proches")} {contacts.length > 0 && <span className="text-mute font-normal">({contacts.length})</span>}</h2>
-      <p className="text-sm text-mute">{t("Ce sont les contacts que vous avez importés dans Protection appels. Ajoutez-en ou retirez-en ici, c'est la même liste.")}</p>
+      <p className="text-sm text-mute">{t("C'est la même liste que dans Protection appels : les contacts que vous importez à un endroit apparaissent automatiquement à l'autre.")}</p>
       <div className="flex flex-wrap gap-1.5"><button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand) 22%, transparent)", borderColor: "var(--brand)" }} onClick={pick}><Users size={16} />{t("Importer des contacts")}</button>
         {contacts.length > 0 && <button type="button" className="btn2 font-semibold" style={{ background: "color-mix(in srgb, var(--brand2) 22%, transparent)", borderColor: "var(--brand2)" }} onClick={shareAll}><Share2 size={16} />{t("Envoyer un conseil de prudence")}</button>}</div>
       {contacts.length === 0 && <p className="text-sm">{t("Aucun proche pour l'instant. Touchez « Importer des contacts » pour les choisir dans votre téléphone.")}</p>}</div>
@@ -371,5 +375,6 @@ export function BotV() {
       {err && <p className="text-sm mt-2" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
       <div className="flex flex-wrap gap-2 mt-3">{["Que faire si je suis victime ?", "Est-ce que colis-laposte-suivi.xyz est fiable ?"].map((x) => <button type="button" key={x} className="btn2 text-xs" onClick={() => send(x, true)}>{t(x)}</button>)}</div>
       <div className="flex gap-2 mt-3"><input className="inp" aria-label={t("Écrivez à Bobby…")} placeholder={t("Écrivez à Bobby…")} value={i} onChange={(e) => setI(e.target.value)} onKeyDown={(e) => e.key === "Enter" && send()} /><button type="button" className="btn" onClick={() => send()}>{t("Envoyer")}</button></div>
+      <div className="flex flex-wrap gap-1.5 mt-2"><ImportBtn onText={(x) => setI((o) => (o ? o + " " : "") + x.slice(0, 2000))} /></div>
       <p className="text-xs text-mute mt-3">{t("Bobby répond avec ses règles intégrées (pas encore une IA en ligne).")}</p></div></div>);
 }

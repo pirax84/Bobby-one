@@ -10,6 +10,11 @@ import { useT, toFr } from "@/lib/i18n";
 import { speak, stopSpeak, listen, ERR } from "@/lib/voice";
 export { speak, stopSpeak, listen, ERR };
 
+export function usePhone() {
+  const [p, setP] = useState(true);
+  useEffect(() => { try { setP(/android|iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && !!window.matchMedia?.("(pointer: coarse)").matches)); } catch {} }, []);
+  return p;
+}
 export const NAV: { id: View; label: string; icon: any; desc: string; group: string }[] = [
   { id: "home", label: "Accueil", icon: Home, desc: "Votre tableau de bord", group: "" },
   { id: "chat", label: "Parler à Bobby", icon: Bot, desc: "Posez-moi vos questions", group: "" },

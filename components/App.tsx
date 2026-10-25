@@ -3,13 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, Download } from "lucide-react";
 import { useS, View } from "@/lib/store";
-import { NAV, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
+import { NAV as NAV_ALL, usePhone, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
 import { useT, LANGS, RTL } from "@/lib/i18n";
 import { PermissionsCard, BotV, HomeV, TextV, WebV, ImageV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
 const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: TextV, web: WebV, image: ImageV, qr: ImageV, calls: CallsV, threats: ThreatsV, family: FamilyV, community: CommunityV, settings: SettingsV };
 const STEPS = [["Bonjour, je suis Bobby.", "Je suis votre gardien personnel. Je vérifie messages, sites, appels et QR codes avant que vous ne fassiez une erreur."], ["Simple, comme une conversation", "Collez un message ou une adresse, je vous dis en clair si vous pouvez avoir confiance. Sans jargon."], ["Bobby veille sur vous.", "Protégez aussi vos proches grâce au mode famille et aux alertes de la communauté."], ["Quelques autorisations", "Pour mieux vous protéger, Bobby peut vous envoyer des alertes, connaître votre pays et écouter votre voix. Tout est facultatif."]];
 const BOTTOM: View[] = ["home", "calls", "chat", "community"];
-const DESC = (id: View) => NAV.find((n) => n.id === id)!;
+const NAV = NAV_ALL; const DESC = (id: View) => NAV.find((n) => n.id === id)!;
 function InstallGate() {
   const t = useT(); const { settings, set } = useS(); const [ev, setEv] = useState<any>(null); const [done, setDone] = useState(false); const [ios, setIos] = useState(false);
   useEffect(() => {
@@ -34,7 +34,7 @@ function InstallGate() {
 
 export default function App() {
   const { view, go, onboarded, setup, finish, settings, set, setIncoming, setSharedFile } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
-  const t = useT(); const [installed, setInstalled] = useState(false);
+  const t = useT(); const [installed, setInstalled] = useState(false); const phone = usePhone();
   useEffect(() => {
     const isApp = () => !!(window.matchMedia?.("(display-mode: standalone)").matches || window.matchMedia?.("(display-mode: fullscreen)").matches || window.matchMedia?.("(display-mode: minimal-ui)").matches || (navigator as any).standalone); setInstalled(isApp());
     const mq = window.matchMedia?.("(display-mode: standalone)"); const on = () => setInstalled(isApp()); mq?.addEventListener?.("change", on); return () => mq?.removeEventListener?.("change", on);
@@ -55,14 +55,15 @@ export default function App() {
   useEffect(() => { document.documentElement.classList.toggle("light", settings.theme === "light"); }, [settings.theme]);
   if (!ok) return null;
   if (!installed) return <InstallGate />;
-  const V = VIEWS[view];
+  const V = VIEWS[!phone && view === "calls" ? "home" : view];
+  const NV = phone ? NAV : NAV.filter((n) => n.id !== "calls");
   const nav = (id: View) => { go(id); setMore(false); window.scrollTo({ top: 0 }); };
   const groups = ["", "Vérifier", "Protéger"]; const inMore = !BOTTOM.includes(view);
   const item = (n: (typeof NAV)[0]) => <button type="button" key={n.id} onClick={() => nav(n.id)} aria-current={view === n.id ? "page" : undefined} className="flex items-center gap-3 px-4 py-2.5 rounded-2xl text-start transition w-full" style={view === n.id ? { background: "var(--soft)", color: "var(--brand)", fontWeight: 600 } : { color: "var(--mute)" }}><n.icon size={18} />{t(n.label)}</button>;
   return (<div className="min-h-screen md:flex">
     <aside className="hidden md:flex flex-col w-64 shrink-0 p-4 gap-1 sticky top-0 h-screen overflow-y-auto border-e" style={{ borderColor: "var(--bd)" }}>
       <div className="flex items-center gap-3 p-3 mb-3"><Bobby s={40} /><div><p className="font-bold leading-tight">Bobby One</p><p className="text-xs text-mute">{t("Bobby veille sur vous.")}</p></div></div>
-      {groups.map((g) => <div key={g} className="space-y-1">{g && <p className="text-xs uppercase tracking-wide text-mute px-4 pt-4 pb-1">{t(g)}</p>}{NAV.filter((n) => n.group === g && n.id !== "settings").map(item)}</div>)}
+      {groups.map((g) => <div key={g} className="space-y-1">{g && <p className="text-xs uppercase tracking-wide text-mute px-4 pt-4 pb-1">{t(g)}</p>}{NV.filter((n) => n.group === g && n.id !== "settings").map(item)}</div>)}
       <div className="mt-auto pt-4">{item(NAV.find((n) => n.id === "settings")!)}</div>
     </aside>
     <main className="flex-1 min-w-0 p-4 md:p-8 pb-32 md:pb-8 pt-[max(1rem,env(safe-area-inset-top))] max-w-4xl mx-auto w-full">
@@ -70,12 +71,12 @@ export default function App() {
       <AnimatePresence mode="wait" initial={false}><motion.div key={view} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: .15 }}><V /></motion.div></AnimatePresence>
     </main>
     <nav aria-label="Navigation" className="md:hidden fixed inset-x-3 z-[45] bottom-[max(.75rem,env(safe-area-inset-bottom))] h-16 rounded-[28px] border backdrop-blur-xl flex items-center justify-between px-2 shadow-2xl" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>
-      {(["home", "calls"] as View[]).map((id) => { const n = DESC(id); const on = view === id; return <button type="button" key={id} onClick={() => nav(id)} aria-current={on ? "page" : undefined} aria-label={t(n.label)} className="relative flex-1 h-12 grid place-items-center active:scale-90 transition-transform">{on && <motion.span layoutId="pill" className="absolute inset-x-1 inset-y-0.5 rounded-2xl" style={{ background: "var(--soft)" }} />}<span className="relative flex flex-col items-center gap-0.5" style={{ color: on ? "var(--brand)" : "var(--mute)" }}><n.icon size={24} strokeWidth={on ? 2.4 : 1.9} /><span className="text-xs font-medium">{t(id === "calls" ? "Appels" : n.label)}</span></span></button>; })}
+      {((phone ? ["home", "calls"] : ["home"]) as View[]).map((id) => { const n = DESC(id); const on = view === id; return <button type="button" key={id} onClick={() => nav(id)} aria-current={on ? "page" : undefined} aria-label={t(n.label)} className="relative flex-1 h-12 grid place-items-center active:scale-90 transition-transform">{on && <motion.span layoutId="pill" className="absolute inset-x-1 inset-y-0.5 rounded-2xl" style={{ background: "var(--soft)" }} />}<span className="relative flex flex-col items-center gap-0.5" style={{ color: on ? "var(--brand)" : "var(--mute)" }}><n.icon size={24} strokeWidth={on ? 2.4 : 1.9} /><span className="text-xs font-medium">{t(id === "calls" ? "Appels" : n.label)}</span></span></button>; })}
       <button type="button" onClick={() => nav("chat")} aria-label={t("Parler à Bobby")} aria-current={view === "chat" ? "page" : undefined} className="relative -mt-8 mx-1 w-[68px] h-[68px] shrink-0 rounded-full grid place-items-center active:scale-90 transition-transform" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))", boxShadow: "0 8px 24px -4px var(--brand)", border: "4px solid var(--bg)" }}><Bobby s={44} /></button>
       {(["community"] as View[]).map((id) => { const n = DESC(id); const on = view === id; return <button type="button" key={id} onClick={() => nav(id)} aria-current={on ? "page" : undefined} aria-label={t(n.label)} className="relative flex-1 h-12 grid place-items-center active:scale-90 transition-transform">{on && <motion.span layoutId="pill" className="absolute inset-x-1 inset-y-0.5 rounded-2xl" style={{ background: "var(--soft)" }} />}<span className="relative flex flex-col items-center gap-0.5" style={{ color: on ? "var(--brand)" : "var(--mute)" }}><n.icon size={24} strokeWidth={on ? 2.4 : 1.9} /><span className="text-xs font-medium">{t(n.label)}</span></span></button>; })}
       <button type="button" onClick={() => setMore(!more)} aria-expanded={more} aria-label={t("Menu")} className="relative flex-1 h-12 grid place-items-center active:scale-90 transition-transform">{(inMore || more) && <motion.span layoutId="pill" className="absolute inset-x-1 inset-y-0.5 rounded-2xl" style={{ background: "var(--soft)" }} />}<span className="relative flex flex-col items-center gap-0.5" style={{ color: inMore || more ? "var(--brand)" : "var(--mute)" }}><LayoutGrid size={24} strokeWidth={inMore || more ? 2.4 : 1.9} /><span className="text-xs font-medium">{t("Menu")}</span></span></button></nav>
     <AnimatePresence>{more && <><motion.div key="bg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setMore(false)} />
-      <motion.div key="m" role="dialog" aria-label={t("Menu")} initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }} transition={{ type: "spring", damping: 24, stiffness: 300 }} className="md:hidden fixed bottom-28 inset-x-3 z-50 rounded-[28px] border p-4 grid grid-cols-3 gap-3" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>{NAV.filter((n) => !BOTTOM.includes(n.id)).map((n) => <button type="button" key={n.id} onClick={() => nav(n.id)} className="flex flex-col items-center gap-2 p-3 rounded-3xl text-center text-xs font-medium active:scale-95 transition-transform" style={{ background: view === n.id ? "var(--soft)" : "var(--card)", color: view === n.id ? "var(--brand)" : "var(--fg)" }}><span className="w-12 h-12 rounded-2xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}><n.icon size={24} /></span>{t(n.label)}</button>)}</motion.div></>}</AnimatePresence>
+      <motion.div key="m" role="dialog" aria-label={t("Menu")} initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }} transition={{ type: "spring", damping: 24, stiffness: 300 }} className="md:hidden fixed bottom-28 inset-x-3 z-50 rounded-[28px] border p-4 grid grid-cols-3 gap-3" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>{NV.filter((n) => !BOTTOM.includes(n.id)).map((n) => <button type="button" key={n.id} onClick={() => nav(n.id)} className="flex flex-col items-center gap-2 p-3 rounded-3xl text-center text-xs font-medium active:scale-95 transition-transform" style={{ background: view === n.id ? "var(--soft)" : "var(--card)", color: view === n.id ? "var(--brand)" : "var(--fg)" }}><span className="w-12 h-12 rounded-2xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}><n.icon size={24} /></span>{t(n.label)}</button>)}</motion.div></>}</AnimatePresence>
     <ToastHost />
     {onboarded && <Fab />}
     <AnimatePresence>{(!onboarded || !setup) && <motion.div role="dialog" aria-modal="true" exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/80 overflow-y-auto"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-7 max-w-md w-full text-center space-y-5" style={{ background: "var(--solid)" }}>
