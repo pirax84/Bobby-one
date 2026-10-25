@@ -56,6 +56,7 @@ export function HomeV() {
   const code = LANGS[lang]?.code || "fr"; const days = Array.from({ length: 7 }, (_, i) => { try { return new Intl.DateTimeFormat(code, { weekday: "narrow" }).format(new Date(2024, 0, 1 + i)); } catch { return "·"; } }); const bars = [12, 18, 9, 24, 15, 31, 20];
   const tools = NAV.filter((n) => ["text", "web", "image", "qr", "calls", "threats"].includes(n.id));
   return (<div className="space-y-5">
+    <InstallCard />
     <section className="card p-5 md:p-6 space-y-4">
       <div className="flex items-center gap-4"><motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 3 }}><Bobby s={60} /></motion.div>
         <div className="min-w-0"><h1 className="text-xl md:text-3xl font-bold tracking-tight">{t("Bonjour, je suis Bobby.")}</h1><p className="text-mute">{t("Je vérifie ce qui mérite votre confiance.")}</p></div></div>
@@ -69,7 +70,6 @@ export function HomeV() {
     {b && <Busy steps={STEPS_T} />}
     {res && (res.web ? <WebReport r={res.r as UrlResult} /> : <Report r={res.r} />)}
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">{stats.map(([l, v, c, to]) => <motion.button type="button" whileTap={{ scale: .97 }} key={l} onClick={() => go(to)} className="card p-4 text-start"><p className="text-xs text-mute">{t(l)}</p><p className="text-2xl md:text-3xl font-bold mt-1" style={{ color: c }}>{v}</p><p className="text-xs text-mute mt-1 flex items-center gap-1">{t("Voir")}<ArrowRight size={12} className="rtl:rotate-180" /></p></motion.button>)}</div>
-    <InstallCard />
     <section><h2 className="font-semibold mb-3">{t("Tous les outils")}</h2><div className="grid grid-cols-2 sm:grid-cols-3 gap-3">{tools.map((n) => (
       <motion.button type="button" whileTap={{ scale: .97 }} key={n.id} onClick={() => go(n.id)} className="card p-4 text-start flex flex-col gap-3"><span className="ico"><n.icon size={22} /></span><span><span className="block font-semibold leading-tight">{t(n.label)}</span><span className="block text-sm text-mute mt-0.5">{t(n.desc)}</span></span></motion.button>))}</div></section>
     {history.length > 0 && <section className="card p-5"><div className="flex items-center justify-between mb-3"><h2 className="font-semibold flex items-center gap-2"><History size={18} />{t("Vérifications récentes")}</h2><button type="button" className="text-sm text-mute underline" onClick={clearHistory}>{t("Effacer")}</button></div>

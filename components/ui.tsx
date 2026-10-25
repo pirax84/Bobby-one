@@ -22,8 +22,7 @@ export const NAV: { id: View; label: string; icon: any; desc: string; group: str
   { id: "settings", label: "Réglages", icon: Settings, desc: "Personnaliser Bobby", group: "" },
 ];
 export const Bobby = ({ s = 48 }: { s?: number }) => (
-  <svg width={s} height={s} viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="bobbyg" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#8B7CFF" /><stop offset="1" stopColor="#38BDF8" /></linearGradient></defs>
-    <circle cx="24" cy="24" r="24" fill="url(#bobbyg)" /><circle cx="17" cy="21" r="3.5" fill="#0B0F24" /><circle cx="31" cy="21" r="3.5" fill="#0B0F24" /><circle cx="18" cy="19.8" r="1.2" fill="#fff" /><circle cx="32" cy="19.8" r="1.2" fill="#fff" /><path d="M16 31q8 7 16 0" stroke="#0B0F24" strokeWidth="3" fill="none" strokeLinecap="round" /></svg>
+  <img src="/bobby.svg" alt="" aria-hidden="true" width={s} height={s} className="rounded-full shrink-0" style={{ width: s, height: s }} />
 );
 export function Gauge({ score, size = 140 }: { score: number; size?: number }) {
   const c = META[levelOf(score)].color, r = size / 2 - 10, C = 2 * Math.PI * r;
