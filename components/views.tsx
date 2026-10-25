@@ -390,8 +390,8 @@ export function SettingsV() {
 
 export function BotV() {
   const { settings: st, set } = useS(); const t = useT(); const lang = st.lang, vo = st.voice !== false; const bump = useS((x) => x.bump);
-  const [m, setM] = useState<{ me: boolean; t: string; fr?: boolean }[]>([{ me: false, t: "Bonjour, je suis Bobby. Collez un message ou une adresse de site, ou posez-moi une question sur les arnaques." }]);
-  const [i, setI] = useState(""); const [lis, setLis] = useState(false); const [convo, setConvo] = useState(false); const [err, setErr] = useState("");
+  const [m, setM] = useState<{ me: boolean; t: string; fr?: boolean; raw?: boolean }[]>([{ me: false, t: "Bonjour, je suis Bobby. Collez un message ou une adresse de site, ou posez-moi une question sur les arnaques." }]);
+  const [think, setThink] = useState(false); const [i, setI] = useState(""); const [lis, setLis] = useState(false); const [convo, setConvo] = useState(false); const [err, setErr] = useState("");
   const box = useRef<HTMLDivElement>(null); const rec = useRef<any>(null); const cv = useRef(false);
   useEffect(() => { if (box.current) box.current.scrollTop = box.current.scrollHeight; }, [m]);
   useEffect(() => () => { cv.current = false; rec.current?.abort?.(); stopSpeak(); }, []);
@@ -401,20 +401,30 @@ export function BotV() {
     if (/victime|arnaqu[ée]|pirat[ée]|piratage|que faire/i.test(x)) return "Pas de panique. 1) Ne payez rien de plus. 2) Appelez votre banque pour faire opposition. 3) Changez vos mots de passe. 4) Gardez les preuves et signalez sur cybermalveillance.gouv.fr. En cas de danger immédiat, appelez le 17.";
     if (/qui es-tu|qui [eê]tes|c'est quoi bobby/i.test(x)) return "Je suis Bobby, votre gardien personnel. Je repère les signes d'arnaque dans vos messages, sites, appels et QR codes.";
     if (/^(bonjour|salut|coucou|hello)\b/i.test(x.trim())) return "Bonjour ! Je suis là pour vous aider. Collez-moi un message suspect ou une adresse de site.";
+    if (/\?\s*$/.test(x.trim()) || /^(comment|pourquoi|quand|où|qui|quel|quelle|quels|combien|est-ce|peux-tu|c'est quoi)\b/i.test(x.trim())) return "Pour l'instant, sans l'IA en ligne, je sais surtout répondre aux questions sur les arnaques (par exemple « que faire si je suis victime ? »). Collez-moi un message, un lien ou un numéro à vérifier.";
     if (x.trim().length >= 15) { const r = analyzeText(x); bump(r.score < 60); return `${META[r.level].bobby} Score : ${r.score}/100. ${r.reasons[0]} ${r.tips[0]}`; }
     return "Je n'ai pas bien compris. Collez le message ou l'adresse à vérifier, ou demandez-moi « que faire si je suis victime ? ».";
   };
   const hear = () => { setErr(""); setLis(true); rec.current = listen(lang, (x) => send(x), (e) => { setErr(ERR[e] || ERR.x); cv.current = false; setConvo(false); }, () => setLis(false)); };
-  const send = async (x = i, fr = false) => { if (!x.trim()) return; setM((o) => [...o, { me: true, t: x, fr }]); setI(""); const a = reply(fr ? x : await toFr(lang, x)); setTimeout(() => { setM((o) => [...o, { me: false, t: a }]); if (vo) speak(a, lang, () => { if (cv.current) hear(); }); else if (cv.current) hear(); }, 300); };
+  const [ai, setAi] = useState(false); const country = useCountry(); const hist = useRef<{ role: string; content: string }[]>([]);
+  useEffect(() => { fetch("/api/chat").then((r) => r.json()).then((j) => setAi(!!j.ai)).catch(() => {}); }, []);
+  const answer = async (x: string, fr: boolean): Promise<[string, boolean]> => {
+    if (ai) {
+      try { hist.current.push({ role: "user", content: x }); const r = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: hist.current.slice(-10), lang, country: COUNTRIES.find((c) => c.code === country)?.name || country }) });
+        if (r.ok) { const j = await r.json(); if (j.text) { hist.current.push({ role: "assistant", content: j.text }); return [j.text, true]; } } else if (r.status === 429) { hist.current.pop(); return ["Vous avez beaucoup posé de questions : revenez dans un moment, je me repose un peu.", false]; } else hist.current.pop(); } catch { hist.current.pop(); }
+    }
+    return [reply(fr ? x : await toFr(lang, x)), false];
+  };
+  const send = async (x = i, fr = false) => { if (!x.trim()) return; setM((o) => [...o, { me: true, t: x, fr }]); setI(""); setThink(true); const [a, raw] = await answer(x, fr); setThink(false); setM((o) => [...o, { me: false, t: a, raw }]); if (vo) speak(a, lang, () => { if (cv.current) hear(); }); else if (cv.current) hear(); };
   const toggleConvo = () => { if (convo) { cv.current = false; setConvo(false); rec.current?.abort?.(); stopSpeak(); } else { cv.current = true; setConvo(true); if (!vo) set({ voice: true }); hear(); } };
   const pending = useS((x) => x.pending); useEffect(() => { if (pending) { useS.setState({ pending: null }); send(pending); } }, [pending]);
   return (<div><Title t="Parler à Bobby" d="Écrivez ou parlez à Bobby : il vous répond à voix haute." />
-    <div className="card p-4"><div ref={box} className="h-[46vh] overflow-y-auto space-y-3 pe-1" aria-live="polite">{m.map((x, k) => <div key={k} className={"flex " + (x.me ? "justify-end" : "gap-2")}>{!x.me && <Bobby s={32} />}<p className="max-w-[85%] rounded-2xl px-4 py-2 text-sm" style={x.me ? { background: "linear-gradient(135deg,var(--brand),var(--brand2))", color: "#fff" } : { background: "var(--soft)" }}>{!x.me || x.fr ? t(x.t) : x.t}</p></div>)}</div>
+    <div className="card p-4"><div ref={box} className="h-[46vh] overflow-y-auto space-y-3 pe-1" aria-live="polite">{m.map((x, k) => <div key={k} className={"flex " + (x.me ? "justify-end" : "gap-2")}>{!x.me && <Bobby s={32} />}<p className="max-w-[85%] rounded-2xl px-4 py-2 text-sm" style={x.me ? { background: "linear-gradient(135deg,var(--brand),var(--brand2))", color: "#fff" } : { background: "var(--soft)" }}>{x.raw ? x.t : !x.me || x.fr ? t(x.t) : x.t}</p></div>)}{think && <div className="flex gap-2"><Bobby s={32} /><p className="rounded-2xl px-4 py-2 text-sm" style={{ background: "var(--soft)" }} role="status">{t("Bobby réfléchit…")}</p></div>}</div>
       <div className="flex flex-wrap gap-2 mt-3"><button type="button" className={"btn2 " + (lis ? "on" : "")} disabled={lis} onClick={hear}><MicI size={16} />{t(lis ? "Je vous écoute…" : "Parler à Bobby")}</button><button type="button" className={"btn2 " + (convo ? "on" : "")} onClick={toggleConvo}>🗣️ {t(convo ? "Arrêter la conversation" : "Conversation vocale")}</button>
         <button type="button" className={"btn2 " + (vo ? "on" : "")} onClick={() => { set({ voice: !vo }); stopSpeak(); }}>{t(vo ? "🔊 Voix activée" : "🔇 Voix coupée")}</button></div>
       {err && <p className="text-sm mt-2" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}
       <div className="flex flex-wrap gap-2 mt-3">{["Que faire si je suis victime ?", "Est-ce que colis-laposte-suivi.xyz est fiable ?"].map((x) => <button type="button" key={x} className="btn2 text-xs" onClick={() => send(x, true)}>{t(x)}</button>)}</div>
       <div className="flex gap-2 mt-3"><input className="inp" aria-label={t("Écrivez à Bobby…")} placeholder={t("Écrivez à Bobby…")} value={i} onChange={(e) => setI(e.target.value)} onKeyDown={(e) => e.key === "Enter" && send()} /><button type="button" className="btn" onClick={() => send()}>{t("Envoyer")}</button></div>
       <div className="flex flex-wrap gap-1.5 mt-2"><ImportBtn onText={(x) => setI((o) => (o ? o + " " : "") + x.slice(0, 2000))} /></div>
-      <p className="text-xs text-mute mt-3">{t("Bobby répond avec ses règles intégrées (pas encore une IA en ligne).")}</p></div></div>);
+      <p className="text-xs text-mute mt-3">{t(ai ? "Bobby est une IA : il peut se tromper. Ne partagez ni mot de passe ni numéro de carte. Vos questions sont envoyées à un service d'IA pour obtenir la réponse." : "Bobby répond avec ses règles intégrées (pas encore une IA en ligne).")}</p></div></div>);
 }
