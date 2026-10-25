@@ -33,7 +33,7 @@ function InstallGate() {
 }
 
 export default function App() {
-  const { view, go, onboarded, finish, settings, set, setIncoming, setSharedFile } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
+  const { view, go, onboarded, setup, finish, settings, set, setIncoming, setSharedFile } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
   const t = useT(); const [installed, setInstalled] = useState(false);
   useEffect(() => {
     const isApp = () => !!(window.matchMedia?.("(display-mode: standalone)").matches || window.matchMedia?.("(display-mode: fullscreen)").matches || window.matchMedia?.("(display-mode: minimal-ui)").matches || (navigator as any).standalone); setInstalled(isApp());
@@ -78,7 +78,7 @@ export default function App() {
       <motion.div key="m" role="dialog" aria-label={t("Menu")} initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }} transition={{ type: "spring", damping: 24, stiffness: 300 }} className="md:hidden fixed bottom-28 inset-x-3 z-50 rounded-[28px] border p-4 grid grid-cols-3 gap-3" style={{ background: "var(--solid)", borderColor: "var(--bd)" }}>{NAV.filter((n) => !BOTTOM.includes(n.id)).map((n) => <button type="button" key={n.id} onClick={() => nav(n.id)} className="flex flex-col items-center gap-2 p-3 rounded-3xl text-center text-xs font-medium active:scale-95 transition-transform" style={{ background: view === n.id ? "var(--soft)" : "var(--card)", color: view === n.id ? "var(--brand)" : "var(--fg)" }}><span className="w-12 h-12 rounded-2xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,var(--brand),var(--brand2))" }}><n.icon size={24} /></span>{t(n.label)}</button>)}</motion.div></>}</AnimatePresence>
     <ToastHost />
     {onboarded && <Fab />}
-    <AnimatePresence>{!onboarded && <motion.div role="dialog" aria-modal="true" exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/80 overflow-y-auto"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-7 max-w-md w-full text-center space-y-5" style={{ background: "var(--solid)" }}>
+    <AnimatePresence>{(!onboarded || !setup) && <motion.div role="dialog" aria-modal="true" exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/80 overflow-y-auto"><motion.div key={step} initial={{ scale: .95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="card p-7 max-w-md w-full text-center space-y-5" style={{ background: "var(--solid)" }}>
       <div className="flex justify-center"><img src="/bobby-logo.svg" alt="Bobby One" width={176} height={176} className="rounded-[40px]" style={{ width: 176, height: 176 }} /></div>
       {step === 0 && <select className="inp max-w-[240px] mx-auto" aria-label="Langue / Language" value={settings.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select>}
       <h2 className="text-2xl font-bold">{t(STEPS[step][0])}</h2><p className="text-mute">{t(STEPS[step][1])}</p>{step === STEPS.length - 1 && <PermissionsCard compact />}

@@ -5,7 +5,7 @@ export interface Settings { lang: string; notif: boolean; privacy: boolean; them
 export interface Scan { id: number; kind: "text" | "web" | "image" | "qr" | "call"; label: string; score: number; level: string; at: number; }
 export interface Toast { id: number; text: string; tone: "ok" | "warn" | "bad" | "info"; }
 interface S {
-  view: View; go: (v: View) => void; onboarded: boolean; finish: () => void;
+  view: View; go: (v: View) => void; onboarded: boolean; setup: boolean; finish: () => void; emergency: string; setEmergency: (x: string) => void;
   protectedToday: number; blocked: number; bump: (bad: boolean) => void;
   settings: Settings; set: (p: Partial<Settings>) => void;
   reported: string[]; report: (x: string) => void;
@@ -19,7 +19,7 @@ interface S {
 }
 let tid = 1;
 export const useS = create<S>()(persist((set) => ({
-  view: "home", go: (view) => set({ view: view === "qr" ? "image" : view }), onboarded: false, finish: () => set({ onboarded: true }),
+  view: "home", go: (view) => set({ view: view === "qr" ? "image" : view }), onboarded: false, setup: false, finish: () => set({ onboarded: true, setup: true }), emergency: "", setEmergency: (emergency) => set({ emergency }),
   protectedToday: 0, blocked: 0, bump: (bad) => set((s) => ({ protectedToday: s.protectedToday + 1, blocked: s.blocked + (bad ? 1 : 0) })),
   settings: { lang: "Français", notif: true, privacy: true, theme: "dark", security: "Renforcé", voice: false, deep: true, pitch: 0.75, rate: 0.92 }, set: (p) => set((s) => ({ settings: { ...s.settings, ...p } })),
   pending: null, ask: (t) => set({ view: "chat", pending: t }),
@@ -30,4 +30,4 @@ export const useS = create<S>()(persist((set) => ({
   contacts: [], setContacts: (contacts) => set({ contacts }),
   sharedFile: null, setSharedFile: (sharedFile) => set({ sharedFile }),
   toast: null, notify: (text, tone = "ok") => { const id = tid++; set({ toast: { id, text, tone } }); setTimeout(() => set((s) => (s.toast?.id === id ? { toast: null } : s)), 3800); },
-}), { name: "bobby-one", version: 4, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; if (v < 4) o = { ...o, settings: { ...o.settings, voiceName: "", pitch: 0.75 } }; return o; }, partialize: (s) => ({ blockedNums: s.blockedNums, contacts: s.contacts, onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));
+}), { name: "bobby-one", version: 4, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; if (v < 4) o = { ...o, settings: { ...o.settings, voiceName: "", pitch: 0.75 } }; return o; }, partialize: (s) => ({ setup: s.setup, emergency: s.emergency, blockedNums: s.blockedNums, contacts: s.contacts, onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));
