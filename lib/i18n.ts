@@ -1,3 +1,4 @@
+import { create } from "zustand";
 import { useS } from "./store";
 const D: Record<string, string[]> = {
   "Accueil": ["Home", "Inicio", "Start"], "Parler à Bobby": ["Talk to Bobby", "Hablar con Bobby", "Mit Bobby sprechen"],
@@ -20,6 +21,36 @@ const D: Record<string, string[]> = {
   "À propos de Bobby One": ["About Bobby One", "Acerca de Bobby One", "Über Bobby One"],
   "Le menu et les écrans principaux changent de langue. Les analyses de Bobby restent en français pour le moment.": ["The menu and main screens change language. Bobby's analyses stay in French for now.", "El menú y las pantallas principales cambian de idioma. Los análisis de Bobby siguen en francés por ahora.", "Menü und Hauptbildschirme wechseln die Sprache. Bobbys Analysen bleiben vorerst auf Französisch."],
 };
+export const LANGS: Record<string, { code: string; tts: string }> = {
+  "Français": { code: "fr", tts: "fr-FR" }, "English": { code: "en", tts: "en-US" }, "Español": { code: "es", tts: "es-ES" }, "Deutsch": { code: "de", tts: "de-DE" },
+  "Português": { code: "pt", tts: "pt-BR" }, "Italiano": { code: "it", tts: "it-IT" }, "العربية": { code: "ar", tts: "ar-SA" }, "中文": { code: "zh-CN", tts: "zh-CN" },
+  "हिन्दी": { code: "hi", tts: "hi-IN" }, "Русский": { code: "ru", tts: "ru-RU" }, "日本語": { code: "ja", tts: "ja-JP" },
+};
 const IDX: Record<string, number> = { English: 0, Español: 1, Deutsch: 2 };
-export const tr = (l: string, s: string) => { const i = IDX[l]; return i === undefined ? s : D[s]?.[i] ?? s; };
-export const useT = () => { const l = useS((s) => s.settings.lang); return (s: string) => tr(l, s); };
+let cache: Record<string, string> = {};
+try { if (typeof window !== "undefined") cache = JSON.parse(localStorage.getItem("bobby-tr") || "{}"); } catch {}
+const save = () => { try { localStorage.setItem("bobby-tr", JSON.stringify(cache)); } catch {} };
+const useTv = create<{ v: number }>(() => ({ v: 0 }));
+const pend = new Set<string>();
+async function call(from: string, to: string, s: string): Promise<string | null> {
+  try { const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(s)}&langpair=${from}|${to}`); const j = await r.json(); const o = j?.responseData?.translatedText; if (o && !/MYMEMORY WARNING|INVALID|QUERY LENGTH/i.test(o)) return o; } catch {}
+  try { const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(s)}`); const j = await r.json(); const o = j[0].map((x: any) => x[0]).join(""); if (o) return o; } catch {}
+  return null;
+}
+const dict = (l: string, s: string) => { const i = IDX[l]; return i === undefined ? undefined : D[s]?.[i]; };
+export async function translate(l: string, s: string): Promise<string> {
+  const code = LANGS[l]?.code; if (!s.trim() || !code || code === "fr") return s;
+  const d = dict(l, s); if (d) return d; const k = l + "|" + s; if (cache[k]) return cache[k];
+  const o = await call("fr", code, s); if (o) { cache[k] = o; save(); return o; } return s;
+}
+export async function toFr(l: string, s: string): Promise<string> {
+  const code = LANGS[l]?.code; if (!s.trim() || !code || code === "fr") return s;
+  return (await call(code, "fr", s)) || s;
+}
+export const tr = (l: string, s: string) => {
+  if (!s || l === "Français") return s; const d = dict(l, s); if (d) return d;
+  const k = l + "|" + s; if (cache[k]) return cache[k];
+  if (!pend.has(k)) { pend.add(k); translate(l, s).then(() => useTv.setState((x) => ({ v: x.v + 1 }))); }
+  return s;
+};
+export const useT = () => { const l = useS((s) => s.settings.lang); useTv((x) => x.v); return (s: string) => tr(l, s); };

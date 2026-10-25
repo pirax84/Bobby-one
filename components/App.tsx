@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MoreHorizontal } from "lucide-react";
 import { useS, View } from "@/lib/store";
 import { NAV, Bobby, speak, Fab } from "./ui";
-import { useT } from "@/lib/i18n";
+import { useT, LANGS } from "@/lib/i18n";
 import { BotV, HomeV, TextV, WebV, ImageV, QrV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
 const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: TextV, web: WebV, image: ImageV, qr: QrV, calls: CallsV, threats: ThreatsV, family: FamilyV, community: CommunityV, settings: SettingsV };
 const STEPS = [["Bonjour, je suis Bobby.", "Je suis votre gardien personnel. Je vérifie messages, sites, appels et QR codes avant que vous ne fassiez une erreur."], ["Simple, comme une conversation", "Collez un message ou une adresse, je vous dis en clair si vous pouvez avoir confiance. Sans jargon."], ["Bobby veille sur vous.", "Protégez aussi vos proches grâce au mode famille et aux alertes de la communauté."]];
@@ -12,6 +12,7 @@ export default function App() {
   const { view, go, onboarded, finish, settings } = useS(); const [ok, setOk] = useState(false); const [step, setStep] = useState(0); const [more, setMore] = useState(false);
   const t = useT();
   useEffect(() => setOk(true), []);
+  useEffect(() => { document.documentElement.dir = settings.lang === "العربية" ? "rtl" : "ltr"; document.documentElement.lang = LANGS[settings.lang]?.code || "fr"; }, [settings.lang]);
   const first = useRef(true);
   useEffect(() => { if (first.current) { first.current = false; return; } if (!onboarded || settings.voice === false) return; const n = NAV.find((x) => x.id === view)!; speak(t(n.label) + ". " + t(n.desc), settings.lang); }, [view]);
   useEffect(() => { document.documentElement.classList.toggle("light", settings.theme === "light"); }, [settings.theme]);

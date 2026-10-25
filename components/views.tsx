@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Upload, Phone, PhoneOff, ChevronDown, Loader2 } from "lucide-react";
 import { analyzeText, analyzeUrl, ageLabel, hash, META, Result, UrlResult } from "@/lib/engine";
 import { useS, View } from "@/lib/store";
-import { useT } from "@/lib/i18n";
+import { useT, toFr, LANGS } from "@/lib/i18n";
 import { CALLS, THREATS, FEED, TOP, REP, FAMILY } from "@/lib/data";
-import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, speak, Mic, listen, ERR } from "./ui";
+import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const Busy = ({ t }: { t: string }) => { const ref = useRef<HTMLDivElement>(null); useEffect(() => { ref.current?.scrollIntoView({ behavior: "smooth", block: "center" }); }, []); return <div ref={ref} className="card p-6 flex items-center gap-3 text-mute"><Loader2 className="animate-spin" size={18} />{t}</div>; };
@@ -119,17 +119,16 @@ export function CommunityV() {
 
 function VoicePick() {
   const { settings: s, set } = useS(); const [vs, setVs] = useState<string[]>([]);
-  useEffect(() => { const load = () => { const code = ({ English: "en", Español: "es", Deutsch: "de" } as any)[s.lang] || "fr"; setVs(window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code)).map((v) => v.name)); }; load(); window.speechSynthesis.onvoiceschanged = load; }, [s.lang]);
+  useEffect(() => { const load = () => { const code = (LANGS[s.lang]?.tts || "fr-FR").slice(0, 2); setVs(window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code)).map((v) => v.name)); }; load(); window.speechSynthesis.onvoiceschanged = load; }, [s.lang]);
   return (<div className="flex gap-2 flex-wrap justify-end"><select className="inp !w-auto max-w-[200px]" value={s.voiceName || ""} onChange={(e) => set({ voiceName: e.target.value })}><option value="" style={{ color: "#000" }}>Automatique (voix masculine)</option>{vs.map((n) => <option key={n} value={n} style={{ color: "#000" }}>{n}</option>)}</select><button className="btn2" onClick={() => speak("Bonjour, je suis Bobby. Je veille sur vous.", s.lang)}>▶ Tester</button></div>);
 }
 
 export function SettingsV() {
   const { settings: s, set } = useS(); const t = useT();
   const Row = ({ l, children }: { l: string; children: React.ReactNode }) => <div className="flex items-center justify-between gap-4 py-4 border-b" style={{ borderColor: "var(--bd)" }}><span>{t(l)}</span>{children}</div>;
-  return (<div><Title t={t("Réglages")} d={t("Personnalisez Bobby comme vous le souhaitez.")} />
-    <div className="card px-6"><Row l="Langue"><select className="inp !w-auto" value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{["Français", "English", "Español", "Deutsch"].map((l) => <option key={l} style={{ color: "#000" }}>{l}</option>)}</select></Row>
-      {s.lang !== "Français" && <p className="text-sm text-mute py-3">{t("Le menu et les écrans principaux changent de langue. Les analyses de Bobby restent en français pour le moment.")}</p>}
-      <Row l="Bobby parle sur tous les écrans"><Toggle on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) window.speechSynthesis?.cancel(); }} /></Row>
+  return (<div><Title t="Réglages" d="Personnalisez Bobby comme vous le souhaitez." />
+    <div className="card px-6"><Row l="Langue"><select className="inp !w-auto" value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} style={{ color: "#000" }}>{l}</option>)}</select></Row>
+      <Row l="Bobby parle sur tous les écrans"><Toggle on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) stopSpeak(); }} /></Row>
       <Row l="Voix de Bobby"><VoicePick /></Row>
       <Row l="Gravité de la voix"><div className="flex items-center gap-2 text-xs text-mute">Grave<input type="range" min="0.5" max="1" step="0.05" value={s.pitch ?? 0.75} onChange={(e) => set({ pitch: parseFloat(e.target.value) })} />Normal</div></Row>
       <Row l="Notifications d'alerte"><Toggle on={s.notif} f={() => set({ notif: !s.notif })} /></Row>
@@ -140,12 +139,12 @@ export function SettingsV() {
 }
 
 export function BotV() {
-  const { settings: st, set } = useS(); const lang = st.lang, vo = st.voice !== false; const bump = useS((x) => x.bump);
+  const { settings: st, set } = useS(); const t = useT(); const lang = st.lang, vo = st.voice !== false; const bump = useS((x) => x.bump);
   const [m, setM] = useState<{ me: boolean; t: string }[]>([{ me: false, t: "Bonjour, je suis Bobby. Collez un message ou une adresse de site, ou posez-moi une question sur les arnaques." }]);
   const [i, setI] = useState(""); const [lis, setLis] = useState(false); const [convo, setConvo] = useState(false); const [err, setErr] = useState("");
   const box = useRef<HTMLDivElement>(null); const rec = useRef<any>(null); const cv = useRef(false);
   useEffect(() => { if (box.current) box.current.scrollTop = box.current.scrollHeight; }, [m]);
-  useEffect(() => () => { cv.current = false; rec.current?.abort?.(); window.speechSynthesis?.cancel(); }, []);
+  useEffect(() => () => { cv.current = false; rec.current?.abort?.(); stopSpeak(); }, []);
   const reply = (x: string) => {
     const u = x.match(/https?:\/\/\S+|\b[\w-]+\.(com|fr|net|org|xyz|top|click|info|shop|io)\b\S*/i);
     if (u) { const r = analyzeUrl(u[0]); if (r) { bump(r.score < 60); return `${META[r.level].bobby} Score : ${r.score}/100. ${r.reasons[0]} ${r.tips[0]}`; } }
@@ -156,15 +155,15 @@ export function BotV() {
     return "Je n'ai pas bien compris. Collez le message ou l'adresse à vérifier, ou demandez-moi « que faire si je suis victime ? ».";
   };
   const hear = () => { setErr(""); setLis(true); rec.current = listen(lang, (t) => send(t), (e) => { setErr(ERR[e] || ERR.x); cv.current = false; setConvo(false); }, () => setLis(false)); };
-  const send = (x = i) => { if (!x.trim()) return; const a = reply(x); setM((o) => [...o, { me: true, t: x }]); setI(""); setTimeout(() => { setM((o) => [...o, { me: false, t: a }]); if (vo) speak(a, lang, () => { if (cv.current) hear(); }); else if (cv.current) hear(); }, 500); };
-  const toggleConvo = () => { if (convo) { cv.current = false; setConvo(false); rec.current?.abort?.(); window.speechSynthesis?.cancel(); } else { cv.current = true; setConvo(true); if (!vo) set({ voice: true }); hear(); } };
+  const send = async (x = i) => { if (!x.trim()) return; setM((o) => [...o, { me: true, t: x }]); setI(""); const a = reply(await toFr(lang, x)); setTimeout(() => { setM((o) => [...o, { me: false, t: a }]); if (vo) speak(a, lang, () => { if (cv.current) hear(); }); else if (cv.current) hear(); }, 300); };
+  const toggleConvo = () => { if (convo) { cv.current = false; setConvo(false); rec.current?.abort?.(); stopSpeak(); } else { cv.current = true; setConvo(true); if (!vo) set({ voice: true }); hear(); } };
   const pending = useS((x) => x.pending); useEffect(() => { if (pending) { useS.setState({ pending: null }); send(pending); } }, [pending]);
   return (<div><Title t="Parler à Bobby" d="Écrivez ou parlez à Bobby : il vous répond à voix haute." />
-    <div className="card p-4"><div ref={box} className="h-[45vh] overflow-y-auto space-y-3 pr-1">{m.map((x, k) => <div key={k} className={"flex " + (x.me ? "justify-end" : "gap-2")}>{!x.me && <Bobby s={32} />}<p className="max-w-[85%] rounded-2xl px-4 py-2 text-sm" style={x.me ? { background: "#00D084", color: "#04120C" } : { background: "var(--bd)" }}>{x.t}</p></div>)}</div>
-      <div className="flex flex-wrap gap-2 mt-3"><button className={"btn2 " + (lis ? "on" : "")} disabled={lis} onClick={hear}>🎤 {lis ? "Je vous écoute…" : "Parler à Bobby"}</button><button className={"btn2 " + (convo ? "on" : "")} onClick={toggleConvo}>🗣️ {convo ? "Arrêter la conversation" : "Conversation vocale"}</button>
-        <button className={"btn2 " + (vo ? "on" : "")} onClick={() => { set({ voice: !vo }); window.speechSynthesis?.cancel(); }}>{vo ? "🔊 Voix activée" : "🔇 Voix coupée"}</button></div>
+    <div className="card p-4"><div ref={box} className="h-[45vh] overflow-y-auto space-y-3 pr-1">{m.map((x, k) => <div key={k} className={"flex " + (x.me ? "justify-end" : "gap-2")}>{!x.me && <Bobby s={32} />}<p className="max-w-[85%] rounded-2xl px-4 py-2 text-sm" style={x.me ? { background: "#00D084", color: "#04120C" } : { background: "var(--bd)" }}>{x.me ? x.t : t(x.t)}</p></div>)}</div>
+      <div className="flex flex-wrap gap-2 mt-3"><button className={"btn2 " + (lis ? "on" : "")} disabled={lis} onClick={hear}>🎤 {t(lis ? "Je vous écoute…" : "Parler à Bobby")}</button><button className={"btn2 " + (convo ? "on" : "")} onClick={toggleConvo}>🗣️ {t(convo ? "Arrêter la conversation" : "Conversation vocale")}</button>
+        <button className={"btn2 " + (vo ? "on" : "")} onClick={() => { set({ voice: !vo }); stopSpeak(); }}>{t(vo ? "🔊 Voix activée" : "🔇 Voix coupée")}</button></div>
       {err && <p className="text-sm mt-2" style={{ color: "#F59E0B" }}>{err}</p>}
       <div className="flex flex-wrap gap-2 mt-3">{["Que faire si je suis victime ?", "Est-ce que colis-laposte-suivi.xyz est fiable ?"].map((x) => <button key={x} className="btn2 !text-xs" onClick={() => send(x)}>{x}</button>)}</div>
-      <div className="flex gap-2 mt-3"><input className="inp" placeholder="Écrivez à Bobby…" value={i} onChange={(e) => setI(e.target.value)} onKeyDown={(e) => e.key === "Enter" && send()} /><button className="btn" onClick={() => send()}>Envoyer</button></div>
+      <div className="flex gap-2 mt-3"><input className="inp" placeholder={t("Écrivez à Bobby…")} value={i} onChange={(e) => setI(e.target.value)} onKeyDown={(e) => e.key === "Enter" && send()} /><button className="btn" onClick={() => send()}>{t("Envoyer")}</button></div>
       <p className="text-xs text-mute mt-3">Bobby répond avec ses règles intégrées (pas encore une IA en ligne).</p></div></div>);
 }
