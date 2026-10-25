@@ -1,5 +1,6 @@
 "use client";
 import { Explain } from "./Explain";
+import { Where } from "./Where";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Bot, Mic as MicI, Volume2, VolumeX, Home, MessageSquareWarning, Globe, Image as Img, QrCode, PhoneCall, Siren, Users, Radio, Settings, Loader2, Check, X } from "lucide-react";
@@ -49,6 +50,7 @@ export function Report({ r, children, speakIt = true }: { r: Result; children?: 
     {children}
     <div><h4 className="font-semibold mb-2">{t("Pourquoi ?")}</h4><ul className="space-y-1.5 text-mute text-sm">{r.reasons.map((x, i) => <li key={i} className="flex gap-2"><span aria-hidden="true">•</span><span>{t(x)}</span></li>)}</ul></div>
     <div><h4 className="font-semibold mb-2">{t("Mes conseils")}</h4><ul className="space-y-2 text-sm">{r.tips.map((x, i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0" style={{ color: "var(--brand)" }} /><span>{t(x)}</span></li>)}</ul></div>
+    {r.level !== "safe" && <Where />}
     <button type="button" className="btn2" onClick={() => speak(m.bobby + " " + r.reasons.join(" ") + " " + r.tips.join(" "), lang)}><Volume2 size={16} />{t("Écouter Bobby")}</button>
   </motion.div>);
 }

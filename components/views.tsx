@@ -7,6 +7,8 @@ import { useS, View } from "@/lib/store";
 import { useT, toFr, LANGS } from "@/lib/i18n";
 import { CALLS, THREATS, FEED, TOP, REP, FAMILY } from "@/lib/data";
 import { Explain } from "./Explain";
+import { Where, useCountry } from "./Where";
+import { COUNTRIES, locate } from "@/lib/country";
 import { NAV, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -20,10 +22,21 @@ const EX_T = [
 const EX_W = ["https://www.impots.gouv.fr", "http://amazon-verify-compte.xyz/connexion", "promo-ps5-fr.top"];
 function useScan() { const { bump, addScan } = useS(); return (kind: any, label: string, r: Result) => { bump(r.score < 60); addScan({ kind, label: label.replace(/\s+/g, " ").slice(0, 70), score: r.score, level: r.level }); }; }
 
-function WebReport({ r }: { r: UrlResult }) {
+interface Live { ok: boolean; listed: boolean | null; sources: string[]; ageDays: number | null }
+async function live(u: string): Promise<Live | null> {
+  try { const r = await fetch("/api/live?u=" + encodeURIComponent(u), { signal: AbortSignal.timeout(9000) }); if (!r.ok) return null; const j = await r.json(); return j.ok ? j : null; } catch { return null; }
+}
+function applyLive(r: UrlResult, lv: Live | null): UrlResult {
+  if (lv?.listed) return { ...r, score: Math.min(r.score, 5), level: "danger", reasons: ["Ce site figure sur une liste de sites frauduleux connus.", ...r.reasons.filter((x) => !/service connu|aucun signe/.test(x))], tips: ["Quittez ce site tout de suite et n'y entrez rien."] };
+  if (lv?.ageDays != null && lv.ageDays < 30 && r.score > 59) return { ...r, score: 59, level: "careful", reasons: ["Ce nom de site a été créé il y a moins d'un mois, ce qui est fréquent chez les faux sites.", ...r.reasons] };
+  return r;
+}
+function WebReport({ r, lv }: { r: UrlResult; lv?: Live | null }) {
   const t = useT(); const { report, notify } = useS();
+  const listed = !lv ? "Indisponible" : lv.listed === true ? "⚠️ Signalé" : lv.listed === false ? "Non listé" : "Indisponible";
   return (<Report r={r}>
-    <div className="grid grid-cols-3 gap-2 text-center">{[["Domaine", r.domain], ["Ancienneté", ageLabel(r.ageDays, t)], ["Réputation", t(r.reputation)]].map(([a, v]) => <div key={a} className="rounded-2xl p-3 min-w-0" style={{ background: "var(--soft)" }}><p className="text-xs text-mute">{t(a)}</p><p className="font-semibold text-sm break-words">{v}</p></div>)}</div>
+    <div className="grid grid-cols-3 gap-2 text-center">{[["Domaine", r.domain], ["Ancienneté", ageLabel(lv?.ageDays, t)], ["Listes de fraude en ligne", t(listed)]].map(([a, v]) => <div key={a} className="rounded-2xl p-3 min-w-0" style={{ background: "var(--soft)" }}><p className="text-xs text-mute">{t(a)}</p><p className="font-semibold text-sm break-words">{v}</p></div>)}</div>
+    <p className="text-xs text-mute">{lv?.sources?.length ? t("Listes consultées") + " : " + lv.sources.join(", ") + ". " : ""}{t("« Non listé » ne veut pas dire « sûr » : les faux sites changent chaque jour.")}</p>
     {r.score < 60 && <button type="button" className="btn2" onClick={() => { report("Sites|" + r.domain); notify("Merci ! Signalement envoyé à la communauté."); }}>{t("Signaler ce site à la communauté")}</button>}
   </Report>);
 }
@@ -61,11 +74,11 @@ function ShareCard() {
 
 export function HomeV() {
   const { go, protectedToday, blocked, reported, history, incoming, setIncoming, clearHistory, notify } = useS(); const t = useT(); const lang = useS((s) => s.settings.lang); const scan = useScan();
-  const [q, setQ] = useState(""); const [res, setRes] = useState<{ r: Result | UrlResult; web: boolean } | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
+  const [q, setQ] = useState(""); const [res, setRes] = useState<{ r: Result | UrlResult; web: boolean; lv?: Live | null } | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
   const check = async (v = q) => {
     const x = v.trim(); if (x.length < 3) { setErr("Écrivez ou collez d'abord un message ou une adresse."); return; }
     setErr(""); setRes(null); setB(true); await wait(900);
-    const u = looksLikeUrl(x) ? analyzeUrl(x) : null; const r = u || analyzeText(x); scan(u ? "web" : "text", x, r); setRes({ r, web: !!u }); setQ(""); setB(false);
+    const u0 = looksLikeUrl(x) ? analyzeUrl(x) : null; const lv = u0 ? await live(x) : null; const u = u0 ? applyLive(u0, lv) : null; const r = u || analyzeText(x); scan(u ? "web" : "text", x, r); setRes({ r, web: !!u, lv }); setQ(""); setB(false);
   };
   useEffect(() => { if (incoming) { const x = incoming; setIncoming(null); setQ(x); check(x); } }, [incoming]);
   const paste = async () => { try { const x = await navigator.clipboard.readText(); if (x) { setQ(x); setRes(null); setErr(""); } else notify("Le presse-papiers est vide.", "warn"); } catch { notify("Impossible de coller ici : faites un appui long dans la case, puis « Coller ».", "warn"); } };
@@ -87,7 +100,7 @@ export function HomeV() {
       <div><p className="text-xs text-mute mb-2">{t("Essayez avec un exemple")}</p><Chips items={[...EX_T, { l: "Faux site", v: "amazon-verify-compte.xyz" }]} on={(v) => { setQ(v); setRes(null); setErr(""); }} /></div>
     </section>
     {b && <Busy steps={STEPS_T} />}
-    {res && (res.web ? <WebReport r={res.r as UrlResult} /> : <Report r={res.r} />)}
+    {res && (res.web ? <WebReport r={res.r as UrlResult} lv={res.lv} /> : <Report r={res.r} />)}
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">{stats.map(([l, v, c, to]) => <motion.button type="button" whileTap={{ scale: .97 }} key={l} onClick={() => go(to)} className="card p-4 text-start"><p className="text-xs text-mute">{t(l)}</p><p className="text-2xl md:text-3xl font-bold mt-1" style={{ color: c }}>{v}</p><p className="text-xs text-mute mt-1 flex items-center gap-1">{t("Voir")}<ArrowRight size={12} className="rtl:rotate-180" /></p></motion.button>)}</div>
     <section><h2 className="font-semibold mb-3">{t("Tous les outils")}</h2><div className="grid grid-cols-2 sm:grid-cols-3 gap-3">{tools.map((n) => (
       <motion.button type="button" whileTap={{ scale: .97 }} key={n.id} onClick={() => go(n.id)} className="card p-4 text-start flex flex-col gap-3"><span className="ico"><n.icon size={22} /></span><span><span className="block font-semibold leading-tight">{t(n.label)}</span><span className="block text-sm text-mute mt-0.5">{t(n.desc)}</span></span></motion.button>))}</div></section>
@@ -109,12 +122,12 @@ export function TextV() {
 }
 
 export function WebV() {
-  const t = useT(); const scan = useScan(); const [u, setU] = useState(""); const [r, setR] = useState<UrlResult | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
-  const run = async (v = u) => { setU(v); setErr(""); setR(null); setB(true); await wait(850); const x = analyzeUrl(v); setB(false); if (!x) { setErr("Cette adresse ne me semble pas valide. Exemple : exemple.fr"); return; } scan("web", x.domain, x); setR(x); setU(""); };
+  const t = useT(); const scan = useScan(); const [u, setU] = useState(""); const [r, setR] = useState<UrlResult | null>(null); const [lv, setLv] = useState<Live | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
+  const run = async (v = u) => { setU(v); setErr(""); setR(null); setB(true); const x0 = analyzeUrl(v); const l = x0 ? await live(v) : null; await wait(500); setB(false); if (!x0) { setErr("Cette adresse ne me semble pas valide. Exemple : exemple.fr"); return; } const x = applyLive(x0, l); scan("web", x.domain, x); setLv(l); setR(x); setU(""); };
   return (<div><Title t="Analyse site web" d="Collez l'adresse d'un site avant d'y entrer vos informations." />
     <div className="card p-5 space-y-4"><div className="flex gap-2 flex-col sm:flex-row"><input className="inp" dir="ltr" inputMode="url" aria-label={t("Adresse du site")} placeholder="https://…" value={u} onChange={(e) => setU(e.target.value)} onKeyDown={(e) => e.key === "Enter" && u && run()} /><button type="button" className="btn" disabled={!u || b} onClick={() => run()}>{t("Vérifier")}</button><Mic onText={(x) => setU(x.replace(/\s+/g, "").replace(/point/gi, "."))} /></div>
       <div className="flex flex-wrap gap-2">{EX_W.map((x) => <button type="button" key={x} className="btn2" dir="ltr" onClick={() => run(x)}>{x.replace(/https?:\/\//, "")}</button>)}</div>{err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}</div>
-    <div className="mt-5">{b && <Busy steps={STEPS_W} />}{r && <WebReport r={r} />}</div></div>);
+    <div className="mt-5">{b && <Busy steps={STEPS_W} />}{r && <WebReport r={r} lv={lv} />}</div></div>);
 }
 
 const OCR = ["URGENT : votre colis est bloqué. Payez 2,99 € de frais de douane sur http://colis-laposte-suivi.xyz/payer avant ce soir.", "Rappel : rendez-vous chez le Dr Martin mardi à 14h30. Merci de confirmer par SMS.", "Félicitations ! Vous avez gagné un iPhone. Confirmez vos informations bancaires et le code SMS reçu.", "Offre télétravail sans expérience : gagnez 3000 € par mois. Envoyez votre IBAN pour commencer."];
@@ -161,6 +174,7 @@ export function CallsV() {
   const close = () => { stopSpeak(); setInc(null); };
   useEffect(() => { if (!inc) return; const k = (e: KeyboardEvent) => e.key === "Escape" && close(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [inc]);
   return (<div><Title t="Protection appels" d="Je vous dis qui appelle avant que vous décrochiez." />
+    <p className="text-sm rounded-2xl p-3 mb-4" style={{ background: "var(--soft)" }}>⚠️ {t("Pour l'instant, ces numéros sont des exemples : Bobby n'est pas encore relié à une vraie base de numéros frauduleux. Pour un numéro réel, utilisez les sources officielles de votre pays ci-dessous.")}</p>
     <div className="card p-5 mb-4 space-y-3"><label htmlFor="num" className="font-semibold block">{t("Vérifier un numéro")}</label>
       <div className="flex gap-2 flex-col sm:flex-row"><input id="num" dir="ltr" inputMode="tel" className="inp" placeholder="+33 6 12 34 56 78" value={num} onChange={(e) => { setNum(e.target.value); setNe(""); }} onKeyDown={(e) => e.key === "Enter" && check()} /><button type="button" className="btn" onClick={check}>{t("Vérifier")}</button></div>
       {ne && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(ne)}</p>}
@@ -169,6 +183,7 @@ export function CallsV() {
     <div className="flex flex-col sm:flex-row gap-3 mb-4"><div className="relative flex-1"><Search size={16} className="absolute start-4 top-4 text-mute" /><input className="inp ps-10" aria-label={t("Rechercher un numéro…")} placeholder={t("Rechercher un numéro…")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
       <div className="flex gap-2 flex-wrap">{[["all", "Tous"], ["safe", "Sûrs"], ["unknown", "Inconnus"], ["scam", "Arnaques"]].map(([k, l]) => <button type="button" key={k} onClick={() => setF(k)} aria-pressed={f === k} className={"btn2 " + (f === k ? "on" : "")}>{t(l)}</button>)}</div></div>
     <div className="space-y-3">{list.map((c) => (<div key={c.n} className="card p-4 flex items-center gap-4"><Gauge score={c.score} size={60} /><div className="flex-1 min-w-0"><p className="font-semibold" dir="ltr">{c.n}</p><p className="text-sm text-mute">{t(c.name)} · {c.reports} {t("signalements")}</p><p className="text-sm mt-1">{t(rec(c.kind))}</p></div><Badge lv={levelOf(c.score)} /></div>))}{!list.length && <p className="text-mute">{t("Aucun numéro trouvé.")}</p>}</div>
+    <div className="mt-5"><Where title="Sources officielles pour signaler un appel ou un SMS" /></div>
     <AnimatePresence>{inc && (<motion.div role="dialog" aria-modal="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] grid place-items-center p-4 bg-black/70"><motion.div initial={{ scale: .92 }} animate={{ scale: 1 }} className="card p-6 w-full max-w-sm text-center space-y-4" style={{ background: "var(--solid)" }}><p className="text-mute text-sm">{t("Appel entrant")}</p><p className="text-xl font-bold" dir="ltr">{inc.n}</p><div className="flex justify-center"><Gauge score={inc.score} /></div><p className="font-medium">{t(inc.kind === "scam" ? "🔴 Je pense qu'il s'agit probablement d'une arnaque." : inc.kind === "safe" ? "✅ Ce numéro semble fiable." : "⚠️ Soyez prudent avant de répondre.")}</p><p className="text-sm text-mute">{t(inc.name)} · {inc.reports} {t("signalements")}</p>
       <div className="flex gap-3"><button type="button" className="btn2 flex-1 justify-center" onClick={() => { bump(false); close(); }}>{t("Répondre")}</button><button type="button" className="btn flex-1" onClick={() => { bump(true); close(); notify("Numéro bloqué."); }}><PhoneOff size={16} />{t("Bloquer")}</button></div></motion.div></motion.div>)}</AnimatePresence></div>);
 }
@@ -177,6 +192,7 @@ export function ThreatsV() {
   const t = useT(); const [q, setQ] = useState(""); const [o, setO] = useState("");
   const list = THREATS.filter((x) => (x.id + x.d + t(x.id) + t(x.d)).toLowerCase().includes(q.toLowerCase()));
   return (<div><Title t="Centre des menaces" d="Apprenez à reconnaître les arnaques les plus courantes." />
+    <div className="mb-4"><Where title="Sources officielles pour signaler et vous faire aider" /></div>
     <div className="relative mb-4"><Search size={16} className="absolute start-4 top-4 text-mute" /><input className="inp ps-10" aria-label={t("Rechercher une menace…")} placeholder={t("Rechercher une menace…")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
     <div className="space-y-3">{list.map((x) => (<div key={x.id} className="card overflow-hidden"><button type="button" aria-expanded={o === x.id} className="w-full p-5 flex items-center justify-between gap-3 text-start" onClick={() => setO(o === x.id ? "" : x.id)}><div><p className="font-semibold">{t(x.id)}</p><p className="text-sm text-mute">{t(x.d)}</p></div><ChevronDown className={"transition shrink-0 " + (o === x.id ? "rotate-180" : "")} /></button>
       {o === x.id && <div className="px-5 pb-5 space-y-3"><Explain id={"threat:" + x.id} compact /><div><p className="text-xs text-mute mb-1">{t("Exemples")}</p>{x.ex.map((e) => <p key={e} className="text-sm">• {t(e)}</p>)}</div><p className="text-sm rounded-2xl p-3" style={{ background: "var(--soft)" }}>💡 {t(x.tip)}</p></div>}</div>))}{!list.length && <p className="text-mute">{t("Aucun résultat.")}</p>}</div></div>);
@@ -196,6 +212,7 @@ export function CommunityV() {
   const items = [...mine, ...REP[tab]].filter((x) => x.toLowerCase().includes(q.toLowerCase()));
   const send = () => { if (!n.trim()) { setMsg("⚠️ Écrivez d'abord le numéro, l'email ou le site à signaler."); return; } report(kind + "|" + n.trim()); setTab(kind); setN(""); setQ(""); setMsg("✅ Merci ! Votre signalement a été ajouté et protège les autres."); };
   return (<div><Title t="Bouclier communautaire" d="Les signalements de milliers d'utilisateurs, en direct." />
+    <p className="text-sm rounded-2xl p-3 mb-4" style={{ background: "var(--soft)" }}>⚠️ {t("Les listes et les chiffres de cet écran sont des exemples de démonstration. Seuls vos propres signalements sont réels (et restent sur votre téléphone).")}</p>
     <div className="card p-5 mb-4 space-y-3"><h2 className="font-semibold">{t("Signaler une arnaque")}</h2>
       <div className="flex gap-2 flex-wrap">{Object.keys(REP).map((k) => <button type="button" key={k} aria-pressed={kind === k} className={"btn2 " + (kind === k ? "on" : "")} onClick={() => setKind(k)}>{t(k)}</button>)}</div>
       <div className="flex gap-2 flex-col sm:flex-row"><input className="inp" dir="ltr" aria-label={t("Signaler une arnaque")} placeholder={kind === "Numéros" ? "+33 7 00 00 00 00" : kind === "Emails" ? "faux@arnaque.top" : "faux-site.xyz"} value={n} onChange={(e) => { setN(e.target.value); setMsg(""); }} onKeyDown={(e) => e.key === "Enter" && send()} /><button type="button" className="btn" onClick={send}>{t("Signaler")}</button></div>
@@ -208,6 +225,11 @@ export function CommunityV() {
           <button type="button" className="btn2 text-xs" disabled={!!more[x.t]} onClick={() => setMore({ ...more, [x.t]: 1 })}>{t(more[x.t] ? "✅ Merci, c'est noté" : "Je l'ai reçu aussi")}</button></div>)}</div></div></div></div></div>);
 }
 
+function CountryPick() {
+  const { settings: s, set, notify } = useS(); const t = useT(); const cur = useCountry(); const [b, setB] = useState(false);
+  const loc = async () => { setB(true); try { const c = await locate(); set({ country: c }); notify("Pays trouvé : " + (COUNTRIES.find((x) => x.code === c)?.name || c)); } catch (e: any) { notify(e?.message === "denied" ? "Localisation refusée. Choisissez votre pays dans la liste." : "Je n'ai pas pu vous localiser. Choisissez votre pays dans la liste.", "warn"); } setB(false); };
+  return (<div className="flex gap-2 flex-wrap justify-end"><select className="inp max-w-[170px]" aria-label={t("Mon pays")} value={cur} onChange={(e) => set({ country: e.target.value })}>{COUNTRIES.map((c) => <option key={c.code} value={c.code}>{c.name}</option>)}<option value="XX">Autre pays</option></select><button type="button" className="btn2" disabled={b} onClick={loc}>{t(b ? "Recherche…" : "Me localiser")}</button></div>);
+}
 function VoicePick() {
   const { settings: s, set } = useS(); const t = useT(); const [vs, setVs] = useState<string[]>([]);
   useEffect(() => { const sy = typeof window !== "undefined" ? window.speechSynthesis : undefined; if (!sy) return; const load = () => { const code = (LANGS[s.lang]?.tts || "fr-FR").slice(0, 2); setVs(sy.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code)).map((v) => v.name)); }; load(); sy.onvoiceschanged = load; return () => { sy.onvoiceschanged = null; }; }, [s.lang]);
@@ -219,6 +241,7 @@ export function SettingsV() {
   const Row = ({ l, children }: { l: string; children: React.ReactNode }) => <div className="flex items-center justify-between gap-4 py-4 border-b" style={{ borderColor: "var(--bd)" }}><span>{t(l)}</span>{children}</div>;
   return (<div><Title t="Réglages" d="Personnalisez Bobby comme vous le souhaitez." />
     <div className="card px-5 md:px-6"><Row l="Langue"><select className="inp max-w-[220px]" aria-label={t("Langue")} value={s.lang} onChange={(e) => set({ lang: e.target.value })}>{Object.keys(LANGS).map((l) => <option key={l} value={l}>{l}</option>)}</select></Row>
+      <Row l="Mon pays (pour les sources officielles)"><CountryPick /></Row>
       <Row l="Bobby parle sur tous les écrans"><Toggle label={t("Bobby parle sur tous les écrans")} on={s.voice !== false} f={() => { set({ voice: s.voice === false }); if (s.voice !== false) stopSpeak(); }} /></Row>
       <Row l="Vitesse de la voix"><div className="flex items-center gap-2 text-xs text-mute">{t("Lent")}<input type="range" aria-label={t("Vitesse de la voix")} min="0.6" max="1.4" step="0.05" value={s.rate ?? 0.92} onChange={(e) => set({ rate: parseFloat(e.target.value) })} />{t("Rapide")}</div></Row>
       <Row l="Tonalité de la voix"><div className="flex items-center gap-2 text-xs text-mute">{t("Grave")}<input type="range" aria-label={t("Tonalité de la voix")} min="0.5" max="1.3" step="0.05" value={s.pitch ?? 0.75} onChange={(e) => set({ pitch: parseFloat(e.target.value) })} />{t("Aiguë")}</div></Row>

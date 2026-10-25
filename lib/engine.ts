@@ -28,7 +28,7 @@ export function analyzeText(t: string): Result {
   return { score, level: levelOf(score), reasons, tips };
 }
 const TRUST = ["paypal.com", "amazon.fr", "amazon.com", "impots.gouv.fr", "ameli.fr", "laposte.fr", "netflix.com", "apple.com", "microsoft.com", "google.com", "wikipedia.org", "service-public.fr"];
-export interface UrlResult extends Result { domain: string; ageDays: number; reputation: string; }
+export interface UrlResult extends Result { domain: string; }
 export function analyzeUrl(raw: string): UrlResult | null {
   let u: URL; try { u = new URL(/^https?:/i.test(raw.trim()) ? raw.trim() : "https://" + raw.trim()); } catch { return null; }
   const h = u.hostname.toLowerCase(); if (!h.includes(".")) return null;
@@ -45,12 +45,10 @@ export function analyzeUrl(raw: string): UrlResult | null {
   }
   if (reasons.length === 0) reasons.push(trusted ? "Ce site est un service connu et reconnu." : "Je n'ai repéré aucun signe inquiétant.");
   const score = clamp(97 - pen);
-  const ageDays = score < 70 ? 3 + (hash(h) % 55) : 500 + (hash(h) % 4000);
   tips.push(score >= 85 ? "Vous pouvez y aller, mais vérifiez toujours le cadenas dans la barre d'adresse." : score >= 60 ? "Évitez d'y saisir des informations personnelles." : "N'entrez ni mot de passe ni numéro de carte. Quittez ce site.");
-  const reputation = score >= 85 ? "Excellente" : score >= 60 ? "Moyenne" : score >= 40 ? "Mauvaise" : "Très mauvaise — signalé";
-  return { score, level: levelOf(score), reasons, tips, domain: h, ageDays, reputation };
+  return { score, level: levelOf(score), reasons, tips, domain: h };
 }
-export const ageLabel = (d: number, t: (s: string) => string = (s) => s) => (d < 60 ? `${d} ${t("jours")}` : d < 730 ? `${Math.round(d / 30)} ${t("mois")}` : `${Math.round(d / 365)} ${t("ans")}`);
+export const ageLabel = (d: number | null | undefined, t: (s: string) => string = (s) => s) => (d == null ? t("Inconnue") : d < 60 ? `${d} ${t("jours")}` : d < 730 ? `${Math.round(d / 30)} ${t("mois")}` : `${Math.round(d / 365)} ${t("ans")}`);
 export const looksLikeUrl = (s: string) => { const x = s.trim(); return !/\s/.test(x) && (/^https?:\/\//i.test(x) || /^(www\.)?[\w-]+(\.[\w-]+)+(\/\S*)?$/i.test(x)); };
 export interface CallResult { score: number; level: Level; name: string; reports: number; kind: "safe" | "unknown" | "scam"; }
 export function scoreNumber(raw: string, known: { n: string; name: string; score: number; reports: number; kind: string }[]): CallResult | null {
