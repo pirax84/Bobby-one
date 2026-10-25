@@ -41,6 +41,23 @@ function InstallCard() {
     {ev && <button type="button" className="btn" onClick={async () => { ev.prompt(); try { await ev.userChoice; } catch {} setEv(null); }}>{t("Installer")}</button>}</div>);
 }
 
+
+function ShareCard() {
+  const t = useT(); const { notify } = useS(); const URL_ = "https://bobby-one-six.vercel.app/";
+  const share = async () => {
+    try {
+      const nav: any = navigator; const msg = t("Je protège mes messages et mes appels contre les arnaques avec Bobby One. Essaie-le :");
+      try { const r = await fetch("/bobby-qr.png"); const f = new File([await r.blob()], "bobby-qr.png", { type: "image/png" }); if (nav.canShare?.({ files: [f] })) { await nav.share({ files: [f], text: msg + " " + URL_ }); return; } } catch (e: any) { if (e?.name === "AbortError") return; }
+      if (nav.share) { await nav.share({ text: msg, url: URL_ }); return; }
+      await nav.clipboard.writeText(URL_); notify("Lien copié : collez-le dans un message.");
+    } catch (e: any) { if (e?.name !== "AbortError") notify("Impossible de partager ici. Utilisez « Télécharger ».", "warn"); }
+  };
+  return (<section className="card p-5 flex flex-col sm:flex-row items-center gap-5">
+    <img src="/bobby-qr.png" alt={t("QR code de Bobby One")} width={150} height={150} className="rounded-2xl bg-white p-1 shrink-0" style={{ width: 150, height: 150 }} />
+    <div className="flex-1 min-w-0 text-center sm:text-start space-y-3"><div><h2 className="font-semibold">{t("Faites connaître Bobby à vos proches")}</h2><p className="text-sm text-mute">{t("Ils scannent ce code avec leur téléphone : Bobby s'ouvre et ils peuvent l'installer.")}</p></div>
+      <div className="flex flex-wrap gap-2 justify-center sm:justify-start"><a href="/bobby-qr.png" download="bobby-one-qr.png" className="btn"><Download size={18} />{t("Télécharger")}</a><button type="button" className="btn2" onClick={share}><Share2 size={16} />{t("Partager")}</button></div></div></section>);
+}
+
 export function HomeV() {
   const { go, protectedToday, blocked, reported, history, incoming, setIncoming, clearHistory, notify } = useS(); const t = useT(); const lang = useS((s) => s.settings.lang); const scan = useScan();
   const [q, setQ] = useState(""); const [res, setRes] = useState<{ r: Result | UrlResult; web: boolean } | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
@@ -74,6 +91,7 @@ export function HomeV() {
       <motion.button type="button" whileTap={{ scale: .97 }} key={n.id} onClick={() => go(n.id)} className="card p-4 text-start flex flex-col gap-3"><span className="ico"><n.icon size={22} /></span><span><span className="block font-semibold leading-tight">{t(n.label)}</span><span className="block text-sm text-mute mt-0.5">{t(n.desc)}</span></span></motion.button>))}</div></section>
     {history.length > 0 && <section className="card p-5"><div className="flex items-center justify-between mb-3"><h2 className="font-semibold flex items-center gap-2"><History size={18} />{t("Vérifications récentes")}</h2><button type="button" className="text-sm text-mute underline" onClick={clearHistory}>{t("Effacer")}</button></div>
       <ul className="space-y-3">{history.slice(0, 5).map((h) => <li key={h.id} className="flex items-center gap-3"><Gauge score={h.score} size={44} /><div className="min-w-0 flex-1"><p className="text-sm truncate" dir="auto">{h.label}</p><p className="text-xs text-mute">{new Date(h.at).toLocaleTimeString(code, { hour: "2-digit", minute: "2-digit" })}</p></div><Badge lv={h.level} /></li>)}</ul></section>}
+    <ShareCard />
     <section className="card p-5 flex gap-4"><div className="ico"><Share2 size={22} /></div><div><p className="font-semibold">{t("Vérifiez sans ouvrir Bobby")}</p><p className="text-sm text-mute">{t("Sur Android, une fois Bobby installé : dans n'importe quelle application, touchez Partager, puis choisissez Bobby One. Je vérifie le message ou le lien tout de suite.")}</p></div></section>
   </div>);
 }
