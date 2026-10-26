@@ -17,7 +17,7 @@ export const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friend
 
 
 export default function App() {
-  const navCfg = useStore((x) => x.settings[x.me]?.nav); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
+  const navCfg = useStore((x) => x.settings[x.me]?.nav); const topCfg = useStore((x) => x.settings[x.me]?.top); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
   const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
   const pendShares = useStore((s) => s.shares.filter((h) => h.authorId === s.me && h.status === "pending").length);
@@ -34,6 +34,7 @@ export default function App() {
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
   const go = (x: string) => { if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
   const bar = (navCfg ? navCfg.split(",") : ["home", "friends", "messages"]).map((k) => NAV.find((n) => n[0] === k)).filter(Boolean).slice(0, 3) as [V, string, string][];
+  const topKeys = (topCfg ? topCfg.split(",") : ["notifs", "settings", "profile"]).filter((k) => NAV.some((n) => n[0] === k)).slice(0, 3);
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
   const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
     : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur Mon cercle sera en place." />;
@@ -44,7 +45,7 @@ export default function App() {
       {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose(true)}><Ico n="plus" s={18} /> Publier</button></aside>
     <main className="main">
-      <div className="top">{v !== "home" ? <button className="topb" onClick={() => history.back()} aria-label="Retour"><Ico n="back" s={20} /></button> : <span className="grow" />}<span className="grow" /><div className="topr"><button className="topb" onClick={() => go("notifs")} aria-label="Notifications" style={{ position: "relative" }}><Ico n="bell" s={20} />{unreadN > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{unreadN}</span>}</button><button style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={34} /></button></div></div>
+      <div className="top">{v !== "home" ? <button className="topb" onClick={() => history.back()} aria-label="Retour"><Ico n="back" s={20} /></button> : <span className="grow" />}<span className="grow" /><div className="topr">{topKeys.map((k) => k === "profile" ? <button key={k} style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={34} /></button> : (() => { const it = NAV.find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}</div></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">

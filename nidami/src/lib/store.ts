@@ -15,7 +15,7 @@ export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
 export interface Album { id: ID; ownerId: ID; name: string; audience: Audience; recipients: ID[]; createdAt: number; auto?: boolean }
 export interface State {
   v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[]; albums: Album[];
-  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; nav?: string; bg?: string; fg?: string; accent?: string }>;
+  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; nav?: string; top?: string; bg?: string; fg?: string; accent?: string }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
@@ -49,7 +49,7 @@ export const actions = {
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
   updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
-  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "nav" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
+  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "nav" | "top" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
   publish(p: { kind: "text" | "photo" | "video"; text: string; img?: string | null; video?: string | null; albumId?: ID; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {
