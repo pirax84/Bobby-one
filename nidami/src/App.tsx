@@ -12,11 +12,11 @@ import { ChatBubble } from "./ui/Bubble";
 import { sessionFromReturn } from "./lib/auth";
 
 type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
-const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Amis", "users"], ["groups", "Groupes", "group"], ["messages", "Messages", "chat"], ["calls", "Appels", "phone"], ["media", "Photos", "img"], ["games", "Jeux", "game"], ["events", "Événements", "cal"], ["shares", "Partages", "send"], ["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["legal", "Légal", "lock"], ["settings", "Paramètres", "cog"]];
+export const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Amis", "users"], ["groups", "Groupes", "group"], ["messages", "Messages", "chat"], ["calls", "Appels", "phone"], ["media", "Photos", "img"], ["games", "Jeux", "game"], ["events", "Événements", "cal"], ["shares", "Partages", "send"], ["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["legal", "Légal", "lock"], ["settings", "Paramètres", "cog"]];
 
 
 export default function App() {
-  const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
+  const navCfg = useStore((x) => x.settings[x.me]?.nav); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
   const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
   const pendShares = useStore((s) => s.shares.filter((h) => h.authorId === s.me && h.status === "pending").length);
@@ -30,7 +30,9 @@ export default function App() {
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
+  const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
   const go = (x: string) => { if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
+  const bar = (navCfg ? navCfg.split(",") : ["home", "friends", "messages"]).map((k) => NAV.find((n) => n[0] === k)).filter(Boolean).slice(0, 3) as [V, string, string][];
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
   const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
     : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur Mon cercle sera en place." />;
@@ -49,11 +51,10 @@ export default function App() {
       <RightPanel go={go} />
     </aside>
     <nav className="bottom" aria-label="Navigation">
-      <button className={v === "home" ? "on" : ""} onClick={() => go("home")}><Ico n="home" /><i>Accueil</i></button>
-      <button className={v === "friends" ? "on" : ""} onClick={() => go("friends")} style={{ position: "relative" }}><Ico n="users" /><i>Amis</i>{reqs > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 6 }}>{reqs}</span>}</button>
+      {bar.slice(0, 2).map(tab)}
       <button className="plus" onClick={() => setCompose(true)} aria-label="Publier"><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
-      <button className={v === "messages" ? "on" : ""} onClick={() => go("messages")} style={{ position: "relative" }}><Ico n="chat" /><i>Messages</i>{unreadM > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{unreadM}</span>}</button>
-      <button className={more ? "on" : ""} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }}><Ico n="more" /><i>Plus</i></button></nav>
+      {bar.slice(2, 3).map(tab)}
+      <button className={more ? "on" : ""} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }}><Ico n="apps" /><i>Plus</i></button></nav>
     {more && <Modal title="Plus" onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([["Mon cercle", [["groups", "Groupes", "group"], ["events", "Événements", "cal"], ["shares", "Partages", "send"]]], ["Médias et jeux", [["media", "Photos", "img"], ["games", "Jeux", "game"], ["calls", "Appels", "phone"]]], ["Mon compte", [["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["settings", "Paramètres", "cog"], ["legal", "Légal", "lock"]]]] as [string, [V, string, string][]][]).map(([t, items]) =>
         <div key={t} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{t}</b>

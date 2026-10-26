@@ -23,6 +23,7 @@ const P: Record<string, string> = {
   trash: "M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13",
   eye: "M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
   more: "M5 12h.01M12 12h.01M19 12h.01",
+  apps: "M4 4h6.5v6.5H4zM13.5 4H20v6.5h-6.5zM4 13.5h6.5V20H4zM13.5 13.5H20V20h-6.5z",
   back: "M15 5l-7 7 7 7",
 };
 export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
