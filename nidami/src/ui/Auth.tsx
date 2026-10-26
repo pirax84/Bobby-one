@@ -10,6 +10,15 @@ if (typeof window !== "undefined") { window.addEventListener("beforeinstallpromp
 const standalone = () => typeof window !== "undefined" && (window.matchMedia?.("(display-mode: standalone)").matches || (navigator as any).standalone === true);
 const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
+/** Carte « Installer » réutilisable (réglages) : même logique que l'écran d'accueil. */
+export function InstallCard() {
+  const [, force] = useState(0); useEffect(() => { const f = () => force((n) => n + 1); subs.add(f); return () => { subs.delete(f); }; }, []);
+  if (standalone()) return <div className="card"><b>✅ Application installée</b><div className="muted small">Vous l'utilisez déjà comme une vraie application.</div></div>;
+  return <div className="card col"><h3>📲 Installer l'application</h3>
+    {deferred ? <button className="btn" onClick={async () => { deferred.prompt(); try { await deferred.userChoice; } catch { /* ignoré */ } deferred = null; subs.forEach((f) => f()); }}>Installer sur cet appareil</button>
+      : isIOS() ? <div className="small">Sur iPhone et iPad : touchez <b>Partager</b> ⬆️ puis <b>« Sur l'écran d'accueil »</b>.</div>
+      : <div className="small muted">Ouvrez le menu du navigateur (⋮) puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».</div>}</div>;
+}
 function InstallStep({ onSkip }: { onSkip: () => void }) {
   const [, force] = useState(0); useEffect(() => { const f = () => force((n) => n + 1); subs.add(f); return () => { subs.delete(f); }; }, []);
   const ios = isIOS();
