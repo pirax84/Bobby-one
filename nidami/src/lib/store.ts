@@ -26,6 +26,7 @@ export const getSaveWarn = () => saveWarn;
 export function useStore<T>(sel: (s: State) => T): T { return sel(useSyncExternalStore((f) => { subs.add(f); return () => subs.delete(f); }, getState, getState)); }
 // Une mise à jour = on modifie une copie profonde simple puis on notifie.
 function mut(fn: (s: State) => void) { const s: State = structuredClone(state); fn(s); state = s; emit(); }
+export const cfgOf = (s: State, id: ID) => Object.assign({ quiet: false, light: false, autoplay: true }, s.settings[id] || {});
 export const now = () => Date.now();          // « heure du serveur » du mode démo
 export const userOf = (s: State, id: ID) => s.users.find((u) => u.id === id);
 export const codeFor = (id: ID) => "NID-" + id.replace(/[^a-z0-9]/gi, "").toUpperCase().slice(0, 5).padEnd(5, "X");
@@ -44,7 +45,7 @@ export const actions = {
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
   updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
-  setSetting(k: "quiet" | "light" | "autoplay", v: boolean) { mut((s) => { s.settings[s.me] = { quiet: false, light: false, autoplay: true, ...s.settings[s.me], [k]: v }; }); },
+  setSetting(k: "quiet" | "light" | "autoplay", v: boolean) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
   publish(p: { kind: "text" | "photo"; text: string; img?: string | null; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {
@@ -60,8 +61,7 @@ export const actions = {
     });
     return err ? { ok: false, error: err } : { ok: true, id };
   },
-  open(postId: ID): Access { let res: Access = { ok: false, reason: "missing" }; mut((s) => { const p = s.posts.find((x) => x.id === postId); if (p) res = openPost(p, s.me, now(), s.social); });
-    if (res.ok && !res.author && res.firstOpen) { /* l'auteur voit « vu par » */ } return res; },
+  open(postId: ID): Access { const box: { r: Access } = { r: { ok: false, reason: "missing" } }; mut((s) => { const p = s.posts.find((x) => x.id === postId); if (p) box.r = openPost(p, s.me, now(), s.social); }); return box.r; },
   tick() { const t = now(); const probe: Post[] = state.posts; if (!probe.some((p) => p.viewSecs > 0 || p.expiresAt !== null)) return; let n = 0; const s: State = structuredClone(state); n = purgeExpired(s.posts, t); if (n) { state = s; emit(); } },
   deletePost(id: ID) { mut((s) => { s.posts = s.posts.filter((p) => !(p.id === id && p.authorId === s.me)); }); },
   react(id: ID, emoji: string) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.reactions[s.me] === emoji) delete p.reactions[s.me]; else { p.reactions[s.me] = emoji; if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a réagi ${emoji} à votre publication.`, "home"); } }); },

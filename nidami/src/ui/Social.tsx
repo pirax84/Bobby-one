@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStore, actions, userOf } from "../lib/store";
+import { useStore, actions, userOf, cfgOf } from "../lib/store";
 import { areFriends } from "../lib/engine";
 import { Avatar, Ico, Modal, toast, ago, useNow } from "./common";
 import { Home } from "./Home";
@@ -83,7 +83,7 @@ export function Notifs() {
 }
 
 export function Settings() {
-  const s = useStore((x) => x); const cfg = { quiet: false, light: false, autoplay: true, ...s.settings[s.me] };
+  const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
   const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><input type="checkbox" checked={cfg[k]} onChange={(e) => actions.setSetting(k, e.target.checked)} style={{ width: 24, height: 24 }} /></label>;
   return (<div className="col"><h1>Paramètres</h1>
     <div className="card"><Tg k="light" label="Thème clair" desc="Par défaut, Nidami est sombre." /><hr /><Tg k="quiet" label="Plage silencieuse" desc="Coupe les alertes la nuit (en mode serveur)." /><hr /><Tg k="autoplay" label="Lecture automatique des vidéos" desc="Pour les vidéos courtes (bientôt)." /></div>
