@@ -1,4 +1,4 @@
-name: Nidami (site)
+name: Nidami (vérification)
 
 on:
   workflow_dispatch:
@@ -6,17 +6,8 @@ on:
     branches: [main]
     paths: ["nidami/**", ".github/workflows/nidami.yml"]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: nidami-pages
-  cancel-in-progress: true
-
 jobs:
-  build:
+  verifier:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,20 +20,7 @@ jobs:
       - run: npm install --no-audit --no-fund
       - name: Tests des règles (publications éphémères)
         run: npm test
-      - name: Construction du site
+      - name: Vérification des types
+        run: npm run typecheck
+      - name: Construction du site (Vite)
         run: npm run build
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: nidami/dist
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
