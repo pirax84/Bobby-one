@@ -7,7 +7,10 @@ import { LegalView } from "./Legal";
 // L'événement d'installation arrive tôt : on l'écoute dès le chargement du fichier.
 let deferred: any = null; const subs = new Set<() => void>();
 if (typeof window !== "undefined") { window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferred = e; subs.forEach((f) => f()); }); window.addEventListener("appinstalled", () => { deferred = null; subs.forEach((f) => f()); }); }
-const standalone = () => typeof window !== "undefined" && (window.matchMedia?.("(display-mode: standalone)").matches || (navigator as any).standalone === true);
+const APK = "https://github.com/pirax84/Bobby-one/releases/download/cercle-android-latest/cercle.apk";
+const isApp = () => /CercleApp/.test(navigator.userAgent);
+const isAndroid = () => /Android/.test(navigator.userAgent);
+const standalone = () => typeof window !== "undefined" && (isApp() || window.matchMedia?.("(display-mode: standalone)").matches || (navigator as any).standalone === true);
 const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
 /** Carte « Installer » réutilisable (réglages) : même logique que l'écran d'accueil. */
@@ -16,6 +19,7 @@ export function InstallCard() {
   if (standalone()) return <div className="card"><b>✅ Application installée</b><div className="muted small">Vous l'utilisez déjà comme une vraie application.</div></div>;
   return <div className="card col"><h3>📲 Installer l'application</h3>
     {deferred ? <button className="btn" onClick={async () => { deferred.prompt(); try { await deferred.userChoice; } catch { /* ignoré */ } deferred = null; subs.forEach((f) => f()); }}>Installer sur cet appareil</button>
+      : isAndroid() ? <a className="btn" href={APK} style={{ textDecoration: "none" }}>Télécharger l'application Android</a>
       : isIOS() ? <div className="small">Sur iPhone et iPad : touchez <b>Partager</b> ⬆️ puis <b>« Sur l'écran d'accueil »</b>.</div>
       : <div className="small muted">Ouvrez le menu du navigateur (⋮) puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».</div>}</div>;
 }
@@ -25,7 +29,9 @@ function InstallStep({ onSkip }: { onSkip: () => void }) {
   return (<div className="card col center" style={{ alignItems: "center", gap: 16, padding: 28 }}>
     <Logo s={112} /><h1 style={{ fontSize: "1.9rem", letterSpacing: "-.03em" }}>Votre cercle.<br />Vos moments.</h1>
     <p className="muted" style={{ margin: 0 }}>Installez l'application sur cet appareil : une vraie icône, sans barre de navigateur.</p>
-    {deferred && <button className="btn" style={{ width: "100%" }} onClick={async () => { deferred.prompt(); try { await deferred.userChoice; } catch { /* ignoré */ } deferred = null; subs.forEach((f) => f()); }}>Installer l'application</button>}
+    {deferred && <button className="btn ghost" style={{ width: "100%" }} onClick={async () => { deferred.prompt(); try { await deferred.userChoice; } catch { /* ignoré */ } deferred = null; subs.forEach((f) => f()); }}>Installer l'application</button>}
+    {isAndroid() && <a className="btn" style={{ width: "100%", textDecoration: "none" }} href={APK}>Télécharger l'application Android</a>}
+    {isAndroid() && <div className="muted small">Android demandera d'autoriser l'installation depuis ce navigateur : acceptez, puis ouvrez le fichier téléchargé.</div>}
     {ios && !deferred && <div className="card col" style={{ textAlign: "left", width: "100%", gap: 8 }}><b>Sur iPhone et iPad (2 gestes) :</b><div>1. Touchez le bouton <b>Partager</b> ⬆️ en bas de Safari.</div><div>2. Choisissez <b>« Sur l'écran d'accueil »</b>, puis <b>Ajouter</b>.</div><div className="muted small">Apple n'autorise pas l'installation en un seul bouton.</div></div>}
     {!ios && !deferred && <div className="muted small">Si le bouton n'apparaît pas : ouvrez le menu du navigateur (⋮) puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».</div>}
     <button className="btn ghost" style={{ width: "100%" }} onClick={onSkip}>Continuer dans le navigateur</button>
