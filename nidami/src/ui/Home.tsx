@@ -52,27 +52,30 @@ export function Composer({ onClose, story = false, groupId }: { onClose: () => v
   const ok = (kind === "photo" ? !!img : text.trim().length > 0) && validCustom && (mode !== "only" || sel.length > 0) && !(story && sdur === "eph" && !(eff > 0));
   const go = () => { const r = actions.publish({ kind, text, img: kind === "photo" ? img : null, bg, mood, audience: aud, viewSecs: story ? (sdur === "eph" ? eff : 0) : eff, permanent: story ? sdur === "inf" : eff === 0, story }); if (!r.ok) return toast(r.error || "Erreur"); toast(story ? (sdur === "inf" ? "Story publiée, sans limite de durée." : sdur === "eph" ? "Story éphémère publiée." : "Story publiée pour 24 h.") : "Publié !"); onClose(); };
   const toggle = (id: string) => setSel((x) => (x.includes(id) ? x.filter((y) => y !== id) : [...x, id]));
-  return (<Modal title={story ? "Nouvelle story" : "Nouvelle publication"} onClose={onClose}><div className="col">
-    <div className="tabs"><button className={"chip" + (kind === "text" ? " on" : "")} onClick={() => setKind("text")}>✏️ Texte</button><button className={"chip" + (kind === "photo" ? " on" : "")} onClick={() => { setKind("photo"); if (!img) file.current?.click(); }}>📷 Photo</button></div>
+  const [em, setEm] = useState(false); const durVal = custom ? "c" : String(secs); const setDur = (v: string) => { if (v === "c") { setCustom("10"); } else { setCustom(""); setSecs(Number(v)); } };
+  const audLabel = AUD.find(([k]) => k === mode)?.[1] || "";
+  return (<Modal title={story ? "Nouvelle story" : "Nouvelle publication"} onClose={onClose}><div className="col" style={{ gap: 10 }}>
     <input ref={file} type="file" accept="image/*" hidden onChange={(e) => pick(e.target.files?.[0])} />
-    {kind === "photo" && (img ? <div style={{ position: "relative" }}><img className="photo" src={img} alt="Aperçu" /><button className="btn ghost sm" style={{ position: "absolute", top: 8, right: 8 }} onClick={() => { setImg(null); file.current?.click(); }}>Changer</button></div> : <button className="btn ghost" onClick={() => file.current?.click()} disabled={busy}>{busy ? "Chargement…" : "Choisir une photo"}</button>)}
-    <textarea className="inp" placeholder={kind === "photo" ? "Ajouter une légende (facultatif)…" : "Quoi de neuf avec vos proches ?"} value={text} onChange={(e) => setText(e.target.value)} maxLength={2000} aria-label="Texte" />
-    {kind === "text" && <div className="row">{BG.map((b, i) => <button key={i} aria-label={"Fond " + (i + 1)} onClick={() => setBg(i)} style={{ width: 30, height: 30, borderRadius: "50%", border: bg === i ? "3px solid #fff" : "0", background: b }} />)}</div>}
-    {!story && <div className="row wrap">{["😊", "😍", "🥳", "😴", "🤒", "💪"].map((m) => <button key={m} className={"react" + (mood === m ? " on" : "")} onClick={() => setMood(mood === m ? "" : m)}>{m}</button>)}<span className="muted small">Humeur</span></div>}
-    {<><h3 style={{ fontSize: "1rem" }}>Qui peut voir ?</h3>
-      <div className="tabs wrap">{AUD.map(([k, l]) => <button key={k} className={"chip" + (mode === k ? " on" : "")} onClick={() => { setMode(k); setSel([]); }}>{l}</button>)}</div>
-      {mode === "group" && <select className="inp" value={gid} onChange={(e) => setGid(e.target.value)} aria-label="Groupe">{groups.map((g) => <option key={g.id} value={g.id}>{g.emoji} {g.name}</option>)}</select>}
-      {mode === "list" && (lists.length ? <select className="inp" value={lid} onChange={(e) => setLid(e.target.value)}>{lists.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select> : <p className="muted small">Vous n'avez pas encore de liste : créez-en une dans « Amis ».</p>)}
-      {(mode === "only" || mode === "except") && <div className="tabs wrap">{friends.map((f) => <button key={f.id} className={"chip" + (sel.includes(f.id) ? " on" : "")} onClick={() => toggle(f.id)}>{f.name}</button>)}</div>}
-      <p className="small" style={{ color: count ? "var(--ok)" : "var(--warm)" }}>{mode === "me" ? "Visible par vous seulement." : `👥 ${count} personne${count > 1 ? "s" : ""} pourr${count > 1 ? "ont" : "a"} voir cette publication.`}</p>
-      {story && <><h3 style={{ fontSize: "1rem" }}>Durée de la story</h3><div className="tabs wrap">{([["24h", "⏳ 24 heures"], ["inf", "♾️ Illimitée"], ["eph", "⏱ Éphémère"]] as const).map(([k, l]) => <button key={k} className={"chip" + (sdur === k ? " on" : "")} onClick={() => { setSdur(k); if (k === "eph" && !secs && !custom) setSecs(5); }}>{l}</button>)}</div>
-        <p className="muted small">{sdur === "24h" ? "Visible 24 heures, puis elle disparaît." : sdur === "inf" ? "Reste visible jusqu'à ce que vous la supprimiez." : "Chaque ami n'a que quelques secondes, à partir de sa propre ouverture."}</p></>}
-      {(!story || sdur === "eph") && <><h3 style={{ fontSize: "1rem" }}>{story ? "Temps de consultation (par personne)" : "Durée de consultation (par personne)"}</h3>
-      <div className="tabs wrap">{!story && <button className={"chip" + (!custom && secs === 0 ? " on" : "")} onClick={() => { setSecs(0); setCustom(""); }}>♾️ Permanente</button>}{VIEW_CHOICES.map((v) => <button key={v} className={"chip" + (!custom && secs === v ? " on" : "")} onClick={() => { setSecs(v); setCustom(""); }}>{fmtSecs(v)}</button>)}
-        <input className="inp" style={{ width: 120 }} inputMode="numeric" placeholder="Autre (s)" value={custom} onChange={(e) => setCustom(e.target.value.replace(/\D/g, "").slice(0, 3))} aria-label="Durée personnalisée en secondes" /></div>
-      {!validCustom && <p className="small" style={{ color: "var(--bad)" }}>Entrez un nombre de secondes entre 1 et {MAX_CUSTOM_SECS}.</p>}
-      {eff > 0 && <p className="muted small"><Ico n="clock" s={14} /> Chaque ami dispose de {fmtSecs(eff)} <b>à partir de sa propre ouverture</b>. La publication disparaît pour tous après 24 h. Une photo peut toujours être photographiée avec un autre appareil : Mon cercle ne peut pas l'empêcher.</p>}</>}</>}
-    <button className="btn" disabled={!ok || busy} onClick={go}>Publier</button></div></Modal>);
+    {img && <div style={{ position: "relative" }}><img className="photo" src={img} alt="Aperçu" style={{ maxHeight: 200, objectFit: "cover", width: "100%" }} /><button className="btn ghost sm" style={{ position: "absolute", top: 6, right: 6 }} onClick={() => { setImg(null); setKind("text"); }} aria-label="Retirer la photo"><Ico n="x" s={16} /></button></div>}
+    <textarea className="inp" rows={img ? 2 : 3} placeholder={img ? "Ajouter une légende…" : "Quoi de neuf avec vos proches ?"} value={text} onChange={(e) => setText(e.target.value)} maxLength={2000} aria-label="Texte" />
+    <div className="row" style={{ gap: 6 }}>
+      <button className="tool" onClick={() => file.current?.click()} disabled={busy} aria-label="Ajouter une photo">📷</button>
+      {!story && <button className={"tool" + (mood || em ? " on" : "")} onClick={() => setEm(!em)} aria-label="Humeur">{mood || "😊"}</button>}
+      {!img && <div className="row grow" style={{ gap: 5, justifyContent: "flex-end" }}>{BG.map((b, i) => <button key={i} aria-label={"Fond " + (i + 1)} onClick={() => setBg(i)} style={{ width: 22, height: 22, borderRadius: "50%", border: bg === i ? "2px solid #fff" : "0", background: b }} />)}</div>}
+    </div>
+    {em && <div className="empanel"><button className="chip" onClick={() => { setMood(""); setEm(false); }}>Aucune humeur</button><EmojiGrid onPick={(e) => { setMood(e); setEm(false); }} /></div>}
+    <div className="opts">
+      <label className="opt"><span>👥</span><select value={mode} onChange={(e) => { setMode(e.target.value); setSel([]); }} aria-label="Qui peut voir ?">{AUD.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></label>
+      {story ? <label className="opt"><span>⏳</span><select value={sdur} onChange={(e) => { const k = e.target.value as "24h" | "inf" | "eph"; setSdur(k); if (k === "eph" && !secs && !custom) setSecs(5); }} aria-label="Durée de la story"><option value="24h">24 heures</option><option value="inf">Illimitée</option><option value="eph">Éphémère</option></select></label> : null}
+      {(!story || sdur === "eph") && <label className="opt"><span>⏱</span><select value={durVal} onChange={(e) => setDur(e.target.value)} aria-label="Durée de consultation">{!story && <option value="0">Permanente</option>}{VIEW_CHOICES.map((v) => <option key={v} value={String(v)}>{fmtSecs(v)}</option>)}<option value="c">Autre…</option></select></label>}
+    </div>
+    {custom !== "" && (!story || sdur === "eph") && <input className="inp" inputMode="numeric" placeholder="Secondes (1 à 999)" value={custom} onChange={(e) => setCustom(e.target.value.replace(/\D/g, "").slice(0, 3))} aria-label="Durée personnalisée en secondes" />}
+    {mode === "group" && <select className="inp" value={gid} onChange={(e) => setGid(e.target.value)} aria-label="Groupe">{groups.map((g) => <option key={g.id} value={g.id}>{g.emoji} {g.name}</option>)}</select>}
+    {mode === "list" && (lists.length ? <select className="inp" value={lid} onChange={(e) => setLid(e.target.value)}>{lists.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select> : <p className="muted small">Pas encore de liste : créez-en une dans « Amis ».</p>)}
+    {(mode === "only" || mode === "except") && <div className="tabs wrap">{friends.map((f) => <button key={f.id} className={"chip" + (sel.includes(f.id) ? " on" : "")} onClick={() => toggle(f.id)}>{f.name}</button>)}</div>}
+    {!validCustom && <p className="small" style={{ color: "var(--bad)" }}>Entrez entre 1 et {MAX_CUSTOM_SECS} secondes.</p>}
+    <p className="muted small" style={{ margin: 0 }}>{mode === "me" ? "Visible par vous seulement." : <span style={{ color: count ? "var(--ok)" : "var(--warm)" }}>{audLabel} · {count} personne{count > 1 ? "s" : ""}</span>}{eff > 0 && (!story || sdur === "eph") ? ` · ${fmtSecs(eff)} par personne dès l'ouverture` : ""}</p>
+    <button className="btn pubbtn" disabled={!ok || busy} onClick={go}>{busy ? "Chargement…" : "Publier"}</button></div></Modal>);
 }
 
 // ───────── Visionneuse éphémère
