@@ -1,5 +1,5 @@
 // Effets de conversation (secousse, confettis, cœurs) : idée classique des messageries, réalisée ici avec nos propres animations et un son synthétisé (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "confetti" | "hearts";
+export type Fx = "shake" | "confetti" | "hearts" | "kiss";
 let ctx: AudioContext | null = null;
 function beep(seq: [number, number, number][], type: OscillatorType = "square", vol = 0.06) {
   try {
@@ -17,7 +17,7 @@ export function playFx(k: Fx, sound = true) {
   }
   if (sound) beep(k === "hearts" ? [[523, .12, .02], [659, .12, .02], [784, .2, 0]] : [[660, .08, .02], [880, .08, .02], [1175, .16, 0]], "triangle", .08);
   if (reduced()) return;
-  const em = k === "hearts" ? ["❤️", "💕", "💖", "💗"] : ["🎉", "🎊", "✨", "⭐"]; const box = document.createElement("div"); box.className = "fxbox"; box.setAttribute("aria-hidden", "true");
+  const em = k === "kiss" ? ["😘", "💋", "😚", "💋"] : k === "hearts" ? ["❤️", "💕", "💖", "💗"] : ["🎉", "🎊", "✨", "⭐"]; const box = document.createElement("div"); box.className = "fxbox"; box.setAttribute("aria-hidden", "true");
   for (let i = 0; i < 34; i++) { const s = document.createElement("span"); s.textContent = em[i % em.length]; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * 0.9 + "s"; s.style.fontSize = 18 + Math.random() * 22 + "px"; s.style.animationDuration = 2 + Math.random() * 1.6 + "s"; box.appendChild(s); }
   document.body.appendChild(box); setTimeout(() => box.remove(), 4200);
 }
