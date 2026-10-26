@@ -5,7 +5,7 @@ import { seed, demoPosts } from "./seed";
 export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
 export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none" }
-export interface Msg { id: ID; from: ID; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean }
+export interface Msg { id: ID; from: ID; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: "shake" | "confetti" | "hearts" }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string }
 export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: number; place: string; inviteIds: ID[]; rsvp: Record<ID, "yes" | "no" | "maybe"> }
@@ -15,7 +15,7 @@ export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
 export interface Album { id: ID; ownerId: ID; name: string; audience: Audience; recipients: ID[]; createdAt: number; auto?: boolean }
 export interface State {
   v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[]; albums: Album[];
-  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; nav?: string; top?: string; push?: boolean; bg?: string; fg?: string; accent?: string }>;
+  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; nav?: string; top?: string; push?: boolean; fx?: boolean; nt?: Record<string, boolean>; bg?: string; fg?: string; accent?: string }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
@@ -29,13 +29,16 @@ export const getSaveWarn = () => saveWarn;
 export function useStore<T>(sel: (s: State) => T): T { return sel(useSyncExternalStore((f) => { subs.add(f); return () => subs.delete(f); }, getState, getState)); }
 // Une mise à jour = on modifie une copie profonde simple puis on notifie.
 function mut(fn: (s: State) => void) { const s: State = structuredClone(state); fn(s); state = s; emit(); }
-export const cfgOf = (s: State, id: ID) => Object.assign({ quiet: false, light: true, autoplay: true }, s.settings[id] || {});
+export const cfgOf = (s: State, id: ID) => Object.assign({ quiet: false, light: true, autoplay: true, fx: true }, s.settings[id] || {});
 export const now = () => Date.now();          // « heure du serveur » du mode démo
 export const userOf = (s: State, id: ID) => s.users.find((u) => u.id === id);
 export const codeFor = (id: ID) => "NID-" + id.replace(/[^a-z0-9]/gi, "").toUpperCase().slice(0, 5).padEnd(5, "X");
-const notify = (s: State, to: ID, text: string, go?: string) => { if (to !== s.me || true) s.notifs.unshift({ id: uid(), to, text, at: now(), read: false, go }); };
+const notify = (s: State, to: ID, text: string, go?: string) => { if (go && s.settings[to]?.nt?.[go] === false) return; s.notifs.unshift({ id: uid(), to, text, at: now(), read: false, go }); };
 
+let lastFx = 0;
 export const actions = {
+  sendFx(convId: ID, fx: "shake" | "confetti" | "hearts"): boolean { const t0 = now(); if (t0 - lastFx < 4000) return false; lastFx = t0; mut((s) => { const c = s.convs.find((x) => x.id === convId && x.memberIds.includes(s.me)); if (!c) return; c.msgs.push({ id: uid(), from: s.me, text: fx === "shake" ? "📳 Secousse !" : fx === "confetti" ? "🎉 Confettis !" : "❤️ Pluie de cœurs !", at: t0, secs: 0, reads: {}, gone: {}, fx } as Msg); }); return true; },
+  setNotifType(k: string, v: boolean) { mut((s) => { const c = cfgOf(s, s.me); s.settings[s.me] = { ...c, nt: { ...(c.nt || {}), [k]: v } }; }); },
   logout() { mut((s) => { s.started = false; s.me = ""; }); },
   start(name: string, bio = "") { mut((s) => { const old = s.users.find((u) => !u.demo && u.name.toLowerCase() === name.trim().toLowerCase()); if (old) { s.me = old.id; s.started = true; return; } const id = "u_" + uid(); const hue = Math.floor(Math.random() * 360); const nm = name.trim().slice(0, 30) || "Moi"; const base = nm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "").slice(0, 12) || "membre"; s.users.push({ id, handle: base + Math.floor(100 + Math.random() * 900), discover: "hidden", name: nm, hue, bio, status: "Bienvenue dans mon nid 🪺", joinedAt: now(), code: codeFor(id) }); s.me = id; s.started = true;
     for (const f of s.users.filter((u) => u.demo && ["celine", "thomas", "emilie", "max"].includes(u.id))) { s.social.friends[id] = [...(s.social.friends[id] || []), f.id]; s.social.friends[f.id] = [...(s.social.friends[f.id] || []), id]; }
@@ -49,7 +52,7 @@ export const actions = {
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
   updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
-  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "nav" | "top" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
+  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "nav" | "top" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
   publish(p: { kind: "text" | "photo" | "video"; text: string; img?: string | null; video?: string | null; albumId?: ID; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {

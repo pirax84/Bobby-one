@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useStore, actions, userOf, Msg, Conv } from "../lib/store";
 import { areFriends } from "../lib/engine";
 import { Avatar, Ico, toast, ago, fileToDataUrl, useNow, EMOJIS } from "./common";
+import { playFx } from "../lib/fx";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 
 const linkify = (t: string) => t.split(/(https:\/\/[^\s]+)/g).map((x, i) => (i % 2 ? <a key={i} href={x} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline" }}>{x.replace("https://", "")}</a> : x));
@@ -38,9 +39,11 @@ export function Messages() {
       {!convs.length && <p className="muted">Aucune conversation : écrivez à un ami depuis « Amis ».</p>}</div>);
   if (!c) return (<div className="col"><h1>Messages</h1>{list}</div>);
   const onceMsg = c.msgs.find((m) => m.id === openOnce);
+  const fxOn = (s.settings[me]?.fx ?? true);
   const visio = () => { const a = new Uint8Array(9); crypto.getRandomValues(a); const room = "Cercle" + Array.from(a, (x) => x.toString(36)).join(""); const url = "https://meet.jit.si/" + room; actions.send(c.id, "📹 Je lance une visio : " + url, 0); window.open(url, "_blank", "noopener"); toast("Visio lancée : le lien est envoyé dans la conversation."); };
   const pinned = c.msgs.filter((m) => m.pinned && visible(m, me, now));
   return (<div className="col"><div className="row"><button className="btn ghost sm" onClick={closeConv} aria-label="Retour"><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><button className="btn ghost sm" onClick={visio} aria-label="Lancer un appel visio">📹 Visio</button></div>
+    <div className="row wrap" style={{ gap: 6 }}>{([["shake", "📳 Secousse"], ["confetti", "🎉 Confettis"], ["hearts", "❤️ Cœurs"]] as const).map(([k, l]) => <button key={k} className="chip" onClick={() => { if (!actions.sendFx(c.id, k)) return toast("Doucement : un effet toutes les 4 secondes."); playFx(k, fxOn); }}>{l}</button>)}</div>
     {pinned.length > 0 && <div className="card small">📌 {pinned.map((m) => m.text || "Message").join(" · ")}</div>}
     <div className="card msgs" role="log" aria-live="polite">{c.msgs.filter((m) => !q || m.text.toLowerCase().includes(q.toLowerCase())).map((m) => { const mine = m.from === me; const ok = visible(m, me, now); const left = m.secs && m.reads[me] !== undefined ? Math.max(0, Math.ceil((m.reads[me] + m.secs * 1000 - now) / 1000)) : 0; const from = userOf(s, m.from); const rp = m.replyTo ? c.msgs.find((x) => x.id === m.replyTo) : null;
       return <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start" }}>{!mine && c.groupId && <span className="muted small">{from?.name}</span>}
