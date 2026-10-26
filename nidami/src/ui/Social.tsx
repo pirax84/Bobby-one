@@ -40,8 +40,26 @@ function Scanner({ onCode, onClose }: { onCode: (c: string) => void; onClose: ()
     return () => { stop = true; stream?.getTracks().forEach((t) => t.stop()); }; }, []);
   return (<Modal title="Scanner un QR code" onClose={onClose}><div className="col">{err ? <p className="muted">{err}</p> : <video ref={ref} playsInline muted style={{ width: "100%", borderRadius: 16 }} />}</div></Modal>);
 }
+
+type Ct = { name: string; tel?: string; email?: string };
+function InviteContacts({ onClose }: { onClose: () => void }) {
+  const me = useStore((x) => userOf(x, x.me)!); const [list, setList] = useState<Ct[]>([]); const [pick, setPick] = useState<string[]>([]); const [man, setMan] = useState("");
+  const can = typeof navigator !== "undefined" && "contacts" in navigator && "ContactsManager" in window;
+  const msg = `Rejoins-moi sur Mon cercle, le réseau privé pour la famille et les amis, sans publicité. Installe l'application ici : ${inviteLink(me.code)} (mon code : ${me.code})`;
+  const choose = async () => { try { const r = await (navigator as any).contacts.select(["name", "tel", "email"], { multiple: true }); const n: Ct[] = r.map((c: any) => ({ name: c.name?.[0] || c.email?.[0] || c.tel?.[0] || "Contact", tel: c.tel?.[0], email: c.email?.[0] })).filter((c: Ct) => c.tel || c.email); setList(n); setPick(n.map((c) => c.name)); if (!n.length) toast("Aucun contact avec un numéro ou un e-mail."); } catch { toast("Accès aux contacts refusé ou annulé."); } };
+  const addMan = () => { const v = man.trim(); if (!v) return; const c: Ct = v.includes("@") ? { name: v, email: v } : { name: v, tel: v }; setList((x) => [...x, c]); setPick((x) => [...x, c.name]); setMan(""); };
+  const share = async () => { try { if ((navigator as any).share) await (navigator as any).share({ title: "Mon cercle", text: msg }); else { await navigator.clipboard.writeText(msg); toast("Message copié : collez-le où vous voulez."); } } catch { /* annulé */ } };
+  const chosen = list.filter((c) => pick.includes(c.name));
+  return <Modal title="Inviter mes proches" onClose={onClose}><div className="col" style={{ gap: 10 }}>
+    {can ? <button className="btn" onClick={choose}>📇 Choisir dans mes contacts</button> : <p className="muted small" style={{ margin: 0 }}>Sur ce téléphone ou navigateur, l'application ne peut pas lire vos contacts. Ajoutez un numéro ou un e-mail à la main, ou partagez le lien.</p>}
+    <div className="row" style={{ gap: 6 }}><input className="inp sm" placeholder="Numéro ou e-mail" value={man} onChange={(e) => setMan(e.target.value)} aria-label="Numéro ou e-mail" onKeyDown={(e) => e.key === "Enter" && addMan()} /><button className="btn sm" onClick={addMan} disabled={!man.trim()}>Ajouter</button></div>
+    {list.map((c) => <div key={c.name} className="row"><span className="grow"><b>{c.name}</b><span className="muted small" style={{ display: "block" }}>{c.tel || c.email}</span></span><Switch on={pick.includes(c.name)} label={"Inviter " + c.name} onChange={(v) => setPick((x) => (v ? [...x, c.name] : x.filter((y) => y !== c.name)))} /></div>)}
+    {chosen.length > 0 && <div className="col" style={{ gap: 6 }}><b className="small">Envoyer l'invitation :</b>{chosen.map((c) => <div key={c.name} className="row wrap" style={{ gap: 6 }}><span className="grow small">{c.name}</span>{c.tel && <a className="btn ghost sm" style={{ textDecoration: "none" }} href={`sms:${c.tel}?&body=${encodeURIComponent(msg)}`}>SMS</a>}{c.email && <a className="btn ghost sm" style={{ textDecoration: "none" }} href={`mailto:${c.email}?subject=${encodeURIComponent("Rejoins-moi sur Mon cercle")}&body=${encodeURIComponent(msg)}`}>E-mail</a>}</div>)}</div>}
+    <button className="btn ghost" onClick={share}>🔗 Partager le lien d'invitation</button>
+    <p className="muted small" style={{ margin: 0 }}>🔒 Vos contacts ne sont ni enregistrés ni envoyés à Mon cercle : ils servent seulement à écrire le message sur votre téléphone. L'import depuis Google ou Facebook viendra avec la connexion par serveur.</p></div></Modal>;
+}
 export function Friends({ go }: { go: (v: string) => void }) {
-  const s = useStore((x) => x); const me = s.me; const user = userOf(s, me)!; const [code, setCode] = useState(""); const [list, setList] = useState(false); const [name, setName] = useState(""); const [sel, setSel] = useState<string[]>([]); const [menu, setMenu] = useState<string | null>(null);
+  const s = useStore((x) => x); const me = s.me; const user = userOf(s, me)!; const [code, setCode] = useState(""); const [list, setList] = useState(false); const [name, setName] = useState(""); const [sel, setSel] = useState<string[]>([]); const [menu, setMenu] = useState<string | null>(null); const [ct, setCt] = useState(false);
   const friends = (s.social.friends[me] || []).map((i) => userOf(s, i)!).filter(Boolean); const reqs = s.reqs.filter((r) => r.to === me); const blocked = (s.social.blocks[me] || []).map((i) => userOf(s, i)!).filter(Boolean);
   const mylists = s.social.lists.filter((l) => l.ownerId === me);
   return (<div className="col"><h1>Amis</h1>
@@ -49,10 +67,12 @@ export function Friends({ go }: { go: (v: string) => void }) {
     <FindPeople />
     <div className="card col" style={{ padding: 10, gap: 8 }}><div className="row" style={{ gap: 8 }}><span className="muted small grow">Mon code : <b style={{ color: "var(--warm)", letterSpacing: 1 }}>{user.code}</b></span><button className="chip" onClick={() => { navigator.clipboard?.writeText(user.code).then(() => toast("Code copié")).catch(() => toast("Copie impossible")); }}>Copier</button></div>
       <form className="row" style={{ gap: 6 }} onSubmit={(e) => { e.preventDefault(); const r = actions.addByCode(code); toast(r.msg); if (r.ok) setCode(""); }}><input className="inp sm" placeholder="Code d'un proche (NID-…)" value={code} onChange={(e) => setCode(e.target.value)} aria-label="Code d'invitation" /><button className="btn sm" disabled={!code.trim()}>Inviter</button></form>
+      <button className="btn ghost sm" onClick={() => setCt(true)}>📇 Inviter depuis mes contacts</button>
       <details className="muted small"><summary>Mode démo : codes à tester</summary>{s.users.filter((u) => u.demo).map((u) => u.code).join(", ")} (personnes fictives)</details></div>
     <div className="card col" style={{ gap: 4 }}><h3>Mes amis ({friends.length})</h3>{friends.map((f) => <div key={f.id} className="frow"><button className="frmain" onClick={() => setMenu(f.id)} aria-label={"Options pour " + f.name}><Avatar u={f} s={40} /><span className="grow"><b>{f.name}</b><span className="muted small ell" style={{ display: "block" }}>{f.status}</span></span></button>
       <button className="btn ghost sm" onClick={() => { actions.startDm(f.id); go("messages"); }} aria-label={"Écrire à " + f.name}><Ico n="chat" s={18} /></button><button className="btn ghost sm" onClick={() => setMenu(f.id)} aria-label="Plus d'options">⋯</button></div>)}
       {!friends.length && <p className="muted">Pas encore d'amis.</p>}</div>
+    {ct && <InviteContacts onClose={() => setCt(false)} />}
     {menu && (() => { const f = userOf(s, menu); if (!f) return null; return <Modal title={f.name} onClose={() => setMenu(null)}><div className="col" style={{ gap: 8 }}><div className="row"><Avatar u={f} s={48} /><div className="muted small">@{f.handle}</div></div>
       <button className="btn" onClick={() => { actions.startDm(f.id); setMenu(null); go("messages"); }}>💬 Écrire</button>
       <button className="btn ghost" onClick={() => { if (confirm(`Retirer ${f.name} de vos amis ?`)) { actions.unfriend(f.id); setMenu(null); } }}>Retirer des amis</button>

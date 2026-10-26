@@ -13,7 +13,7 @@ export const seed = (): State => ({
       { id: "g_amis", name: "Amis du lycée", emoji: "🎓", description: "Les inséparables.", rules: "Ici on se taquine, mais gentiment.", adminIds: ["max"], memberIds: ["max", "thomas"] },
     ],
   },
-  posts: [], notifs: [], convs: [], events: [], games: [], reqs: [], reports: [], shares: [], scores: {}, settings: {},
+  posts: [], notifs: [], convs: [], events: [], games: [], reqs: [], reports: [], shares: [], albums: [], scores: {}, settings: {},
 });
 
 // Jolies « photos » de démonstration (dessinées, aucune vraie personne).

@@ -19,7 +19,7 @@ export interface Group { id: ID; name: string; emoji: string; description: strin
 export interface FriendList { id: ID; ownerId: ID; name: string; memberIds: ID[] }
 export interface Comment { id: ID; authorId: ID; text: string; at: number; replyTo?: ID }
 export interface Post {
-  id: ID; authorId: ID; kind: "text" | "photo"; text: string; img?: string | null; bg?: number;
+  id: ID; authorId: ID; kind: "text" | "photo" | "video"; text: string; img?: string | null; video?: string | null; albumId?: ID; bg?: number;
   mood?: string; story?: boolean;
   createdAt: number;
   audience: Audience; recipients: ID[];      // destinataires figés à la publication
@@ -99,7 +99,7 @@ export function purgeExpired(posts: Post[], now: number): number {
 // Le fil d'une personne : publications qu'elle a le droit de voir (hors stories), plus récentes d'abord.
 export function feedFor(posts: Post[], userId: ID, now: number, s: Social): Post[] {
   const shown = (p: Post) => { const a = accessFor(p, posts, userId, now, s); return a.ok || a.reason === "expired-for-you"; };   // « expirée pour moi » reste visible, grisée
-  return posts.filter((p) => !p.story && shown(p)).sort((a, b) => b.createdAt - a.createdAt);
+  return posts.filter((p) => !p.story && !p.albumId && shown(p)).sort((a, b) => b.createdAt - a.createdAt);
 }
 export const storiesFor = (posts: Post[], userId: ID, now: number, s: Social) => posts.filter((p) => p.story && checkAccess(p, userId, now, s).ok).sort((a, b) => a.createdAt - b.createdAt);
 

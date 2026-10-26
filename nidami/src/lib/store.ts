@@ -12,15 +12,16 @@ export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: n
 export interface Game { id: ID; kind: "morpion"; xId: ID; oId: ID; board: string[]; turn: "X" | "O"; winner: "X" | "O" | "draw" | null; at: number }
 export interface Req { id: ID; from: ID; to: ID; at: number }
 export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
+export interface Album { id: ID; ownerId: ID; name: string; audience: Audience; recipients: ID[]; createdAt: number; auto?: boolean }
 export interface State {
-  v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[];
+  v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[]; albums: Album[];
   scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; nav?: string; bg?: string; fg?: string; accent?: string }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
 const subs = new Set<() => void>();
 let saveWarn = "";
-function load(): State { try { const s = localStorage.getItem(KEY); if (s) { const o = JSON.parse(s); if (o?.v === 1) { o.shares ||= []; o.users.forEach((u: User) => { u.handle ||= u.id.replace(/^u_/, "").slice(0, 10) + "_"; u.discover ||= "hidden"; }); return o; } } } catch {} return seed(); }
+function load(): State { try { const s = localStorage.getItem(KEY); if (s) { const o = JSON.parse(s); if (o?.v === 1) { o.shares ||= []; o.albums ||= []; o.users.forEach((u: User) => { u.handle ||= u.id.replace(/^u_/, "").slice(0, 10) + "_"; u.discover ||= "hidden"; }); return o; } } } catch {} return seed(); }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); saveWarn = ""; } catch { saveWarn = "Mémoire de l'appareil pleine : supprimez d'anciennes photos."; } }
 function emit() { save(); subs.forEach((f) => f()); }
 export const getState = () => state;
@@ -51,7 +52,7 @@ export const actions = {
   setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "nav" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
-  publish(p: { kind: "text" | "photo"; text: string; img?: string | null; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {
+  publish(p: { kind: "text" | "photo" | "video"; text: string; img?: string | null; video?: string | null; albumId?: ID; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {
     if (!validViewSecs(p.viewSecs)) return { ok: false, error: "Durée invalide." };
     let id = ""; let err = "";
     mut((s) => {
@@ -59,13 +60,18 @@ export const actions = {
       if (p.audience.mode !== "me" && !recipients.length) { err = "Personne ne pourra voir cette publication : choisissez d'autres destinataires."; return; }
       id = "p_" + uid(); const t = now();
       const eph = !p.permanent && (p.viewSecs > 0 || p.story);
-      s.posts.unshift({ id, authorId: s.me, kind: p.kind, text: p.text.slice(0, 2000), img: p.img || null, bg: p.bg, mood: p.mood, story: p.story, createdAt: t, audience: p.audience, recipients, viewSecs: p.permanent ? 0 : p.viewSecs, expiresAt: eph ? t + DEFAULT_GLOBAL_MS : null, views: {}, reactions: {}, comments: [] });
-      for (const r of recipients) notify(s, r, `${userOf(s, s.me)!.name} a partagé ${p.story ? "une story" : "une publication"}${eph && !p.story ? " éphémère" : ""}.`, p.story ? "home" : "home");
+      s.posts.unshift({ id, authorId: s.me, kind: p.kind, text: p.text.slice(0, 2000), img: p.img || null, video: p.video || null, albumId: p.albumId, bg: p.bg, mood: p.mood, story: p.story, createdAt: t, audience: p.audience, recipients, viewSecs: p.permanent ? 0 : p.viewSecs, expiresAt: eph ? t + DEFAULT_GLOBAL_MS : null, views: {}, reactions: {}, comments: [] });
+      if (!p.albumId) for (const r of recipients) notify(s, r, `${userOf(s, s.me)!.name} a partagé ${p.story ? "une story" : "une publication"}${eph && !p.story ? " éphémère" : ""}.`, p.story ? "home" : "home");
     });
     return err ? { ok: false, error: err } : { ok: true, id };
   },
   open(postId: ID): Access { const box: { r: Access } = { r: { ok: false, reason: "missing" } }; mut((s) => { const p = s.posts.find((x) => x.id === postId); if (p) box.r = openAny(p, s.posts, s.me, now(), s.social); }); return box.r; },
   tick() { const t = now(); const probe: Post[] = state.posts; if (!probe.some((p) => p.viewSecs > 0 || p.expiresAt !== null)) return; let n = 0; const s: State = structuredClone(state); n = purgeExpired(s.posts, t); if (n) { state = s; emit(); } },
+  createAlbum(name: string, audience: Audience): { ok: boolean; error?: string; id?: ID } { let id = ""; let err = ""; mut((s) => { const recipients = resolveRecipients(s.social, s.me, audience); if (audience.mode !== "me" && !recipients.length) { err = "Personne ne pourra voir cet album : choisissez d'autres destinataires."; return; } id = "a_" + uid(); s.albums.unshift({ id, ownerId: s.me, name: name.trim().slice(0, 40) || "Album", audience, recipients, createdAt: now() }); for (const r of recipients) notify(s, r, `${userOf(s, s.me)!.name} a créé l'album « ${name.trim().slice(0, 40)} » pour vous.`, "media"); }); return err ? { ok: false, error: err } : { ok: true, id }; },
+  deleteAlbum(id: ID) { mut((s) => { const a = s.albums.find((x) => x.id === id); if (!a || a.ownerId !== s.me) return; const ids = s.posts.filter((p) => p.albumId === id).map((p) => p.id); for (const i of ids) s.posts = cascadeDelete(s.posts, i); s.albums = s.albums.filter((x) => x.id !== id); }); },
+  addToAlbum(albumId: ID, it: { img?: string | null; video?: string | null; text?: string }): { ok: boolean; error?: string } { let err = ""; mut((s) => { const a = s.albums.find((x) => x.id === albumId && x.ownerId === s.me); if (!a) { err = "Album introuvable."; return; } const t = now(); s.posts.unshift({ id: "p_" + uid(), authorId: s.me, kind: it.video ? "video" : "photo", text: (it.text || "").slice(0, 300), img: it.img || null, video: it.video || null, albumId, createdAt: t, audience: a.audience, recipients: a.recipients, viewSecs: 0, expiresAt: null, views: {}, reactions: {}, comments: [] }); }); return err ? { ok: false, error: err } : { ok: true }; },
+  markAutoAlbum(id: ID) { mut((s) => { const a = s.albums.find((x) => x.id === id); if (a) a.auto = true; }); },
+  getAutoAlbum(): ID | undefined { return state.albums.find((a) => a.ownerId === state.me && a.auto)?.id; },
   deletePost(id: ID) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || p.authorId !== s.me) return; s.posts = cascadeDelete(s.posts.filter((x) => x.id !== id), id); s.shares.forEach((h) => { if (h.postId === id && h.status === "approved") h.status = "revoked"; }); }); },
   react(id: ID, emoji: string) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.reactions[s.me] === emoji) delete p.reactions[s.me]; else { p.reactions[s.me] = emoji; if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a réagi ${emoji} à votre publication.`, "home"); } }); },
   comment(id: ID, text: string, replyTo?: ID) { const t = text.trim(); if (!t) return; mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; const c: Comment = { id: uid(), authorId: s.me, text: t.slice(0, 500), at: now(), replyTo }; p.comments.push(c); if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a commenté votre publication.`, "home"); }); },
