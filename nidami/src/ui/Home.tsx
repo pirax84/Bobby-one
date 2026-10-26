@@ -67,7 +67,7 @@ export function Composer({ onClose, story = false, groupId }: { onClose: () => v
       <div className="tabs wrap"><button className={"chip" + (!custom && secs === 0 ? " on" : "")} onClick={() => { setSecs(0); setCustom(""); }}>♾️ Permanente</button>{VIEW_CHOICES.map((v) => <button key={v} className={"chip" + (!custom && secs === v ? " on" : "")} onClick={() => { setSecs(v); setCustom(""); }}>{fmtSecs(v)}</button>)}
         <input className="inp" style={{ width: 120 }} inputMode="numeric" placeholder="Autre (s)" value={custom} onChange={(e) => setCustom(e.target.value.replace(/\D/g, "").slice(0, 3))} aria-label="Durée personnalisée en secondes" /></div>
       {!validCustom && <p className="small" style={{ color: "var(--bad)" }}>Entrez un nombre de secondes entre 1 et {MAX_CUSTOM_SECS}.</p>}
-      {eff > 0 && <p className="muted small"><Ico n="clock" s={14} /> Chaque ami dispose de {fmtSecs(eff)} <b>à partir de sa propre ouverture</b>. La publication disparaît pour tous après 24 h. Une photo peut toujours être photographiée avec un autre appareil : Nidami ne peut pas l'empêcher.</p>}</>}
+      {eff > 0 && <p className="muted small"><Ico n="clock" s={14} /> Chaque ami dispose de {fmtSecs(eff)} <b>à partir de sa propre ouverture</b>. La publication disparaît pour tous après 24 h. Une photo peut toujours être photographiée avec un autre appareil : Mon cercle ne peut pas l'empêcher.</p>}</>}
     {story && <p className="muted small">Votre story est visible par tous vos amis pendant 24 h.</p>}
     <button className="btn" disabled={!ok || busy} onClick={go}>Publier</button></div></Modal>);
 }

@@ -1,3 +1,4 @@
+import { applyTheme } from "./lib/theme";
 import { useEffect, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
 import { Avatar, Ico, Logo, ToastHost, Modal, toast } from "./ui/common";
@@ -13,7 +14,7 @@ const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Am
 function Welcome() {
   const [name, setName] = useState(""); const [ok, setOk] = useState(false); const [legal, setLegal] = useState(false);
   return (<div className="hero"><div className="card col center" style={{ alignItems: "center", gap: 16, padding: 28 }}>
-    <Logo s={112} /><h1 style={{ fontSize: "2.4rem", letterSpacing: "-.03em" }}>Nidami</h1><p style={{ margin: 0, fontWeight: 700, background: "var(--warmgrad)", WebkitBackgroundClip: "text", color: "transparent" }}>Votre cercle. Vos moments.</p>
+    <Logo s={112} /><h1 style={{ fontSize: "1.9rem", letterSpacing: "-.03em" }}>Votre cercle.<br />Vos moments.</h1>
     <p className="muted" style={{ margin: 0 }}>Le nid privé de votre famille et de vos amis. Sans publicité. Sans partage vers l'extérieur.</p>
     <form className="col" style={{ width: "100%" }} onSubmit={(e) => { e.preventDefault(); if (name.trim() && ok) actions.start(name); }}>
       <input className="inp" placeholder="Votre prénom ou pseudo" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" autoFocus />
@@ -33,21 +34,21 @@ export default function App() {
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
   const [v, setV] = useState<V>("home"); const [compose, setCompose] = useState(false); const [more, setMore] = useState(false);
-  useEffect(() => { document.documentElement.dataset.theme = light ? "light" : "dark"; }, [light]);
+  const th = useStore((s) => s.settings[s.me]); useEffect(() => { applyTheme({ light: !!light, premium: !!th?.premium, bg: th?.bg, fg: th?.fg, accent: th?.accent }); }, [light, th?.premium, th?.bg, th?.fg, th?.accent]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   if (!started || !me || !user) return <><Welcome /><ToastHost /></>;
   const go = (x: string) => { setV(x as V); setMore(false); };
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
   const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
-    : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur Nidami sera en place." />;
+    : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur Mon cercle sera en place." />;
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className="shell">
-    <aside className="side"><div className="brand"><Logo /><div><b>Nidami</b><div className="muted small">Votre cercle. Vos moments.</div></div></div>
+    <aside className="side"><div className="brand"><Logo /><div><b>Votre cercle.</b><div className="muted small">Vos moments.</div></div></div>
       {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose(true)}><Ico n="plus" s={18} /> Publier</button></aside>
     <main className="main">
-      <div className="top"><Logo s={36} /><b className="grow" style={{ fontSize: "1.2rem" }}>Nidami</b><button className="btn ghost sm" onClick={() => go("notifs")} aria-label="Notifications" style={{ position: "relative" }}><Ico n="bell" s={20} />{unreadN > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{unreadN}</span>}</button><button style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={36} /></button></div>
+      <div className="top"><Logo s={36} /><b className="grow" style={{ fontSize: "1.1rem" }}>Votre cercle.</b><button className="btn ghost sm" onClick={() => go("notifs")} aria-label="Notifications" style={{ position: "relative" }}><Ico n="bell" s={20} />{unreadN > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{unreadN}</span>}</button><button style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={36} /></button></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">
@@ -62,7 +63,7 @@ export default function App() {
       <button className={more ? "on" : ""} onClick={() => setMore(true)}><Ico n="more" />Plus</button></nav>
     {more && <Modal title="Menu" onClose={() => setMore(false)}><div className="grid2">{NAV.filter(([k]) => !["home", "friends", "messages"].includes(k)).map(([k, l, i]) => <button key={k} className="card col" style={{ alignItems: "center", color: "inherit", position: "relative" }} onClick={() => go(k)}><Ico n={i} s={26} />{l}{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 8, right: 8 }}>{badge(k)}</span>}</button>)}</div></Modal>}
     {pendCode && (() => { const t = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
-      return <Modal title="Invitation Nidami" onClose={done}><div className="col center" style={{ alignItems: "center" }}>{t ? <><Avatar u={t} s={72} /><h3>Ajouter {t.name} ?</h3><p className="muted small">@{t.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>Envoyer la demande</button></> : <p className="muted">Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.</p>}<button className="btn ghost" onClick={done}>Plus tard</button></div></Modal>; })()}
+      return <Modal title="Invitation Mon cercle" onClose={done}><div className="col center" style={{ alignItems: "center" }}>{t ? <><Avatar u={t} s={72} /><h3>Ajouter {t.name} ?</h3><p className="muted small">@{t.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>Envoyer la demande</button></> : <p className="muted">Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.</p>}<button className="btn ghost" onClick={done}>Plus tard</button></div></Modal>; })()}
     {compose && <ComposerModal onClose={() => setCompose(false)} />}
     <ToastHost /></div>);
 }

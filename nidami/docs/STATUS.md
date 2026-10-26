@@ -1,4 +1,4 @@
-# Nidami — état d'avancement (honnête)
+# Mon cercle — état d'avancement (honnête)
 
 Légende : ✅ fait et testé · 🟡 fait mais non testé sur un vrai appareil/serveur · ⏳ à faire (demande un serveur)
 
@@ -43,4 +43,4 @@ Légende : ✅ fait et testé · 🟡 fait mais non testé sur un vrai appareil/
 ## Limites à connaître
 - Mode démo : tout reste sur l'appareil ; rien n'est réellement protégé contre quelqu'un qui ouvre les outils du navigateur. La **vraie** protection viendra du serveur.
 - Aucune application ne peut empêcher une capture d'écran faite avec un autre appareil.
-- Le nom « Nidami » n'a pas fait l'objet d'une recherche de marque officielle (INPI/EUIPO) : à faire avant toute publication commerciale.
+- Le nom « Mon cercle » n'a pas fait l'objet d'une recherche de marque officielle (INPI/EUIPO) : à faire avant toute publication commerciale.

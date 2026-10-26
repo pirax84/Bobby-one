@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { FONDS, ECRITURES_SOMBRE, ECRITURES_CLAIR, ACCENTS, type Opt } from "../lib/theme";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
 import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
@@ -27,7 +28,7 @@ export function MyQr({ u }: { u: User }) {
 function Scanner({ onCode, onClose }: { onCode: (c: string) => void; onClose: () => void }) {
   const ref = useRef<HTMLVideoElement>(null); const [err, setErr] = useState("");
   useEffect(() => { let stop = false; let stream: MediaStream | null = null; const BD = (window as any).BarcodeDetector;
-    if (!BD) { setErr("Ce navigateur ne sait pas lire les QR codes. Utilisez l'appareil photo du téléphone : il ouvrira le lien Nidami tout seul."); return; }
+    if (!BD) { setErr("Ce navigateur ne sait pas lire les QR codes. Utilisez l'appareil photo du téléphone : il ouvrira le lien Mon cercle tout seul."); return; }
     (async () => { try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); if (ref.current) { ref.current.srcObject = stream; await ref.current.play(); } const det = new BD({ formats: ["qr_code"] });
       const loop = async () => { if (stop || !ref.current) return; try { const r = await det.detect(ref.current); const v = r[0]?.rawValue as string | undefined; const m = v?.match(/add=(NID-[A-Z0-9]{5})/i) || v?.match(/(NID-[A-Z0-9]{5})/i); if (m) { onCode(m[1].toUpperCase()); return; } } catch {} setTimeout(loop, 300); }; loop(); } catch { setErr("Caméra indisponible ou refusée."); } })();
     return () => { stop = true; stream?.getTracks().forEach((t) => t.stop()); }; }, []);
@@ -40,7 +41,7 @@ export function Friends({ go }: { go: (v: string) => void }) {
   return (<div className="col"><h1>Amis</h1>
     {reqs.length > 0 && <div className="card col"><h3>Demandes reçues</h3>{reqs.map((r) => { const u = userOf(s, r.from); return <div key={r.id} className="row"><Avatar u={u} /><div className="grow"><b>{u?.name}</b><div className="muted small">{ago(r.at)}</div></div><button className="btn sm" onClick={() => { actions.answerReq(r.id, true); toast(`${u?.name} est maintenant votre ami.`); }}>Accepter</button><button className="btn ghost sm" onClick={() => actions.answerReq(r.id, false)}>Refuser</button></div>; })}</div>}
     <FindPeople />
-    <div className="card col"><h3>Inviter quelqu'un</h3><p className="muted small">Nidami est fermé : on y entre avec un code. Votre code : <b style={{ color: "var(--warm)", letterSpacing: 1 }}>{user.code}</b> <button className="chip" onClick={() => { navigator.clipboard?.writeText(user.code).then(() => toast("Code copié")).catch(() => toast("Copie impossible")); }}>Copier</button></p>
+    <div className="card col"><h3>Inviter quelqu'un</h3><p className="muted small">Mon cercle est fermé : on y entre avec un code. Votre code : <b style={{ color: "var(--warm)", letterSpacing: 1 }}>{user.code}</b> <button className="chip" onClick={() => { navigator.clipboard?.writeText(user.code).then(() => toast("Code copié")).catch(() => toast("Copie impossible")); }}>Copier</button></p>
       <form className="row" onSubmit={(e) => { e.preventDefault(); const r = actions.addByCode(code); toast(r.msg); if (r.ok) setCode(""); }}><input className="inp" placeholder="Code d'un proche (ex. NID-LEAXX)" value={code} onChange={(e) => setCode(e.target.value)} aria-label="Code d'invitation" /><button className="btn" disabled={!code.trim()}>Envoyer</button></form>
       <p className="muted small">Mode démo : testez avec les codes {s.users.filter((u) => u.demo).map((u) => u.code).join(", ")}. Ces personnes sont fictives.</p></div>
     <div className="card col"><h3>Mes amis ({friends.length})</h3>{friends.map((f) => <div key={f.id} className="row"><Avatar u={f} /><div className="grow"><b>{f.name}</b><div className="muted small ell">{f.status}</div></div>
@@ -120,14 +121,27 @@ export function Notifs() {
     <p className="muted small">Les notifications ne contiennent jamais le contenu d'une publication éphémère.</p></div>);
 }
 
+function ThemePicker({ cfg }: { cfg: ReturnType<typeof cfgOf> }) {
+  const pro = !!cfg.premium;
+  const Row = ({ title, k, list, cur, kind }: { title: string; k: "bg" | "fg" | "accent"; list: Opt[]; cur: string | undefined; kind: "bg" | "fg" | "ac" }) =>
+    <div className="col" style={{ gap: 6 }}><b className="small">{title}</b><div className="row wrap">{list.map((o, i) => { const on = (cur || list[0].id) === o.id && (pro || !o.pro); const style = kind === "ac" ? { background: `linear-gradient(135deg,${o.v},${o.v2})` } : kind === "bg" ? { background: o.v, color: "#fff" } : { background: cfg.light ? "#fff" : "#0F172A", color: o.v };
+      return <button key={o.id} className={"sw" + (on ? " on" : "")} style={style} title={o.label} aria-label={o.label + (o.pro && !pro ? " (Plus)" : "")} onClick={() => { if (o.pro && !pro) { toast("Cette couleur fait partie de Plus."); return; } actions.setSetting(k, o.id); }}>{kind === "fg" ? "Aa" : ""}{o.pro && !pro && <span className="lock">🔒</span>}</button>; })}</div></div>;
+  return <div className="card plus-card col"><div className="row"><h3 className="grow">🎨 Couleurs de l'application</h3><span className="badge">PLUS</span></div>
+    <p className="muted small">La palette d'origine est gratuite. Changer le fond, l'écriture et la couleur d'accent fait partie de l'offre payante « Plus ».</p>
+    {!cfg.light && <Row title="Fond" k="bg" list={FONDS} cur={cfg.bg} kind="bg" />}
+    <Row title="Écriture" k="fg" list={cfg.light ? ECRITURES_CLAIR : ECRITURES_SOMBRE} cur={cfg.fg} kind="fg" />
+    <Row title="Couleur d'accent" k="accent" list={ACCENTS} cur={cfg.accent} kind="ac" />
+    <label className="row" style={{ paddingTop: 6 }}><div className="grow"><b>Activer « Plus » (démonstration)</b><div className="muted small">Aucun paiement n'est branché pour l'instant : cet interrupteur sert à essayer les couleurs. Le vrai paiement (Google Play, App Store ou carte) sera ajouté avec le serveur.</div></div><input type="checkbox" checked={pro} onChange={(e) => actions.setSetting("premium", e.target.checked)} style={{ width: 24, height: 24 }} /></label></div>;
+}
 export function Settings() {
   const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
   const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><input type="checkbox" checked={cfg[k]} onChange={(e) => actions.setSetting(k, e.target.checked)} style={{ width: 24, height: 24 }} /></label>;
   return (<div className="col"><h1>Paramètres</h1>
-    <div className="card"><Tg k="light" label="Thème clair" desc="Par défaut, Nidami est sombre." /><hr /><Tg k="quiet" label="Plage silencieuse" desc="Coupe les alertes la nuit (en mode serveur)." /><hr /><Tg k="autoplay" label="Lecture automatique des vidéos" desc="Pour les vidéos courtes (bientôt)." /></div>
+    <ThemePicker cfg={cfg} />
+    <div className="card"><Tg k="light" label="Thème clair" desc="Par défaut, l'application est sombre." /><hr /><Tg k="quiet" label="Plage silencieuse" desc="Coupe les alertes la nuit (en mode serveur)." /><hr /><Tg k="autoplay" label="Lecture automatique des vidéos" desc="Pour les vidéos courtes (bientôt)." /></div>
     <div className="card col"><h3>🔒 Confidentialité</h3><ul className="muted" style={{ margin: 0, paddingLeft: 18 }}><li>Aucune publicité. Aucune vente de données.</li><li>Aucun bouton de partage vers l'extérieur, aucun profil public.</li><li>Personne ne peut vous trouver sans votre code d'invitation.</li><li>Aucune application ne peut empêcher une personne autorisée de photographier son écran avec un autre appareil.</li></ul></div>
     <div className="card col"><h3>🧪 Mode démo (sur cet appareil)</h3><p className="muted small">Pour l'instant, vos données restent sur cet appareil et les amis sont fictifs. Les vrais comptes, les messages entre téléphones et les appels demandent un serveur : voir le guide dans le dossier « docs » du projet.</p>
-      <button className="btn ghost" onClick={() => { const b = new Blob([actions.exportData()], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "mes-donnees-nidami.json"; a.click(); }}>Exporter mes données</button>
-      <button className="btn danger" onClick={() => { if (confirm("Supprimer toutes vos données Nidami de cet appareil ?")) actions.deleteAccountData(); }}>Supprimer mon compte et mes données</button></div>
+      <button className="btn ghost" onClick={() => { const b = new Blob([actions.exportData()], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "mes-donnees-cercle.json"; a.click(); }}>Exporter mes données</button>
+      <button className="btn danger" onClick={() => { if (confirm("Supprimer toutes vos données Mon cercle de cet appareil ?")) actions.deleteAccountData(); }}>Supprimer mon compte et mes données</button></div>
     <div className="card col"><h3>🔁 Changer de membre (démo)</h3><p className="muted small">Pour tester les durées par personne : publiez une photo de 5 s pour Céline et Thomas, puis passez de l'un à l'autre.</p><div className="tabs" style={{ flexWrap: "wrap" }}>{s.users.filter((u) => u.id === s.me || (s.social.friends[s.me] || []).includes(u.id) || u.demo || s.users.length).map((u) => <button key={u.id} className={"chip" + (u.id === s.me ? " on" : "")} onClick={() => { actions.switchUser(u.id); toast(`Vous êtes maintenant ${u.name}.`); }}>{u.name}</button>)}</div></div></div>);
 }

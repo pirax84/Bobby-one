@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Moteur de règles de Nidami : qui peut voir quoi, et pendant combien de temps.
+// Moteur de règles de Mon cercle : qui peut voir quoi, et pendant combien de temps.
 // Pur (sans écran, sans stockage) pour pouvoir être testé. Le temps vient TOUJOURS
 // d'une horloge passée en paramètre : c'est l'« heure du serveur » (jamais celle de l'écran).
 // En mode démo, tout tourne sur l'appareil. En mode serveur (Supabase), les mêmes règles

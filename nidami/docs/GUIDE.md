@@ -1,4 +1,4 @@
-# Guide pour débutant — Nidami
+# Guide pour débutant — Mon cercle
 
 ## 1. Essayer tout de suite
 Ouvrez le lien de l'application sur votre téléphone ou votre PC. Entrez votre prénom, cochez la case, c'est parti.
@@ -9,7 +9,7 @@ Ouvrez le lien de l'application sur votre téléphone ou votre PC. Entrez votre 
 - **PC** : dans Chrome ou Edge, icône « Installer » à droite de la barre d'adresse.
 
 ## 3. Tester les durées « par personne »
-1. Dans Nidami, touchez **+** → Texte → « Amis sélectionnés » → Céline + Thomas → durée **5 s** → Publier.
+1. Dans Mon cercle, touchez **+** → Texte → « Amis sélectionnés » → Céline + Thomas → durée **5 s** → Publier.
 2. Paramètres → « Changer de membre » → **Céline** → Accueil → Ouvrir : 5 secondes, puis c'est fini pour elle.
 3. Passez à **Thomas** : il peut encore ouvrir, et il a ses propres 5 secondes.
 4. Passez à **Émilie** (exclue) : elle ne voit rien.

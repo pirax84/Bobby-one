@@ -1,6 +1,6 @@
 {
-  "name": "Nidami",
-  "short_name": "Nidami",
+  "name": "Mon cercle",
+  "short_name": "Mon cercle",
   "description": "Le nid privé de votre famille et de vos amis.",
   "start_url": "./",
   "scope": "./",

@@ -14,7 +14,7 @@ export interface Req { id: ID; from: ID; to: ID; at: number }
 export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
 export interface State {
   v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[];
-  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean }>;
+  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; bg?: string; fg?: string; accent?: string }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
@@ -41,13 +41,13 @@ export const actions = {
     const fam = s.social.groups.find((g) => g.id === "g_famille"); if (fam) { fam.memberIds.push(id); fam.adminIds.push(id); }
     const ami = s.social.groups.find((g) => g.id === "g_amis"); if (ami) { ami.memberIds.push(id); ami.adminIds.push(id); }
     s.reqs.push({ id: uid(), from: "lea", to: id, at: now() - 3600e3 }); s.posts = demoPosts(id);
-    s.convs.push({ id: "c_" + uid(), memberIds: [id, "celine"], msgs: [{ id: uid(), from: "celine", text: "Coucou ! Bienvenue dans Nidami 💜", at: now() - 120e3, secs: 0, reads: {} }] });
+    s.convs.push({ id: "c_" + uid(), memberIds: [id, "celine"], msgs: [{ id: uid(), from: "celine", text: "Coucou ! Bienvenue dans Mon cercle 💜", at: now() - 120e3, secs: 0, reads: {} }] });
     s.convs.push({ id: "c_" + uid(), memberIds: [id, "celine", "thomas", "emilie"], groupId: "g_famille", title: "Famille", msgs: [{ id: uid(), from: "thomas", text: "Qui est là dimanche pour le repas ?", at: now() - 3600e3, secs: 0, reads: {} }] });
     s.events.push({ id: uid(), hostId: "emilie", title: "Repas de famille", desc: "Chacun apporte un petit plat.", at: now() + 5 * 864e5, place: "Chez Mamie", inviteIds: [id, "celine", "thomas"], rsvp: { thomas: "yes" } });
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
   updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
-  setSetting(k: "quiet" | "light" | "autoplay", v: boolean) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
+  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
   publish(p: { kind: "text" | "photo"; text: string; img?: string | null; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {
