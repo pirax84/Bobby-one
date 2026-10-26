@@ -8,6 +8,7 @@ import { Messages, Games, Media, Soon } from "./ui/Chat";
 import { LegalView } from "./ui/Legal";
 import { Shares } from "./ui/Shares";
 import { Onboarding, needInstall } from "./ui/Auth";
+import { ChatBubble } from "./ui/Bubble";
 import { sessionFromReturn } from "./lib/auth";
 
 type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
@@ -59,6 +60,7 @@ export default function App() {
           <div className="tiles">{items.map(([k, l, i]) => <button key={k} className="tile" onClick={() => go(k)}><span className="tic"><Ico n={i} s={24} /></span><span>{l}</span>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 6, right: 6 }}>{badge(k)}</span>}</button>)}</div></div>)}</div></Modal>}
     {pendCode && (() => { const t = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
       return <Modal title="Invitation Mon cercle" onClose={done}><div className="col center" style={{ alignItems: "center" }}>{t ? <><Avatar u={t} s={72} /><h3>Ajouter {t.name} ?</h3><p className="muted small">@{t.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>Envoyer la demande</button></> : <p className="muted">Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.</p>}<button className="btn ghost" onClick={done}>Plus tard</button></div></Modal>; })()}
+    {v !== "messages" && <ChatBubble openFull={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} />}
     {compose && <ComposerModal onClose={() => setCompose(false)} />}
     <ToastHost /></div>);
 }

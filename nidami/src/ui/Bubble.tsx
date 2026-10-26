@@ -1,0 +1,35 @@
+import { useEffect, useRef, useState } from "react";
+import { useStore, actions, userOf, Conv } from "../lib/store";
+import { Avatar, Ico, useNow } from "./common";
+
+/** Bulle de messages flottante (comme Messenger) : touchez-la pour lire et répondre sans quitter la page. */
+export function ChatBubble({ openFull }: { openFull: (convId: string) => void }) {
+  const s = useStore((x) => x); const me = s.me; const now = useNow(1000);
+  const convs = s.convs.filter((c) => c.memberIds.includes(me)).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
+  const unread = (c: Conv) => c.msgs.filter((m) => m.from !== me && m.reads[me] === undefined).length;
+  const total = convs.reduce((a, c) => a + unread(c), 0);
+  const [open, setOpen] = useState(false); const [sel, setSel] = useState<string | null>(null); const [txt, setTxt] = useState("");
+  const [pop, setPop] = useState<{ id: string; who: string; text: string } | null>(null);
+  const prev = useRef(total); const end = useRef<HTMLDivElement>(null);
+  const title = (c: Conv) => c.title || c.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
+  const c = convs.find((x) => x.id === sel);
+  // Petite info qui apparaît quand un nouveau message arrive.
+  useEffect(() => {
+    if (total > prev.current && !open) { const cv = convs.find((x) => unread(x) > 0); const m = cv?.msgs.filter((y) => y.from !== me).at(-1); if (cv && m) { setPop({ id: cv.id, who: userOf(s, m.from)?.name || "", text: m.secs || m.once ? "🔒 Message éphémère" : m.audio ? "🎤 Message vocal" : m.text || "📷 Photo" }); const t = setTimeout(() => setPop(null), 6000); prev.current = total; return () => clearTimeout(t); } }
+    prev.current = total;
+  }, [total]);
+  useEffect(() => { if (c && open) actions.markRead(c.id); end.current?.scrollIntoView({ block: "end" }); }, [sel, open, c?.msgs.length]);
+  const send = () => { if (c && txt.trim()) { actions.send(c.id, txt, 0); setTxt(""); } };
+  if (!convs.length) return null;
+  const vis = (m: Conv["msgs"][number]) => m.from === me || (!m.once && (m.secs === 0 || (m.reads[me] !== undefined && now < m.reads[me] + m.secs * 1000)));
+  return (<>
+    {pop && !open && <button className="bpop" onClick={() => { setSel(pop.id); setOpen(true); setPop(null); }}><b>{pop.who}</b><span className="ell">{pop.text}</span></button>}
+    {open && <div className="bpanel" role="dialog" aria-label="Messages rapides">
+      <div className="bhead">{c && <button className="bi" onClick={() => setSel(null)} aria-label="Retour à la liste"><Ico n="back" s={18} /></button>}<b className="grow ell">{c ? title(c) : "Messages"}</b>{c && <button className="bi" onClick={() => { setOpen(false); openFull(c.id); }} aria-label="Ouvrir en grand">⤢</button>}<button className="bi" onClick={() => setOpen(false)} aria-label="Fermer"><Ico n="x" s={18} /></button></div>
+      {!c ? <div className="blist">{convs.map((x) => { const last = x.msgs.at(-1); const u = unread(x); return <button key={x.id} className="brow" onClick={() => setSel(x.id)}>{x.groupId ? <span className="av" style={{ width: 38, height: 38, background: "var(--grad)" }}>👥</span> : <Avatar u={userOf(s, x.memberIds.find((m) => m !== me)!)} s={38} />}<span className="grow"><b>{title(x)}</b><span className="muted small ell" style={{ display: "block" }}>{last ? ((last.secs || last.once) && last.from !== me ? "🔒 Message éphémère" : last.audio ? "🎤 Message vocal" : last.text || "📷 Photo") : "Nouvelle conversation"}</span></span>{u > 0 && <span className="badge">{u}</span>}</button>; })}</div>
+        : <><div className="bmsgs">{c.msgs.slice(-30).map((m) => <div key={m.id} className={"bmsg" + (m.from === me ? " me" : "")}>{vis(m) ? (m.img ? "📷 Photo" : m.audio ? "🎤 Message vocal" : m.text) : <button className="linkish" onClick={() => { setOpen(false); openFull(c.id); }}>🔒 {m.once ? "Vu une fois" : "Message éphémère"} · ouvrir en grand</button>}</div>)}<div ref={end} /></div>
+          <form className="bform" onSubmit={(e) => { e.preventDefault(); send(); }}><input className="inp sm" placeholder="Votre message…" value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message rapide" autoFocus /><button className="btn sm" disabled={!txt.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></>}
+    </div>}
+    {!open && <button className="bfab" onClick={() => { setOpen(true); setPop(null); }} aria-label={"Messages" + (total ? ` (${total} non lus)` : "")}><Ico n="chat" s={26} />{total > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{total}</span>}</button>}
+  </>);
+}
