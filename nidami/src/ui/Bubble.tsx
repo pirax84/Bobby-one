@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, Conv } from "../lib/store";
-import { Avatar, Ico, useNow, EmojiGrid, toast } from "./common";
-import { playFx, Fx } from "../lib/fx";
+import { Avatar, Ico, useNow, EmojiGrid, toast, lp, ConfirmDel } from "./common";
+import { FxBar } from "./FxBar";
 
 /** Bulle de messages flottante (comme Messenger) : touchez-la pour lire et répondre sans quitter la page. */
 export function ChatBubble({ openFull }: { openFull: (convId: string) => void }) {
@@ -9,7 +9,7 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
   const convs = s.convs.filter((c) => c.memberIds.includes(me)).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
   const unread = (c: Conv) => c.msgs.filter((m) => m.from !== me && m.reads[me] === undefined).length;
   const total = convs.reduce((a, c) => a + unread(c), 0);
-  const [open, setOpen] = useState(false); const [sel, setSel] = useState<string | null>(null); const [txt, setTxt] = useState("");
+  const [del, setDel] = useState<string | null>(null); const [open, setOpen] = useState(false); const [sel, setSel] = useState<string | null>(null); const [txt, setTxt] = useState("");
   const [pop, setPop] = useState<{ id: string; who: string; text: string } | null>(null);
   const prev = useRef(total); const end = useRef<HTMLDivElement>(null);
   const title = (c: Conv) => c.title || c.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
@@ -21,9 +21,7 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
   }, [total]);
   useEffect(() => { if (c && open) actions.markRead(c.id); end.current?.scrollIntoView({ block: "end" }); }, [sel, open, c?.msgs.length]);
   const [emo, setEmo] = useState(false); const [rec, setRec] = useState<MediaRecorder | null>(null);
-  const fxOn = s.settings[me]?.fx ?? true;
   const voice = async () => { if (!c) return; if (rec) { rec.stop(); return; } try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); const r = new MediaRecorder(st); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data); r.onstop = () => { st.getTracks().forEach((t) => t.stop()); setRec(null); const fr = new FileReader(); fr.onload = () => actions.send(c.id, "", 0, null, undefined, String(fr.result), false); fr.readAsDataURL(new Blob(ch, { type: r.mimeType })); }; r.start(); setRec(r); setTimeout(() => r.state === "recording" && r.stop(), 60000); } catch { toast("Micro indisponible ou refusé."); } };
-  const effect = (k: Fx) => { if (!c) return; if (!actions.sendFx(c.id, k)) return toast("Doucement : un effet toutes les 4 secondes."); playFx(k, fxOn); };
   const send = () => { if (c && txt.trim()) { actions.send(c.id, txt, 0); setTxt(""); } };
   if (!convs.length) return null;
   const vis = (m: Conv["msgs"][number]) => m.from === me || (!m.once && (m.secs === 0 || (m.reads[me] !== undefined && now < m.reads[me] + m.secs * 1000)));
@@ -32,9 +30,10 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
     {open && <div className="bpanel" role="dialog" aria-label="Messages rapides">
       <div className="bhead">{c && <button className="bi" onClick={() => setSel(null)} aria-label="Retour à la liste"><Ico n="back" s={18} /></button>}<b className="grow ell">{c ? title(c) : "Messages"}</b>{c && <button className="bi" onClick={() => { setOpen(false); openFull(c.id); }} aria-label="Ouvrir en grand">⤢</button>}<button className="bi" onClick={() => setOpen(false)} aria-label="Fermer"><Ico n="x" s={18} /></button></div>
       {!c ? <div className="blist">{convs.map((x) => { const last = x.msgs.at(-1); const u = unread(x); return <button key={x.id} className="brow" onClick={() => setSel(x.id)}>{x.groupId ? <span className="av" style={{ width: 38, height: 38, background: "var(--grad)" }}>👥</span> : <Avatar u={userOf(s, x.memberIds.find((m) => m !== me)!)} s={38} />}<span className="grow"><b>{title(x)}</b><span className="muted small ell" style={{ display: "block" }}>{last ? ((last.secs || last.once) && last.from !== me ? "🔒 Message éphémère" : last.audio ? "🎤 Message vocal" : last.text || "📷 Photo") : "Nouvelle conversation"}</span></span>{u > 0 && <span className="badge">{u}</span>}</button>; })}</div>
-        : <><div className="bmsgs">{c.msgs.slice(-30).map((m) => <div key={m.id} className={"bmsg" + (m.from === me ? " me" : "")}>{vis(m) ? (m.img ? "📷 Photo" : m.audio ? <audio controls src={m.audio} style={{ maxWidth: 200 }} /> : m.text) : <button className="linkish" onClick={() => { setOpen(false); openFull(c.id); }}>🔒 {m.once ? "Vu une fois" : "Message éphémère"} · ouvrir en grand</button>}</div>)}<div ref={end} /></div>
-          {emo && <div className="empanel" style={{ margin: "0 8px", maxHeight: 150 }}><EmojiGrid onPick={(e) => setTxt((t) => t + e)} /></div>}
-          <div className="btools">{([["shake", "📳"], ["confetti", "🎉"], ["hearts", "❤️"], ["kiss", "😘"]] as const).map(([k, l]) => <button key={k} type="button" className="bi2" onClick={() => effect(k)} aria-label={"Effet " + k}>{l}</button>)}</div>
+        : <><div className="bmsgs">{c.msgs.slice(-30).map((m) => <div key={m.id} className={"bmsg" + (m.from === me ? " me" : "")} {...(m.from === me ? lp(() => setDel(m.id)) : {})}>{vis(m) ? (m.img ? "📷 Photo" : m.audio ? <audio controls src={m.audio} style={{ maxWidth: 200 }} /> : m.text) : <button className="linkish" onClick={() => { setOpen(false); openFull(c.id); }}>🔒 {m.once ? "Vu une fois" : "Message éphémère"} · ouvrir en grand</button>}</div>)}<div ref={end} /></div>
+          {del && sel && <ConfirmDel what="ce message" onYes={() => actions.deleteMsg(sel, del)} onClose={() => setDel(null)} />}
+          {emo && <div className="empanel" style={{ margin: "0 8px", maxHeight: 150 }}><EmojiGrid onPick={(e) => setTxt((t) => t + e)} onClose={() => setEmo(false)} /></div>}
+          <FxBar convId={c.id} compact />
           <form className="bform" onSubmit={(e) => { e.preventDefault(); send(); }}><button type="button" className="bi2" onClick={() => setEmo(!emo)} aria-label="Emojis"><Ico n="smile" s={18} /></button><button type="button" className="bi2" onClick={voice} aria-label={rec ? "Arrêter et envoyer le vocal" : "Message vocal"} style={rec ? { background: "var(--bad)", color: "#fff" } : undefined}><Ico n="mic" s={18} /></button><input className="inp sm" placeholder="Votre message…" value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message rapide" autoFocus /><button className="btn sm" disabled={!txt.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></>}
     </div>}
     {!open && <button className="bfab" onClick={() => { setOpen(true); setPop(null); }} aria-label={"Messages" + (total ? ` (${total} non lus)` : "")}><Ico n="chat" s={26} />{total > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{total}</span>}</button>}

@@ -185,3 +185,6 @@ html.shake body{animation:shk .8s ease-in-out}
 .fxbox{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden}.fxbox span{position:absolute;top:-40px;animation:fxfall linear forwards}
 @keyframes fxfall{to{transform:translateY(110vh) rotate(360deg);opacity:.9}}
 .btools{display:flex;gap:6px;padding:4px 8px 0}.bi2{width:36px;height:36px;border-radius:12px;border:1px solid var(--bd);background:var(--card2);color:var(--fg);display:grid;place-items:center;font-size:1.05rem;flex:none}
+.fxbox.rise span{top:auto;bottom:-40px;animation-name:fxrise}
+@keyframes fxrise{to{transform:translateY(-110vh) rotate(-30deg);opacity:.9}}
+.btools{flex-wrap:wrap}

@@ -1,11 +1,12 @@
 import { useSyncExternalStore } from "react";
 import { ID, Post, Social, Audience, Group, FriendList, Comment, resolveRecipients, openAny, purgeExpired, uid, validViewSecs, DEFAULT_GLOBAL_MS, areFriends, isBlocked, Access, cascadeDelete, revokeShare as revokeShareEngine } from "./engine";
 import { seed, demoPosts } from "./seed";
+import { FX, Fx } from "./fx";
 
 export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
 export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none"; handleChanged?: boolean; reqAt?: number[] }
-export interface Msg { id: ID; from: ID; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: "shake" | "confetti" | "hearts" | "kiss" }
+export interface Msg { id: ID; from: ID; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string }
 export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: number; place: string; inviteIds: ID[]; rsvp: Record<ID, "yes" | "no" | "maybe"> }
@@ -15,7 +16,7 @@ export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
 export interface Album { id: ID; ownerId: ID; name: string; audience: Audience; recipients: ID[]; createdAt: number; auto?: boolean }
 export interface State {
   v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[]; albums: Album[];
-  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; nav?: string; top?: string; push?: boolean; fx?: boolean; nt?: Record<string, boolean>; bg?: string; fg?: string; accent?: string }>;
+  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; nav?: string; top?: string; push?: boolean; fx?: boolean; fxfav?: string; nt?: Record<string, boolean>; bg?: string; fg?: string; accent?: string }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
@@ -41,7 +42,7 @@ export const HANDLE_RE = /^[a-z0-9_.]{3,20}$/;
 export const isRestricted = (s: State, id: ID) => new Set(s.reports.filter((r) => r.target === id).map((r) => r.by)).size >= 3;
 const MAX_REQ_DAY = 15;
 export const actions = {
-  sendFx(convId: ID, fx: "shake" | "confetti" | "hearts" | "kiss"): boolean { const t0 = now(); if (t0 - lastFx < 4000) return false; lastFx = t0; mut((s) => { const c = s.convs.find((x) => x.id === convId && x.memberIds.includes(s.me)); if (!c) return; c.msgs.push({ id: uid(), from: s.me, text: fx === "shake" ? "📳 Secousse !" : fx === "confetti" ? "🎉 Confettis !" : fx === "kiss" ? "😘 Gros bisous !" : "❤️ Pluie de cœurs !", at: t0, secs: 0, reads: {}, gone: {}, fx } as Msg); }); return true; },
+  sendFx(convId: ID, fx: Fx): boolean { const t0 = now(); if (t0 - lastFx < 2000) return false; lastFx = t0; mut((s) => { const c = s.convs.find((x) => x.id === convId && x.memberIds.includes(s.me)); if (!c) return; c.msgs.push({ id: uid(), from: s.me, text: FX[fx].text, at: t0, secs: 0, reads: {}, gone: {}, fx } as Msg); }); return true; },
   setNotifType(k: string, v: boolean) { mut((s) => { const c = cfgOf(s, s.me); s.settings[s.me] = { ...c, nt: { ...(c.nt || {}), [k]: v } }; }); },
   changeHandle(h: string): { ok: boolean; msg: string } { const v = h.trim().toLowerCase().replace(/^@/, ""); let r = { ok: false, msg: "Erreur." }; mut((s) => { const u = userOf(s, s.me)!; if (u.handleChanged) { r = { ok: false, msg: "Le pseudo ne peut être changé qu'une seule fois, et vous l'avez déjà fait." }; return; } if (!s.settings[s.me]?.premium) { r = { ok: false, msg: "Changer de pseudo est payant (offre « Plus »). Le paiement n'est pas encore branché : activez « Plus (démonstration) » dans Paramètres pour essayer." }; return; } if (!HANDLE_RE.test(v)) { r = { ok: false, msg: "Pseudo : 3 à 20 caractères, lettres minuscules, chiffres, point ou tiret bas." }; return; } if (s.users.some((x) => x.id !== u.id && x.handle === v)) { r = { ok: false, msg: "Ce pseudo est déjà pris." }; return; } u.handle = v; u.handleChanged = true; r = { ok: true, msg: "Pseudo changé. Ce changement est définitif." }; }); return r; },
   logout() { mut((s) => { s.started = false; s.me = ""; }); },
@@ -57,7 +58,7 @@ export const actions = {
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
   updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
-  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "nav" | "top" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
+  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "fxfav" | "nav" | "top" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
   publish(p: { kind: "text" | "photo" | "video"; text: string; img?: string | null; video?: string | null; albumId?: ID; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {
@@ -83,6 +84,7 @@ export const actions = {
   getAutoAlbum(): ID | undefined { return state.albums.find((a) => a.ownerId === state.me && a.auto)?.id; },
   deletePost(id: ID) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || p.authorId !== s.me) return; s.posts = cascadeDelete(s.posts.filter((x) => x.id !== id), id); s.shares.forEach((h) => { if (h.postId === id && h.status === "approved") h.status = "revoked"; }); }); },
   react(id: ID, emoji: string) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.reactions[s.me] === emoji) delete p.reactions[s.me]; else { p.reactions[s.me] = emoji; if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a réagi ${emoji} à votre publication.`, "home"); } }); },
+  deleteComment(postId: ID, cid: ID) { mut((s) => { const p = s.posts.find((x) => x.id === postId); if (!p) return; const c = p.comments.find((x) => x.id === cid); if (!c || !(c.authorId === s.me || p.authorId === s.me)) return; p.comments = p.comments.filter((x) => x.id !== cid && x.replyTo !== cid); }); },
   comment(id: ID, text: string, replyTo?: ID) { const t = text.trim(); if (!t) return; mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; const c: Comment = { id: uid(), authorId: s.me, text: t.slice(0, 500), at: now(), replyTo }; p.comments.push(c); if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a commenté votre publication.`, "home"); }); },
 
   requestFriend(userId: ID): { ok: boolean; msg: string } { let r = { ok: false, msg: "Personne introuvable." }; mut((s) => { const u = s.users.find((x) => x.id === userId); if (!u) return; if (u.id === s.me) { r = { ok: false, msg: "C'est vous !" }; return; }

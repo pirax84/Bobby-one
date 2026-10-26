@@ -62,12 +62,27 @@ export const EMOJI_GROUPS: [string, string[]][] = [
   ["Cœurs", ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💖", "💗", "💕", "💞", "💝", "💘", "💔", "✨", "💯"]],
   ["Fête et nature", ["🎉", "🎂", "🎁", "🎈", "🍾", "🥂", "🍕", "🍔", "🍟", "🍰", "☕", "🍷", "🌞", "🌈", "🌸", "🌳", "🐶", "🐱", "🦋", "🐻", "⚽", "🎶", "📸", "🏖️", "🚗", "✈️", "🏡", "🔥", "⭐", "🌙"]],
 ];
-export function EmojiGrid({ onPick }: { onPick: (e: string) => void }) {
-  return <div className="egrid">{EMOJI_GROUPS.map(([t, l]) => <div key={t}><div className="muted small" style={{ margin: "6px 2px" }}>{t}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
+export function EmojiGrid({ onPick, onClose }: { onPick: (e: string) => void; onClose?: () => void }) {
+  return <div className="egrid">{onClose && <div style={{ position: "sticky", top: 0, display: "flex", justifyContent: "flex-end", zIndex: 1 }}><button type="button" className="btn ghost sm" onClick={onClose} aria-label="Fermer les emojis" style={{ background: "var(--card)" }}>✕</button></div>}{EMOJI_GROUPS.map(([t, l]) => <div key={t}><div className="muted small" style={{ margin: "6px 2px" }}>{t}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
 }
 export function useNow(ms = 1000) { const [t, setT] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setT(Date.now()), ms); return () => clearInterval(i); }, [ms]); return t; }
 
 /** Interrupteur (à la place des cases à cocher). */
 export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boolean) => void; label: string }) {
   return <button type="button" role="switch" aria-checked={on} aria-label={label} className={"switch" + (on ? " on" : "")} onClick={() => onChange(!on)}><span /></button>;
+}
+
+/** Appui long (ou clic droit) : renvoie les gestes à poser sur un élément. */
+export function lp(onLong: () => void) {
+  let t: number | undefined; const stop = () => { if (t) { clearTimeout(t); t = undefined; } };
+  return {
+    onPointerDown: () => { stop(); t = window.setTimeout(() => { t = undefined; onLong(); }, 550); },
+    onPointerUp: stop, onPointerLeave: stop, onPointerCancel: stop, onPointerMove: stop,
+    onContextMenu: (e: { preventDefault: () => void }) => { e.preventDefault(); stop(); onLong(); },
+    style: { WebkitTouchCallout: "none", userSelect: "none" } as const,
+  };
+}
+/** Fenêtre « Supprimer ? » */
+export function ConfirmDel({ what, onYes, onClose }: { what: string; onYes: () => void; onClose: () => void }) {
+  return <Modal title={"Supprimer " + what + " ?"} onClose={onClose}><p className="muted">Cette action est définitive.</p><div className="row" style={{ gap: 8 }}><button className="btn ghost grow" onClick={onClose}>Garder</button><button className="btn grow" style={{ background: "var(--bad)", color: "#fff" }} onClick={() => { onYes(); onClose(); }}>🗑 Supprimer</button></div></Modal>;
 }

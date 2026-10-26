@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
-import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow } from "./common";
+import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel } from "./common";
 import { WmImage, useCaptureGuard } from "./Wm";
 
 // ───────── Barre des stories
@@ -63,7 +63,7 @@ export function Composer({ onClose, story = false, groupId }: { onClose: () => v
       {!story && <button className={"tool" + (mood || em ? " on" : "")} onClick={() => setEm(!em)} aria-label="Humeur">{mood || "😊"}</button>}
       {!img && <div className="row grow" style={{ gap: 5, justifyContent: "flex-end" }}>{BG.map((b, i) => <button key={i} aria-label={"Fond " + (i + 1)} onClick={() => setBg(i)} style={{ width: 22, height: 22, borderRadius: "50%", border: bg === i ? "2px solid #fff" : "0", background: b }} />)}</div>}
     </div>
-    {em && <div className="empanel"><button className="chip" onClick={() => { setMood(""); setEm(false); }}>Aucune humeur</button><EmojiGrid onPick={(e) => { setMood(e); setEm(false); }} /></div>}
+    {em && <div className="empanel"><button className="chip" onClick={() => { setMood(""); setEm(false); }}>Aucune humeur</button><EmojiGrid onPick={(e) => { setMood(e); setEm(false); }} onClose={() => setEm(false)} /></div>}
     <div className="opts">
       <label className="opt"><span>👥</span><select value={mode} onChange={(e) => { setMode(e.target.value); setSel([]); }} aria-label="Qui peut voir ?">{AUD.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></label>
       {story ? <label className="opt"><span>⏳</span><select value={sdur} onChange={(e) => { const k = e.target.value as "24h" | "inf" | "eph"; setSdur(k); if (k === "eph" && !secs && !custom) setSecs(5); }} aria-label="Durée de la story"><option value="24h">24 heures</option><option value="inf">Illimitée</option><option value="eph">Éphémère</option></select></label> : null}
@@ -98,7 +98,7 @@ function Viewer({ postId, me, onClose }: { postId: string; me: string; onClose: 
 
 // ───────── Une publication
 function PostCard({ post: rp, me }: { post: Post; me: string }) {
-  const social = useStore((s) => s.social); const users = useStore((s) => s.users); const all = useStore((s) => s.posts); const shares = useStore((s) => s.shares); const now = useNow(1000); const [view, setView] = useState(false); const [cm, setCm] = useState(""); const [more, setMore] = useState(false); const [replyTo, setReplyTo] = useState<string | undefined>(); const [ask, setAsk] = useState(false); const [detail, setDetail] = useState(false); const [pick, setPick] = useState(false); const [cmEmoji, setCmEmoji] = useState(false);
+  const social = useStore((s) => s.social); const users = useStore((s) => s.users); const all = useStore((s) => s.posts); const shares = useStore((s) => s.shares); const now = useNow(1000); const [view, setView] = useState(false); const [cm, setCm] = useState(""); const [delC, setDelC] = useState<string | null>(null); const [more, setMore] = useState(false); const [replyTo, setReplyTo] = useState<string | undefined>(); const [ask, setAsk] = useState(false); const [detail, setDetail] = useState(false); const [pick, setPick] = useState(false); const [cmEmoji, setCmEmoji] = useState(false);
   const openDetail = () => { history.pushState({ ...(history.state || {}), detail: 1 }, ""); setDetail(true); }; const closeDetail = () => { if (history.state?.detail) history.back(); else setDetail(false); };
   useEffect(() => { if (!detail) return; const f = () => setDetail(false); window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, [detail]);
   const orig = originalOf(rp, all); const post = orig ? { ...orig, id: rp.id, viewSecs: rp.viewSecs, views: rp.views, recipients: rp.recipients, reactions: rp.reactions, comments: rp.comments, authorId: orig.authorId } : rp; const sharer = orig ? users.find((x) => x.id === rp.authorId) : undefined;
@@ -129,11 +129,12 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
       <div className="dbody">
         <div className="protected">{body}</div>
         <div className="row wrap" style={{ gap: 8, justifyContent: "center", marginTop: 12 }}>{EMOJIS.map((e) => <button key={e} className={"react" + (myReact === e ? " on" : "")} onClick={() => actions.react(rp.id, e)} aria-label={"Réagir " + e}>{e}{counts[e] ? <small> {counts[e]}</small> : null}</button>)}<button className="react" onClick={() => setPick(!pick)} aria-label="Plus d'émoticônes">{pick ? "✕" : "＋"}</button></div>
-        {pick && <div className="card" style={{ marginTop: 8 }}><EmojiGrid onPick={(e) => { actions.react(rp.id, e); setPick(false); }} /></div>}
+        {pick && <div className="card" style={{ marginTop: 8 }}><EmojiGrid onPick={(e) => { actions.react(rp.id, e); setPick(false); }} onClose={() => setPick(false)} /></div>}
         {Object.entries(counts).filter(([e]) => !EMOJIS.includes(e)).length > 0 && <div className="row wrap small muted" style={{ marginTop: 8 }}>Autres : {Object.entries(counts).filter(([e]) => !EMOJIS.includes(e)).map(([e, n]) => e + " " + n).join("  ")}</div>}
-        <div className="col" style={{ gap: 8, marginTop: 14 }}>{rp.comments.length === 0 && <div className="muted small center">Aucun commentaire pour l'instant. Soyez le premier !</div>}{rp.comments.map((c) => <div key={c.id} className="row" style={{ alignItems: "flex-start", marginLeft: c.replyTo ? 28 : 0 }}><Avatar u={users.find((x) => x.id === c.authorId)} s={30} /><div className="cbub grow"><b className="small">{users.find((x) => x.id === c.authorId)?.name}</b> <span className="muted small">{ago(c.at, now)}</span><div>{c.text}</div><button className="muted small" style={{ background: "none", border: 0, padding: 0 }} onClick={() => setReplyTo(c.id)}>Répondre</button></div></div>)}</div>
+        <div className="col" style={{ gap: 8, marginTop: 14 }}>{rp.comments.length === 0 && <div className="muted small center">Aucun commentaire pour l'instant. Soyez le premier !</div>}{rp.comments.map((c) => <div key={c.id} className="row" style={{ alignItems: "flex-start", marginLeft: c.replyTo ? 28 : 0 }}><Avatar u={users.find((x) => x.id === c.authorId)} s={30} /><div className="cbub grow" {...(c.authorId === me || rp.authorId === me ? lp(() => setDelC(c.id)) : {})}><b className="small">{users.find((x) => x.id === c.authorId)?.name}</b> <span className="muted small">{ago(c.at, now)}</span><div>{c.text}</div><button className="muted small" style={{ background: "none", border: 0, padding: 0 }} onClick={() => setReplyTo(c.id)}>Répondre</button></div></div>)}</div>
       </div>
-      <div className="dfoot">{cmEmoji && <div className="card" style={{ maxHeight: 220, overflow: "auto", marginBottom: 8 }}><EmojiGrid onPick={(e) => setCm(cm + e)} /></div>}
+      <div className="dfoot">{cmEmoji && <div className="card" style={{ maxHeight: 220, overflow: "auto", marginBottom: 8 }}><EmojiGrid onPick={(e) => setCm(cm + e)} onClose={() => setCmEmoji(false)} /></div>}
+        {delC && <ConfirmDel what="ce commentaire" onYes={() => actions.deleteComment(rp.id, delC)} onClose={() => setDelC(null)} />}
         <form className="row" onSubmit={(e) => { e.preventDefault(); actions.comment(rp.id, cm, replyTo); setCm(""); setReplyTo(undefined); setCmEmoji(false); }}><button type="button" className="btn ghost sm" onClick={() => setCmEmoji(!cmEmoji)} aria-label="Émoticônes">😊</button><input className="inp" placeholder={replyTo ? "Votre réponse…" : "Écrire un commentaire…"} value={cm} onChange={(e) => setCm(e.target.value)} aria-label="Commentaire" /><button className="btn sm" disabled={!cm.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></div></div>, document.body)}
     {view && <Viewer postId={rp.id} me={me} onClose={() => setView(false)} />}
     {ask && <ShareAsk post={rp} onClose={() => setAsk(false)} />}

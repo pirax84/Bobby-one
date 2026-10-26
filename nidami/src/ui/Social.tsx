@@ -4,6 +4,8 @@ import { InstallCard } from "./Auth";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
 import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
+import { FX, FX_KEYS } from "../lib/fx";
+import { favOf, DEFAULT_FAV } from "./FxBar";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from "./common";
 import { Home } from "./Home";
 
@@ -187,6 +189,9 @@ export function Settings() {
       {([["messages", "💬 Messages"], ["friends", "👋 Demandes d'amis"], ["home", "📰 Publications et stories"], ["shares", "🔁 Partages"], ["events", "📅 Événements"], ["groups", "👥 Groupes"], ["media", "🖼 Albums"], ["games", "🎮 Jeux"]] as const).map(([k, l]) => <label key={k} className="row" style={{ padding: "4px 0" }}><span className="grow">{l}</span><Switch on={cfg.nt?.[k] !== false} label={"Notifications : " + l} onChange={(v) => actions.setNotifType(k, v)} /></label>)}
       {cfg.push && <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => { navigator.serviceWorker?.ready.then((r) => r.showNotification("Mon cercle", { body: "Test : tout fonctionne ✅", icon: "./icon-192.png" })).catch(() => toast("Impossible d'afficher la notification de test.")); }}>Envoyer un test</button>}
       <p className="muted small" style={{ margin: 0 }}>Honnêtement : pour l'instant, les notifications s'affichent quand l'application est ouverte ou en arrière-plan. Les recevoir application fermée demande le serveur (envoi à distance), prévu avec la connexion de vrais comptes. Appels : bientôt.</p></div>
+    <div className="card col" style={{ gap: 4 }}><h3>Mes 4 effets favoris</h3><p className="muted small" style={{ margin: 0 }}>Ils s'affichent en premier dans les conversations. Les autres restent sous le bouton « + ».</p>
+      {FX_KEYS.map((k) => { const cur = favOf(cfg.fxfav); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "5px 0" }}><span className="grow">{FX[k].label}</span><Switch on={on} label={"Favori : " + FX[k].label} onChange={(v) => { if (v && cur.length >= 4) return toast("4 favoris au maximum : désactivez-en un d'abord."); if (!v && cur.length <= 1) return toast("Gardez au moins un favori."); actions.setSetting("fxfav", FX_KEYS.filter((x) => (x === k ? v : cur.includes(x))).join(",")); }} /></label>; })}
+      <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("fxfav", DEFAULT_FAV.join(","))}>Remettre par défaut</button></div>
     <div className="card col" style={{ gap: 4 }}><h3>Barre du haut</h3><p className="muted small" style={{ margin: 0 }}>Choisissez jusqu'à 3 raccourcis en haut de l'écran.</p>
       {NAVOPTS.map(([k, l]) => { const cur = (cfg.top ? cfg.top.split(",") : ["notifs", "settings", "profile"]); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "6px 0" }}><span className="grow"><b>{l}</b></span><Switch on={on} label={"En haut : " + l} onChange={(v) => { if (v && cur.length >= 3) return toast("3 raccourcis au maximum : désactivez-en un d'abord."); if (!v && cur.length <= 1) return toast("Gardez au moins un raccourci."); const order = ["notifs", "settings", "profile", ...NAVOPTS.map(([x]) => x)]; const nx = order.filter((x, i) => order.indexOf(x) === i && (x === k ? v : cur.includes(x))); actions.setSetting("top", nx.join(",")); }} /></label>; })}
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("top", "notifs,settings,profile")}>Remettre par défaut</button></div>
