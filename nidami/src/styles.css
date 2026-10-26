@@ -149,3 +149,10 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 [data-theme=light] .card,[data-theme=light] .modal{border-width:1.5px;box-shadow:0 6px 18px -10px rgba(14,159,110,.45)}
 [data-theme=light] .bottom,[data-theme=light] .topr{border:1.5px solid rgba(16,185,129,.5);box-shadow:0 10px 26px -12px rgba(14,159,110,.5)}
 [data-theme=light] .overlay{background:rgba(15,40,30,.55)}
+@media (min-width:761px){
+ .side{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:14px 12px}
+ [data-theme=light] .side{border-width:1.5px;box-shadow:0 6px 18px -10px rgba(14,159,110,.45)}
+ .navbtn{color:var(--fg);opacity:.8}.navbtn:hover{background:rgba(var(--brand-rgb),.14);opacity:1}
+ .navbtn.on{background:var(--card2);opacity:1;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--brand)}
+ .navbtn.on svg{color:var(--brand)}
+}
