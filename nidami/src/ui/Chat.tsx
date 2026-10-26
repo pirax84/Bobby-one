@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, Msg, Conv } from "../lib/store";
 import { areFriends } from "../lib/engine";
-import { Avatar, Ico, toast, ago, fileToDataUrl, useNow, EMOJIS } from "./common";
+import { Avatar, Ico, toast, ago, fileToDataUrl, useNow, EMOJIS, EmojiGrid } from "./common";
 import { playFx } from "../lib/fx";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 
@@ -19,7 +19,7 @@ function OnceViewer({ conv, m, me, name, onClose }: { conv: string; m: Msg; me: 
 export function Messages() {
   const s = useStore((x) => x); const me = s.me; const now = useNow(500); const [sel, setSelRaw] = useState<string | null>(() => (history.state?.conv as string) || null); const setSel = (id: string | null) => { if (id) history.pushState({ v: "messages", conv: id }, ""); setSelRaw(id); }; const closeConv = () => { if (history.state?.conv) history.back(); else setSelRaw(null); }; useEffect(() => { const f = (e: PopStateEvent) => { if (!(e.state && e.state.conv)) setSelRaw(null); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []); const [txt, setTxt] = useState(""); const [secs, setSecs] = useState(0); const [once, setOnce] = useState(false); const [openOnce, setOpenOnce] = useState<string | null>(null); const [q, setQ] = useState(""); const [edit, setEdit] = useState<string | null>(null); const [rep, setRep] = useState<Msg | null>(null);
   const convs = s.convs.filter((c) => c.memberIds.includes(me)).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
-  const c = convs.find((x) => x.id === sel); const img = useRef<HTMLInputElement>(null); const [wm, setWm] = useState(true); const end = useRef<HTMLDivElement>(null);
+  const c = convs.find((x) => x.id === sel); const img = useRef<HTMLInputElement>(null); const [wm, setWm] = useState(true); const [emo, setEmo] = useState(false); const end = useRef<HTMLDivElement>(null);
   const [rec, setRec] = useState<MediaRecorder | null>(null);
   useEffect(() => { if (c) actions.markRead(c.id); }, [sel, c?.msgs.length]);
   useEffect(() => { end.current?.scrollIntoView({ block: "end" }); }, [c?.msgs.length, sel]);
@@ -57,10 +57,12 @@ export function Messages() {
     {rep && <div className="card small row"><span className="grow ell">↩︎ {rep.text.slice(0, 60)}</span><button className="btn ghost sm" onClick={() => setRep(null)}><Ico n="x" s={14} /></button></div>}
     <div className="tabs"><span className="muted small" style={{ alignSelf: "center" }}>Durée :</span>{[["p", "♾️ Permanent"], ["o", "🔥 Vu une fois"], ["10", "⏱ 10 s après lecture"], ["60", "⏱ 1 min après lecture"]].map(([v, l]) => { const on = v === "p" ? !once && secs === 0 : v === "o" ? once : !once && secs === Number(v); return <button key={v} className={"chip" + (on ? " on" : "")} onClick={() => { setOnce(v === "o"); setSecs(v === "p" || v === "o" ? 0 : Number(v)); }}>{l}</button>; })}</div>
     <div className="tabs"><span className="muted small" style={{ alignSelf: "center" }}>Photo :</span><button className={"chip" + (wm ? " on" : "")} onClick={() => setWm(!wm)} aria-pressed={wm}>🛡 Filigrane {wm ? "activé" : "retiré"}</button></div>
+    {emo && <div className="empanel"><EmojiGrid onPick={(e) => setTxt((t) => t + e)} /></div>}
     <form className="row" onSubmit={(e) => { e.preventDefault(); sendTxt(); }}>
       <input ref={img} type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files?.[0]; if (f && c) { try { actions.send(c.id, "", secs, await fileToDataUrl(f, 800), undefined, null, once, !wm); } catch { toast("Image illisible."); } } e.target.value = ""; }} />
       <button type="button" className="btn ghost sm" onClick={() => img.current?.click()} aria-label="Photo"><Ico n="img" s={18} /></button>
-      <button type="button" className="btn ghost sm" onClick={voice} aria-label="Message vocal" style={rec ? { background: "var(--bad)", color: "#fff" } : undefined}>🎤</button>
+      <button type="button" className="btn ghost sm" onClick={() => setEmo(!emo)} aria-label="Emojis"><Ico n="smile" s={18} /></button>
+      <button type="button" className="btn ghost sm" onClick={voice} aria-label={rec ? "Arrêter et envoyer le vocal" : "Message vocal"} style={rec ? { background: "var(--bad)", color: "#fff" } : undefined}><Ico n="mic" s={18} />{rec && <span className="small" style={{ marginLeft: 4 }}>Envoi</span>}</button>
       <input className="inp" placeholder={edit ? "Modifier le message…" : "Votre message…"} value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message" /><button className="btn" disabled={!txt.trim()} aria-label="Envoyer"><Ico n="send" s={18} /></button></form></div>);
 }
 

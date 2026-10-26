@@ -11,7 +11,7 @@ export function Stories({ me }: { me: string }) {
   const [open, setOpen] = useState<string | null>(null); const [add, setAdd] = useState(false);
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
   return (<><div className="stories">
-    <button className="story" onClick={() => setAdd(true)} aria-label="Ajouter une story"><span className="ring add"><div className="av" style={{ width: 58, height: 58, background: "var(--card2)" }}><Ico n="plus" /></div></span><div>Ma story</div></button>
+    <button className="story" onClick={() => setAdd(true)} aria-label="Ajouter une story"><span className="ring add" style={{ position: "relative", border: "3px solid var(--brand)", borderRadius: "50%", padding: 0, background: "none" }}><img src="./icon-192.png" alt="" width={62} height={62} style={{ borderRadius: "50%", display: "block" }} /><span className="pbadge" style={{ width: 22, height: 22, fontSize: ".9rem" }}>+</span></span><div>Ma story</div></button>
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = list.filter((p) => p.authorId === a).every((p) => p.authorId === me || p.views[me] !== undefined);
       return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"ring" + (seen ? " seen" : "")}><Avatar u={u} s={58} /></span><div className="ell">{a === me ? "Moi" : u?.name}</div></button>; })}
   </div>
