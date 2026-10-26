@@ -31,3 +31,14 @@ npm run build      # construire le site
 ./build-static.sh  # variante sans Vite (copie dans ../public/nidami)
 ```
 Dossiers : `src/lib/engine.ts` (règles), `src/lib/store.ts` (données locales), `src/ui/*` (écrans), `supabase/` (base de données).
+
+## Inscription réelle (Google, Apple, Facebook, e-mail, FranceConnect…)
+
+L'écran d'inscription est prêt. Il ne devient « réel » que lorsque le serveur est relié :
+1. Créez un projet gratuit sur supabase.com, puis copiez l'adresse et la clé publique dans les variables Vercel `VITE_SUPABASE_URL` et `VITE_SUPABASE_ANON_KEY`.
+2. E-mail + mot de passe : rien d'autre à faire (activé par défaut dans Supabase).
+3. Google : créer un identifiant OAuth sur console.cloud.google.com, puis le coller dans Supabase > Authentication > Providers.
+4. Facebook : créer une application sur developers.facebook.com, même principe.
+5. Apple : demande un compte Apple Developer (payant, environ 99 €/an).
+6. Snapchat (Snap Kit), FranceConnect (habilitation de l'État via datapass.api.gouv.fr) et l'Identité Numérique La Poste (partenariat) demandent un accord préalable : les boutons existent, mais ne sont pas activables avant l'accord.
+Le code de connexion n'a pas été testé sur un vrai serveur.

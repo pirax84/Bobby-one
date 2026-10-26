@@ -8,12 +8,17 @@ import { Home } from "./Home";
 
 export const inviteLink = (code: string) => location.origin + location.pathname.replace(/index\.html$/, "") + "#add=" + code;
 export function QrSvg({ text, size = 220 }: { text: string; size?: number }) {
-  const m = qrMake(text); const n = m.length, b = 3; let d = ""; m.forEach((row, r) => row.forEach((v, c) => { if (v) d += `M${c + b} ${r + b}h1v1h-1z`; }));
-  return <svg viewBox={`0 0 ${n + 2 * b} ${n + 2 * b}`} width={size} height={size} role="img" aria-label="QR code" shapeRendering="crispEdges" style={{ background: "#fff", borderRadius: 16 }}><path d={d} fill="#0B1030" /></svg>;
+  const m = qrMake(text, true); const n = m.length, b = 3; let d = ""; m.forEach((row, r) => row.forEach((v, c) => { if (v) d += `M${c + b} ${r + b}h1v1h-1z`; }));
+  const T = n + 2 * b, L = Math.round(n * 0.22), o = (T - L) / 2; // logo au centre (le QR est en correction d'erreur maximale)
+  return <svg viewBox={`0 0 ${T} ${T}`} width={size} height={size} role="img" aria-label="QR code" style={{ background: "#fff", borderRadius: 16 }}><path d={d} fill="#0F172A" shapeRendering="crispEdges" />
+    <rect x={o - 0.8} y={o - 0.8} width={L + 1.6} height={L + 1.6} rx={L * 0.24} fill="#fff" /><image href="./icon-192.png" x={o} y={o} width={L} height={L} /></svg>;
 }
 function downloadQr(text: string, name: string) {
-  const m = qrMake(text); const n = m.length, b = 4, k = 12, W = (n + 2 * b) * k; const c = document.createElement("canvas"); c.width = c.height = W; const g = c.getContext("2d")!; g.fillStyle = "#fff"; g.fillRect(0, 0, W, W); g.fillStyle = "#0B1030";
-  m.forEach((row, r) => row.forEach((v, cc) => v && g.fillRect((cc + b) * k, (r + b) * k, k, k))); c.toBlob((bl) => { if (!bl) return; const a = document.createElement("a"); a.href = URL.createObjectURL(bl); a.download = `nidami-${name}.png`; a.click(); });
+  const m = qrMake(text, true); const n = m.length, b = 4, k = 12, W = (n + 2 * b) * k; const c = document.createElement("canvas"); c.width = c.height = W; const g = c.getContext("2d")!; g.fillStyle = "#fff"; g.fillRect(0, 0, W, W); g.fillStyle = "#0F172A";
+  m.forEach((row, r) => row.forEach((v, cc) => v && g.fillRect((cc + b) * k, (r + b) * k, k, k)));
+  const L = Math.round(n * 0.22) * k, o = (W - L) / 2, im = new Image();
+  const save = () => c.toBlob((bl) => { if (!bl) return; const a = document.createElement("a"); a.href = URL.createObjectURL(bl); a.download = `qr-${name}.png`; a.click(); });
+  im.onload = () => { g.fillStyle = "#fff"; g.fillRect(o - k * 0.8, o - k * 0.8, L + k * 1.6, L + k * 1.6); g.drawImage(im, o, o, L, L); save(); }; im.onerror = save; im.src = "./icon-192.png";
 }
 export function MyQr({ u }: { u: User }) {
   const link = inviteLink(u.code); const D: [User["discover"], string, string][] = [["public", "🌍 Public", "Tout le monde peut me trouver avec mon nom ou mon pseudo."], ["limited", "👥 Limité", "Seulement avec mon pseudo exact, ou les amis de mes amis."], ["hidden", "🔒 Invisible", "Personne ne me trouve. Seulement si je donne mon QR code ou mon code."]];

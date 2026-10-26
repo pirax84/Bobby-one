@@ -1,1 +1,1 @@
-export function make(text: string): boolean[][];
+export function make(text: string, high?: boolean): boolean[][];

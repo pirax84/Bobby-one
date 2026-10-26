@@ -994,8 +994,8 @@ var require_qrw = __commonJS({
   "../../../../../tmp/qrw.cjs"(exports, module) {
     var QRCode = require_QRCode();
     var L = require_QRErrorCorrectLevel();
-    module.exports = { make(text) {
-      const q = new QRCode(-1, L.M);
+    module.exports = { make(text, high) {
+      const q = new QRCode(-1, high ? L.H : L.M);
       q.addData(text);
       q.make();
       const n = q.getModuleCount();
