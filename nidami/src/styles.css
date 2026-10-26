@@ -98,3 +98,9 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 .msgs{background:linear-gradient(180deg,rgba(var(--brand-rgb),.14),rgba(var(--brand2-rgb),.08));border:1px solid rgba(var(--brand-rgb),.28);border-radius:22px;padding:12px}
 .bubble{background:rgba(var(--brand2-rgb),.22);border:1px solid rgba(var(--brand2-rgb),.38)}
 .bubble.me{border-color:transparent;color:var(--on)}
+.detail{position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column}
+.dhead{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--bd);background:var(--bg2)}
+.dbody{flex:1;overflow:auto;padding:14px;max-width:720px;width:100%;margin:0 auto}
+.dfoot{padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--bd);background:var(--bg2);max-width:720px;width:100%;margin:0 auto}
+.egrid .erow{display:flex;flex-wrap:wrap;gap:2px}.egrid .erow button{background:none;border:0;font-size:1.6rem;width:44px;height:44px;border-radius:12px}.egrid .erow button:active{background:var(--card2)}
+.mbtn{min-width:40px;min-height:40px;padding:0 10px;font-size:1.05rem}

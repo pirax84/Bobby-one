@@ -51,4 +51,13 @@ export function fileToDataUrl(f: File, max = 960, q = 0.74): Promise<string> {
 }
 export const BG = ["linear-gradient(135deg,#8B5CF6,#3B82F6)", "linear-gradient(135deg,#FF9A5A,#F43F5E)", "linear-gradient(135deg,#10B981,#0EA5E9)", "linear-gradient(135deg,#F472B6,#8B5CF6)", "linear-gradient(135deg,#F59E0B,#EF4444)"];
 export const EMOJIS = ["❤️", "😂", "😮", "😢", "👏", "🔥"];
+export const EMOJI_GROUPS: [string, string[]][] = [
+  ["Visages", ["😀", "😃", "😄", "😁", "😆", "🥹", "😅", "😂", "🤣", "😊", "😇", "🙂", "😉", "😍", "🥰", "😘", "😋", "😛", "😜", "🤪", "🤗", "🤭", "🤔", "😎", "🤩", "🥳", "😏", "😌", "😴", "😢", "😭", "🥺", "😮", "😱", "😡", "🤯", "🥶", "🥵", "🤒", "🤮"]],
+  ["Mains", ["👍", "👎", "👏", "🙌", "🙏", "🤝", "💪", "✌️", "🤞", "👌", "🤟", "🫶", "👋", "🤙", "☝️", "🫡"]],
+  ["Cœurs", ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💖", "💗", "💕", "💞", "💝", "💘", "💔", "✨", "💯"]],
+  ["Fête et nature", ["🎉", "🎂", "🎁", "🎈", "🍾", "🥂", "🍕", "🍔", "🍟", "🍰", "☕", "🍷", "🌞", "🌈", "🌸", "🌳", "🐶", "🐱", "🦋", "🐻", "⚽", "🎶", "📸", "🏖️", "🚗", "✈️", "🏡", "🔥", "⭐", "🌙"]],
+];
+export function EmojiGrid({ onPick }: { onPick: (e: string) => void }) {
+  return <div className="egrid">{EMOJI_GROUPS.map(([t, l]) => <div key={t}><div className="muted small" style={{ margin: "6px 2px" }}>{t}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
+}
 export function useNow(ms = 1000) { const [t, setT] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setT(Date.now()), ms); return () => clearInterval(i); }, [ms]); return t; }
