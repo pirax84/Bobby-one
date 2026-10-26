@@ -88,3 +88,13 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 .tile{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;border-radius:20px;border:1px solid var(--bd);background:var(--card2);color:var(--fg);font-weight:600;font-size:.85rem;min-height:92px}
 .tile .tic{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(var(--brand-rgb),.16);color:var(--brand)}
 .tile:active{transform:scale(.97)}
+.mediaw{position:relative;cursor:pointer}
+.mact{position:absolute;right:10px;bottom:10px;display:flex;gap:8px}
+.mbtn{display:inline-flex;align-items:center;gap:5px;min-width:44px;min-height:44px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(10,16,32,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-size:1.2rem;justify-content:center}
+.mbtn small{font-size:.8rem;font-weight:700}.mbtn.on{border-color:var(--brand)}
+.react.big{font-size:1.5rem;min-width:52px;min-height:48px}
+.cbub{background:rgba(var(--brand2-rgb),.14);border:1px solid rgba(var(--brand2-rgb),.3);border-radius:16px;padding:7px 12px}
+.card.unread{background:rgba(var(--brand-rgb),.16);border-color:rgba(var(--brand-rgb),.6);box-shadow:inset 4px 0 0 var(--brand)}
+.msgs{background:linear-gradient(180deg,rgba(var(--brand-rgb),.14),rgba(var(--brand2-rgb),.08));border:1px solid rgba(var(--brand-rgb),.28);border-radius:22px;padding:12px}
+.bubble{background:rgba(var(--brand2-rgb),.22);border:1px solid rgba(var(--brand2-rgb),.38)}
+.bubble.me{border-color:transparent;color:var(--on)}

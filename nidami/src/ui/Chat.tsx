@@ -31,7 +31,7 @@ export function Messages() {
   };
   const list = (
     <div className="col" style={{ gap: 8 }}><input className="inp" placeholder="🔎 Rechercher dans mes conversations" value={q} onChange={(e) => setQ(e.target.value)} />
-      {convs.filter((x) => !q || title(x).toLowerCase().includes(q.toLowerCase()) || x.msgs.some((m) => visible(m, me, now) && m.text.toLowerCase().includes(q.toLowerCase()))).map((x) => { const last = x.msgs.at(-1); const u = unread(x); return <button key={x.id} className="card row" style={{ color: "inherit", textAlign: "left" }} onClick={() => setSel(x.id)}>
+      {convs.filter((x) => !q || title(x).toLowerCase().includes(q.toLowerCase()) || x.msgs.some((m) => visible(m, me, now) && m.text.toLowerCase().includes(q.toLowerCase()))).map((x) => { const last = x.msgs.at(-1); const u = unread(x); return <button key={x.id} className={"card row" + (unread(x) > 0 ? " unread" : "")} style={{ color: "inherit", textAlign: "left" }} onClick={() => setSel(x.id)}>
         {x.groupId ? <div className="av" style={{ width: 44, height: 44, background: "var(--grad)" }}>👥</div> : <Avatar u={userOf(s, x.memberIds.find((m) => m !== me)!)} />}<div className="grow"><b>{title(x)}</b><div className="muted small ell">{last ? ((last.secs || last.once) && last.from !== me ? "🔒 Message éphémère" : last.audio ? "🎤 Message vocal" : last.text || "📷 Photo") : "Nouvelle conversation"}</div></div>{u > 0 && <span className="badge">{u}</span>}</button>; })}
       {!convs.length && <p className="muted">Aucune conversation : écrivez à un ami depuis « Amis ».</p>}</div>);
   if (!c) return (<div className="col"><h1>Messages</h1>{list}</div>);
