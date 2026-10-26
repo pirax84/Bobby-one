@@ -43,25 +43,26 @@ function ProvBtn({ p, onSoon }: { p: Prov; onSoon: (p: Prov) => void }) {
 }
 
 function SignUp() {
-  const [mode, setMode] = useState<"new" | "old">("new"); const [name, setName] = useState(""); const [email, setEmail] = useState(""); const [pw, setPw] = useState(""); const [ok, setOk] = useState(false);
+  const [mode, setMode] = useState<"new" | "old">("new"); const [name, setName] = useState(""); const [pseudo, setPseudo] = useState(""); const [email, setEmail] = useState(""); const [pw, setPw] = useState(""); const [ok, setOk] = useState(false);
   const [legal, setLegal] = useState(false); const [info, setInfo] = useState(""); const [prov, setProv] = useState<Prov | null>(null); const [busy, setBusy] = useState(false); const on = serverOn();
   const legalBtn = <button type="button" style={{ background: "none", border: 0, padding: 0, color: "var(--brand2)", textDecoration: "underline" }} onClick={() => setLegal(true)}>conditions d'utilisation et la politique de confidentialité</button>;
   const submit = async (e: React.FormEvent) => { e.preventDefault(); if (!ok) return; setBusy(true);
-    const r = mode === "new" ? await emailSignUp(email.trim(), pw, name.trim() || email.split("@")[0]) : await emailLogin(email.trim(), pw); setBusy(false); setInfo(r.msg); if (r.who) actions.start(r.who.name); };
+    const r = mode === "new" ? await emailSignUp(email.trim(), pw, name.trim() || email.split("@")[0]) : await emailLogin(email.trim(), pw); setBusy(false); setInfo(r.msg); if (r.who) actions.start(r.who.name, "", pseudo); };
   return (<div className="card col center" style={{ alignItems: "center", gap: 14, padding: 26 }}>
     <Logo s={84} /><h1 style={{ fontSize: "1.6rem", letterSpacing: "-.03em" }}>{mode === "new" ? "Créer mon compte" : "Me connecter"}</h1>
     <div className="col" style={{ width: "100%", gap: 8 }}>{PROVIDERS.map((p) => <ProvBtn key={p.id} p={p} onSoon={(q) => setProv(q)} />)}</div>
     <div className="muted small">— ou —</div>
     {on ? <form className="col" style={{ width: "100%" }} onSubmit={submit}>
-      {mode === "new" && <input className="inp" placeholder="Votre prénom ou pseudo" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" />}
+      {mode === "new" && <input className="inp" placeholder="Votre prénom ou pseudo" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" />}{mode === "new" && <input className="inp" placeholder="Pseudo @ (facultatif) : modifiable une seule fois, payant" value={pseudo} onChange={(e) => setPseudo(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 20))} aria-label="Pseudo" />}
       <input className="inp" type="email" placeholder="Votre e-mail" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="E-mail" required />
       <input className="inp" type="password" placeholder="Mot de passe (8 caractères minimum)" value={pw} onChange={(e) => setPw(e.target.value)} minLength={8} aria-label="Mot de passe" required />
       <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch on={ok} onChange={setOk} label="J'accepte les conditions" /><span>J'ai 15 ans ou plus et j'accepte les {legalBtn}.</span></label>
       <button className="btn" disabled={!ok || busy || pw.length < 8 || !email}>{mode === "new" ? "Créer mon compte" : "Me connecter"}</button>
       <button type="button" className="btn ghost" onClick={() => { setMode(mode === "new" ? "old" : "new"); setInfo(""); }}>{mode === "new" ? "J'ai déjà un compte" : "Je n'ai pas encore de compte"}</button></form>
-    : <form className="col" style={{ width: "100%" }} onSubmit={(e) => { e.preventDefault(); if (!name.trim()) { setInfo("Écrivez d'abord votre prénom ou pseudo ci-dessus."); toast("Écrivez d'abord votre prénom ou pseudo."); return; } if (!ok) { setInfo("Cochez la case « J'ai 15 ans ou plus » pour continuer."); toast("Cochez la case des conditions."); return; } actions.start(name); }}>
+    : <form className="col" style={{ width: "100%" }} onSubmit={(e) => { e.preventDefault(); if (!name.trim()) { setInfo("Écrivez d'abord votre prénom ou pseudo ci-dessus."); toast("Écrivez d'abord votre prénom ou pseudo."); return; } if (!ok) { setInfo("Cochez la case « J'ai 15 ans ou plus » pour continuer."); toast("Cochez la case des conditions."); return; } actions.start(name, "", pseudo); }}>
       <div className="card" style={{ textAlign: "left", fontSize: ".9rem" }}><b>🧪 Mode démo</b><div className="muted small">Les vrais comptes (e-mail, Google, Apple, Facebook, FranceConnect…) demandent un serveur, qui n'est pas encore relié. En attendant, vous pouvez essayer l'application sur cet appareil avec des amis fictifs.</div></div>
       <input className="inp" placeholder="Votre prénom ou pseudo (démo)" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" />
+      <input className="inp" placeholder="Pseudo @ (facultatif) : modifiable une seule fois, payant" value={pseudo} onChange={(e) => setPseudo(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 20))} aria-label="Pseudo" />
       <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch on={ok} onChange={setOk} label="J'accepte les conditions" /><span>J'ai 15 ans ou plus et j'accepte les {legalBtn}.</span></label>
       <button className="btn">Essayer en mode démo</button>{info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}</form>}
     {on && info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}

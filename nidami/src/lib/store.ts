@@ -4,7 +4,7 @@ import { seed, demoPosts } from "./seed";
 
 export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
-export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none" }
+export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none"; handleChanged?: boolean; reqAt?: number[] }
 export interface Msg { id: ID; from: ID; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: "shake" | "confetti" | "hearts" }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string }
@@ -36,11 +36,16 @@ export const codeFor = (id: ID) => "NID-" + id.replace(/[^a-z0-9]/gi, "").toUppe
 const notify = (s: State, to: ID, text: string, go?: string) => { if (go && s.settings[to]?.nt?.[go] === false) return; s.notifs.unshift({ id: uid(), to, text, at: now(), read: false, go }); };
 
 let lastFx = 0;
+export const HANDLE_RE = /^[a-z0-9_.]{3,20}$/;
+/** Compte mis en examen automatiquement : au moins 3 personnes différentes l'ont signalé. */
+export const isRestricted = (s: State, id: ID) => new Set(s.reports.filter((r) => r.target === id).map((r) => r.by)).size >= 3;
+const MAX_REQ_DAY = 15;
 export const actions = {
   sendFx(convId: ID, fx: "shake" | "confetti" | "hearts"): boolean { const t0 = now(); if (t0 - lastFx < 4000) return false; lastFx = t0; mut((s) => { const c = s.convs.find((x) => x.id === convId && x.memberIds.includes(s.me)); if (!c) return; c.msgs.push({ id: uid(), from: s.me, text: fx === "shake" ? "📳 Secousse !" : fx === "confetti" ? "🎉 Confettis !" : "❤️ Pluie de cœurs !", at: t0, secs: 0, reads: {}, gone: {}, fx } as Msg); }); return true; },
   setNotifType(k: string, v: boolean) { mut((s) => { const c = cfgOf(s, s.me); s.settings[s.me] = { ...c, nt: { ...(c.nt || {}), [k]: v } }; }); },
+  changeHandle(h: string): { ok: boolean; msg: string } { const v = h.trim().toLowerCase().replace(/^@/, ""); let r = { ok: false, msg: "Erreur." }; mut((s) => { const u = userOf(s, s.me)!; if (u.handleChanged) { r = { ok: false, msg: "Le pseudo ne peut être changé qu'une seule fois, et vous l'avez déjà fait." }; return; } if (!s.settings[s.me]?.premium) { r = { ok: false, msg: "Changer de pseudo est payant (offre « Plus »). Le paiement n'est pas encore branché : activez « Plus (démonstration) » dans Paramètres pour essayer." }; return; } if (!HANDLE_RE.test(v)) { r = { ok: false, msg: "Pseudo : 3 à 20 caractères, lettres minuscules, chiffres, point ou tiret bas." }; return; } if (s.users.some((x) => x.id !== u.id && x.handle === v)) { r = { ok: false, msg: "Ce pseudo est déjà pris." }; return; } u.handle = v; u.handleChanged = true; r = { ok: true, msg: "Pseudo changé. Ce changement est définitif." }; }); return r; },
   logout() { mut((s) => { s.started = false; s.me = ""; }); },
-  start(name: string, bio = "") { mut((s) => { const old = s.users.find((u) => !u.demo && u.name.toLowerCase() === name.trim().toLowerCase()); if (old) { s.me = old.id; s.started = true; return; } const id = "u_" + uid(); const hue = Math.floor(Math.random() * 360); const nm = name.trim().slice(0, 30) || "Moi"; const base = nm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "").slice(0, 12) || "membre"; s.users.push({ id, handle: base + Math.floor(100 + Math.random() * 900), discover: "hidden", name: nm, hue, bio, status: "Bienvenue dans mon nid 🪺", joinedAt: now(), code: codeFor(id) }); s.me = id; s.started = true;
+  start(name: string, bio = "", handle = "") { mut((s) => { const old = s.users.find((u) => !u.demo && u.name.toLowerCase() === name.trim().toLowerCase()); if (old) { s.me = old.id; s.started = true; return; } const id = "u_" + uid(); const hue = Math.floor(Math.random() * 360); const nm = name.trim().slice(0, 30) || "Moi"; const base = nm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "").slice(0, 12) || "membre"; const hv = handle.trim().toLowerCase().replace(/^@/, ""); const hok = HANDLE_RE.test(hv) && !s.users.some((x) => x.handle === hv); s.users.push({ id, handle: hok ? hv : base + Math.floor(100 + Math.random() * 900), discover: "hidden", name: nm, hue, bio, status: "Bienvenue dans mon nid 🪺", joinedAt: now(), code: codeFor(id) }); s.me = id; s.started = true;
     for (const f of s.users.filter((u) => u.demo && ["celine", "thomas", "emilie", "max"].includes(u.id))) { s.social.friends[id] = [...(s.social.friends[id] || []), f.id]; s.social.friends[f.id] = [...(s.social.friends[f.id] || []), id]; }
     for (const a of ["celine", "thomas", "emilie", "max"]) s.social.friends[a] = [...new Set([...(s.social.friends[a] || []), ...["celine", "thomas", "emilie", "max"].filter((x) => x !== a)])];
     const fam = s.social.groups.find((g) => g.id === "g_famille"); if (fam) { fam.memberIds.push(id); fam.adminIds.push(id); }
@@ -57,6 +62,7 @@ export const actions = {
 
   publish(p: { kind: "text" | "photo" | "video"; text: string; img?: string | null; video?: string | null; albumId?: ID; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean }): { ok: boolean; error?: string; id?: ID } {
     if (!validViewSecs(p.viewSecs)) return { ok: false, error: "Durée invalide." };
+    if (isRestricted(state, state.me)) return { ok: false, error: "Votre compte est en cours de vérification suite à des signalements." };
     let id = ""; let err = "";
     mut((s) => {
       const recipients = resolveRecipients(s.social, s.me, p.audience);
@@ -80,10 +86,12 @@ export const actions = {
   comment(id: ID, text: string, replyTo?: ID) { const t = text.trim(); if (!t) return; mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; const c: Comment = { id: uid(), authorId: s.me, text: t.slice(0, 500), at: now(), replyTo }; p.comments.push(c); if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a commenté votre publication.`, "home"); }); },
 
   requestFriend(userId: ID): { ok: boolean; msg: string } { let r = { ok: false, msg: "Personne introuvable." }; mut((s) => { const u = s.users.find((x) => x.id === userId); if (!u) return; if (u.id === s.me) { r = { ok: false, msg: "C'est vous !" }; return; }
+      if (isRestricted(s, s.me)) { r = { ok: false, msg: "Votre compte est en cours de vérification suite à des signalements : vous ne pouvez pas envoyer de demandes pour le moment." }; return; }
+      const me0 = userOf(s, s.me)!; me0.reqAt = (me0.reqAt || []).filter((t) => now() - t < 864e5); if (me0.reqAt.length >= MAX_REQ_DAY) { r = { ok: false, msg: "Trop de demandes aujourd'hui (15 au maximum). Réessayez demain." }; return; }
     if (isBlocked(s.social, s.me, u.id)) { r = { ok: false, msg: "Impossible d'envoyer la demande." }; return; }
     if (areFriends(s.social, s.me, u.id)) { r = { ok: false, msg: `${u.name} est déjà votre ami.` }; return; }
     if (s.reqs.some((q) => q.from === s.me && q.to === u.id)) { r = { ok: false, msg: "Demande déjà envoyée." }; return; }
-    s.reqs.push({ id: uid(), from: s.me, to: u.id, at: now() }); notify(s, u.id, `${userOf(s, s.me)!.name} vous demande en ami.`, "friends"); r = { ok: true, msg: `Demande envoyée à ${u.name}.` }; }); return r; },
+    userOf(s, s.me)!.reqAt!.push(now()); s.reqs.push({ id: uid(), from: s.me, to: u.id, at: now() }); notify(s, u.id, `${userOf(s, s.me)!.name} vous demande en ami.`, "friends"); r = { ok: true, msg: `Demande envoyée à ${u.name}.` }; }); return r; },
   addByCode(code: string): { ok: boolean; msg: string } { const c = code.trim().toUpperCase(); const u = state.users.find((x) => x.code === c); if (!u) return { ok: false, msg: "Code inconnu (en mode démo, seuls les comptes de cet appareil existent)." }; return actions.requestFriend(u.id); },
   setDiscover(d: Discover) { mut((s) => { userOf(s, s.me)!.discover = d; }); },
   setHandle(h: string): { ok: boolean; msg: string } { const x = h.trim().toLowerCase(); let r = { ok: false, msg: "" }; mut((s) => { if (!/^[a-z0-9_.]{3,20}$/.test(x)) { r = { ok: false, msg: "3 à 20 caractères : lettres, chiffres, _ ou ." }; return; } if (s.users.some((u) => u.handle === x && u.id !== s.me)) { r = { ok: false, msg: "Ce pseudo est déjà pris." }; return; } userOf(s, s.me)!.handle = x; r = { ok: true, msg: "Pseudo enregistré." }; }); return r; },
