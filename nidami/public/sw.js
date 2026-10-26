@@ -1,5 +1,5 @@
 // Mon cercle : fonctionne aussi sans réseau une fois ouvert une première fois.
-const C = "cercle-v2";
+const C = "cercle-v3";
 self.addEventListener("install", (e) => { self.skipWaiting(); e.waitUntil(caches.open(C).then((c) => c.addAll(["./", "./icon.svg", "./manifest.webmanifest"]).catch(() => {}))); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((k) => Promise.all(k.filter((x) => x !== C).map((x) => caches.delete(x)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", (e) => {
