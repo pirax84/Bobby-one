@@ -15,10 +15,10 @@ const STEPS = [["Bonjour, je suis Bobby.", "Je suis votre gardien personnel. Je 
 const BOTTOM: View[] = ["home", "calls", "chat", "community"];
 const NAV = NAV_ALL; const DESC = (id: View) => NAV.find((n) => n.id === id)!;
 function InstallGate() {
-  const t = useT(); const { settings, set } = useS(); const [ev, setEv] = useState<any>(null); const [done, setDone] = useState(false); const [ios, setIos] = useState(false);
+  const t = useT(); const { settings, set } = useS(); const [ev, setEv] = useState<any>(null); const [done, setDone] = useState(false); const [ios, setIos] = useState(false); const [android, setAndroid] = useState(false);
   useEffect(() => {
     const on = (e: any) => { e.preventDefault(); setEv(e); }; const d = () => { useS.setState({ onboarded: false, setup: false }); setDone(true); };
-    window.addEventListener("beforeinstallprompt", on); window.addEventListener("appinstalled", d); setIos(/iphone|ipad|ipod/i.test(navigator.userAgent));
+    window.addEventListener("beforeinstallprompt", on); window.addEventListener("appinstalled", d); setIos(/iphone|ipad|ipod/i.test(navigator.userAgent)); setAndroid(/android/i.test(navigator.userAgent));
     return () => { window.removeEventListener("beforeinstallprompt", on); window.removeEventListener("appinstalled", d); };
   }, []);
   const install = async () => { if (!ev) return; ev.prompt(); try { const c = await ev.userChoice; if (c?.outcome === "accepted") { useS.setState({ onboarded: false, setup: false }); setDone(true); } } catch {} setEv(null); askAll().catch(() => {}); };
@@ -28,6 +28,7 @@ function InstallGate() {
     {done ? <><h1 className="text-2xl font-bold">{t("Bobby One est installé !")}</h1><p className="text-mute text-lg">{t("Fermez cette page et ouvrez Bobby One depuis l'icône sur votre écran d'accueil.")}</p></> : <>
       <h1 className="text-2xl font-bold">{t("Installez Bobby One")}</h1>
       <p className="text-mute text-lg">{t("Pour vous protéger, Bobby doit être installé sur votre appareil. Cela prend quelques secondes.")}</p>
+      {android && <a href="https://github.com/pirax84/Bobby-one/releases/download/android-latest/bobby-one.apk" className="btn w-full !min-h-14 text-lg"><Download size={22} />{t("Télécharger l'application Android (APK)")}</a>}
       {ev ? <button type="button" className="btn w-full !min-h-14 text-lg" onClick={install}><Download size={22} />{t("Télécharger et installer l'application")}</button>
         : ios ? <div className="card p-5 text-start space-y-2"><p className="font-semibold">{t("Sur iPhone :")}</p><p>1. {t("Touchez le bouton Partager (le carré avec une flèche) en bas de l'écran.")}</p><p>2. {t("Choisissez « Sur l'écran d'accueil ».")}</p><p>3. {t("Touchez Ajouter, puis ouvrez Bobby One depuis l'icône.")}</p></div>
         : <div className="card p-5 text-start space-y-2"><p className="font-semibold">{t("Pour installer :")}</p><p>1. {t("Ouvrez le menu de votre navigateur (⋮ ou ⋯).")}</p><p>2. {t("Choisissez « Installer l'application » ou « Ajouter à l'écran d'accueil ».")}</p><p>3. {t("Ouvrez ensuite Bobby One depuis l'icône.")}</p></div>}
@@ -62,7 +63,7 @@ export default function App() {
   useEffect(() => { if (first.current) { first.current = false; return; } if (!onboarded || settings.voice === false) return; const n = NAV.find((x) => x.id === view)!; speak(t(n.label) + ". " + t(n.desc), settings.lang); }, [view]);
   useEffect(() => { document.documentElement.classList.toggle("light", settings.theme === "light"); }, [settings.theme]);
   if (!ok) return null;
-  if (!installed) return <InstallGate />;
+  if (!installed && phone) return <InstallGate />;
   const V = VIEWS[!phone && view === "calls" ? "home" : view];
   const NV = phone ? NAV : NAV.filter((n) => n.id !== "calls");
   const nav = (id: View) => { go(id); setMore(false); window.scrollTo({ top: 0 }); };
