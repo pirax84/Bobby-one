@@ -97,3 +97,12 @@ export function playFx(k: Fx, sound = true) {
   for (let i = 0; i < 34; i++) { const s = document.createElement("span"); s.textContent = d.em[i % d.em.length]; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * 0.9 + "s"; s.style.fontSize = 18 + Math.random() * 22 + "px"; s.style.animationDuration = 2 + Math.random() * 1.6 + "s"; box.appendChild(s); }
   document.body.appendChild(box); setTimeout(() => box.remove(), 4200);
 }
+
+/** Effet personnalisé : l'image de la personne tombe à l'écran et son enregistrement (3 s max) est joué. */
+export function playCustom(c: { img?: string; audio?: string; name?: string }, sound = true) {
+  if (sound && c.audio) { try { const a = new Audio(c.audio); a.volume = 1; void a.play(); } catch { /* son indisponible */ } }
+  if (reduced()) return;
+  const box = document.createElement("div"); box.className = "fxbox"; box.setAttribute("aria-hidden", "true");
+  for (let i = 0; i < 22; i++) { const s = document.createElement(c.img ? "img" : "span"); if (c.img) { (s as HTMLImageElement).src = c.img; s.style.width = 30 + Math.random() * 30 + "px"; s.style.height = s.style.width; s.style.objectFit = "cover"; s.style.borderRadius = "50%"; } else s.textContent = "🎙"; s.style.position = "absolute"; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * 0.8 + "s"; s.style.animationDuration = 2 + Math.random() * 1.4 + "s"; box.appendChild(s); }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 4200);
+}
