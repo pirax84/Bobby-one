@@ -1,1 +1,10 @@
-{ "redirects": [ { "source": "/android", "destination": "https://github.com/pirax84/Bobby-one/releases/download/cercle-android-latest/cercle.apk", "permanent": false } ] }
+{
+ "redirects": [
+  {
+   "source": "/android",
+   "destination": "https://github.com/pirax84/Bobby-one/releases/download/cercle-android-latest/cercle.apk",
+   "permanent": false
+  }
+ ],
+ "ignoreCommand": "[ \"$VERCEL_GIT_COMMIT_REF\" != \"main\" ] || git diff --quiet HEAD^ HEAD -- ."
+}
