@@ -47,7 +47,7 @@ export function resolveRecipients(s: Social, authorId: ID, aud: Audience): ID[] 
   let r: ID[] = [];
   switch (aud.mode) {
     case "all": r = friends; break;
-    case "group": { const g = s.groups.find((x) => x.id === aud.groupId); r = g && g.memberIds.includes(authorId) ? g.memberIds.filter((m) => m !== authorId && !isBlocked(s, authorId, m)) : []; break; }
+    case "group": { const g = s.groups.find((x) => x.id === aud.groupId); r = g && g.memberIds.includes(authorId) ? g.memberIds.filter((m) => m !== authorId && friends.includes(m)) : []; break; }
     case "only": r = aud.ids.filter((i) => friends.includes(i)); break;
     case "except": r = friends.filter((f) => !aud.ids.includes(f)); break;
     case "list": { const l = s.lists.find((x) => x.id === aud.listId && x.ownerId === authorId); r = l ? l.memberIds.filter((i) => friends.includes(i)) : []; break; }

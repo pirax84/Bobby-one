@@ -90,3 +90,11 @@ test("O : quelqu'un qui n'est pas dans l'audience de la republication n'y accèd
   const s = S(); const o = mk(s); const r = reshare(s, o, "celine", ["emilie"]); assert.deepEqual(accessFor(r, [o, r], "thomas", 0, s), { ok: false, reason: "not-recipient" });
   s.blocks.pierre = ["emilie"]; assert.deepEqual(accessFor(r, [o, r], "emilie", 0, s), { ok: false, reason: "blocked" });
 });
+
+test("Seuls les amis de l'auteur voient : un membre de groupe qui n'est pas son ami est exclu", () => {
+  const s = S(); s.groups[0].memberIds.push("intrus");
+  const r = resolveRecipients(s, "pierre", { mode: "group", groupId: "g1" });
+  assert.deepEqual(r.sort(), ["celine", "thomas"]);
+  const r2 = resolveRecipients(s, "pierre", { mode: "all" });
+  assert.ok(!r2.includes("intrus"));
+});
