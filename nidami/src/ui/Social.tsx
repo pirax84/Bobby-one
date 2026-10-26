@@ -169,9 +169,9 @@ function ThemePicker({ cfg }: { cfg: ReturnType<typeof cfgOf> }) {
   const pro = !!cfg.premium;
   const Row = ({ title, k, list, cur, kind }: { title: string; k: "bg" | "fg" | "accent"; list: Opt[]; cur: string | undefined; kind: "bg" | "fg" | "ac" }) =>
     <div className="col" style={{ gap: 6 }}><b className="small">{title}</b><div className="row wrap">{list.map((o, i) => { const on = (cur || list[0].id) === o.id && (pro || !o.pro); const style = kind === "ac" ? { background: `linear-gradient(135deg,${o.v},${o.v2})` } : kind === "bg" ? { background: o.v, color: "#fff" } : { background: cfg.light ? "#fff" : "#0F172A", color: o.v };
-      return <button key={o.id} className={"sw" + (on ? " on" : "")} style={style} title={o.label} aria-label={o.label + (o.pro && !pro ? " (Plus)" : "")} onClick={() => { if (o.pro && !pro) { toast("Cette couleur fait partie de Plus."); return; } actions.setSetting(k, o.id); }}>{kind === "fg" ? "Aa" : ""}{o.pro && !pro && <span className="lock">🔒</span>}</button>; })}</div></div>;
+      return <button key={o.id} className={"sw" + (on ? " on" : "")} style={style} title={o.label} aria-label={o.label + (o.pro && !pro ? " (Plus)" : "")} onClick={() => { if (o.pro && !pro) { toast("Cette couleur fait partie de Plus."); return; } actions.setSetting(k, o.id); }}>{kind === "fg" ? <span style={{ fontWeight: 700 }}>Aa<br /><span style={{ fontSize: 10 }}>{o.label}</span></span> : ""}{o.pro && !pro && <span className="lock">🔒</span>}</button>; })}</div></div>;
   return <div className="card plus-card col"><div className="row"><h3 className="grow">🎨 Couleurs de l'application</h3><span className="badge">PLUS</span></div>
-    <p className="muted small">La palette d'origine est gratuite. Changer le fond, l'écriture et la couleur d'accent fait partie de l'offre payante « Plus ».</p>
+    <p className="muted small">La palette d'origine est gratuite. Changer le fond et la couleur d'accent fait partie de l'offre payante « Plus ». La couleur d'écriture est libre pour tout le monde.</p>
     {!cfg.light && <Row title="Fond" k="bg" list={FONDS} cur={cfg.bg} kind="bg" />}
     <Row title="Écriture" k="fg" list={cfg.light ? ECRITURES_CLAIR : ECRITURES_SOMBRE} cur={cfg.fg} kind="fg" />
     <Row title="Couleur d'accent" k="accent" list={ACCENTS} cur={cfg.accent} kind="ac" />

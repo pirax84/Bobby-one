@@ -78,7 +78,7 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 @media print{body *{display:none!important}body::before{content:"Impression désactivée par Mon cercle";display:block;color:#000}}
 
 /* thèmes personnalisables (Mon cercle+) */
-.sw{width:44px;height:44px;border-radius:14px;border:2px solid var(--bd);display:grid;place-items:center;font-size:.7rem;font-weight:800;position:relative;padding:0}
+.sw{width:52px;height:52px;line-height:1.1;border-radius:14px;border:2px solid var(--bd);display:grid;place-items:center;font-size:.7rem;font-weight:800;position:relative;padding:0}
 .sw.on{outline:3px solid var(--brand);outline-offset:2px}
 .sw .lock{position:absolute;right:-4px;top:-6px;font-size:.8rem}
 .plus-card{border:1px solid rgba(var(--brand-rgb),.5);background:linear-gradient(160deg,rgba(var(--brand-rgb),.16),rgba(var(--brand2-rgb),.1))}

@@ -18,7 +18,7 @@ function OnceViewer({ conv, m, me, name, onClose }: { conv: string; m: Msg; me: 
 }
 export function Messages() {
   const s = useStore((x) => x); const me = s.me; const now = useNow(500); const [sel, setSelRaw] = useState<string | null>(() => (history.state?.conv as string) || null); const setSel = (id: string | null) => { if (id) history.pushState({ v: "messages", conv: id }, ""); setSelRaw(id); }; const closeConv = () => { if (history.state?.conv) history.back(); else setSelRaw(null); }; useEffect(() => { const f = (e: PopStateEvent) => { if (!(e.state && e.state.conv)) setSelRaw(null); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []); const [txt, setTxt] = useState(""); const [secs, setSecs] = useState(0); const [once, setOnce] = useState(false); const [openOnce, setOpenOnce] = useState<string | null>(null); const [q, setQ] = useState(""); const [edit, setEdit] = useState<string | null>(null); const [rep, setRep] = useState<Msg | null>(null);
-  const [del, setDel] = useState<string | null>(null);
+  const [del, setDel] = useState<string | null>(null); const [opt, setOpt] = useState(false);
   const convs = s.convs.filter((c) => c.memberIds.includes(me)).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
   const c = convs.find((x) => x.id === sel); const img = useRef<HTMLInputElement>(null); const [wm, setWm] = useState(true); const [emo, setEmo] = useState(false); const end = useRef<HTMLDivElement>(null);
   const [rec, setRec] = useState<MediaRecorder | null>(null);
@@ -44,7 +44,6 @@ export function Messages() {
   const visio = () => { const a = new Uint8Array(9); crypto.getRandomValues(a); const room = "Cercle" + Array.from(a, (x) => x.toString(36)).join(""); const url = "https://meet.jit.si/" + room; actions.send(c.id, "📹 Je lance une visio : " + url, 0); window.open(url, "_blank", "noopener"); toast("Visio lancée : le lien est envoyé dans la conversation."); };
   const pinned = c.msgs.filter((m) => m.pinned && visible(m, me, now));
   return (<div className="col"><div className="row"><button className="btn ghost sm" onClick={closeConv} aria-label="Retour"><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><button className="btn ghost sm" onClick={visio} aria-label="Lancer un appel visio">📹 Visio</button></div>
-    <FxBar convId={c.id} />
     {pinned.length > 0 && <div className="card small">📌 {pinned.map((m) => m.text || "Message").join(" · ")}</div>}
     <div className="card msgs" role="log" aria-live="polite">{c.msgs.filter((m) => !q || m.text.toLowerCase().includes(q.toLowerCase())).map((m) => { const mine = m.from === me; const ok = visible(m, me, now); const left = m.secs && m.reads[me] !== undefined ? Math.max(0, Math.ceil((m.reads[me] + m.secs * 1000 - now) / 1000)) : 0; const from = userOf(s, m.from); const rp = m.replyTo ? c.msgs.find((x) => x.id === m.replyTo) : null;
       return <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start" }}>{!mine && c.groupId && <span className="muted small">{from?.name}</span>}
@@ -57,15 +56,19 @@ export function Messages() {
     {del && <ConfirmDel what="ce message" onYes={() => actions.deleteMsg(c.id, del)} onClose={() => setDel(null)} />}
     {onceMsg && <OnceViewer conv={c.id} m={onceMsg} me={me} name={userOf(s, me)?.name || ""} onClose={() => setOpenOnce(null)} />}
     {rep && <div className="card small row"><span className="grow ell">↩︎ {rep.text.slice(0, 60)}</span><button className="btn ghost sm" onClick={() => setRep(null)}><Ico n="x" s={14} /></button></div>}
-    <div className="tabs"><span className="muted small" style={{ alignSelf: "center" }}>Durée :</span>{[["p", "♾️ Permanent"], ["o", "🔥 Vu une fois"], ["10", "⏱ 10 s après lecture"], ["60", "⏱ 1 min après lecture"]].map(([v, l]) => { const on = v === "p" ? !once && secs === 0 : v === "o" ? once : !once && secs === Number(v); return <button key={v} className={"chip" + (on ? " on" : "")} onClick={() => { setOnce(v === "o"); setSecs(v === "p" || v === "o" ? 0 : Number(v)); }}>{l}</button>; })}</div>
-    <div className="tabs"><span className="muted small" style={{ alignSelf: "center" }}>Photo :</span><button className={"chip" + (wm ? " on" : "")} onClick={() => setWm(!wm)} aria-pressed={wm}>🛡 Filigrane {wm ? "activé" : "retiré"}</button></div>
+    {opt && <div className="card col" style={{ gap: 10 }}>
+      <div className="row"><b className="grow">Options d'envoi</b><button type="button" className="btn ghost sm" onClick={() => setOpt(false)} aria-label="Fermer les options">✕</button></div>
+      <div className="col" style={{ gap: 4 }}><span className="muted small">Durée du message</span><div className="row wrap" style={{ gap: 6 }}>{[["p", "♾️ Permanent"], ["o", "🔥 Vu une fois"], ["10", "⏱ 10 s"], ["60", "⏱ 1 min"]].map(([v, l]) => { const on = v === "p" ? !once && secs === 0 : v === "o" ? once : !once && secs === Number(v); return <button type="button" key={v} className={"chip" + (on ? " on" : "")} onClick={() => { setOnce(v === "o"); setSecs(v === "p" || v === "o" ? 0 : Number(v)); }}>{l}</button>; })}</div></div>
+      <div className="col" style={{ gap: 4 }}><span className="muted small">Photos</span><div className="row wrap" style={{ gap: 6 }}><button type="button" className="chip" onClick={() => { img.current?.click(); }}>📷 Envoyer une photo</button><button type="button" className={"chip" + (wm ? " on" : "")} onClick={() => setWm(!wm)} aria-pressed={wm}>🛡 Filigrane {wm ? "activé" : "retiré"}</button></div></div>
+      <div className="col" style={{ gap: 4 }}><span className="muted small">Effets</span><FxBar convId={c.id} /></div>
+    </div>}
     {emo && <div className="empanel"><EmojiGrid onPick={(e) => setTxt((t) => t + e)} onClose={() => setEmo(false)} /></div>}
     <form className="row" onSubmit={(e) => { e.preventDefault(); sendTxt(); }}>
       <input ref={img} type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files?.[0]; if (f && c) { try { actions.send(c.id, "", secs, await fileToDataUrl(f, 800), undefined, null, once, !wm); } catch { toast("Image illisible."); } } e.target.value = ""; }} />
-      <button type="button" className="btn ghost sm" onClick={() => img.current?.click()} aria-label="Photo"><Ico n="img" s={18} /></button>
+      <button type="button" className={"btn ghost sm" + (opt ? " on" : "")} onClick={() => setOpt(!opt)} aria-label="Options : durée, photo, effets" aria-expanded={opt}>＋{(once || secs > 0) && <span className="small"> ⏱</span>}</button>
       <button type="button" className="btn ghost sm" onClick={() => setEmo(!emo)} aria-label="Emojis"><Ico n="smile" s={18} /></button>
-      <button type="button" className="btn ghost sm" onClick={voice} aria-label={rec ? "Arrêter et envoyer le vocal" : "Message vocal"} style={rec ? { background: "var(--bad)", color: "#fff" } : undefined}><Ico n="mic" s={18} />{rec && <span className="small" style={{ marginLeft: 4 }}>Envoi</span>}</button>
-      <input className="inp" placeholder={edit ? "Modifier le message…" : "Votre message…"} value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message" /><button className="btn" disabled={!txt.trim()} aria-label="Envoyer"><Ico n="send" s={18} /></button></form></div>);
+      <input className="inp grow" placeholder={edit ? "Modifier le message…" : "Votre message…"} value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message" />
+      {txt.trim() ? <button className="btn" aria-label="Envoyer"><Ico n="send" s={18} /></button> : <button type="button" className="btn ghost" onClick={voice} aria-label={rec ? "Arrêter et envoyer le vocal" : "Message vocal"} style={rec ? { background: "var(--bad)", color: "#fff" } : undefined}><Ico n="mic" s={18} />{rec && <span className="small" style={{ marginLeft: 4 }}>Envoi</span>}</button>}</form></div>);
 }
 
 // ───────── Jeux : Morpion à deux (chacun joue depuis son profil) + Quiz solo

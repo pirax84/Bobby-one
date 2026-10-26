@@ -8,15 +8,15 @@ export const FONDS: Opt[] = [
 ];
 export const ECRITURES_SOMBRE: Opt[] = [
   { id: "blanc", label: "Blanc", v: "#F1F5F9", v2: "#94A3B8", pro: false },
-  { id: "menthe", label: "Menthe", v: "#CFFAF0", v2: "#7FB8AC", pro: true },
-  { id: "sable", label: "Sable", v: "#F5E9D3", v2: "#B3A58D", pro: true },
-  { id: "ciel", label: "Ciel", v: "#DBEAFE", v2: "#8FA6C7", pro: true },
+  { id: "menthe", label: "Vert", v: "#86EFAC", v2: "#5FB584", pro: false },
+  { id: "sable", label: "Or", v: "#FDE68A", v2: "#C2A84F", pro: false },
+  { id: "ciel", label: "Bleu", v: "#93C5FD", v2: "#6A9AD4", pro: false },
 ];
 export const ECRITURES_CLAIR: Opt[] = [
-  { id: "encre", label: "Encre", v: "#0F172A", v2: "#52606D", pro: false },
-  { id: "foret", label: "Forêt", v: "#064E3B", v2: "#4B6F63", pro: true },
-  { id: "ardoise", label: "Ardoise", v: "#334155", v2: "#64748B", pro: true },
-  { id: "prune", label: "Prune", v: "#3B1F4A", v2: "#76608A", pro: true },
+  { id: "encre", label: "Noir", v: "#0F172A", v2: "#52606D", pro: false },
+  { id: "foret", label: "Vert", v: "#065F46", v2: "#3F7F6B", pro: false },
+  { id: "ardoise", label: "Bleu", v: "#1D4ED8", v2: "#5578C9", pro: false },
+  { id: "prune", label: "Bordeaux", v: "#9F1239", v2: "#B0566F", pro: false },
 ];
 export const ACCENTS: Opt[] = [
   { id: "menthe", label: "Menthe", v: "#10B981", v2: "#22D3EE", pro: false },
