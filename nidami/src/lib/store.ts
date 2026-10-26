@@ -28,7 +28,7 @@ export const getSaveWarn = () => saveWarn;
 export function useStore<T>(sel: (s: State) => T): T { return sel(useSyncExternalStore((f) => { subs.add(f); return () => subs.delete(f); }, getState, getState)); }
 // Une mise à jour = on modifie une copie profonde simple puis on notifie.
 function mut(fn: (s: State) => void) { const s: State = structuredClone(state); fn(s); state = s; emit(); }
-export const cfgOf = (s: State, id: ID) => Object.assign({ quiet: false, light: false, autoplay: true }, s.settings[id] || {});
+export const cfgOf = (s: State, id: ID) => Object.assign({ quiet: false, light: true, autoplay: true }, s.settings[id] || {});
 export const now = () => Date.now();          // « heure du serveur » du mode démo
 export const userOf = (s: State, id: ID) => s.users.find((u) => u.id === id);
 export const codeFor = (id: ID) => "NID-" + id.replace(/[^a-z0-9]/gi, "").toUpperCase().slice(0, 5).padEnd(5, "X");

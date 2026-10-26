@@ -31,10 +31,10 @@ const pick = (list: Opt[], id: string | undefined, premium: boolean) => { const 
 export function applyTheme(c: ThemeCfg) {
   const r = document.documentElement.style; r.cssText = "";
   document.documentElement.dataset.theme = c.light ? "light" : "dark";
-  const ac = pick(ACCENTS, c.accent, c.premium); const fg = pick(c.light ? ECRITURES_CLAIR : ECRITURES_SOMBRE, c.fg, c.premium);
+  let ac = pick(ACCENTS, c.accent, c.premium); if (c.light && ac === ACCENTS[0]) ac = { ...ac, v: "#0E9F6E", v2: "#0891B2" }; const fg = pick(c.light ? ECRITURES_CLAIR : ECRITURES_SOMBRE, c.fg, c.premium);
   r.setProperty("--brand", ac.v); r.setProperty("--brand2", ac.v2!); r.setProperty("--brand-rgb", rgb(ac.v)); r.setProperty("--brand2-rgb", rgb(ac.v2!));
   r.setProperty("--on", c.light ? "#fff" : "#07140F");
   if (!c.light) { const bg = pick(FONDS, c.bg, c.premium); r.setProperty("--bg", bg.v); r.setProperty("--bg2", bg.v2!); }
   r.setProperty("--fg", fg.v); r.setProperty("--mute", fg.v2!);
-  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", c.light ? "#F4F8F7" : pick(FONDS, c.bg, c.premium).v);
+  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", c.light ? "#EAF7F1" : pick(FONDS, c.bg, c.premium).v);
 }
