@@ -14,7 +14,7 @@ function OnceViewer({ conv, m, me, name, onClose }: { conv: string; m: Msg; me: 
     <p className="muted small center" style={{ maxWidth: 520 }}>Ce message disparaît quand vous fermez. Une photo peut toujours être photographiée avec un autre appareil : merci de respecter la confidentialité.</p></div>);
 }
 export function Messages() {
-  const s = useStore((x) => x); const me = s.me; const now = useNow(500); const [sel, setSel] = useState<string | null>(null); const [txt, setTxt] = useState(""); const [secs, setSecs] = useState(0); const [once, setOnce] = useState(false); const [openOnce, setOpenOnce] = useState<string | null>(null); const [q, setQ] = useState(""); const [edit, setEdit] = useState<string | null>(null); const [rep, setRep] = useState<Msg | null>(null);
+  const s = useStore((x) => x); const me = s.me; const now = useNow(500); const [sel, setSelRaw] = useState<string | null>(() => (history.state?.conv as string) || null); const setSel = (id: string | null) => { if (id) history.pushState({ v: "messages", conv: id }, ""); setSelRaw(id); }; const closeConv = () => { if (history.state?.conv) history.back(); else setSelRaw(null); }; useEffect(() => { const f = (e: PopStateEvent) => { if (!(e.state && e.state.conv)) setSelRaw(null); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []); const [txt, setTxt] = useState(""); const [secs, setSecs] = useState(0); const [once, setOnce] = useState(false); const [openOnce, setOpenOnce] = useState<string | null>(null); const [q, setQ] = useState(""); const [edit, setEdit] = useState<string | null>(null); const [rep, setRep] = useState<Msg | null>(null);
   const convs = s.convs.filter((c) => c.memberIds.includes(me)).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
   const c = convs.find((x) => x.id === sel); const img = useRef<HTMLInputElement>(null); const end = useRef<HTMLDivElement>(null);
   const [rec, setRec] = useState<MediaRecorder | null>(null);
@@ -37,7 +37,7 @@ export function Messages() {
   if (!c) return (<div className="col"><h1>Messages</h1>{list}</div>);
   const onceMsg = c.msgs.find((m) => m.id === openOnce);
   const pinned = c.msgs.filter((m) => m.pinned && visible(m, me, now));
-  return (<div className="col"><div className="row"><button className="btn ghost sm" onClick={() => setSel(null)} aria-label="Retour"><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><span className="muted small">Démo locale</span></div>
+  return (<div className="col"><div className="row"><button className="btn ghost sm" onClick={closeConv} aria-label="Retour"><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><span className="muted small">Démo locale</span></div>
     {pinned.length > 0 && <div className="card small">📌 {pinned.map((m) => m.text || "Message").join(" · ")}</div>}
     <div className="card msgs" role="log" aria-live="polite">{c.msgs.filter((m) => !q || m.text.toLowerCase().includes(q.toLowerCase())).map((m) => { const mine = m.from === me; const ok = visible(m, me, now); const left = m.secs && m.reads[me] !== undefined ? Math.max(0, Math.ceil((m.reads[me] + m.secs * 1000 - now) / 1000)) : 0; const from = userOf(s, m.from); const rp = m.replyTo ? c.msgs.find((x) => x.id === m.replyTo) : null;
       return <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start" }}>{!mine && c.groupId && <span className="muted small">{from?.name}</span>}

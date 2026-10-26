@@ -64,8 +64,8 @@ function SignUp() {
 }
 
 export function Onboarding() {
-  const [skip, setSkip] = useState(() => { try { return sessionStorage.getItem("skip-install") === "1"; } catch { return false; } });
+  const [skip, setSkip] = useState(() => { try { return localStorage.getItem("skip-install") === "1"; } catch { return false; } });
   const [, force] = useState(0); useEffect(() => { const f = () => force((n) => n + 1); subs.add(f); return () => { subs.delete(f); }; }, []);
-  const canInstall = !standalone() && !skip && (!!deferred || isIOS());
-  return <div className="hero">{canInstall ? <InstallStep onSkip={() => { try { sessionStorage.setItem("skip-install", "1"); } catch { /* ignoré */ } setSkip(true); toast("Vous pourrez installer plus tard : menu du navigateur."); }} /> : <SignUp />}</div>;
+  const canInstall = !standalone() && !skip;
+  return <div className="hero">{canInstall ? <InstallStep onSkip={() => { try { localStorage.setItem("skip-install", "1"); } catch { /* ignoré */ } setSkip(true); toast("Vous pourrez installer plus tard : menu du navigateur."); }} /> : <SignUp />}</div>;
 }

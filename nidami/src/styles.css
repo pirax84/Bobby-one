@@ -84,3 +84,7 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 .plus-card{border:1px solid rgba(var(--brand-rgb),.5);background:linear-gradient(160deg,rgba(var(--brand-rgb),.16),rgba(var(--brand2-rgb),.1))}
 .prov{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:8px 16px;border-radius:14px;border:1px solid var(--bd);background:var(--card2);font-weight:600;text-align:left}
 .prov .pb{width:28px;height:28px;border-radius:8px;background:var(--bg2);display:grid;place-items:center;font-size:.8rem;font-weight:800;flex:none}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;border-radius:20px;border:1px solid var(--bd);background:var(--card2);color:var(--fg);font-weight:600;font-size:.85rem;min-height:92px}
+.tile .tic{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(var(--brand-rgb),.16);color:var(--brand)}
+.tile:active{transform:scale(.97)}
