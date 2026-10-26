@@ -63,3 +63,8 @@ export function EmojiGrid({ onPick }: { onPick: (e: string) => void }) {
   return <div className="egrid">{EMOJI_GROUPS.map(([t, l]) => <div key={t}><div className="muted small" style={{ margin: "6px 2px" }}>{t}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
 }
 export function useNow(ms = 1000) { const [t, setT] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setT(Date.now()), ms); return () => clearInterval(i); }, [ms]); return t; }
+
+/** Interrupteur (à la place des cases à cocher). */
+export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boolean) => void; label: string }) {
+  return <button type="button" role="switch" aria-checked={on} aria-label={label} className={"switch" + (on ? " on" : "")} onClick={() => onChange(!on)}><span /></button>;
+}

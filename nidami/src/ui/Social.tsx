@@ -4,7 +4,7 @@ import { InstallCard } from "./Auth";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
 import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
-import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow } from "./common";
+import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from "./common";
 import { Home } from "./Home";
 
 export const inviteLink = (code: string) => location.origin + location.pathname.replace(/index\.html$/, "") + "#add=" + code;
@@ -151,14 +151,14 @@ function ThemePicker({ cfg }: { cfg: ReturnType<typeof cfgOf> }) {
     {!cfg.light && <Row title="Fond" k="bg" list={FONDS} cur={cfg.bg} kind="bg" />}
     <Row title="Écriture" k="fg" list={cfg.light ? ECRITURES_CLAIR : ECRITURES_SOMBRE} cur={cfg.fg} kind="fg" />
     <Row title="Couleur d'accent" k="accent" list={ACCENTS} cur={cfg.accent} kind="ac" />
-    <label className="row" style={{ paddingTop: 6 }}><div className="grow"><b>Activer « Plus » (démonstration)</b><div className="muted small">Aucun paiement n'est branché pour l'instant : cet interrupteur sert à essayer les couleurs. Le vrai paiement (Google Play, App Store ou carte) sera ajouté avec le serveur.</div></div><input type="checkbox" checked={pro} onChange={(e) => actions.setSetting("premium", e.target.checked)} style={{ width: 24, height: 24 }} /></label></div>;
+    <label className="row" style={{ paddingTop: 6 }}><div className="grow"><b>Activer « Plus » (démonstration)</b><div className="muted small">Aucun paiement n'est branché pour l'instant : cet interrupteur sert à essayer les couleurs. Le vrai paiement (Google Play, App Store ou carte) sera ajouté avec le serveur.</div></div><Switch on={pro} onChange={(v) => actions.setSetting("premium", v)} label="Activer Plus (démonstration)" /></label></div>;
 }
 export function Settings() {
   const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
-  const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><input type="checkbox" checked={cfg[k]} onChange={(e) => actions.setSetting(k, e.target.checked)} style={{ width: 24, height: 24 }} /></label>;
+  const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><Switch on={cfg[k]} onChange={(v) => actions.setSetting(k, v)} label={label} /></label>;
   return (<div className="col"><h1>Paramètres</h1>
     <InstallCard /><ThemePicker cfg={cfg} />
-    <div className="card"><Tg k="light" label="Thème clair" desc="Par défaut, l'application est sombre." /><hr /><Tg k="quiet" label="Plage silencieuse" desc="Coupe les alertes la nuit (en mode serveur)." /><hr /><Tg k="autoplay" label="Lecture automatique des vidéos" desc="Pour les vidéos courtes (bientôt)." /></div>
+    <div className="card"><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>Thème clair</b><div className="muted small">Blanc et vert.</div></div><Switch on={cfg.light} onChange={(v) => actions.setSetting("light", v)} label="Thème clair" /></label><hr /><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>Thème sombre</b><div className="muted small">Fond foncé, plus doux la nuit.</div></div><Switch on={!cfg.light} onChange={(v) => actions.setSetting("light", !v)} label="Thème sombre" /></label><hr /><Tg k="quiet" label="Plage silencieuse" desc="Coupe les alertes la nuit (en mode serveur)." /><hr /><Tg k="autoplay" label="Lecture automatique des vidéos" desc="Pour les vidéos courtes (bientôt)." /></div>
     <div className="card col"><h3>🔒 Confidentialité</h3><ul className="muted" style={{ margin: 0, paddingLeft: 18 }}><li>Aucune publicité. Aucune vente de données.</li><li>Aucun bouton de partage vers l'extérieur, aucun profil public.</li><li>Personne ne peut vous trouver sans votre code d'invitation.</li><li>Aucune application ne peut empêcher une personne autorisée de photographier son écran avec un autre appareil.</li></ul></div>
     <div className="card col"><h3>🧪 Mode démo (sur cet appareil)</h3><p className="muted small">Pour l'instant, vos données restent sur cet appareil et les amis sont fictifs. Les vrais comptes, les messages entre téléphones et les appels demandent un serveur : voir le guide dans le dossier « docs » du projet.</p>
       <button className="btn ghost" onClick={() => actions.logout()}>Se déconnecter</button>

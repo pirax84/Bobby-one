@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { actions } from "../lib/store";
 import { PROVIDERS, serverOn, oauthUrl, emailSignUp, emailLogin, type Prov } from "../lib/auth";
-import { Logo, Modal, toast } from "./common";
+import { Logo, Modal, toast, Switch } from "./common";
 import { LegalView } from "./Legal";
 
 // L'événement d'installation arrive tôt : on l'écoute dès le chargement du fichier.
@@ -56,13 +56,13 @@ function SignUp() {
       {mode === "new" && <input className="inp" placeholder="Votre prénom ou pseudo" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" />}
       <input className="inp" type="email" placeholder="Votre e-mail" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="E-mail" required />
       <input className="inp" type="password" placeholder="Mot de passe (8 caractères minimum)" value={pw} onChange={(e) => setPw(e.target.value)} minLength={8} aria-label="Mot de passe" required />
-      <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><input type="checkbox" checked={ok} onChange={(e) => setOk(e.target.checked)} style={{ width: 22, height: 22, marginTop: 2 }} /><span>J'ai 15 ans ou plus et j'accepte les {legalBtn}.</span></label>
+      <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch on={ok} onChange={setOk} label="J'accepte les conditions" /><span>J'ai 15 ans ou plus et j'accepte les {legalBtn}.</span></label>
       <button className="btn" disabled={!ok || busy || pw.length < 8 || !email}>{mode === "new" ? "Créer mon compte" : "Me connecter"}</button>
       <button type="button" className="btn ghost" onClick={() => { setMode(mode === "new" ? "old" : "new"); setInfo(""); }}>{mode === "new" ? "J'ai déjà un compte" : "Je n'ai pas encore de compte"}</button></form>
     : <form className="col" style={{ width: "100%" }} onSubmit={(e) => { e.preventDefault(); if (!name.trim()) { setInfo("Écrivez d'abord votre prénom ou pseudo ci-dessus."); toast("Écrivez d'abord votre prénom ou pseudo."); return; } if (!ok) { setInfo("Cochez la case « J'ai 15 ans ou plus » pour continuer."); toast("Cochez la case des conditions."); return; } actions.start(name); }}>
       <div className="card" style={{ textAlign: "left", fontSize: ".9rem" }}><b>🧪 Mode démo</b><div className="muted small">Les vrais comptes (e-mail, Google, Apple, Facebook, FranceConnect…) demandent un serveur, qui n'est pas encore relié. En attendant, vous pouvez essayer l'application sur cet appareil avec des amis fictifs.</div></div>
       <input className="inp" placeholder="Votre prénom ou pseudo (démo)" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" />
-      <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><input type="checkbox" checked={ok} onChange={(e) => setOk(e.target.checked)} style={{ width: 22, height: 22, marginTop: 2 }} /><span>J'ai 15 ans ou plus et j'accepte les {legalBtn}.</span></label>
+      <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch on={ok} onChange={setOk} label="J'accepte les conditions" /><span>J'ai 15 ans ou plus et j'accepte les {legalBtn}.</span></label>
       <button className="btn">Essayer en mode démo</button>{info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}</form>}
     {on && info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}
     {prov && <Modal title={prov.label} onClose={() => setProv(null)}><div className="col"><p style={{ margin: 0 }}>{prov.soon}</p><p className="muted small" style={{ margin: 0 }}>Pour l'instant, vous pouvez essayer l'application en mode démo, sur cet appareil, avec des amis fictifs.</p><button className="btn" onClick={() => setProv(null)}>Compris, j'essaie en mode démo</button></div></Modal>}
