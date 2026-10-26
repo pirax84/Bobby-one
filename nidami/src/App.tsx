@@ -1,5 +1,5 @@
 import { applyTheme } from "./lib/theme";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
 import { Avatar, Ico, Logo, ToastHost, Modal, toast } from "./ui/common";
 import { Home, ComposerModal } from "./ui/Home";
@@ -17,6 +17,7 @@ export const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friend
 
 
 export default function App() {
+  const pushOn = useStore((x) => !!x.settings[x.me]?.push); const lastNotif = useStore((x) => x.notifs.filter((n) => n.to === x.me && !n.read).sort((a, b) => b.at - a.at)[0]); const seenN = useRef<string | undefined>(undefined);
   const navCfg = useStore((x) => x.settings[x.me]?.nav); const topCfg = useStore((x) => x.settings[x.me]?.top); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
   const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
@@ -29,6 +30,13 @@ export default function App() {
   const th = useStore((s) => s.settings[s.me]); useEffect(() => { applyTheme({ light: !!light, premium: !!th?.premium, bg: th?.bg, fg: th?.fg, accent: th?.accent }); }, [light, th?.premium, th?.bg, th?.fg, th?.accent]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
+  useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
+    if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
+    if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
+    if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
+    const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./icon-192.png", tag: lastNotif.id };
+    navigator.serviceWorker?.ready.then((r) => r.showNotification("Mon cercle", opt)).catch(() => { try { new Notification("Mon cercle", opt); } catch { /* ignoré */ } });
+  }, [lastNotif?.id, pushOn]);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
