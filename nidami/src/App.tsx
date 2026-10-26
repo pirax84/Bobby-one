@@ -4,19 +4,21 @@ import { Avatar, Ico, Logo, ToastHost, Modal } from "./ui/common";
 import { Home, ComposerModal } from "./ui/Home";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
 import { Messages, Games, Media, Soon } from "./ui/Chat";
+import { LegalView } from "./ui/Legal";
 
-type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "settings";
-const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Amis", "users"], ["groups", "Groupes", "group"], ["messages", "Messages", "chat"], ["calls", "Appels", "phone"], ["media", "Photos", "img"], ["games", "Jeux", "game"], ["events", "Événements", "cal"], ["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["settings", "Paramètres", "cog"]];
+type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "legal" | "settings";
+const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Amis", "users"], ["groups", "Groupes", "group"], ["messages", "Messages", "chat"], ["calls", "Appels", "phone"], ["media", "Photos", "img"], ["games", "Jeux", "game"], ["events", "Événements", "cal"], ["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["legal", "Légal", "lock"], ["settings", "Paramètres", "cog"]];
 
 function Welcome() {
-  const [name, setName] = useState(""); const [ok, setOk] = useState(false);
+  const [name, setName] = useState(""); const [ok, setOk] = useState(false); const [legal, setLegal] = useState(false);
   return (<div className="hero"><div className="card col center" style={{ alignItems: "center", gap: 16, padding: 28 }}>
     <Logo s={112} /><h1 style={{ fontSize: "2.4rem", letterSpacing: "-.03em" }}>Nidami</h1><p style={{ margin: 0, fontWeight: 700, background: "var(--warmgrad)", WebkitBackgroundClip: "text", color: "transparent" }}>Votre cercle. Vos moments.</p>
     <p className="muted" style={{ margin: 0 }}>Le nid privé de votre famille et de vos amis. Sans publicité. Sans partage vers l'extérieur.</p>
     <form className="col" style={{ width: "100%" }} onSubmit={(e) => { e.preventDefault(); if (name.trim() && ok) actions.start(name); }}>
       <input className="inp" placeholder="Votre prénom ou pseudo" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" autoFocus />
-      <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><input type="checkbox" checked={ok} onChange={(e) => setOk(e.target.checked)} style={{ width: 22, height: 22, marginTop: 2 }} /><span>Je comprends que c'est une version de démonstration : mes données restent sur cet appareil et les amis proposés sont fictifs.</span></label>
+      <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><input type="checkbox" checked={ok} onChange={(e) => setOk(e.target.checked)} style={{ width: 22, height: 22, marginTop: 2 }} /><span>J'ai 15 ans ou plus et j'accepte les <button type="button" style={{ background: "none", border: 0, padding: 0, color: "var(--warm)", textDecoration: "underline" }} onClick={() => setLegal(true)}>conditions d'utilisation, la charte, le droit d'auteur et la confidentialité</button>. Je comprends que c'est une démonstration : mes données restent sur cet appareil et les amis sont fictifs.</span></label>
       <button className="btn" disabled={!name.trim() || !ok}>Entrer dans le nid 🪺</button></form>
+    {legal && <Modal title="Documents juridiques" onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView /></div></Modal>}
   </div></div>);
 }
 
@@ -30,7 +32,7 @@ export default function App() {
   if (!started || !me || !user) return <><Welcome /><ToastHost /></>;
   const go = (x: string) => { setV(x as V); setMore(false); };
   const badge = (k: V) => (k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
-  const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "settings" ? <Settings />
+  const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
     : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur Nidami sera en place." />;
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;

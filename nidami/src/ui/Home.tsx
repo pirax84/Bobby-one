@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, useNow } from "./common";
+import { WmImage, useCaptureGuard } from "./Wm";
 
 // ───────── Barre des stories
 export function Stories({ me }: { me: string }) {
@@ -74,15 +75,15 @@ export function Composer({ onClose, story = false, groupId }: { onClose: () => v
 // ───────── Visionneuse éphémère
 function Viewer({ postId, me, onClose }: { postId: string; me: string; onClose: () => void }) {
   const post = useStore((s) => s.posts.find((p) => p.id === postId)); const social = useStore((s) => s.social); const users = useStore((s) => s.users);
-  const now = useNow(100); const [hidden, setHidden] = useState(false);
-  useEffect(() => { const f = () => setHidden(document.hidden); document.addEventListener("visibilitychange", f); return () => document.removeEventListener("visibilitychange", f); }, []);
+  const now = useNow(100); const myName = users.find((x) => x.id === me)?.name || "";
+  const hidden = useCaptureGuard(() => { actions.suspectCapture(postId); toast("Capture bloquée : l'auteur sera prévenu."); }, true);
   const a = checkAccess(post, me, now, social);
   useEffect(() => { if (!a.ok) onClose(); }, [a.ok]);
   if (!post || !a.ok) return null; const u = users.find((x) => x.id === post.authorId); const total = post.viewSecs * 1000; const left = a.remainingMs;
-  return (<div className={"viewer" + (hidden ? " blur" : "")} role="dialog" aria-label="Publication éphémère">
+  return (<div className={"viewer protected" + (hidden ? " blur" : "")} role="dialog" aria-label="Publication éphémère">
     {left !== null && <div className="bar" aria-label="Temps restant"><i style={{ width: `${Math.max(0, (left / total) * 100)}%` }} /></div>}
     <div className="row" style={{ width: "min(560px,100%)" }}><Avatar u={u} s={36} /><b className="grow">{u?.name}</b>{left !== null && <b style={{ color: "var(--warm)" }}>{Math.ceil(left / 1000)} s</b>}<button className="btn ghost sm" onClick={onClose} aria-label="Fermer"><Ico n="x" s={18} /></button></div>
-    {post.img ? <img src={post.img} alt="Photo éphémère" draggable={false} onContextMenu={(e) => e.preventDefault()} /> : <div className="tbg" style={{ background: BG[(post.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 280 }}>{post.text}</div>}
+    {post.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={post.img} label={myName} alt="Photo éphémère" style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(post.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 280 }}>{post.text}</div>}
     {post.img && post.text && <p style={{ maxWidth: 560 }}>{post.text}</p>}
     {left !== null && <p className="muted small center" style={{ maxWidth: 520 }}>Si vous fermez, le temps continue de s'écouler. Une photo peut toujours être photographiée avec un autre appareil.</p>}
   </div>);
@@ -97,7 +98,7 @@ function PostCard({ post, me }: { post: Post; me: string }) {
     if (expired) return <div className="eph gone"><div style={{ fontSize: "2rem" }}>⌛</div><b>Expirée pour vous</b><div className="muted small">Votre temps de consultation est écoulé.</div></div>;
     if (lock) { const opened = post.views[me] !== undefined; return <div className="eph"><div style={{ fontSize: "2rem" }}>{post.kind === "photo" ? "📸" : "✉️"}</div><b>{post.kind === "photo" ? "Photo" : "Message"} éphémère</b>
       <div className="muted small" style={{ margin: "4px 0 12px" }}>{opened ? `Il vous reste ${Math.ceil((a.ok ? a.remainingMs || 0 : 0) / 1000)} s.` : `Vous aurez ${fmtSecs(post.viewSecs)} à partir de l'ouverture.`}</div><button className="btn" onClick={() => { const r = actions.open(post.id); if (r.ok) setView(true); }}><Ico n="eye" s={18} /> {opened ? "Reprendre" : "Ouvrir"}</button></div>; }
-    return <>{post.img && <img className="photo" src={post.img} alt={post.text || "Photo"} loading="lazy" />}{post.kind === "text" ? <div className={post.bg !== undefined ? "tbg" : ""} style={post.bg !== undefined ? { background: BG[post.bg % BG.length] } : undefined}>{post.text}</div> : post.text && <p style={{ margin: "10px 0 0" }}>{post.text}</p>}</>;
+    return <>{post.img && <div className="protected"><WmImage src={post.img} label={users.find((x) => x.id === me)?.name || ""} alt={post.text || "Photo"} /></div>}{post.kind === "text" ? <div className={post.bg !== undefined ? "tbg" : ""} style={post.bg !== undefined ? { background: BG[post.bg % BG.length] } : undefined}>{post.text}</div> : post.text && <p style={{ margin: "10px 0 0" }}>{post.text}</p>}</>;
   })();
   const myReact = post.reactions[me]; const counts = Object.values(post.reactions).reduce<Record<string, number>>((m, e) => ((m[e] = (m[e] || 0) + 1), m), {});
   return (<article className="card col" style={{ gap: 10 }}>

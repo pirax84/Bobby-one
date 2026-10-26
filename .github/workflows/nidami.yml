@@ -6,21 +6,39 @@ on:
     branches: [main]
     paths: ["nidami/**", ".github/workflows/nidami.yml"]
 
+permissions:
+  contents: write
+
 jobs:
   verifier:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: nidami
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: npm install --no-audit --no-fund
+        working-directory: nidami
       - name: Tests des règles (publications éphémères)
-        run: npm test
+        working-directory: nidami
+        run: npm test 2>&1 | tee ../tests.log; exit ${PIPESTATUS[0]}
       - name: Vérification des types
-        run: npm run typecheck
+        id: types
+        continue-on-error: true
+        working-directory: nidami
+        run: npm run typecheck 2>&1 | tee ../types.log; exit ${PIPESTATUS[0]}
       - name: Construction du site (Vite)
-        run: npm run build
+        id: build
+        continue-on-error: true
+        working-directory: nidami
+        run: npm run build 2>&1 | tee ../build.log; exit ${PIPESTATUS[0]}
+      - name: Garder le compte rendu (pour le diagnostic)
+        if: always()
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          { echo "types: ${{ steps.types.outcome }}  build: ${{ steps.build.outcome }}"; echo "--- types"; head -60 types.log; echo "--- build"; tail -30 build.log; echo "--- tests"; grep -E "^# (pass|fail)" tests.log; } > /tmp/nidami-log.txt
+          git checkout --orphan ci-logs-nidami; git rm -rf --quiet . || true
+          cp /tmp/nidami-log.txt nidami-log.txt; git add nidami-log.txt; git commit -q -m "compte rendu nidami"; git push -f origin ci-logs-nidami
+      - name: Échec si les types ou la construction échouent
+        if: steps.types.outcome == 'failure' || steps.build.outcome == 'failure'
+        run: exit 1

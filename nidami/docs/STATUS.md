@@ -22,6 +22,10 @@ Légende : ✅ fait et testé · 🟡 fait mais non testé sur un vrai appareil/
 | Jeux : Morpion à deux, Quiz | ✅ | |
 | Notifications dans l'application | ✅ | |
 | Export et suppression des données | ✅ | |
+| Messages « vue unique » (disparaît à la fermeture), éphémères après lecture, permanents | ✅ | démo locale |
+| Filigrane (nom du destinataire + date) incrusté dans les photos affichées | ✅ | dissuade, n'empêche pas la copie |
+| Blocage des captures d'écran | ⚠️ partiel | **impossible à garantir dans un site web** : masquage au changement de fenêtre / touches de capture, auteur prévenu. Blocage réel seulement dans une appli Android native (étape future) ; impossible sur iPhone |
+| Documents juridiques (mentions, CGU, charte, droit d'auteur, RGPD, signalement, mineurs) | 🟡 | modèle à faire valider par un avocat ; champs [à compléter] |
 | Schéma PostgreSQL + RLS + fonctions `publish_post` / `open_post` / `purge_expired` | 🟡 | écrit, **jamais exécuté** sur un vrai Supabase |
 
 ## À faire (nécessite le serveur Supabase)
