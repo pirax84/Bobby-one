@@ -7,7 +7,7 @@ import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social"
 import { Messages, Games, Media, Soon } from "./ui/Chat";
 import { LegalView } from "./ui/Legal";
 import { Shares } from "./ui/Shares";
-import { Onboarding } from "./ui/Auth";
+import { Onboarding, needInstall } from "./ui/Auth";
 import { sessionFromReturn } from "./lib/auth";
 
 type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
@@ -28,7 +28,7 @@ export default function App() {
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);
-  if (!started || !me || !user) return <><Onboarding /><ToastHost /></>;
+  if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
   const go = (x: string) => { if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
   const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />

@@ -70,9 +70,12 @@ function SignUp() {
   </div>);
 }
 
-export function Onboarding() {
-  const [skip, setSkip] = useState(() => { try { return localStorage.getItem("skip-install") === "1"; } catch { return false; } });
+const seenInstall = () => { try { return sessionStorage.getItem("install-seen") === "1"; } catch { return false; } };
+/** L'écran d'installation s'affiche à chaque nouvelle ouverture dans le navigateur (pas dans l'application installée). */
+export const needInstall = () => !standalone() && !seenInstall();
+export function Onboarding({ started = false }: { started?: boolean }) {
   const [, force] = useState(0); useEffect(() => { const f = () => force((n) => n + 1); subs.add(f); return () => { subs.delete(f); }; }, []);
-  const canInstall = !standalone() && !skip;
-  return <div className="hero">{canInstall ? <InstallStep onSkip={() => { try { localStorage.setItem("skip-install", "1"); } catch { /* ignoré */ } setSkip(true); toast("Vous pourrez installer plus tard : menu du navigateur."); }} /> : <SignUp />}</div>;
+  const [skipped, setSkipped] = useState(false);
+  const canInstall = needInstall() && !skipped;
+  return <div className="hero">{canInstall ? <InstallStep onSkip={() => { try { sessionStorage.setItem("install-seen", "1"); } catch { /* ignoré */ } setSkipped(true); if (started) setTimeout(() => location.reload(), 0); }} /> : <SignUp />}</div>;
 }
