@@ -4,7 +4,7 @@ import { seed, demoPosts } from "./seed";
 
 export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
-export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null }
+export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none" }
 export interface Msg { id: ID; from: ID; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string }
@@ -46,7 +46,7 @@ export const actions = {
     s.events.push({ id: uid(), hostId: "emilie", title: "Repas de famille", desc: "Chacun apporte un petit plat.", at: now() + 5 * 864e5, place: "Chez Mamie", inviteIds: [id, "celine", "thomas"], rsvp: { thomas: "yes" } });
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
-  updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
+  updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
   setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
@@ -87,9 +87,9 @@ export const actions = {
     const aud = audienceIds.filter((i) => i !== p.authorId && areFriends(s.social, s.me, i) && !isBlocked(s.social, p.authorId, i)); if (!aud.length) { r = { ok: false, msg: "Choisissez au moins un ami (qui ne soit pas bloqué par l'auteur)." }; return; }
     if (s.shares.some((h) => h.postId === postId && h.requesterId === s.me && h.status === "pending")) { r = { ok: false, msg: "Demande déjà en attente." }; return; }
     s.shares.unshift({ id: uid(), postId, authorId: p.authorId, requesterId: s.me, audienceIds: aud, note: note.slice(0, 200), status: "pending", at: now() }); notify(s, p.authorId, `${userOf(s, s.me)!.name} demande à partager votre publication.`, "shares"); r = { ok: true, msg: "Demande envoyée. L'auteur décide." }; }); return r; },
-  answerShare(id: ID, approve: boolean) { mut((s) => { const h = s.shares.find((x) => x.id === id && x.authorId === s.me && x.status === "pending"); if (!h) return; const o = s.posts.find((x) => x.id === h.postId); if (!o) { h.status = "denied"; return; }
+  answerShare(id: ID, approve: boolean, opts?: { secs?: number; hours?: number }) { mut((s) => { const h = s.shares.find((x) => x.id === id && x.authorId === s.me && x.status === "pending"); if (!h) return; const o = s.posts.find((x) => x.id === h.postId); if (!o) { h.status = "denied"; return; }
     if (!approve) { h.status = "denied"; notify(s, h.requesterId, `${userOf(s, s.me)!.name} a refusé le partage.`, "shares"); return; }
-    h.status = "approved"; s.posts.unshift({ id: "p_" + uid(), authorId: h.requesterId, kind: o.kind, text: "", createdAt: now(), audience: { mode: "only", ids: h.audienceIds }, recipients: h.audienceIds, viewSecs: o.viewSecs, expiresAt: o.expiresAt, views: {}, reactions: {}, comments: [], sharedFrom: o.id, shareId: h.id });
+    h.status = "approved"; s.posts.unshift({ id: "p_" + uid(), authorId: h.requesterId, kind: o.kind, text: "", createdAt: now(), audience: { mode: "only", ids: h.audienceIds }, recipients: h.audienceIds, viewSecs: opts?.secs ?? o.viewSecs, expiresAt: ((opts?.secs ?? o.viewSecs) > 0 || opts?.hours) ? Math.min(o.expiresAt ?? Infinity, opts?.hours ? now() + opts.hours * 3600000 : Infinity, ...(o.expiresAt ? [] : [now() + DEFAULT_GLOBAL_MS])) : o.expiresAt, views: {}, reactions: {}, comments: [], sharedFrom: o.id, shareId: h.id });
     notify(s, h.requesterId, `${userOf(s, s.me)!.name} a accepté le partage.`, "shares"); for (const i of h.audienceIds) notify(s, i, `${userOf(s, h.requesterId)!.name} a partagé un contenu avec vous.`, "home"); }); },
   revokeShare(id: ID) { mut((s) => { const h = s.shares.find((x) => x.id === id && (x.authorId === s.me || x.requesterId === s.me)); if (!h || h.status !== "approved") return; h.status = "revoked"; s.posts = revokeShareEngine(s.posts, id); if (h.authorId === s.me) notify(s, h.requesterId, `${userOf(s, s.me)!.name} a retiré le partage : il a disparu partout.`, "shares"); }); },
   answerReq(id: ID, accept: boolean) { mut((s) => { const q = s.reqs.find((x) => x.id === id && x.to === s.me); if (!q) return; s.reqs = s.reqs.filter((x) => x.id !== id); if (accept) { s.social.friends[s.me] = [...new Set([...(s.social.friends[s.me] || []), q.from])]; s.social.friends[q.from] = [...new Set([...(s.social.friends[q.from] || []), s.me])]; notify(s, q.from, `${userOf(s, s.me)!.name} a accepté votre demande.`, "friends"); } }); },

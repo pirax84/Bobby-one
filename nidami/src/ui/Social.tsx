@@ -4,7 +4,7 @@ import { InstallCard } from "./Auth";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
 import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
-import { Avatar, Ico, Modal, toast, ago, useNow } from "./common";
+import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow } from "./common";
 import { Home } from "./Home";
 
 export const inviteLink = (code: string) => location.origin + location.pathname.replace(/index\.html$/, "") + "#add=" + code;
@@ -110,13 +110,24 @@ export function Events() {
   </div>);
 }
 
+function EditProfile({ u, onClose }: { u: User; onClose: () => void }) {
+  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const f = useRef<HTMLInputElement>(null);
+  const V: [User["avatarVis"], string][] = [["friends", "Mes amis"], ["all", "Tout le monde"], ["none", "Personne"]];
+  return <Modal title="Modifier mon profil" onClose={onClose}><div className="col">
+    <div className="col center" style={{ alignItems: "center", gap: 10 }}><Avatar u={{ ...u, avatar: av, avatarVis: "all" }} s={104} />
+      <div className="row wrap" style={{ justifyContent: "center" }}><button className="btn sm" onClick={() => f.current?.click()}>{av ? "Changer la photo" : "Ajouter une photo"}</button>{av && <button className="btn danger sm" onClick={() => setAv(null)}>Supprimer la photo</button>}</div>
+      <input ref={f} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; if (x) { try { setAv(await fileToDataUrl(x)); } catch { toast("Impossible de lire cette image."); } } }} /></div>
+    <b className="small">Qui peut voir ma photo ?</b><div className="tabs wrap">{V.map(([k, l]) => <button key={k} className={"chip" + (vis === k ? " on" : "")} onClick={() => setVis(k!)}>{l}</button>)}</div>
+    <p className="muted small" style={{ margin: 0 }}>Les autres voient alors votre initiale à la place de la photo.</p>
+    <input className="inp" value={name} onChange={(e) => setName(e.target.value)} aria-label="Prénom ou pseudo" maxLength={30} /><input className="inp" value={st} onChange={(e) => setSt(e.target.value)} aria-label="Statut" maxLength={60} placeholder="Votre statut" /><textarea className="inp" value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Votre courte bio" maxLength={200} />
+    <button className="btn" onClick={() => { actions.updateProfile({ name: name.trim() || u.name, bio, status: st, avatar: av, avatarVis: vis }); toast("Profil mis à jour."); onClose(); }}>Enregistrer</button></div></Modal>;
+}
 export function Profile() {
-  const s = useStore((x) => x); const u = userOf(s, s.me)!; const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status);
+  const s = useStore((x) => x); const u = userOf(s, s.me)!; const [edit, setEdit] = useState(false);
   const mine = s.posts.filter((p) => p.authorId === s.me && !p.story).length; const friends = (s.social.friends[s.me] || []).length;
-  return (<div className="col"><h1>Mon profil</h1><div className="card col center" style={{ alignItems: "center" }}><Avatar u={u} s={92} /><h2>{u.name}</h2><div className="muted">{u.status}</div><div className="row muted small"><span>{mine} publications</span><span>·</span><span>{friends} amis</span><span>·</span><span>Membre depuis {new Date(u.joinedAt).toLocaleDateString("fr-FR", { month: "long", year: "numeric" })}</span></div></div>
-    <MyQr u={u} />
-    <div className="card col"><h3>Modifier</h3><input className="inp" value={name} onChange={(e) => setName(e.target.value)} aria-label="Prénom ou pseudo" maxLength={30} /><input className="inp" value={st} onChange={(e) => setSt(e.target.value)} aria-label="Statut" maxLength={60} /><textarea className="inp" value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Votre courte bio" maxLength={200} />
-      <button className="btn" onClick={() => { actions.updateProfile({ name: name.trim() || u.name, bio, status: st }); toast("Profil mis à jour."); }}>Enregistrer</button></div></div>);
+  return (<div className="col"><h1>Mon profil</h1><div className="card col center" style={{ alignItems: "center" }}><button style={{ background: "none", border: 0, padding: 0, color: "inherit", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }} onClick={() => setEdit(true)} aria-label="Modifier mon profil"><span style={{ position: "relative" }}><Avatar u={u} s={96} /><span className="pbadge" style={{ right: -2, bottom: -2 }}>✎</span></span><h2>{u.name}</h2></button><div className="muted">{u.status}</div><div className="row muted small"><span>{mine} publications</span><span>·</span><span>{friends} amis</span><span>·</span><span>Membre depuis {new Date(u.joinedAt).toLocaleDateString("fr-FR", { month: "long", year: "numeric" })}</span></div>
+      <button className="btn sm" onClick={() => setEdit(true)}>Modifier mon profil (photo, nom, bio)</button></div>
+    <MyQr u={u} />{edit && <EditProfile u={u} onClose={() => setEdit(false)} />}</div>);
 }
 
 export function Notifs() {

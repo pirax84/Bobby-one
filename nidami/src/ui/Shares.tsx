@@ -1,6 +1,17 @@
+import { useState } from "react";
 import { useStore, actions, userOf } from "../lib/store";
 import { Avatar, toast, ago } from "./common";
 
+function Approve({ id }: { id: string }) {
+  const [hours, setHours] = useState(0); const [secs, setSecs] = useState<number | undefined>(undefined); const [open, setOpen] = useState(false);
+  const H: [number, string][] = [[0, "Jusqu'à ce que je le retire"], [1, "1 heure"], [24, "24 heures"], [168, "7 jours"]];
+  const S: [number | undefined, string][] = [[undefined, "Comme l'original"], [5, "5 s"], [10, "10 s"], [30, "30 s"], [60, "1 min"]];
+  return <div className="col" style={{ gap: 8 }}>
+    {open && <div className="card col" style={{ gap: 8 }}><b className="small">Combien de temps le partage reste-t-il visible ?</b><div className="tabs wrap">{H.map(([k, l]) => <button key={k} className={"chip" + (hours === k ? " on" : "")} onClick={() => setHours(k)}>{l}</button>)}</div>
+      <b className="small">Temps de consultation par personne</b><div className="tabs wrap">{S.map(([k, l]) => <button key={l} className={"chip" + (secs === k ? " on" : "")} onClick={() => setSecs(k)}>{l}</button>)}</div>
+      <p className="muted small" style={{ margin: 0 }}>🔒 Ce contenu ne peut pas être republié ailleurs : il porte un filigrane, les captures d'écran sont bloquées (application Android) et tout nouveau partage demande votre accord. Vous pouvez le retirer à tout moment.</p></div>}
+    <div className="row"><button className="btn sm" onClick={() => { if (!open) { setOpen(true); return; } actions.answerShare(id, true, { secs, hours: hours || undefined }); toast("Partage autorisé. Vous pouvez le retirer quand vous voulez."); }}>{open ? "Confirmer l'autorisation" : "Autoriser…"}</button><button className="btn ghost sm" onClick={() => actions.answerShare(id, false)}>Refuser</button></div></div>;
+}
 export function Shares() {
   const s = useStore((x) => x); const me = s.me; const nm = (id: string) => userOf(s, id)?.name || "?";
   const incoming = s.shares.filter((h) => h.authorId === me && h.status === "pending");
@@ -11,7 +22,7 @@ export function Shares() {
     <p className="muted small">Personne ne peut republier votre contenu sans votre accord. Et même après accord, <b>vous gardez le contrôle total</b> : si vous retirez un partage ou supprimez votre publication, elle disparaît chez tous ceux avec qui elle avait été partagée.</p>
     <div className="card col"><h3>Demandes à traiter ({incoming.length})</h3>
       {incoming.map((h) => <div key={h.id} className="col" style={{ gap: 6 }}><div className="row"><Avatar u={userOf(s, h.requesterId)} s={36} /><div className="grow"><b>{nm(h.requesterId)}</b> voudrait partager <b>{label(h.postId)}</b><div className="muted small">avec {h.audienceIds.map(nm).join(", ")} · {ago(h.at)}</div>{h.note && <div className="small">« {h.note} »</div>}</div></div>
-        <div className="row"><button className="btn sm" onClick={() => { actions.answerShare(h.id, true); toast("Partage autorisé. Vous pouvez le retirer quand vous voulez."); }}>Autoriser</button><button className="btn ghost sm" onClick={() => actions.answerShare(h.id, false)}>Refuser</button></div></div>)}
+        <Approve id={h.id} /></div>)}
       {!incoming.length && <p className="muted small">Aucune demande en attente.</p>}</div>
     <div className="card col"><h3>Partages que j'ai autorisés ({active.length})</h3>
       {active.map((h) => <div key={h.id} className="row"><div className="grow"><b>{label(h.postId)}</b><div className="muted small">partagé par {nm(h.requesterId)} avec {h.audienceIds.map(nm).join(", ")}</div></div><button className="btn danger sm" onClick={() => { if (confirm("Retirer ce partage ? Il disparaîtra chez tout le monde.")) { actions.revokeShare(h.id); toast("Partage retiré partout."); } }}>Retirer partout</button></div>)}

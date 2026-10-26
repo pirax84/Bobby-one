@@ -109,7 +109,7 @@ export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().to
 // ── Partage avec accord : la republication n'est qu'un lien vers l'original ─────────────────────────
 // L'auteur garde le contrôle total : s'il révoque ou supprime l'original, tout disparaît chez les autres.
 export const originalOf = (p: Post, posts: Post[]): Post | undefined => (p.sharedFrom ? posts.find((x) => x.id === p.sharedFrom) : undefined);
-function virtual(r: Post, o: Post): Post { return { ...o, id: r.id, authorId: r.authorId, recipients: r.recipients, views: r.views, sharedFrom: r.sharedFrom, shareId: r.shareId }; }
+function virtual(r: Post, o: Post): Post { return { ...o, id: r.id, authorId: r.authorId, recipients: r.recipients, views: r.views, sharedFrom: r.sharedFrom, shareId: r.shareId, viewSecs: r.viewSecs, expiresAt: r.expiresAt }; }
 export function accessFor(p: Post | undefined, posts: Post[], userId: ID, now: number, s: Social): Access {
   if (!p) return { ok: false, reason: "missing" };
   if (!p.sharedFrom) return checkAccess(p, userId, now, s);

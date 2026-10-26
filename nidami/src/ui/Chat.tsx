@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useStore, actions, userOf, Msg, Conv } from "../lib/store";
 import { areFriends } from "../lib/engine";
-import { Avatar, Ico, toast, ago, fileToDataUrl, useNow } from "./common";
+import { Avatar, Ico, toast, ago, fileToDataUrl, useNow, EMOJIS } from "./common";
 import { WmImage, useCaptureGuard } from "./Wm";
 
 const visible = (m: Msg, me: string, now: number) => m.from === me || (m.once ? false : m.secs === 0 || (m.reads[me] !== undefined && now < m.reads[me] + m.secs * 1000));
@@ -80,11 +81,23 @@ export function Games() {
   </div>);
 }
 
+function PhotoView({ id, onClose }: { id: string; onClose: () => void }) {
+  const p = useStore((x) => x.posts.find((y) => y.id === id)); const me = useStore((x) => x.me); const users = useStore((x) => x.users);
+  const hidden = useCaptureGuard(() => { actions.suspectCapture(id); toast("Capture bloquée : l'auteur sera prévenu."); }, true);
+  useEffect(() => { const f = () => onClose(); window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
+  const close = () => { if (history.state?.photo) history.back(); else onClose(); };
+  if (!p || !p.img) return null; const u = users.find((x) => x.id === p.authorId); const mine = p.authorId === me; const my = p.reactions[me];
+  return createPortal(<div className="detail" role="dialog" aria-label="Photo"><div className="dhead"><button className="btn ghost sm" onClick={close} aria-label="Retour" style={{ minWidth: 44 }}><Ico n="back" s={18} /></button><Avatar u={u} s={34} /><b className="grow ell">{u?.name}</b>{mine && <button className="btn danger sm" onClick={() => { if (confirm("Supprimer cette photo partout, y compris chez ceux qui l'ont reçue ?")) { actions.deletePost(id); close(); } }}>Supprimer</button>}</div>
+    <div className={"dbody protected" + (hidden ? " blur" : "")} style={{ textAlign: "center" }}><WmImage src={p.img} label={users.find((x) => x.id === me)?.name || ""} alt={p.text || "Photo"} style={{ borderRadius: 18 }} />{p.text && <p>{p.text}</p>}
+      <div className="row wrap" style={{ justifyContent: "center", gap: 8 }}>{EMOJIS.map((e) => <button key={e} className={"react" + (my === e ? " on" : "")} onClick={() => actions.react(id, e)} aria-label={"Réagir " + e}>{e}</button>)}</div>
+      <p className="muted small">🔒 Photo protégée : filigrane à votre nom, captures d'écran bloquées dans l'application Android, partage seulement avec l'accord de l'auteur.</p></div></div>, document.body);
+}
 export function Media() {
   const s = useStore((x) => x); const me = s.me; const mine = s.posts.filter((p) => p.authorId === me && p.img && !p.story);
   const shared = s.posts.filter((p) => p.authorId !== me && p.img && !p.purged && p.viewSecs === 0 && p.recipients.includes(me));
-  const G = ({ l }: { l: typeof mine }) => <div className="grid2">{l.map((p) => <figure key={p.id} className="card" style={{ margin: 0, padding: 8 }}><div className="protected"><WmImage src={p.img!} label={userOf(s, me)?.name || ""} alt={p.text || "Photo"} style={{ aspectRatio: "1", objectFit: "cover" }} /></div><figcaption className="muted small">{p.viewSecs ? `⏱ ${p.viewSecs} s` : "♾️"} · {userOf(s, p.authorId)?.name}</figcaption></figure>)}</div>;
-  return (<div className="col"><h1>Photos</h1><h3>Mes photos</h3>{mine.length ? <G l={mine} /> : <p className="muted">Vos photos publiées apparaîtront ici.</p>}<h3>Partagées avec moi (permanentes)</h3>{shared.length ? <G l={shared} /> : <p className="muted">Rien pour l'instant.</p>}<p className="muted small">Albums et vidéos : bientôt.</p></div>);
+  const [open, setOpen] = useState<string | null>(null); const show = (id: string) => { history.pushState({ ...(history.state || {}), photo: 1 }, ""); setOpen(id); };
+  const G = ({ l }: { l: typeof mine }) => <div className="grid2">{l.map((p) => <button key={p.id} className="card" onClick={() => show(p.id)} aria-label={"Ouvrir la photo de " + (userOf(s, p.authorId)?.name || "")} style={{ margin: 0, padding: 8, color: "inherit", textAlign: "left" }}><div className="protected" style={{ pointerEvents: "none" }}><WmImage src={p.img!} label={userOf(s, me)?.name || ""} alt={p.text || "Photo"} style={{ aspectRatio: "1", objectFit: "cover" }} /></div><div className="muted small">{p.viewSecs ? `⏱ ${p.viewSecs} s` : "♾️"} · {userOf(s, p.authorId)?.name}</div></button>)}</div>;
+  return (<div className="col"><h1>Photos</h1><h3>Mes photos</h3>{mine.length ? <G l={mine} /> : <p className="muted">Vos photos publiées apparaîtront ici.</p>}<h3>Partagées avec moi (permanentes)</h3>{shared.length ? <G l={shared} /> : <p className="muted">Rien pour l'instant.</p>}<p className="muted small">Touchez une photo pour l'agrandir, réagir ou (si c'est la vôtre) la supprimer. Albums et vidéos : bientôt.</p>{open && <PhotoView id={open} onClose={() => setOpen(null)} />}</div>);
 }
 export function Soon({ title, icon, why }: { title: string; icon: string; why: string }) {
   return <div className="col"><h1>{title}</h1><div className="card center col" style={{ alignItems: "center", padding: 34 }}><div style={{ fontSize: "3rem" }}>{icon}</div><h3>Bientôt disponible</h3><p className="muted" style={{ maxWidth: 420 }}>{why}</p></div></div>;

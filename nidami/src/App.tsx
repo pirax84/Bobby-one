@@ -26,7 +26,7 @@ export default function App() {
   const [v, setV] = useState<V>(() => (history.state?.v as V) || "home"); const [compose, setCompose] = useState(false); const [more, setMore] = useState(false);
   const th = useStore((s) => s.settings[s.me]); useEffect(() => { applyTheme({ light: !!light, premium: !!th?.premium, bg: th?.bg, fg: th?.fg, accent: th?.accent }); }, [light, th?.premium, th?.bg, th?.fg, th?.accent]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
-  useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(false); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
+  useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);
   if (!started || !me || !user) return <><Onboarding /><ToastHost /></>;
   const go = (x: string) => { if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
@@ -40,7 +40,7 @@ export default function App() {
       {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose(true)}><Ico n="plus" s={18} /> Publier</button></aside>
     <main className="main">
-      <div className="top">{v !== "home" ? <button className="btn ghost sm" onClick={() => history.back()} aria-label="Retour" style={{ minWidth: 44 }}><Ico n="back" s={18} /></button> : <Logo s={36} />}<b className="grow" style={{ fontSize: "1.1rem" }}>Votre cercle.</b><button className="btn ghost sm" onClick={() => go("notifs")} aria-label="Notifications" style={{ position: "relative" }}><Ico n="bell" s={20} />{unreadN > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{unreadN}</span>}</button><button style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={36} /></button></div>
+      <div className="top">{v !== "home" ? <button className="btn ghost sm" onClick={() => history.back()} aria-label="Retour" style={{ minWidth: 44 }}><Ico n="back" s={18} /></button> : <Logo s={36} />}<b className="grow" style={{ fontSize: "1.1rem" }}>Votre cercle.</b><button className="btn ghost sm" onClick={() => go("settings")} aria-label="Paramètres"><Ico n="cog" s={20} /></button><button className="btn ghost sm" onClick={() => go("notifs")} aria-label="Notifications" style={{ position: "relative" }}><Ico n="bell" s={20} />{unreadN > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{unreadN}</span>}</button><button style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={36} /></button></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">
@@ -50,10 +50,10 @@ export default function App() {
     <nav className="bottom" aria-label="Navigation">
       <button className={v === "home" ? "on" : ""} onClick={() => go("home")}><Ico n="home" />Accueil</button>
       <button className={v === "friends" ? "on" : ""} onClick={() => go("friends")} style={{ position: "relative" }}><Ico n="users" />Amis{reqs > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 6 }}>{reqs}</span>}</button>
-      <button className="plus" onClick={() => setCompose(true)} aria-label="Publier"><Ico n="plus" s={28} /></button>
+      <button className="plus" onClick={() => setCompose(true)} aria-label="Publier"><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
       <button className={v === "messages" ? "on" : ""} onClick={() => go("messages")} style={{ position: "relative" }}><Ico n="chat" />Messages{unreadM > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{unreadM}</span>}</button>
-      <button className={more ? "on" : ""} onClick={() => setMore(true)}><Ico n="more" />Plus</button></nav>
-    {more && <Modal title="Plus" onClose={() => setMore(false)}><div className="col" style={{ gap: 18 }}>
+      <button className={more ? "on" : ""} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }}><Ico n="more" />Plus</button></nav>
+    {more && <Modal title="Plus" onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([["Mon cercle", [["groups", "Groupes", "group"], ["events", "Événements", "cal"], ["shares", "Partages", "send"]]], ["Médias et jeux", [["media", "Photos", "img"], ["games", "Jeux", "game"], ["calls", "Appels", "phone"]]], ["Mon compte", [["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["settings", "Paramètres", "cog"], ["legal", "Légal", "lock"]]]] as [string, [V, string, string][]][]).map(([t, items]) =>
         <div key={t} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{t}</b>
           <div className="tiles">{items.map(([k, l, i]) => <button key={k} className="tile" onClick={() => go(k)}><span className="tic"><Ico n={i} s={24} /></span><span>{l}</span>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 6, right: 6 }}>{badge(k)}</span>}</button>)}</div></div>)}</div></Modal>}

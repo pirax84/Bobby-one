@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import type { User } from "../lib/store";
+import { useStore, type User } from "../lib/store";
 
 const P: Record<string, string> = {
   home: "M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z",
@@ -31,9 +31,11 @@ export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
 export const Logo = ({ s = 44 }: { s?: number }) => <img src="./icon.svg" width={s} height={s} alt="Logo" style={{ borderRadius: s * 0.24 }} />;
 
 export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
+  const me = useStore((x) => x.me); const isFriend = useStore((x) => !!u && (x.social.friends[x.me] || []).includes(u.id));
   if (!u) return <div className="av" style={{ width: s, height: s, background: "#555" }}>?</div>;
-  const st: React.CSSProperties = u.avatar ? { backgroundImage: `url(${u.avatar})` } : { background: `linear-gradient(135deg,hsl(${u.hue} 80% 62%),hsl(${(u.hue + 50) % 360} 75% 48%))` };
-  return <div className="av" style={{ width: s, height: s, fontSize: s * 0.42, ...st }} aria-label={u.name}>{u.avatar ? "" : u.name.slice(0, 1).toUpperCase()}</div>;
+  const vis = u.avatarVis || "friends"; const show = !!u.avatar && (u.id === me || vis === "all" || (vis === "friends" && isFriend));
+  const st: React.CSSProperties = show ? { backgroundImage: `url(${u.avatar})` } : { background: `linear-gradient(135deg,hsl(${u.hue} 80% 62%),hsl(${(u.hue + 50) % 360} 75% 48%))` };
+  return <div className="av" style={{ width: s, height: s, fontSize: s * 0.42, ...st }} aria-label={u.name}>{show ? "" : u.name.slice(0, 1).toUpperCase()}</div>;
 }
 export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   useEffect(() => { const k = (e: KeyboardEvent) => e.key === "Escape" && onClose(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [onClose]);
