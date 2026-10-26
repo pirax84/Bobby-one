@@ -1,0 +1,64 @@
+import { useEffect, useState } from "react";
+import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
+import { Avatar, Ico, Logo, ToastHost, Modal } from "./ui/common";
+import { Home, ComposerModal } from "./ui/Home";
+import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
+import { Messages, Games, Media, Soon } from "./ui/Chat";
+
+type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "settings";
+const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Amis", "users"], ["groups", "Groupes", "group"], ["messages", "Messages", "chat"], ["calls", "Appels", "phone"], ["media", "Photos", "img"], ["games", "Jeux", "game"], ["events", "Événements", "cal"], ["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["settings", "Paramètres", "cog"]];
+
+function Welcome() {
+  const [name, setName] = useState(""); const [ok, setOk] = useState(false);
+  return (<div className="hero"><div className="card col center" style={{ alignItems: "center", gap: 16, padding: 28 }}>
+    <Logo s={112} /><h1 style={{ fontSize: "2.4rem", letterSpacing: "-.03em" }}>Nidami</h1><p style={{ margin: 0, fontWeight: 700, background: "var(--warmgrad)", WebkitBackgroundClip: "text", color: "transparent" }}>Votre cercle. Vos moments.</p>
+    <p className="muted" style={{ margin: 0 }}>Le nid privé de votre famille et de vos amis. Sans publicité. Sans partage vers l'extérieur.</p>
+    <form className="col" style={{ width: "100%" }} onSubmit={(e) => { e.preventDefault(); if (name.trim() && ok) actions.start(name); }}>
+      <input className="inp" placeholder="Votre prénom ou pseudo" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label="Prénom" autoFocus />
+      <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><input type="checkbox" checked={ok} onChange={(e) => setOk(e.target.checked)} style={{ width: 22, height: 22, marginTop: 2 }} /><span>Je comprends que c'est une version de démonstration : mes données restent sur cet appareil et les amis proposés sont fictifs.</span></label>
+      <button className="btn" disabled={!name.trim() || !ok}>Entrer dans le nid 🪺</button></form>
+  </div></div>);
+}
+
+export default function App() {
+  const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light);
+  const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
+  const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
+  const [v, setV] = useState<V>("home"); const [compose, setCompose] = useState(false); const [more, setMore] = useState(false);
+  useEffect(() => { document.documentElement.dataset.theme = light ? "light" : "dark"; }, [light]);
+  useEffect(() => { window.scrollTo(0, 0); }, [v]);
+  if (!started || !me || !user) return <><Welcome /><ToastHost /></>;
+  const go = (x: string) => { setV(x as V); setMore(false); };
+  const badge = (k: V) => (k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
+  const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "settings" ? <Settings />
+    : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur Nidami sera en place." />;
+  const warn = getSaveWarn();
+  const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
+  return (<div className="shell">
+    <aside className="side"><div className="brand"><Logo /><div><b>Nidami</b><div className="muted small">Votre cercle. Vos moments.</div></div></div>
+      {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
+      <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose(true)}><Ico n="plus" s={18} /> Publier</button></aside>
+    <main className="main">
+      <div className="top"><Logo s={36} /><b className="grow" style={{ fontSize: "1.2rem" }}>Nidami</b><button className="btn ghost sm" onClick={() => go("notifs")} aria-label="Notifications" style={{ position: "relative" }}><Ico n="bell" s={20} />{unreadN > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{unreadN}</span>}</button><button style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={36} /></button></div>
+      {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
+      {page}</main>
+    <aside className="right">
+      <div className="card row"><Avatar u={user} s={48} /><div className="grow"><b>{user.name}</b><div className="muted small ell">{user.status}</div></div></div>
+      <RightPanel go={go} />
+    </aside>
+    <nav className="bottom" aria-label="Navigation">
+      <button className={v === "home" ? "on" : ""} onClick={() => go("home")}><Ico n="home" />Accueil</button>
+      <button className={v === "friends" ? "on" : ""} onClick={() => go("friends")} style={{ position: "relative" }}><Ico n="users" />Amis{reqs > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 6 }}>{reqs}</span>}</button>
+      <button className="plus" onClick={() => setCompose(true)} aria-label="Publier"><Ico n="plus" s={28} /></button>
+      <button className={v === "messages" ? "on" : ""} onClick={() => go("messages")} style={{ position: "relative" }}><Ico n="chat" />Messages{unreadM > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{unreadM}</span>}</button>
+      <button className={more ? "on" : ""} onClick={() => setMore(true)}><Ico n="more" />Plus</button></nav>
+    {more && <Modal title="Menu" onClose={() => setMore(false)}><div className="grid2">{NAV.filter(([k]) => !["home", "friends", "messages"].includes(k)).map(([k, l, i]) => <button key={k} className="card col" style={{ alignItems: "center", color: "inherit", position: "relative" }} onClick={() => go(k)}><Ico n={i} s={26} />{l}{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 8, right: 8 }}>{badge(k)}</span>}</button>)}</div></Modal>}
+    {compose && <ComposerModal onClose={() => setCompose(false)} />}
+    <ToastHost /></div>);
+}
+function RightPanel({ go }: { go: (v: string) => void }) {
+  const s = useStore((x) => x); const evs = s.events.filter((e) => (e.hostId === s.me || e.inviteIds.includes(s.me)) && e.at > Date.now()).sort((a, b) => a.at - b.at).slice(0, 3); const groups = s.social.groups.filter((g) => g.memberIds.includes(s.me));
+  return (<><div className="card col"><b>Mes groupes</b>{groups.map((g) => <button key={g.id} className="row" style={{ background: "none", border: 0, color: "inherit", textAlign: "left", padding: 0 }} onClick={() => go("groups")}><span style={{ fontSize: "1.4rem" }}>{g.emoji}</span><span className="grow">{g.name}</span></button>)}</div>
+    <div className="card col"><b>À venir</b>{evs.map((e) => <div key={e.id}><div>{e.title}</div><div className="muted small">{new Date(e.at).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</div></div>)}{!evs.length && <span className="muted small">Aucun événement.</span>}</div>
+    <button className="card row" style={{ color: "inherit" }} onClick={() => go("games")}><Ico n="game" /><b className="grow">Jouer en famille</b></button></>);
+}
