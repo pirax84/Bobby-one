@@ -2,10 +2,10 @@ import type { State, User } from "./store";
 import type { Post, ID } from "./engine";
 import { uid } from "./engine";
 
-const U = (id: string, name: string, hue: number, status: string): User => ({ id, name, hue, bio: "", status, joinedAt: Date.now() - 90 * 864e5, code: "NID-" + id.toUpperCase().slice(0, 5).padEnd(5, "X"), demo: true });
+const U = (id: string, name: string, hue: number, status: string, discover: "public" | "limited" | "hidden"): User => ({ id, handle: id + "_" , discover, name, hue, bio: "", status, joinedAt: Date.now() - 90 * 864e5, code: "NID-" + id.toUpperCase().slice(0, 5).padEnd(5, "X"), demo: true });
 export const seed = (): State => ({
   v: 1, started: false, me: "",
-  users: [U("celine", "Céline", 330, "Toujours partante 🎉"), U("thomas", "Thomas", 210, "En vadrouille 🚴"), U("emilie", "Émilie", 28, "Cuisine du dimanche 🍰"), U("max", "Max", 150, "Gamer de la famille 🎮"), U("lea", "Léa", 280, "Nouvelle ici 👋")],
+  users: [U("celine", "Céline", 330, "Toujours partante 🎉", "public"), U("thomas", "Thomas", 210, "En vadrouille 🚴", "limited"), U("emilie", "Émilie", 28, "Cuisine du dimanche 🍰", "hidden"), U("max", "Max", 150, "Gamer de la famille 🎮", "limited"), U("lea", "Léa", 280, "Nouvelle ici 👋", "public")],
   social: {
     friends: { celine: [], thomas: [], emilie: [], max: [], lea: [] }, blocks: {}, lists: [],
     groups: [
@@ -13,7 +13,7 @@ export const seed = (): State => ({
       { id: "g_amis", name: "Amis du lycée", emoji: "🎓", description: "Les inséparables.", rules: "Ici on se taquine, mais gentiment.", adminIds: ["max"], memberIds: ["max", "thomas"] },
     ],
   },
-  posts: [], notifs: [], convs: [], events: [], games: [], reqs: [], reports: [], scores: {}, settings: {},
+  posts: [], notifs: [], convs: [], events: [], games: [], reqs: [], reports: [], shares: [], scores: {}, settings: {},
 });
 
 // Jolies « photos » de démonstration (dessinées, aucune vraie personne).

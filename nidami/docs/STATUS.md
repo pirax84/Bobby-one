@@ -7,7 +7,7 @@ Légende : ✅ fait et testé · 🟡 fait mais non testé sur un vrai appareil/
 |---|---|---|
 | Nom, logo, icônes, favicon, thème sombre + clair | ✅ | |
 | Installation PWA (PC, Android, iPhone, tablette) | 🟡 | manifeste + service worker présents ; test réel sur S25 à faire |
-| Règles des publications éphémères **par destinataire** (cas A à J du cahier des charges) | ✅ | 14 tests automatiques (`npm test`) |
+| Règles des publications éphémères **par destinataire** (cas A à J du cahier des charges) | ✅ | 19 tests automatiques (`npm test`) |
 | Publier texte/photo, durées 3/5/10/30/60 s, durée perso (1 à 600 s), permanente | ✅ | testé en navigateur |
 | Destinataires : tous / groupe / sélectionnés / tous sauf / liste / moi seul + compteur avant publication | ✅ | |
 | Visionneuse avec compte à rebours, fermeture automatique, « expirée pour vous » | ✅ | |
@@ -25,6 +25,8 @@ Légende : ✅ fait et testé · 🟡 fait mais non testé sur un vrai appareil/
 | Messages « vue unique » (disparaît à la fermeture), éphémères après lecture, permanents | ✅ | démo locale |
 | Filigrane (nom du destinataire + date) incrusté dans les photos affichées | ✅ | dissuade, n'empêche pas la copie |
 | Blocage des captures d'écran | ⚠️ partiel | **impossible à garantir dans un site web** : masquage au changement de fenêtre / touches de capture, auteur prévenu. Blocage réel seulement dans une appli Android native (étape future) ; impossible sur iPhone |
+| QR code personnel automatique (lien d'invitation), code renouvelable, pseudo @, visibilité Public / Limité / Invisible, recherche respectant ce choix | ✅ | scan caméra intégré 🟡 (non testable ici) ; l'appareil photo du téléphone ouvre le lien |
+| Partage avec accord : demande → l'auteur autorise/refuse → republication = simple lien vers l'original (durées conservées) → l'auteur peut retirer ou supprimer et tout disparaît chez les autres | ✅ | 5 tests dédiés (K à O) |
 | Documents juridiques (mentions, CGU, charte, droit d'auteur, RGPD, signalement, mineurs) | 🟡 | modèle à faire valider par un avocat ; champs [à compléter] |
 | Schéma PostgreSQL + RLS + fonctions `publish_post` / `open_post` / `purge_expired` | 🟡 | écrit, **jamais exécuté** sur un vrai Supabase |
 

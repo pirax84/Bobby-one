@@ -1,15 +1,45 @@
-import { useState } from "react";
-import { useStore, actions, userOf, cfgOf } from "../lib/store";
+import { useEffect, useRef, useState } from "react";
+import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
+import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
 import { Avatar, Ico, Modal, toast, ago, useNow } from "./common";
 import { Home } from "./Home";
 
+export const inviteLink = (code: string) => location.origin + location.pathname.replace(/index\.html$/, "") + "#add=" + code;
+export function QrSvg({ text, size = 220 }: { text: string; size?: number }) {
+  const m = qrMake(text); const n = m.length, b = 3; let d = ""; m.forEach((row, r) => row.forEach((v, c) => { if (v) d += `M${c + b} ${r + b}h1v1h-1z`; }));
+  return <svg viewBox={`0 0 ${n + 2 * b} ${n + 2 * b}`} width={size} height={size} role="img" aria-label="QR code" shapeRendering="crispEdges" style={{ background: "#fff", borderRadius: 16 }}><path d={d} fill="#0B1030" /></svg>;
+}
+function downloadQr(text: string, name: string) {
+  const m = qrMake(text); const n = m.length, b = 4, k = 12, W = (n + 2 * b) * k; const c = document.createElement("canvas"); c.width = c.height = W; const g = c.getContext("2d")!; g.fillStyle = "#fff"; g.fillRect(0, 0, W, W); g.fillStyle = "#0B1030";
+  m.forEach((row, r) => row.forEach((v, cc) => v && g.fillRect((cc + b) * k, (r + b) * k, k, k))); c.toBlob((bl) => { if (!bl) return; const a = document.createElement("a"); a.href = URL.createObjectURL(bl); a.download = `nidami-${name}.png`; a.click(); });
+}
+export function MyQr({ u }: { u: User }) {
+  const link = inviteLink(u.code); const D: [User["discover"], string, string][] = [["public", "🌍 Public", "Tout le monde peut me trouver avec mon nom ou mon pseudo."], ["limited", "👥 Limité", "Seulement avec mon pseudo exact, ou les amis de mes amis."], ["hidden", "🔒 Invisible", "Personne ne me trouve. Seulement si je donne mon QR code ou mon code."]];
+  const [h, setH] = useState(u.handle);
+  return (<div className="card col" style={{ alignItems: "center" }}><h3>Mon QR code</h3><QrSvg text={link} /><div className="muted small center">Montrez-le à un proche : il scanne avec l'appareil photo de son téléphone.</div>
+    <div><b style={{ color: "var(--warm)", letterSpacing: 1 }}>{u.code}</b> · @{u.handle}</div>
+    <div className="row wrap" style={{ justifyContent: "center" }}><button className="btn sm" onClick={() => navigator.clipboard?.writeText(link).then(() => toast("Lien copié")).catch(() => toast("Copie impossible"))}>Copier mon lien</button><button className="btn ghost sm" onClick={() => downloadQr(link, u.handle)}>Enregistrer l'image</button>
+      <button className="btn danger sm" onClick={() => { if (confirm("Créer un nouveau code ? L'ancien QR code ne marchera plus.")) { actions.regenerateCode(); toast("Nouveau code créé."); } }}>Renouveler</button></div>
+    <hr /><div className="col" style={{ width: "100%" }}><b>Qui peut me trouver ?</b>{D.map(([k, l, t]) => <label key={k} className="row" style={{ alignItems: "flex-start" }}><input type="radio" name="disc" checked={u.discover === k} onChange={() => { actions.setDiscover(k); toast("Réglage enregistré."); }} style={{ width: 22, height: 22, marginTop: 2 }} /><span><b>{l}</b><div className="muted small">{t}</div></span></label>)}
+      <div className="row"><input className="inp" value={h} onChange={(e) => setH(e.target.value)} aria-label="Pseudo" /><button className="btn sm" onClick={() => toast(actions.setHandle(h).msg)}>Enregistrer le pseudo</button></div></div></div>);
+}
+function Scanner({ onCode, onClose }: { onCode: (c: string) => void; onClose: () => void }) {
+  const ref = useRef<HTMLVideoElement>(null); const [err, setErr] = useState("");
+  useEffect(() => { let stop = false; let stream: MediaStream | null = null; const BD = (window as any).BarcodeDetector;
+    if (!BD) { setErr("Ce navigateur ne sait pas lire les QR codes. Utilisez l'appareil photo du téléphone : il ouvrira le lien Nidami tout seul."); return; }
+    (async () => { try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); if (ref.current) { ref.current.srcObject = stream; await ref.current.play(); } const det = new BD({ formats: ["qr_code"] });
+      const loop = async () => { if (stop || !ref.current) return; try { const r = await det.detect(ref.current); const v = r[0]?.rawValue as string | undefined; const m = v?.match(/add=(NID-[A-Z0-9]{5})/i) || v?.match(/(NID-[A-Z0-9]{5})/i); if (m) { onCode(m[1].toUpperCase()); return; } } catch {} setTimeout(loop, 300); }; loop(); } catch { setErr("Caméra indisponible ou refusée."); } })();
+    return () => { stop = true; stream?.getTracks().forEach((t) => t.stop()); }; }, []);
+  return (<Modal title="Scanner un QR code" onClose={onClose}><div className="col">{err ? <p className="muted">{err}</p> : <video ref={ref} playsInline muted style={{ width: "100%", borderRadius: 16 }} />}</div></Modal>);
+}
 export function Friends({ go }: { go: (v: string) => void }) {
   const s = useStore((x) => x); const me = s.me; const user = userOf(s, me)!; const [code, setCode] = useState(""); const [list, setList] = useState(false); const [name, setName] = useState(""); const [sel, setSel] = useState<string[]>([]);
   const friends = (s.social.friends[me] || []).map((i) => userOf(s, i)!).filter(Boolean); const reqs = s.reqs.filter((r) => r.to === me); const blocked = (s.social.blocks[me] || []).map((i) => userOf(s, i)!).filter(Boolean);
   const mylists = s.social.lists.filter((l) => l.ownerId === me);
   return (<div className="col"><h1>Amis</h1>
     {reqs.length > 0 && <div className="card col"><h3>Demandes reçues</h3>{reqs.map((r) => { const u = userOf(s, r.from); return <div key={r.id} className="row"><Avatar u={u} /><div className="grow"><b>{u?.name}</b><div className="muted small">{ago(r.at)}</div></div><button className="btn sm" onClick={() => { actions.answerReq(r.id, true); toast(`${u?.name} est maintenant votre ami.`); }}>Accepter</button><button className="btn ghost sm" onClick={() => actions.answerReq(r.id, false)}>Refuser</button></div>; })}</div>}
+    <FindPeople />
     <div className="card col"><h3>Inviter quelqu'un</h3><p className="muted small">Nidami est fermé : on y entre avec un code. Votre code : <b style={{ color: "var(--warm)", letterSpacing: 1 }}>{user.code}</b> <button className="chip" onClick={() => { navigator.clipboard?.writeText(user.code).then(() => toast("Code copié")).catch(() => toast("Copie impossible")); }}>Copier</button></p>
       <form className="row" onSubmit={(e) => { e.preventDefault(); const r = actions.addByCode(code); toast(r.msg); if (r.ok) setCode(""); }}><input className="inp" placeholder="Code d'un proche (ex. NID-LEAXX)" value={code} onChange={(e) => setCode(e.target.value)} aria-label="Code d'invitation" /><button className="btn" disabled={!code.trim()}>Envoyer</button></form>
       <p className="muted small">Mode démo : testez avec les codes {s.users.filter((u) => u.demo).map((u) => u.code).join(", ")}. Ces personnes sont fictives.</p></div>
@@ -27,6 +57,13 @@ export function Friends({ go }: { go: (v: string) => void }) {
   </div>);
 }
 
+function FindPeople() {
+  const [q, setQ] = useState(""); const [scan, setScan] = useState(false); const s = useStore((x) => x); const res = q.trim().length >= 2 ? actions.searchUsers(q) : [];
+  return (<div className="card col"><h3>Trouver quelqu'un</h3><div className="row"><input className="inp" placeholder="🔎 Nom ou @pseudo" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Rechercher" /><button className="btn ghost sm" onClick={() => setScan(true)}>📷 Scanner</button></div>
+    {res.map((u) => <div key={u.id} className="row"><Avatar u={u} s={38} /><div className="grow"><b>{u.name}</b><div className="muted small">@{u.handle}</div></div><button className="btn sm" onClick={() => toast(actions.requestFriend(u.id).msg)}>Ajouter</button></div>)}
+    {q.trim().length >= 2 && !res.length && <p className="muted small">Personne trouvé. Les personnes « invisibles » ou « limitées » ne se trouvent qu'avec leur QR code, leur code ou leur pseudo exact.</p>}
+    {scan && <Scanner onClose={() => setScan(false)} onCode={(c) => { setScan(false); toast(actions.addByCode(c).msg); }} />}{s.me && null}</div>);
+}
 export function Groups() {
   const s = useStore((x) => x); const me = s.me; const [open, setOpen] = useState<string | null>(null); const [mk, setMk] = useState(false);
   const groups = s.social.groups.filter((g) => g.memberIds.includes(me)); const g = groups.find((x) => x.id === open);
@@ -70,6 +107,7 @@ export function Profile() {
   const s = useStore((x) => x); const u = userOf(s, s.me)!; const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status);
   const mine = s.posts.filter((p) => p.authorId === s.me && !p.story).length; const friends = (s.social.friends[s.me] || []).length;
   return (<div className="col"><h1>Mon profil</h1><div className="card col center" style={{ alignItems: "center" }}><Avatar u={u} s={92} /><h2>{u.name}</h2><div className="muted">{u.status}</div><div className="row muted small"><span>{mine} publications</span><span>·</span><span>{friends} amis</span><span>·</span><span>Membre depuis {new Date(u.joinedAt).toLocaleDateString("fr-FR", { month: "long", year: "numeric" })}</span></div></div>
+    <MyQr u={u} />
     <div className="card col"><h3>Modifier</h3><input className="inp" value={name} onChange={(e) => setName(e.target.value)} aria-label="Prénom ou pseudo" maxLength={30} /><input className="inp" value={st} onChange={(e) => setSt(e.target.value)} aria-label="Statut" maxLength={60} /><textarea className="inp" value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Votre courte bio" maxLength={200} />
       <button className="btn" onClick={() => { actions.updateProfile({ name: name.trim() || u.name, bio, status: st }); toast("Profil mis à jour."); }}>Enregistrer</button></div></div>);
 }

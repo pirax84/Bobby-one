@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
-import { Avatar, Ico, Logo, ToastHost, Modal } from "./ui/common";
+import { Avatar, Ico, Logo, ToastHost, Modal, toast } from "./ui/common";
 import { Home, ComposerModal } from "./ui/Home";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
 import { Messages, Games, Media, Soon } from "./ui/Chat";
 import { LegalView } from "./ui/Legal";
+import { Shares } from "./ui/Shares";
 
-type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "legal" | "settings";
-const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Amis", "users"], ["groups", "Groupes", "group"], ["messages", "Messages", "chat"], ["calls", "Appels", "phone"], ["media", "Photos", "img"], ["games", "Jeux", "game"], ["events", "Événements", "cal"], ["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["legal", "Légal", "lock"], ["settings", "Paramètres", "cog"]];
+type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
+const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friends", "Amis", "users"], ["groups", "Groupes", "group"], ["messages", "Messages", "chat"], ["calls", "Appels", "phone"], ["media", "Photos", "img"], ["games", "Jeux", "game"], ["events", "Événements", "cal"], ["shares", "Partages", "send"], ["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["legal", "Légal", "lock"], ["settings", "Paramètres", "cog"]];
 
 function Welcome() {
   const [name, setName] = useState(""); const [ok, setOk] = useState(false); const [legal, setLegal] = useState(false);
@@ -26,13 +27,18 @@ export default function App() {
   const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light);
   const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
+  const pendShares = useStore((s) => s.shares.filter((h) => h.authorId === s.me && h.status === "pending").length);
+  const users = useStore((s) => s.users);
+  const parseHash = () => { const m = location.hash.match(/add=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
+  const [pendCode, setPendCode] = useState(parseHash());
+  useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
   const [v, setV] = useState<V>("home"); const [compose, setCompose] = useState(false); const [more, setMore] = useState(false);
   useEffect(() => { document.documentElement.dataset.theme = light ? "light" : "dark"; }, [light]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   if (!started || !me || !user) return <><Welcome /><ToastHost /></>;
   const go = (x: string) => { setV(x as V); setMore(false); };
-  const badge = (k: V) => (k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
-  const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
+  const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
+  const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
     : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur Nidami sera en place." />;
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
@@ -55,6 +61,8 @@ export default function App() {
       <button className={v === "messages" ? "on" : ""} onClick={() => go("messages")} style={{ position: "relative" }}><Ico n="chat" />Messages{unreadM > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{unreadM}</span>}</button>
       <button className={more ? "on" : ""} onClick={() => setMore(true)}><Ico n="more" />Plus</button></nav>
     {more && <Modal title="Menu" onClose={() => setMore(false)}><div className="grid2">{NAV.filter(([k]) => !["home", "friends", "messages"].includes(k)).map(([k, l, i]) => <button key={k} className="card col" style={{ alignItems: "center", color: "inherit", position: "relative" }} onClick={() => go(k)}><Ico n={i} s={26} />{l}{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 8, right: 8 }}>{badge(k)}</span>}</button>)}</div></Modal>}
+    {pendCode && (() => { const t = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
+      return <Modal title="Invitation Nidami" onClose={done}><div className="col center" style={{ alignItems: "center" }}>{t ? <><Avatar u={t} s={72} /><h3>Ajouter {t.name} ?</h3><p className="muted small">@{t.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>Envoyer la demande</button></> : <p className="muted">Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.</p>}<button className="btn ghost" onClick={done}>Plus tard</button></div></Modal>; })()}
     {compose && <ComposerModal onClose={() => setCompose(false)} />}
     <ToastHost /></div>);
 }

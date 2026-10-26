@@ -1,8 +1,10 @@
 import { useSyncExternalStore } from "react";
-import { ID, Post, Social, Audience, Group, FriendList, Comment, resolveRecipients, openPost, purgeExpired, uid, validViewSecs, DEFAULT_GLOBAL_MS, areFriends, Access } from "./engine";
+import { ID, Post, Social, Audience, Group, FriendList, Comment, resolveRecipients, openAny, purgeExpired, uid, validViewSecs, DEFAULT_GLOBAL_MS, areFriends, isBlocked, Access, cascadeDelete, revokeShare as revokeShareEngine } from "./engine";
 import { seed, demoPosts } from "./seed";
 
-export interface User { id: ID; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null }
+export type Discover = "public" | "limited" | "hidden";
+export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
+export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null }
 export interface Msg { id: ID; from: ID; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string }
@@ -11,14 +13,14 @@ export interface Game { id: ID; kind: "morpion"; xId: ID; oId: ID; board: string
 export interface Req { id: ID; from: ID; to: ID; at: number }
 export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
 export interface State {
-  v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[];
+  v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[];
   scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
 const subs = new Set<() => void>();
 let saveWarn = "";
-function load(): State { try { const s = localStorage.getItem(KEY); if (s) { const o = JSON.parse(s); if (o?.v === 1) return o; } } catch {} return seed(); }
+function load(): State { try { const s = localStorage.getItem(KEY); if (s) { const o = JSON.parse(s); if (o?.v === 1) { o.shares ||= []; o.users.forEach((u: User) => { u.handle ||= u.id.replace(/^u_/, "").slice(0, 10) + "_"; u.discover ||= "hidden"; }); return o; } } } catch {} return seed(); }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); saveWarn = ""; } catch { saveWarn = "Mémoire de l'appareil pleine : supprimez d'anciennes photos."; } }
 function emit() { save(); subs.forEach((f) => f()); }
 export const getState = () => state;
@@ -33,7 +35,7 @@ export const codeFor = (id: ID) => "NID-" + id.replace(/[^a-z0-9]/gi, "").toUppe
 const notify = (s: State, to: ID, text: string, go?: string) => { if (to !== s.me || true) s.notifs.unshift({ id: uid(), to, text, at: now(), read: false, go }); };
 
 export const actions = {
-  start(name: string, bio = "") { mut((s) => { const id = "u_" + uid(); const hue = Math.floor(Math.random() * 360); s.users.push({ id, name: name.trim().slice(0, 30) || "Moi", hue, bio, status: "Bienvenue dans mon nid 🪺", joinedAt: now(), code: codeFor(id) }); s.me = id; s.started = true;
+  start(name: string, bio = "") { mut((s) => { const id = "u_" + uid(); const hue = Math.floor(Math.random() * 360); const nm = name.trim().slice(0, 30) || "Moi"; const base = nm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "").slice(0, 12) || "membre"; s.users.push({ id, handle: base + Math.floor(100 + Math.random() * 900), discover: "hidden", name: nm, hue, bio, status: "Bienvenue dans mon nid 🪺", joinedAt: now(), code: codeFor(id) }); s.me = id; s.started = true;
     for (const f of s.users.filter((u) => u.demo && ["celine", "thomas", "emilie", "max"].includes(u.id))) { s.social.friends[id] = [...(s.social.friends[id] || []), f.id]; s.social.friends[f.id] = [...(s.social.friends[f.id] || []), id]; }
     for (const a of ["celine", "thomas", "emilie", "max"]) s.social.friends[a] = [...new Set([...(s.social.friends[a] || []), ...["celine", "thomas", "emilie", "max"].filter((x) => x !== a)])];
     const fam = s.social.groups.find((g) => g.id === "g_famille"); if (fam) { fam.memberIds.push(id); fam.adminIds.push(id); }
@@ -61,17 +63,35 @@ export const actions = {
     });
     return err ? { ok: false, error: err } : { ok: true, id };
   },
-  open(postId: ID): Access { const box: { r: Access } = { r: { ok: false, reason: "missing" } }; mut((s) => { const p = s.posts.find((x) => x.id === postId); if (p) box.r = openPost(p, s.me, now(), s.social); }); return box.r; },
+  open(postId: ID): Access { const box: { r: Access } = { r: { ok: false, reason: "missing" } }; mut((s) => { const p = s.posts.find((x) => x.id === postId); if (p) box.r = openAny(p, s.posts, s.me, now(), s.social); }); return box.r; },
   tick() { const t = now(); const probe: Post[] = state.posts; if (!probe.some((p) => p.viewSecs > 0 || p.expiresAt !== null)) return; let n = 0; const s: State = structuredClone(state); n = purgeExpired(s.posts, t); if (n) { state = s; emit(); } },
-  deletePost(id: ID) { mut((s) => { s.posts = s.posts.filter((p) => !(p.id === id && p.authorId === s.me)); }); },
+  deletePost(id: ID) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || p.authorId !== s.me) return; s.posts = cascadeDelete(s.posts.filter((x) => x.id !== id), id); s.shares.forEach((h) => { if (h.postId === id && h.status === "approved") h.status = "revoked"; }); }); },
   react(id: ID, emoji: string) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.reactions[s.me] === emoji) delete p.reactions[s.me]; else { p.reactions[s.me] = emoji; if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a réagi ${emoji} à votre publication.`, "home"); } }); },
   comment(id: ID, text: string, replyTo?: ID) { const t = text.trim(); if (!t) return; mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; const c: Comment = { id: uid(), authorId: s.me, text: t.slice(0, 500), at: now(), replyTo }; p.comments.push(c); if (p.authorId !== s.me) notify(s, p.authorId, `${userOf(s, s.me)!.name} a commenté votre publication.`, "home"); }); },
 
-  addByCode(code: string): { ok: boolean; msg: string } { let r = { ok: false, msg: "Code inconnu." }; mut((s) => { const c = code.trim().toUpperCase(); const u = s.users.find((x) => x.code === c);
-    if (!u) return; if (u.id === s.me) { r = { ok: false, msg: "C'est votre propre code !" }; return; }
+  requestFriend(userId: ID): { ok: boolean; msg: string } { let r = { ok: false, msg: "Personne introuvable." }; mut((s) => { const u = s.users.find((x) => x.id === userId); if (!u) return; if (u.id === s.me) { r = { ok: false, msg: "C'est vous !" }; return; }
+    if (isBlocked(s.social, s.me, u.id)) { r = { ok: false, msg: "Impossible d'envoyer la demande." }; return; }
     if (areFriends(s.social, s.me, u.id)) { r = { ok: false, msg: `${u.name} est déjà votre ami.` }; return; }
     if (s.reqs.some((q) => q.from === s.me && q.to === u.id)) { r = { ok: false, msg: "Demande déjà envoyée." }; return; }
     s.reqs.push({ id: uid(), from: s.me, to: u.id, at: now() }); notify(s, u.id, `${userOf(s, s.me)!.name} vous demande en ami.`, "friends"); r = { ok: true, msg: `Demande envoyée à ${u.name}.` }; }); return r; },
+  addByCode(code: string): { ok: boolean; msg: string } { const c = code.trim().toUpperCase(); const u = state.users.find((x) => x.code === c); if (!u) return { ok: false, msg: "Code inconnu (en mode démo, seuls les comptes de cet appareil existent)." }; return actions.requestFriend(u.id); },
+  setDiscover(d: Discover) { mut((s) => { userOf(s, s.me)!.discover = d; }); },
+  setHandle(h: string): { ok: boolean; msg: string } { const x = h.trim().toLowerCase(); let r = { ok: false, msg: "" }; mut((s) => { if (!/^[a-z0-9_.]{3,20}$/.test(x)) { r = { ok: false, msg: "3 à 20 caractères : lettres, chiffres, _ ou ." }; return; } if (s.users.some((u) => u.handle === x && u.id !== s.me)) { r = { ok: false, msg: "Ce pseudo est déjà pris." }; return; } userOf(s, s.me)!.handle = x; r = { ok: true, msg: "Pseudo enregistré." }; }); return r; },
+  regenerateCode() { mut((s) => { userOf(s, s.me)!.code = "NID-" + uid().toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 5).padEnd(5, "X"); }); },
+  // Qui peut me trouver ? public : par nom ou pseudo · limité : pseudo exact ou ami d'un ami · caché : jamais (seulement QR/code).
+  searchUsers(q: string): User[] { const s = state; const t = q.trim().toLowerCase().replace(/^@/, ""); if (t.length < 2) return [];
+    const mutual = (id: ID) => (s.social.friends[s.me] || []).some((f) => (s.social.friends[f] || []).includes(id));
+    return s.users.filter((u) => u.id !== s.me && !isBlocked(s.social, s.me, u.id) && (u.discover === "public" ? (u.name.toLowerCase().includes(t) || u.handle.includes(t)) : u.discover === "limited" ? (u.handle === t || (mutual(u.id) && (u.name.toLowerCase().includes(t) || u.handle.includes(t)))) : false)); },
+  // ── Partage avec accord ──
+  requestShare(postId: ID, audienceIds: ID[], note = ""): { ok: boolean; msg: string } { let r = { ok: false, msg: "Introuvable." }; mut((s) => { const p = s.posts.find((x) => x.id === postId); if (!p || p.sharedFrom || p.authorId === s.me || !p.recipients.includes(s.me)) return;
+    const aud = audienceIds.filter((i) => i !== p.authorId && areFriends(s.social, s.me, i) && !isBlocked(s.social, p.authorId, i)); if (!aud.length) { r = { ok: false, msg: "Choisissez au moins un ami (qui ne soit pas bloqué par l'auteur)." }; return; }
+    if (s.shares.some((h) => h.postId === postId && h.requesterId === s.me && h.status === "pending")) { r = { ok: false, msg: "Demande déjà en attente." }; return; }
+    s.shares.unshift({ id: uid(), postId, authorId: p.authorId, requesterId: s.me, audienceIds: aud, note: note.slice(0, 200), status: "pending", at: now() }); notify(s, p.authorId, `${userOf(s, s.me)!.name} demande à partager votre publication.`, "shares"); r = { ok: true, msg: "Demande envoyée. L'auteur décide." }; }); return r; },
+  answerShare(id: ID, approve: boolean) { mut((s) => { const h = s.shares.find((x) => x.id === id && x.authorId === s.me && x.status === "pending"); if (!h) return; const o = s.posts.find((x) => x.id === h.postId); if (!o) { h.status = "denied"; return; }
+    if (!approve) { h.status = "denied"; notify(s, h.requesterId, `${userOf(s, s.me)!.name} a refusé le partage.`, "shares"); return; }
+    h.status = "approved"; s.posts.unshift({ id: "p_" + uid(), authorId: h.requesterId, kind: o.kind, text: "", createdAt: now(), audience: { mode: "only", ids: h.audienceIds }, recipients: h.audienceIds, viewSecs: o.viewSecs, expiresAt: o.expiresAt, views: {}, reactions: {}, comments: [], sharedFrom: o.id, shareId: h.id });
+    notify(s, h.requesterId, `${userOf(s, s.me)!.name} a accepté le partage.`, "shares"); for (const i of h.audienceIds) notify(s, i, `${userOf(s, h.requesterId)!.name} a partagé un contenu avec vous.`, "home"); }); },
+  revokeShare(id: ID) { mut((s) => { const h = s.shares.find((x) => x.id === id && (x.authorId === s.me || x.requesterId === s.me)); if (!h || h.status !== "approved") return; h.status = "revoked"; s.posts = revokeShareEngine(s.posts, id); if (h.authorId === s.me) notify(s, h.requesterId, `${userOf(s, s.me)!.name} a retiré le partage : il a disparu partout.`, "shares"); }); },
   answerReq(id: ID, accept: boolean) { mut((s) => { const q = s.reqs.find((x) => x.id === id && x.to === s.me); if (!q) return; s.reqs = s.reqs.filter((x) => x.id !== id); if (accept) { s.social.friends[s.me] = [...new Set([...(s.social.friends[s.me] || []), q.from])]; s.social.friends[q.from] = [...new Set([...(s.social.friends[q.from] || []), s.me])]; notify(s, q.from, `${userOf(s, s.me)!.name} a accepté votre demande.`, "friends"); } }); },
   unfriend(id: ID) { mut((s) => { s.social.friends[s.me] = (s.social.friends[s.me] || []).filter((x) => x !== id); s.social.friends[id] = (s.social.friends[id] || []).filter((x) => x !== s.me); }); },
   block(id: ID, on: boolean) { mut((s) => { const b = new Set(s.social.blocks[s.me] || []); on ? b.add(id) : b.delete(id); s.social.blocks[s.me] = [...b]; }); },

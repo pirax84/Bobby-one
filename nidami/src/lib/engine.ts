@@ -29,6 +29,7 @@ export interface Post {
   reactions: Record<ID, string>;
   comments: Comment[];
   purged?: boolean;                          // fichier supprimé du stockage
+  sharedFrom?: ID; shareId?: ID;             // republication AUTORISÉE : simple référence vers l'original (aucune copie)
 }
 export interface Social { friends: Record<ID, ID[]>; blocks: Record<ID, ID[]>; groups: Group[]; lists: FriendList[] }
 
@@ -97,10 +98,32 @@ export function purgeExpired(posts: Post[], now: number): number {
 
 // Le fil d'une personne : publications qu'elle a le droit de voir (hors stories), plus récentes d'abord.
 export function feedFor(posts: Post[], userId: ID, now: number, s: Social): Post[] {
-  const shown = (p: Post) => { const a = checkAccess(p, userId, now, s); return a.ok || a.reason === "expired-for-you"; };   // « expirée pour moi » reste visible, grisée
+  const shown = (p: Post) => { const a = accessFor(p, posts, userId, now, s); return a.ok || a.reason === "expired-for-you"; };   // « expirée pour moi » reste visible, grisée
   return posts.filter((p) => !p.story && shown(p)).sort((a, b) => b.createdAt - a.createdAt);
 }
 export const storiesFor = (posts: Post[], userId: ID, now: number, s: Social) => posts.filter((p) => p.story && checkAccess(p, userId, now, s).ok).sort((a, b) => a.createdAt - b.createdAt);
 
 export const fmtSecs = (n: number) => (n === 0 ? "Permanente" : n < 60 ? `${n} s` : n % 60 === 0 ? `${n / 60} min` : `${Math.floor(n / 60)} min ${n % 60} s`);
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+
+// ── Partage avec accord : la republication n'est qu'un lien vers l'original ─────────────────────────
+// L'auteur garde le contrôle total : s'il révoque ou supprime l'original, tout disparaît chez les autres.
+export const originalOf = (p: Post, posts: Post[]): Post | undefined => (p.sharedFrom ? posts.find((x) => x.id === p.sharedFrom) : undefined);
+function virtual(r: Post, o: Post): Post { return { ...o, id: r.id, authorId: r.authorId, recipients: r.recipients, views: r.views, sharedFrom: r.sharedFrom, shareId: r.shareId }; }
+export function accessFor(p: Post | undefined, posts: Post[], userId: ID, now: number, s: Social): Access {
+  if (!p) return { ok: false, reason: "missing" };
+  if (!p.sharedFrom) return checkAccess(p, userId, now, s);
+  const o = originalOf(p, posts); if (!o) return { ok: false, reason: "missing" };
+  if (o.authorId === userId) return { ok: true, author: true, remainingMs: null, firstOpen: false };
+  if (isBlocked(s, o.authorId, userId)) return { ok: false, reason: "blocked" };
+  if (p.authorId === userId) { if (o.expiresAt !== null && now >= o.expiresAt) return { ok: false, reason: "expired-global" }; return { ok: true, author: true, remainingMs: null, firstOpen: false }; }
+  return checkAccess(virtual(p, o), userId, now, s);
+}
+export function openAny(p: Post, posts: Post[], userId: ID, now: number, s: Social): Access {
+  if (!p.sharedFrom) return openPost(p, userId, now, s);
+  const o = originalOf(p, posts); if (!o) return { ok: false, reason: "missing" };
+  const v = virtual(p, o); const pre = accessFor(p, posts, userId, now, s); if (!pre.ok || pre.author) return pre;
+  const a = openPost(v, userId, now, s); p.views = v.views; return a;
+}
+export const cascadeDelete = (posts: Post[], id: ID): Post[] => posts.filter((x) => x.id !== id && x.sharedFrom !== id);
+export const revokeShare = (posts: Post[], shareId: ID): Post[] => posts.filter((x) => x.shareId !== shareId);

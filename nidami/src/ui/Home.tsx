@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useStore, actions, userOf, State } from "../lib/store";
-import { Post, Audience, feedFor, storiesFor, checkAccess, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
+import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, useNow } from "./common";
 import { WmImage, useCaptureGuard } from "./Wm";
 
@@ -74,10 +74,11 @@ export function Composer({ onClose, story = false, groupId }: { onClose: () => v
 
 // ───────── Visionneuse éphémère
 function Viewer({ postId, me, onClose }: { postId: string; me: string; onClose: () => void }) {
-  const post = useStore((s) => s.posts.find((p) => p.id === postId)); const social = useStore((s) => s.social); const users = useStore((s) => s.users);
+  const rp = useStore((s) => s.posts.find((p) => p.id === postId)); const all = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users);
+  const orig = rp ? originalOf(rp, all) : undefined; const post = rp && orig ? { ...orig, id: rp.id, views: rp.views } : rp;
   const now = useNow(100); const myName = users.find((x) => x.id === me)?.name || "";
   const hidden = useCaptureGuard(() => { actions.suspectCapture(postId); toast("Capture bloquée : l'auteur sera prévenu."); }, true);
-  const a = checkAccess(post, me, now, social);
+  const a = accessFor(rp, all, me, now, social);
   useEffect(() => { if (!a.ok) onClose(); }, [a.ok]);
   if (!post || !a.ok) return null; const u = users.find((x) => x.id === post.authorId); const total = post.viewSecs * 1000; const left = a.remainingMs;
   return (<div className={"viewer protected" + (hidden ? " blur" : "")} role="dialog" aria-label="Publication éphémère">
@@ -90,28 +91,34 @@ function Viewer({ postId, me, onClose }: { postId: string; me: string; onClose: 
 }
 
 // ───────── Une publication
-function PostCard({ post, me }: { post: Post; me: string }) {
-  const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(1000); const [view, setView] = useState(false); const [cm, setCm] = useState(""); const [more, setMore] = useState(false); const [replyTo, setReplyTo] = useState<string | undefined>();
-  const u = users.find((x) => x.id === post.authorId); const a = checkAccess(post, me, now, social); const mine = post.authorId === me; const eph = post.viewSecs > 0;
-  const lock = !mine && eph; const expired = !a.ok;
+function PostCard({ post: rp, me }: { post: Post; me: string }) {
+  const social = useStore((s) => s.social); const users = useStore((s) => s.users); const all = useStore((s) => s.posts); const shares = useStore((s) => s.shares); const now = useNow(1000); const [view, setView] = useState(false); const [cm, setCm] = useState(""); const [more, setMore] = useState(false); const [replyTo, setReplyTo] = useState<string | undefined>(); const [ask, setAsk] = useState(false);
+  const orig = originalOf(rp, all); const post = orig ? { ...orig, id: rp.id, views: rp.views, recipients: rp.recipients, reactions: rp.reactions, comments: rp.comments, authorId: orig.authorId } : rp; const sharer = orig ? users.find((x) => x.id === rp.authorId) : undefined;
+  const u = users.find((x) => x.id === post.authorId); const a = accessFor(rp, all, me, now, social); const mine = post.authorId === me; const eph = post.viewSecs > 0; const myShares = shares.filter((h) => h.postId === rp.id && h.status === "approved");
+  const lock = !mine && eph && rp.authorId !== me; const expired = !a.ok;
   const body = (() => {
     if (expired) return <div className="eph gone"><div style={{ fontSize: "2rem" }}>⌛</div><b>Expirée pour vous</b><div className="muted small">Votre temps de consultation est écoulé.</div></div>;
-    if (lock) { const opened = post.views[me] !== undefined; return <div className="eph"><div style={{ fontSize: "2rem" }}>{post.kind === "photo" ? "📸" : "✉️"}</div><b>{post.kind === "photo" ? "Photo" : "Message"} éphémère</b>
-      <div className="muted small" style={{ margin: "4px 0 12px" }}>{opened ? `Il vous reste ${Math.ceil((a.ok ? a.remainingMs || 0 : 0) / 1000)} s.` : `Vous aurez ${fmtSecs(post.viewSecs)} à partir de l'ouverture.`}</div><button className="btn" onClick={() => { const r = actions.open(post.id); if (r.ok) setView(true); }}><Ico n="eye" s={18} /> {opened ? "Reprendre" : "Ouvrir"}</button></div>; }
+    if (lock) { const opened = rp.views[me] !== undefined; return <div className="eph"><div style={{ fontSize: "2rem" }}>{post.kind === "photo" ? "📸" : "✉️"}</div><b>{post.kind === "photo" ? "Photo" : "Message"} éphémère</b>
+      <div className="muted small" style={{ margin: "4px 0 12px" }}>{opened ? `Il vous reste ${Math.ceil((a.ok ? a.remainingMs || 0 : 0) / 1000)} s.` : `Vous aurez ${fmtSecs(post.viewSecs)} à partir de l'ouverture.`}</div><button className="btn" onClick={() => { const r = actions.open(rp.id); if (r.ok) setView(true); }}><Ico n="eye" s={18} /> {opened ? "Reprendre" : "Ouvrir"}</button></div>; }
     return <>{post.img && <div className="protected"><WmImage src={post.img} label={users.find((x) => x.id === me)?.name || ""} alt={post.text || "Photo"} /></div>}{post.kind === "text" ? <div className={post.bg !== undefined ? "tbg" : ""} style={post.bg !== undefined ? { background: BG[post.bg % BG.length] } : undefined}>{post.text}</div> : post.text && <p style={{ margin: "10px 0 0" }}>{post.text}</p>}</>;
   })();
-  const myReact = post.reactions[me]; const counts = Object.values(post.reactions).reduce<Record<string, number>>((m, e) => ((m[e] = (m[e] || 0) + 1), m), {});
+  const myReact = rp.reactions[me]; const counts = Object.values(rp.reactions).reduce<Record<string, number>>((m, e) => ((m[e] = (m[e] || 0) + 1), m), {});
   return (<article className="card col" style={{ gap: 10 }}>
     <div className="row"><Avatar u={u} /><div className="grow"><b>{u?.name}</b> {post.mood}<div className="muted small">{ago(post.createdAt, now)} · {audLabel(post, social)}{eph ? ` · ⏱ ${fmtSecs(post.viewSecs)}` : ""}</div></div>
-      {mine && <button className="btn ghost sm" onClick={() => setMore(!more)} aria-label="Options"><Ico n="more" s={18} /></button>}</div>
-    {more && mine && <button className="btn danger sm" onClick={() => { if (confirm("Supprimer cette publication ?")) actions.deletePost(post.id); }}><Ico n="trash" s={16} /> Supprimer</button>}
+      {(mine || rp.authorId === me) && <button className="btn ghost sm" onClick={() => setMore(!more)} aria-label="Options"><Ico n="more" s={18} /></button>}</div>
+    {sharer && <div className="small" style={{ color: "var(--warm)" }}>↪ Partagé par <b>{sharer.name}</b> avec l'accord de {u?.name}</div>}
+    {more && (mine || rp.authorId === me) && <div className="row wrap">{!orig && <button className="btn danger sm" onClick={() => { if (confirm("Supprimer cette publication ? Les partages autorisés disparaissent aussi.")) actions.deletePost(rp.id); }}><Ico n="trash" s={16} /> Supprimer partout</button>}{orig && mine && <button className="btn danger sm" onClick={() => { if (confirm(`Retirer ce partage ? Il disparaît chez ${sharer?.name} et ses amis.`)) actions.revokeShare(rp.shareId!); }}>Retirer ce partage</button>}{orig && rp.authorId === me && <button className="btn danger sm" onClick={() => { if (confirm("Arrêter de partager ?")) actions.revokeShare(rp.shareId!); }}>Arrêter mon partage</button>}</div>}
     {body}
-    {mine && eph && <div className="muted small"><Ico n="eye" s={14} /> Vu par {Object.keys(post.views).length}/{post.recipients.length} : {Object.keys(post.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || "personne pour l'instant"}</div>}
+    {mine && eph && !orig && <div className="muted small"><Ico n="eye" s={14} /> Vu par {Object.keys(post.views).length}/{post.recipients.length} : {Object.keys(post.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || "personne pour l'instant"}</div>}
+    {mine && !orig && myShares.length > 0 && <div className="small" style={{ color: "var(--warm)" }}>↪ {myShares.length} partage{myShares.length > 1 ? "s" : ""} autorisé{myShares.length > 1 ? "s" : ""} par vous (voir « Partages »).</div>}
+    {orig && mine && <div className="muted small">Vu par {Object.keys(rp.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || "personne pour l'instant"} · Public du partage : {rp.recipients.map((v) => users.find((x) => x.id === v)?.name).join(", ")}</div>}
     {!expired && !(lock) && <>
-      <div className="row wrap">{EMOJIS.map((e) => <button key={e} className={"react" + (myReact === e ? " on" : "")} onClick={() => actions.react(post.id, e)} aria-label={"Réagir " + e}>{e}{counts[e] ? <small> {counts[e]}</small> : null}</button>)}</div>
-      {post.comments.map((c) => <div key={c.id} className="row" style={{ alignItems: "flex-start", marginLeft: c.replyTo ? 28 : 0 }}><Avatar u={users.find((x) => x.id === c.authorId)} s={30} /><div className="card grow" style={{ padding: "7px 12px", borderRadius: 16 }}><b className="small">{users.find((x) => x.id === c.authorId)?.name}</b> <span className="muted small">{ago(c.at, now)}</span><div>{c.text}</div><button className="muted small" style={{ background: "none", border: 0, padding: 0 }} onClick={() => setReplyTo(c.id)}>Répondre</button></div></div>)}
-      <form className="row" onSubmit={(e) => { e.preventDefault(); actions.comment(post.id, cm, replyTo); setCm(""); setReplyTo(undefined); }}><input className="inp" placeholder={replyTo ? "Votre réponse…" : "Écrire un commentaire…"} value={cm} onChange={(e) => setCm(e.target.value)} aria-label="Commentaire" /><button className="btn sm" disabled={!cm.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></>}
-    {view && <Viewer postId={post.id} me={me} onClose={() => setView(false)} />}
+      {!mine && !orig && rp.authorId !== me && !post.story && <button className="btn ghost sm" style={{ alignSelf: "flex-start" }} onClick={() => setAsk(true)}>↪ Demander à partager</button>}
+      <div className="row wrap">{EMOJIS.map((e) => <button key={e} className={"react" + (myReact === e ? " on" : "")} onClick={() => actions.react(rp.id, e)} aria-label={"Réagir " + e}>{e}{counts[e] ? <small> {counts[e]}</small> : null}</button>)}</div>
+      {rp.comments.map((c) => <div key={c.id} className="row" style={{ alignItems: "flex-start", marginLeft: c.replyTo ? 28 : 0 }}><Avatar u={users.find((x) => x.id === c.authorId)} s={30} /><div className="card grow" style={{ padding: "7px 12px", borderRadius: 16 }}><b className="small">{users.find((x) => x.id === c.authorId)?.name}</b> <span className="muted small">{ago(c.at, now)}</span><div>{c.text}</div><button className="muted small" style={{ background: "none", border: 0, padding: 0 }} onClick={() => setReplyTo(c.id)}>Répondre</button></div></div>)}
+      <form className="row" onSubmit={(e) => { e.preventDefault(); actions.comment(rp.id, cm, replyTo); setCm(""); setReplyTo(undefined); }}><input className="inp" placeholder={replyTo ? "Votre réponse…" : "Écrire un commentaire…"} value={cm} onChange={(e) => setCm(e.target.value)} aria-label="Commentaire" /><button className="btn sm" disabled={!cm.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></>}
+    {view && <Viewer postId={rp.id} me={me} onClose={() => setView(false)} />}
+    {ask && <ShareAsk post={rp} onClose={() => setAsk(false)} />}
   </article>);
 }
 function audLabel(p: Post, s: State["social"]) { const m = p.audience.mode; return m === "all" ? "Tous les amis" : m === "me" ? "Moi seul" : m === "group" ? s.groups.find((g) => g.id === (p.audience as any).groupId)?.name || "Groupe" : m === "only" ? "Amis choisis" : m === "except" ? "Amis sauf…" : "Liste"; }
@@ -131,3 +138,13 @@ export function Home({ groupId }: { groupId?: string }) {
   </div>);
 }
 export { Composer as ComposerModal };
+
+function ShareAsk({ post, onClose }: { post: Post; onClose: () => void }) {
+  const s = useStore((x) => x); const me = s.me; const author = userOf(s, post.authorId); const [sel, setSel] = useState<string[]>([]); const [note, setNote] = useState("");
+  const friends = (s.social.friends[me] || []).filter((f) => f !== post.authorId).map((i) => userOf(s, i)!).filter(Boolean);
+  return (<Modal title="Demander à partager" onClose={onClose}><div className="col">
+    <p className="muted small">Ce contenu appartient à <b>{author?.name}</b>. Il décide s'il accepte. S'il accepte, vos amis choisis verront <b>le contenu d'origine</b> (pas une copie), avec les mêmes durées, et {author?.name} pourra <b>retirer le partage à tout moment</b> : il disparaîtra alors chez tout le monde.</p>
+    <div className="muted small">Partager avec :</div><div className="tabs" style={{ flexWrap: "wrap" }}>{friends.map((f) => <button key={f.id} className={"chip" + (sel.includes(f.id) ? " on" : "")} onClick={() => setSel((x) => (x.includes(f.id) ? x.filter((y) => y !== f.id) : [...x, f.id]))}>{f.name}</button>)}{!friends.length && <span className="muted">Vous n'avez pas d'autre ami.</span>}</div>
+    <input className="inp" placeholder="Un petit mot pour l'auteur (facultatif)" value={note} onChange={(e) => setNote(e.target.value)} maxLength={200} />
+    <button className="btn" disabled={!sel.length} onClick={() => { const r = actions.requestShare(post.id, sel, note); toast(r.msg); if (r.ok) onClose(); }}>Envoyer la demande à {author?.name}</button></div></Modal>);
+}

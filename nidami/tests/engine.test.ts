@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { Social, Post, resolveRecipients, checkAccess, openPost, purgeExpired, feedFor, validViewSecs } from "../src/lib/engine.ts";
+import { Social, Post, resolveRecipients, checkAccess, openPost, purgeExpired, feedFor, validViewSecs, accessFor, openAny, cascadeDelete, revokeShare } from "../src/lib/engine.ts";
 
 const S = (): Social => ({
   friends: { pierre: ["celine", "thomas", "emilie"], celine: ["pierre"], thomas: ["pierre"], emilie: ["pierre"], intrus: [] },
@@ -67,4 +67,26 @@ test("durées valides", () => { assert.ok(validViewSecs(3) && validViewSecs(0) &
 test("le fil garde les publications expirées pour moi (grisées) mais jamais celles d'un exclu", () => {
   const s = S(), p = mk(s); openPost(p, "celine", 0, s);
   assert.equal(feedFor([p], "celine", 9000, s).length, 1); assert.equal(feedFor([p], "emilie", 9000, s).length, 0);
+});
+
+const reshare = (s: Social, o: Post, by: string, to: string[], shareId = "s1"): Post => ({ id: "r1", authorId: by, kind: o.kind, text: "", createdAt: 0, audience: { mode: "only", ids: to }, recipients: to, viewSecs: o.viewSecs, expiresAt: o.expiresAt, views: {}, reactions: {}, comments: [], sharedFrom: o.id, shareId });
+test("K : le partage autorisé garde la durée par personne de l'original", () => {
+  const s = S(); s.friends.celine = ["pierre", "emilie"]; s.friends.emilie = ["pierre", "celine"]; const o = mk(s); const r = reshare(s, o, "celine", ["emilie"]); const all = [o, r];
+  assert.ok(openAny(r, all, "emilie", 1000, s).ok); assert.ok(accessFor(r, all, "emilie", 5999, s).ok); assert.deepEqual(accessFor(r, all, "emilie", 6000, s), { ok: false, reason: "expired-for-you" });
+  assert.equal(o.views.emilie, undefined);
+});
+test("L : l'auteur révoque le partage → il disparaît chez tous", () => {
+  const s = S(); const o = mk(s); const r = reshare(s, o, "celine", ["emilie"]); const left = revokeShare([o, r], "s1");
+  assert.deepEqual(left.map((p) => p.id), ["p1"]); assert.equal(feedFor(left, "emilie", 0, s).length, 0);
+});
+test("M : l'auteur supprime l'original → toutes les republications sont supprimées", () => {
+  const s = S(); const o = mk(s); const r = reshare(s, o, "celine", ["emilie"]); assert.deepEqual(cascadeDelete([o, r], "p1"), []);
+});
+test("N : si l'original expire globalement, la republication aussi ; l'auteur original voit toujours", () => {
+  const s = S(); const o = mk(s, { expiresAt: 10000 }); const r = reshare(s, o, "celine", ["emilie"]); const all = [o, r];
+  assert.deepEqual(accessFor(r, all, "emilie", 10000, s), { ok: false, reason: "expired-global" }); assert.ok(accessFor(r, all, "pierre", 99999, s).ok);
+});
+test("O : quelqu'un qui n'est pas dans l'audience de la republication n'y accède pas ; un bloqué par l'auteur non plus", () => {
+  const s = S(); const o = mk(s); const r = reshare(s, o, "celine", ["emilie"]); assert.deepEqual(accessFor(r, [o, r], "thomas", 0, s), { ok: false, reason: "not-recipient" });
+  s.blocks.pierre = ["emilie"]; assert.deepEqual(accessFor(r, [o, r], "emilie", 0, s), { ok: false, reason: "blocked" });
 });
