@@ -47,7 +47,6 @@ export default function App() {
       <div className="card row"><Avatar u={user} s={48} /><div className="grow"><b>{user.name}</b><div className="muted small ell">{user.status}</div></div></div>
       <RightPanel go={go} />
     </aside>
-    <img className="treebg" src="./tree-bg.svg" alt="" aria-hidden="true" />
     <nav className="bottom" aria-label="Navigation">
       <button className={v === "home" ? "on" : ""} onClick={() => go("home")}><Ico n="home" /><i>Accueil</i></button>
       <button className={v === "friends" ? "on" : ""} onClick={() => go("friends")} style={{ position: "relative" }}><Ico n="users" /><i>Amis</i>{reqs > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 6 }}>{reqs}</span>}</button>
