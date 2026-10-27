@@ -33,9 +33,9 @@ export function useCaptureGuard(onSuspect: () => void, active: boolean) {
 }
 
 /** Vidéo avec filigrane par-dessus (nom du spectateur + date). Pas de bouton de téléchargement ; ce n'est pas une protection absolue. */
-export function VideoWm({ src, label, poster = false }: { src: string; label: string; poster?: boolean }) {
+export function VideoWm({ src, label, poster = false, bare = false, onEnded, onTime }: { src: string; label: string; poster?: boolean; bare?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void }) {
   const t = `${label} · Mon cercle · ${new Date().toLocaleDateString("fr-FR")}`;
   return <div className="vwrap protected" onContextMenu={(e) => e.preventDefault()}>
-    <video src={src} controls={!poster} muted={poster} playsInline preload="metadata" controlsList="nodownload noremoteplayback" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} />
+    <video src={src} controls={!poster && !bare} autoPlay={bare} muted={poster} playsInline preload={bare ? "auto" : "metadata"} onEnded={onEnded} onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime, e.currentTarget.duration)} controlsList="nodownload noremoteplayback" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} />
     <div className="vwm" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i}>{t}</span>)}</div></div>;
 }

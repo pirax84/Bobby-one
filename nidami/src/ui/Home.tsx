@@ -19,23 +19,24 @@ export function Stories({ me }: { me: string }) {
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}
   {add && <QuickCompose story long={add === "long"} onClose={() => setAdd(false)} />}</>);
 }
-function MediaBox({ p, label, auto = false }: { p: { video?: string | null; audio?: string | null; text?: string }; label: string; auto?: boolean }) {
-  if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} /></div>;
-  if (p.audio) return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 200, flexDirection: "column", gap: 12 }}><div style={{ fontSize: "3rem" }}>🎤</div><audio controls autoPlay={auto} src={p.audio} style={{ maxWidth: "100%" }} />{p.text && <div>{p.text}</div>}</div>;
+function MediaBox({ p, label, auto = false, story = false, onEnd, onTime }: { p: { video?: string | null; audio?: string | null; text?: string }; label: string; auto?: boolean; story?: boolean; onEnd?: () => void; onTime?: (cur: number, dur: number) => void }) {
+  if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} bare={story} onEnded={onEnd} onTime={onTime} /></div>;
+  if (p.audio) return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 200, flexDirection: "column", gap: 12 }}><div style={{ fontSize: "3rem" }}>🎤</div>{story ? <audio autoPlay src={p.audio} onEnded={onEnd} onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime, e.currentTarget.duration)} /> : <audio controls autoPlay={auto} src={p.audio} style={{ maxWidth: "100%" }} />}{p.text && <div>{p.text}</div>}</div>;
   return null;
 }
 function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; onClose: () => void }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users);
   const items = useMemo(() => storiesFor(posts, me, Date.now(), social).filter((p) => p.authorId === authorId), [authorId]);
-  const [i, setI] = useState(0); const [reply, setReply] = useState(""); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : p.video || p.audio ? 12000 : 6000; const myName = users.find((x) => x.id === me)?.name || "";
+  const [i, setI] = useState(0); const [reply, setReply] = useState(""); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : p.video || p.audio ? 90000 : 6000; const [prog, setProg] = useState(0); const media = !!(p && (p.video || p.audio)); const myName = users.find((x) => x.id === me)?.name || "";
   const hidden = useCaptureGuard(() => { if (p) actions.suspectCapture(p.id); toast("Capture bloquée : l'auteur sera prévenu."); }, true);
-  useEffect(() => { if (!p) return onClose(); actions.open(p.id); const t = setTimeout(() => (i + 1 < items.length ? setI(i + 1) : onClose()), dur); return () => clearTimeout(t); }, [i]);
+  const next = () => (i + 1 < items.length ? setI(i + 1) : onClose());
+  useEffect(() => { if (!p) return onClose(); setProg(0); actions.open(p.id); const t = setTimeout(next, dur); return () => clearTimeout(t); }, [i]);
   const live = posts.find((x) => x.id === p?.id); if (!p || !live) return null; const u = users.find((x) => x.id === authorId);
-  return (<div className={"viewer protected" + (hidden ? " blur" : "")} role="dialog" aria-label="Story" onClick={(e) => { if ((e.target as HTMLElement).closest("button,audio,video,input,textarea,form,a")) return; if (e.clientX > window.innerWidth / 2) { if (i + 1 < items.length) setI(i + 1); else onClose(); } else if (i > 0) setI(i - 1); }}>
-    <div className="bar"><i style={{ width: "100%", animation: `sg ${dur / 1000}s linear`, transformOrigin: "left" }} key={i} /></div>
+  return (<div className={"viewer protected" + (hidden ? " blur" : "")} role="dialog" aria-label="Story" onClick={(e) => { if ((e.target as HTMLElement).closest("button,input,textarea,form,a")) return; if (e.clientX > window.innerWidth / 2) next(); else if (i > 0) setI(i - 1); }}>
+    <div className="bar">{media ? <i style={{ width: "100%", transform: `scaleX(${prog})`, transformOrigin: "left", animation: "none" }} key={i} /> : <i style={{ width: "100%", animation: `sg ${dur / 1000}s linear`, transformOrigin: "left" }} key={i} />}</div>
     <style>{"@keyframes sg{from{transform:scaleX(0)}to{transform:scaleX(1)}}"}</style>
     <div className="row" style={{ width: "min(560px,100%)" }}><Avatar u={u} s={36} /><b className="grow">{u?.name}</b><span className="muted small">{ago(live.createdAt)}</span><button className="btn ghost sm" onClick={onClose} aria-label="Fermer"><Ico n="x" s={18} /></button></div>
-    {live.video || live.audio ? <MediaBox p={live} label={myName} auto /> : live.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={live.img} label={myName} alt="Story" style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(live.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 320 }}>{live.text}</div>}
+    {live.video || live.audio ? <MediaBox key={live.id} p={live} label={myName} story onEnd={next} onTime={(c, d) => setProg(Math.min(1, c / (isFinite(d) && d > 0 ? d : 10)))} /> : live.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={live.img} label={myName} alt="Story" style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(live.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 320 }}>{live.text}</div>}
     {live.img && live.text && <p>{live.text}</p>}
     {authorId === me ? <div className="card small" style={{ width: "min(560px,100%)" }}><Ico n="eye" s={16} /> Vu par : {Object.keys(live.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || "personne pour l'instant"}</div>
       : <div className="row" style={{ width: "min(560px,100%)" }}><input className="inp" placeholder="Répondre en privé…" value={reply} onChange={(e) => setReply(e.target.value)} /><button className="btn" onClick={() => { const c = actions.startDm(authorId); actions.send(c, "↩️ Réponse à votre story : " + reply); setReply(""); toast("Réponse envoyée en privé."); }} disabled={!reply.trim()}><Ico n="send" s={18} /></button>
