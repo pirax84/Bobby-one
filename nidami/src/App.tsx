@@ -1,8 +1,8 @@
 import { applyTheme } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
-import { Avatar, Ico, Logo, ToastHost, Modal, toast } from "./ui/common";
-import { Home, ComposerModal } from "./ui/Home";
+import { Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps } from "./ui/common";
+import { Home, QuickCompose } from "./ui/Home";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
 import { Messages, Games, Soon } from "./ui/Chat";
 import { Media } from "./ui/Albums";
@@ -28,7 +28,7 @@ export default function App() {
   const parseHash = () => { const m = location.hash.match(/add=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
-  const [v, setV] = useState<V>(() => (history.state?.v as V) || "home"); const [compose, setCompose] = useState(false); const [more, setMore] = useState(false);
+  const [v, setV] = useState<V>(() => (history.state?.v as V) || "home"); const [compose, setCompose] = useState<false | "short" | "long">(false); const [more, setMore] = useState(false);
   const th = useStore((s) => s.settings[s.me]); useEffect(() => { applyTheme({ light: !!light, premium: !!th?.premium, bg: th?.bg, fg: th?.fg, accent: th?.accent }); }, [light, th?.premium, th?.bg, th?.fg, th?.accent]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
@@ -54,7 +54,7 @@ export default function App() {
   return (<div className="shell">
     <aside className="side"><div className="brand"><Logo /><div><b>Votre cercle.</b><div className="muted small">Vos moments.</div></div></div>
       {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
-      <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose(true)}><Ico n="plus" s={18} /> Publier</button></aside>
+      <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose("short")}><Ico n="plus" s={18} /> Publier</button></aside>
     <main className="main">
       <div className="top">{v !== "home" ? <button className="topb" onClick={() => history.back()} aria-label="Retour"><Ico n="back" s={20} /></button> : <span className="grow" />}<span className="grow" /><div className="topr">{topKeys.map((k) => k === "profile" ? <button key={k} style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={34} /></button> : (() => { const it = NAV.find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}</div></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
@@ -65,7 +65,7 @@ export default function App() {
     </aside>
     <nav className="bottom" aria-label="Navigation">
       {bar.slice(0, 2).map(tab)}
-      <button className="plus" onClick={() => setCompose(true)} aria-label="Publier"><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
+      <button className="plus" {...pressProps(() => setCompose("short"), () => setCompose("long"))} aria-label="Publier : appui simple pour écrire ou photo, appui long pour un selfie vidéo"><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
       {bar.slice(2, 3).map(tab)}
       <button className={more ? "on" : ""} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }}><Ico n="apps" /><i>Plus</i></button></nav>
     {more && <Modal title="Plus" onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
@@ -75,7 +75,7 @@ export default function App() {
     {pendCode && (() => { const t = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
       return <Modal title="Invitation Mon cercle" onClose={done}><div className="col center" style={{ alignItems: "center" }}>{t ? <><Avatar u={t} s={72} /><h3>Ajouter {t.name} ?</h3><p className="muted small">@{t.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>Envoyer la demande</button></> : <p className="muted">Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.</p>}<button className="btn ghost" onClick={done}>Plus tard</button></div></Modal>; })()}
     {v !== "messages" && <ChatBubble openFull={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} />}
-    {compose && <ComposerModal onClose={() => setCompose(false)} />}
+    {compose && <QuickCompose long={compose === "long"} onClose={() => setCompose(false)} />}
     <ToastHost /></div>);
 }
 function RightPanel({ go }: { go: (v: string) => void }) {

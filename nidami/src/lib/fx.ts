@@ -5,7 +5,7 @@ export const FX: Record<Fx, Def> = {
   shake: { label: "📳 Secousse", text: "📳 Secousse !", em: [] },
   confetti: { label: "🎉 Confettis", text: "🎉 Confettis !", em: ["🎉", "🎊", "✨", "⭐"] },
   hearts: { label: "❤️ Cœurs", text: "❤️ Pluie de cœurs !", em: ["❤️", "💕", "💖", "💗"] },
-  kiss: { label: "😘 Bisous", text: "😘 Gros bisous !", em: ["😘", "💋", "😚", "💋"] },
+  kiss: { label: "😘 Bisous", text: "😘 Gros bisous !", em: ["💋", "😘", "💋", "😚", "💋", "😗", "💋", "😙"] },
   snow: { label: "❄️ Neige", text: "❄️ Il neige !", em: ["❄️", "❅", "❆", "⛄"] },
   fireworks: { label: "🎆 Feu d'artifice", text: "🎆 Feu d'artifice !", em: ["🎆", "🎇", "✨", "💥"] },
   ghost: { label: "👻 Fantôme", text: "👻 Bouh !", em: ["👻", "🎃", "🦇", "💀"] },
@@ -55,15 +55,27 @@ function voice(c: AC, o: Out, t: number, dur: number, f0: number, f1: number, v1
   [v1, v2].forEach(([fa, fb], i) => { const b = c.createBiquadFilter(); b.type = "bandpass"; b.Q.value = 6; b.frequency.setValueAtTime(fa, t); b.frequency.linearRampToValueAtTime(fb, t + dur * 0.6); const bg = c.createGain(); bg.gain.value = i ? 0.5 : 1; osc.connect(b); b.connect(bg); bg.connect(mix); });
   osc.start(t); osc.stop(t + dur + 0.05);
 }
+/** Voix plus naturelle : train d'impulsions de la glotte (avec petites irrégularités) passé dans 3 formants qui bougent (voyelles). */
+function vox(c: AC, o: Out, t: number, dur: number, { f0, form, vol = 0.3, jit = 0.01, shim = 0.05, breath = 0, atk = 0.02, rel = 0.06 }: { f0: (u: number) => number; form: (u: number) => [number, number, number]; vol?: number; jit?: number; shim?: number; breath?: number; atk?: number; rel?: number }) {
+  const sr = c.sampleRate, n = Math.ceil(dur * sr), buf = c.createBuffer(1, n, sr), d = buf.getChannelData(0); let ph = 0, amp = 1, per = 1, prev = 0;
+  for (let i = 0; i < n; i++) { const u = i / n; if (ph >= 1 || i === 0) { ph = ph >= 1 ? ph - 1 : 0; per = 1 + (Math.random() * 2 - 1) * jit; amp = 1 + (Math.random() * 2 - 1) * shim; }
+    ph += (f0(u) * per) / sr; const q = ph; const g = q < 0.4 ? 0.5 * (1 - Math.cos((Math.PI * q) / 0.4)) : q < 0.56 ? Math.cos((Math.PI / 2) * ((q - 0.4) / 0.16)) : 0; d[i] = (g - prev) * 14 * amp; prev = g; }
+  const src = c.createBufferSource(); src.buffer = buf; const out = c.createGain(); out.gain.setValueAtTime(0.0001, t); out.gain.linearRampToValueAtTime(vol, t + atk); out.gain.setValueAtTime(vol, t + Math.max(atk, dur - rel)); out.gain.linearRampToValueAtTime(0.0001, t + dur); out.connect(o);
+  const nz = breath > 0 ? c.createBufferSource() : null; if (nz) nz.buffer = noiseBuf(c);
+  const bw = [90, 120, 170], gn = [1, 0.7, 0.4];
+  for (let k = 0; k < 3; k++) { const f = c.createBiquadFilter(); f.type = "bandpass"; const F0 = form(0)[k]; f.frequency.setValueAtTime(F0, t); f.Q.value = F0 / bw[k]; for (let j = 1; j <= 10; j++) f.frequency.linearRampToValueAtTime(form(j / 10)[k], t + (dur * j) / 10); const g = c.createGain(); g.gain.value = gn[k]; src.connect(f); f.connect(g); g.connect(out); if (nz) { const ng = c.createGain(); ng.gain.value = breath * 0.5; nz.connect(f); f.connect(ng); ng.connect(out); } }
+  src.start(t); src.stop(t + dur + 0.02); if (nz) { nz.start(t); nz.stop(t + dur + 0.02); }
+}
 const pent = [72, 74, 76, 79, 81, 84, 86, 88];
 const SFX: Record<Fx, (c: AC, o: Out, t: number) => void> = {
   // Secousse : cloche grave qui « vibre » + roulement métallique (esprit des vieilles messageries, mais notre propre son)
   shake: (c, o, t) => { for (let i = 0; i < 6; i++) { bell(c, o, i % 2 ? 62 : 67, t + i * 0.085, 0.5, 0.11); } air(c, o, t, 0.6, { f0: 3000, f1: 800, q: 2, vol: 0.12 }); bell(c, o, 55, t + 0.55, 1.4, 0.14); },
   confetti: (c, o, t) => { air(c, o, t, 0.12, { type: "highpass", f0: 2000, f1: 2000, vol: 0.35 }); [72, 76, 79, 84, 88, 91].forEach((n, i) => bell(c, o, n, t + 0.06 + i * 0.07, 1.1, 0.09)); },
   hearts: (c, o, t) => { [60, 64, 67, 72, 76, 79, 84].forEach((n, i) => harp(c, o, n, t + i * 0.09, 1.4, 0.12)); note(c, o, hz(48), t, 1.8, { vol: 0.08, partials: [1, 2], atk: 0.3 }); },
-  kiss: (c, o, t) => { air(c, o, t, 0.03, { type: "lowpass", f0: 2500, vol: 0.5, q: 0.7 }); air(c, o, t + 0.02, 0.14, { f0: 700, f1: 2600, q: 2.5, vol: 0.3, atk: 0.1, curve: "lin" });
-    const x = c.createOscillator(), g = c.createGain(); x.frequency.setValueAtTime(1500, t + 0.16); x.frequency.exponentialRampToValueAtTime(380, t + 0.2); g.gain.setValueAtTime(0.0001, t + 0.16); g.gain.linearRampToValueAtTime(0.5, t + 0.162); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.24); x.connect(g); g.connect(o); x.start(t + 0.16); x.stop(t + 0.26); air(c, o, t + 0.16, 0.05, { type: "bandpass", f0: 1800, q: 1, vol: 0.6 });
-    voice(c, o, t + 0.24, 0.22, 240, 300, [350, 800], [800, 1200], { vol: 0.12, vib: 0, atk: 0.02 }); },
+  kiss: (c, o, t) => { [[0, 1], [0.5, 0.75]].forEach(([d, v], i) => { const T = t + d;
+      const x = c.createOscillator(), g = c.createGain(); x.frequency.setValueAtTime(420, T); x.frequency.exponentialRampToValueAtTime(1500, T + 0.09); g.gain.setValueAtTime(0.0001, T); g.gain.linearRampToValueAtTime(0.09 * v, T + 0.04); g.gain.linearRampToValueAtTime(0.0001, T + 0.1); x.connect(g); g.connect(o); x.start(T); x.stop(T + 0.12); // succion des lèvres
+      air(c, o, T + 0.09, 0.08, { f0: 1100, f1: 380, q: 6, vol: 1.0 * v }); air(c, o, T + 0.09, 0.03, { type: "lowpass", f0: 2200, vol: 0.7 * v }); // le « pop » des lèvres
+      vox(c, o, T + 0.14, 0.2, { f0: (u) => 250 + 90 * u + i * 20, form: (u) => [320 + 480 * u, 800 + 400 * u, 2500], vol: 0.3 * v, jit: 0.01, shim: 0.05, breath: 0.1, atk: 0.03, rel: 0.1 }); }); },
   snow: (c, o, t) => { [0, 2, 4, 1, 5, 3, 6, 7].forEach((k, i) => bell(c, o, pent[k] + 12, t + i * 0.12, 1.6, 0.06)); note(c, o, hz(60), t, 2.2, { vol: 0.05, atk: 0.5 }); },
   fireworks: (c, o, t) => { [0, 1.4, 2.7].forEach((d, k) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.setValueAtTime(600 + k * 150, t + d); w.frequency.exponentialRampToValueAtTime(2600, t + d + 0.45); g.gain.setValueAtTime(0.0001, t + d); g.gain.linearRampToValueAtTime(0.06, t + d + 0.08); g.gain.linearRampToValueAtTime(0.0001, t + d + 0.46); w.connect(g); g.connect(o); w.start(t + d); w.stop(t + d + 0.5);
       air(c, o, t + d + 0.46, 0.7, { type: "lowpass", f0: 900, f1: 80, vol: 0.55 }); air(c, o, t + d + 0.46, 0.06, { type: "highpass", f0: 2000, vol: 0.7 }); for (let i = 0; i < 12; i++) air(c, o, t + d + 0.55 + Math.random() * 0.7, 0.03, { type: "highpass", f0: 3000 + Math.random() * 2000, vol: 0.25 }); });
@@ -79,21 +91,24 @@ const SFX: Record<Fx, (c: AC, o: Out, t: number) => void> = {
     air(c, o, t + 0.2, 4.5, { type: "bandpass", f0: 120, f1: 60, q: 0.4, vol: 0.25, atk: 0.8, curve: "lin" }); air(c, o, t + 0.5, 4, { type: "highpass", f0: 4000, vol: 0.05, atk: 1, curve: "lin" }); },
   rocket: (c, o, t) => { air(c, o, t, 1.6, { type: "lowpass", f0: 250, f1: 2400, vol: 0.45, atk: 0.3, curve: "lin" }); air(c, o, t, 1.6, { f0: 600, f1: 5000, q: 1.2, vol: 0.2, atk: 0.4, curve: "lin" }); note(c, o, 90, t, 1.5, { vol: 0.12, type: "sawtooth", glide: 0.6 }); },
   clap: (c, o, t) => { for (let i = 0; i < 16; i++) { const d = i * 0.07 + Math.random() * 0.05; air(c, o, t + d, 0.06, { f0: 1400 + Math.random() * 1200, q: 0.9, vol: 0.28 }); air(c, o, t + d + 0.02, 0.04, { f0: 2600, q: 1.5, vol: 0.14 }); } },
-  laugh: (c, o, t) => { voice(c, o, t, 0.55, 210, 260, [450, 1000], [900, 1500], { vol: 0.55, vib: 7, vibAmt: 0.05, atk: 0.05 });
-    for (let i = 0; i < 7; i++) { const d = 0.62 + i * 0.21; voice(c, o, t + d, 0.15, 330 - i * 12, 290 - i * 12, [800, 1100], [1300, 1800], { vol: 0.55, vib: 0, atk: 0.015 }); air(c, o, t + d, 0.1, { f0: 2500, q: 0.8, vol: 0.12 }); }
-    voice(c, o, t + 2.15, 0.85, 340, 260, [700, 900], [1200, 1400], { vol: 0.5, vib: 8, vibAmt: 0.06, atk: 0.05 }); },
+  laugh: (c, o, t) => { air(c, o, t, 0.28, { f0: 900, f1: 1800, q: 0.7, vol: 0.1, atk: 0.2, curve: "lin" });
+    // « Ha ha ha ha ha ha » moqueur : sons « a » courts, qui ralentissent et baissent, puis un long « haaa » final
+    for (let i = 0; i < 7; i++) { const d = 0.38 + i * 0.2 + i * i * 0.006, base = 330 - i * 14, v = 0.85 - i * 0.04; air(c, o, t + d - 0.03, 0.06, { f0: 1800, q: 0.9, vol: 0.14 }); vox(c, o, t + d, 0.15, { f0: (u) => base * (1.08 - 0.22 * u), form: (u) => [760 + 80 * (1 - u), 1250, 2800], vol: v, jit: 0.015, shim: 0.1, breath: 0.15, atk: 0.012, rel: 0.07 }); }
+    vox(c, o, t + 2.05, 0.9, { f0: (u) => 300 * (1.04 - 0.3 * u) * (1 + 0.025 * Math.sin(u * 40)), form: (u) => [800 - 150 * u, 1300 - 250 * u, 2800], vol: 0.65, jit: 0.015, shim: 0.1, breath: 0.2, atk: 0.04, rel: 0.4 }); },
   music: (c, o, t) => { [[67, 0], [71, 0.2], [74, 0.4], [79, 0.6], [76, 0.9], [72, 1.1], [74, 1.3], [79, 1.5]].forEach(([n, d]) => piano(c, o, n, t + d, 0.9, 0.14)); [43, 47, 50].forEach((n, i) => note(c, o, hz(n), t + i * 0.5, 1.2, { vol: 0.1, type: "triangle", partials: [1, 2] })); },
   money: (c, o, t) => { air(c, o, t, 0.04, { f0: 3000, vol: 0.3 }); bell(c, o, 88, t + 0.05, 1.6, 0.14); bell(c, o, 95, t + 0.2, 1.8, 0.14); for (let i = 0; i < 6; i++) bell(c, o, 100 + (i % 3), t + 0.45 + i * 0.05, 0.4, 0.05); },
   bomb: (c, o, t) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.setValueAtTime(2400, t); w.frequency.exponentialRampToValueAtTime(220, t + 0.9); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.06, t + 0.05); g.gain.linearRampToValueAtTime(0.0001, t + 0.92); w.connect(g); g.connect(o); w.start(t); w.stop(t + 0.95);
     const T = t + 0.92; air(c, o, T, 0.12, { type: "highpass", f0: 800, vol: 1 }); air(c, o, T, 2.4, { type: "lowpass", f0: 1400, f1: 40, q: 0.6, vol: 1.1, atk: 0.005 }); note(c, o, 90, T, 1.6, { vol: 0.5, glide: 0.1 }); note(c, o, 45, T, 1.8, { vol: 0.5 });
     for (let i = 0; i < 18; i++) air(c, o, T + 0.3 + Math.random() * 1.4, 0.05, { type: "bandpass", f0: 600 + Math.random() * 2500, q: 1, vol: 0.2 }); },
-  burp: (c, o, t) => { const osc = c.createOscillator(); osc.type = "sawtooth"; osc.frequency.setValueAtTime(95, t); osc.frequency.linearRampToValueAtTime(130, t + 0.12); osc.frequency.exponentialRampToValueAtTime(55, t + 1.0);
-    const am = c.createOscillator(), ag = c.createGain(), amg = c.createGain(); am.frequency.value = 34; ag.gain.value = 0.5; amg.gain.value = 0.5; am.connect(ag); ag.connect(amg.gain); const f = c.createBiquadFilter(); f.type = "bandpass"; f.Q.value = 3; f.frequency.setValueAtTime(420, t); f.frequency.linearRampToValueAtTime(800, t + 0.15); f.frequency.linearRampToValueAtTime(300, t + 1.0);
-    const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.7, t + 0.05); g.gain.setValueAtTime(0.7, t + 0.6); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.05); osc.connect(f); f.connect(amg); amg.connect(g); g.connect(o); am.start(t); am.stop(t + 1.1); osc.start(t); osc.stop(t + 1.1); air(c, o, t, 0.9, { type: "lowpass", f0: 500, f1: 200, vol: 0.12, curve: "lin" }); },
+  burp: (c, o, t) => { air(c, o, t, 0.1, { f0: 700, f1: 300, q: 1, vol: 0.2 });
+    vox(c, o, t + 0.04, 1.15, { f0: (u) => 95 - 50 * u, form: (u) => [620 - 100 * u, 1050 - 200 * u, 2450], vol: 0.8, jit: 0.1, shim: 0.3, breath: 0.2, atk: 0.04, rel: 0.4 }); air(c, o, t + 0.1, 1, { type: "lowpass", f0: 400, f1: 150, vol: 0.12, curve: "lin" }); },
   fart: (c, o, t) => { const osc = c.createOscillator(); osc.type = "sawtooth"; let f = 120; osc.frequency.setValueAtTime(f, t); for (let i = 1; i < 60; i++) { f = Math.max(45, f * (0.97 + Math.random() * 0.045) + (i > 45 ? 3 : 0)); osc.frequency.setValueAtTime(f * (i % 2 ? 1 : 0.92), t + i * 0.018); }
     const lp = c.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 650; lp.Q.value = 4; const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.5, t + 0.04); g.gain.setValueAtTime(0.5, t + 0.85); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.15); osc.connect(lp); lp.connect(g); g.connect(o); osc.start(t); osc.stop(t + 1.2); air(c, o, t, 1.1, { type: "bandpass", f0: 300, q: 2, vol: 0.25, curve: "lin" }); note(c, o, 700, t + 1.05, 0.1, { vol: 0.07, glide: 0.4 }); },
-  vomit: (c, o, t) => { voice(c, o, t, 0.5, 120, 150, [400, 700], [900, 1200], { vol: 0.3, vib: 14, vibAmt: 0.08, atk: 0.1 }); voice(c, o, t + 0.55, 0.9, 150, 110, [800, 450], [1200, 800], { vol: 0.4, vib: 11, vibAmt: 0.1, atk: 0.06 });
-    air(c, o, t + 0.6, 1.1, { f0: 700, f1: 300, q: 0.8, vol: 0.5, atk: 0.1, curve: "lin" }); for (let i = 0; i < 14; i++) { const d = 0.65 + i * 0.07 + Math.random() * 0.03; air(c, o, t + d, 0.05, { type: "bandpass", f0: 500 + Math.random() * 900, q: 3, vol: 0.35 }); } air(c, o, t + 1.5, 0.35, { type: "bandpass", f0: 1200, f1: 400, q: 0.7, vol: 0.6 }); for (let i = 0; i < 5; i++) air(c, o, t + 1.6 + i * 0.09, 0.04, { type: "highpass", f0: 2500, vol: 0.2 }); },
+  vomit: (c, o, t) => { [0, 0.55].forEach((d, k) => { air(c, o, t + d, 0.1, { f0: 600, f1: 250, q: 1.2, vol: 0.16 }); vox(c, o, t + d + 0.03, 0.4, { f0: (u) => 105 - 25 * u - k * 6, form: (u) => [650 - 120 * u, 1100 - 150 * u, 2500], vol: 0.55, jit: 0.07, shim: 0.25, breath: 0.35, atk: 0.05, rel: 0.12 }); });
+    vox(c, o, t + 1.1, 1.0, { f0: (u) => 150 - 60 * u, form: (u) => [720 - 280 * u, 1250 - 350 * u, 2400], vol: 0.7, jit: 0.04, shim: 0.15, breath: 0.4, atk: 0.06, rel: 0.25 });
+    const g = c.createGain(); g.gain.value = 0.55; const lfo = c.createOscillator(), lg = c.createGain(); lfo.frequency.value = 24; lg.gain.value = 0.4; lfo.connect(lg); lg.connect(g.gain); const src = c.createBufferSource(); src.buffer = noiseBuf(c); const f = c.createBiquadFilter(); f.type = "bandpass"; f.frequency.setValueAtTime(900, t + 1.1); f.frequency.linearRampToValueAtTime(350, t + 2.3); f.Q.value = 1.6; src.connect(f); f.connect(g); g.connect(o); src.start(t + 1.1); src.stop(t + 2.4); lfo.start(t + 1.1); lfo.stop(t + 2.4);
+    for (let i = 0; i < 9; i++) air(c, o, t + 1.25 + i * 0.12 + Math.random() * 0.06, 0.1, { type: "bandpass", f0: 1900, f1: 350 + Math.random() * 200, q: 4, vol: 0.45 });
+    air(c, o, t + 2.4, 0.15, { f0: 2200, q: 0.8, vol: 0.2 }); vox(c, o, t + 2.55, 0.7, { f0: (u) => 125 - 35 * u, form: (u) => [560, 950 - 100 * u, 2400], vol: 0.35, jit: 0.03, shim: 0.12, breath: 0.3, atk: 0.1, rel: 0.3 }); },
 } as Record<Fx, (c: AC, o: Out, t: number) => void>;
 // Mélodie traditionnelle « Joyeux anniversaire » (domaine public), jouée au piano avec une basse douce : environ 7 secondes.
 const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1], [71, 2], [67, .75], [67, .25], [69, 1], [67, 1], [74, 1], [72, 2], [67, .75], [67, .25], [79, 1], [76, 1], [72, 1], [71, 1], [69, 2], [77, .75], [77, .25], [76, 1], [72, 1], [74, 1], [72, 2]];
@@ -112,8 +127,8 @@ export function playFx(k: Fx, sound = true) {
   const d = FX[k]; if (!d) return;
   if (sound) sfx(k);
   if (k === "shake") {
-    try { navigator.vibrate?.([150, 60, 150, 60, 150, 60, 150, 60, 300]); } catch { /* ignoré */ }
-    if (!reduced()) { const r = document.documentElement; r.classList.remove("shake"); void r.offsetWidth; r.classList.add("shake"); setTimeout(() => r.classList.remove("shake"), 900); }
+    try { navigator.vibrate?.([500, 40, 500, 40, 500, 40, 500, 40, 500]); } catch { /* ignoré */ }
+    if (!reduced()) { const r = document.documentElement; r.classList.remove("shake"); void r.offsetWidth; r.classList.add("shake"); setTimeout(() => r.classList.remove("shake"), 2400); }
     return;
   }
   if (k === "birthday") { try { navigator.vibrate?.([200, 100, 200, 100, 400, 200, 200, 100, 200, 100, 400, 200, 200, 100, 400, 100, 400]); } catch { /* ignoré */ } }

@@ -2,22 +2,22 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
-import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel } from "./common";
+import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps } from "./common";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder } from "./Recorder";
 
 // ───────── Barre des stories
 export function Stories({ me }: { me: string }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(5000);
-  const [open, setOpen] = useState<string | null>(null); const [add, setAdd] = useState(false);
+  const [open, setOpen] = useState<string | null>(null); const [add, setAdd] = useState<false | "short" | "long">(false);
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
   return (<><div className="stories">
-    <button className="story" onClick={() => setAdd(true)} aria-label="Ajouter une story"><span className="ring add" style={{ position: "relative", border: "3px solid var(--brand)", borderRadius: "50%", padding: 0, background: "none" }}><img src="./icon-192.png" alt="" width={62} height={62} style={{ borderRadius: "50%", display: "block" }} /><span className="pbadge" style={{ width: 22, height: 22, fontSize: ".9rem" }}>+</span></span><div>Ma story</div></button>
+    <button className="story" {...pressProps(() => setAdd("short"), () => setAdd("long"))} aria-label="Ajouter une story : appui simple pour écrire ou photo, appui long pour un selfie vidéo"><span className="ring add" style={{ position: "relative", border: "3px solid var(--brand)", borderRadius: "50%", padding: 0, background: "none" }}><img src="./icon-192.png" alt="" width={62} height={62} style={{ borderRadius: "50%", display: "block" }} /><span className="pbadge" style={{ width: 22, height: 22, fontSize: ".9rem" }}>+</span></span><div>Ma story</div></button>
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = list.filter((p) => p.authorId === a).every((p) => p.authorId === me || p.views[me] !== undefined);
       return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"ring" + (seen ? " seen" : "")}><Avatar u={u} s={58} /></span><div className="ell">{a === me ? "Moi" : u?.name}</div></button>; })}
   </div>
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}
-  {add && <Composer story onClose={() => setAdd(false)} />}</>);
+  {add && <QuickCompose story long={add === "long"} onClose={() => setAdd(false)} />}</>);
 }
 function MediaBox({ p, label, auto = false }: { p: { video?: string | null; audio?: string | null; text?: string }; label: string; auto?: boolean }) {
   if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} /></div>;
@@ -45,10 +45,10 @@ function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; 
 
 // ───────── Publier
 const AUD: [string, string][] = [["all", "Tous mes amis"], ["group", "Un groupe"], ["only", "Amis sélectionnés"], ["except", "Tous sauf…"], ["list", "Une liste"], ["me", "Moi uniquement"]];
-export function Composer({ onClose, story = false, groupId }: { onClose: () => void; story?: boolean; groupId?: string }) {
+export function Composer({ onClose, story = false, groupId, init }: { onClose: () => void; story?: boolean; groupId?: string; init?: { kind: "text" | "photo" | "video" | "audio"; vid?: string; img?: string } }) {
   const s = useStore((x) => x); const me = s.me; const friends = (s.social.friends[me] || []).map((id) => userOf(s, id)!).filter(Boolean);
   const groups = s.social.groups.filter((g) => g.memberIds.includes(me)); const lists = s.social.lists.filter((l) => l.ownerId === me);
-  const [kind, setKind] = useState<"text" | "photo" | "video" | "audio">("text"); const [vid, setVid] = useState<string | null>(null); const [aud0, setAud0] = useState<string | null>(null); const [recK, setRecK] = useState<"video" | "audio" | null>(null); const [text, setText] = useState(""); const [img, setImg] = useState<string | null>(null); const [bg, setBg] = useState(0); const [mood, setMood] = useState("");
+  const [kind, setKind] = useState<"text" | "photo" | "video" | "audio">(init?.kind || "text"); const [vid, setVid] = useState<string | null>(init?.vid || null); const [aud0, setAud0] = useState<string | null>(null); const [recK, setRecK] = useState<"video" | "audio" | null>(null); const [text, setText] = useState(""); const [img, setImg] = useState<string | null>(init?.img || null); const [bg, setBg] = useState(0); const [mood, setMood] = useState("");
   const [mode, setMode] = useState<string>(groupId ? "group" : "all"); const [sel, setSel] = useState<string[]>([]); const [gid, setGid] = useState(groupId || groups[0]?.id || ""); const [lid, setLid] = useState(lists[0]?.id || "");
   const [secs, setSecs] = useState(0); const [custom, setCustom] = useState(""); const [sdur, setSdur] = useState<"24h" | "inf" | "eph">("24h"); const [busy, setBusy] = useState(false); const file = useRef<HTMLInputElement>(null);
   const aud: Audience = mode === "group" ? { mode: "group", groupId: gid } : mode === "only" ? { mode: "only", ids: sel } : mode === "except" ? { mode: "except", ids: sel } : mode === "list" ? { mode: "list", listId: lid } : mode === "me" ? { mode: "me" } : { mode: "all" };
@@ -167,6 +167,23 @@ export function Home({ groupId }: { groupId?: string }) {
     {feed.map((p) => <PostCard key={p.id} post={p} me={me} />)}
     {compose && <Composer groupId={groupId} onClose={() => setCompose(false)} />}
   </div>);
+}
+/** Point d'entrée : appui simple = choisir (texte, photo, vocal, vidéo) ; appui long = caméra directe (selfie vidéo ou photo). */
+export function QuickCompose({ onClose, story = false, groupId, long = false }: { onClose: () => void; story?: boolean; groupId?: string; long?: boolean }) {
+  const [step, setStep] = useState<"choose" | "record" | "review" | "composer">(long ? "record" : "choose"); const [vid, setVid] = useState<string | null>(null); const [photo, setPhoto] = useState<string | null>(null); const [k, setK] = useState<"text" | "photo" | "video" | "audio">("text"); const [n, setN] = useState(0);
+  if (step === "composer") return <Composer story={story} groupId={groupId} onClose={onClose} init={vid ? { kind: "video", vid } : photo ? { kind: "photo", img: photo } : { kind: k }} />;
+  const title = story ? "✨ Ma story" : "📝 Nouvelle publication";
+  if (step === "choose") return <Modal title={title} onClose={onClose}><div className="col" style={{ gap: 10 }}>
+    <button className="btn" onClick={() => { setK("text"); setStep("composer"); }}>✏️ Écrire un texte</button>
+    <button className="btn" onClick={() => { setK("photo"); setStep("composer"); }}>📷 Photo</button>
+    <button className="btn" onClick={() => { setK("audio"); setStep("composer"); }}>🎤 Message vocal</button>
+    <button className="btn" onClick={() => { setK("video"); setStep("composer"); }}>🎥 Selfie vidéo</button>
+    <p className="muted small center" style={{ margin: 0 }}>Astuce : restez appuyé sur le bouton pour ouvrir directement la caméra.</p></div></Modal>;
+  const media = vid || photo;
+  return <Modal title={story ? "🎥 Caméra · story" : "🎥 Caméra"} onClose={onClose}><div className="col" style={{ gap: 10 }}>
+    {step === "record" ? <Recorder key={n} kind="video" max={10} onCancel={onClose} onPhoto={(u) => { setPhoto(u); setStep("review"); }} onDone={(u) => { setVid(u); setStep("review"); }} />
+      : <>{vid ? <video src={vid} controls playsInline autoPlay style={{ width: "100%", maxHeight: 320, borderRadius: 14, background: "#000" }} /> : <img src={photo!} alt="Aperçu" style={{ width: "100%", maxHeight: 320, objectFit: "cover", borderRadius: 14 }} />}
+        <div className="row" style={{ gap: 8 }}><button className="btn grow" disabled={!media} onClick={() => setStep("composer")}>✅ Envoyer</button><button className="btn ghost grow" onClick={() => { setVid(null); setPhoto(null); setN(n + 1); setStep("record"); }}>🔁 Recommencer</button><button className="btn ghost" aria-label="Supprimer" onClick={onClose}>🗑</button></div></>}</div></Modal>;
 }
 export { Composer as ComposerModal };
 

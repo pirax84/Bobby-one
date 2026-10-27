@@ -73,10 +73,11 @@ export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boo
 }
 
 /** Appui long (ou clic droit) : renvoie les gestes à poser sur un élément. */
+const lpTimer: { t?: number } = {};
 export function lp(onLong: () => void) {
-  let t: number | undefined; const stop = () => { if (t) { clearTimeout(t); t = undefined; } };
+  const stop = () => { if (lpTimer.t) { clearTimeout(lpTimer.t); lpTimer.t = undefined; } };
   return {
-    onPointerDown: () => { stop(); t = window.setTimeout(() => { t = undefined; onLong(); }, 550); },
+    onPointerDown: () => { stop(); lpTimer.t = window.setTimeout(() => { lpTimer.t = undefined; onLong(); }, 550); },
     onPointerUp: stop, onPointerLeave: stop, onPointerCancel: stop, onPointerMove: stop,
     onContextMenu: (e: { preventDefault: () => void }) => { e.preventDefault(); stop(); onLong(); },
     style: { WebkitTouchCallout: "none", userSelect: "none" } as const,
@@ -85,4 +86,17 @@ export function lp(onLong: () => void) {
 /** Fenêtre « Supprimer ? » */
 export function ConfirmDel({ what, onYes, onClose }: { what: string; onYes: () => void; onClose: () => void }) {
   return <Modal title={"Supprimer " + what + " ?"} onClose={onClose}><p className="muted">Cette action est définitive.</p><div className="row" style={{ gap: 8 }}><button className="btn ghost grow" onClick={onClose}>Garder</button><button className="btn grow" style={{ background: "var(--bad)", color: "#fff" }} onClick={() => { onYes(); onClose(); }}>🗑 Supprimer</button></div></Modal>;
+}
+
+/** Bouton qui réagit à un appui simple (clic) ET à un appui long. */
+const pressState: { t?: number; fired: boolean } = { fired: false };
+export function pressProps(onShort: () => void, onLong: () => void) {
+  const st = pressState; const stop = () => { if (st.t) { clearTimeout(st.t); st.t = undefined; } };
+  return {
+    onPointerDown: () => { st.fired = false; stop(); st.t = window.setTimeout(() => { st.t = undefined; st.fired = true; onLong(); }, 550); },
+    onPointerUp: stop, onPointerLeave: stop, onPointerCancel: stop,
+    onClick: () => { if (st.fired) { st.fired = false; return; } onShort(); },
+    onContextMenu: (e: { preventDefault: () => void }) => { e.preventDefault(); },
+    style: { WebkitTouchCallout: "none", userSelect: "none" } as const,
+  };
 }
