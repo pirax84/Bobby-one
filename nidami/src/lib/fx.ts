@@ -4,16 +4,16 @@ type Def = { label: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { label: "📳 Secousse", text: "📳 Secousse !", em: [] },
   confetti: { label: "🎉 Confettis", text: "🎉 Confettis !", em: ["🎉", "🎊", "✨", "⭐"] },
-  hearts: { label: "❤️ Cœurs", text: "❤️ Pluie de cœurs !", em: ["❤️", "💕", "💖", "💗"] },
-  kiss: { label: "😘 Bisous", text: "😘 Gros bisous !", em: ["💋", "😘", "💋", "😚", "💋", "😗", "💋", "😙"] },
-  snow: { label: "❄️ Neige", text: "❄️ Il neige !", em: ["❄️", "❅", "❆", "⛄"] },
-  fireworks: { label: "🎆 Feu d'artifice", text: "🎆 Feu d'artifice !", em: ["🎆", "🎇", "✨", "💥"] },
-  ghost: { label: "👻 Fantôme", text: "👻 Bouh !", em: ["👻", "🎃", "🦇", "💀"] },
-  fire: { label: "🔥 Flammes", text: "🔥 Ça chauffe !", em: ["🔥", "🔥", "🧨", "☄️"] },
-  bubbles: { label: "🫧 Bulles", text: "🫧 Des bulles !", em: ["🫧", "💧", "🐠", "🐳"] },
-  party: { label: "🎂 Fête", text: "🎂 C'est la fête !", em: ["🎂", "🎈", "🎁", "🥳"] },
-  rain: { label: "🌧️ Pluie", text: "🌧️ Il pleut !", em: ["💧", "🌧️", "💦", "☔"] },
-  thunder: { label: "⛈️ Orage", text: "⛈️ Coup de tonnerre !", em: ["⚡", "⛈️", "🌩️", "⚡"] },
+  hearts: { label: "❤️ Cœurs", text: "❤️ Pluie de cœurs !", em: ["❤️", "💕", "💖", "💗"], file: "./sounds/hearts.mp3" },
+  kiss: { label: "😘 Bisous", text: "😘 Gros bisous !", em: ["💋", "😘", "💋", "😚", "💋", "😗", "💋", "😙"], file: "./sounds/kiss.mp3" },
+  snow: { label: "❄️ Neige", text: "❄️ Il neige !", em: ["❄️", "❅", "❆", "⛄"], file: "./sounds/snow.mp3" },
+  fireworks: { label: "🎆 Feu d'artifice", text: "🎆 Feu d'artifice !", em: ["🎆", "🎇", "✨", "💥"], file: "./sounds/fireworks.mp3" },
+  ghost: { label: "👻 Fantôme", text: "👻 Bouh !", em: ["👻", "🎃", "🦇", "💀"], file: "./sounds/ghost.mp3" },
+  fire: { label: "🔥 Flammes", text: "🔥 Ça chauffe !", em: ["🔥", "🔥", "🧨", "☄️"], file: "./sounds/fire.mp3" },
+  bubbles: { label: "🫧 Bulles", text: "🫧 Des bulles !", em: ["🫧", "💧", "🐠", "🐳"], file: "./sounds/bubbles.mp3" },
+  party: { label: "🎂 Fête", text: "🎂 C'est la fête !", em: ["🎂", "🎈", "🎁", "🥳"], file: "./sounds/party.mp3" },
+  rain: { label: "🌧️ Pluie", text: "🌧️ Il pleut !", em: ["💧", "🌧️", "💦", "☔"], file: "./sounds/rain.mp3" },
+  thunder: { label: "⛈️ Orage", text: "⛈️ Coup de tonnerre !", em: ["⚡", "⛈️", "🌩️", "⚡"], file: "./sounds/thunder.mp3" },
   rocket: { label: "🚀 Fusée", text: "🚀 Décollage !", em: ["🚀", "🌟", "💫", "🛸"] },
   clap: { label: "👏 Bravo", text: "👏 Bravo !", em: ["👏", "🙌", "👏", "🌟"] },
   laugh: { label: "😂 Fou rire", text: "😂 Mort de rire !", em: ["😂", "🤣", "😆", "😹"] },
@@ -166,11 +166,11 @@ export function playFx(k: Fx, sound = true) {
   if (k === "birthday") { buzz([200, 100, 200, 100, 400, 200, 200, 100, 200, 100, 400, 200, 200, 100, 400, 100, 400], 255); }
   if (reduced()) return;
   const long = k === "birthday" || k === "vomit"; const smoke = k === "fart"; const rise = k === "bubbles" || k === "fire" || k === "ghost" || k === "rocket" || k === "music" || smoke; const box = document.createElement("div"); box.className = "fxbox" + (rise ? " rise" : ""); box.setAttribute("aria-hidden", "true");
-  for (let i = 0; i < (long ? 60 : 34); i++) { const s = document.createElement("span"); if (smoke) { s.className = "smoke"; const z = 90 + Math.random() * 140; s.style.width = z + "px"; s.style.height = z + "px"; } else s.textContent = d.em[i % d.em.length]; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * (long ? 5 : 0.9) + "s"; s.style.fontSize = 18 + Math.random() * 22 + "px"; s.style.animationDuration = 2 + Math.random() * 1.6 + "s"; box.appendChild(s); }
+  for (let i = 0; i < (long ? 60 : 34); i++) { const s = document.createElement("span"); if (smoke) { s.className = "smoke"; const z = 90 + Math.random() * 140; s.style.width = z + "px"; s.style.height = z + "px"; } else s.textContent = d.em[i % d.em.length]; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * (long ? 5 : d.file ? 2.4 : 0.9) + "s"; s.style.fontSize = 18 + Math.random() * 22 + "px"; s.style.animationDuration = 2 + Math.random() * 1.6 + "s"; box.appendChild(s); }
   if (k === "vomit" && !reduced()) { // liquide vert qui coule du haut de l'écran
     const top = document.createElement("div"); top.className = "slime-top"; box.appendChild(top);
     for (let i = 0; i < 16; i++) { const dr = document.createElement("div"); dr.className = "drip"; const w = 18 + Math.random() * 38; dr.style.left = i * 6.3 + Math.random() * 3 + "%"; dr.style.width = w + "px"; dr.style.setProperty("--h", 14 + Math.random() * 42 + "vh"); dr.style.animationDelay = 0.6 + Math.random() * 1.8 + "s"; box.appendChild(dr); } }
-  document.body.appendChild(box); setTimeout(() => box.remove(), long ? 9500 : 4200);
+  document.body.appendChild(box); setTimeout(() => box.remove(), long ? 9500 : d.file ? 6800 : 4200);
 }
 
 /** Effet personnalisé : l'image de la personne tombe à l'écran et son enregistrement (3 s max) est joué. */
