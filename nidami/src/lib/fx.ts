@@ -147,12 +147,12 @@ export function playTone(id: string, times = 1) {
   try { const c = (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if (c.state === "suspended") void c.resume(); const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); for (let i = 0; i < times; i++) d.play(c, master, c.currentTime + 0.03 + i * (d.len + 0.5)); } catch { /* son indisponible */ }
 }
 /** Dans l'application Android : vibre vraiment au maximum (force 255) ; sinon, motif standard du navigateur. */
-export const buzz = (pat: number[], amp = 255) => { try { const n = (window as any).CercleNative; if (n?.vibrate) { n.vibrate(pat.join(","), amp); return; } buzz(pat, l.id === "1" ? 90 : l.id === "2" ? 170 : 255); } catch { /* ignoré */ } };
+export const buzz = (pat: number[], amp = 255) => { try { const n = (window as any).CercleNative; if (n?.vibrate) { n.vibrate(pat.join(","), amp); return; } navigator.vibrate?.(pat); } catch { /* ignoré */ } };
 /** Niveaux de vibration réglables (messages, appels). La secousse, elle, vibre toujours au maximum. */
 export const VIB_LEVELS: { id: string; label: string; pat: number[] }[] = [
   { id: "0", label: "Aucune", pat: [] }, { id: "1", label: "Légère", pat: [80] }, { id: "2", label: "Moyenne", pat: [180, 90, 180] }, { id: "3", label: "Forte", pat: [450, 80, 450, 80, 450] },
 ];
-export const vibrate = (level?: string, repeat = 1) => { try { const l = VIB_LEVELS.find((x) => x.id === level) || VIB_LEVELS[2]; if (!l.pat.length) return; const pat: number[] = []; for (let i = 0; i < repeat; i++) pat.push(...l.pat, ...(i < repeat - 1 ? [600] : [])); navigator.vibrate?.(pat); } catch { /* ignoré */ } };
+export const vibrate = (level?: string, repeat = 1) => { try { const l = VIB_LEVELS.find((x) => x.id === level) || VIB_LEVELS[2]; if (!l.pat.length) return; const pat: number[] = []; for (let i = 0; i < repeat; i++) pat.push(...l.pat, ...(i < repeat - 1 ? [600] : [])); buzz(pat, l.id === "1" ? 90 : l.id === "2" ? 170 : 255); } catch { /* ignoré */ } };
 const reduced = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 export function playFx(k: Fx, sound = true) {
   const d = FX[k]; if (!d) return;
