@@ -37,7 +37,7 @@ export default function App() {
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
-    const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./icon-192.png", tag: lastNotif.id };
+    const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./icon-192.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
     navigator.serviceWorker?.ready.then((r) => r.showNotification("Mon cercle", opt)).catch(() => { try { new Notification("Mon cercle", opt); } catch { /* ignoré */ } });
   }, [lastNotif?.id, pushOn]);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);

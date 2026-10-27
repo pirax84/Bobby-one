@@ -4,6 +4,7 @@ import { useStore, actions, userOf, Msg, Conv } from "../lib/store";
 import { areFriends } from "../lib/engine";
 import { Avatar, Ico, toast, ago, fileToDataUrl, useNow, EMOJIS, EmojiGrid, lp, ConfirmDel } from "./common";
 import { FxBar } from "./FxBar";
+import { HoldMic } from "./Recorder";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 
 const linkify = (t: string) => t.split(/(https:\/\/[^\s]+)/g).map((x, i) => (i % 2 ? <a key={i} href={x} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline" }}>{x.replace("https://", "")}</a> : x));
@@ -21,18 +22,11 @@ export function Messages() {
   const [del, setDel] = useState<string | null>(null); const [opt, setOpt] = useState(false);
   const convs = s.convs.filter((c) => c.memberIds.includes(me)).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
   const c = convs.find((x) => x.id === sel); const img = useRef<HTMLInputElement>(null); const [wm, setWm] = useState(true); const [emo, setEmo] = useState(false); const end = useRef<HTMLDivElement>(null);
-  const [rec, setRec] = useState<MediaRecorder | null>(null);
   useEffect(() => { if (c) actions.markRead(c.id); }, [sel, c?.msgs.length]);
   useEffect(() => { end.current?.scrollIntoView({ block: "end" }); }, [c?.msgs.length, sel]);
   const title = (x: Conv) => x.title || x.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
   const unread = (x: Conv) => x.msgs.filter((m) => m.from !== me && m.reads[me] === undefined).length;
   const sendTxt = () => { if (!c) return; if (edit) { actions.editMsg(c.id, edit, txt); setEdit(null); } else actions.send(c.id, txt, secs, null, rep?.id, null, once); setTxt(""); setRep(null); };
-  const voice = async () => {
-    if (rec) { rec.stop(); return; }
-    try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); const r = new MediaRecorder(st); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data);
-      r.onstop = () => { st.getTracks().forEach((t) => t.stop()); setRec(null); const fr = new FileReader(); fr.onload = () => c && actions.send(c.id, "", secs, null, undefined, String(fr.result), once); fr.readAsDataURL(new Blob(ch, { type: r.mimeType })); };
-      r.start(); setRec(r); setTimeout(() => r.state === "recording" && r.stop(), 60000); } catch { toast("Micro indisponible ou refusé."); }
-  };
   const list = (
     <div className="col" style={{ gap: 8 }}><input className="inp" placeholder="🔎 Rechercher dans mes conversations" value={q} onChange={(e) => setQ(e.target.value)} />
       {convs.filter((x) => !q || title(x).toLowerCase().includes(q.toLowerCase()) || x.msgs.some((m) => visible(m, me, now) && m.text.toLowerCase().includes(q.toLowerCase()))).map((x) => { const last = x.msgs.at(-1); const u = unread(x); return <button key={x.id} className={"card row" + (unread(x) > 0 ? " unread" : "")} style={{ color: "inherit", textAlign: "left" }} onClick={() => setSel(x.id)}>
@@ -68,7 +62,7 @@ export function Messages() {
       <button type="button" className={"btn ghost sm" + (opt ? " on" : "")} onClick={() => setOpt(!opt)} aria-label="Options : durée, photo, effets" aria-expanded={opt}>＋{(once || secs > 0) && <span className="small"> ⏱</span>}</button>
       <button type="button" className="btn ghost sm" onClick={() => setEmo(!emo)} aria-label="Emojis"><Ico n="smile" s={18} /></button>
       <input className="inp grow" placeholder={edit ? "Modifier le message…" : "Votre message…"} value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message" />
-      {txt.trim() ? <button className="btn" aria-label="Envoyer"><Ico n="send" s={18} /></button> : <button type="button" className="btn ghost" onClick={voice} aria-label={rec ? "Arrêter et envoyer le vocal" : "Message vocal"} style={rec ? { background: "var(--bad)", color: "#fff" } : undefined}><Ico n="mic" s={18} />{rec && <span className="small" style={{ marginLeft: 4 }}>Envoi</span>}</button>}</form></div>);
+      {txt.trim() ? <button className="btn" aria-label="Envoyer"><Ico n="send" s={18} /></button> : <HoldMic className="btn" onDone={(u) => actions.send(c.id, "", secs, null, undefined, u, once)}><Ico n="mic" s={20} /></HoldMic>}</form></div>);
 }
 
 // ───────── Jeux : Morpion à deux (chacun joue depuis son profil) + Quiz solo

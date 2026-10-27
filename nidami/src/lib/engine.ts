@@ -19,7 +19,7 @@ export interface Group { id: ID; name: string; emoji: string; description: strin
 export interface FriendList { id: ID; ownerId: ID; name: string; memberIds: ID[] }
 export interface Comment { id: ID; authorId: ID; text: string; at: number; replyTo?: ID }
 export interface Post {
-  id: ID; authorId: ID; kind: "text" | "photo" | "video"; text: string; img?: string | null; video?: string | null; albumId?: ID; bg?: number;
+  id: ID; authorId: ID; kind: "text" | "photo" | "video" | "audio"; text: string; img?: string | null; video?: string | null; audio?: string | null; albumId?: ID; bg?: number;
   mood?: string; story?: boolean;
   createdAt: number;
   audience: Audience; recipients: ID[];      // destinataires figés à la publication

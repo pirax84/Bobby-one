@@ -3,7 +3,8 @@ import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel } from "./common";
-import { WmImage, useCaptureGuard } from "./Wm";
+import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
+import { Recorder } from "./Recorder";
 
 // ───────── Barre des stories
 export function Stories({ me }: { me: string }) {
@@ -18,10 +19,15 @@ export function Stories({ me }: { me: string }) {
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}
   {add && <Composer story onClose={() => setAdd(false)} />}</>);
 }
+function MediaBox({ p, label, auto = false }: { p: { video?: string | null; audio?: string | null; text?: string }; label: string; auto?: boolean }) {
+  if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} /></div>;
+  if (p.audio) return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 200, flexDirection: "column", gap: 12 }}><div style={{ fontSize: "3rem" }}>🎤</div><audio controls autoPlay={auto} src={p.audio} style={{ maxWidth: "100%" }} />{p.text && <div>{p.text}</div>}</div>;
+  return null;
+}
 function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; onClose: () => void }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users);
   const items = useMemo(() => storiesFor(posts, me, Date.now(), social).filter((p) => p.authorId === authorId), [authorId]);
-  const [i, setI] = useState(0); const [reply, setReply] = useState(""); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : 6000; const myName = users.find((x) => x.id === me)?.name || "";
+  const [i, setI] = useState(0); const [reply, setReply] = useState(""); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : p.video || p.audio ? 12000 : 6000; const myName = users.find((x) => x.id === me)?.name || "";
   const hidden = useCaptureGuard(() => { if (p) actions.suspectCapture(p.id); toast("Capture bloquée : l'auteur sera prévenu."); }, true);
   useEffect(() => { if (!p) return onClose(); actions.open(p.id); const t = setTimeout(() => (i + 1 < items.length ? setI(i + 1) : onClose()), dur); return () => clearTimeout(t); }, [i]);
   const live = posts.find((x) => x.id === p?.id); if (!p || !live) return null; const u = users.find((x) => x.id === authorId);
@@ -29,7 +35,7 @@ function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; 
     <div className="bar"><i style={{ width: "100%", animation: `sg ${dur / 1000}s linear`, transformOrigin: "left" }} key={i} /></div>
     <style>{"@keyframes sg{from{transform:scaleX(0)}to{transform:scaleX(1)}}"}</style>
     <div className="row" style={{ width: "min(560px,100%)" }}><Avatar u={u} s={36} /><b className="grow">{u?.name}</b><span className="muted small">{ago(live.createdAt)}</span><button className="btn ghost sm" onClick={onClose} aria-label="Fermer"><Ico n="x" s={18} /></button></div>
-    {live.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={live.img} label={myName} alt="Story" style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(live.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 320 }}>{live.text}</div>}
+    {live.video || live.audio ? <MediaBox p={live} label={myName} auto /> : live.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={live.img} label={myName} alt="Story" style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(live.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 320 }}>{live.text}</div>}
     {live.img && live.text && <p>{live.text}</p>}
     {authorId === me ? <div className="card small" style={{ width: "min(560px,100%)" }}><Ico n="eye" s={16} /> Vu par : {Object.keys(live.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || "personne pour l'instant"}</div>
       : <div className="row" style={{ width: "min(560px,100%)" }}><input className="inp" placeholder="Répondre en privé…" value={reply} onChange={(e) => setReply(e.target.value)} /><button className="btn" onClick={() => { const c = actions.startDm(authorId); actions.send(c, "↩️ Réponse à votre story : " + reply); setReply(""); toast("Réponse envoyée en privé."); }} disabled={!reply.trim()}><Ico n="send" s={18} /></button>
@@ -42,26 +48,32 @@ const AUD: [string, string][] = [["all", "Tous mes amis"], ["group", "Un groupe"
 export function Composer({ onClose, story = false, groupId }: { onClose: () => void; story?: boolean; groupId?: string }) {
   const s = useStore((x) => x); const me = s.me; const friends = (s.social.friends[me] || []).map((id) => userOf(s, id)!).filter(Boolean);
   const groups = s.social.groups.filter((g) => g.memberIds.includes(me)); const lists = s.social.lists.filter((l) => l.ownerId === me);
-  const [kind, setKind] = useState<"text" | "photo">("text"); const [text, setText] = useState(""); const [img, setImg] = useState<string | null>(null); const [bg, setBg] = useState(0); const [mood, setMood] = useState("");
+  const [kind, setKind] = useState<"text" | "photo" | "video" | "audio">("text"); const [vid, setVid] = useState<string | null>(null); const [aud0, setAud0] = useState<string | null>(null); const [recK, setRecK] = useState<"video" | "audio" | null>(null); const [text, setText] = useState(""); const [img, setImg] = useState<string | null>(null); const [bg, setBg] = useState(0); const [mood, setMood] = useState("");
   const [mode, setMode] = useState<string>(groupId ? "group" : "all"); const [sel, setSel] = useState<string[]>([]); const [gid, setGid] = useState(groupId || groups[0]?.id || ""); const [lid, setLid] = useState(lists[0]?.id || "");
   const [secs, setSecs] = useState(0); const [custom, setCustom] = useState(""); const [sdur, setSdur] = useState<"24h" | "inf" | "eph">("24h"); const [busy, setBusy] = useState(false); const file = useRef<HTMLInputElement>(null);
   const aud: Audience = mode === "group" ? { mode: "group", groupId: gid } : mode === "only" ? { mode: "only", ids: sel } : mode === "except" ? { mode: "except", ids: sel } : mode === "list" ? { mode: "list", listId: lid } : mode === "me" ? { mode: "me" } : { mode: "all" };
   const count = resolveRecipients(s.social, me, aud).length; const eff = custom ? Number(custom) : secs;
   const validCustom = !custom || (Number.isInteger(Number(custom)) && Number(custom) >= 1 && Number(custom) <= MAX_CUSTOM_SECS);
   const pick = async (f?: File) => { if (!f) return; if (!f.type.startsWith("image/")) return toast("Choisissez une image."); setBusy(true); try { setImg(await fileToDataUrl(f)); setKind("photo"); } catch { toast("Impossible de lire cette image."); } setBusy(false); };
-  const ok = (kind === "photo" ? !!img : text.trim().length > 0) && validCustom && (mode !== "only" || sel.length > 0) && !(story && sdur === "eph" && !(eff > 0));
-  const go = () => { const r = actions.publish({ kind, text, img: kind === "photo" ? img : null, bg, mood, audience: aud, viewSecs: story ? (sdur === "eph" ? eff : 0) : eff, permanent: story ? sdur === "inf" : eff === 0, story }); if (!r.ok) return toast(r.error || "Erreur"); toast(story ? (sdur === "inf" ? "Story publiée, sans limite de durée." : sdur === "eph" ? "Story éphémère publiée." : "Story publiée pour 24 h.") : "Publié !"); onClose(); };
+  const ok = (kind === "photo" ? !!img : kind === "video" ? !!vid : kind === "audio" ? !!aud0 : text.trim().length > 0) && validCustom && (mode !== "only" || sel.length > 0) && !(story && sdur === "eph" && !(eff > 0));
+  const go = () => { const r = actions.publish({ kind, text, img: kind === "photo" ? img : null, video: kind === "video" ? vid : null, audio: kind === "audio" ? aud0 : null, bg, mood, audience: aud, viewSecs: story ? (sdur === "eph" ? eff : 0) : eff, permanent: story ? sdur === "inf" : eff === 0, story }); if (!r.ok) return toast(r.error || "Erreur"); toast(story ? (sdur === "inf" ? "Story publiée, sans limite de durée." : sdur === "eph" ? "Story éphémère publiée." : "Story publiée pour 24 h.") : "Publié !"); onClose(); };
   const toggle = (id: string) => setSel((x) => (x.includes(id) ? x.filter((y) => y !== id) : [...x, id]));
   const [em, setEm] = useState(false); const durVal = custom ? "c" : String(secs); const setDur = (v: string) => { if (v === "c") { setCustom("10"); } else { setCustom(""); setSecs(Number(v)); } };
   const audLabel = AUD.find(([k]) => k === mode)?.[1] || "";
-  return (<Modal title={story ? "Nouvelle story" : "Nouvelle publication"} onClose={onClose}><div className="col" style={{ gap: 10 }}>
+  return (<Modal title={story ? "✨ Ma story" : "📝 Nouvelle publication"} onClose={onClose}><div className="col" style={{ gap: 10 }}>
     <input ref={file} type="file" accept="image/*" hidden onChange={(e) => pick(e.target.files?.[0])} />
-    {img && <div style={{ position: "relative" }}><img className="photo" src={img} alt="Aperçu" style={{ maxHeight: 200, objectFit: "cover", width: "100%" }} /><button className="btn ghost sm" style={{ position: "absolute", top: 6, right: 6 }} onClick={() => { setImg(null); setKind("text"); }} aria-label="Retirer la photo"><Ico n="x" s={16} /></button></div>}
-    <textarea className="inp" rows={img ? 2 : 3} placeholder={img ? "Ajouter une légende…" : "Quoi de neuf avec vos proches ?"} value={text} onChange={(e) => setText(e.target.value)} maxLength={2000} aria-label="Texte" />
+    {story && <p className="muted small" style={{ margin: 0 }}>Une story disparaît toute seule (24 h par défaut) et se regarde plein écran.</p>}
+    <div className="tabs" role="tablist" aria-label="Type de contenu">{([["text", "✏️ Texte"], ["photo", "📷 Photo"], ["video", "🎥 Selfie vidéo"], ["audio", "🎤 Vocal"]] as const).map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={kind === k} className={"chip" + (kind === k ? " on" : "")} onClick={() => { setKind(k); setRecK(null); if (k === "photo" && !img) file.current?.click(); }}>{l}</button>)}</div>
+    {kind === "photo" && img && <div style={{ position: "relative" }}><img className="photo" src={img} alt="Aperçu" style={{ maxHeight: 200, objectFit: "cover", width: "100%" }} /><button className="btn ghost sm" style={{ position: "absolute", top: 6, right: 6 }} onClick={() => { setImg(null); setKind("text"); }} aria-label="Retirer la photo"><Ico n="x" s={16} /></button></div>}
+    {kind === "photo" && !img && <button type="button" className="btn ghost" onClick={() => file.current?.click()}>📷 Choisir une photo</button>}
+    {(kind === "video" || kind === "audio") && (recK ? <Recorder kind={recK} max={kind === "video" ? 10 : 30} onCancel={() => setRecK(null)} onDone={(u) => { (kind === "video" ? setVid : setAud0)(u); setRecK(null); }} />
+      : (kind === "video" ? vid : aud0) ? <div className="card col" style={{ gap: 6 }}>{kind === "video" ? <video src={vid!} controls playsInline style={{ width: "100%", maxHeight: 240, borderRadius: 12 }} /> : <audio controls src={aud0!} style={{ width: "100%" }} />}<button type="button" className="btn ghost sm" onClick={() => { (kind === "video" ? setVid : setAud0)(null); setRecK(kind); }}>🔁 Recommencer</button></div>
+      : <button type="button" className="btn ghost" onClick={() => setRecK(kind)}>{kind === "video" ? "🎥 Me filmer (10 s max)" : "🎤 Enregistrer un vocal (30 s max)"}</button>)}
+    {story && kind === "text" ? <div className="tbg" style={{ background: BG[bg % BG.length], minHeight: 180 }}><textarea className="inp" rows={4} placeholder="Écrivez votre story…" value={text} onChange={(e) => setText(e.target.value)} maxLength={300} aria-label="Texte de la story" style={{ background: "transparent", border: 0, color: "#fff", textAlign: "center", fontSize: "1.2rem", fontWeight: 700, resize: "none", width: "100%" }} /></div>
+      : <textarea className="inp" rows={kind === "text" ? 3 : 2} placeholder={kind === "text" ? "Quoi de neuf avec vos proches ?" : "Ajouter une légende (facultatif)…"} value={text} onChange={(e) => setText(e.target.value)} maxLength={2000} aria-label="Texte" />}
     <div className="row" style={{ gap: 6 }}>
-      <button className="tool" onClick={() => file.current?.click()} disabled={busy} aria-label="Ajouter une photo">📷</button>
       {!story && <button className={"tool" + (mood || em ? " on" : "")} onClick={() => setEm(!em)} aria-label="Humeur">{mood || "😊"}</button>}
-      {!img && <div className="row grow" style={{ gap: 5, justifyContent: "flex-end" }}>{BG.map((b, i) => <button key={i} aria-label={"Fond " + (i + 1)} onClick={() => setBg(i)} style={{ width: 22, height: 22, borderRadius: "50%", border: bg === i ? "2px solid #fff" : "0", background: b }} />)}</div>}
+      {kind === "text" && <div className="row grow" style={{ gap: 5, justifyContent: "flex-end" }}>{BG.map((b, i) => <button key={i} aria-label={"Fond " + (i + 1)} onClick={() => setBg(i)} style={{ width: 22, height: 22, borderRadius: "50%", border: bg === i ? "2px solid #fff" : "0", background: b }} />)}</div>}
     </div>
     {em && <div className="empanel"><button className="chip" onClick={() => { setMood(""); setEm(false); }}>Aucune humeur</button><EmojiGrid onPick={(e) => { setMood(e); setEm(false); }} onClose={() => setEm(false)} /></div>}
     <div className="opts">
@@ -90,7 +102,7 @@ function Viewer({ postId, me, onClose }: { postId: string; me: string; onClose: 
   return (<div className={"viewer protected" + (hidden ? " blur" : "")} role="dialog" aria-label="Publication éphémère">
     {left !== null && <div className="bar" aria-label="Temps restant"><i style={{ width: `${Math.max(0, (left / total) * 100)}%` }} /></div>}
     <div className="row" style={{ width: "min(560px,100%)" }}><Avatar u={u} s={36} /><b className="grow">{u?.name}</b>{left !== null && <b style={{ color: "var(--warm)" }}>{Math.ceil(left / 1000)} s</b>}<button className="btn ghost sm" onClick={onClose} aria-label="Fermer"><Ico n="x" s={18} /></button></div>
-    {post.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={post.img} label={myName} alt="Photo éphémère" style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(post.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 280 }}>{post.text}</div>}
+    {post.video || post.audio ? <MediaBox p={post} label={myName} auto /> : post.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={post.img} label={myName} alt="Photo éphémère" style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(post.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 280 }}>{post.text}</div>}
     {post.img && post.text && <p style={{ maxWidth: 560 }}>{post.text}</p>}
     {left !== null && <p className="muted small center" style={{ maxWidth: 520 }}>Si vous fermez, le temps continue de s'écouler. Une photo peut toujours être photographiée avec un autre appareil.</p>}
   </div>);
@@ -108,7 +120,7 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
     if (expired) return <div className="eph gone"><div style={{ fontSize: "2rem" }}>⌛</div><b>Expirée pour vous</b><div className="muted small">Votre temps de consultation est écoulé.</div></div>;
     if (lock) { const opened = rp.views[me] !== undefined; return <div className="eph"><div style={{ fontSize: "2rem" }}>{post.kind === "photo" ? "📸" : "✉️"}</div><b>{post.kind === "photo" ? "Photo" : "Message"} éphémère</b>
       <div className="muted small" style={{ margin: "4px 0 12px" }}>{opened ? `Il vous reste ${Math.ceil((a.ok ? a.remainingMs || 0 : 0) / 1000)} s.` : `Vous aurez ${fmtSecs(post.viewSecs)} à partir de l'ouverture.`}</div><button className="btn" onClick={() => { const r = actions.open(rp.id); if (r.ok) setView(true); }}><Ico n="eye" s={18} /> {opened ? "Reprendre" : "Ouvrir"}</button></div>; }
-    return <>{post.img && <div className="protected"><WmImage src={post.img} label={users.find((x) => x.id === me)?.name || ""} alt={post.text || "Photo"} /></div>}{post.kind === "text" ? <div className={post.bg !== undefined ? "tbg" : ""} style={post.bg !== undefined ? { background: BG[post.bg % BG.length] } : undefined}>{post.text}</div> : post.text && <p style={{ margin: "10px 0 0" }}>{post.text}</p>}</>;
+    return <>{(post.video || post.audio) && <MediaBox p={post} label={users.find((x) => x.id === me)?.name || ""} />}{post.img && <div className="protected"><WmImage src={post.img} label={users.find((x) => x.id === me)?.name || ""} alt={post.text || "Photo"} /></div>}{post.kind === "text" ? <div className={post.bg !== undefined ? "tbg" : ""} style={post.bg !== undefined ? { background: BG[post.bg % BG.length] } : undefined}>{post.text}</div> : post.text && <p style={{ margin: "10px 0 0" }}>{post.text}</p>}</>;
   })();
   const myReact = rp.reactions[me]; const counts = Object.values(rp.reactions).reduce<Record<string, number>>((m, e) => ((m[e] = (m[e] || 0) + 1), m), {});
   return (<article className="card col" style={{ gap: 10 }}>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, Conv } from "../lib/store";
 import { Avatar, Ico, useNow, EmojiGrid, toast, lp, ConfirmDel } from "./common";
 import { FxBar } from "./FxBar";
+import { HoldMic } from "./Recorder";
 
 /** Bulle de messages flottante (comme Messenger) : touchez-la pour lire et répondre sans quitter la page. */
 export function ChatBubble({ openFull }: { openFull: (convId: string) => void }) {
@@ -20,8 +21,7 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
     prev.current = total;
   }, [total]);
   useEffect(() => { if (c && open) actions.markRead(c.id); end.current?.scrollIntoView({ block: "end" }); }, [sel, open, c?.msgs.length]);
-  const [emo, setEmo] = useState(false); const [rec, setRec] = useState<MediaRecorder | null>(null);
-  const voice = async () => { if (!c) return; if (rec) { rec.stop(); return; } try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); const r = new MediaRecorder(st); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data); r.onstop = () => { st.getTracks().forEach((t) => t.stop()); setRec(null); const fr = new FileReader(); fr.onload = () => actions.send(c.id, "", 0, null, undefined, String(fr.result), false); fr.readAsDataURL(new Blob(ch, { type: r.mimeType })); }; r.start(); setRec(r); setTimeout(() => r.state === "recording" && r.stop(), 60000); } catch { toast("Micro indisponible ou refusé."); } };
+  const [emo, setEmo] = useState(false);
   const send = () => { if (c && txt.trim()) { actions.send(c.id, txt, 0); setTxt(""); } };
   if (!convs.length && !friends.length) return null;
   const vis = (m: Conv["msgs"][number]) => m.from === me || (!m.once && (m.secs === 0 || (m.reads[me] !== undefined && now < m.reads[me] + m.secs * 1000)));
@@ -36,7 +36,7 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
           {del && sel && <ConfirmDel what="ce message" onYes={() => actions.deleteMsg(sel, del)} onClose={() => setDel(null)} />}
           {emo && <div className="empanel" style={{ margin: "0 8px", maxHeight: 150 }}><EmojiGrid onPick={(e) => setTxt((t) => t + e)} onClose={() => setEmo(false)} /></div>}
           <FxBar convId={c.id} compact />
-          <form className="bform" onSubmit={(e) => { e.preventDefault(); send(); }}><button type="button" className="bi2" onClick={() => setEmo(!emo)} aria-label="Emojis"><Ico n="smile" s={18} /></button><button type="button" className="bi2" onClick={voice} aria-label={rec ? "Arrêter et envoyer le vocal" : "Message vocal"} style={rec ? { background: "var(--bad)", color: "#fff" } : undefined}><Ico n="mic" s={18} /></button><input className="inp sm" placeholder="Votre message…" value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message rapide" autoFocus /><button className="btn sm" disabled={!txt.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></>}
+          <form className="bform" onSubmit={(e) => { e.preventDefault(); send(); }}><button type="button" className="bi2" onClick={() => setEmo(!emo)} aria-label="Emojis"><Ico n="smile" s={18} /></button><HoldMic className="btn sm" onDone={(u) => actions.send(c.id, "", 0, null, undefined, u, false)}><Ico n="mic" s={18} /></HoldMic><input className="inp sm" placeholder="Votre message…" value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message rapide" autoFocus /><button className="btn sm" disabled={!txt.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></>}
     </div>}
     {!open && <button className="bfab" onClick={() => { setOpen(true); setPop(null); }} aria-label={"Messages" + (total ? ` (${total} non lus)` : "")}><Ico n="chat" s={26} />{total > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{total}</span>}</button>}
   </>);

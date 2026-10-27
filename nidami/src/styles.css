@@ -189,3 +189,5 @@ html.shake body{animation:shk .8s ease-in-out}
 @keyframes fxrise{to{transform:translateY(-110vh) rotate(-30deg);opacity:.9}}
 .btools{flex-wrap:wrap}
 .fxbox img{position:absolute;top:-60px;animation:fxfall linear forwards;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.fxbox span.smoke{border-radius:50%;background:radial-gradient(circle,rgba(150,210,40,.8),rgba(90,170,30,.45) 45%,rgba(60,140,20,0) 72%);filter:blur(5px)}
+.fxbox span.smoke{border-radius:50%;background:radial-gradient(circle,rgba(150,210,40,.8),rgba(90,170,30,.45) 45%,rgba(60,140,20,0) 72%);filter:blur(5px)}
