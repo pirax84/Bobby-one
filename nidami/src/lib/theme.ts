@@ -1,4 +1,4 @@
-// Thèmes de Mon cercle. Le thème d'origine est gratuit ; les autres couleurs font partie de Mon cercle+ (payant).
+// Thèmes de NOTIIF. Le thème d'origine est gratuit ; les autres couleurs font partie de NOTIIF+ (payant).
 export interface Opt { id: string; label: string; v: string; v2?: string; pro: boolean }
 export const FONDS: Opt[] = [
   { id: "nuit", label: "Nuit", v: "#0F172A", v2: "#162033", pro: false },
@@ -27,7 +27,7 @@ export const ACCENTS: Opt[] = [
 const rgb = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)).join(",");
 export interface ThemeCfg { light: boolean; premium: boolean; bg?: string; fg?: string; accent?: string }
 const pick = (list: Opt[], id: string | undefined, premium: boolean) => { const o = list.find((x) => x.id === id); return o && (premium || !o.pro) ? o : list[0]; };
-/** Applique le thème choisi (les choix payants sont ignorés si Mon cercle+ n'est pas actif). */
+/** Applique le thème choisi (les choix payants sont ignorés si NOTIIF+ n'est pas actif). */
 export function applyTheme(c: ThemeCfg) {
   const r = document.documentElement.style; r.cssText = "";
   document.documentElement.dataset.theme = c.light ? "light" : "dark";

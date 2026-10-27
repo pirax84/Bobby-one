@@ -75,9 +75,9 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 .protected{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .protected img,.protected canvas{-webkit-user-drag:none;pointer-events:none}
 .shield{position:absolute;inset:0;background:#05071a;display:grid;place-items:center;text-align:center;padding:20px;z-index:2;border-radius:18px}
-@media print{body *{display:none!important}body::before{content:"Impression désactivée par Mon cercle";display:block;color:#000}}
+@media print{body *{display:none!important}body::before{content:"Impression désactivée par NOTIIF";display:block;color:#000}}
 
-/* thèmes personnalisables (Mon cercle+) */
+/* thèmes personnalisables (NOTIIF+) */
 .sw{width:52px;height:52px;line-height:1.1;border-radius:14px;border:2px solid var(--bd);display:grid;place-items:center;font-size:.7rem;font-weight:800;position:relative;padding:0}
 .sw.on{outline:3px solid var(--brand);outline-offset:2px}
 .sw .lock{position:absolute;right:-4px;top:-6px;font-size:.8rem}
