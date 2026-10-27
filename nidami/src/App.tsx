@@ -1,3 +1,4 @@
+import { BRAND } from "./lib/brand";
 import { applyTheme } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
@@ -38,10 +39,10 @@ export default function App() {
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
     if (!th0?.quiet) { playTone(th0?.ntone || "n1"); vibrate(th0?.vibm, 1); }
-    const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify("NOTIIF", lastNotif.text); } catch { /* ignoré */ } return; }
+    const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
     const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./icon-192.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
-    navigator.serviceWorker?.ready.then((r) => r.showNotification("NOTIIF", opt)).catch(() => { try { new Notification("NOTIIF", opt); } catch { /* ignoré */ } });
+    navigator.serviceWorker?.ready.then((r) => r.showNotification(BRAND, opt)).catch(() => { try { new Notification(BRAND, opt); } catch { /* ignoré */ } });
   }, [lastNotif?.id, pushOn]);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
@@ -55,7 +56,7 @@ export default function App() {
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className="shell">
-    <aside className="side"><div className="brand"><Logo /><div><b>Votre cercle.</b><div className="muted small">Vos moments.</div></div></div>
+    <aside className="side"><div className="brand"><Logo /><div><div className="wordmark sm" style={{ textAlign: "left" }}>{BRAND}</div><div className="muted small">Votre cercle. Vos moments.</div></div></div>
       {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose("short")}><Ico n="plus" s={18} /> Publier</button></aside>
     <main className="main">
