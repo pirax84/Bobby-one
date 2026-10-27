@@ -4,7 +4,7 @@ import { InstallCard } from "./Auth";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
 import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
-import { FX, FX_KEYS } from "../lib/fx";
+import { FX, FX_KEYS, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate } from "../lib/fx";
 import { favOf, DEFAULT_FAV } from "./FxBar";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from "./common";
 import { Home } from "./Home";
@@ -183,6 +183,12 @@ export function Settings() {
   const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay" | "fx"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><Switch on={cfg[k]} onChange={(v) => actions.setSetting(k, v)} label={label} /></label>;
   return (<div className="col"><h1>Paramètres</h1>
     <InstallCard /><ThemePicker cfg={cfg} />
+    <div className="card col" style={{ gap: 8 }}><h3>🎵 Sonneries et vibreur</h3>
+      <b className="small">Sonnerie des notifications</b><div className="row wrap" style={{ gap: 6 }}>{TONE_IDS.n.map((id) => <button key={id} className={"chip" + ((cfg.ntone || "n1") === id ? " on" : "")} onClick={() => { actions.setSetting("ntone", id); playTone(id); }}>{TONES[id].label}</button>)}</div>
+      <b className="small">Sonnerie des appels</b><div className="row wrap" style={{ gap: 6 }}>{TONE_IDS.c.map((id) => <button key={id} className={"chip" + ((cfg.ctone || "c1") === id ? " on" : "")} onClick={() => { actions.setSetting("ctone", id); playTone(id); }}>{TONES[id].label}</button>)}</div>
+      <b className="small">Vibreur des messages</b><div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} className={"chip" + ((cfg.vibm || "2") === v.id ? " on" : "")} onClick={() => { actions.setSetting("vibm", v.id); vibrate(v.id); }}>{v.label}</button>)}</div>
+      <b className="small">Vibreur des appels</b><div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} className={"chip" + ((cfg.vibc || "3") === v.id ? " on" : "")} onClick={() => { actions.setSetting("vibc", v.id); vibrate(v.id, 2); }}>{v.label}</button>)}</div>
+      <p className="muted small" style={{ margin: 0 }}>La secousse fait toujours vibrer au maximum. Touchez un choix pour l'essayer.</p></div>
     <div className="card col" style={{ gap: 6 }}><h3>🔔 Notifications sur le téléphone</h3>
       <label className="row"><span className="grow"><b>Recevoir les notifications</b><span className="muted small" style={{ display: "block" }}>Messages, demandes d'amis, partages, événements…</span></span><Switch on={!!cfg.push} label="Notifications sur le téléphone" onChange={async (v) => { if (!v) { actions.setSetting("push", false); return; } if (typeof Notification === "undefined") return toast("Ce navigateur ne gère pas les notifications. Essayez depuis l'application installée sur le téléphone."); const r = await Notification.requestPermission(); if (r !== "granted") return toast("Notifications refusées : autorisez-les dans les réglages du téléphone, puis réessayez."); actions.setSetting("push", true); toast("Notifications activées."); }} /></label>
       <b className="small" style={{ marginTop: 6 }}>Quelles notifications recevoir ?</b>

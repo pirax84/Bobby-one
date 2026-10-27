@@ -34,7 +34,7 @@ const MAXREC = 3;
 /** Créer un effet personnalisé : une petite image + un son enregistré (3 secondes maximum). */
 export function CustomMaker({ onDone }: { onDone: () => void }) {
   const list = useStore((x) => cfxOf(x.settings[x.me]?.cfx)); const [name, setName] = useState(""); const [img, setImg] = useState<string | undefined>(); const [audio, setAudio] = useState<string | undefined>(); const [left, setLeft] = useState(0);
-  const rec = useRef<MediaRecorder | null>(null); const pick = useRef<HTMLInputElement>(null);
+  const rec = useRef<MediaRecorder | null>(null); const pick = useRef<HTMLInputElement>(null); const snd = useRef<HTMLInputElement>(null);
   const record = async () => {
     if (rec.current) { rec.current.stop(); return; }
     try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); const r = new MediaRecorder(st); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data); let n = MAXREC; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
@@ -48,6 +48,8 @@ export function CustomMaker({ onDone }: { onDone: () => void }) {
       <input ref={pick} type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files?.[0]; if (f) { try { setImg(await fileToDataUrl(f, 120, 0.7)); } catch { toast("Image illisible."); } } e.target.value = ""; }} />
       <button type="button" className="chip" onClick={() => pick.current?.click()}>{img ? <img src={img} alt="" style={{ width: 22, height: 22, borderRadius: "50%", objectFit: "cover", verticalAlign: "middle" }} /> : "🖼"} Image</button>
       <button type="button" className="chip" onClick={record} style={left ? { background: "var(--bad)", color: "#fff" } : undefined}>🎙 {left ? `Enregistrement… ${left} s (toucher pour finir)` : audio ? "Réenregistrer" : "Enregistrer (3 s max)"}</button></div>
+    <input ref={snd} type="file" accept="audio/*" hidden onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (!f) return; if (f.size > 450000) return toast("Son trop lourd (450 Ko maximum, environ 10 secondes)."); const fr = new FileReader(); fr.onload = () => setAudio(String(fr.result)); fr.readAsDataURL(f); }} />
+    <button type="button" className="chip" style={{ alignSelf: "flex-start" }} onClick={() => snd.current?.click()}>📁 Choisir un fichier son</button>
     {audio && <audio controls src={audio} style={{ width: "100%" }} />}
     <div className="row" style={{ gap: 8 }}><button type="button" className="btn ghost grow" onClick={() => playCustom({ img, audio, name })}>▶ Essayer</button><button type="button" className="btn grow" onClick={save}>Ajouter</button></div></div>;
 }

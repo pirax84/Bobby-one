@@ -91,24 +91,29 @@ const SFX: Record<Fx, (c: AC, o: Out, t: number) => void> = {
     air(c, o, t + 0.2, 4.5, { type: "bandpass", f0: 120, f1: 60, q: 0.4, vol: 0.25, atk: 0.8, curve: "lin" }); air(c, o, t + 0.5, 4, { type: "highpass", f0: 4000, vol: 0.05, atk: 1, curve: "lin" }); },
   rocket: (c, o, t) => { air(c, o, t, 1.6, { type: "lowpass", f0: 250, f1: 2400, vol: 0.45, atk: 0.3, curve: "lin" }); air(c, o, t, 1.6, { f0: 600, f1: 5000, q: 1.2, vol: 0.2, atk: 0.4, curve: "lin" }); note(c, o, 90, t, 1.5, { vol: 0.12, type: "sawtooth", glide: 0.6 }); },
   clap: (c, o, t) => { for (let i = 0; i < 16; i++) { const d = i * 0.07 + Math.random() * 0.05; air(c, o, t + d, 0.06, { f0: 1400 + Math.random() * 1200, q: 0.9, vol: 0.28 }); air(c, o, t + d + 0.02, 0.04, { f0: 2600, q: 1.5, vol: 0.14 }); } },
-  laugh: (c, o, t) => { air(c, o, t, 0.28, { f0: 900, f1: 1800, q: 0.7, vol: 0.1, atk: 0.2, curve: "lin" });
-    // « Ha ha ha ha ha ha » moqueur : sons « a » courts, qui ralentissent et baissent, puis un long « haaa » final
-    for (let i = 0; i < 7; i++) { const d = 0.38 + i * 0.2 + i * i * 0.006, base = 330 - i * 14, v = 0.85 - i * 0.04; air(c, o, t + d - 0.03, 0.06, { f0: 1800, q: 0.9, vol: 0.14 }); vox(c, o, t + d, 0.15, { f0: (u) => base * (1.08 - 0.22 * u), form: (u) => [760 + 80 * (1 - u), 1250, 2800], vol: v, jit: 0.015, shim: 0.1, breath: 0.15, atk: 0.012, rel: 0.07 }); }
-    vox(c, o, t + 2.05, 0.9, { f0: (u) => 300 * (1.04 - 0.3 * u) * (1 + 0.025 * Math.sin(u * 40)), form: (u) => [800 - 150 * u, 1300 - 250 * u, 2800], vol: 0.65, jit: 0.015, shim: 0.1, breath: 0.2, atk: 0.04, rel: 0.4 }); },
+  // Rire : voix claire et aiguë, syllabes « ha » courtes et rythmées, légèrement montantes puis descendantes, avec une petite inspiration
+  laugh: (c, o, t) => { air(c, o, t, 0.22, { f0: 1000, f1: 2200, q: 0.8, vol: 0.09, atk: 0.15, curve: "lin" });
+    for (let i = 0; i < 9; i++) { const d = 0.3 + i * 0.2 + i * i * 0.004, base = 300 + (i < 3 ? i * 18 : -(i - 2) * 16), a = i % 2 ? [880, 1500, 2900] : [760, 1250, 2800];
+      air(c, o, t + d - 0.03, 0.05, { f0: 2200, q: 0.9, vol: 0.12 }); vox(c, o, t + d, 0.13, { f0: (u) => base * (1.06 - 0.12 * u), form: (u) => [a[0] - 40 * u, a[1], a[2]] as [number, number, number], vol: 0.8 - i * 0.03, jit: 0.012, shim: 0.08, breath: 0.1, atk: 0.012, rel: 0.06 }); }
+    vox(c, o, t + 2.3, 0.7, { f0: (u) => 310 - 80 * u + 4 * Math.sin(u * 50), form: (u) => [820 - 100 * u, 1350 - 200 * u, 2800], vol: 0.6, jit: 0.012, shim: 0.08, breath: 0.15, atk: 0.04, rel: 0.35 }); },
   music: (c, o, t) => { [[67, 0], [71, 0.2], [74, 0.4], [79, 0.6], [76, 0.9], [72, 1.1], [74, 1.3], [79, 1.5]].forEach(([n, d]) => piano(c, o, n, t + d, 0.9, 0.14)); [43, 47, 50].forEach((n, i) => note(c, o, hz(n), t + i * 0.5, 1.2, { vol: 0.1, type: "triangle", partials: [1, 2] })); },
   money: (c, o, t) => { air(c, o, t, 0.04, { f0: 3000, vol: 0.3 }); bell(c, o, 88, t + 0.05, 1.6, 0.14); bell(c, o, 95, t + 0.2, 1.8, 0.14); for (let i = 0; i < 6; i++) bell(c, o, 100 + (i % 3), t + 0.45 + i * 0.05, 0.4, 0.05); },
   bomb: (c, o, t) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.setValueAtTime(2400, t); w.frequency.exponentialRampToValueAtTime(220, t + 0.9); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.06, t + 0.05); g.gain.linearRampToValueAtTime(0.0001, t + 0.92); w.connect(g); g.connect(o); w.start(t); w.stop(t + 0.95);
     const T = t + 0.92; air(c, o, T, 0.12, { type: "highpass", f0: 800, vol: 1 }); air(c, o, T, 2.4, { type: "lowpass", f0: 1400, f1: 40, q: 0.6, vol: 1.1, atk: 0.005 }); note(c, o, 90, T, 1.6, { vol: 0.5, glide: 0.1 }); note(c, o, 45, T, 1.8, { vol: 0.5 });
     for (let i = 0; i < 18; i++) air(c, o, T + 0.3 + Math.random() * 1.4, 0.05, { type: "bandpass", f0: 600 + Math.random() * 2500, q: 1, vol: 0.2 }); },
-  burp: (c, o, t) => { air(c, o, t, 0.1, { f0: 700, f1: 300, q: 1, vol: 0.2 });
-    vox(c, o, t + 0.04, 1.15, { f0: (u) => 95 - 50 * u, form: (u) => [620 - 100 * u, 1050 - 200 * u, 2450], vol: 0.8, jit: 0.1, shim: 0.3, breath: 0.2, atk: 0.04, rel: 0.4 }); air(c, o, t + 0.1, 1, { type: "lowpass", f0: 400, f1: 150, vol: 0.12, curve: "lin" }); },
+  // Rot : un seul « grondement » grave, rauque, sans bruit liquide
+  burp: (c, o, t) => { air(c, o, t, 0.06, { f0: 500, f1: 250, q: 1.5, vol: 0.25 });
+    vox(c, o, t + 0.03, 0.75, { f0: (u) => 78 - 28 * u, form: (u) => [520 - 60 * u, 900 - 120 * u, 2300], vol: 1.1, jit: 0.16, shim: 0.4, breath: 0.12, atk: 0.03, rel: 0.3 });
+    vox(c, o, t + 0.05, 0.7, { f0: (u) => 156 - 56 * u, form: (u) => [500, 850, 2200], vol: 0.25, jit: 0.2, shim: 0.4, atk: 0.03, rel: 0.3 }); },
   fart: (c, o, t) => { const osc = c.createOscillator(); osc.type = "sawtooth"; let f = 120; osc.frequency.setValueAtTime(f, t); for (let i = 1; i < 60; i++) { f = Math.max(45, f * (0.97 + Math.random() * 0.045) + (i > 45 ? 3 : 0)); osc.frequency.setValueAtTime(f * (i % 2 ? 1 : 0.92), t + i * 0.018); }
     const lp = c.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 650; lp.Q.value = 4; const g = c.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.5, t + 0.04); g.gain.setValueAtTime(0.5, t + 0.85); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.15); osc.connect(lp); lp.connect(g); g.connect(o); osc.start(t); osc.stop(t + 1.2); air(c, o, t, 1.1, { type: "bandpass", f0: 300, q: 2, vol: 0.25, curve: "lin" }); note(c, o, 700, t + 1.05, 0.1, { vol: 0.07, glide: 0.4 }); },
-  vomit: (c, o, t) => { [0, 0.55].forEach((d, k) => { air(c, o, t + d, 0.1, { f0: 600, f1: 250, q: 1.2, vol: 0.16 }); vox(c, o, t + d + 0.03, 0.4, { f0: (u) => 105 - 25 * u - k * 6, form: (u) => [650 - 120 * u, 1100 - 150 * u, 2500], vol: 0.55, jit: 0.07, shim: 0.25, breath: 0.35, atk: 0.05, rel: 0.12 }); });
-    vox(c, o, t + 1.1, 1.0, { f0: (u) => 150 - 60 * u, form: (u) => [720 - 280 * u, 1250 - 350 * u, 2400], vol: 0.7, jit: 0.04, shim: 0.15, breath: 0.4, atk: 0.06, rel: 0.25 });
-    const g = c.createGain(); g.gain.value = 0.55; const lfo = c.createOscillator(), lg = c.createGain(); lfo.frequency.value = 24; lg.gain.value = 0.4; lfo.connect(lg); lg.connect(g.gain); const src = c.createBufferSource(); src.buffer = noiseBuf(c); const f = c.createBiquadFilter(); f.type = "bandpass"; f.frequency.setValueAtTime(900, t + 1.1); f.frequency.linearRampToValueAtTime(350, t + 2.3); f.Q.value = 1.6; src.connect(f); f.connect(g); g.connect(o); src.start(t + 1.1); src.stop(t + 2.4); lfo.start(t + 1.1); lfo.stop(t + 2.4);
-    for (let i = 0; i < 9; i++) air(c, o, t + 1.25 + i * 0.12 + Math.random() * 0.06, 0.1, { type: "bandpass", f0: 1900, f1: 350 + Math.random() * 200, q: 4, vol: 0.45 });
-    air(c, o, t + 2.4, 0.15, { f0: 2200, q: 0.8, vol: 0.2 }); vox(c, o, t + 2.55, 0.7, { f0: (u) => 125 - 35 * u, form: (u) => [560, 950 - 100 * u, 2400], vol: 0.35, jit: 0.03, shim: 0.12, breath: 0.3, atk: 0.1, rel: 0.3 }); },
+  // Vomi : inspiration, deux haut-le-cœur aigus et tendus, puis un « beuuurgh » mouillé avec gargouillis et éclaboussures, et un gémissement
+  vomit: (c, o, t) => { air(c, o, t, 0.35, { f0: 700, f1: 1700, q: 0.7, vol: 0.14, atk: 0.25, curve: "lin" });
+    [0.45, 0.85].forEach((d, k) => vox(c, o, t + d, 0.28, { f0: (u) => 210 - 40 * u - k * 10, form: (u) => [500 + 250 * u, 1500 - 300 * u, 2600], vol: 0.55, jit: 0.07, shim: 0.3, breath: 0.45, atk: 0.04, rel: 0.1 }));
+    vox(c, o, t + 1.35, 1.1, { f0: (u) => 230 - 100 * u, form: (u) => [500 + 350 * Math.sin(u * 3), 1500 - 500 * u, 2500], vol: 0.8, jit: 0.07, shim: 0.2, breath: 0.4, atk: 0.07, rel: 0.3 });
+    const g = c.createGain(); g.gain.value = 0.6; const lfo = c.createOscillator(), lg = c.createGain(); lfo.frequency.setValueAtTime(18, t + 1.35); lfo.frequency.linearRampToValueAtTime(30, t + 2.7); lg.gain.value = 0.45; lfo.connect(lg); lg.connect(g.gain); const src = c.createBufferSource(); src.buffer = noiseBuf(c); const f = c.createBiquadFilter(); f.type = "bandpass"; f.frequency.setValueAtTime(1800, t + 1.35); f.frequency.linearRampToValueAtTime(500, t + 2.7); f.Q.value = 1.2; src.connect(f); f.connect(g); g.connect(o); src.start(t + 1.35); src.stop(t + 2.8); lfo.start(t + 1.35); lfo.stop(t + 2.8);
+    for (let i = 0; i < 12; i++) { const d = 1.5 + i * 0.1 + Math.random() * 0.05; air(c, o, t + d, 0.12, { type: "bandpass", f0: 1300 + Math.random() * 1200, f1: 300 + Math.random() * 150, q: 5, vol: 0.4 }); }
+    air(c, o, t + 2.65, 0.12, { f0: 2400, q: 0.8, vol: 0.2 }); vox(c, o, t + 2.8, 0.7, { f0: (u) => 190 - 50 * u, form: (u) => [450, 900 - 150 * u, 2400], vol: 0.4, jit: 0.04, shim: 0.15, breath: 0.3, atk: 0.1, rel: 0.3 }); },
 } as Record<Fx, (c: AC, o: Out, t: number) => void>;
 // Mélodie traditionnelle « Joyeux anniversaire » (domaine public), jouée au piano avec une basse douce : environ 7 secondes.
 const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1], [71, 2], [67, .75], [67, .25], [69, 1], [67, 1], [74, 1], [72, 2], [67, .75], [67, .25], [79, 1], [76, 1], [72, 1], [71, 1], [69, 2], [77, .75], [77, .25], [76, 1], [72, 1], [74, 1], [72, 2]];
@@ -122,6 +127,30 @@ export function sfx(k: Fx, target?: BaseAudioContext) {
     const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); SFX[k](c, master, c.currentTime + 0.02);
   } catch { /* son indisponible */ }
 }
+
+// ───────── Sonneries propres à l'application (notifications et appels) : sons doux et mélodieux
+export interface Tone { label: string; kind: "n" | "c"; len: number; play: (c: AC, o: Out, t: number) => void }
+const soft = (c: AC, o: Out, n: number, t: number, d = 0.9, vol = 0.12) => { note(c, o, hz(n), t, d, { vol, type: "sine", partials: [1, 2, 3], atk: 0.006 }); note(c, o, hz(n) * 2.003, t, d * 0.6, { vol: vol * 0.25 }); };
+export const TONES: Record<string, Tone> = {
+  n1: { label: "Cristal", kind: "n", len: 1.6, play: (c, o, t) => { bell(c, o, 88, t, 1.5, 0.14); bell(c, o, 95, t + 0.16, 1.7, 0.12); } },
+  n2: { label: "Aurore", kind: "n", len: 1.4, play: (c, o, t) => { [79, 83, 86, 91].forEach((n, i) => soft(c, o, n, t + i * 0.09, 0.9, 0.13)); } },
+  n3: { label: "Brise", kind: "n", len: 1.8, play: (c, o, t) => { [72, 76, 79, 84, 88].forEach((n, i) => harp(c, o, n, t + i * 0.07, 1.3, 0.11)); } },
+  n4: { label: "Lueur", kind: "n", len: 1.6, play: (c, o, t) => { [(88), 91, 88, 96].forEach((n, i) => bell(c, o, n, t + i * 0.13, 1.1, 0.09)); } },
+  c1: { label: "Rivage", kind: "c", len: 3.2, play: (c, o, t) => { [[72, 0], [76, 0.3], [79, 0.6], [76, 0.9], [81, 1.2], [79, 1.5], [76, 1.8], [74, 2.1]].forEach(([n, d]) => soft(c, o, n, t + d, 1.1, 0.16)); [48, 52, 55].forEach((n, i) => note(c, o, hz(n), t + i * 1.0, 1.4, { vol: 0.08, type: "triangle", partials: [1, 2] })); } },
+  c2: { label: "Cercle", kind: "c", len: 3.0, play: (c, o, t) => { [[84, 0], [88, 0.25], [91, 0.5], [96, 0.75], [91, 1.25], [88, 1.5], [84, 1.75], [79, 2.0]].forEach(([n, d]) => bell(c, o, n, t + d, 1.3, 0.11)); [60, 67, 64].forEach((n, i) => harp(c, o, n, t + i * 0.85, 1.6, 0.1)); } },
+  c3: { label: "Matin", kind: "c", len: 3.0, play: (c, o, t) => { [[67, 0], [74, 0.2], [79, 0.4], [74, 0.6], [69, 0.9], [76, 1.1], [81, 1.3], [76, 1.5], [71, 1.8], [78, 2.0], [83, 2.2], [79, 2.5]].forEach(([n, d]) => harp(c, o, n, t + d, 0.9, 0.12)); } },
+};
+export const TONE_IDS = { n: Object.keys(TONES).filter((k) => TONES[k].kind === "n"), c: Object.keys(TONES).filter((k) => TONES[k].kind === "c") };
+/** Joue une sonnerie ; `times` répétitions (appels). */
+export function playTone(id: string, times = 1) {
+  const d = TONES[id]; if (!d) return;
+  try { const c = (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if (c.state === "suspended") void c.resume(); const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); for (let i = 0; i < times; i++) d.play(c, master, c.currentTime + 0.03 + i * (d.len + 0.5)); } catch { /* son indisponible */ }
+}
+/** Niveaux de vibration réglables (messages, appels). La secousse, elle, vibre toujours au maximum. */
+export const VIB_LEVELS: { id: string; label: string; pat: number[] }[] = [
+  { id: "0", label: "Aucune", pat: [] }, { id: "1", label: "Légère", pat: [80] }, { id: "2", label: "Moyenne", pat: [180, 90, 180] }, { id: "3", label: "Forte", pat: [450, 80, 450, 80, 450] },
+];
+export const vibrate = (level?: string, repeat = 1) => { try { const l = VIB_LEVELS.find((x) => x.id === level) || VIB_LEVELS[2]; if (!l.pat.length) return; const pat: number[] = []; for (let i = 0; i < repeat; i++) pat.push(...l.pat, ...(i < repeat - 1 ? [600] : [])); navigator.vibrate?.(pat); } catch { /* ignoré */ } };
 const reduced = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 export function playFx(k: Fx, sound = true) {
   const d = FX[k]; if (!d) return;
