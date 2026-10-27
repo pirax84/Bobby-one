@@ -1,4 +1,3 @@
-import { BRAND } from "../lib/brand";
 import { useEffect, useState } from "react";
 import { actions } from "../lib/store";
 import { PROVIDERS, serverOn, oauthUrl, emailSignUp, emailLogin, type Prov } from "../lib/auth";
@@ -28,7 +27,7 @@ function InstallStep({ onSkip }: { onSkip: () => void }) {
   const [, force] = useState(0); useEffect(() => { const f = () => force((n) => n + 1); subs.add(f); return () => { subs.delete(f); }; }, []);
   const ios = isIOS();
   return (<div className="card col center" style={{ alignItems: "center", gap: 16, padding: 28 }}>
-    <Logo s={112} /><div className="wordmark">{BRAND}</div><h1 style={{ fontSize: "1.5rem", letterSpacing: "-.03em" }}>Votre cercle.<br />Vos moments.</h1>
+    <Logo s={150} /><h1 style={{ fontSize: "1.5rem", letterSpacing: "-.03em" }}>Votre cercle.<br />Vos moments.</h1>
     <p className="muted" style={{ margin: 0 }}>Installez l'application sur cet appareil : une vraie icône, sans barre de navigateur.</p>
     {deferred && <button className="btn ghost" style={{ width: "100%" }} onClick={async () => { deferred.prompt(); try { await deferred.userChoice; } catch { /* ignoré */ } deferred = null; subs.forEach((f) => f()); }}>Installer l'application</button>}
     {isAndroid() && <a className="btn" style={{ width: "100%", textDecoration: "none" }} href={APK}>Télécharger l'application Android</a>}
@@ -50,7 +49,7 @@ function SignUp() {
   const submit = async (e: React.FormEvent) => { e.preventDefault(); if (!ok) return; setBusy(true);
     const r = mode === "new" ? await emailSignUp(email.trim(), pw, name.trim() || email.split("@")[0]) : await emailLogin(email.trim(), pw); setBusy(false); setInfo(r.msg); if (r.who) actions.start(r.who.name, "", pseudo); };
   return (<div className="card col center" style={{ alignItems: "center", gap: 14, padding: 26 }}>
-    <Logo s={84} /><div className="wordmark sm">{BRAND}</div><h1 style={{ fontSize: "1.6rem", letterSpacing: "-.03em" }}>{mode === "new" ? "Créer mon compte" : "Me connecter"}</h1>
+    <Logo s={110} /><h1 style={{ fontSize: "1.6rem", letterSpacing: "-.03em" }}>{mode === "new" ? "Créer mon compte" : "Me connecter"}</h1>
     <div className="col" style={{ width: "100%", gap: 8 }}>{PROVIDERS.map((p) => <ProvBtn key={p.id} p={p} onSoon={(q) => setProv(q)} />)}</div>
     <div className="muted small">— ou —</div>
     {on ? <form className="col" style={{ width: "100%" }} onSubmit={submit}>

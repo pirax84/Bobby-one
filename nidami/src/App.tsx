@@ -41,7 +41,7 @@ export default function App() {
     if (!th0?.quiet) { playTone(th0?.ntone || "n1"); vibrate(th0?.vibm, 1); }
     const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
-    const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./icon-192.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
+    const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
     navigator.serviceWorker?.ready.then((r) => r.showNotification(BRAND, opt)).catch(() => { try { new Notification(BRAND, opt); } catch { /* ignoré */ } });
   }, [lastNotif?.id, pushOn]);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);

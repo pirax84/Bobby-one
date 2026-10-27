@@ -7,6 +7,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -109,7 +110,7 @@ class MainActivity : Activity() {
             }
             val pi = PendingIntent.getActivity(this@MainActivity, 0, Intent(this@MainActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this@MainActivity, CHANNEL) else Notification.Builder(this@MainActivity)
-            b.setContentTitle(title).setContentText(body).setSmallIcon(applicationInfo.icon).setAutoCancel(true).setContentIntent(pi)
+            b.setContentTitle(title).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0E9F6E.toInt()).setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)).setAutoCancel(true).setContentIntent(pi)
             nm.notify((System.currentTimeMillis() % 100000).toInt(), b.build())
         }
         /** Vibre selon un motif « durées en ms séparées par des virgules » (vibre, pause, vibre…), à la force demandée (1 à 255). */

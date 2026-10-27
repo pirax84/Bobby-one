@@ -31,7 +31,7 @@ const P: Record<string, string> = {
 export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={P[n] || P.more} /></svg>
 );
-export const Logo = ({ s = 44 }: { s?: number }) => <img src="./icon.svg" width={s} height={s} alt="Logo" style={{ borderRadius: s * 0.24 }} />;
+export const Logo = ({ s = 44 }: { s?: number }) => <img src={s > 96 ? "./icon-512.png" : "./icon-192.png"} width={s} height={s} alt="Logo NOTIIF" style={{ borderRadius: s * 0.24 }} />;
 
 export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
   const me = useStore((x) => x.me); const isFriend = useStore((x) => !!u && (x.social.friends[x.me] || []).includes(u.id));
