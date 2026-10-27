@@ -1,5 +1,5 @@
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "confetti" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "music" | "money" | "bomb";
+export type Fx = "shake" | "confetti" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "music" | "money" | "bomb" | "birthday";
 type Def = { label: string; text: string; em: string[] };
 export const FX: Record<Fx, Def> = {
   shake: { label: "📳 Secousse", text: "📳 Secousse !", em: [] },
@@ -20,6 +20,7 @@ export const FX: Record<Fx, Def> = {
   music: { label: "🎵 Musique", text: "🎵 On met l'ambiance !", em: ["🎵", "🎶", "🎸", "🎤"] },
   money: { label: "💰 Jackpot", text: "💰 Jackpot !", em: ["💰", "🪙", "💎", "🤑"] },
   bomb: { label: "💣 Boum", text: "💣 Boum !", em: ["💣", "💥", "🔥", "💨"] },
+  birthday: { label: "🎂 Anniversaire", text: "🎂 Joyeux anniversaire !", em: ["🎂", "🎈", "🎁", "🥳", "🎉", "🎈"] },
 };
 export const FX_KEYS = Object.keys(FX) as Fx[];
 // ───────── Sons : synthèse « instrumentale » (cloches, harpe, voix, souffles…) — aucun fichier, aucun son d'une marque
@@ -74,7 +75,11 @@ const SFX: Record<Fx, (c: AC, o: Out, t: number) => void> = {
   money: (c, o, t) => { air(c, o, t, 0.04, { f0: 3000, vol: 0.3 }); bell(c, o, 88, t + 0.05, 1.6, 0.14); bell(c, o, 95, t + 0.2, 1.8, 0.14); for (let i = 0; i < 6; i++) bell(c, o, 100 + (i % 3), t + 0.45 + i * 0.05, 0.4, 0.05); },
   bomb: (c, o, t) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.setValueAtTime(2200, t); w.frequency.exponentialRampToValueAtTime(260, t + 0.7); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.07, t + 0.05); g.gain.linearRampToValueAtTime(0.0001, t + 0.72); w.connect(g); g.connect(o); w.start(t); w.stop(t + 0.75);
     air(c, o, t + 0.72, 0.2, { type: "highpass", f0: 1000, vol: 0.7 }); air(c, o, t + 0.72, 1.6, { type: "lowpass", f0: 500, f1: 40, vol: 1, atk: 0.01 }); note(c, o, 55, t + 0.72, 1.2, { vol: 0.3, glide: 0.5 }); },
-};
+} as Record<Fx, (c: AC, o: Out, t: number) => void>;
+// Mélodie traditionnelle « Joyeux anniversaire » (domaine public), jouée au piano avec une basse douce : environ 7 secondes.
+const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1], [71, 2], [67, .75], [67, .25], [69, 1], [67, 1], [74, 1], [72, 2], [67, .75], [67, .25], [79, 1], [76, 1], [72, 1], [71, 1], [69, 2], [77, .75], [77, .25], [76, 1], [72, 1], [74, 1], [72, 2]];
+SFX.birthday = (c, o, t) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], i) => { piano(c, o, n, t + x * B, d * B * 2.2, 0.16); if (i % 3 === 0) note(c, o, hz(n - 24), t + x * B, 0.9, { vol: 0.07, type: "triangle", partials: [1, 2] }); x += d; });
+  [72, 76, 79, 84].forEach((n, i) => bell(c, o, n, t + x * B + i * 0.07, 1.4, 0.09)); air(c, o, t + x * B, 0.12, { type: "highpass", f0: 2500, vol: 0.3 }); };
 let ctx: AudioContext | null = null;
 /** Joue le bruitage de l'effet (volume modéré). */
 export function sfx(k: Fx, target?: BaseAudioContext) {
@@ -93,9 +98,9 @@ export function playFx(k: Fx, sound = true) {
     return;
   }
   if (reduced()) return;
-  const rise = k === "bubbles" || k === "fire" || k === "ghost" || k === "rocket" || k === "music"; const box = document.createElement("div"); box.className = "fxbox" + (rise ? " rise" : ""); box.setAttribute("aria-hidden", "true");
-  for (let i = 0; i < 34; i++) { const s = document.createElement("span"); s.textContent = d.em[i % d.em.length]; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * 0.9 + "s"; s.style.fontSize = 18 + Math.random() * 22 + "px"; s.style.animationDuration = 2 + Math.random() * 1.6 + "s"; box.appendChild(s); }
-  document.body.appendChild(box); setTimeout(() => box.remove(), 4200);
+  const long = k === "birthday"; const rise = k === "bubbles" || k === "fire" || k === "ghost" || k === "rocket" || k === "music"; const box = document.createElement("div"); box.className = "fxbox" + (rise ? " rise" : ""); box.setAttribute("aria-hidden", "true");
+  for (let i = 0; i < (long ? 60 : 34); i++) { const s = document.createElement("span"); s.textContent = d.em[i % d.em.length]; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * (long ? 5 : 0.9) + "s"; s.style.fontSize = 18 + Math.random() * 22 + "px"; s.style.animationDuration = 2 + Math.random() * 1.6 + "s"; box.appendChild(s); }
+  document.body.appendChild(box); setTimeout(() => box.remove(), long ? 9500 : 4200);
 }
 
 /** Effet personnalisé : l'image de la personne tombe à l'écran et son enregistrement (3 s max) est joué. */
