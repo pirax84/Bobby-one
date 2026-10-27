@@ -2,6 +2,15 @@ package app.cercle
 
 import android.Manifest
 import android.app.Activity
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.webkit.JavascriptInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -23,6 +32,8 @@ class MainActivity : Activity() {
         const val HOST = "pirax84.github.io"
         const val RC_FILE = 1
         const val RC_PERM = 2
+        const val RC_NOTIF = 3
+        const val CHANNEL = "cercle_messages"
     }
 
     private lateinit var web: WebView
@@ -80,7 +91,37 @@ class MainActivity : Activity() {
             }
         }
 
+        web.addJavascriptInterface(Native(), "CercleNative")
         web.loadUrl(urlFor(intent))
+    }
+
+
+    /** Pont vers le téléphone : notifications et vibration (la page web seule ne peut pas les faire dans l'application). */
+    inner class Native {
+        @JavascriptInterface fun hasNotifPermission(): Boolean = Build.VERSION.SDK_INT < 33 || checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+        @JavascriptInterface fun askNotif() { runOnUiThread { if (Build.VERSION.SDK_INT >= 33 && !hasNotifPermission()) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), RC_NOTIF) } }
+        @JavascriptInterface fun notify(title: String, body: String) {
+            if (!hasNotifPermission()) return
+            val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            if (Build.VERSION.SDK_INT >= 26 && nm.getNotificationChannel(CHANNEL) == null) {
+                val ch = NotificationChannel(CHANNEL, "Messages et activité", NotificationManager.IMPORTANCE_HIGH)
+                ch.enableVibration(true); ch.vibrationPattern = longArrayOf(0, 200, 100, 200); nm.createNotificationChannel(ch)
+            }
+            val pi = PendingIntent.getActivity(this@MainActivity, 0, Intent(this@MainActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this@MainActivity, CHANNEL) else Notification.Builder(this@MainActivity)
+            b.setContentTitle(title).setContentText(body).setSmallIcon(applicationInfo.icon).setAutoCancel(true).setContentIntent(pi)
+            nm.notify((System.currentTimeMillis() % 100000).toInt(), b.build())
+        }
+        /** Vibre selon un motif « durées en ms séparées par des virgules » (vibre, pause, vibre…), à la force demandée (1 à 255). */
+        @JavascriptInterface fun vibrate(pattern: String, amplitude: Int) {
+            try {
+                val t = pattern.split(",").map { it.trim().toLong() }.toLongArray(); if (t.isEmpty()) return
+                val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                if (Build.VERSION.SDK_INT >= 26) {
+                    v.vibrate(VibrationEffect.createWaveform(longArrayOf(0) + t, intArrayOf(0) + IntArray(t.size) { if (it % 2 == 0) amplitude.coerceIn(1, 255) else 0 }, -1))
+                } else v.vibrate(longArrayOf(0) + t, -1)
+            } catch (e: Exception) { }
+        }
     }
 
     private fun urlFor(i: Intent?): String {

@@ -38,7 +38,7 @@ export function CustomMaker({ onDone }: { onDone: () => void }) {
   const record = async () => {
     if (rec.current) { rec.current.stop(); return; }
     try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); const r = new MediaRecorder(st); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data); let n = MAXREC; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
-      r.onstop = () => { clearInterval(iv); st.getTracks().forEach((t) => t.stop()); rec.current = null; setLeft(0); const fr = new FileReader(); fr.onload = () => setAudio(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: r.mimeType })); };
+      r.onstop = () => { clearInterval(iv); st.getTracks().forEach((t) => t.stop()); rec.current = null; setLeft(0); const fr = new FileReader(); fr.onload = () => setAudio(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: ((r.mimeType || "audio/webm").split(";")[0]) })); };
       r.start(); rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), MAXREC * 1000); } catch { toast("Micro indisponible ou refusé."); }
   };
   const save = () => { if (!name.trim()) return toast("Donnez un nom à votre effet."); if (!audio && !img) return toast("Ajoutez une image ou un son."); if (list.length >= 6) return toast("6 effets personnalisés au maximum."); actions.setSetting("cfx", JSON.stringify([...list, { id: "c" + Date.now().toString(36), name: name.trim().slice(0, 20), img, audio }])); toast("Effet ajouté."); onDone(); };
