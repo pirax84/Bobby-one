@@ -1,6 +1,6 @@
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
 export type Fx = "shake" | "confetti" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "music" | "money" | "bomb" | "birthday" | "burp" | "fart" | "vomit";
-type Def = { label: string; text: string; em: string[] };
+type Def = { label: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { label: "📳 Secousse", text: "📳 Secousse !", em: [] },
   confetti: { label: "🎉 Confettis", text: "🎉 Confettis !", em: ["🎉", "🎊", "✨", "⭐"] },
@@ -23,7 +23,7 @@ export const FX: Record<Fx, Def> = {
   birthday: { label: "🎂 Anniversaire", text: "🎂 Joyeux anniversaire !", em: ["🎂", "🎈", "🎁", "🥳", "🎉", "🎈"] },
   burp: { label: "🤭 Rot", text: "🤭 Burp !", em: ["🤭", "🥴", "💨", "🍺"] },
   fart: { label: "💨 Pet", text: "💨 Prout !", em: [] },
-  vomit: { label: "🤮 Vomi", text: "🤮 Beurk !", em: ["🤮", "🤢", "🟢", "💦"] },
+  vomit: { label: "🤮 Vomi", text: "🤮 Beurk !", em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
 };
 export const FX_KEYS = Object.keys(FX) as Fx[];
 // ───────── Sons : synthèse « instrumentale » (cloches, harpe, voix, souffles…) — aucun fichier, aucun son d'une marque
@@ -121,7 +121,8 @@ SFX.birthday = (c, o, t) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], i
   [72, 76, 79, 84].forEach((n, i) => bell(c, o, n, t + x * B + i * 0.07, 1.4, 0.09)); air(c, o, t + x * B, 0.12, { type: "highpass", f0: 2500, vol: 0.3 }); };
 let ctx: AudioContext | null = null;
 /** Joue le bruitage de l'effet (volume modéré). */
-export function sfx(k: Fx, target?: BaseAudioContext) {
+export function sfx(k: Fx, target?: BaseAudioContext, noFile = false) {
+  const file = FX[k]?.file; if (file && !target && !noFile) { try { const a = new Audio(file); a.volume = 1; a.play().catch(() => sfx(k, undefined, true)); return; } catch { /* repli sur le son synthétisé */ } }
   try {
     const c = target || (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if ((c as AudioContext).state === "suspended") void (c as AudioContext).resume();
     const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); SFX[k](c, master, c.currentTime + 0.02);
@@ -164,8 +165,11 @@ export function playFx(k: Fx, sound = true) {
   }
   if (k === "birthday") { buzz([200, 100, 200, 100, 400, 200, 200, 100, 200, 100, 400, 200, 200, 100, 400, 100, 400], 255); }
   if (reduced()) return;
-  const long = k === "birthday"; const smoke = k === "fart"; const rise = k === "bubbles" || k === "fire" || k === "ghost" || k === "rocket" || k === "music" || smoke; const box = document.createElement("div"); box.className = "fxbox" + (rise ? " rise" : ""); box.setAttribute("aria-hidden", "true");
+  const long = k === "birthday" || k === "vomit"; const smoke = k === "fart"; const rise = k === "bubbles" || k === "fire" || k === "ghost" || k === "rocket" || k === "music" || smoke; const box = document.createElement("div"); box.className = "fxbox" + (rise ? " rise" : ""); box.setAttribute("aria-hidden", "true");
   for (let i = 0; i < (long ? 60 : 34); i++) { const s = document.createElement("span"); if (smoke) { s.className = "smoke"; const z = 90 + Math.random() * 140; s.style.width = z + "px"; s.style.height = z + "px"; } else s.textContent = d.em[i % d.em.length]; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * (long ? 5 : 0.9) + "s"; s.style.fontSize = 18 + Math.random() * 22 + "px"; s.style.animationDuration = 2 + Math.random() * 1.6 + "s"; box.appendChild(s); }
+  if (k === "vomit" && !reduced()) { // liquide vert qui coule du haut de l'écran
+    const top = document.createElement("div"); top.className = "slime-top"; box.appendChild(top);
+    for (let i = 0; i < 16; i++) { const dr = document.createElement("div"); dr.className = "drip"; const w = 18 + Math.random() * 38; dr.style.left = i * 6.3 + Math.random() * 3 + "%"; dr.style.width = w + "px"; dr.style.setProperty("--h", 14 + Math.random() * 42 + "vh"); dr.style.animationDelay = 0.6 + Math.random() * 1.8 + "s"; box.appendChild(dr); } }
   document.body.appendChild(box); setTimeout(() => box.remove(), long ? 9500 : 4200);
 }
 
