@@ -1,10 +1,16 @@
 {
- "redirects": [
+ "ignoreCommand": "[ \"$VERCEL_GIT_COMMIT_REF\" != \"main\" ] || git diff --quiet HEAD^ HEAD -- .",
+ "rewrites": [
   {
    "source": "/android",
+   "destination": "/android.html"
+  }
+ ],
+ "redirects": [
+  {
+   "source": "/apk",
    "destination": "https://github.com/pirax84/Bobby-one/releases/download/notiif-android-latest/notiif.apk",
    "permanent": false
   }
- ],
- "ignoreCommand": "[ \"$VERCEL_GIT_COMMIT_REF\" != \"main\" ] || git diff --quiet HEAD^ HEAD -- ."
+ ]
 }
