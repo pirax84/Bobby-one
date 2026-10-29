@@ -166,12 +166,23 @@ export function Profile() {
     <MyQr u={u} />{edit && <EditProfile u={u} onClose={() => setEdit(false)} />}</div>);
 }
 
-export function Notifs({ go }: { go?: (v: string) => void }) {
-  const s = useStore((x) => x); const mine = s.notifs.filter((n) => n.to === s.me); const quiet = s.settings[s.me]?.quiet;
+const GO_VIEW: Record<string, string> = { home: "home", friends: "friends", media: "media", shares: "shares", groups: "groups", messages: "messages", events: "events", games: "games" };
+export function Notifs({ go, openConv }: { go?: (v: string) => void; openConv?: (id: string) => void }) {
+  const s = useStore((x) => x); const mine = s.notifs.filter((n) => n.to === s.me); const quiet = s.settings[s.me]?.quiet; const [selId, setSelId] = useState<string | null>(null);
+  const n = mine.find((x) => x.id === selId); const who = n?.by ? userOf(s, n.by) : null;
+  // Aperçu de la publication concernée : jamais pour une publication éphémère ou une story.
+  const post = n?.ref ? s.posts.find((x) => x.id === n.ref && (x.authorId === s.me || x.recipients.includes(s.me)) && !(x.viewSecs > 0 || x.story)) : undefined;
+  const target = n ? (n.v || (n.go ? GO_VIEW[n.go] : "") || "home") : "home";
+  const open = () => { if (!n) return; setSelId(null); if (target === "messages" && n.ref && openConv) openConv(n.ref); else go?.(target); };
   return (<div className="col"><div className="row"><h1 className="grow">{t("Notifications")}</h1><button className="btn ghost sm" onClick={() => go?.("settings")} aria-label={t("Réglages des notifications")}><Ico n="cog" s={16} />{" "}{t("Réglages")}</button><button className="btn ghost sm" onClick={() => actions.readNotifs()}>{t("Tout marquer lu")}</button></div>
     {quiet && <p className="muted small">{t("🌙 Mode silencieux activé : pas d'alerte, mais la liste reste ici.")}</p>}
-    {mine.map((n) => <div key={n.id} className="card row"><span className="dot" style={{ opacity: n.read ? 0 : 1 }} /><div className="grow">{n.text}<div className="muted small">{ago(n.at)}</div></div></div>)}{!mine.length && <p className="muted">{t("Rien de nouveau.")}</p>}
-    <p className="muted small">{t("Les notifications ne contiennent jamais le contenu d'une publication éphémère.")}</p></div>);
+    {mine.map((x) => { const by = x.by ? userOf(s, x.by) : null; return <button key={x.id} type="button" className="card row notifrow" style={{ textAlign: "start", width: "100%", alignItems: "center", gap: 10 }} onClick={() => { actions.readNotif(x.id); setSelId(x.id); }}><span className="dot" style={{ opacity: x.read ? 0 : 1 }} />{by && <Avatar u={by} s={36} />}<div className="grow">{x.text}<div className="muted small">{ago(x.at)}{x.pv && x.pv.length < 40 ? " · " + x.pv : ""}</div></div></button>; })}{!mine.length && <p className="muted">{t("Rien de nouveau.")}</p>}
+    <p className="muted small">{t("Les notifications ne contiennent jamais le contenu d'une publication éphémère.")}</p>
+    {n && <Modal title={t("Notifications")} onClose={() => setSelId(null)}><div className="col" style={{ gap: 12 }}>
+      <div className="row" style={{ gap: 10, alignItems: "center" }}>{who && <Avatar u={who} s={48} />}<div className="grow"><b>{n.text}</b><div className="muted small">{ago(n.at)}</div></div></div>
+      {n.pv && <div className="card" style={{ margin: 0, whiteSpace: "pre-wrap", overflowWrap: "anywhere", fontSize: "1.05rem" }}>{n.pv}</div>}
+      {post && (post.img || post.text) && <div className="card col" style={{ margin: 0, gap: 8 }}>{post.img && <img src={post.img} alt={t("Photo")} style={{ width: "100%", maxHeight: 220, objectFit: "cover", borderRadius: 12 }} />}{post.text && <div className="small" style={{ overflowWrap: "anywhere" }}>{post.text.slice(0, 200)}</div>}</div>}
+      <div className="row" style={{ gap: 8 }}><button className="btn grow" onClick={open}>{t("Ouvrir")}</button><button className="btn ghost grow" onClick={() => setSelId(null)}>{t("Fermer")}</button></div></div></Modal>}</div>);
 }
 
 const navopts = (): [string, string][] => [["home", t("Accueil")], ["friends", t("Amis")], ["groups", t("Groupes")], ["messages", t("Messages")], ["calls", t("Appels")], ["media", t("Photos et vidéos")], ["games", t("Jeux")], ["events", t("Événements")], ["shares", t("Partages")], ["notifs", t("Notifications")], ["profile", t("Profil")], ["legal", t("Légal")], ["settings", t("Paramètres")]];
