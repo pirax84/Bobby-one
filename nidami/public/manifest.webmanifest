@@ -1,7 +1,7 @@
 {
   "name": "NOTIIF",
   "short_name": "NOTIIF",
-  "description": "Votre cercle. Vos moments. Le réseau privé de la famille et des amis.",
+  "description": "Votre cercle. Vos moments. Le réseau privé de vos proches : famille, amis, collègues, clubs.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

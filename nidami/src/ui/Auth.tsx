@@ -29,7 +29,7 @@ function InstallStep({ onSkip }: { onSkip: () => void }) {
   const point = (e: string, t: string, d: string) => <div className="row" style={{ gap: 12, textAlign: "left", alignItems: "flex-start" }}><span style={{ fontSize: "1.5rem", lineHeight: 1.2 }}>{e}</span><div><b>{t}</b><div className="muted small">{d}</div></div></div>;
   return (<div className="card col center" style={{ alignItems: "center", gap: 16, padding: 28 }}>
     <Logo s={150} /><h1 style={{ fontSize: "1.5rem", letterSpacing: "-.03em" }}>Votre cercle.<br />Vos moments.</h1>
-    <p className="muted" style={{ margin: 0 }}>Le réseau privé de votre famille et de vos amis. Sans publicité, sans partage vers l'extérieur.</p>
+    <p className="muted" style={{ margin: 0 }}>Le réseau privé de vos proches : famille, amis, collègues, équipe, troupe ou club. Sans publicité, sans inconnus, sans partage vers l'extérieur.</p>
     <div className="col" style={{ gap: 12, width: "100%" }}>
       {point("📸", "Partagez avec qui vous voulez", "Photos, vidéos et textes, seulement pour les personnes que vous choisissez.")}
       {point("✨", "Des stories qui disparaissent", "24 heures, ou quelques secondes pour une photo éphémère.")}

@@ -46,7 +46,7 @@ type Ct = { name: string; tel?: string; email?: string };
 function InviteContacts({ onClose }: { onClose: () => void }) {
   const me = useStore((x) => userOf(x, x.me)!); const [list, setList] = useState<Ct[]>([]); const [pick, setPick] = useState<string[]>([]); const [man, setMan] = useState("");
   const can = typeof navigator !== "undefined" && "contacts" in navigator && "ContactsManager" in window;
-  const msg = `Rejoins-moi sur NOTIIF, le réseau privé pour la famille et les amis, sans publicité. Installe l'application ici : ${inviteLink(me.code)} (mon code : ${me.code})`;
+  const msg = `Rejoins-moi sur NOTIIF, le réseau privé de nos proches (famille, amis, collègues, club…), sans publicité. Installe l'application ici : ${inviteLink(me.code)} (mon code : ${me.code})`;
   const choose = async () => { try { const r = await (navigator as any).contacts.select(["name", "tel", "email"], { multiple: true }); const n: Ct[] = r.map((c: any) => ({ name: c.name?.[0] || c.email?.[0] || c.tel?.[0] || "Contact", tel: c.tel?.[0], email: c.email?.[0] })).filter((c: Ct) => c.tel || c.email); setList(n); setPick(n.map((c) => c.name)); if (!n.length) toast("Aucun contact avec un numéro ou un e-mail."); } catch { toast("Accès aux contacts refusé ou annulé."); } };
   const addMan = () => { const v = man.trim(); if (!v) return; const c: Ct = v.includes("@") ? { name: v, email: v } : { name: v, tel: v }; setList((x) => [...x, c]); setPick((x) => [...x, c.name]); setMan(""); };
   const share = async () => { try { if ((navigator as any).share) await (navigator as any).share({ title: "NOTIIF", text: msg }); else { await navigator.clipboard.writeText(msg); toast("Message copié : collez-le où vous voulez."); } } catch { /* annulé */ } };
