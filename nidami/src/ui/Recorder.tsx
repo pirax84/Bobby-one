@@ -35,21 +35,22 @@ export function HoldMic({ onDone, className = "btn", max = 60, children }: { onD
 }
 
 /** Caméra plein écran : vidéo (appui pour démarrer / arrêter) ou photo, puis aperçu avec Envoyer / Recommencer / Supprimer. */
-export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true }: { onVideo: (url: string) => void; onPhoto?: (url: string) => void; onClose: () => void; max?: number; withPhoto?: boolean }) {
+export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true, startMode = "video" }: { onVideo: (url: string) => void; onPhoto?: (url: string) => void; onClose: () => void; max?: number; withPhoto?: boolean; startMode?: "video" | "photo" }) {
   const vid = useRef<HTMLVideoElement>(null); const stream = useRef<MediaStream | null>(null); const rec = useRef<MediaRecorder | null>(null); const cancelled = useRef(false);
-  const [mode, setMode] = useState<"video" | "photo">("video"); const [face, setFace] = useState<"user" | "environment">("user"); const [left, setLeft] = useState<number | null>(null); const [ready, setReady] = useState(false);
+  const [mode, setMode] = useState<"video" | "photo">(withPhoto ? startMode : "video"); const cv = useRef<HTMLCanvasElement>(null); const zRef = useRef(0.6); const [face, setFace] = useState<"user" | "environment">("user"); const [left, setLeft] = useState<number | null>(null); const [ready, setReady] = useState(false);
   const [res, setRes] = useState<{ video?: string; photo?: string } | null>(null);
-  const [zoom, setZoom] = useState(0.6); const [zr, setZr] = useState<{ min: number; max: number } | null>(null);
-  const applyZoom = () => { const tr = stream.current?.getVideoTracks()[0]; if (!tr) return; const z = (tr.getCapabilities?.() as { zoom?: { min: number; max: number } } | undefined)?.zoom; if (!z) { setZr(null); return; } setZr({ min: z.min, max: z.max }); tr.applyConstraints({ advanced: [{ zoom: Math.min(Math.max(zoom, z.min), z.max) } as MediaTrackConstraintSet] }).catch(() => {}); };
-  useEffect(() => { if (ready) applyZoom(); }, [ready, zoom]);
+  const [zoom, setZoom] = useState(0.6);
+  useEffect(() => { zRef.current = zoom; }, [zoom]);
+  // Le zoom est fait ici (image redessinée) : il marche sur tous les téléphones, et la vidéo enregistrée est identique à l'aperçu.
+  useEffect(() => { if (!ready || res) return; let raf = 0; const W = 540, H = 960; const draw = () => { const c = cv.current, v = vid.current; if (c && v && v.videoWidth) { if (c.width !== W) { c.width = W; c.height = H; } const x = c.getContext("2d")!; x.fillStyle = "#000"; x.fillRect(0, 0, W, H); const k = Math.min(W / v.videoWidth, H / v.videoHeight) * zRef.current; const w = v.videoWidth * k, h = v.videoHeight * k; x.save(); x.beginPath(); x.rect(0, 0, W, H); x.clip(); x.drawImage(v, (W - w) / 2, (H - h) / 2, w, h); x.restore(); } raf = requestAnimationFrame(draw); }; raf = requestAnimationFrame(draw); return () => cancelAnimationFrame(raf); }, [ready, res]);
   const stop = () => stream.current?.getTracks().forEach((t) => t.stop());
   useEffect(() => { let dead = false; setReady(false); stop(); if (res) return; (async () => {
     try { const st = await navigator.mediaDevices.getUserMedia({ video: { facingMode: face, width: { ideal: 960 }, height: { ideal: 1280 } }, audio: true }); if (dead) { st.getTracks().forEach((t) => t.stop()); return; } stream.current = st; if (vid.current) { vid.current.srcObject = st; void vid.current.play().catch(() => {}); } setReady(true); }
     catch { toast("Caméra ou micro indisponible ou refusé."); onClose(); } })(); return () => { dead = true; stop(); }; }, [face, res]);
-  const shoot = () => { const v = vid.current; if (!v || !v.videoWidth) return; const cv = document.createElement("canvas"); const k = Math.min(1, 900 / Math.max(v.videoWidth, v.videoHeight)); cv.width = v.videoWidth * k; cv.height = v.videoHeight * k; const x = cv.getContext("2d")!; if (face === "user") { x.translate(cv.width, 0); x.scale(-1, 1); } x.drawImage(v, 0, 0, cv.width, cv.height); stop(); setRes({ photo: cv.toDataURL("image/jpeg", 0.82) }); };
+  const shoot = () => { const c = cv.current; if (!c || !c.width) return; const o = document.createElement("canvas"); o.width = c.width; o.height = c.height; const x = o.getContext("2d")!; if (face === "user") { x.translate(o.width, 0); x.scale(-1, 1); } x.drawImage(c, 0, 0); stop(); setRes({ photo: o.toDataURL("image/jpeg", 0.82) }); };
   const toggleRec = () => {
     if (rec.current?.state === "recording") { rec.current.stop(); return; }
-    const st = stream.current; if (!st) return; const r = new MediaRecorder(st, { videoBitsPerSecond: 350000, audioBitsPerSecond: 40000 }); const ch: Blob[] = []; r.ondataavailable = (e) => e.data.size && ch.push(e.data); let n = max; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
+    const st = stream.current; const c = cv.current; if (!st || !c) return; const cs = c.captureStream(30); st.getAudioTracks().forEach((t) => cs.addTrack(t)); const r = new MediaRecorder(cs, { videoBitsPerSecond: 600000, audioBitsPerSecond: 40000 }); const ch: Blob[] = []; r.ondataavailable = (e) => e.data.size && ch.push(e.data); let n = max; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
     r.onstop = () => { clearInterval(iv); setLeft(null); stop(); if (cancelled.current) return; const fr = new FileReader(); fr.onload = () => setRes({ video: String(fr.result) }); fr.readAsDataURL(new Blob(ch, { type: (r.mimeType || "video/webm").split(";")[0] })); };
     r.start(250); rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), max * 1000);
   };
@@ -63,12 +64,12 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true }
         <button className="cam-send" onClick={() => (res.video ? onVideo(res.video) : onPhoto?.(res.photo!))}>Envoyer ➤</button>
         <button className="cam-r" onClick={close} aria-label="Supprimer">🗑<small>Supprimer</small></button></div></>
     : <>
-      <video ref={vid} className="cam-v live" muted playsInline controls={false} disablePictureInPicture style={{ transform: face === "user" ? "scaleX(-1)" : undefined, visibility: ready ? "visible" : "hidden" }} />
+      <video ref={vid} muted playsInline controls={false} disablePictureInPicture poster="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style={{ position: "absolute", width: 2, height: 2, opacity: 0, pointerEvents: "none" }} /><canvas ref={cv} className="cam-v live" style={{ transform: face === "user" ? "scaleX(-1)" : undefined, visibility: ready ? "visible" : "hidden" }} />
       <button className="cam-x" onClick={close} aria-label="Fermer la caméra">✕</button>
       {!recording && <button className="cam-flip" onClick={() => setFace(face === "user" ? "environment" : "user")} aria-label="Changer de caméra">🔄</button>}
       {recording && <div className="cam-time">🔴 {max - (left ?? 0)} s / {max} s</div>}
       <div className="cam-bar" style={{ flexDirection: "column", gap: 14 }}>
-        <div className="cam-zoom" role="group" aria-label="Zoom">{[0.6, 1, 3, 5, 10].map((z) => { const ok = zr ? z <= zr.max + 0.001 : z <= 1; return <button key={z} disabled={!ok} className={zoom === z ? "on" : ""} onClick={() => setZoom(z)} aria-label={"Zoom " + z + " fois"}>{String(z).replace(".", ",")}×</button>; })}</div>
+        <div className="cam-zoom" role="group" aria-label="Zoom">{[0.6, 1, 3, 5, 10].map((z) => { return <button key={z} className={zoom === z ? "on" : ""} onClick={() => setZoom(z)} aria-label={"Zoom " + z + " fois"}>{String(z).replace(".", ",")}×</button>; })}</div>
         {!recording && withPhoto && <div className="cam-tabs"><button className={mode === "video" ? "on" : ""} onClick={() => setMode("video")}>Vidéo</button><button className={mode === "photo" ? "on" : ""} onClick={() => setMode("photo")}>Photo</button></div>}
         <button className={"cam-shut" + (recording ? " rec" : "") + (mode === "photo" ? " ph" : "")} disabled={!ready} onClick={mode === "photo" ? shoot : toggleRec} aria-label={mode === "photo" ? "Prendre la photo" : recording ? "Arrêter" : "Filmer"}><span /></button>
         <small style={{ color: "#fff", opacity: .8 }}>{mode === "photo" ? "Touchez pour prendre la photo" : recording ? "Touchez pour arrêter" : `Touchez pour filmer (${max} s max)`}</small></div></>}

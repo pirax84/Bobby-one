@@ -184,7 +184,7 @@ export function QuickCompose({ onClose, story = false, groupId, long = false }: 
     <button className="btn" onClick={() => { setK("audio"); setStep("composer"); }}>🎤 Message vocal</button>
     <button className="btn" onClick={() => { setK("video"); setStep("composer"); }}>🎥 Selfie vidéo</button>
     <p className="muted small center" style={{ margin: 0 }}>Astuce : restez appuyé sur le bouton pour ouvrir directement la caméra.</p></div></Modal>;
-  return <Camera onClose={onClose} onVideo={(u) => { setVid(u); setStep("composer"); }} onPhoto={(u) => { setPhoto(u); setStep("composer"); }} />;
+  return <Camera startMode="photo" onClose={onClose} onVideo={(u) => { setVid(u); setStep("composer"); }} onPhoto={(u) => { setPhoto(u); setStep("composer"); }} />;
 }
 export { Composer as ComposerModal };
 
