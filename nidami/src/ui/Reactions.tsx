@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { actions, useStore, Post } from "../lib/store";
+import { actions, useStore } from "../lib/store";
+import type { Post } from "../lib/engine";
 import { Avatar, Ico, Modal, EmojiGrid, ConfirmDel, ago, useNow } from "./common";
 import { t } from "../i18n";
 
 /** Liste de ceux qui ont réagi à une publication (pour son auteur) : qui, avec quel emoji. */
 export function ReactorsModal({ post, onClose }: { post: Post; onClose: () => void }) {
   const users = useStore((s) => s.users); const rows = Object.entries(post.reactions);
-  const counts = rows.reduce<Record<string, number>>((m, [, e]) => ((m[e] = (m[e] || 0) + 1), m), {});
+  const counts = rows.reduce<Record<string, number>>((m, [, e]) => ((m[e as string] = (m[e as string] || 0) + 1), m), {});
   return (<Modal title={t("Qui a réagi ?")} onClose={onClose}><div className="col" style={{ gap: 8 }}>
     {rows.length > 0 && <div className="row wrap" style={{ gap: 6 }}>{Object.entries(counts).map(([e, n]) => <span key={e} className="chip">{e} {n}</span>)}</div>}
     {rows.map(([uid, e]) => { const u = users.find((x) => x.id === uid); return <div key={uid} className="row" style={{ alignItems: "center", gap: 10 }}><Avatar u={u} s={38} /><b className="grow ell">{u?.name || "?"}</b><span style={{ fontSize: "1.6rem" }}>{e}</span></div>; })}
