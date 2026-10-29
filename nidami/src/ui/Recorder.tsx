@@ -74,3 +74,22 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true }
         <small style={{ color: "#fff", opacity: .8 }}>{mode === "photo" ? "Touchez pour prendre la photo" : recording ? "Touchez pour arrêter" : `Touchez pour filmer (${max} s max)`}</small></div></>}
   </div>, document.body);
 }
+
+/** Grand micro rond : on reste appuyé pour parler, on lâche pour terminer. */
+export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; max?: number }) {
+  const [on, setOn] = useState(false); const [sec, setSec] = useState(0); const r = useRef<MediaRecorder | null>(null); const held = useRef(false); const t0 = useRef(0); const iv = useRef<number | undefined>(undefined);
+  const clear = () => { if (iv.current) { clearInterval(iv.current); iv.current = undefined; } };
+  const begin = async () => {
+    held.current = true; setOn(true); setSec(0); t0.current = Date.now();
+    try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((t) => t.stop()); setOn(false); return; }
+      const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => e.data.size && ch.push(e.data);
+      rec.onstop = () => { clear(); s.getTracks().forEach((t) => t.stop()); setOn(false); if (Date.now() - t0.current < 600) return toast("Maintenez le micro enfoncé pour parler."); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: (rec.mimeType || "audio/webm").split(";")[0] })); };
+      rec.start(250); r.current = rec; iv.current = window.setInterval(() => setSec(Math.floor((Date.now() - t0.current) / 1000)), 250); setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000);
+    } catch { held.current = false; setOn(false); toast("Micro indisponible ou refusé."); }
+  };
+  const end = () => { if (!held.current) return; held.current = false; if (r.current?.state === "recording") r.current.stop(); else setOn(false); r.current = null; };
+  const mm = (n: number) => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
+  return (<div className="col" style={{ alignItems: "center", gap: 10, padding: "14px 0" }}>
+    <button type="button" className={"voice-mic" + (on ? " on" : "")} aria-label="Maintenir pour enregistrer un vocal" onPointerDown={(e) => { e.preventDefault(); (e.target as Element).setPointerCapture?.(e.pointerId); void begin(); }} onPointerUp={end} onPointerCancel={end} onContextMenu={(e) => e.preventDefault()}>🎤</button>
+    <div className="muted small center" aria-live="polite">{on ? "🔴 " + mm(sec) + " · relâchez pour terminer" : "Restez appuyé sur le micro pour parler (" + max + " s max)"}</div></div>);
+}
