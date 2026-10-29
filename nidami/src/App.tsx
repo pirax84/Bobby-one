@@ -30,7 +30,7 @@ export default function App() {
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
   const [v, setV] = useState<V>(() => (history.state?.v as V) || "home"); const [compose, setCompose] = useState<false | "short" | "long">(false); const [more, setMore] = useState(false);
-  const th = useStore((s) => s.settings[s.me]); useEffect(() => { applyTheme({ light: !!light, premium: !!th?.premium, bg: th?.bg, fg: th?.fg, accent: th?.accent }); }, [light, th?.premium, th?.bg, th?.fg, th?.accent]);
+  useEffect(() => { applyTheme({ light: !!light }); }, [light]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   useEffect(() => { if (seenFx.current === undefined) { seenFx.current = lastFxMsg; return; } if (!lastFxMsg || lastFxMsg === seenFx.current) return; seenFx.current = lastFxMsg; if (fxOn) { const k = lastFxMsg.split("|")[1]; if (k === "custom") { if (lastCfx) playCustom(lastCfx); } else playFx(k as Fx); } }, [lastFxMsg]);

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { FONDS, ECRITURES_SOMBRE, ECRITURES_CLAIR, ACCENTS, type Opt } from "../lib/theme";
 import { InstallCard } from "./Auth";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
 import { make as qrMake } from "../lib/qrvendor.js";
@@ -165,24 +164,12 @@ export function Notifs({ go }: { go?: (v: string) => void }) {
     <p className="muted small">Les notifications ne contiennent jamais le contenu d'une publication éphémère.</p></div>);
 }
 
-function ThemePicker({ cfg }: { cfg: ReturnType<typeof cfgOf> }) {
-  const pro = !!cfg.premium;
-  const Row = ({ title, k, list, cur, kind }: { title: string; k: "bg" | "fg" | "accent"; list: Opt[]; cur: string | undefined; kind: "bg" | "fg" | "ac" }) =>
-    <div className="col" style={{ gap: 6 }}><b className="small">{title}</b><div className="row wrap">{list.map((o, i) => { const on = (cur || list[0].id) === o.id && (pro || !o.pro); const style = kind === "ac" ? { background: `linear-gradient(135deg,${o.v},${o.v2})` } : kind === "bg" ? { background: o.v, color: "#fff" } : { background: cfg.light ? "#fff" : "#0F172A", color: o.v };
-      return <button key={o.id} className={"sw" + (on ? " on" : "")} style={style} title={o.label} aria-label={o.label + (o.pro && !pro ? " (Plus)" : "")} onClick={() => { if (o.pro && !pro) { toast("Cette couleur fait partie de Plus."); return; } actions.setSetting(k, o.id); }}>{kind === "fg" ? <span style={{ fontWeight: 700 }}>Aa<br /><span style={{ fontSize: 10 }}>{o.label}</span></span> : ""}{o.pro && !pro && <span className="lock">🔒</span>}</button>; })}</div></div>;
-  return <div className="card plus-card col"><div className="row"><h3 className="grow">🎨 Couleurs de l'application</h3><span className="badge">PLUS</span></div>
-    <p className="muted small">La palette d'origine est gratuite. Changer le fond et la couleur d'accent fait partie de l'offre payante « Plus ». La couleur d'écriture est libre pour tout le monde.</p>
-    {!cfg.light && <Row title="Fond" k="bg" list={FONDS} cur={cfg.bg} kind="bg" />}
-    <Row title="Écriture" k="fg" list={cfg.light ? ECRITURES_CLAIR : ECRITURES_SOMBRE} cur={cfg.fg} kind="fg" />
-    <Row title="Couleur d'accent" k="accent" list={ACCENTS} cur={cfg.accent} kind="ac" />
-    <label className="row" style={{ paddingTop: 6 }}><div className="grow"><b>Activer « Plus » (démonstration)</b><div className="muted small">Aucun paiement n'est branché pour l'instant : cet interrupteur sert à essayer les couleurs. Le vrai paiement (Google Play, App Store ou carte) sera ajouté avec le serveur.</div></div><Switch on={pro} onChange={(v) => actions.setSetting("premium", v)} label="Activer Plus (démonstration)" /></label></div>;
-}
 const NAVOPTS: [string, string][] = [["home", "Accueil"], ["friends", "Amis"], ["groups", "Groupes"], ["messages", "Messages"], ["calls", "Appels"], ["media", "Photos et vidéos"], ["games", "Jeux"], ["events", "Événements"], ["shares", "Partages"], ["notifs", "Notifications"], ["profile", "Profil"], ["legal", "Légal"], ["settings", "Paramètres"]];
 export function Settings() {
   const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
   const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay" | "fx"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><Switch on={cfg[k]} onChange={(v) => actions.setSetting(k, v)} label={label} /></label>;
   return (<div className="col"><h1>Paramètres</h1>
-    <InstallCard /><ThemePicker cfg={cfg} />
+    <InstallCard />
     <div className="card col" style={{ gap: 8 }}><h3>🎵 Sonneries et vibreur</h3>
       <b className="small">Sonnerie des notifications</b><div className="row wrap" style={{ gap: 6 }}>{TONE_IDS.n.map((id) => <button key={id} className={"chip" + ((cfg.ntone || "n1") === id ? " on" : "")} onClick={() => { actions.setSetting("ntone", id); playTone(id); }}>{TONES[id].label}</button>)}</div>
       <b className="small">Sonnerie des appels</b><div className="row wrap" style={{ gap: 6 }}>{TONE_IDS.c.map((id) => <button key={id} className={"chip" + ((cfg.ctone || "c1") === id ? " on" : "")} onClick={() => { actions.setSetting("ctone", id); playTone(id); }}>{TONES[id].label}</button>)}</div>
@@ -205,7 +192,7 @@ export function Settings() {
     <div className="card col" style={{ gap: 4 }}><h3>Barre du bas</h3><p className="muted small" style={{ margin: 0 }}>Choisissez jusqu'à 3 raccourcis. Le logo au centre et « Plus » restent toujours là.</p>
       {NAVOPTS.map(([k, l]) => { const cur = (cfg.nav ? cfg.nav.split(",") : ["home", "friends", "messages"]); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "6px 0" }}><span className="grow"><b>{l}</b></span><Switch on={on} label={"Raccourci " + l} onChange={(v) => { if (v && cur.length >= 3) return toast("3 raccourcis au maximum : désactivez-en un d'abord."); if (!v && cur.length <= 1) return toast("Gardez au moins un raccourci."); const nx = NAVOPTS.map(([x]) => x).filter((x) => (x === k ? v : cur.includes(x))); actions.setSetting("nav", nx.join(",")); }} /></label>; })}
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("nav", "home,friends,messages")}>Remettre par défaut</button></div>
-    <div className="card"><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>Thème clair</b><div className="muted small">Blanc et vert.</div></div><Switch on={cfg.light} onChange={(v) => actions.setSetting("light", v)} label="Thème clair" /></label><hr /><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>Thème sombre</b><div className="muted small">Fond foncé, plus doux la nuit.</div></div><Switch on={!cfg.light} onChange={(v) => actions.setSetting("light", !v)} label="Thème sombre" /></label><hr /><Tg k="fx" label="Effets dans les conversations" desc="Secousse d'écran avec son, confettis, cœurs : quand un ami en envoie un, vous le voyez et l'entendez. Activé au départ." /><hr /><Tg k="quiet" label="Plage silencieuse" desc="Coupe les alertes la nuit (en mode serveur)." /><hr /><Tg k="autoplay" label="Lecture automatique des vidéos" desc="Pour les vidéos courtes (bientôt)." /></div>
+    <div className="card"><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>Thème clair</b><div className="muted small">Fond clair, blanc et turquoise.</div></div><Switch on={cfg.light} onChange={(v) => actions.setSetting("light", v)} label="Thème clair" /></label><hr /><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>Thème sombre</b><div className="muted small">Fond bleu nuit et turquoise, plus doux le soir.</div></div><Switch on={!cfg.light} onChange={(v) => actions.setSetting("light", !v)} label="Thème sombre" /></label><hr /><Tg k="fx" label="Effets dans les conversations" desc="Secousse d'écran avec son, confettis, cœurs : quand un ami en envoie un, vous le voyez et l'entendez. Activé au départ." /><hr /><Tg k="quiet" label="Plage silencieuse" desc="Coupe les alertes la nuit (en mode serveur)." /><hr /><Tg k="autoplay" label="Lecture automatique des vidéos" desc="Pour les vidéos courtes (bientôt)." /></div>
     <div className="card col"><h3>🔒 Confidentialité</h3><ul className="muted" style={{ margin: 0, paddingLeft: 18 }}><li>Aucune publicité. Aucune vente de données.</li><li>Aucun bouton de partage vers l'extérieur, aucun profil public.</li><li>Personne ne peut vous trouver sans votre code d'invitation.</li><li>Aucune application ne peut empêcher une personne autorisée de photographier son écran avec un autre appareil.</li></ul></div>
     <div className="card col"><h3>🧪 Mode démo (sur cet appareil)</h3><p className="muted small">Pour l'instant, vos données restent sur cet appareil et les amis sont fictifs. Les vrais comptes, les messages entre téléphones et les appels demandent un serveur : voir le guide dans le dossier « docs » du projet.</p>
       <button className="btn ghost" onClick={() => actions.logout()}>Se déconnecter</button>
