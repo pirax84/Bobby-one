@@ -54,7 +54,7 @@ export function ago(t: number, n = Date.now()) { const d = Math.max(0, n - t) / 
 export function fileToDataUrl(f: File, max = 960, q = 0.74): Promise<string> {
   return new Promise((res, rej) => { const r = new FileReader(); r.onerror = () => rej(new Error("lecture")); r.onload = () => { const im = new Image(); im.onerror = () => rej(new Error("image")); im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement("canvas"); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext("2d")!.drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL("image/jpeg", q)); }; im.src = String(r.result); }; r.readAsDataURL(f); });
 }
-export const BG = ["linear-gradient(135deg,#8B5CF6,#3B82F6)", "linear-gradient(135deg,#FF9A5A,#F43F5E)", "linear-gradient(135deg,#10B981,#0EA5E9)", "linear-gradient(135deg,#F472B6,#8B5CF6)", "linear-gradient(135deg,#F59E0B,#EF4444)"];
+export const BG = ["linear-gradient(135deg,#8B5CF6,#3B82F6)", "linear-gradient(135deg,#FF9A5A,#F43F5E)", "linear-gradient(135deg,#2FCDBE,#0EA5E9)", "linear-gradient(135deg,#F472B6,#8B5CF6)", "linear-gradient(135deg,#F59E0B,#EF4444)"];
 export const EMOJIS = ["❤️", "😂", "😮", "😢", "👏", "🔥"];
 export const EMOJI_GROUPS: [string, string[]][] = [
   ["Visages", ["😀", "😃", "😄", "😁", "😆", "🥹", "😅", "😂", "🤣", "😊", "😇", "🙂", "😉", "😍", "🥰", "😘", "😋", "😛", "😜", "🤪", "🤗", "🤭", "🤔", "😎", "🤩", "🥳", "😏", "😌", "😴", "😢", "😭", "🥺", "😮", "😱", "😡", "🤯", "🥶", "🥵", "🤒", "🤮"]],
