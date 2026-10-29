@@ -3,7 +3,7 @@ import { useStore, actions } from "../lib/store";
 import { FX, FX_KEYS, Fx, playFx, playCustom } from "../lib/fx";
 import { Modal, toast, fileToDataUrl } from "./common";
 
-export const DEFAULT_FAV: Fx[] = ["shake", "confetti", "hearts", "kiss"];
+export const DEFAULT_FAV: Fx[] = ["shake", "clap", "hearts", "kiss"];
 export const favOf = (v?: string): Fx[] => { const l = (v ? v.split(",") : DEFAULT_FAV).filter((k) => k in FX) as Fx[]; return l.length ? l.slice(0, 4) : DEFAULT_FAV; };
 
 /** 4 effets favoris toujours visibles + un bouton « + » pour tous les autres. */
