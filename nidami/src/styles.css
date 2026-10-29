@@ -126,13 +126,13 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 [data-theme=light] .treebg{opacity:.12}
 .shell,.bottom{position:relative;z-index:1}.bottom{position:fixed}
 .shell{background:none}
-.topb{width:40px;height:40px;border-radius:50%;border:0;background:var(--bg2);color:var(--fg);display:grid;place-items:center}
+.topb{width:40px;height:40px;border-radius:50%;border:0;background:var(--bg2);color:var(--fg);display:grid;place-items:center}.topb.on{color:var(--brand)}
 .topr{display:flex;align-items:center;gap:6px;padding:3px 4px 3px 4px;border-radius:30px;background:var(--bg2);border:1px solid var(--bd)}
 .topr .topb{background:none;width:36px;height:36px}
 @media (max-width:760px){
  .top{background:none!important;padding:0 0 10px}
  .bottom{left:50%;right:auto;transform:translateX(-50%);width:min(94vw,420px);gap:2px}
- .bottom button{flex-direction:row;gap:6px;min-width:44px;padding:10px 12px;font-size:.82rem}
+ .bottom button{flex-direction:row;gap:6px;min-width:40px;padding:10px 9px;font-size:.8rem}
  .bottom button i{display:none;font-style:normal}
  .bottom button.on i{display:inline}
  .bottom .plus{margin-top:-34px;flex:none}

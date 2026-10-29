@@ -48,7 +48,7 @@ export default function App() {
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
   const go = (x: string) => { if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
-  const bar = (navCfg ? navCfg.split(",") : ["home", "friends", "messages"]).map((k) => NAV.find((n) => n[0] === k)).filter(Boolean).slice(0, 3) as [V, string, string][];
+  const bar = (navCfg ? navCfg.split(",") : ["home", "friends", "messages", "groups", "events"]).map((k) => NAV.find((n) => n[0] === k)).filter(Boolean).slice(0, 5) as [V, string, string][];
   const topKeys = (topCfg ? topCfg.split(",") : ["notifs", "settings", "profile"]).filter((k) => NAV.some((n) => n[0] === k)).slice(0, 3);
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
   const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs go={go} /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
@@ -60,7 +60,7 @@ export default function App() {
       {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose("short")}><Ico n="plus" s={18} /> Publier</button></aside>
     <main className="main">
-      <div className="top">{v !== "home" ? <button className="topb" onClick={() => history.back()} aria-label="Retour"><Ico n="back" s={20} /></button> : <span className="grow" />}<span className="grow" /><div className="topr">{topKeys.map((k) => k === "profile" ? <button key={k} style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={34} /></button> : (() => { const it = NAV.find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}</div></div>
+      <div className="top">{v !== "home" ? <button className="topb" onClick={() => history.back()} aria-label="Retour"><Ico n="back" s={20} /></button> : <span className="grow" />}<span className="grow" /><div className="topr">{topKeys.map((k) => k === "profile" ? <button key={k} style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={34} /></button> : (() => { const it = NAV.find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label="Tous les menus"><Ico n="apps" s={20} /></button></div></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">
@@ -68,10 +68,7 @@ export default function App() {
       <RightPanel go={go} />
     </aside>
     <nav className="bottom" aria-label="Navigation">
-      {bar.slice(0, 2).map(tab)}
-      <button className="plus" {...pressProps(() => setCompose("short"), () => setCompose("long"))} aria-label="Publier : appui simple pour écrire ou photo, appui long pour un selfie vidéo"><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
-      {bar.slice(2, 3).map(tab)}
-      <button className={more ? "on" : ""} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }}><Ico n="apps" /><i>Plus</i></button></nav>
+      {bar.map(tab)}</nav>
     {more && <Modal title="Plus" onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([["Mon cercle", [["groups", "Groupes", "group"], ["events", "Événements", "cal"], ["shares", "Partages", "send"]]], ["Médias et jeux", [["media", "Photos", "img"], ["games", "Jeux", "game"], ["calls", "Appels", "phone"]]], ["Mon compte", [["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["settings", "Paramètres", "cog"], ["legal", "Légal", "lock"]]]] as [string, [V, string, string][]][]).map(([t, items]) =>
         <div key={t} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{t}</b>
