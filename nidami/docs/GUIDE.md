@@ -1,4 +1,4 @@
-# Guide pour débutant — Mon cercle
+# Guide pour débutant — NOTIIF
 
 ## 1. Essayer tout de suite
 Ouvrez le lien de l'application sur votre téléphone ou votre PC. Entrez votre prénom, cochez la case, c'est parti.

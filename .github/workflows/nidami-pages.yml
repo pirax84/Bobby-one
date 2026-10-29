@@ -1,4 +1,4 @@
-name: Nidami (copie de secours sur GitHub Pages)
+name: NOTIIF (copie de secours sur GitHub Pages)
 # Copie du site, utile si Vercel est limité. Active-la une fois : Settings > Pages > Source : GitHub Actions.
 on:
   workflow_dispatch:
