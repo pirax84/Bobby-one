@@ -31,5 +31,9 @@
                 <data android:scheme="https" android:host="notiif.vercel.app" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LinkActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout|uiMode" />
     </application>
 </manifest>

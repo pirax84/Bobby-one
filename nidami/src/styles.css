@@ -195,6 +195,8 @@ html.shake body{animation:shk .8s ease-in-out 3}
 .cam-v{width:100%;height:100%;object-fit:cover;background:#000}
 .cam-v.live{object-fit:cover}
 .cam-v::-webkit-media-controls,.cam-v::-webkit-media-controls-panel,.cam-v::-webkit-media-controls-start-playback-button,.cam-v::-webkit-media-controls-overlay-play-button{display:none!important;-webkit-appearance:none}
+.lcard{display:flex;align-items:center;gap:12px;width:100%;padding:12px;border-radius:16px;border:1px solid var(--bd);background:var(--card2,var(--bg));color:var(--fg);margin-top:8px;text-align:left}.lcard .lic{font-size:1.8rem;flex:none}
+.linkv{position:fixed;inset:0;z-index:96;background:var(--bg);display:flex;flex-direction:column}.linkv .dhead{display:flex;align-items:center;gap:10px;padding:10px 12px;padding-top:max(10px,env(safe-area-inset-top));border-bottom:1px solid var(--bd)}.linkb{flex:1;min-height:0;display:flex}.linkb iframe{flex:1;width:100%;border:0;background:#000}
 .voice-mic{width:104px;height:104px;border-radius:50%;border:0;font-size:2.6rem;background:var(--grad);color:var(--on);box-shadow:0 12px 30px -8px rgba(var(--brand-rgb),.7);touch-action:none;user-select:none;-webkit-touch-callout:none;transition:transform .15s}.voice-mic.on{background:var(--bad);color:#fff;transform:scale(1.12);animation:vpulse 1s infinite}
 @keyframes vpulse{50%{box-shadow:0 0 0 16px rgba(239,68,68,.18)}}
 .cam-zoom{display:flex;gap:6px;background:rgba(0,0,0,.45);border-radius:99px;padding:4px}.cam-zoom button{border:0;background:none;color:#fff;min-width:42px;height:36px;border-radius:99px;font-weight:700;font-size:.85rem;padding:0 8px}.cam-zoom .on{background:#fff;color:#111}

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { LinkifiedText } from "./Links";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, Msg, Conv } from "../lib/store";
 import { areFriends } from "../lib/engine";
@@ -7,7 +8,7 @@ import { FxBar } from "./FxBar";
 import { HoldMic } from "./Recorder";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 
-const linkify = (t: string) => t.split(/(https:\/\/[^\s]+)/g).map((x, i) => (i % 2 ? <a key={i} href={x} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline" }}>{x.replace("https://", "")}</a> : x));
+const linkify = (t: string) => <LinkifiedText text={t} />;
 const visible = (m: Msg, me: string, now: number) => m.from === me || (m.once ? false : m.secs === 0 || (m.reads[me] !== undefined && now < m.reads[me] + m.secs * 1000));
 // Message « vu une fois » : plein écran, filigrané ; à la fermeture il disparaît pour ce destinataire.
 function OnceViewer({ conv, m, me, name, onClose }: { conv: string; m: Msg; me: string; name: string; onClose: () => void }) {

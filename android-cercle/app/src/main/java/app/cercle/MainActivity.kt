@@ -63,7 +63,7 @@ class MainActivity : Activity() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val u = request.url
                 if (u.scheme == "https" && u.host == HOST) return false
-                try { startActivity(Intent(Intent.ACTION_VIEW, u)) } catch (e: Exception) { }
+                if (u.scheme == "https" || u.scheme == "http") { try { startActivity(Intent(this@MainActivity, LinkActivity::class.java).putExtra("url", u.toString())) } catch (e: Exception) { } }
                 return true
             }
             override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
@@ -99,6 +99,11 @@ class MainActivity : Activity() {
 
     /** Pont vers le téléphone : notifications et vibration (la page web seule ne peut pas les faire dans l'application). */
     inner class Native {
+        /** Ouvre un lien dans une visionneuse de l'application (sans passer par le navigateur). */
+        @JavascriptInterface fun openLink(url: String) {
+            if (!(url.startsWith("https://") || url.startsWith("http://"))) return
+            runOnUiThread { try { startActivity(Intent(this@MainActivity, LinkActivity::class.java).putExtra("url", url)) } catch (e: Exception) { } }
+        }
         @JavascriptInterface fun hasNotifPermission(): Boolean = Build.VERSION.SDK_INT < 33 || checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
         @JavascriptInterface fun askNotif() { runOnUiThread { if (Build.VERSION.SDK_INT >= 33 && !hasNotifPermission()) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), RC_NOTIF) } }
         @JavascriptInterface fun notify(title: String, body: String) {
