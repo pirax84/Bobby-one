@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "./common";
+import { stopPlayer } from "./Links";
 
 /** Enregistre un selfie vidéo ou un vocal (durée limitée). Rend le résultat en « data URL ». */
 export function Recorder({ kind, max = 10, onDone, onCancel, onPhoto }: { kind: "video" | "audio"; max?: number; onDone: (url: string) => void; onCancel: () => void; onPhoto?: (url: string) => void }) {
@@ -24,7 +25,7 @@ export function Recorder({ kind, max = 10, onDone, onCancel, onPhoto }: { kind: 
 export function HoldMic({ onDone, className = "btn", max = 60, children }: { onDone: (url: string) => void; className?: string; max?: number; children: React.ReactNode }) {
   const [on, setOn] = useState(false); const st = useRef<MediaStream | null>(null); const r = useRef<MediaRecorder | null>(null); const held = useRef(false); const t0 = useRef(0);
   const begin = async () => {
-    held.current = true; setOn(true); t0.current = Date.now();
+    stopPlayer(); held.current = true; setOn(true); t0.current = Date.now();
     try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((t) => t.stop()); setOn(false); return; } st.current = s; const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => ch.push(e.data);
       rec.onstop = () => { s.getTracks().forEach((t) => t.stop()); setOn(false); if (Date.now() - t0.current < 600) return toast("Maintenez le bouton enfoncé pour parler."); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: ((rec.mimeType || "audio/webm").split(";")[0]) })); };
       rec.start(); r.current = rec; setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000); } catch { held.current = false; setOn(false); toast("Micro indisponible ou refusé."); }
@@ -39,6 +40,7 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true, 
   const vid = useRef<HTMLVideoElement>(null); const stream = useRef<MediaStream | null>(null); const rec = useRef<MediaRecorder | null>(null); const cancelled = useRef(false);
   const [mode, setMode] = useState<"video" | "photo">(withPhoto ? startMode : "video"); const cv = useRef<HTMLCanvasElement>(null); const zRef = useRef(1); const [face, setFace] = useState<"user" | "environment">("user"); const [left, setLeft] = useState<number | null>(null); const [ready, setReady] = useState(false);
   const [res, setRes] = useState<{ video?: string; photo?: string } | null>(null);
+  useEffect(() => { stopPlayer(); }, []);
   const [zoom, setZoom] = useState(1);
   useEffect(() => { zRef.current = zoom; }, [zoom]);
   // Le zoom est fait ici (image redessinée) : il marche sur tous les téléphones, et la vidéo enregistrée est identique à l'aperçu.
@@ -85,7 +87,7 @@ export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; 
   const [on, setOn] = useState(false); const [sec, setSec] = useState(0); const r = useRef<MediaRecorder | null>(null); const held = useRef(false); const t0 = useRef(0); const iv = useRef<number | undefined>(undefined);
   const clear = () => { if (iv.current) { clearInterval(iv.current); iv.current = undefined; } };
   const begin = async () => {
-    held.current = true; setOn(true); setSec(0); t0.current = Date.now();
+    stopPlayer(); held.current = true; setOn(true); setSec(0); t0.current = Date.now();
     try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((t) => t.stop()); setOn(false); return; }
       const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => e.data.size && ch.push(e.data);
       rec.onstop = () => { clear(); s.getTracks().forEach((t) => t.stop()); setOn(false); if (Date.now() - t0.current < 600) return toast("Maintenez le micro enfoncé pour parler."); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: (rec.mimeType || "audio/webm").split(";")[0] })); };

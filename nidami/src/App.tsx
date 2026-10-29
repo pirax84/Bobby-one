@@ -11,6 +11,7 @@ import { LegalView } from "./ui/Legal";
 import { Shares } from "./ui/Shares";
 import { Onboarding, needInstall } from "./ui/Auth";
 import { ChatBubble } from "./ui/Bubble";
+import { MiniPlayer } from "./ui/Links";
 import { playFx, playCustom, Fx, playTone, vibrate } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
 
@@ -85,7 +86,7 @@ export default function App() {
       <button className="btn" onClick={() => { setAsk(false); setCompose("short"); }}>📝 Une publication</button></div></Modal>}
     {storyC && <QuickCompose story onClose={() => setStoryC(false)} />}
     {compose && <QuickCompose long={compose === "long"} onClose={() => setCompose(false)} />}
-    <ToastHost /></div>);
+    <MiniPlayer /><ToastHost /></div>);
 }
 function RightPanel({ go }: { go: (v: string) => void }) {
   const s = useStore((x) => x); const evs = s.events.filter((e) => (e.hostId === s.me || e.inviteIds.includes(s.me)) && e.at > Date.now()).sort((a, b) => a.at - b.at).slice(0, 3); const groups = s.social.groups.filter((g) => g.memberIds.includes(s.me));
