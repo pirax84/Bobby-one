@@ -1,24 +1,25 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { Ico } from "./common";
+import { t, T } from "../i18n";
 
 /** Accepte « exemple.fr/page » ou « https://… » ; refuse tout ce qui n'est pas http(s). */
 export function safeUrl(raw: string): string | null {
-  let t = raw.trim(); if (!t || /\s/.test(t) || t.length > 1000) return null;
-  if (!/^[a-z][a-z0-9+.-]*:/i.test(t)) t = "https://" + t;
-  try { const u = new URL(t); if (u.protocol !== "https:" && u.protocol !== "http:") return null; if (!u.hostname.includes(".")) return null; return u.toString(); } catch { return null; }
+  let tx = raw.trim(); if (!tx || /\s/.test(tx) || tx.length > 1000) return null;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(tx)) tx = "https://" + tx;
+  try { const u = new URL(tx); if (u.protocol !== "https:" && u.protocol !== "http:") return null; if (!u.hostname.includes(".")) return null; return u.toString(); } catch { return null; }
 }
 
 const NAMES: [RegExp, string, string][] = [
-  [/(^|\.)(youtube\.com|youtu\.be)$/, "YouTube", "▶️"], [/(^|\.)(facebook\.com|fb\.watch|fb\.com)$/, "Facebook", "📘"], [/(^|\.)instagram\.com$/, "Instagram", "📸"],
-  [/(^|\.)tiktok\.com$/, "TikTok", "🎵"], [/(^|\.)(x\.com|twitter\.com)$/, "X", "✖️"], [/(^|\.)snapchat\.com$/, "Snapchat", "👻"], [/(^|\.)linkedin\.com$/, "LinkedIn", "💼"],
-  [/(^|\.)twitch\.tv$/, "Twitch", "🎮"], [/(^|\.)leboncoin\.fr$/, "Leboncoin", "🛒"], [/(^|\.)vinted\.(fr|com)$/, "Vinted", "👗"], [/(^|\.)spotify\.com$/, "Spotify", "🎧"],
-  [/(^|\.)(dailymotion\.com|dai\.ly)$/, "Dailymotion", "🎬"], [/(^|\.)vimeo\.com$/, "Vimeo", "🎬"], [/(^|\.)pinterest\.[a-z.]+$/, "Pinterest", "📌"], [/(^|\.)reddit\.com$/, "Reddit", "👽"],
-  [/(^|\.)soundcloud\.com$/, "SoundCloud", "🔊"], [/(^|\.)deezer\.com$/, "Deezer", "🎶"], [/(^|\.)music\.apple\.com$/, "Apple Music", "🎼"], [/(^|\.)wikipedia\.org$/, "Wikipédia", "📖"], [/(^|\.)(wa\.me|whatsapp\.com)$/, "WhatsApp", "💬"], [/(^|\.)t\.me$/, "Telegram", "✈️"],
-  [/(^|\.)amazon\.[a-z.]+$/, "Amazon", "📦"], [/(^|\.)(google\.[a-z.]+\/maps|maps\.app\.goo\.gl)$/, "Google Maps", "🗺️"],
+  [/(^|\.)(youtube\.com|youtu\.be)$/, "YouTube", "▶️"], [/(^|\.)(facebook\.com|fb\.watch|fb\.com)$/, T("Facebook"), "📘"], [/(^|\.)instagram\.com$/, T("Instagram"), "📸"],
+  [/(^|\.)tiktok\.com$/, "TikTok", "🎵"], [/(^|\.)(x\.com|twitter\.com)$/, "X", "✖️"], [/(^|\.)snapchat\.com$/, T("Snapchat"), "👻"], [/(^|\.)linkedin\.com$/, "LinkedIn", "💼"],
+  [/(^|\.)twitch\.tv$/, T("Twitch"), "🎮"], [/(^|\.)leboncoin\.fr$/, T("Leboncoin"), "🛒"], [/(^|\.)vinted\.(fr|com)$/, T("Vinted"), "👗"], [/(^|\.)spotify\.com$/, T("Spotify"), "🎧"],
+  [/(^|\.)(dailymotion\.com|dai\.ly)$/, T("Dailymotion"), "🎬"], [/(^|\.)vimeo\.com$/, T("Vimeo"), "🎬"], [/(^|\.)pinterest\.[a-z.]+$/, T("Pinterest"), "📌"], [/(^|\.)reddit\.com$/, T("Reddit"), "👽"],
+  [/(^|\.)soundcloud\.com$/, "SoundCloud", "🔊"], [/(^|\.)deezer\.com$/, T("Deezer"), "🎶"], [/(^|\.)music\.apple\.com$/, T("Apple Music"), "🎼"], [/(^|\.)wikipedia\.org$/, T("Wikipédia"), "📖"], [/(^|\.)(wa\.me|whatsapp\.com)$/, "WhatsApp", "💬"], [/(^|\.)t\.me$/, T("Telegram"), "✈️"],
+  [/(^|\.)amazon\.[a-z.]+$/, T("Amazon"), "📦"], [/(^|\.)(google\.[a-z.]+\/maps|maps\.app\.goo\.gl)$/, T("Google Maps"), "🗺️"],
 ];
 export function providerOf(url: string): { name: string; icon: string; host: string } {
-  try { const u = new URL(url); const host = u.hostname.replace(/^(www\.|m\.|mobile\.)/, ""); const hit = NAMES.find(([re]) => re.test(host)); return { name: hit ? hit[1] : host, icon: hit ? hit[2] : "🌐", host }; } catch { return { name: "Lien", icon: "🔗", host: "" }; }
+  try { const u = new URL(url); const host = u.hostname.replace(/^(www\.|m\.|mobile\.)/, ""); const hit = NAMES.find(([re]) => re.test(host)); return { name: hit ? hit[1] : host, icon: hit ? hit[2] : "🌐", host }; } catch { return { name: t("Lien"), icon: "🔗", host: "" }; }
 }
 
 /** Adresse « intégrable » (affichable dans l'application) pour les sites qui l'autorisent ; sinon null. */
@@ -65,8 +66,8 @@ export function playMusic(url: string): boolean { const emb = embedOf(url); if (
 export function MiniPlayer() {
   const p = useSyncExternalStore((cb) => { subs.add(cb); return () => { subs.delete(cb); }; }, () => player);
   if (!p) return null;
-  return <div className={"mplayer" + (p.big ? " big" : "")} role="region" aria-label={"Lecteur " + p.name}>
-    <div className="mhead"><span style={{ fontSize: "1.2rem" }}>{p.icon}</span><b className="grow ell">{p.name}</b><button className="topb" style={{ width: 34, height: 34 }} onClick={() => setPlayer({ ...p, big: !p.big })} aria-label={p.big ? "Réduire" : "Agrandir"}>{p.big ? "⌄" : "⤢"}</button><button className="topb" style={{ width: 34, height: 34 }} onClick={() => setPlayer(null)} aria-label="Arrêter la musique">✕</button></div>
+  return <div className={"mplayer" + (p.big ? " big" : "")} role="region" aria-label={t("Lecteur {name}", { name: p.name })}>
+    <div className="mhead"><span style={{ fontSize: "1.2rem" }}>{p.icon}</span><b className="grow ell">{p.name}</b><button className="topb" style={{ width: 34, height: 34 }} onClick={() => setPlayer({ ...p, big: !p.big })} aria-label={p.big ? t("Réduire") : t("Agrandir")}>{p.big ? "⌄" : "⤢"}</button><button className="topb" style={{ width: 34, height: 34 }} onClick={() => setPlayer(null)} aria-label={t("Arrêter la musique")}>✕</button></div>
     <iframe key={p.emb} src={p.emb} title={p.name} className={p.audio ? "ia" : "iv"} allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms" />
   </div>;
 }
@@ -75,9 +76,9 @@ export function LinkViewer({ url, onClose }: { url: string; onClose: () => void 
   const pv = providerOf(url); const emb = embedOf(url);
   useEffect(() => { history.pushState({ ...(history.state || {}), link: 1 }, ""); const f = () => onClose(); window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   const close = () => { if (history.state?.link) history.back(); else onClose(); };
-  return createPortal(<div className="linkv" role="dialog" aria-modal="true" aria-label={"Lien " + pv.name}>
-    <div className="dhead"><button className="btn ghost sm" onClick={close} aria-label="Fermer" style={{ minWidth: 44 }}><Ico n="back" s={18} /></button><span style={{ fontSize: "1.3rem" }}>{pv.icon}</span><b className="grow ell">{pv.name}</b>{emb && <button className="btn ghost sm" onClick={() => { if (playMusic(url)) onClose(); }} aria-label="Réduire et continuer d'écouter">⌄ Réduire</button>}<button className="btn ghost sm" onClick={() => openOutside(url)} aria-label="Ouvrir à part">↗</button></div>
-    <div className="linkb">{emb ? <iframe src={emb} title={pv.name} allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms" /> : <div className="col center" style={{ alignItems: "center", gap: 12, padding: 24 }}><p className="muted">Ce site ne peut pas s'afficher à l'intérieur de NOTIIF.</p><button className="btn" onClick={() => openOutside(url)}>Ouvrir {pv.name}</button></div>}</div>
+  return createPortal(<div className="linkv" role="dialog" aria-modal="true" aria-label={t("Lien {name}", { name: pv.name })}>
+    <div className="dhead"><button className="btn ghost sm" onClick={close} aria-label={t("Fermer")} style={{ minWidth: 44 }}><Ico n="back" s={18} /></button><span style={{ fontSize: "1.3rem" }}>{pv.icon}</span><b className="grow ell">{pv.name}</b>{emb && <button className="btn ghost sm" onClick={() => { if (playMusic(url)) onClose(); }} aria-label={t("Réduire et continuer d'écouter")}>{t("⌄ Réduire")}</button>}<button className="btn ghost sm" onClick={() => openOutside(url)} aria-label={t("Ouvrir à part")}>↗</button></div>
+    <div className="linkb">{emb ? <iframe src={emb} title={pv.name} allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms" /> : <div className="col center" style={{ alignItems: "center", gap: 12, padding: 24 }}><p className="muted">{t("Ce site ne peut pas s'afficher à l'intérieur de NOTIIF.")}</p><button className="btn" onClick={() => openOutside(url)}>{t("Ouvrir {name}", { name: pv.name })}</button></div>}</div>
   </div>, document.body);
 }
 
@@ -86,7 +87,7 @@ export function LinkCard({ url }: { url: string }) {
   const [open, setOpen] = useState(false); const pv = providerOf(url); const emb = embedOf(url);
   let shown = pv.host; try { const u = new URL(url); shown = pv.host + (u.pathname.length > 1 ? u.pathname : ""); } catch { /* garde l'hôte */ }
   const music = isMusic(url); const go = (e: { stopPropagation: () => void }) => { e.stopPropagation(); if (music) playMusic(url); else if (emb) setOpen(true); else openOutside(url); };
-  return (<><button type="button" className="lcard" onClick={go} aria-label={"Ouvrir le lien " + pv.name}><span className="lic">{pv.icon}</span><span className="grow" style={{ minWidth: 0, textAlign: "left" }}><b>{pv.name}</b><span className="muted small ell" style={{ display: "block" }}>{shown}</span><span className="small" style={{ color: "var(--brand)" }}>{music ? "🎧 Écouter dans NOTIIF (vous seul l'entendez)" : emb ? "▶ Voir ici, dans NOTIIF" : "Ouvrir le lien"}</span></span></button>{open && <LinkViewer url={url} onClose={() => setOpen(false)} />}</>);
+  return (<><button type="button" className="lcard" onClick={go} aria-label={t("Ouvrir le lien {name}", { name: pv.name })}><span className="lic">{pv.icon}</span><span className="grow" style={{ minWidth: 0, textAlign: "left" }}><b>{pv.name}</b><span className="muted small ell" style={{ display: "block" }}>{shown}</span><span className="small" style={{ color: "var(--brand)" }}>{music ? t("🎧 Écouter dans NOTIIF (vous seul l'entendez)") : emb ? t("▶ Voir ici, dans NOTIIF") : t("Ouvrir le lien")}</span></span></button>{open && <LinkViewer url={url} onClose={() => setOpen(false)} />}</>);
 }
 
 /** Dans un message : les adresses deviennent touchables (ouvertes dans l'application) et la première affiche sa carte. */

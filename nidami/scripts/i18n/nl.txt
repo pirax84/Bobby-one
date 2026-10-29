@@ -1,0 +1,845 @@
+0|Home
+1|Vrienden
+2|Groepen
+3|Berichten
+4|Gesprekken
+5|Foto's
+6|Spelletjes
+7|Evenementen
+8|Gedeeld
+9|Meldingen
+10|Profiel
+11|Juridisch
+12|Instellingen
+13|Audio- en videogesprekken
+14|Gesprekken hebben een verbindingsserver nodig (WebRTC). Ze worden toegevoegd zodra de NOTIIF-server klaar is.
+15|Jouw kring. Jouw momenten.
+16|Maken
+17|Mijn profiel
+18|Terug
+19|Alle menu's
+20|Navigatie
+21|Maken: een story of een bericht. Lang indrukken voor een videoselfie
+22|Meer
+23|Mijn kring
+24|Media en spelletjes
+25|Mijn account
+26|NOTIIF-uitnodiging
+27|{name} toevoegen?
+28|Verzoek versturen
+29|Deze code bestaat niet op dit apparaat. In demomodus worden accounts nog niet tussen apparaten gedeeld: dat komt met de server.
+30|Later
+31|Wat wil je delen?
+32|✨ Een story (verdwijnt vanzelf)
+33|📝 Een bericht
+34|Mijn groepen
+35|Binnenkort
+36|Geen evenementen.
+37|Spelen met de familie
+38|Doorgaan met Apple
+39|Doorgaan met Google
+40|Doorgaan met Facebook
+41|Doorgaan met Snapchat
+42|Snapchat vraagt een ontwikkelaarsovereenkomst (Snap Kit). Die moet worden aangevraagd voordat je het activeert.
+43|FranceConnect vraagt een toestemming van de Staat (dossier in te dienen op datapass.api.gouv.fr).
+44|Digitale Identiteit La Poste
+45|De Digitale Identiteit La Poste vraagt een samenwerking met La Poste.
+46|Server onbereikbaar.
+47|Er is een fout opgetreden.
+48|Account aangemaakt.
+49|Account aangemaakt. Open de bevestigingsmail die we je zojuist hebben gestuurd en kom daarna terug om in te loggen.
+50|Ingelogd.
+51|Ik
+52|Permanent
+53|📳 Schudden
+54|📳 Schudden!
+55|❤️ Hartjes
+56|❤️ Hartjesregen!
+57|😘 Kusjes
+58|😘 Dikke kussen!
+59|❄️ Sneeuw
+60|❄️ Het sneeuwt!
+61|🎆 Vuurwerk
+62|🎆 Vuurwerk!
+63|👻 Spook
+64|👻 Boe!
+65|🔥 Vlammen
+66|🔥 Het wordt heet!
+67|🫧 Bellen
+68|🫧 Bellen!
+69|🎂 Feest
+70|🎂 Het is feest!
+71|🌧️ Regen
+72|🌧️ Het regent!
+73|⛈️ Onweer
+74|⛈️ Donderslag!
+75|🚀 Raket
+76|🚀 Lancering!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Slappe lach
+80|😂 Dood van het lachen!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Boem
+84|💣 Boem!
+85|🎂 Verjaardag
+86|🎂 Gefeliciteerd!
+87|🎂 Verjaardag 2
+88|🤭 Boer
+89|🤭 Burp!
+90|💨 Scheet
+91|💨 Pfft!
+92|🤮 Overgeven
+93|🤮 Bah!
+94|Kristal
+95|Ochtendgloed
+96|Briesje
+97|Schijnsel
+98|Oever
+99|Cirkel
+100|Ochtend
+101|Geen
+102|Licht
+103|Gemiddeld
+104|Sterk
+105|Het geheugen van het apparaat is vol: verwijder oude foto's.
+106|Fout.
+107|De gebruikersnaam kan maar één keer worden gewijzigd en dat heb je al gedaan.
+108|Een gebruikersnaam wijzigen is betaald (aanbod "Plus"). De betaling is nog niet gekoppeld: zet "Plus (demonstratie)" aan in Instellingen om het te proberen.
+109|Gebruikersnaam: 3 tot 20 tekens, kleine letters, cijfers, punt of underscore.
+110|Deze gebruikersnaam is al in gebruik.
+111|Gebruikersnaam gewijzigd. Deze wijziging is definitief.
+112|Welkom in mijn nest 🪺
+113|Hoi! Welkom! 🌳
+114|Familie
+115|Wie is er zondag bij de maaltijd?
+116|Familiemaaltijd
+117|Iedereen neemt een gerechtje mee.
+118|Bij oma
+119|Ongeldige duur.
+120|Je account wordt gecontroleerd na meldingen.
+121|Niemand kan dit bericht zien: kies andere ontvangers.
+122|Niemand kan dit album zien: kies andere ontvangers.
+123|Album
+124|{name} heeft het album "{slice}" voor je gemaakt.
+125|Album niet gevonden.
+126|{name} heeft met {emoji} gereageerd op je bericht.
+127|{name} heeft op je bericht gereageerd.
+128|Persoon niet gevonden.
+129|Dat ben jij!
+130|Je account wordt gecontroleerd na meldingen: je kunt voorlopig geen verzoeken versturen.
+131|Te veel verzoeken vandaag (maximaal 15). Probeer het morgen opnieuw.
+132|Verzoek kan niet worden verstuurd.
+133|{name} is al je vriend.
+134|Verzoek al verstuurd.
+135|{name} wil je vriend zijn.
+136|Verzoek verstuurd naar {name}.
+137|Onbekende code (in demomodus bestaan alleen de accounts op dit apparaat).
+138|3 tot 20 tekens: letters, cijfers, _ of .
+139|Gebruikersnaam opgeslagen.
+140|Niet gevonden.
+141|Kies minstens één vriend (die niet door de auteur is geblokkeerd).
+142|Verzoek staat al open.
+143|{name} vraagt om je bericht te delen.
+144|Verzoek verstuurd. De auteur beslist.
+145|{name} heeft het delen geweigerd.
+146|{name} heeft het delen geaccepteerd.
+147|{name} heeft een inhoud met je gedeeld.
+148|{name} heeft het gedeelde ingetrokken: het is overal verdwenen.
+149|{name} heeft je verzoek geaccepteerd.
+150|{name} heeft je toegevoegd aan de groep "{name2}".
+151|{name} heeft misschien geprobeerd een van je inhouden vast te leggen.
+152|{name} nodigt je uit: {title}.
+153|{name} nodigt je uit voor een potje boter-kaas-en-eieren.
+154|Video te zwaar: voorlopig maximaal 3 MB (ongeveer 10 seconden).
+155|Video toegevoegd.
+156|Fout
+157|Foto toegevoegd.
+158|Kies een foto of een video.
+159|Onleesbaar bestand.
+160|De video openen
+161|De foto openen
+162|Foto
+163|🔒 Privé: alleen jij
+164|👥 Gedeeld met {n}
+165|👥 Album van {name}
+166|Terug naar de albums
+167|Dit album en alles erin verwijderen, ook bij wie het ziet?
+168|Het album verwijderen
+169|Laden…
+170|Een foto of video toevoegen
+171|Leeg album: voeg een eerste foto of video toe.
+172|Nog niets in dit album.
+173|🔒 Overal dezelfde regels: watermerk met je naam, schermafbeeldingen geblokkeerd in de Android-app, niets delen zonder toestemming van de auteur.
+174|Mijn video's
+175|Kies daarna de video.
+176|Foto's en video's
+177|📷 Foto's
+178|🎬 Video's
+179|🗂 Albums
+180|Mijn foto's
+181|Je gepubliceerde foto's verschijnen hier.
+182|Met mij gedeeld (permanent)
+183|Voorlopig niets.
+184|Video toegevoegd (privé, in "Mijn video's").
+185|Een video toevoegen
+186|Nog geen video. Voorlopig: korte (ongeveer 10 seconden, max. 3 MB). Langere video's komen met de server.
+187|Om een video met vrienden te delen, zet je hem in een gedeeld album (tabblad Albums).
+188|Nieuw album
+189|Privé
+190|Gedeeld met {length}
+191|Van {name}
+192|· {count, plural, one{# item} other{# items}}
+193|Geen albums. Maak er een, privé of gedeeld met je vrienden.
+194|Naam (bijv. Vakantie 2026)
+195|🔒 Privé
+196|👥 Al mijn vrienden
+197|✅ Gekozen vrienden
+198|Alleen jij ziet het.
+199|{n} vriend(en) kunnen het zien. Alleen je vrienden zien het en niemand kan het zonder jouw toestemming opnieuw delen.
+200|Het album maken
+201|✅ App geïnstalleerd
+202|Je gebruikt hem al als een echte app.
+203|📲 De app installeren
+204|Op dit apparaat installeren
+205|De Android-app downloaden
+206|Op iPhone en iPad: tik op
+207|Delen
+208|⬆️ dan
+209|"Zet op beginscherm"
+210|Open het browsermenu (⋮) en kies "App installeren" of "Toevoegen aan beginscherm".
+211|Jouw kring.
+212|Jouw momenten.
+213|Het privénetwerk van je dierbaren: familie, vrienden, collega's, team, toneelgroep of club. Zonder reclame, zonder vreemden, zonder delen naar buiten.
+214|Deel met wie je wilt
+215|Foto's, video's en teksten, alleen voor de mensen die je kiest.
+216|Stories die verdwijnen
+217|24 uur, of enkele seconden voor een vluchtige foto.
+218|Berichten, spraakberichten en effecten
+219|Chat in een groep of privé en stuur effecten met geluid.
+220|NOTIIF openen
+221|Om NOTIIF als echte app op je telefoon te hebben:
+222|De app installeren
+223|Deze aanmelding wordt actief zodra de server is gekoppeld (zie de handleiding).
+224|gebruiksvoorwaarden en het privacybeleid
+225|Mijn account maken
+226|Inloggen
+227|— of —
+228|Je voornaam of gebruikersnaam
+229|Voornaam
+230|Gebruikersnaam @ (optioneel): maar één keer te wijzigen, betaald
+231|Gebruikersnaam
+232|Je e-mailadres
+233|Wachtwoord (minimaal 8 tekens)
+234|Wachtwoord
+235|Ik accepteer de voorwaarden
+236|Ik ben 15 jaar of ouder en accepteer de {legalBtn}.
+237|Ik heb al een account
+238|Ik heb nog geen account
+239|Schrijf eerst hierboven je voornaam of gebruikersnaam.
+240|Schrijf eerst je voornaam of gebruikersnaam.
+241|Vink het vakje "Ik ben 15 jaar of ouder" aan om door te gaan.
+242|Vink het vakje van de voorwaarden aan.
+243|🧪 Demomodus
+244|Echte accounts (e-mail, Google, Apple, Facebook, FranceConnect…) hebben een server nodig, die nog niet is gekoppeld. Ondertussen kun je de app op dit apparaat proberen met fictieve vrienden.
+245|Je voornaam of gebruikersnaam (demo)
+246|Demomodus proberen
+247|Voorlopig kun je de app in demomodus proberen, op dit apparaat, met fictieve vrienden.
+248|Begrepen, ik probeer de demomodus
+249|Juridische documenten
+250|🔒 Vluchtig bericht
+251|🎤 Spraakbericht
+252|📷 Foto
+253|Snelle berichten
+254|Terug naar de lijst
+255|Groot openen
+256|Sluiten
+257|💬 Gesprekken
+258|👥 Mijn vrienden
+259|Een bericht schrijven
+260|Nog geen vrienden. Voeg ze toe in het tabblad Vrienden.
+261|Nieuw gesprek
+262|Geen gesprekken. Kies een vriend bij "Mijn vrienden".
+263|Eén keer bekeken
+264|Vluchtig bericht
+265|· groot openen
+266|Emoji's
+267|Je bericht…
+268|Snel bericht
+269|Versturen
+270|Schermafbeelding geblokkeerd: de auteur wordt gewaarschuwd.
+271|Bericht eenmaal bekeken
+272|🔥 Eenmaal bekeken
+273|Sluiten (het verdwijnt)
+274|Foto eenmaal bekeken
+275|Inhoud verborgen
+276|Schermafbeelding of vensterwissel gedetecteerd
+277|Dit bericht verdwijnt als je het sluit. Een foto kan altijd met een ander apparaat worden gefotografeerd: respecteer de privacy.
+278|🔎 Zoeken in mijn gesprekken
+279|Geen gesprekken: schrijf een vriend via "Vrienden".
+280|📹 Ik start een videogesprek: {url}
+281|Videogesprek gestart: de link is in het gesprek verstuurd.
+282|Een videogesprek starten
+283|📹 Videogesprek
+284|Bericht
+285|🔥 Bericht gezien en verdwenen
+286|🔥 Bericht om maar één keer te bekijken · tik om te openen
+287|(bewerkt)
+288|⏱ {left} s
+289|⏱ vluchtig {secs} s na het lezen
+290|🔥 eenmalig bekijken ·
+291|gezien ✓
+292|🔒 Vluchtig bericht · tik om te lezen ({secs} s)
+293|⌛ Bericht verlopen
+294|· ✓✓ gelezen
+295|· ✓ verstuurd
+296|Zeg hallo 👋
+297|Verzendopties
+298|Opties sluiten
+299|Duur van het bericht
+300|♾️ Permanent
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Een foto sturen
+304|🛡 Watermerk
+305|aan
+306|verwijderd
+307|Effecten
+308|Onleesbare afbeelding.
+309|Opties: duur, foto, effecten
+310|Het bericht bewerken…
+311|Hoeveel zijden heeft een zeshoek?
+312|Wat is de hoofdstad van Italië?
+313|Milaan
+314|Napels
+315|Rome
+316|Turijn
+317|Welk dier is het snelste op land?
+318|Leeuw
+319|Jachtluipaard
+320|Paard
+321|Antilope
+322|Hoeveel minuten zitten er in anderhalf uur?
+323|Welke planeet staat het dichtst bij de zon?
+324|Venus
+325|Mars
+326|Aarde
+327|Mercurius
+328|Welk fruit geeft cider?
+329|Peer
+330|Appel
+331|Druif
+332|Kers
+333|Hoeveel spelers staan er per voetbalteam op het veld?
+334|Welke kleur krijg je door blauw en geel te mengen?
+335|Groen
+336|Oranje
+337|Paars
+338|Bruin
+339|Wat is de grootste oceaan?
+340|Atlantische Oceaan
+341|Indische Oceaan
+342|Noordelijke IJszee
+343|Stille Oceaan
+344|Hoeveel dagen heeft februari in een schrikkeljaar?
+345|{nm} (✕) tegen {nm2} (◯)
+346|Vakje {v1}
+347|Gelijkspel 🤝
+348|🏆 {name} heeft gewonnen!
+349|Jij bent aan de beurt
+350|{name} is aan de beurt (wissel van lid in Instellingen om in de demo in zijn plaats te spelen)
+351|⭕ Boter-kaas-en-eieren voor twee
+352|🧠 Quiz
+353|♟️ Schaken · binnenkort
+354|🃏 Rummy · binnenkort
+355|Een vriend uitnodigen
+356|Spel gestart met {name}.
+357|Geen spellen. Nodig hierboven een vriend uit.
+358|Bravo! {pts}/{length}
+359|Jouw totaal:
+360|punten
+361|Opnieuw spelen
+362|Vraag {v1}/{length} · Score {pts}
+363|Volgende
+364|Afronden
+365|Overal verwijderen, ook bij wie het heeft ontvangen?
+366|Verwijderen
+367|Reageren {e}
+368|🔒 Beschermde foto: watermerk met je naam, schermafbeeldingen geblokkeerd in de Android-app, delen alleen met toestemming van de auteur.
+369|Binnenkort beschikbaar
+370|Rustig aan: één effect per seconde.
+371|Effect {label}
+372|Eigen effect {name}
+373|Meer effecten
+374|＋ Meer
+375|Alle effecten
+376|Vink de 4 effecten aan die vooraan moeten blijven ({length}/4). Tik op "Versturen" om het te proberen.
+377|Vooraan houden: {label}
+378|Maximaal 4: vink er eerst een uit.
+379|Houd minstens één effect vooraan.
+380|Mijn eigen effecten
+381|{name} verwijderen
+382|＋ Mijn effect maken (afbeelding + mijn stem)
+383|Microfoon niet beschikbaar of geweigerd.
+384|Geef je effect een naam.
+385|Voeg een afbeelding of een geluid toe.
+386|Maximaal 6 eigen effecten.
+387|Effect toegevoegd.
+388|Naam van het effect (bijv. Mijn lach)
+389|Naam van het effect
+390|Afbeelding
+391|Opnemen… {left} s (tik om te stoppen)
+392|Opnieuw opnemen
+393|Opnemen (max. 3 s)
+394|Geluid te zwaar (maximaal 450 KB, ongeveer 10 seconden).
+395|📁 Een geluidsbestand kiezen
+396|▶ Proberen
+397|Toevoegen
+398|Story
+399|Gezien door:
+400|nog niemand
+401|Privé antwoorden…
+402|↩️ Antwoord op je story: {reply}
+403|Antwoord privé verstuurd.
+404|Reactie verstuurd {e}
+405|Al mijn vrienden
+406|Een groep
+407|Geselecteerde vrienden
+408|Iedereen behalve…
+409|Een lijst
+410|Alleen ik
+411|Kies een afbeelding.
+412|Deze afbeelding kan niet worden gelezen.
+413|Story gepubliceerd, zonder tijdslimiet.
+414|Vluchtige story gepubliceerd.
+415|Story gepubliceerd voor 24 u.
+416|Gepubliceerd!
+417|✨ Mijn story
+418|📝 Nieuw bericht
+419|Een story verdwijnt vanzelf (standaard na 24 u) en wordt schermvullend bekeken.
+420|Soort inhoud
+421|✏️ Tekst
+422|🎥 Videoselfie
+423|🎤 Spraak
+424|🔗 Link
+425|Voorbeeld
+426|De foto verwijderen
+427|📷 Een foto kiezen
+428|🗑 Verwijderen
+429|✅ Publiceren
+430|🔁 Opnieuw beginnen
+431|🎥 Mezelf filmen (max. 10 s)
+432|🎤 Een spraakbericht opnemen (max. 30 s)
+433|Plak een link: Spotify-, Deezer- of YouTube-playlist, video, Instagram, TikTok, Leboncoin…
+434|Link om te delen
+435|Deze link ziet er niet geldig uit.
+436|Schrijf je story…
+437|Tekst van de story
+438|Wat is er nieuw bij je dierbaren?
+439|Een bijschrift toevoegen (optioneel)…
+440|Tekst
+441|Stemming
+442|Achtergrond {v1}
+443|Geen stemming
+444|Wie mag het zien?
+445|Duur van de story
+446|24 uur
+447|Onbeperkt
+448|Vluchtig
+449|Kijktijd
+450|Anders…
+451|Seconden (1 tot 999)
+452|Aangepaste duur in seconden
+453|Groep
+454|Lijst
+455|＋ Een lijst maken
+456|Naam van de lijst (bijv. Collega's, Voetbal, Toneel)
+457|Naam van de lijst
+458|Voeg eerst vrienden toe om ze in een lijst te zetten.
+459|Annuleren
+460|Lijst gemaakt.
+461|De lijst maken
+462|Voer tussen 1 en {MAX_CUSTOM_SECS} seconden in.
+463|Alleen voor jou zichtbaar.
+464|{audLabel} · {count} personen
+465|· {fmtSecs} per persoon vanaf het openen
+466|Publiceren
+467|Vluchtig bericht
+468|Resterende tijd
+469|{ceil} s
+470|Vluchtige foto
+471|Als je sluit, loopt de tijd door. Een foto kan altijd met een ander apparaat worden gefotografeerd.
+472|Verlopen voor jou
+473|Je kijktijd is voorbij.
+474|vluchtig
+475|Je hebt nog {n} s.
+476|Je hebt {fmtSecs} vanaf het openen.
+477|Hervatten
+478|Openen
+479|Opties
+480|↪ Gedeeld door
+481|met toestemming van {name}
+482|Dit bericht verwijderen? De toegestane shares verdwijnen ook.
+483|Overal verwijderen
+484|Dit gedeelde intrekken? Het verdwijnt bij {name} en diens vrienden.
+485|Dit gedeelde intrekken
+486|Stoppen met delen?
+487|Mijn delen stoppen
+488|Het bericht vergroten
+489|Reageren
+490|Gezien door {length}/{length2}:
+491|↪ {n, plural, one{# toegestane share} other{# toegestane shares}}
+492|door jou (zie "Gedeeld").
+493|Gezien door
+494|· Publiek van het gedeelde:
+495|↪ Vragen om te delen
+496|Tik op de foto om te reageren of te becommentariëren
+497|Tik op de foto om te reageren
+498|Tik op de foto om te becommentariëren
+499|Bericht
+500|Meer emoticons
+501|Andere:
+502|Nog geen reacties. Wees de eerste!
+503|Antwoorden
+504|Emoticons
+505|Je antwoord…
+506|Een reactie schrijven…
+507|Reactie
+508|Alle vrienden
+509|Alleen ik
+510|Gekozen vrienden
+511|Vrienden behalve…
+512|Alles
+513|Mijn berichten
+514|Nog niets hier. Publiceer je eerste moment ✨
+515|✏️ Een tekst schrijven
+516|Tip: houd de knop ingedrukt om direct de camera te openen.
+517|Vragen om te delen
+518|Deze inhoud is van
+519|. Die persoon beslist of hij accepteert. Als hij accepteert, zien je gekozen vrienden
+520|de originele inhoud
+521|(geen kopie), met dezelfde duren, en {name} kan
+522|het gedeelde op elk moment intrekken
+523|: het verdwijnt dan bij iedereen.
+524|Delen met:
+525|Je hebt geen andere vrienden.
+526|Een kort bericht voor de auteur (optioneel)
+527|Verzoek sturen naar {name}
+528|🌍 Taal
+529|Kies de taal van NOTIIF. Ze verandert meteen en je keuze wordt bewaard.
+530|Huidige taal
+531|Een taal zoeken
+532|Taal
+533|Taal gewijzigd.
+534|Geen taal gevonden.
+535|Voorlopig bestaan de juridische documenten alleen in het Frans.
+536|Versie {LEGAL_VERSION}
+537|Wikipedia
+538|Link
+539|{name}-speler
+540|Verkleinen
+541|Vergroten
+542|De muziek stoppen
+543|{name}-link
+544|Verkleinen en blijven luisteren
+545|⌄ Verkleinen
+546|Apart openen
+547|Deze site kan niet binnen NOTIIF worden getoond.
+548|{name} openen
+549|De {name}-link openen
+550|🎧 Luisteren in NOTIIF (alleen jij hoort het)
+551|▶ Hier kijken, in NOTIIF
+552|De link openen
+553|Camera of microfoon niet beschikbaar of geweigerd.
+554|🎥 Beginnen
+555|🎤 Beginnen
+556|(max. {max} s)
+557|⏹ Stoppen · {left} s
+558|📸 Foto
+559|Houd de knop ingedrukt om te praten.
+560|Ingedrukt houden om een spraakbericht op te nemen
+561|🔴 Loslaten om te versturen
+562|Camera
+563|Opnieuw beginnen
+564|Versturen ➤
+565|De camera sluiten
+566|Van camera wisselen
+567|s / {max} s
+568|Zoom
+569|Zoom {z} keer
+570|{replace}×
+571|Video
+572|De foto nemen
+573|Stoppen
+574|Filmen
+575|Tik om de foto te nemen
+576|Tik om te stoppen
+577|Tik om te filmen (max. {max} s)
+578|Houd de microfoon ingedrukt om te praten.
+579|🔴 {mm} · loslaten om te stoppen
+580|Houd de microfoon ingedrukt om te praten (max. {max} s)
+581|Tot ik het verwijder
+582|Zoals het origineel
+583|Hoe lang blijft het gedeelde zichtbaar?
+584|Kijktijd per persoon
+585|🔒 Deze inhoud kan niet elders opnieuw worden gepubliceerd: ze heeft een watermerk, schermafbeeldingen zijn geblokkeerd (Android-app) en elke nieuwe share vraagt jouw toestemming. Je kunt hem op elk moment intrekken.
+586|Share toegestaan. Je kunt hem intrekken wanneer je wilt.
+587|De toestemming bevestigen
+588|Toestaan…
+589|Weigeren
+590|inhoud verwijderd
+591|Niemand kan je inhoud zonder jouw toestemming opnieuw publiceren. En zelfs na toestemming
+592|houd je de volledige controle
+593|: als je een share intrekt of je bericht verwijdert, verdwijnt het bij iedereen met wie het was gedeeld.
+594|Te behandelen verzoeken ({length})
+595|zou willen delen
+596|met {join} · {ago}
+597|Geen openstaande verzoeken.
+598|Shares die ik heb toegestaan ({length})
+599|gedeeld door {nm} met {join}
+600|Deze share intrekken? Hij verdwijnt bij iedereen.
+601|Share overal ingetrokken.
+602|Overal intrekken
+603|Geen actieve shares.
+604|Mijn verzoeken en mijn shares ({length})
+605|van {nm}
+606|{v1} · met {join}
+607|Je hebt niets gevraagd om te delen.
+608|QR-code
+609|🌍 Openbaar
+610|Iedereen kan me vinden met mijn naam of gebruikersnaam.
+611|👥 Beperkt
+612|Alleen met mijn exacte gebruikersnaam, of vrienden van mijn vrienden.
+613|🔒 Onzichtbaar
+614|Niemand vindt mij. Alleen als ik mijn QR-code of mijn code geef.
+615|Mijn QR-code
+616|De QR-code openen of vergroten
+617|Klik op de QR-code om de pagina te openen
+618|Tik op de QR-code om hem te vergroten
+619|Laat hem aan een dierbare zien: die scant hem met de camera van de telefoon.
+620|Link gekopieerd
+621|Kopiëren mislukt
+622|Mijn link kopiëren
+623|De afbeelding opslaan
+624|Een nieuwe code maken? De oude QR-code werkt dan niet meer.
+625|Nieuwe code gemaakt.
+626|Vernieuwen
+627|Wie kan me vinden?
+628|Instelling opgeslagen.
+629|De gebruikersnaam opslaan
+630|Deze browser kan geen QR-codes lezen. Gebruik de camera van de telefoon: die opent de NOTIIF-link vanzelf.
+631|Camera niet beschikbaar of geweigerd.
+632|Een QR-code scannen
+633|Kom bij me op NOTIIF, het privénetwerk van onze dierbaren (familie, vrienden, collega's, club…), zonder reclame. Installeer de app hier: {inviteLink} (mijn code: {code})
+634|Contact
+635|Geen contact met een nummer of e-mailadres.
+636|Toegang tot contacten geweigerd of geannuleerd.
+637|Bericht gekopieerd: plak het waar je wilt.
+638|Mijn dierbaren uitnodigen
+639|📇 Kiezen uit mijn contacten
+640|Op deze telefoon of browser kan de app je contacten niet lezen. Voeg een nummer of e-mailadres met de hand toe, of deel de link.
+641|Nummer of e-mailadres
+642|{name} uitnodigen
+643|De uitnodiging versturen:
+644|Kom bij me op NOTIIF
+645|E-mail
+646|🔗 De uitnodigingslink delen
+647|🔒 Je contacten worden niet opgeslagen en niet naar NOTIIF gestuurd: ze dienen alleen om het bericht op je telefoon te schrijven. Importeren vanuit Google of Facebook komt met de serververbinding.
+648|Ontvangen verzoeken ({length})
+649|{name} is nu je vriend.
+650|Accepteren
+651|Mijn code:
+652|Code gekopieerd
+653|Kopiëren
+654|Code van een dierbare (NID-…)
+655|Uitnodigingscode
+656|Uitnodigen
+657|📇 Uitnodigen vanuit mijn contacten
+658|Demomodus: codes om te testen
+659|(fictieve personen)
+660|Mijn vrienden ({length})
+661|Een lijst kiezen
+662|Allen ({length})
+663|＋ Nieuwe lijst
+664|Opties voor {name}
+665|Niemand in deze lijst.
+666|Nog geen vrienden.
+667|Deze persoon melden
+668|Waarom? Drie meldingen van verschillende mensen schorten het account automatisch op voor een controle.
+669|Nepprofiel
+670|Verkoop, reclame of acquisitie
+671|Oplichting
+672|Seksuele voorstellen of escort
+673|Illegale inhoud
+674|Intimidatie
+675|Anders
+676|Bedankt, melding opgeslagen.
+677|💬 Schrijven
+678|{name} uit je vrienden verwijderen?
+679|Uit vrienden verwijderen
+680|Melden
+681|{name} blokkeren? Die persoon ziet je inhoud niet meer.
+682|Geblokkeerd.
+683|Blokkeren
+684|Mijn lijsten
+685|Bijv. "Neven", "Collega's"… om snel te kiezen wie je berichten ziet.
+686|Geblokkeerde mensen
+687|Deblokkeren
+688|Nieuwe lijst
+689|🔎 Iemand vinden (naam of @gebruikersnaam)
+690|Zoeken
+691|Niemand gevonden. "Onzichtbare" of "beperkte" mensen vind je alleen met hun QR-code, hun code of hun exacte gebruikersnaam.
+692|📜 Groepsregels
+693|Leden ({length})
+694|{name} uit de groep verwijderen?
+695|Verwijderen
+696|Deze groep verlaten?
+697|De groep verlaten
+698|Nieuw
+699|{n, plural, one{# lid} other{# leden}}
+700|Maak een groep voor de familie, de vakantie, feestjes…
+701|Nieuwe groep
+702|Emoji
+703|Naam van de groep
+704|Beschrijving
+705|Groepsregels (optioneel)
+706|Leden (uit je vrienden)
+707|Groep gemaakt.
+708|De groep maken
+709|✅ Aanwezig
+710|❌ Afwezig
+711|🤔 Misschien
+712|Verjaardagen, familiemaaltijden, vakanties… maak de eerste!
+713|· voorbij
+714|Dit evenement verwijderen?
+715|Georganiseerd door {name}
+716|👥 Zien wie er komt
+717|✅ Aanwezig
+718|❌ Afwezig
+719|⏳ Geen antwoord
+720|Nieuw evenement
+721|Titel (bijv. Verjaardag van oma)
+722|Datum en tijd
+723|Plaats
+724|Evenement gemaakt.
+725|Mijn vrienden
+726|Iedereen
+727|Niemand
+728|Mijn profiel bewerken
+729|De foto wijzigen
+730|Een foto toevoegen
+731|De foto verwijderen
+732|Gebruikersnaam: @{handle}
+733|Al één keer gewijzigd: definitief.
+734|Maar één keer te wijzigen, en het is betaald (om nepprofielen te beperken).
+735|Nieuwe gebruikersnaam
+736|Wijzigen
+737|Wie kan mijn foto zien?
+738|De anderen zien dan je initiaal in plaats van de foto.
+739|Voornaam of gebruikersnaam
+740|Status
+741|Je status
+742|Je korte bio
+743|Profiel bijgewerkt.
+744|Opslaan
+745|Kies wat je vrienden kunnen doen met je foto's, video's en teksten.
+746|Likes en reacties
+747|Als dit uit staat, kan niemand op je berichten reageren en wordt geen teller getoond.
+748|Opmerkingen
+749|Als dit uit staat, kan niemand je berichten becommentariëren.
+750|{n, plural, one{# bericht} other{# berichten}}
+751|{n, plural, one{# vriend} other{# vrienden}}
+752|Lid sinds {toLocaleDateString}
+753|Mijn profiel bewerken (foto, naam, bio)
+754|Meldingsinstellingen
+755|Instellingen
+756|Alles als gelezen markeren
+757|🌙 Stille modus aan: geen meldingen, maar de lijst blijft hier.
+758|Niets nieuws.
+759|Meldingen bevatten nooit de inhoud van een vluchtig bericht.
+760|🎵 Beltonen en trillen
+761|Beltoon van meldingen
+762|Beltoon van gesprekken
+763|Trillen bij berichten
+764|Trillen bij gesprekken
+765|Het schudden trilt altijd op maximum. Tik op een keuze om het te proberen.
+766|🔔 Meldingen op de telefoon
+767|Meldingen ontvangen
+768|Berichten, vriendschapsverzoeken, shares, evenementen…
+769|Meldingen op de telefoon
+770|Meldingen ingeschakeld.
+771|Sta meldingen toe in het venster van de telefoon.
+772|Meldingen geweigerd: sta ze toe in de instellingen van de telefoon (Apps > Cercle > Meldingen).
+773|Deze browser ondersteunt geen meldingen. Installeer de app (Android-QR) of het pictogram op het beginscherm.
+774|Meldingen geweigerd: sta ze toe in de instellingen van de telefoon en probeer het opnieuw.
+775|Welke meldingen ontvangen?
+776|💬 Berichten
+777|👋 Vriendschapsverzoeken
+778|📰 Berichten en stories
+779|🔁 Shares
+780|📅 Evenementen
+781|👥 Groepen
+782|🖼 Albums
+783|🎮 Spelletjes
+784|Meldingen: {l}
+785|Test: alles werkt ✅
+786|De testmelding kan niet worden getoond.
+787|Een test versturen
+788|Eerlijk gezegd: voorlopig verschijnen meldingen wanneer de app open is of op de achtergrond draait. Ze ontvangen met een gesloten app vraagt de server (verzending op afstand), gepland met echte accounts. Gesprekken: binnenkort.
+789|Mijn 4 favoriete effecten
+790|Ze staan als eerste in de gesprekken. De andere blijven onder de knop "+".
+791|Favoriet: {label}
+792|Maximaal 4 favorieten: zet er eerst een uit.
+793|Houd minstens één favoriet.
+794|Standaard herstellen
+795|Bovenbalk
+796|De knop "Meer" (alle menu's) staat altijd rechtsboven. Voeg tot 4 snelkoppelingen ernaast toe.
+797|Bovenaan: {l}
+798|Maximaal 4 snelkoppelingen: zet er eerst een uit.
+799|Houd minstens één snelkoppeling.
+800|Onderbalk
+801|Kies tot 4 snelkoppelingen. De knop "Maken" blijft altijd in het midden. De andere menu's zitten in de knop "Meer" rechtsboven.
+802|Snelkoppeling {l}
+803|Berichtenbel
+804|Een kleine bel die je verplaatst waar je wilt. Als hij zichtbaar is, wordt "Berichten" in de onderbalk vervangen door "Groepen".
+805|Startscherm
+806|De pagina die opent als je NOTIIF start.
+807|Licht thema
+808|Lichte achtergrond, wit en turquoise.
+809|Donker thema
+810|Nachtblauwe en turquoise achtergrond, zachter 's avonds.
+811|Effecten in gesprekken
+812|Schermschudden met geluid, hartjes, verjaardag: als een vriend er een stuurt, zie en hoor je het. Standaard ingeschakeld.
+813|Stille uren
+814|Dempt meldingen 's nachts (in servermodus).
+815|Video's automatisch afspelen
+816|Voor korte video's (binnenkort).
+817|🔒 Privacy
+818|Geen reclame. Geen verkoop van gegevens.
+819|Geen deelknop naar buiten, geen openbaar profiel.
+820|Niemand kan je vinden zonder je uitnodigingscode.
+821|Geen enkele app kan een bevoegde persoon beletten zijn scherm met een ander apparaat te fotograferen.
+822|🧪 Demomodus (op dit apparaat)
+823|Voorlopig blijven je gegevens op dit apparaat en zijn de vrienden fictief. Echte accounts, berichten tussen telefoons en gesprekken hebben een server nodig: zie de handleiding in de map "docs" van het project.
+824|Uitloggen
+825|Mijn gegevens exporteren
+826|Al je NOTIIF-gegevens van dit apparaat verwijderen?
+827|Mijn account en mijn gegevens verwijderen
+828|🔁 Van lid wisselen (demo)
+829|Om de duren per persoon te testen: publiceer een foto van 5 s voor Céline en Thomas en wissel dan van de een naar de ander.
+830|Je bent nu {name}.
+831|Schermafbeelding geblokkeerd door NOTIIF
+832|NOTIIF-logo
+833|zojuist
+834|{n} min geleden
+835|{n} u geleden
+836|Gezichten
+837|Handen
+838|Harten
+839|Feest en natuur
+840|De emoji's sluiten
+841|{what} verwijderen?
+842|Deze actie is definitief.
+843|Houden
+844|NOTIIF — Jouw kring. Jouw momenten.

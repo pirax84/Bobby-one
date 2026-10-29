@@ -1,0 +1,845 @@
+0|Acasă
+1|Prieteni
+2|Grupuri
+3|Mesaje
+4|Apeluri
+5|Fotografii
+6|Jocuri
+7|Evenimente
+8|Distribuiri
+9|Notificări
+10|Profil
+11|Informații juridice
+12|Setări
+13|Apeluri audio și video
+14|Apelurile au nevoie de un server de conectare (WebRTC). Vor veni când serverul NOTIIF va fi pornit.
+15|Cercul tău. Momentele tale.
+16|Creează
+17|Profilul meu
+18|Înapoi
+19|Toate meniurile
+20|Navigare
+21|Creează: poveste sau postare. Apasă lung pentru un video selfie
+22|Mai multe
+23|Cercul meu
+24|Media și jocuri
+25|Contul meu
+26|Invitație la NOTIIF
+27|Îl adaugi pe {name}?
+28|Trimite cererea
+29|Acest cod nu există pe acest dispozitiv. În modul demo, conturile nu sunt încă partajate între dispozitive: asta vine odată cu serverul.
+30|Mai târziu
+31|Ce vrei să distribui?
+32|✨ Poveste (dispare singură)
+33|📝 Postare
+34|Grupurile mele
+35|Următoarele
+36|Niciun eveniment.
+37|Joacă în familie
+38|Continuă cu Apple
+39|Continuă cu Google
+40|Continuă cu Facebook
+41|Continuă cu Snapchat
+42|Snapchat cere un contract de dezvoltator (Snap Kit). Trebuie solicitat înainte de activare.
+43|FranceConnect cere o autorizare de la stat (cererea se face pe datapass.api.gouv.fr).
+44|Identitate digitală La Poste
+45|Identitatea digitală La Poste cere un parteneriat cu La Poste.
+46|Serverul nu este disponibil.
+47|A apărut o eroare.
+48|Cont creat.
+49|Cont creat. Deschide e-mailul de confirmare pe care tocmai ți l-am trimis, apoi revino să te conectezi.
+50|Conectat.
+51|Eu
+52|Permanent
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Inimi
+56|❤️ Ploaie de inimi!
+57|😘 Pupici
+58|😘 Pupici mari!
+59|❄️ Zăpadă
+60|❄️ Ninge!
+61|🎆 Artificii
+62|🎆 Artificii!
+63|👻 Fantomă
+64|👻 Bu!
+65|🔥 Flăcări
+66|🔥 E cald!
+67|🫧 Baloane de săpun
+68|🫧 Bule!
+69|🎂 Petrecere
+70|🎂 Sărbătorim!
+71|🌧️ Ploaie
+72|🌧️ Plouă!
+73|⛈️ Furtună
+74|⛈️ Tună!
+75|🚀 Rachetă
+76|🚀 Decolare!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Râs în hohote
+80|😂 Mor de râs!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Zi de naștere
+86|🎂 La mulți ani!
+87|🎂 Zi de naștere 2
+88|🤭 Râgâit
+89|🤭 Rgâ!
+90|💨 Bășină
+91|💨 Pfff!
+92|🤮 Vomă
+93|🤮 Bleah!
+94|Cristal
+95|Zori
+96|Briză
+97|Strălucire
+98|Țărm
+99|Cerc
+100|Dimineață
+101|Niciuna
+102|Slabă
+103|Medie
+104|Puternică
+105|Memoria dispozitivului este plină: șterge fotografii vechi.
+106|Eroare.
+107|Numele de utilizator se poate schimba o singură dată, iar tu ai făcut-o deja.
+108|Schimbarea numelui de utilizator este cu plată (oferta „Plus”). Plata nu este încă conectată: pentru a încerca, activează „Plus (previzualizare)” în Setări.
+109|Nume de utilizator: 3 până la 20 de caractere, litere mici, cifre, punct sau liniuță de subliniere.
+110|Acest nume de utilizator este deja luat.
+111|Nume de utilizator schimbat. Această schimbare este definitivă.
+112|Bun venit în cuibul meu 🪺
+113|Salut! Bine ai venit! 🌳
+114|Familie
+115|Cine vine duminică la masă?
+116|Prânz în familie
+117|Fiecare aduce câte o mâncare.
+118|La bunica
+119|Durată invalidă.
+120|Contul tău este în verificare din cauza unor raportări.
+121|Nimeni nu ar vedea această postare: alege alți destinatari.
+122|Nimeni nu ar vedea acest album: alege alți destinatari.
+123|Album
+124|{name} a creat pentru tine albumul „{slice}”.
+125|Album negăsit.
+126|{name} a reacționat cu {emoji} la postarea ta.
+127|{name} a comentat postarea ta.
+128|Persoană negăsită.
+129|Ești chiar tu!
+130|Contul tău este în verificare din cauza unor raportări: nu poți trimite cereri deocamdată.
+131|Prea multe cereri astăzi (maximum 15). Încearcă din nou mâine.
+132|Cererea nu poate fi trimisă.
+133|{name} este deja prietenul tău.
+134|Cererea a fost deja trimisă.
+135|{name} îți cere prietenia.
+136|Cerere trimisă către {name}.
+137|Cod necunoscut (în modul demo există doar conturile de pe acest dispozitiv).
+138|3 până la 20 de caractere: litere, cifre, _ sau .
+139|Nume de utilizator salvat.
+140|Negăsit.
+141|Alege cel puțin un prieten (pe care autorul nu l-a blocat).
+142|O cerere este deja în așteptare.
+143|{name} cere să-ți distribuie postarea.
+144|Cerere trimisă. Autorul decide.
+145|{name} a refuzat distribuirea.
+146|{name} a acceptat distribuirea.
+147|{name} a distribuit un conținut cu tine.
+148|{name} a retras distribuirea: a dispărut peste tot.
+149|{name} a acceptat cererea ta.
+150|{name} te-a adăugat în grupul „{name2}”.
+151|{name} ar fi putut încerca să captureze unul dintre conținuturile tale.
+152|{name} te invită: {title}.
+153|{name} te invită la o partidă de X și 0.
+154|Videoclipul este prea mare: deocamdată maximum 3 MB (aproximativ 10 secunde).
+155|Videoclip adăugat.
+156|Eroare
+157|Fotografie adăugată.
+158|Alege o fotografie sau un videoclip.
+159|Fișier ilizibil.
+160|Deschide videoclipul
+161|Deschide fotografia
+162|Fotografie
+163|🔒 Privat: doar tu
+164|👥 Distribuit cu {n}
+165|👥 Albumul lui {name}
+166|Înapoi la albume
+167|Ștergi acest album și tot ce conține, inclusiv la cei care îl văd?
+168|Șterge albumul
+169|Se încarcă…
+170|Adaugă o fotografie sau un videoclip
+171|Album gol: adaugă prima fotografie sau primul videoclip.
+172|Nu este încă nimic în acest album.
+173|🔒 Aceleași reguli ca peste tot: filigran cu numele tău, capturi de ecran blocate în aplicația Android, nicio distribuire fără acordul autorului.
+174|Videoclipurile mele
+175|Alege videoclipul după aceea.
+176|Fotografii și videoclipuri
+177|📷 Fotografii
+178|🎬 Videoclipuri
+179|🗂 Albume
+180|Fotografiile mele
+181|Fotografiile tale publicate vor apărea aici.
+182|Distribuit cu mine (permanent)
+183|Nimic deocamdată.
+184|Videoclip adăugat (privat, în „Videoclipurile mele”).
+185|Adaugă un videoclip
+186|Niciun videoclip deocamdată. Scurte deocamdată (aproximativ 10 secunde, maximum 3 MB). Videoclipurile mai lungi vor veni cu serverul.
+187|Pentru a distribui un videoclip prietenilor, pune-l într-un album partajat (fila Albume).
+188|Album nou
+189|Privat
+190|Distribuit cu {length}
+191|De la {name}
+192|· {count, plural, one{# element} few{# elemente} other{# de elemente}}
+193|Niciun album. Creează unul, privat sau partajat cu prietenii.
+194|Nume (ex.: Vacanță 2026)
+195|🔒 Privat
+196|👥 Toți prietenii mei
+197|✅ Prieteni aleși
+198|Doar tu îl vei vedea.
+199|Număr de prieteni care îl vor putea vedea: {n}. Îl văd doar prietenii tăi și nimeni nu îl poate distribui mai departe fără acordul tău.
+200|Creează albumul
+201|✅ Aplicație instalată
+202|O folosești deja ca pe o aplicație adevărată.
+203|📲 Instalează aplicația
+204|Instalează pe acest dispozitiv
+205|Descarcă aplicația Android
+206|Pe iPhone și iPad: atinge
+207|Distribuie
+208|⬆️ apoi
+209|„Adaugă pe ecranul principal”
+210|Deschide meniul browserului (⋮) și alege „Instalează aplicația” sau „Adaugă pe ecranul principal”.
+211|Cercul tău.
+212|Momentele tale.
+213|Rețeaua privată a celor dragi: familie, prieteni, colegi, echipă, trupă de teatru sau club. Fără reclame, fără străini, fără distribuire în exterior.
+214|Distribuie cui vrei
+215|Fotografii, videoclipuri și texte doar pentru persoanele pe care le alegi.
+216|Povești care dispar
+217|24 de ore sau câteva secunde pentru o fotografie efemeră.
+218|Mesaje, mesaje vocale și efecte
+219|Discută în grup sau în privat și trimite efecte cu sunet.
+220|Intră în NOTIIF
+221|Pentru a avea NOTIIF ca aplicație adevărată pe telefon:
+222|Instalează aplicația
+223|Această conectare se activează când serverul este conectat (vezi ghidul).
+224|condițiile de utilizare și politica de confidențialitate
+225|Creează contul meu
+226|Conectează-te
+227|— sau —
+228|Numele sau numele tău de utilizator
+229|Nume
+230|Nume de utilizator @ (opțional): se poate schimba o singură dată, cu plată
+231|Nume de utilizator
+232|E-mailul tău
+233|Parolă (minimum 8 caractere)
+234|Parolă
+235|Accept condițiile
+236|Am 15 ani sau mai mult și accept documentele: {legalBtn}.
+237|Am deja un cont
+238|Nu am încă un cont
+239|Scrie mai întâi numele sau numele tău de utilizator mai sus.
+240|Scrie mai întâi numele sau numele tău de utilizator.
+241|Bifează căsuța „Am 15 ani sau mai mult” pentru a continua.
+242|Bifează căsuța pentru condiții.
+243|🧪 Mod demo
+244|Conturile reale (e-mail, Google, Apple, Facebook, FranceConnect…) necesită un server care nu este încă conectat. Deocamdată poți încerca aplicația pe acest dispozitiv, cu prieteni fictivi.
+245|Numele sau numele tău de utilizator (demo)
+246|Încearcă modul demo
+247|Deocamdată poți încerca aplicația în modul demo, pe acest dispozitiv, cu prieteni fictivi.
+248|Am înțeles, încerc modul demo
+249|Documente juridice
+250|🔒 Mesaj efemer
+251|🎤 Mesaj vocal
+252|📷 Fotografie
+253|Mesaje rapide
+254|Înapoi la listă
+255|Deschide mare
+256|Închide
+257|💬 Conversații
+258|👥 Prietenii mei
+259|Scrie un mesaj
+260|Niciun prieten deocamdată. Adaugă-i din fila Prieteni.
+261|Conversație nouă
+262|Nicio conversație. Alege un prieten în „Prietenii mei”.
+263|Văzut o dată
+264|Mesaj efemer
+265|· deschide mare
+266|Emoji
+267|Mesajul tău…
+268|Mesaj rapid
+269|Trimite
+270|Captură de ecran blocată: autorul va fi avertizat.
+271|Mesaj văzut o dată
+272|🔥 Văzut o dată
+273|Închide (dispare)
+274|Fotografie văzută o dată
+275|Conținut ascuns
+276|Captură de ecran sau schimbare de fereastră detectată
+277|Acest mesaj dispare când îl închizi. O fotografie poate fi mereu fotografiată cu alt dispozitiv: respectă intimitatea.
+278|🔎 Caută în conversațiile mele
+279|Nicio conversație: scrie unui prieten din „Prieteni”.
+280|📹 Încep un apel video: {url}
+281|Apel video început: linkul a fost trimis în conversație.
+282|Începe un apel video
+283|📹 Apel video
+284|Mesaj
+285|🔥 Mesaj văzut și dispărut
+286|🔥 Mesaj de văzut o singură dată · atinge pentru a deschide
+287|(modificat)
+288|⏱ {left} s
+289|⏱ efemer {secs} s după citire
+290|🔥 vizualizare unică ·
+291|văzut ✓
+292|🔒 Mesaj efemer · atinge pentru a citi ({secs} s)
+293|⌛ Mesaj expirat
+294|· ✓✓ citit
+295|· ✓ trimis
+296|Salută 👋
+297|Opțiuni de trimitere
+298|Închide opțiunile
+299|Durata mesajului
+300|♾️ Permanent
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Trimite o fotografie
+304|🛡 Filigran
+305|activat
+306|eliminat
+307|Efecte
+308|Imagine ilizibilă.
+309|Opțiuni: durată, fotografie, efecte
+310|Modifică mesajul…
+311|Câte laturi are un hexagon?
+312|Care este capitala Italiei?
+313|Milano
+314|Napoli
+315|Roma
+316|Torino
+317|Care este cel mai rapid animal terestru?
+318|Leul
+319|Ghepardul
+320|Calul
+321|Antilopa
+322|Câte minute sunt într-o oră și jumătate?
+323|Care planetă este cea mai apropiată de Soare?
+324|Venus
+325|Marte
+326|Pământ
+327|Mercur
+328|Din ce fruct se face cidrul?
+329|Pară
+330|Măr
+331|Strugure
+332|Cireașă
+333|Câți jucători are o echipă de fotbal pe teren?
+334|Ce culoare obținem amestecând albastru cu galben?
+335|Verde
+336|Portocaliu
+337|Violet
+338|Maro
+339|Care este cel mai mare ocean?
+340|Atlantic
+341|Indian
+342|Arctic
+343|Pacific
+344|Câte zile are februarie într-un an bisect?
+345|{nm} (✕) contra {nm2} (◯)
+346|Căsuța {v1}
+347|Remiză 🤝
+348|🏆 {name} a câștigat!
+349|E rândul tău
+350|E rândul lui {name} (în Setări, schimbă membrul pentru a juca în locul lui în demo)
+351|⭕ X și 0 în doi
+352|🧠 Test de cultură
+353|♟️ Șah · în curând
+354|🃏 Remi · în curând
+355|Invită un prieten
+356|Joc început cu {name}.
+357|Niciun joc. Invită un prieten mai sus.
+358|Bravo! {pts}/{length}
+359|Totalul tău:
+360|puncte
+361|Joacă din nou
+362|Întrebarea {v1}/{length} · Scor {pts}
+363|Următoarea
+364|Termină
+365|Ștergi peste tot, inclusiv la cei care l-au primit?
+366|Șterge
+367|Reacționează cu {e}
+368|🔒 Fotografie protejată: filigran cu numele tău, capturi de ecran blocate în aplicația Android, distribuire doar cu acordul autorului.
+369|Disponibil în curând
+370|Încet: un efect pe secundă.
+371|Efect {label}
+372|Efect personalizat {name}
+373|Mai multe efecte
+374|＋ Mai multe
+375|Toate efectele
+376|Bifează 4 efecte de păstrat în față ({length}/4). Încearcă-le cu „Trimite”.
+377|Păstrează în față: {label}
+378|Maximum 4: debifează mai întâi unul.
+379|Păstrează cel puțin un efect în față.
+380|Efectele mele personalizate
+381|Șterge {name}
+382|＋ Creează efectul meu (imagine + vocea mea)
+383|Microfonul nu este disponibil sau a fost refuzat.
+384|Dă un nume efectului.
+385|Adaugă o imagine sau un sunet.
+386|Maximum 6 efecte personalizate.
+387|Efect adăugat.
+388|Numele efectului (ex.: Râsul meu)
+389|Numele efectului
+390|Imagine
+391|Se înregistrează… {left} s (atinge pentru a opri)
+392|Reînregistrează
+393|Înregistrează (maximum 3 s)
+394|Sunetul este prea mare (maximum 450 kB, aproximativ 10 secunde).
+395|📁 Alege un fișier audio
+396|▶ Încearcă
+397|Adaugă
+398|Poveste
+399|Au văzut:
+400|încă nimeni
+401|Răspunde în privat…
+402|↩️ Răspuns la povestea ta: {reply}
+403|Răspuns trimis în privat.
+404|Reacție trimisă {e}
+405|Toți prietenii mei
+406|Grup
+407|Prieteni aleși
+408|Toți, în afară de…
+409|Listă
+410|Doar eu
+411|Alege o imagine.
+412|Această imagine nu poate fi citită.
+413|Poveste publicată fără limită de timp.
+414|Poveste efemeră publicată.
+415|Poveste publicată pentru 24 h.
+416|Publicat!
+417|✨ Povestea mea
+418|📝 Postare nouă
+419|Povestea dispare singură (implicit după 24 h) și se vede pe tot ecranul.
+420|Tipul conținutului
+421|✏️ Text
+422|🎥 Video selfie
+423|🎤 Voce
+424|🔗 Link
+425|Previzualizare
+426|Elimină fotografia
+427|📷 Alege o fotografie
+428|🗑 Șterge
+429|✅ Publică
+430|🔁 Reia
+431|🎥 Filmează-te (maximum 10 s)
+432|🎤 Înregistrează un mesaj vocal (maximum 30 s)
+433|Lipește un link: playlist Spotify, Deezer sau YouTube, videoclip, Instagram, TikTok, Leboncoin…
+434|Link de distribuit
+435|Acest link nu pare valid.
+436|Scrie-ți povestea…
+437|Textul poveștii
+438|Ce mai e nou la cei dragi?
+439|Adaugă o descriere (opțional)…
+440|Text
+441|Dispoziție
+442|Fundal {v1}
+443|Nicio dispoziție
+444|Cine poate vedea?
+445|Durata poveștii
+446|24 de ore
+447|Nelimitat
+448|Efemer
+449|Timp de afișare
+450|Altul…
+451|Secunde (1 până la 999)
+452|Durată personalizată în secunde
+453|Grup
+454|Listă
+455|＋ Creează o listă
+456|Numele listei (ex.: Colegi, Fotbal, Teatru)
+457|Numele listei
+458|Adaugă mai întâi prieteni ca să-i poți pune într-o listă.
+459|Anulează
+460|Listă creată.
+461|Creează lista
+462|Introdu un număr de secunde între 1 și {MAX_CUSTOM_SECS}.
+463|Vizibil doar pentru tine.
+464|{audLabel} · număr de persoane: {count}
+465|· {fmtSecs} pe persoană de la deschidere
+466|Publică
+467|Postare efemeră
+468|Timp rămas
+469|{ceil} s
+470|Fotografie efemeră
+471|Dacă închizi, timpul continuă să curgă. O fotografie poate fi mereu fotografiată cu alt dispozitiv.
+472|Timpul a expirat
+473|Timpul tău de vizualizare s-a terminat.
+474|efemer
+475|Mai ai {n} s.
+476|Vei avea {fmtSecs} de la deschidere.
+477|Continuă
+478|Deschide
+479|Opțiuni
+480|↪ Distribuit de
+481|cu acordul lui {name}
+482|Ștergi această postare? Distribuirile autorizate vor dispărea și ele.
+483|Șterge peste tot
+484|Retragi această distribuire? Va dispărea la {name} și la prietenii săi.
+485|Retrage această distribuire
+486|Nu mai distribui?
+487|Oprește distribuirea mea
+488|Mărește postarea
+489|Comentează
+490|Văzut de {length}/{length2}:
+491|↪ {n, plural, one{# distribuire autorizată} few{# distribuiri autorizate} other{# de distribuiri autorizate}}
+492|de tine (vezi „Distribuiri”).
+493|Văzut de
+494|· Public al distribuirii:
+495|↪ Cere o distribuire
+496|Atinge fotografia pentru a reacționa sau a comenta
+497|Atinge fotografia pentru a reacționa
+498|Atinge fotografia pentru a comenta
+499|Postare
+500|Mai multe emoticoane
+501|Mai multe:
+502|Niciun comentariu deocamdată. Fii primul!
+503|Răspunde
+504|Emoticoane
+505|Răspunsul tău…
+506|Scrie un comentariu…
+507|Comentariu
+508|Toți prietenii
+509|Doar eu
+510|Prieteni aleși
+511|Prieteni, în afară de…
+512|Tot
+513|Postările mele
+514|Nimic aici deocamdată. Publică primul tău moment ✨
+515|✏️ Scrie un text
+516|Sfat: ține apăsat butonul și camera se deschide imediat.
+517|Cere o distribuire
+518|Acest conținut aparține lui
+519|. Această persoană decide dacă este de acord. Dacă da, prietenii aleși vor vedea
+520|conținutul original
+521|(nu o copie) cu aceleași durate, iar {name} va putea
+522|retrage distribuirea oricând
+523|: va dispărea atunci pentru toți.
+524|Distribuie cu:
+525|Nu mai ai alt prieten.
+526|Mesaj scurt pentru autor (opțional)
+527|Trimite cererea către {name}
+528|🌍 Limbă
+529|Alege limba NOTIIF. Se schimbă imediat, iar alegerea ta este păstrată.
+530|Limba curentă
+531|Caută o limbă
+532|Limbă
+533|Limbă schimbată.
+534|Nicio limbă găsită.
+535|Deocamdată, documentele juridice există doar în franceză.
+536|Versiunea {LEGAL_VERSION}
+537|Wikipedia
+538|Link
+539|Player {name}
+540|Micșorează
+541|Mărește
+542|Oprește muzica
+543|Link {name}
+544|Micșorează și continuă să asculți
+545|⌄ Micșorează
+546|Deschide separat
+547|Această pagină nu poate fi afișată în interiorul NOTIIF.
+548|Deschide {name}
+549|Deschide linkul {name}
+550|🎧 Ascultă în NOTIIF (doar tu auzi)
+551|▶ Vezi aici, în NOTIIF
+552|Deschide linkul
+553|Camera sau microfonul nu este disponibil sau a fost refuzat.
+554|🎥 Începe
+555|🎤 Începe
+556|(maximum {max} s)
+557|⏹ Termină · {left} s
+558|📸 Fotografie
+559|Ține apăsat butonul ca să vorbești.
+560|Ține apăsat pentru a înregistra un mesaj vocal
+561|🔴 Eliberează pentru a trimite
+562|Cameră
+563|Reia
+564|Trimite ➤
+565|Închide camera
+566|Schimbă camera
+567|s / {max} s
+568|Zoom
+569|Zoom {z}×
+570|{replace}×
+571|Video
+572|Fotografiază
+573|Oprește
+574|Filmează
+575|Atinge pentru a fotografia
+576|Atinge pentru a opri
+577|Atinge pentru a începe filmarea (maximum {max} s)
+578|Ține apăsat microfonul ca să vorbești.
+579|🔴 {mm} · eliberează pentru a termina
+580|Ține apăsat microfonul ca să vorbești (maximum {max} s)
+581|Până îl elimin
+582|Ca originalul
+583|Cât timp rămâne vizibilă distribuirea?
+584|Timp de afișare pe persoană
+585|🔒 Acest conținut nu poate fi publicat în altă parte: are filigran, capturile de ecran sunt blocate (aplicația Android) și orice distribuire nouă cere acordul tău. Îl poți retrage oricând.
+586|Distribuire autorizată. O poți retrage oricând dorești.
+587|Confirmă autorizarea
+588|Autorizează…
+589|Refuză
+590|conținut șters
+591|Nimeni nu poate republica conținutul tău fără acordul tău. Și chiar și după acord,
+592|ai control deplin
+593|: dacă retragi distribuirea sau ștergi postarea, aceasta dispare la toți cei cu care a fost distribuită.
+594|Cereri de tratat ({length})
+595|ar vrea să distribuie
+596|cu: {join} · {ago}
+597|Nicio cerere în așteptare.
+598|Distribuiri pe care le-am autorizat ({length})
+599|a distribuit {nm} cu: {join}
+600|Retragi această distribuire? Va dispărea la toți.
+601|Distribuire retrasă peste tot.
+602|Retrage peste tot
+603|Nicio distribuire activă.
+604|Cererile și distribuirile mele ({length})
+605|de la {nm}
+606|{v1} · cu: {join}
+607|Nu ai cerut distribuirea niciunui conținut.
+608|Cod QR
+609|🌍 Public
+610|Oricine mă poate găsi după nume sau nume de utilizator.
+611|👥 Limitat
+612|Doar după numele meu exact de utilizator sau prin prietenii prietenilor mei.
+613|🔒 Invizibil
+614|Nimeni nu mă găsește. Doar dacă dau codul meu QR sau codul.
+615|Codul meu QR
+616|Deschide sau mărește codul QR
+617|Dă clic pe codul QR pentru a deschide pagina
+618|Atinge codul QR pentru a-l mări
+619|Arată-l unei persoane apropiate: îl scanează cu camera telefonului.
+620|Link copiat
+621|Copierea a eșuat
+622|Copiază linkul meu
+623|Salvează imaginea
+624|Creezi un cod nou? Vechiul cod QR nu va mai funcționa.
+625|Cod nou creat.
+626|Reînnoiește
+627|Cine mă poate găsi?
+628|Setare salvată.
+629|Salvează numele de utilizator
+630|Acest browser nu poate citi coduri QR. Folosește camera telefonului: linkul NOTIIF se deschide singur.
+631|Camera nu este disponibilă sau a fost refuzată.
+632|Scanează un cod QR
+633|Vino lângă mine pe NOTIIF, rețeaua privată a celor dragi (familie, prieteni, colegi, club…), fără reclame. Instalează aplicația aici: {inviteLink} (codul meu: {code})
+634|Contact
+635|Niciun contact cu număr sau e-mail.
+636|Accesul la contacte a fost refuzat sau anulat.
+637|Mesaj copiat: lipește-l unde vrei.
+638|Invită-mi apropiații
+639|📇 Alege din contactele mele
+640|Pe acest telefon sau în acest browser, aplicația nu poate citi contactele tale. Adaugă manual un număr sau un e-mail, sau distribuie linkul.
+641|Număr sau e-mail
+642|Invită-l pe {name}
+643|Trimite invitația:
+644|Vino lângă mine pe NOTIIF
+645|E-mail
+646|🔗 Distribuie linkul de invitație
+647|🔒 Contactele tale nu sunt stocate și nici trimise către NOTIIF: servesc doar pentru a scrie un mesaj de pe telefonul tău. Importul din Google sau Facebook va veni odată cu conectarea la server.
+648|Cereri primite ({length})
+649|{name} este acum prietenul tău.
+650|Acceptă
+651|Codul meu:
+652|Cod copiat
+653|Copiază
+654|Codul unei persoane apropiate (NID-…)
+655|Cod de invitație
+656|Invită
+657|📇 Invită din contactele mele
+658|Mod demo: coduri de încercat
+659|(persoane fictive)
+660|Prietenii mei ({length})
+661|Alege o listă
+662|Toți ({length})
+663|＋ Listă nouă
+664|Opțiuni pentru {name}
+665|Nimeni în această listă.
+666|Niciun prieten deocamdată.
+667|Raportează această persoană
+668|De ce? Trei raportări de la persoane diferite suspendă automat contul pe durata verificării.
+669|Profil fals
+670|Vânzare, publicitate sau solicitare
+671|Escrocherie
+672|Oferte sexuale sau escortă
+673|Conținut ilegal
+674|Hărțuire
+675|Altul
+676|Mulțumim, raportarea a fost înregistrată.
+677|💬 Scrie
+678|Îl elimini pe {name} din prieteni?
+679|Elimină din prieteni
+680|Raportează
+681|Îl blochezi pe {name}? Nu-ți va mai vedea conținutul.
+682|Blocat.
+683|Blochează
+684|Listele mele
+685|Ex.: „Verișori”, „Colegi”… pentru a alege rapid cine îți vede postările.
+686|Persoane blocate
+687|Deblochează
+688|Listă nouă
+689|🔎 Găsește pe cineva (nume sau @nume de utilizator)
+690|Caută
+691|Nimeni găsit. Persoanele „invizibile” sau „limitate” se găsesc doar prin codul lor QR, codul lor sau numele exact de utilizator.
+692|📜 Regulile grupului
+693|Membri ({length})
+694|Îl elimini pe {name} din grup?
+695|Elimină
+696|Părăsești acest grup?
+697|Părăsește grupul
+698|Nou
+699|{n, plural, one{# membru} few{# membri} other{# de membri}}
+700|Creează un grup pentru familie, vacanță, petreceri…
+701|Grup nou
+702|Emoji
+703|Numele grupului
+704|Descriere
+705|Regulile grupului (opțional)
+706|Membri (dintre prietenii tăi)
+707|Grup creat.
+708|Creează grupul
+709|✅ Vin
+710|❌ Nu vin
+711|🤔 Poate
+712|Zile de naștere, prânzuri în familie, vacanță… creează-l pe primul!
+713|· trecut
+714|Ștergi acest eveniment?
+715|Organizat de {name}
+716|👥 Vezi cine vine
+717|✅ Vin
+718|❌ Nu vin
+719|⏳ Fără răspuns
+720|Eveniment nou
+721|Nume (ex.: Ziua bunicii)
+722|Data și ora
+723|Loc
+724|Eveniment creat.
+725|Prietenii mei
+726|Toți
+727|Nimeni
+728|Modifică profilul meu
+729|Schimbă fotografia
+730|Adaugă o fotografie
+731|Elimină fotografia
+732|Nume de utilizator: @{handle}
+733|Deja schimbat o dată: definitiv.
+734|Se poate schimba o singură dată și este cu plată (pentru a limita profilurile false).
+735|Nume de utilizator nou
+736|Schimbă
+737|Cine îmi poate vedea fotografia?
+738|Ceilalți vor vedea apoi inițiala ta în loc de fotografie.
+739|Nume sau nume de utilizator
+740|Stare
+741|Starea ta
+742|Scurta ta biografie
+743|Profil actualizat.
+744|Salvează
+745|Alege ce pot face prietenii tăi cu fotografiile, videoclipurile și textele tale.
+746|Aprecieri și reacții
+747|Dacă este dezactivat, nimeni nu poate reacționa la postările tale și nu se afișează niciun contor.
+748|Comentarii
+749|Dacă este dezactivat, nimeni nu poate comenta postările tale.
+750|{n, plural, one{# postare} few{# postări} other{# de postări}}
+751|{n, plural, one{# prieten} few{# prieteni} other{# de prieteni}}
+752|Membru din {toLocaleDateString}
+753|Modifică profilul meu (fotografie, nume, biografie)
+754|Setări pentru notificări
+755|Setări
+756|Marchează tot ca citit
+757|🌙 Modul Liniște activat: fără alerte, dar lista rămâne aici.
+758|Nimic nou.
+759|Notificările nu conțin niciodată conținutul unei postări efemere.
+760|🎵 Sonerii și vibrații
+761|Sonerie pentru notificări
+762|Sonerie pentru apeluri
+763|Vibrație pentru mesaje
+764|Vibrație pentru apeluri
+765|Otras vibrează mereu la maximum. Atinge o opțiune pentru a o încerca.
+766|🔔 Notificări pe telefon
+767|Primește notificări
+768|Mesaje, cereri de prietenie, distribuiri, evenimente…
+769|Notificări pe telefon
+770|Notificări activate.
+771|Permite notificările în fereastra telefonului.
+772|Notificări refuzate: permite-le din setările telefonului (Aplicații > Cercle > Notificări).
+773|Acest browser nu acceptă notificările. Instalează aplicația (QR Android) sau pictograma de pe ecranul principal.
+774|Notificări refuzate: permite-le din setările telefonului și încearcă din nou.
+775|Ce notificări să primești?
+776|💬 Mesaje
+777|👋 Cereri de prietenie
+778|📰 Postări și povești
+779|🔁 Distribuiri
+780|📅 Evenimente
+781|👥 Grupuri
+782|🖼 Albume
+783|🎮 Jocuri
+784|Notificări: {l}
+785|Test: totul funcționează ✅
+786|Notificarea de test nu poate fi afișată.
+787|Trimite un test
+788|Sincer: deocamdată notificările apar când aplicația este deschisă sau în fundal. Primirea lor cu aplicația închisă cere un server (trimitere la distanță), prevăzut odată cu conturile reale. Apeluri: în curând.
+789|Cele 4 efecte favorite ale mele
+790|Apar primele în conversații. Celelalte rămân sub butonul „+”.
+791|Favorit: {label}
+792|Maximum 4 favorite: dezactivează mai întâi unul.
+793|Păstrează cel puțin un favorit.
+794|Restabilește valorile implicite
+795|Bara de sus
+796|Butonul „Mai multe” (toate meniurile) este mereu sus în dreapta. Adaugă lângă el până la 4 scurtături.
+797|Sus: {l}
+798|Maximum 4 scurtături: dezactivează mai întâi una.
+799|Păstrează cel puțin o scurtătură.
+800|Bara de jos
+801|Alege până la 4 scurtături. Butonul „Creează” rămâne mereu în centru. Celelalte meniuri sunt în butonul „Mai multe” din dreapta sus.
+802|Scurtătură {l}
+803|Balon de mesaje
+804|Un mic balon pe care îl muți unde vrei. Când este afișat, „Mesaje” este înlocuit cu „Grupuri” în bara de jos.
+805|Ecran de pornire
+806|Pagina care se deschide la lansarea NOTIIF.
+807|Temă luminoasă
+808|Fundal deschis, alb și turcoaz.
+809|Temă întunecată
+810|Fundal albastru de noapte și turcoaz, mai blând seara.
+811|Efecte în conversații
+812|Ecrane Otras cu sunet, inimi, zile de naștere: când un prieten trimite unul, îl vei vedea și auzi. Activat implicit.
+813|Ore liniștite
+814|Reduce alertele pe timp de noapte (în modul server).
+815|Redare automată a videoclipurilor
+816|Pentru videoclipuri scurte (în curând).
+817|🔒 Confidențialitate
+818|Fără reclame. Fără vânzare de date.
+819|Niciun buton de distribuire în exterior, niciun profil public.
+820|Nimeni nu te poate găsi fără codul tău de invitație.
+821|Nicio aplicație nu poate împiedica o persoană autorizată să fotografieze ecranul cu alt dispozitiv.
+822|🧪 Mod demo (pe acest dispozitiv)
+823|Deocamdată datele tale rămân pe acest dispozitiv, iar prietenii sunt fictivi. Conturile reale, mesajele între telefoane și apelurile cer un server: vezi ghidul din dosarul „docs” al proiectului.
+824|Deconectează-te
+825|Exportă datele mele
+826|Ștergi de pe acest dispozitiv toate datele tale NOTIIF?
+827|Șterge contul și datele mele
+828|🔁 Schimbă membrul (demo)
+829|Pentru a încerca duratele pe persoană: publică o fotografie pentru 5 s pentru Céline și Thomas, apoi comută între ei.
+830|Acum ești {name}.
+831|Captură de ecran blocată de NOTIIF
+832|Sigla NOTIIF
+833|chiar acum
+834|acum {n} min
+835|acum {n} h
+836|Fețe
+837|Mâini
+838|Inimi
+839|Sărbătoare și natură
+840|Închide emoji
+841|Ștergi {what}?
+842|Această acțiune este ireversibilă.
+843|Păstrează
+844|NOTIIF — Cercul tău. Momentele tale.

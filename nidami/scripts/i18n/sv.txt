@@ -1,0 +1,845 @@
+0|Hem
+1|Vänner
+2|Grupper
+3|Meddelanden
+4|Samtal
+5|Foton
+6|Spel
+7|Evenemang
+8|Delningar
+9|Aviseringar
+10|Profil
+11|Juridik
+12|Inställningar
+13|Ljud- och videosamtal
+14|Samtal kräver en anslutningsserver (WebRTC). De läggs till när NOTIIF-servern är på plats.
+15|Din krets. Dina ögonblick.
+16|Skapa
+17|Min profil
+18|Tillbaka
+19|Alla menyer
+20|Navigering
+21|Skapa: en story eller ett inlägg. Långt tryck för en videoselfie
+22|Mer
+23|Min krets
+24|Media och spel
+25|Mitt konto
+26|NOTIIF-inbjudan
+27|Lägga till {name}?
+28|Skicka förfrågan
+29|Den här koden finns inte på den här enheten. I demoläge delas konton ännu inte mellan enheter: det kommer med servern.
+30|Senare
+31|Vad vill du dela?
+32|✨ En story (försvinner av sig själv)
+33|📝 Ett inlägg
+34|Mina grupper
+35|Kommande
+36|Inga evenemang.
+37|Spela med familjen
+38|Fortsätt med Apple
+39|Fortsätt med Google
+40|Fortsätt med Facebook
+41|Fortsätt med Snapchat
+42|Snapchat kräver ett utvecklaravtal (Snap Kit). Det måste begäras innan det aktiveras.
+43|FranceConnect kräver ett tillstånd från staten (ansökan lämnas på datapass.api.gouv.fr).
+44|Digital identitet La Poste
+45|Digital identitet La Poste kräver ett partnerskap med La Poste.
+46|Servern kan inte nås.
+47|Ett fel uppstod.
+48|Konto skapat.
+49|Konto skapat. Öppna bekräftelsemejlet vi just skickade och kom sedan tillbaka för att logga in.
+50|Inloggad.
+51|Jag
+52|Permanent
+53|📳 Skakning
+54|📳 Skakning!
+55|❤️ Hjärtan
+56|❤️ Hjärtregn!
+57|😘 Pussar
+58|😘 Stora pussar!
+59|❄️ Snö
+60|❄️ Det snöar!
+61|🎆 Fyrverkerier
+62|🎆 Fyrverkerier!
+63|👻 Spöke
+64|👻 Bu!
+65|🔥 Lågor
+66|🔥 Nu blir det hett!
+67|🫧 Bubblor
+68|🫧 Bubblor!
+69|🎂 Fest
+70|🎂 Det är fest!
+71|🌧️ Regn
+72|🌧️ Det regnar!
+73|⛈️ Åska
+74|⛈️ Ett åskslag!
+75|🚀 Raket
+76|🚀 Start!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Skrattanfall
+80|😂 Skrattar ihjäl mig!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bom
+84|💣 Bom!
+85|🎂 Födelsedag
+86|🎂 Grattis på födelsedagen!
+87|🎂 Födelsedag 2
+88|🤭 Rap
+89|🤭 Burp!
+90|💨 Fis
+91|💨 Pruttigt!
+92|🤮 Spya
+93|🤮 Usch!
+94|Kristall
+95|Gryning
+96|Bris
+97|Skimmer
+98|Strand
+99|Cirkel
+100|Morgon
+101|Ingen
+102|Lätt
+103|Medel
+104|Stark
+105|Enhetens minne är fullt: ta bort gamla foton.
+106|Fel.
+107|Användarnamnet kan bara ändras en gång, och det har du redan gjort.
+108|Att byta användarnamn kostar (erbjudandet "Plus"). Betalningen är inte kopplad än: aktivera "Plus (demonstration)" i Inställningar för att prova.
+109|Användarnamn: 3 till 20 tecken, små bokstäver, siffror, punkt eller understreck.
+110|Det här användarnamnet är redan taget.
+111|Användarnamnet har ändrats. Ändringen är slutgiltig.
+112|Välkommen till mitt bo 🪺
+113|Hej! Välkommen! 🌳
+114|Familj
+115|Vem är med på söndag på middagen?
+116|Familjemiddag
+117|Alla tar med sig en liten rätt.
+118|Hos mormor
+119|Ogiltig längd.
+120|Ditt konto granskas efter anmälningar.
+121|Ingen kommer att kunna se det här inlägget: välj andra mottagare.
+122|Ingen kommer att kunna se det här albumet: välj andra mottagare.
+123|Album
+124|{name} har skapat albumet "{slice}" åt dig.
+125|Albumet hittades inte.
+126|{name} har reagerat med {emoji} på ditt inlägg.
+127|{name} har kommenterat ditt inlägg.
+128|Personen hittades inte.
+129|Det är du!
+130|Ditt konto granskas efter anmälningar: du kan inte skicka förfrågningar just nu.
+131|För många förfrågningar i dag (högst 15). Försök igen i morgon.
+132|Det gick inte att skicka förfrågan.
+133|{name} är redan din vän.
+134|Förfrågan har redan skickats.
+135|{name} vill bli din vän.
+136|Förfrågan skickad till {name}.
+137|Okänd kod (i demoläge finns bara kontona på den här enheten).
+138|3 till 20 tecken: bokstäver, siffror, _ eller .
+139|Användarnamnet har sparats.
+140|Hittades inte.
+141|Välj minst en vän (som inte är blockerad av författaren).
+142|Förfrågan väntar redan.
+143|{name} ber om att få dela ditt inlägg.
+144|Förfrågan skickad. Författaren bestämmer.
+145|{name} har avböjt delningen.
+146|{name} har godkänt delningen.
+147|{name} har delat ett innehåll med dig.
+148|{name} har dragit tillbaka delningen: den har försvunnit överallt.
+149|{name} har godkänt din förfrågan.
+150|{name} har lagt till dig i gruppen "{name2}".
+151|{name} kan ha försökt ta en skärmbild av ett av dina innehåll.
+152|{name} bjuder in dig: {title}.
+153|{name} bjuder in dig till en omgång tre-i-rad.
+154|Videon är för stor: högst 3 MB för tillfället (ungefär 10 sekunder).
+155|Video tillagd.
+156|Fel
+157|Foto tillagt.
+158|Välj ett foto eller en video.
+159|Filen går inte att läsa.
+160|Öppna videon
+161|Öppna fotot
+162|Foto
+163|🔒 Privat: bara du
+164|👥 Delad med {n}
+165|👥 Album av {name}
+166|Tillbaka till albumen
+167|Ta bort det här albumet och allt i det, även hos dem som ser det?
+168|Ta bort albumet
+169|Läser in…
+170|Lägg till ett foto eller en video
+171|Tomt album: lägg till ett första foto eller en första video.
+172|Inget i det här albumet ännu.
+173|🔒 Samma regler som överallt: vattenstämpel med ditt namn, skärmbilder blockeras i Android-appen, ingen delning utan författarens godkännande.
+174|Mina videor
+175|Välj videon efteråt.
+176|Foton och videor
+177|📷 Foton
+178|🎬 Videor
+179|🗂 Album
+180|Mina foton
+181|Dina publicerade foton visas här.
+182|Delade med mig (permanenta)
+183|Inget just nu.
+184|Video tillagd (privat, i "Mina videor").
+185|Lägg till en video
+186|Ingen video ännu. Just nu: korta (ungefär 10 sekunder, högst 3 MB). Längre videor kommer med servern.
+187|För att dela en video med vänner, lägg den i ett delat album (fliken Album).
+188|Nytt album
+189|Privat
+190|Delad med {length}
+191|Från {name}
+192|· {count, plural, one{# objekt} other{# objekt}}
+193|Inga album. Skapa ett, privat eller delat med dina vänner.
+194|Namn (t.ex. Semester 2026)
+195|🔒 Privat
+196|👥 Alla mina vänner
+197|✅ Utvalda vänner
+198|Bara du ser det.
+199|{n} vän(ner) kommer att kunna se det. Bara dina vänner ser det, och ingen kan dela vidare utan ditt godkännande.
+200|Skapa albumet
+201|✅ Appen är installerad
+202|Du använder den redan som en riktig app.
+203|📲 Installera appen
+204|Installera på den här enheten
+205|Ladda ner Android-appen
+206|På iPhone och iPad: tryck på
+207|Dela
+208|⬆️ sedan
+209|"Lägg till på hemskärmen"
+210|Öppna webbläsarens meny (⋮) och välj sedan "Installera app" eller "Lägg till på startskärmen".
+211|Din krets.
+212|Dina ögonblick.
+213|Ett privat nätverk för dina nära: familj, vänner, kollegor, lag, teatergrupp eller klubb. Utan reklam, utan främlingar, utan delning utåt.
+214|Dela med vem du vill
+215|Foton, videor och texter, bara för de personer du väljer.
+216|Stories som försvinner
+217|24 timmar, eller några sekunder för ett flyktigt foto.
+218|Meddelanden, röstmeddelanden och effekter
+219|Chatta i grupp eller privat och skicka effekter med ljud.
+220|Gå in i NOTIIF
+221|För att ha NOTIIF som en riktig app i telefonen:
+222|Installera appen
+223|Den här inloggningen aktiveras när servern är ansluten (se guiden).
+224|användarvillkoren och integritetspolicyn
+225|Skapa mitt konto
+226|Logga in
+227|— eller —
+228|Ditt förnamn eller användarnamn
+229|Förnamn
+230|Användarnamn @ (valfritt): kan bara ändras en gång, kostar
+231|Användarnamn
+232|Din e-postadress
+233|Lösenord (minst 8 tecken)
+234|Lösenord
+235|Jag godkänner villkoren
+236|Jag är 15 år eller äldre och godkänner {legalBtn}.
+237|Jag har redan ett konto
+238|Jag har inget konto ännu
+239|Skriv först ditt förnamn eller användarnamn ovan.
+240|Skriv först ditt förnamn eller användarnamn.
+241|Kryssa i rutan "Jag är 15 år eller äldre" för att fortsätta.
+242|Kryssa i rutan för villkoren.
+243|🧪 Demoläge
+244|Riktiga konton (e-post, Google, Apple, Facebook, FranceConnect…) kräver en server, som inte är ansluten än. Under tiden kan du prova appen på den här enheten med fiktiva vänner.
+245|Ditt förnamn eller användarnamn (demo)
+246|Prova demoläget
+247|Just nu kan du prova appen i demoläge, på den här enheten, med fiktiva vänner.
+248|Uppfattat, jag provar demoläget
+249|Juridiska dokument
+250|🔒 Flyktigt meddelande
+251|🎤 Röstmeddelande
+252|📷 Foto
+253|Snabbmeddelanden
+254|Tillbaka till listan
+255|Öppna stort
+256|Stäng
+257|💬 Konversationer
+258|👥 Mina vänner
+259|Skriv ett meddelande
+260|Inga vänner ännu. Lägg till några i fliken Vänner.
+261|Ny konversation
+262|Inga konversationer. Välj en vän i "Mina vänner".
+263|Sett en gång
+264|Flyktigt meddelande
+265|· öppna stort
+266|Emojier
+267|Ditt meddelande…
+268|Snabbmeddelande
+269|Skicka
+270|Skärmbild blockerad: författaren får ett meddelande.
+271|Meddelande sett en gång
+272|🔥 Sett en gång
+273|Stäng (det försvinner)
+274|Foto sett en gång
+275|Innehåll dolt
+276|Skärmbild eller fönsterbyte upptäckt
+277|Det här meddelandet försvinner när du stänger det. Ett foto kan alltid fotograferas med en annan enhet: respektera integriteten.
+278|🔎 Sök i mina konversationer
+279|Inga konversationer: skriv till en vän från "Vänner".
+280|📹 Jag startar ett videosamtal: {url}
+281|Videosamtal startat: länken har skickats i konversationen.
+282|Starta ett videosamtal
+283|📹 Videosamtal
+284|Meddelande
+285|🔥 Meddelande sett och borta
+286|🔥 Meddelande att se bara en gång · tryck för att öppna
+287|(redigerat)
+288|⏱ {left} s
+289|⏱ flyktigt {secs} s efter läsning
+290|🔥 engångsvisning ·
+291|sett ✓
+292|🔒 Flyktigt meddelande · tryck för att läsa ({secs} s)
+293|⌛ Meddelandet har gått ut
+294|· ✓✓ läst
+295|· ✓ skickat
+296|Säg hej 👋
+297|Sändningsalternativ
+298|Stäng alternativen
+299|Meddelandets längd
+300|♾️ Permanent
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Skicka ett foto
+304|🛡 Vattenstämpel
+305|på
+306|borttagen
+307|Effekter
+308|Bilden går inte att läsa.
+309|Alternativ: tid, foto, effekter
+310|Redigera meddelandet…
+311|Hur många sidor har en hexagon?
+312|Vilken är Italiens huvudstad?
+313|Milano
+314|Neapel
+315|Rom
+316|Turin
+317|Vilket djur är snabbast på land?
+318|Lejon
+319|Gepard
+320|Häst
+321|Antilop
+322|Hur många minuter är en och en halv timme?
+323|Vilken planet ligger närmast solen?
+324|Venus
+325|Mars
+326|Jorden
+327|Merkurius
+328|Vilken frukt ger cider?
+329|Päron
+330|Äpple
+331|Druva
+332|Körsbär
+333|Hur många spelare har ett fotbollslag på planen?
+334|Vilken färg får man när man blandar blått och gult?
+335|Grön
+336|Orange
+337|Lila
+338|Brun
+339|Vilket är det största havet?
+340|Atlanten
+341|Indiska oceanen
+342|Norra ishavet
+343|Stilla havet
+344|Hur många dagar har februari under ett skottår?
+345|{nm} (✕) mot {nm2} (◯)
+346|Ruta {v1}
+347|Oavgjort 🤝
+348|🏆 {name} vann!
+349|Det är din tur
+350|Det är {name}s tur (byt medlem i Inställningar för att spela i dennes ställe i demon)
+351|⭕ Tre-i-rad för två
+352|🧠 Quiz
+353|♟️ Schack · snart
+354|🃏 Rummy · snart
+355|Bjud in en vän
+356|Spelet har startat med {name}.
+357|Inga spel. Bjud in en vän ovan.
+358|Bravo! {pts}/{length}
+359|Din totalsumma:
+360|poäng
+361|Spela igen
+362|Fråga {v1}/{length} · Poäng {pts}
+363|Nästa
+364|Avsluta
+365|Ta bort överallt, även hos dem som fått det?
+366|Ta bort
+367|Reagera {e}
+368|🔒 Skyddat foto: vattenstämpel med ditt namn, skärmbilder blockeras i Android-appen, delning bara med författarens godkännande.
+369|Kommer snart
+370|Sakta: en effekt per sekund.
+371|Effekt {label}
+372|Egen effekt {name}
+373|Fler effekter
+374|＋ Mer
+375|Alla effekter
+376|Kryssa i de 4 effekter som ska ligga överst ({length}/4). Tryck på "Skicka" för att prova.
+377|Behåll överst: {label}
+378|Högst 4: avmarkera först en.
+379|Behåll minst en effekt överst.
+380|Mina egna effekter
+381|Ta bort {name}
+382|＋ Skapa min effekt (bild + min röst)
+383|Mikrofonen är otillgänglig eller nekad.
+384|Ge din effekt ett namn.
+385|Lägg till en bild eller ett ljud.
+386|Högst 6 egna effekter.
+387|Effekt tillagd.
+388|Effektens namn (t.ex. Mitt skratt)
+389|Effektens namn
+390|Bild
+391|Spelar in… {left} s (tryck för att avsluta)
+392|Spela in igen
+393|Spela in (högst 3 s)
+394|Ljudet är för stort (högst 450 KB, ungefär 10 sekunder).
+395|📁 Välj en ljudfil
+396|▶ Prova
+397|Lägg till
+398|Story
+399|Sett av:
+400|ingen ännu
+401|Svara privat…
+402|↩️ Svar på din story: {reply}
+403|Svar skickat privat.
+404|Reaktion skickad {e}
+405|Alla mina vänner
+406|En grupp
+407|Valda vänner
+408|Alla utom…
+409|En lista
+410|Bara jag
+411|Välj en bild.
+412|Det går inte att läsa den här bilden.
+413|Story publicerad, utan tidsgräns.
+414|Flyktig story publicerad.
+415|Story publicerad i 24 h.
+416|Publicerat!
+417|✨ Min story
+418|📝 Nytt inlägg
+419|En story försvinner av sig själv (24 h som standard) och ses i helskärm.
+420|Typ av innehåll
+421|✏️ Text
+422|🎥 Videoselfie
+423|🎤 Röst
+424|🔗 Länk
+425|Förhandsvisning
+426|Ta bort fotot
+427|📷 Välj ett foto
+428|🗑 Ta bort
+429|✅ Publicera
+430|🔁 Börja om
+431|🎥 Filma mig själv (högst 10 s)
+432|🎤 Spela in ett röstmeddelande (högst 30 s)
+433|Klistra in en länk: Spotify-, Deezer- eller YouTube-spellista, video, Instagram, TikTok, Leboncoin…
+434|Länk att dela
+435|Den här länken verkar inte vara giltig.
+436|Skriv din story…
+437|Storyns text
+438|Vad är nytt hos dina nära?
+439|Lägg till en bildtext (valfritt)…
+440|Text
+441|Humör
+442|Bakgrund {v1}
+443|Inget humör
+444|Vem kan se det?
+445|Storyns längd
+446|24 timmar
+447|Obegränsad
+448|Flyktig
+449|Visningstid
+450|Annat…
+451|Sekunder (1 till 999)
+452|Egen längd i sekunder
+453|Grupp
+454|Lista
+455|＋ Skapa en lista
+456|Listans namn (t.ex. Kollegor, Fotboll, Teater)
+457|Listans namn
+458|Lägg först till vänner för att lägga dem i en lista.
+459|Avbryt
+460|Listan har skapats.
+461|Skapa listan
+462|Ange mellan 1 och {MAX_CUSTOM_SECS} sekunder.
+463|Synligt bara för dig.
+464|{audLabel} · {count} personer
+465|· {fmtSecs} per person från öppnandet
+466|Publicera
+467|Flyktigt inlägg
+468|Återstående tid
+469|{ceil} s
+470|Flyktigt foto
+471|Om du stänger fortsätter tiden att gå. Ett foto kan alltid fotograferas med en annan enhet.
+472|Utgånget för dig
+473|Din visningstid är slut.
+474|flyktig
+475|Du har {n} s kvar.
+476|Du får {fmtSecs} från öppnandet.
+477|Fortsätt
+478|Öppna
+479|Alternativ
+480|↪ Delat av
+481|med {name}s godkännande
+482|Ta bort det här inlägget? De tillåtna delningarna försvinner också.
+483|Ta bort överallt
+484|Dra tillbaka den här delningen? Den försvinner hos {name} och dennes vänner.
+485|Dra tillbaka den här delningen
+486|Sluta dela?
+487|Avsluta min delning
+488|Förstora inlägget
+489|Kommentera
+490|Sett av {length}/{length2}:
+491|↪ {n, plural, one{# tillåten delning} other{# tillåtna delningar}}
+492|av dig (se "Delningar").
+493|Sett av
+494|· Delningens publik:
+495|↪ Be om att få dela
+496|Tryck på fotot för att reagera eller kommentera
+497|Tryck på fotot för att reagera
+498|Tryck på fotot för att kommentera
+499|Inlägg
+500|Fler smileys
+501|Andra:
+502|Inga kommentarer ännu. Bli först!
+503|Svara
+504|Smileys
+505|Ditt svar…
+506|Skriv en kommentar…
+507|Kommentar
+508|Alla vänner
+509|Bara jag
+510|Valda vänner
+511|Vänner utom…
+512|Allt
+513|Mina inlägg
+514|Inget här ännu. Publicera ditt första ögonblick ✨
+515|✏️ Skriv en text
+516|Tips: håll knappen nedtryckt för att öppna kameran direkt.
+517|Be om att få dela
+518|Det här innehållet tillhör
+519|. Personen bestämmer om hen godkänner. Om hen godkänner ser dina valda vänner
+520|det ursprungliga innehållet
+521|(inte en kopia), med samma tider, och {name} kan
+522|dra tillbaka delningen när som helst
+523|: den försvinner då hos alla.
+524|Dela med:
+525|Du har ingen annan vän.
+526|Ett litet meddelande till författaren (valfritt)
+527|Skicka förfrågan till {name}
+528|🌍 Språk
+529|Välj språk för NOTIIF. Det ändras direkt och ditt val sparas.
+530|Aktuellt språk
+531|Sök efter ett språk
+532|Språk
+533|Språket har ändrats.
+534|Inget språk hittades.
+535|Just nu finns de juridiska dokumenten bara på franska.
+536|Version {LEGAL_VERSION}
+537|Wikipedia
+538|Länk
+539|{name}-spelare
+540|Minimera
+541|Förstora
+542|Stoppa musiken
+543|{name}-länk
+544|Minimera och fortsätt lyssna
+545|⌄ Minimera
+546|Öppna separat
+547|Den här webbplatsen kan inte visas inuti NOTIIF.
+548|Öppna {name}
+549|Öppna {name}-länken
+550|🎧 Lyssna i NOTIIF (bara du hör det)
+551|▶ Titta här, i NOTIIF
+552|Öppna länken
+553|Kamera eller mikrofon är otillgänglig eller nekad.
+554|🎥 Starta
+555|🎤 Starta
+556|(högst {max} s)
+557|⏹ Avsluta · {left} s
+558|📸 Foto
+559|Håll knappen nedtryckt för att tala.
+560|Håll nedtryckt för att spela in ett röstmeddelande
+561|🔴 Släpp för att skicka
+562|Kamera
+563|Börja om
+564|Skicka ➤
+565|Stäng kameran
+566|Byt kamera
+567|s / {max} s
+568|Zoom
+569|Zoom {z} gånger
+570|{replace}×
+571|Video
+572|Ta fotot
+573|Stoppa
+574|Filma
+575|Tryck för att ta fotot
+576|Tryck för att stoppa
+577|Tryck för att filma (högst {max} s)
+578|Håll mikrofonen nedtryckt för att tala.
+579|🔴 {mm} · släpp för att avsluta
+580|Håll mikrofonen nedtryckt för att tala (högst {max} s)
+581|Tills jag tar bort det
+582|Som originalet
+583|Hur länge är delningen synlig?
+584|Visningstid per person
+585|🔒 Det här innehållet kan inte publiceras på nytt någon annanstans: det har en vattenstämpel, skärmbilder är blockerade (Android-appen) och varje ny delning kräver ditt godkännande. Du kan dra tillbaka det när som helst.
+586|Delning tillåten. Du kan dra tillbaka den när du vill.
+587|Bekräfta tillståndet
+588|Tillåt…
+589|Avböj
+590|innehåll borttaget
+591|Ingen kan publicera ditt innehåll på nytt utan ditt godkännande. Och även efter godkännande
+592|behåller du full kontroll
+593|: om du drar tillbaka en delning eller tar bort ditt inlägg försvinner det hos alla som det delats med.
+594|Förfrågningar att hantera ({length})
+595|vill dela
+596|med {join} · {ago}
+597|Inga väntande förfrågningar.
+598|Delningar jag har tillåtit ({length})
+599|delat av {nm} med {join}
+600|Dra tillbaka den här delningen? Den försvinner hos alla.
+601|Delningen har dragits tillbaka överallt.
+602|Dra tillbaka överallt
+603|Inga aktiva delningar.
+604|Mina förfrågningar och mina delningar ({length})
+605|från {nm}
+606|{v1} · med {join}
+607|Du har inte bett om att få dela något.
+608|QR-kod
+609|🌍 Offentlig
+610|Alla kan hitta mig med mitt namn eller användarnamn.
+611|👥 Begränsad
+612|Bara med mitt exakta användarnamn, eller vänners vänner.
+613|🔒 Osynlig
+614|Ingen hittar mig. Bara om jag ger min QR-kod eller min kod.
+615|Min QR-kod
+616|Öppna eller förstora QR-koden
+617|Klicka på QR-koden för att öppna sidan
+618|Tryck på QR-koden för att förstora den
+619|Visa den för en nära: hen skannar den med telefonens kamera.
+620|Länk kopierad
+621|Det gick inte att kopiera
+622|Kopiera min länk
+623|Spara bilden
+624|Skapa en ny kod? Den gamla QR-koden slutar fungera.
+625|Ny kod skapad.
+626|Förnya
+627|Vem kan hitta mig?
+628|Inställningen har sparats.
+629|Spara användarnamnet
+630|Den här webbläsaren kan inte läsa QR-koder. Använd telefonens kamera: den öppnar NOTIIF-länken av sig själv.
+631|Kameran är otillgänglig eller nekad.
+632|Skanna en QR-kod
+633|Följ med mig på NOTIIF, det privata nätverket för våra nära (familj, vänner, kollegor, klubb…), utan reklam. Installera appen här: {inviteLink} (min kod: {code})
+634|Kontakt
+635|Ingen kontakt med nummer eller e-postadress.
+636|Åtkomst till kontakter nekades eller avbröts.
+637|Meddelandet kopierat: klistra in det var du vill.
+638|Bjud in mina nära
+639|📇 Välj bland mina kontakter
+640|På den här telefonen eller webbläsaren kan appen inte läsa dina kontakter. Lägg till ett nummer eller en e-postadress för hand, eller dela länken.
+641|Nummer eller e-postadress
+642|Bjud in {name}
+643|Skicka inbjudan:
+644|Följ med mig på NOTIIF
+645|E-post
+646|🔗 Dela inbjudningslänken
+647|🔒 Dina kontakter sparas inte och skickas inte till NOTIIF: de används bara för att skriva meddelandet på din telefon. Import från Google eller Facebook kommer med serveranslutningen.
+648|Mottagna förfrågningar ({length})
+649|{name} är nu din vän.
+650|Godkänn
+651|Min kod:
+652|Koden kopierad
+653|Kopiera
+654|Kod från en nära (NID-…)
+655|Inbjudningskod
+656|Bjud in
+657|📇 Bjud in från mina kontakter
+658|Demoläge: koder att testa
+659|(fiktiva personer)
+660|Mina vänner ({length})
+661|Välj en lista
+662|Alla ({length})
+663|＋ Ny lista
+664|Alternativ för {name}
+665|Ingen i den här listan.
+666|Inga vänner ännu.
+667|Anmäl den här personen
+668|Varför? Tre anmälningar från olika personer stänger automatiskt av kontot under en granskning.
+669|Falsk profil
+670|Försäljning, reklam eller telefonförsäljning
+671|Bedrägeri
+672|Sexuella förslag eller eskort
+673|Olagligt innehåll
+674|Trakasserier
+675|Annat
+676|Tack, anmälan har registrerats.
+677|💬 Skriv
+678|Ta bort {name} från dina vänner?
+679|Ta bort från vänner
+680|Anmäl
+681|Blockera {name}? Personen ser inte längre ditt innehåll.
+682|Blockerad.
+683|Blockera
+684|Mina listor
+685|T.ex. "Kusiner", "Kollegor"… för att snabbt välja vem som ser dina inlägg.
+686|Blockerade personer
+687|Avblockera
+688|Ny lista
+689|🔎 Hitta någon (namn eller @användarnamn)
+690|Sök
+691|Ingen hittades. "Osynliga" eller "begränsade" personer hittas bara med sin QR-kod, sin kod eller sitt exakta användarnamn.
+692|📜 Gruppens regler
+693|Medlemmar ({length})
+694|Ta bort {name} från gruppen?
+695|Ta bort
+696|Lämna den här gruppen?
+697|Lämna gruppen
+698|Ny
+699|{n, plural, one{# medlem} other{# medlemmar}}
+700|Skapa en grupp för familjen, semestern, festerna…
+701|Ny grupp
+702|Emoji
+703|Gruppens namn
+704|Beskrivning
+705|Gruppens regler (valfritt)
+706|Medlemmar (bland dina vänner)
+707|Gruppen har skapats.
+708|Skapa gruppen
+709|✅ Kommer
+710|❌ Kommer inte
+711|🤔 Kanske
+712|Födelsedagar, familjemiddagar, semester… skapa den första!
+713|· förbi
+714|Ta bort det här evenemanget?
+715|Arrangeras av {name}
+716|👥 Se vem som kommer
+717|✅ Kommer
+718|❌ Kommer inte
+719|⏳ Inget svar
+720|Nytt evenemang
+721|Titel (t.ex. Mormors födelsedag)
+722|Datum och tid
+723|Plats
+724|Evenemanget har skapats.
+725|Mina vänner
+726|Alla
+727|Ingen
+728|Redigera min profil
+729|Byt foto
+730|Lägg till ett foto
+731|Ta bort fotot
+732|Användarnamn: @{handle}
+733|Redan ändrat en gång: slutgiltigt.
+734|Kan bara ändras en gång och kostar (för att begränsa falska profiler).
+735|Nytt användarnamn
+736|Ändra
+737|Vem kan se mitt foto?
+738|De andra ser då din initial i stället för fotot.
+739|Förnamn eller användarnamn
+740|Status
+741|Din status
+742|Din korta bio
+743|Profilen har uppdaterats.
+744|Spara
+745|Välj vad dina vänner kan göra med dina foton, videor och texter.
+746|Gilla och reaktioner
+747|Om det är avstängt kan ingen reagera på dina inlägg och ingen räknare visas.
+748|Kommentarer
+749|Om det är avstängt kan ingen kommentera dina inlägg.
+750|{n, plural, one{# inlägg} other{# inlägg}}
+751|{n, plural, one{# vän} other{# vänner}}
+752|Medlem sedan {toLocaleDateString}
+753|Redigera min profil (foto, namn, bio)
+754|Aviseringsinställningar
+755|Inställningar
+756|Markera allt som läst
+757|🌙 Tyst läge på: inga aviseringar, men listan finns kvar här.
+758|Inget nytt.
+759|Aviseringar innehåller aldrig innehållet i ett flyktigt inlägg.
+760|🎵 Ringsignaler och vibration
+761|Ringsignal för aviseringar
+762|Ringsignal för samtal
+763|Vibration för meddelanden
+764|Vibration för samtal
+765|Skakningen vibrerar alltid på max. Tryck på ett val för att prova det.
+766|🔔 Aviseringar i telefonen
+767|Ta emot aviseringar
+768|Meddelanden, vänförfrågningar, delningar, evenemang…
+769|Aviseringar i telefonen
+770|Aviseringar aktiverade.
+771|Tillåt aviseringar i telefonens ruta.
+772|Aviseringar nekade: tillåt dem i telefonens inställningar (Appar > Cercle > Aviseringar).
+773|Den här webbläsaren hanterar inte aviseringar. Installera appen (Android-QR) eller ikonen på hemskärmen.
+774|Aviseringar nekade: tillåt dem i telefonens inställningar och försök sedan igen.
+775|Vilka aviseringar vill du få?
+776|💬 Meddelanden
+777|👋 Vänförfrågningar
+778|📰 Inlägg och stories
+779|🔁 Delningar
+780|📅 Evenemang
+781|👥 Grupper
+782|🖼 Album
+783|🎮 Spel
+784|Aviseringar: {l}
+785|Test: allt fungerar ✅
+786|Det går inte att visa testaviseringen.
+787|Skicka ett test
+788|Ärligt talat: just nu visas aviseringar när appen är öppen eller i bakgrunden. Att få dem med stängd app kräver servern (fjärrsändning), planerad med riktiga konton. Samtal: snart.
+789|Mina 4 favoriteffekter
+790|De visas först i konversationerna. De andra ligger under knappen "+".
+791|Favorit: {label}
+792|Högst 4 favoriter: stäng först av en.
+793|Behåll minst en favorit.
+794|Återställ standard
+795|Övre fältet
+796|Knappen "Mer" (alla menyer) sitter alltid uppe till höger. Lägg till upp till 4 genvägar bredvid.
+797|Överst: {l}
+798|Högst 4 genvägar: stäng först av en.
+799|Behåll minst en genväg.
+800|Nedre fältet
+801|Välj upp till 4 genvägar. Knappen "Skapa" sitter alltid i mitten. De andra menyerna finns i knappen "Mer" uppe till höger.
+802|Genväg {l}
+803|Meddelandebubbla
+804|En liten bubbla som du flyttar vart du vill. När den visas ersätts "Meddelanden" av "Grupper" i nedre fältet.
+805|Startskärm
+806|Sidan som öppnas när du startar NOTIIF.
+807|Ljust tema
+808|Ljus bakgrund, vitt och turkos.
+809|Mörkt tema
+810|Nattblå och turkos bakgrund, mjukare på kvällen.
+811|Effekter i konversationer
+812|Skärmskakning med ljud, hjärtan, födelsedag: när en vän skickar en ser och hör du den. Aktiverat från start.
+813|Tyst period
+814|Stänger av aviseringar på natten (i serverläge).
+815|Automatisk uppspelning av videor
+816|För korta videor (snart).
+817|🔒 Integritet
+818|Ingen reklam. Ingen försäljning av data.
+819|Ingen delningsknapp utåt, ingen offentlig profil.
+820|Ingen kan hitta dig utan din inbjudningskod.
+821|Ingen app kan hindra en behörig person från att fotografera sin skärm med en annan enhet.
+822|🧪 Demoläge (på den här enheten)
+823|Just nu stannar dina data på den här enheten och vännerna är fiktiva. Riktiga konton, meddelanden mellan telefoner och samtal kräver en server: se guiden i projektets mapp "docs".
+824|Logga ut
+825|Exportera mina data
+826|Ta bort alla dina NOTIIF-data från den här enheten?
+827|Ta bort mitt konto och mina data
+828|🔁 Byt medlem (demo)
+829|För att testa tider per person: publicera ett foto på 5 s för Céline och Thomas och byt sedan mellan dem.
+830|Du är nu {name}.
+831|Skärmbild blockerad av NOTIIF
+832|NOTIIF-logotyp
+833|nyss
+834|{n} min sedan
+835|{n} tim sedan
+836|Ansikten
+837|Händer
+838|Hjärtan
+839|Fest och natur
+840|Stäng emojier
+841|Ta bort {what}?
+842|Den här åtgärden är slutgiltig.
+843|Behåll
+844|NOTIIF — Din krets. Dina ögonblick.

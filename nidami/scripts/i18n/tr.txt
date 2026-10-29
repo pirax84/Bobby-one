@@ -1,0 +1,845 @@
+0|Ana sayfa
+1|Arkadaşlar
+2|Gruplar
+3|Mesajlar
+4|Aramalar
+5|Fotoğraflar
+6|Oyunlar
+7|Etkinlikler
+8|Paylaşımlar
+9|Bildirimler
+10|Profil
+11|Yasal bilgiler
+12|Ayarlar
+13|Sesli ve görüntülü aramalar
+14|Aramalar için bir bağlantı sunucusu (WebRTC) gerekir. NOTIIF sunucusu çalışmaya başlayınca gelecek.
+15|Çevren. Anların.
+16|Oluştur
+17|Profilim
+18|Geri
+19|Tüm menüler
+20|Gezinme
+21|Oluştur: hikâye veya gönderi. Selfie videosu için uzun bas
+22|Daha fazla
+23|Çevrem
+24|Medya ve oyunlar
+25|Hesabım
+26|NOTIIF daveti
+27|{name} eklensin mi?
+28|İstek gönder
+29|Bu kod bu cihazda yok. Demo modunda hesaplar henüz cihazlar arasında paylaşılmıyor: bu sunucuyla gelecek.
+30|Sonra
+31|Ne paylaşmak istersin?
+32|✨ Hikâye (kendiliğinden kaybolur)
+33|📝 Gönderi
+34|Gruplarım
+35|Yaklaşanlar
+36|Etkinlik yok.
+37|Aileyle oyna
+38|Apple ile devam et
+39|Google ile devam et
+40|Facebook ile devam et
+41|Snapchat ile devam et
+42|Snapchat bir geliştirici sözleşmesi (Snap Kit) gerektirir. Etkinleştirmeden önce talep edilmelidir.
+43|FranceConnect devletten izin gerektirir (başvuru datapass.api.gouv.fr üzerinden yapılır).
+44|La Poste dijital kimliği
+45|La Poste dijital kimliği, La Poste ile ortaklık gerektirir.
+46|Sunucuya ulaşılamıyor.
+47|Bir hata oluştu.
+48|Hesap oluşturuldu.
+49|Hesap oluşturuldu. Az önce gönderdiğimiz doğrulama e-postasını aç ve giriş yapmak için geri dön.
+50|Giriş yapıldı.
+51|Ben
+52|Kalıcı
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Kalpler
+56|❤️ Kalp yağmuru!
+57|😘 Öpücükler
+58|😘 Kocaman öpücükler!
+59|❄️ Kar
+60|❄️ Kar yağıyor!
+61|🎆 Havai fişek
+62|🎆 Havai fişek!
+63|👻 Hayalet
+64|👻 Bu!
+65|🔥 Alevler
+66|🔥 Çok sıcak!
+67|🫧 Baloncuklar
+68|🫧 Baloncuklar!
+69|🎂 Parti
+70|🎂 Kutluyoruz!
+71|🌧️ Yağmur
+72|🌧️ Yağmur yağıyor!
+73|⛈️ Fırtına
+74|⛈️ Gök gürlüyor!
+75|🚀 Roket
+76|🚀 Fırlatma!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Kahkaha krizi
+80|😂 Gülmekten ölüyorum!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Doğum günü
+86|🎂 Doğum günün kutlu olsun!
+87|🎂 Doğum günü 2
+88|🤭 Geğirme
+89|🤭 Geğirdi!
+90|💨 Yel
+91|💨 Pfff!
+92|🤮 Kusma
+93|🤮 İğk!
+94|Kristal
+95|Şafak
+96|Esinti
+97|Parıltı
+98|Kıyı
+99|Daire
+100|Sabah
+101|Yok
+102|Zayıf
+103|Orta
+104|Güçlü
+105|Cihaz belleği dolu: eski fotoğrafları sil.
+106|Hata.
+107|Kullanıcı adı yalnızca bir kez değiştirilebilir ve sen bunu zaten yaptın.
+108|Kullanıcı adı değişikliği ücretlidir („Plus” teklifi). Ödeme henüz bağlı değil: denemek için Ayarlar'da „Plus (önizleme)” seçeneğini aç.
+109|Kullanıcı adı: 3 ila 20 karakter, küçük harf, rakam, nokta veya alt çizgi.
+110|Bu kullanıcı adı zaten alınmış.
+111|Kullanıcı adı değiştirildi. Bu değişiklik kesindir.
+112|Yuvama hoş geldin 🪺
+113|Merhaba! Hoş geldin! 🌳
+114|Aile
+115|Pazar günü yemeğe kim geliyor?
+116|Aile yemeği
+117|Herkes küçük bir yemek getirir.
+118|Babaannemde
+119|Geçersiz süre.
+120|Hesabın şikâyetler nedeniyle inceleniyor.
+121|Bu gönderiyi kimse görmeyecek: başka alıcılar seç.
+122|Bu albümü kimse görmeyecek: başka alıcılar seç.
+123|Albüm
+124|{name} senin için „{slice}” albümünü oluşturdu.
+125|Albüm bulunamadı.
+126|{name} gönderine {emoji} ile tepki verdi.
+127|{name} gönderine yorum yaptı.
+128|Kişi bulunamadı.
+129|Bu sensin!
+130|Hesabın şikâyetler nedeniyle inceleniyor: şimdilik istek gönderemezsin.
+131|Bugün çok fazla istek var (en fazla 15). Yarın tekrar dene.
+132|İstek gönderilemiyor.
+133|{name} zaten arkadaşın.
+134|İstek zaten gönderildi.
+135|{name} seninle arkadaş olmak istiyor.
+136|{name} kişisine istek gönderildi.
+137|Bilinmeyen kod (demo modunda yalnızca bu cihazın hesapları vardır).
+138|3 ila 20 karakter: harf, rakam, _ veya .
+139|Kullanıcı adı kaydedildi.
+140|Bulunamadı.
+141|En az bir arkadaş seç (yazarın engellemediği).
+142|Bir istek zaten bekliyor.
+143|{name} gönderini paylaşmak için izin istiyor.
+144|İstek gönderildi. Karar yazarın.
+145|{name} paylaşımı reddetti.
+146|{name} paylaşımı kabul etti.
+147|{name} seninle bir içerik paylaştı.
+148|{name} paylaşımı geri çekti: her yerden kayboldu.
+149|{name} isteğini kabul etti.
+150|{name} seni „{name2}” grubuna ekledi.
+151|{name} içeriklerinden birini yakalamaya çalışmış olabilir.
+152|{name} seni davet ediyor: {title}.
+153|{name} seni bir XOX partisine davet ediyor.
+154|Video çok büyük: şimdilik en fazla 3 MB (yaklaşık 10 saniye).
+155|Video eklendi.
+156|Hata
+157|Fotoğraf eklendi.
+158|Bir fotoğraf veya video seç.
+159|Okunamayan dosya.
+160|Videoyu aç
+161|Fotoğrafı aç
+162|Fotoğraf
+163|🔒 Özel: yalnızca sen
+164|👥 Paylaşılan kişi sayısı: {n}
+165|👥 {name} kişisinin albümü
+166|Albümlere dön
+167|Bu albüm ve içindeki her şey, görenlerde de silinsin mi?
+168|Albümü sil
+169|Yükleniyor…
+170|Fotoğraf veya video ekle
+171|Boş albüm: ilk fotoğrafı veya videoyu ekle.
+172|Bu albümde henüz bir şey yok.
+173|🔒 Her yerde olduğu gibi aynı kurallar: adınla filigran, Android uygulamasında engellenen ekran görüntüleri, yazarın onayı olmadan paylaşım yok.
+174|Videolarım
+175|Videoyu sonra seç.
+176|Fotoğraflar ve videolar
+177|📷 Fotoğraflar
+178|🎬 Videolar
+179|🗂 Albümler
+180|Fotoğraflarım
+181|Yayımladığın fotoğraflar burada görünecek.
+182|Benimle paylaşılan (kalıcı)
+183|Henüz bir şey yok.
+184|Video eklendi (özel, „Videolarım” içinde).
+185|Video ekle
+186|Henüz video yok. Şimdilik kısa (yaklaşık 10 saniye, en fazla 3 MB). Daha uzun videolar sunucuyla gelecek.
+187|Bir videoyu arkadaşlarınla paylaşmak için paylaşılan bir albüme koy (Albümler sekmesi).
+188|Yeni albüm
+189|Özel
+190|Paylaşılan kişi sayısı: {length}
+191|Gönderen: {name}
+192|· {count, plural, one{# öğe} other{# öğe}}
+193|Albüm yok. Bir tane oluştur: özel veya arkadaşlarla paylaşılan.
+194|Ad (ör. Tatil 2026)
+195|🔒 Özel
+196|👥 Tüm arkadaşlarım
+197|✅ Seçili arkadaşlar
+198|Yalnızca sen göreceksin.
+199|Görebilecek arkadaş sayısı: {n}. Yalnızca arkadaşların görür ve onayın olmadan kimse daha ileri paylaşamaz.
+200|Albüm oluştur
+201|✅ Uygulama yüklendi
+202|Zaten gerçek bir uygulama olarak kullanıyorsun.
+203|📲 Uygulamayı yükle
+204|Bu cihaza yükle
+205|Android uygulamasını indir
+206|iPhone ve iPad'de: dokun
+207|Paylaş
+208|⬆️ sonra
+209|„Ana Ekrana Ekle”
+210|Tarayıcı menüsünü (⋮) aç ve „Uygulamayı yükle” veya „Ana ekrana ekle” seçeneğini seç.
+211|Çevren.
+212|Anların.
+213|Sevdiklerinin özel ağı: aile, arkadaşlar, iş arkadaşları, ekip, tiyatro topluluğu veya kulüp. Reklamsız, yabancısız, dışarıya paylaşımsız.
+214|Dilediğinle paylaş
+215|Fotoğraflar, videolar ve metinler yalnızca seçtiğin kişiler için.
+216|Kaybolan hikâyeler
+217|24 saat veya geçici bir fotoğraf için birkaç saniye.
+218|Mesajlar, sesli mesajlar ve efektler
+219|Grupta veya özelden sohbet et, sesli efektler gönder.
+220|NOTIIF'e gir
+221|NOTIIF'i telefonunda gerçek bir uygulama olarak kullanmak için:
+222|Uygulamayı yükle
+223|Bu giriş, sunucu bağlandığında etkinleşir (kılavuza bak).
+224|kullanım koşulları ve gizlilik politikası
+225|Hesabımı oluştur
+226|Giriş yap
+227|— veya —
+228|Adın veya kullanıcı adın
+229|Ad
+230|@ kullanıcı adı (isteğe bağlı): yalnızca bir kez değiştirilebilir, ücretli
+231|Kullanıcı adı
+232|E-postan
+233|Parola (en az 8 karakter)
+234|Parola
+235|Koşulları kabul ediyorum
+236|15 yaşında veya daha büyüğüm ve şu belgeleri kabul ediyorum: {legalBtn}.
+237|Zaten hesabım var
+238|Henüz hesabım yok
+239|Önce yukarıya adını veya kullanıcı adını yaz.
+240|Önce adını veya kullanıcı adını yaz.
+241|Devam etmek için „15 yaşında veya daha büyüğüm” kutusunu işaretle.
+242|Koşullar kutusunu işaretle.
+243|🧪 Demo modu
+244|Gerçek hesaplar (e-posta, Google, Apple, Facebook, FranceConnect…) henüz bağlanmamış bir sunucu gerektirir. Şimdilik uygulamayı bu cihazda hayali arkadaşlarla deneyebilirsin.
+245|Adın veya kullanıcı adın (demo)
+246|Demo modunu dene
+247|Şimdilik uygulamayı bu cihazda demo modunda hayali arkadaşlarla deneyebilirsin.
+248|Anladım, demo modunu deneyeceğim
+249|Yasal belgeler
+250|🔒 Geçici mesaj
+251|🎤 Sesli mesaj
+252|📷 Fotoğraf
+253|Hızlı mesajlar
+254|Listeye dön
+255|Büyük aç
+256|Kapat
+257|💬 Sohbetler
+258|👥 Arkadaşlarım
+259|Mesaj yaz
+260|Henüz arkadaş yok. Arkadaşlar sekmesinden ekle.
+261|Yeni sohbet
+262|Sohbet yok. „Arkadaşlarım” içinden bir arkadaş seç.
+263|Bir kez görüldü
+264|Geçici mesaj
+265|· büyük aç
+266|Emoji
+267|Mesajın…
+268|Hızlı mesaj
+269|Gönder
+270|Ekran görüntüsü engellendi: yazar uyarılacak.
+271|Bir kez görülen mesaj
+272|🔥 Bir kez görüldü
+273|Kapat (kaybolur)
+274|Bir kez görülen fotoğraf
+275|İçerik gizlendi
+276|Ekran görüntüsü veya pencere değişikliği algılandı
+277|Bu mesaj kapatınca kaybolur. Bir fotoğraf her zaman başka bir cihazla çekilebilir: gizliliğe saygı göster.
+278|🔎 Sohbetlerimde ara
+279|Sohbet yok: „Arkadaşlar” bölümünden bir arkadaşına yaz.
+280|📹 Görüntülü arama başlatıyorum: {url}
+281|Görüntülü arama başlatıldı: bağlantı sohbete gönderildi.
+282|Görüntülü arama başlat
+283|📹 Görüntülü arama
+284|Mesaj
+285|🔥 Mesaj görüldü ve kayboldu
+286|🔥 Tek seferlik görüntülenen mesaj · açmak için dokun
+287|(düzenlendi)
+288|⏱ {left} sn
+289|⏱ geçici, okunduktan {secs} sn sonra
+290|🔥 tek görüntüleme ·
+291|görüldü ✓
+292|🔒 Geçici mesaj · okumak için dokun ({secs} sn)
+293|⌛ Mesajın süresi doldu
+294|· ✓✓ okundu
+295|· ✓ gönderildi
+296|Selam ver 👋
+297|Gönderme seçenekleri
+298|Seçenekleri kapat
+299|Mesaj süresi
+300|♾️ Kalıcı
+301|⏱ 10 sn
+302|⏱ 1 dk
+303|📷 Fotoğraf gönder
+304|🛡 Filigran
+305|açık
+306|kaldırıldı
+307|Efektler
+308|Okunamayan görsel.
+309|Seçenekler: süre, fotoğraf, efektler
+310|Mesajı düzenle…
+311|Altıgenin kaç kenarı vardır?
+312|İtalya'nın başkenti neresidir?
+313|Milano
+314|Napoli
+315|Roma
+316|Torino
+317|Karadaki en hızlı hayvan hangisidir?
+318|Aslan
+319|Çita
+320|At
+321|Antilop
+322|Bir buçuk saatte kaç dakika vardır?
+323|Güneş'e en yakın gezegen hangisidir?
+324|Venüs
+325|Mars
+326|Dünya
+327|Merkür
+328|Elma şarabı hangi meyveden yapılır?
+329|Armut
+330|Elma
+331|Üzüm
+332|Kiraz
+333|Bir futbol takımının sahada kaç oyuncusu vardır?
+334|Mavi ile sarıyı karıştırınca hangi renk çıkar?
+335|Yeşil
+336|Turuncu
+337|Mor
+338|Kahverengi
+339|En büyük okyanus hangisidir?
+340|Atlas
+341|Hint
+342|Arktik
+343|Pasifik
+344|Artık yılda şubat kaç gün çeker?
+345|{nm} (✕) karşı {nm2} (◯)
+346|Kare {v1}
+347|Berabere 🤝
+348|🏆 {name} kazandı!
+349|Sıra sende
+350|Sıra {name} kişisinde (demoda onun yerine oynamak için Ayarlar'dan üyeyi değiştir)
+351|⭕ İki kişilik XOX
+352|🧠 Bilgi yarışması
+353|♟️ Satranç · yakında
+354|🃏 Kâğıt oyunu · yakında
+355|Arkadaş davet et
+356|{name} ile oyun başladı.
+357|Oyun yok. Yukarıdan bir arkadaş davet et.
+358|Bravo! {pts}/{length}
+359|Toplamın:
+360|puan
+361|Tekrar oyna
+362|Soru {v1}/{length} · Skor {pts}
+363|Sonraki
+364|Bitir
+365|Her yerden silinsin mi, alanlarda da?
+366|Sil
+367|{e} ile tepki ver
+368|🔒 Korumalı fotoğraf: adınla filigran, Android uygulamasında engellenen ekran görüntüleri, yalnızca yazarın onayıyla paylaşım.
+369|Yakında kullanılabilir
+370|Yavaş: saniyede bir efekt.
+371|{label} efekti
+372|Özel efekt {name}
+373|Daha fazla efekt
+374|＋ Daha fazla
+375|Tüm efektler
+376|Önde kalacak 4 efekti işaretle ({length}/4). „Gönder” ile dene.
+377|Önde kalır: {label}
+378|En fazla 4: önce birinin işaretini kaldır.
+379|En az bir efekti önde bırak.
+380|Özel efektlerim
+381|{name} sil
+382|＋ Kendi efektimi oluştur (görsel + sesim)
+383|Mikrofon kullanılamıyor veya reddedildi.
+384|Efektine bir ad ver.
+385|Bir görsel veya ses ekle.
+386|En fazla 6 özel efekt.
+387|Efekt eklendi.
+388|Efekt adı (ör. Kahkaham)
+389|Efekt adı
+390|Görsel
+391|Kaydediliyor… {left} sn (durdurmak için dokun)
+392|Yeniden kaydet
+393|Kaydet (en fazla 3 sn)
+394|Ses çok büyük (en fazla 450 kB, yaklaşık 10 saniye).
+395|📁 Bir ses dosyası seç
+396|▶ Dene
+397|Ekle
+398|Hikâye
+399|Görenler:
+400|henüz kimse
+401|Özelden yanıtla…
+402|↩️ Hikâyene yanıt: {reply}
+403|Yanıt özelden gönderildi.
+404|Tepki gönderildi {e}
+405|Tüm arkadaşlarım
+406|Grup
+407|Seçili arkadaşlar
+408|Şunlar hariç herkes…
+409|Liste
+410|Yalnızca ben
+411|Bir görsel seç.
+412|Bu görsel okunamıyor.
+413|Hikâye zaman sınırı olmadan yayımlandı.
+414|Geçici hikâye yayımlandı.
+415|Hikâye 24 saatliğine yayımlandı.
+416|Yayımlandı!
+417|✨ Hikâyem
+418|📝 Yeni gönderi
+419|Hikâye kendiliğinden kaybolur (varsayılan olarak 24 saat sonra) ve tam ekran izlenir.
+420|İçerik türü
+421|✏️ Metin
+422|🎥 Selfie videosu
+423|🎤 Ses
+424|🔗 Bağlantı
+425|Önizleme
+426|Fotoğrafı kaldır
+427|📷 Fotoğraf seç
+428|🗑 Sil
+429|✅ Yayımla
+430|🔁 Baştan başla
+431|🎥 Kendini çek (en fazla 10 sn)
+432|🎤 Sesli mesaj kaydet (en fazla 30 sn)
+433|Bir bağlantı yapıştır: Spotify, Deezer veya YouTube çalma listesi, video, Instagram, TikTok, Leboncoin…
+434|Paylaşılacak bağlantı
+435|Bu bağlantı geçerli görünmüyor.
+436|Hikâyeni yaz…
+437|Hikâye metni
+438|Sevdiklerinde ne var ne yok?
+439|Açıklama ekle (isteğe bağlı)…
+440|Metin
+441|Ruh hali
+442|Arka plan {v1}
+443|Ruh hali yok
+444|Kim görebilir?
+445|Hikâye süresi
+446|24 saat
+447|Sınırsız
+448|Geçici
+449|Gösterim süresi
+450|Diğer…
+451|Saniye (1 ila 999)
+452|Saniye cinsinden özel süre
+453|Grup
+454|Liste
+455|＋ Liste oluştur
+456|Liste adı (ör. İş arkadaşları, Futbol, Tiyatro)
+457|Liste adı
+458|Bir listeye koymak için önce arkadaş ekle.
+459|İptal
+460|Liste oluşturuldu.
+461|Listeyi oluştur
+462|1 ile {MAX_CUSTOM_SECS} arasında bir saniye sayısı gir.
+463|Yalnızca sana görünür.
+464|{audLabel} · kişi sayısı: {count}
+465|· açıldığından itibaren kişi başı {fmtSecs}
+466|Yayımla
+467|Geçici gönderi
+468|Kalan süre
+469|{ceil} sn
+470|Geçici fotoğraf
+471|Kapatırsan süre akmaya devam eder. Bir fotoğraf her zaman başka bir cihazla çekilebilir.
+472|Süren doldu
+473|Görüntüleme sürün bitti.
+474|geçici
+475|{n} sn kaldı.
+476|Açıldığından itibaren {fmtSecs} süren olacak.
+477|Devam et
+478|Aç
+479|Seçenekler
+480|↪ Paylaşan
+481|{name} kişisinin onayıyla
+482|Bu gönderi silinsin mi? İzin verilen paylaşımlar da kaybolur.
+483|Her yerden sil
+484|Bu paylaşım geri çekilsin mi? {name} ve arkadaşlarında kaybolur.
+485|Bu paylaşımı geri çek
+486|Paylaşım durdurulsun mu?
+487|Paylaşımımı durdur
+488|Gönderiyi büyüt
+489|Yorum yap
+490|Gören {length}/{length2}:
+491|↪ {n, plural, one{# izinli paylaşım} other{# izinli paylaşım}}
+492|senin tarafından (bkz. „Paylaşımlar”).
+493|Görenler
+494|· Paylaşımın kitlesi:
+495|↪ Paylaşım iste
+496|Tepki vermek veya yorum yapmak için fotoğrafa dokun
+497|Tepki vermek için fotoğrafa dokun
+498|Yorum yapmak için fotoğrafa dokun
+499|Gönderi
+500|Daha fazla ifade
+501|Daha fazla:
+502|Henüz yorum yok. İlk sen ol!
+503|Yanıtla
+504|İfadeler
+505|Yanıtın…
+506|Bir yorum yaz…
+507|Yorum
+508|Tüm arkadaşlar
+509|Yalnızca ben
+510|Seçili arkadaşlar
+511|Şunlar hariç arkadaşlar…
+512|Hepsi
+513|Gönderilerim
+514|Burada henüz bir şey yok. İlk anını yayımla ✨
+515|✏️ Metin yaz
+516|İpucu: düğmeyi basılı tut, kamera hemen açılır.
+517|Paylaşım iste
+518|Bu içerik şu kişiye ait:
+519|. Bu kişi kabul edip etmeyeceğine karar verir. Kabul ederse seçili arkadaşlar
+520|özgün içeriği
+521|(kopyayı değil) aynı sürelerle görecek ve {name}
+522|paylaşımı istediği zaman geri çekebilecek
+523|: o zaman herkeste kaybolur.
+524|Şununla paylaş:
+525|Başka arkadaşın yok.
+526|Yazara kısa mesaj (isteğe bağlı)
+527|{name} kişisine istek gönder
+528|🌍 Dil
+529|NOTIIF dilini seç. Hemen değişir ve seçimin hatırlanır.
+530|Geçerli dil
+531|Dil ara
+532|Dil
+533|Dil değiştirildi.
+534|Dil bulunamadı.
+535|Şimdilik yasal belgeler yalnızca Fransızca olarak bulunuyor.
+536|Sürüm {LEGAL_VERSION}
+537|Vikipedi
+538|Bağlantı
+539|{name} oynatıcısı
+540|Küçült
+541|Büyüt
+542|Müziği durdur
+543|{name} bağlantısı
+544|Küçült ve dinlemeye devam et
+545|⌄ Küçült
+546|Ayrı aç
+547|Bu sayfa NOTIIF içinde gösterilemiyor.
+548|{name} aç
+549|{name} bağlantısını aç
+550|🎧 NOTIIF'te dinle (yalnızca sen duyarsın)
+551|▶ Burada, NOTIIF'te izle
+552|Bağlantıyı aç
+553|Kamera veya mikrofon kullanılamıyor veya reddedildi.
+554|🎥 Başlat
+555|🎤 Başlat
+556|(en fazla {max} sn)
+557|⏹ Bitir · {left} sn
+558|📸 Fotoğraf
+559|Konuşmak için düğmeyi basılı tut.
+560|Sesli mesaj kaydetmek için basılı tut
+561|🔴 Göndermek için bırak
+562|Kamera
+563|Baştan başla
+564|Gönder ➤
+565|Kamerayı kapat
+566|Kamerayı değiştir
+567|sn / {max} sn
+568|Yakınlaştırma
+569|Yakınlaştırma {z}×
+570|{replace}×
+571|Video
+572|Fotoğraf çek
+573|Durdur
+574|Çek
+575|Fotoğraf çekmek için dokun
+576|Durdurmak için dokun
+577|Çekime başlamak için dokun (en fazla {max} sn)
+578|Konuşmak için mikrofonu basılı tut.
+579|🔴 {mm} · bitirmek için bırak
+580|Konuşmak için mikrofonu basılı tut (en fazla {max} sn)
+581|Ben kaldırana kadar
+582|Orijinal gibi
+583|Paylaşım ne kadar süre görünür kalsın?
+584|Kişi başı gösterim süresi
+585|🔒 Bu içerik başka yerde yayımlanamaz: filigranlıdır, ekran görüntüleri engellenmiştir (Android uygulaması) ve her yeni paylaşım senin onayını gerektirir. Dilediğin zaman geri çekebilirsin.
+586|Paylaşıma izin verildi. İstediğin zaman geri çekebilirsin.
+587|İzni onayla
+588|İzin ver…
+589|Reddet
+590|içerik silindi
+591|Onayın olmadan kimse içeriğini yeniden yayımlayamaz. Onay verildikten sonra bile
+592|tam denetim sende
+593|: paylaşımı geri çekersen veya gönderiyi silersen, paylaşıldığı herkeste kaybolur.
+594|İşlenecek istekler ({length})
+595|paylaşmak istiyor
+596|şunlarla: {join} · {ago}
+597|Bekleyen istek yok.
+598|İzin verdiğim paylaşımlar ({length})
+599|{nm} içeriğini şunlarla paylaştı: {join}
+600|Bu paylaşım geri çekilsin mi? Herkeste kaybolur.
+601|Paylaşım her yerden geri çekildi.
+602|Her yerden geri çek
+603|Etkin paylaşım yok.
+604|İsteklerim ve paylaşımlarım ({length})
+605|{nm} tarafından
+606|{v1} · şunlarla: {join}
+607|Hiçbir şeyin paylaşılmasını istemedin.
+608|QR kod
+609|🌍 Herkese açık
+610|Herkes beni ad veya kullanıcı adıyla bulabilir.
+611|👥 Sınırlı
+612|Yalnızca tam kullanıcı adımla veya arkadaşlarımın arkadaşları aracılığıyla.
+613|🔒 Görünmez
+614|Kimse beni bulamaz. Yalnızca QR kodumu veya kodumu verirsem.
+615|QR kodum
+616|QR kodu aç veya büyüt
+617|Sayfayı açmak için QR koda tıkla
+618|Büyütmek için QR koda dokun
+619|Yakınındaki birine göster: telefon kamerasıyla tarar.
+620|Bağlantı kopyalandı
+621|Kopyalama başarısız oldu
+622|Bağlantımı kopyala
+623|Görseli kaydet
+624|Yeni kod oluşturulsun mu? Eski QR kod çalışmayı bırakır.
+625|Yeni kod oluşturuldu.
+626|Yenile
+627|Beni kim bulabilir?
+628|Ayar kaydedildi.
+629|Kullanıcı adını kaydet
+630|Bu tarayıcı QR kodlarını okuyamıyor. Telefon kamerasını kullan: NOTIIF bağlantısı kendiliğinden açılır.
+631|Kamera kullanılamıyor veya reddedildi.
+632|QR kod tara
+633|NOTIIF'te bana katıl, sevdiklerimizin özel ağı (aile, arkadaşlar, iş arkadaşları, kulüp…), reklamsız. Uygulamayı buradan yükle: {inviteLink} (kodum: {code})
+634|Kişi
+635|Numarası veya e-postası olan kişi yok.
+636|Kişilere erişim reddedildi veya iptal edildi.
+637|Mesaj kopyalandı: istediğin yere yapıştır.
+638|Sevdiklerimi davet et
+639|📇 Kişilerimden seç
+640|Bu telefonda veya tarayıcıda uygulama kişilerini okuyamaz. Bir numara veya e-postayı elle ekle ya da bağlantıyı paylaş.
+641|Numara veya e-posta
+642|{name} kişisini davet et
+643|Daveti gönder:
+644|NOTIIF'te bana katıl
+645|E-posta
+646|🔗 Davet bağlantısını paylaş
+647|🔒 Kişilerin saklanmaz ve NOTIIF'e gönderilmez: yalnızca telefonundan mesaj yazmaya yarar. Google veya Facebook'tan içe aktarma sunucu bağlantısıyla gelecek.
+648|Alınan istekler ({length})
+649|{name} artık arkadaşın.
+650|Kabul et
+651|Kodum:
+652|Kod kopyalandı
+653|Kopyala
+654|Yakınındaki birinin kodu (NID-…)
+655|Davet kodu
+656|Davet et
+657|📇 Kişilerimden davet et
+658|Demo modu: denemek için kodlar
+659|(hayali kişiler)
+660|Arkadaşlarım ({length})
+661|Liste seç
+662|Hepsi ({length})
+663|＋ Yeni liste
+664|{name} için seçenekler
+665|Bu listede kimse yok.
+666|Henüz arkadaş yok.
+667|Bu kişiyi şikâyet et
+668|Neden? Farklı kişilerden gelen üç şikâyet, inceleme süresince hesabı otomatik olarak askıya alır.
+669|Sahte profil
+670|Satış, reklam veya rahatsız edici teklif
+671|Dolandırıcılık
+672|Cinsel teklifler veya eskort
+673|Yasa dışı içerik
+674|Taciz
+675|Diğer
+676|Teşekkürler, şikâyet kaydedildi.
+677|💬 Yaz
+678|{name} arkadaşlıktan çıkarılsın mı?
+679|Arkadaşlıktan çıkar
+680|Şikâyet et
+681|{name} engellensin mi? İçeriklerini artık görmez.
+682|Engellendi.
+683|Engelle
+684|Listelerim
+685|Ör. „Kuzenler”, „İş arkadaşları”… gönderilerini kimin göreceğini hızlıca seçmek için.
+686|Engellenen kişiler
+687|Engeli kaldır
+688|Yeni liste
+689|🔎 Birini bul (ad veya @kullanıcı adı)
+690|Ara
+691|Kimse bulunamadı. „Görünmez” veya „sınırlı” kişiler yalnızca QR kodlarıyla, kodlarıyla veya tam kullanıcı adlarıyla bulunabilir.
+692|📜 Grup kuralları
+693|Üyeler ({length})
+694|{name} gruptan çıkarılsın mı?
+695|Çıkar
+696|Bu gruptan ayrılsın mısın?
+697|Gruptan ayrıl
+698|Yeni
+699|{n, plural, one{# üye} other{# üye}}
+700|Aile, tatil, partiler için bir grup oluştur…
+701|Yeni grup
+702|Emoji
+703|Grup adı
+704|Açıklama
+705|Grup kuralları (isteğe bağlı)
+706|Üyeler (arkadaşların arasından)
+707|Grup oluşturuldu.
+708|Grubu oluştur
+709|✅ Geliyorum
+710|❌ Gelmiyorum
+711|🤔 Belki
+712|Doğum günleri, aile yemekleri, tatil… ilkini oluştur!
+713|· gerçekleşti
+714|Bu etkinlik silinsin mi?
+715|Düzenleyen: {name}
+716|👥 Kimlerin geldiğini gör
+717|✅ Gelenler
+718|❌ Gelmeyenler
+719|⏳ Yanıtsız
+720|Yeni etkinlik
+721|Ad (ör. Babaannemin doğum günü)
+722|Tarih ve saat
+723|Yer
+724|Etkinlik oluşturuldu.
+725|Arkadaşlarım
+726|Herkes
+727|Hiç kimse
+728|Profilimi düzenle
+729|Fotoğrafı değiştir
+730|Fotoğraf ekle
+731|Fotoğrafı kaldır
+732|Kullanıcı adı: @{handle}
+733|Bir kez değiştirildi: kesin.
+734|Yalnızca bir kez değiştirilebilir ve ücretlidir (sahte profilleri sınırlamak için).
+735|Yeni kullanıcı adı
+736|Değiştir
+737|Fotoğrafımı kim görebilir?
+738|Diğerleri fotoğraf yerine baş harfini görür.
+739|Ad veya kullanıcı adı
+740|Durum
+741|Durumun
+742|Kısa biyografin
+743|Profil güncellendi.
+744|Kaydet
+745|Arkadaşlarının fotoğraflarınla, videolarınla ve metinlerinle neler yapabileceğini seç.
+746|Beğeniler ve tepkiler
+747|Kapalıysa kimse gönderilerine tepki veremez ve sayaç gösterilmez.
+748|Yorumlar
+749|Kapalıysa kimse gönderilerine yorum yapamaz.
+750|{n, plural, one{# gönderi} other{# gönderi}}
+751|{n, plural, one{# arkadaş} other{# arkadaş}}
+752|Üyelik tarihi: {toLocaleDateString}
+753|Profilimi düzenle (fotoğraf, ad, biyografi)
+754|Bildirim ayarları
+755|Ayarlar
+756|Tümünü okundu say
+757|🌙 Sessiz mod açık: uyarı yok ama liste burada kalır.
+758|Yeni bir şey yok.
+759|Bildirimler asla geçici bir gönderinin içeriğini içermez.
+760|🎵 Zil sesleri ve titreşim
+761|Bildirim zil sesi
+762|Arama zil sesi
+763|Mesaj titreşimi
+764|Arama titreşimi
+765|Otras her zaman en yüksek güçte titreşir. Denemek için bir seçeneğe dokun.
+766|🔔 Telefon bildirimleri
+767|Bildirim al
+768|Mesajlar, arkadaşlık istekleri, paylaşımlar, etkinlikler…
+769|Telefon bildirimleri
+770|Bildirimler açıldı.
+771|Telefonun penceresinde bildirimlere izin ver.
+772|Bildirimler reddedildi: telefon ayarlarından izin ver (Uygulamalar > Cercle > Bildirimler).
+773|Bu tarayıcı bildirimleri desteklemiyor. Uygulamayı (Android QR) veya ana ekran simgesini yükle.
+774|Bildirimler reddedildi: telefon ayarlarından izin ver ve tekrar dene.
+775|Hangi bildirimleri alacaksın?
+776|💬 Mesajlar
+777|👋 Arkadaşlık istekleri
+778|📰 Gönderiler ve hikâyeler
+779|🔁 Paylaşımlar
+780|📅 Etkinlikler
+781|👥 Gruplar
+782|🖼 Albümler
+783|🎮 Oyunlar
+784|Bildirimler: {l}
+785|Test: her şey çalışıyor ✅
+786|Test bildirimi gösterilemiyor.
+787|Test gönder
+788|Dürüst olmak gerekirse: şimdilik bildirimler uygulama açıkken veya arka plandayken görünür. Uygulama kapalıyken alınması bir sunucu (uzaktan gönderim) gerektirir; gerçek hesaplarla birlikte planlanıyor. Aramalar: yakında.
+789|En sevdiğim 4 efekt
+790|Sohbetlerde ilk onlar görünür. Diğerleri „+” düğmesinin altında kalır.
+791|Favori: {label}
+792|En fazla 4 favori: önce birini kapat.
+793|En az bir favori bırak.
+794|Varsayılanlara dön
+795|Üst çubuk
+796|„Daha fazla” düğmesi (tüm menüler) her zaman sağ üsttedir. Yanına en fazla 4 kısayol ekle.
+797|Üst: {l}
+798|En fazla 4 kısayol: önce birini kapat.
+799|En az bir kısayol bırak.
+800|Alt çubuk
+801|En fazla 4 kısayol seç. „Oluştur” düğmesi her zaman ortada kalır. Diğer menüler sağ üstteki „Daha fazla” düğmesindedir.
+802|Kısayol {l}
+803|Mesaj balonu
+804|İstediğin yere taşıyabileceğin küçük bir balon. Gösterildiğinde alt çubukta „Mesajlar” yerine „Gruplar” gelir.
+805|Açılış ekranı
+806|NOTIIF başlatıldığında açılan sayfa.
+807|Açık tema
+808|Açık arka plan, beyaz ve turkuaz.
+809|Koyu tema
+810|Gece mavisi ve turkuaz arka plan, akşamları daha yumuşak.
+811|Sohbetlerde efektler
+812|Sesli Otras ekranları, kalpler, doğum günleri: bir arkadaşın gönderdiğinde görür ve duyarsın. Varsayılan olarak açık.
+813|Sessiz saatler
+814|Geceleri uyarıları kısar (sunucu modunda).
+815|Videoları otomatik oynat
+816|Kısa videolar için (yakında).
+817|🔒 Gizlilik
+818|Reklam yok. Veri satışı yok.
+819|Dışarıya paylaşım düğmesi yok, herkese açık profil yok.
+820|Davet kodun olmadan kimse seni bulamaz.
+821|Hiçbir uygulama, yetkili bir kişinin ekranı başka bir cihazla fotoğraflamasını engelleyemez.
+822|🧪 Demo modu (bu cihazda)
+823|Şimdilik verilerin bu cihazda kalır ve arkadaşlar hayalidir. Gerçek hesaplar, telefonlar arası mesajlar ve aramalar bir sunucu gerektirir: projenin „docs” klasöründeki kılavuza bak.
+824|Çıkış yap
+825|Verilerimi dışa aktar
+826|Tüm NOTIIF verilerin bu cihazdan silinsin mi?
+827|Hesabımı ve verilerimi sil
+828|🔁 Üye değiştir (demo)
+829|Kişi başı süreleri denemek için: Céline ve Thomas için 5 sn'lik bir fotoğraf yayımla, sonra ikisi arasında geçiş yap.
+830|Şimdi sen {name} kişisisin.
+831|Ekran görüntüsü NOTIIF tarafından engellendi
+832|NOTIIF logosu
+833|az önce
+834|{n} dk önce
+835|{n} sa önce
+836|Yüzler
+837|Eller
+838|Kalpler
+839|Kutlama ve doğa
+840|İfadeleri kapat
+841|{what} silinsin mi?
+842|Bu işlem geri alınamaz.
+843|Koru
+844|NOTIIF — Çevren. Anların.

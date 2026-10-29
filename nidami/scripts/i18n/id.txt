@@ -1,0 +1,845 @@
+0|Beranda
+1|Teman
+2|Grup
+3|Pesan
+4|Panggilan
+5|Foto
+6|Permainan
+7|Acara
+8|Berbagi
+9|Notifikasi
+10|Profil
+11|Informasi hukum
+12|Pengaturan
+13|Panggilan audio dan video
+14|Panggilan membutuhkan server koneksi (WebRTC). Fitur ini akan hadir saat server NOTIIF berjalan.
+15|Lingkaranmu. Momen-momenmu.
+16|Buat
+17|Profilku
+18|Kembali
+19|Semua menu
+20|Navigasi
+21|Buat: cerita atau kiriman. Tekan lama untuk video selfie
+22|Lainnya
+23|Lingkaranku
+24|Media dan permainan
+25|Akunku
+26|Undangan ke NOTIIF
+27|Tambahkan {name}?
+28|Kirim permintaan
+29|Kode ini tidak ada di perangkat ini. Dalam mode demo, akun belum dibagikan antarperangkat: itu akan hadir bersama server.
+30|Nanti
+31|Apa yang ingin kamu bagikan?
+32|✨ Cerita (hilang sendiri)
+33|📝 Kiriman
+34|Grupku
+35|Mendatang
+36|Tidak ada acara.
+37|Bermain bersama keluarga
+38|Lanjutkan dengan Apple
+39|Lanjutkan dengan Google
+40|Lanjutkan dengan Facebook
+41|Lanjutkan dengan Snapchat
+42|Snapchat memerlukan kontrak pengembang (Snap Kit). Harus diminta sebelum diaktifkan.
+43|FranceConnect memerlukan izin dari negara (permohonan diajukan di datapass.api.gouv.fr).
+44|Identitas digital La Poste
+45|Identitas digital La Poste memerlukan kemitraan dengan La Poste.
+46|Server tidak tersedia.
+47|Terjadi kesalahan.
+48|Akun dibuat.
+49|Akun dibuat. Buka email konfirmasi yang baru saja kami kirim, lalu kembali untuk masuk.
+50|Berhasil masuk.
+51|Saya
+52|Permanen
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Hati
+56|❤️ Hujan hati!
+57|😘 Ciuman
+58|😘 Ciuman besar!
+59|❄️ Salju
+60|❄️ Salju turun!
+61|🎆 Kembang api
+62|🎆 Kembang api!
+63|👻 Hantu
+64|👻 Bu!
+65|🔥 Api
+66|🔥 Panas sekali!
+67|🫧 Gelembung
+68|🫧 Gelembung!
+69|🎂 Pesta
+70|🎂 Kita rayakan!
+71|🌧️ Hujan
+72|🌧️ Hujan turun!
+73|⛈️ Badai
+74|⛈️ Guntur menggelegar!
+75|🚀 Roket
+76|🚀 Lepas landas!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Tertawa terbahak
+80|😂 Aku mati tertawa!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Ulang tahun
+86|🎂 Selamat ulang tahun!
+87|🎂 Ulang tahun 2
+88|🤭 Sendawa
+89|🤭 Hik!
+90|💨 Kentut
+91|💨 Prrt!
+92|🤮 Muntah
+93|🤮 Hih!
+94|Kristal
+95|Fajar
+96|Semilir
+97|Kilau
+98|Pesisir
+99|Lingkaran
+100|Pagi
+101|Tidak ada
+102|Lemah
+103|Sedang
+104|Kuat
+105|Memori perangkat penuh: hapus foto lama.
+106|Kesalahan.
+107|Nama pengguna hanya bisa diubah sekali, dan kamu sudah melakukannya.
+108|Mengubah nama pengguna berbayar (penawaran „Plus”). Pembayaran belum tersambung: untuk mencoba, aktifkan „Plus (pratinjau)” di Pengaturan.
+109|Nama pengguna: 3 sampai 20 karakter, huruf kecil, angka, titik, atau garis bawah.
+110|Nama pengguna ini sudah dipakai.
+111|Nama pengguna diubah. Perubahan ini bersifat final.
+112|Selamat datang di sarangku 🪺
+113|Hai! Selamat datang! 🌳
+114|Keluarga
+115|Siapa yang datang makan siang hari Minggu?
+116|Makan siang keluarga
+117|Semua membawa sedikit makanan.
+118|Di rumah nenek
+119|Durasi tidak valid.
+120|Akunmu sedang ditinjau karena laporan.
+121|Tidak akan ada yang melihat kiriman ini: pilih penerima lain.
+122|Tidak akan ada yang melihat album ini: pilih penerima lain.
+123|Album
+124|{name} membuat album „{slice}” untukmu.
+125|Album tidak ditemukan.
+126|{name} bereaksi {emoji} pada kirimanmu.
+127|{name} mengomentari kirimanmu.
+128|Orang tidak ditemukan.
+129|Ini kamu!
+130|Akunmu sedang ditinjau karena laporan: kamu belum bisa mengirim permintaan.
+131|Terlalu banyak permintaan hari ini (maksimal 15). Coba lagi besok.
+132|Permintaan tidak dapat dikirim.
+133|{name} sudah menjadi temanmu.
+134|Permintaan sudah dikirim.
+135|{name} meminta pertemanan denganmu.
+136|Permintaan dikirim ke {name}.
+137|Kode tidak dikenal (dalam mode demo hanya ada akun di perangkat ini).
+138|3 sampai 20 karakter: huruf, angka, _ atau .
+139|Nama pengguna disimpan.
+140|Tidak ditemukan.
+141|Pilih minimal satu teman (yang tidak diblokir oleh pembuat).
+142|Sudah ada permintaan yang menunggu.
+143|{name} meminta izin untuk membagikan kirimanmu.
+144|Permintaan dikirim. Pembuat yang memutuskan.
+145|{name} menolak pembagian.
+146|{name} menerima pembagian.
+147|{name} membagikan konten kepadamu.
+148|{name} menarik kembali pembagian: hilang di mana-mana.
+149|{name} menerima permintaanmu.
+150|{name} menambahkanmu ke grup „{name2}”.
+151|{name} mungkin mencoba menangkap salah satu kontenmu.
+152|{name} mengundangmu: {title}.
+153|{name} mengundangmu bermain tic-tac-toe.
+154|Video terlalu besar: untuk sementara maksimal 3 MB (sekitar 10 detik).
+155|Video ditambahkan.
+156|Kesalahan
+157|Foto ditambahkan.
+158|Pilih foto atau video.
+159|File tidak terbaca.
+160|Buka video
+161|Buka foto
+162|Foto
+163|🔒 Pribadi: hanya kamu
+164|👥 Dibagikan kepada: {n}
+165|👥 Album {name}
+166|Kembali ke album
+167|Hapus album ini dan seluruh isinya, termasuk bagi yang melihatnya?
+168|Hapus album
+169|Memuat…
+170|Tambahkan foto atau video
+171|Album kosong: tambahkan foto atau video pertama.
+172|Belum ada apa pun di album ini.
+173|🔒 Aturan yang sama seperti di mana-mana: tanda air dengan namamu, tangkapan layar diblokir di aplikasi Android, tidak ada pembagian tanpa persetujuan pembuat.
+174|Videoku
+175|Pilih videonya setelah itu.
+176|Foto dan video
+177|📷 Foto
+178|🎬 Video
+179|🗂 Album
+180|Fotoku
+181|Foto yang kamu publikasikan akan muncul di sini.
+182|Dibagikan kepadaku (permanen)
+183|Belum ada apa pun.
+184|Video ditambahkan (pribadi, di „Videoku”).
+185|Tambahkan video
+186|Belum ada video. Untuk sementara pendek (sekitar 10 detik, maksimal 3 MB). Video yang lebih panjang akan hadir bersama server.
+187|Untuk membagikan video ke teman, taruh di album bersama (tab Album).
+188|Album baru
+189|Pribadi
+190|Dibagikan kepada: {length}
+191|Dari {name}
+192|· {count, plural, other{# item}}
+193|Belum ada album. Buat satu, pribadi atau dibagikan ke teman.
+194|Nama (mis. Liburan 2026)
+195|🔒 Pribadi
+196|👥 Semua temanku
+197|✅ Teman pilihan
+198|Hanya kamu yang akan melihatnya.
+199|Jumlah teman yang bisa melihatnya: {n}. Hanya temanmu yang melihatnya dan tidak ada yang bisa membagikannya lebih jauh tanpa persetujuanmu.
+200|Buat album
+201|✅ Aplikasi terpasang
+202|Kamu sudah menggunakannya sebagai aplikasi sungguhan.
+203|📲 Pasang aplikasi
+204|Pasang di perangkat ini
+205|Unduh aplikasi Android
+206|Di iPhone dan iPad: ketuk
+207|Bagikan
+208|⬆️ lalu
+209|„Tambah ke Layar Utama”
+210|Buka menu peramban (⋮) dan pilih „Pasang aplikasi” atau „Tambahkan ke layar utama”.
+211|Lingkaranmu.
+212|Momen-momenmu.
+213|Jaringan pribadi orang-orang terdekatmu: keluarga, teman, rekan kerja, tim, kelompok teater, atau klub. Tanpa iklan, tanpa orang asing, tanpa berbagi keluar.
+214|Bagikan dengan siapa pun yang kamu mau
+215|Foto, video, dan teks hanya untuk orang yang kamu pilih.
+216|Cerita yang menghilang
+217|24 jam atau beberapa detik untuk foto sekilas.
+218|Pesan, pesan suara, dan efek
+219|Mengobrol dalam grup atau secara pribadi dan kirim efek dengan suara.
+220|Masuk ke NOTIIF
+221|Agar NOTIIF menjadi aplikasi sungguhan di ponselmu:
+222|Pasang aplikasi
+223|Login ini akan aktif saat server tersambung (lihat panduan).
+224|syarat penggunaan dan kebijakan privasi
+225|Buat akunku
+226|Masuk
+227|— atau —
+228|Nama atau nama penggunamu
+229|Nama
+230|Nama pengguna @ (opsional): hanya bisa diubah sekali, berbayar
+231|Nama pengguna
+232|Emailmu
+233|Kata sandi (minimal 8 karakter)
+234|Kata sandi
+235|Saya menerima syarat
+236|Saya berusia 15 tahun atau lebih dan menerima dokumen: {legalBtn}.
+237|Saya sudah punya akun
+238|Saya belum punya akun
+239|Tulis dulu nama atau nama penggunamu di atas.
+240|Tulis dulu nama atau nama penggunamu.
+241|Centang kotak „Saya berusia 15 tahun atau lebih” untuk melanjutkan.
+242|Centang kotak syarat.
+243|🧪 Mode demo
+244|Akun sungguhan (email, Google, Apple, Facebook, FranceConnect…) memerlukan server yang belum tersambung. Untuk sementara kamu bisa mencoba aplikasi ini di perangkat ini dengan teman fiktif.
+245|Nama atau nama penggunamu (demo)
+246|Coba mode demo
+247|Untuk sementara kamu bisa mencoba aplikasi dalam mode demo di perangkat ini dengan teman fiktif.
+248|Mengerti, saya coba mode demo
+249|Dokumen hukum
+250|🔒 Pesan sekilas
+251|🎤 Pesan suara
+252|📷 Foto
+253|Pesan cepat
+254|Kembali ke daftar
+255|Buka besar
+256|Tutup
+257|💬 Percakapan
+258|👥 Temanku
+259|Tulis pesan
+260|Belum ada teman. Tambahkan dari tab Teman.
+261|Percakapan baru
+262|Belum ada percakapan. Pilih teman di „Temanku”.
+263|Dilihat sekali
+264|Pesan sekilas
+265|· buka besar
+266|Emoji
+267|Pesanmu…
+268|Pesan cepat
+269|Kirim
+270|Tangkapan layar diblokir: pembuat akan diperingatkan.
+271|Pesan dilihat sekali
+272|🔥 Dilihat sekali
+273|Tutup (menghilang)
+274|Foto dilihat sekali
+275|Konten disembunyikan
+276|Tangkapan layar atau pergantian jendela terdeteksi
+277|Pesan ini menghilang saat kamu menutupnya. Foto selalu bisa difoto dengan perangkat lain: hormati privasi.
+278|🔎 Cari di percakapanku
+279|Belum ada percakapan: tulis ke teman dari „Teman”.
+280|📹 Aku memulai panggilan video: {url}
+281|Panggilan video dimulai: tautan dikirim ke percakapan.
+282|Mulai panggilan video
+283|📹 Panggilan video
+284|Pesan
+285|🔥 Pesan sudah dilihat dan menghilang
+286|🔥 Pesan sekali lihat · ketuk untuk membuka
+287|(diedit)
+288|⏱ {left} dtk
+289|⏱ sekilas {secs} dtk setelah dibaca
+290|🔥 sekali lihat ·
+291|dilihat ✓
+292|🔒 Pesan sekilas · ketuk untuk membaca ({secs} dtk)
+293|⌛ Pesan kedaluwarsa
+294|· ✓✓ dibaca
+295|· ✓ terkirim
+296|Sapa 👋
+297|Opsi pengiriman
+298|Tutup opsi
+299|Durasi pesan
+300|♾️ Permanen
+301|⏱ 10 dtk
+302|⏱ 1 mnt
+303|📷 Kirim foto
+304|🛡 Tanda air
+305|aktif
+306|dihapus
+307|Efek
+308|Gambar tidak terbaca.
+309|Opsi: durasi, foto, efek
+310|Edit pesan…
+311|Berapa sisi yang dimiliki segi enam?
+312|Apa ibu kota Italia?
+313|Milan
+314|Napoli
+315|Roma
+316|Turin
+317|Hewan darat tercepat adalah?
+318|Singa
+319|Citah
+320|Kuda
+321|Antelop
+322|Berapa menit dalam satu setengah jam?
+323|Planet manakah yang paling dekat dengan Matahari?
+324|Venus
+325|Mars
+326|Bumi
+327|Merkurius
+328|Sari apel dibuat dari buah apa?
+329|Pir
+330|Apel
+331|Anggur
+332|Ceri
+333|Berapa pemain tim sepak bola di lapangan?
+334|Warna apa yang dihasilkan dari campuran biru dan kuning?
+335|Hijau
+336|Oranye
+337|Ungu
+338|Cokelat
+339|Samudra manakah yang terbesar?
+340|Atlantik
+341|Hindia
+342|Arktik
+343|Pasifik
+344|Berapa hari dalam bulan Februari pada tahun kabisat?
+345|{nm} (✕) melawan {nm2} (◯)
+346|Kotak {v1}
+347|Seri 🤝
+348|🏆 {name} menang!
+349|Giliranmu
+350|Giliran {name} (di Pengaturan, ganti anggota untuk bermain menggantikannya dalam demo)
+351|⭕ Tic-tac-toe berdua
+352|🧠 Kuis
+353|♟️ Catur · segera hadir
+354|🃏 Kartu · segera hadir
+355|Undang teman
+356|Permainan dimulai dengan {name}.
+357|Belum ada permainan. Undang teman di atas.
+358|Bravo! {pts}/{length}
+359|Totalmu:
+360|poin
+361|Main lagi
+362|Pertanyaan {v1}/{length} · Skor {pts}
+363|Berikutnya
+364|Selesai
+365|Hapus di mana-mana, termasuk bagi yang menerimanya?
+366|Hapus
+367|Bereaksi {e}
+368|🔒 Foto terlindungi: tanda air dengan namamu, tangkapan layar diblokir di aplikasi Android, berbagi hanya dengan persetujuan pembuat.
+369|Segera tersedia
+370|Pelan: satu efek per detik.
+371|Efek {label}
+372|Efek kustom {name}
+373|Efek lainnya
+374|＋ Lainnya
+375|Semua efek
+376|Centang 4 efek yang tetap di depan ({length}/4). Coba dengan „Kirim”.
+377|Tetap di depan: {label}
+378|Maksimal 4: hapus centang satu dulu.
+379|Sisakan minimal satu efek di depan.
+380|Efek kustomku
+381|Hapus {name}
+382|＋ Buat efekku sendiri (gambar + suaraku)
+383|Mikrofon tidak tersedia atau ditolak.
+384|Beri nama efekmu.
+385|Tambahkan gambar atau suara.
+386|Maksimal 6 efek kustom.
+387|Efek ditambahkan.
+388|Nama efek (mis. Tawaku)
+389|Nama efek
+390|Gambar
+391|Merekam… {left} dtk (ketuk untuk berhenti)
+392|Rekam ulang
+393|Rekam (maksimal 3 dtk)
+394|Suara terlalu besar (maksimal 450 kB, sekitar 10 detik).
+395|📁 Pilih file audio
+396|▶ Coba
+397|Tambah
+398|Cerita
+399|Dilihat oleh:
+400|belum ada
+401|Balas secara pribadi…
+402|↩️ Balasan untuk ceritamu: {reply}
+403|Balasan terkirim secara pribadi.
+404|Reaksi terkirim {e}
+405|Semua temanku
+406|Grup
+407|Teman pilihan
+408|Semua kecuali…
+409|Daftar
+410|Hanya aku
+411|Pilih gambar.
+412|Gambar ini tidak dapat dibaca.
+413|Cerita dipublikasikan tanpa batas waktu.
+414|Cerita sekilas dipublikasikan.
+415|Cerita dipublikasikan selama 24 jam.
+416|Dipublikasikan!
+417|✨ Ceritaku
+418|📝 Kiriman baru
+419|Cerita menghilang sendiri (secara default setelah 24 jam) dan dilihat dalam layar penuh.
+420|Jenis konten
+421|✏️ Teks
+422|🎥 Video selfie
+423|🎤 Suara
+424|🔗 Tautan
+425|Pratinjau
+426|Hapus foto
+427|📷 Pilih foto
+428|🗑 Hapus
+429|✅ Publikasikan
+430|🔁 Mulai ulang
+431|🎥 Rekam dirimu (maksimal 10 dtk)
+432|🎤 Rekam pesan suara (maksimal 30 dtk)
+433|Tempel tautan: playlist Spotify, Deezer atau YouTube, video, Instagram, TikTok, Leboncoin…
+434|Tautan untuk dibagikan
+435|Tautan ini tampaknya tidak valid.
+436|Tulis ceritamu…
+437|Teks cerita
+438|Apa kabar orang-orang terdekatmu?
+439|Tambahkan keterangan (opsional)…
+440|Teks
+441|Suasana hati
+442|Latar belakang {v1}
+443|Tanpa suasana hati
+444|Siapa yang bisa melihat?
+445|Durasi cerita
+446|24 jam
+447|Tak terbatas
+448|Sekilas
+449|Waktu tampil
+450|Lainnya…
+451|Detik (1 sampai 999)
+452|Durasi kustom dalam detik
+453|Grup
+454|Daftar
+455|＋ Buat daftar
+456|Nama daftar (mis. Rekan kerja, Sepak bola, Teater)
+457|Nama daftar
+458|Tambahkan teman dulu agar bisa memasukkannya ke daftar.
+459|Batal
+460|Daftar dibuat.
+461|Buat daftar
+462|Masukkan jumlah detik antara 1 dan {MAX_CUSTOM_SECS}.
+463|Hanya terlihat olehmu.
+464|{audLabel} · jumlah orang: {count}
+465|· {fmtSecs} per orang sejak dibuka
+466|Publikasikan
+467|Kiriman sekilas
+468|Waktu tersisa
+469|{ceil} dtk
+470|Foto sekilas
+471|Jika kamu menutup, waktu tetap berjalan. Foto selalu bisa difoto dengan perangkat lain.
+472|Waktumu habis
+473|Waktu melihatmu sudah berakhir.
+474|sekilas
+475|Tersisa {n} dtk untukmu.
+476|Kamu akan punya {fmtSecs} sejak dibuka.
+477|Lanjutkan
+478|Buka
+479|Opsi
+480|↪ Dibagikan oleh
+481|dengan persetujuan {name}
+482|Hapus kiriman ini? Pembagian yang diizinkan juga akan hilang.
+483|Hapus di mana-mana
+484|Tarik pembagian ini? Akan hilang dari {name} dan teman-temannya.
+485|Tarik pembagian ini
+486|Berhenti membagikan?
+487|Hentikan pembagianku
+488|Perbesar kiriman
+489|Komentari
+490|Dilihat {length}/{length2}:
+491|↪ {n, plural, other{# pembagian yang diizinkan}}
+492|olehmu (lihat „Berbagi”).
+493|Dilihat oleh
+494|· Audiens pembagian:
+495|↪ Minta pembagian
+496|Ketuk foto untuk bereaksi atau berkomentar
+497|Ketuk foto untuk bereaksi
+498|Ketuk foto untuk berkomentar
+499|Kiriman
+500|Emotikon lainnya
+501|Lainnya:
+502|Belum ada komentar. Jadilah yang pertama!
+503|Balas
+504|Emotikon
+505|Balasanmu…
+506|Tulis komentar…
+507|Komentar
+508|Semua teman
+509|Hanya aku
+510|Teman pilihan
+511|Teman kecuali…
+512|Semua
+513|Kirimanku
+514|Belum ada apa pun di sini. Publikasikan momen pertamamu ✨
+515|✏️ Tulis teks
+516|Tips: tahan tombol dan kamera langsung terbuka.
+517|Minta pembagian
+518|Konten ini milik
+519|. Orang ini yang memutuskan apakah setuju. Jika setuju, teman pilihan akan melihat
+520|konten aslinya
+521|(bukan salinan) dengan durasi yang sama, dan {name} dapat
+522|menarik pembagian kapan saja
+523|: lalu hilang bagi semua orang.
+524|Bagikan kepada:
+525|Kamu tidak punya teman lain.
+526|Pesan singkat untuk pembuat (opsional)
+527|Kirim permintaan ke {name}
+528|🌍 Bahasa
+529|Pilih bahasa NOTIIF. Berubah seketika dan pilihanmu diingat.
+530|Bahasa saat ini
+531|Cari bahasa
+532|Bahasa
+533|Bahasa diubah.
+534|Tidak ada bahasa yang ditemukan.
+535|Untuk saat ini dokumen hukum hanya tersedia dalam bahasa Prancis.
+536|Versi {LEGAL_VERSION}
+537|Wikipedia
+538|Tautan
+539|Pemutar {name}
+540|Perkecil
+541|Perbesar
+542|Hentikan musik
+543|Tautan {name}
+544|Perkecil dan lanjut mendengarkan
+545|⌄ Perkecil
+546|Buka terpisah
+547|Halaman ini tidak dapat ditampilkan di dalam NOTIIF.
+548|Buka {name}
+549|Buka tautan {name}
+550|🎧 Dengarkan di NOTIIF (hanya kamu yang mendengar)
+551|▶ Tonton di sini, di NOTIIF
+552|Buka tautan
+553|Kamera atau mikrofon tidak tersedia atau ditolak.
+554|🎥 Mulai
+555|🎤 Mulai
+556|(maksimal {max} dtk)
+557|⏹ Selesai · {left} dtk
+558|📸 Foto
+559|Tahan tombol untuk berbicara.
+560|Tahan untuk merekam pesan suara
+561|🔴 Lepas untuk mengirim
+562|Kamera
+563|Mulai ulang
+564|Kirim ➤
+565|Tutup kamera
+566|Ganti kamera
+567|dtk / {max} dtk
+568|Zoom
+569|Zoom {z}×
+570|{replace}×
+571|Video
+572|Ambil foto
+573|Berhenti
+574|Rekam
+575|Ketuk untuk mengambil foto
+576|Ketuk untuk berhenti
+577|Ketuk untuk mulai merekam (maksimal {max} dtk)
+578|Tahan mikrofon untuk berbicara.
+579|🔴 {mm} · lepas untuk selesai
+580|Tahan mikrofon untuk berbicara (maksimal {max} dtk)
+581|Sampai saya hapus
+582|Seperti aslinya
+583|Berapa lama pembagian tetap terlihat?
+584|Waktu tampil per orang
+585|🔒 Konten ini tidak dapat dipublikasikan di tempat lain: ada tanda airnya, tangkapan layar diblokir (aplikasi Android), dan setiap pembagian baru memerlukan persetujuanmu. Kamu bisa menariknya kapan saja.
+586|Pembagian diizinkan. Kamu bisa menariknya kapan pun.
+587|Konfirmasi izin
+588|Izinkan…
+589|Tolak
+590|konten dihapus
+591|Tidak ada yang bisa mempublikasikan ulang kontenmu tanpa persetujuanmu. Dan bahkan setelah disetujui,
+592|kamu memegang kendali penuh
+593|: jika kamu menarik pembagian atau menghapus kiriman, kiriman itu hilang bagi semua orang yang menerimanya.
+594|Permintaan yang perlu ditangani ({length})
+595|ingin membagikan
+596|kepada: {join} · {ago}
+597|Tidak ada permintaan yang menunggu.
+598|Pembagian yang kuizinkan ({length})
+599|membagikan {nm} kepada: {join}
+600|Tarik pembagian ini? Akan hilang bagi semua orang.
+601|Pembagian ditarik di mana-mana.
+602|Tarik di mana-mana
+603|Tidak ada pembagian aktif.
+604|Permintaan dan pembagianku ({length})
+605|dari {nm}
+606|{v1} · kepada: {join}
+607|Kamu belum meminta untuk membagikan apa pun.
+608|Kode QR
+609|🌍 Publik
+610|Siapa pun bisa menemukanku lewat nama atau nama pengguna.
+611|👥 Terbatas
+612|Hanya lewat nama penggunaku yang persis atau lewat teman dari temanku.
+613|🔒 Tak terlihat
+614|Tidak ada yang bisa menemukanku. Hanya jika aku memberikan kode QR atau kodeku.
+615|Kode QR-ku
+616|Buka atau perbesar kode QR
+617|Klik kode QR untuk membuka halaman
+618|Ketuk kode QR untuk memperbesarnya
+619|Tunjukkan ke orang terdekat: dia memindainya dengan kamera ponsel.
+620|Tautan disalin
+621|Gagal menyalin
+622|Salin tautanku
+623|Simpan gambar
+624|Buat kode baru? Kode QR lama akan berhenti berfungsi.
+625|Kode baru dibuat.
+626|Perbarui
+627|Siapa yang bisa menemukanku?
+628|Pengaturan disimpan.
+629|Simpan nama pengguna
+630|Peramban ini tidak bisa membaca kode QR. Gunakan kamera ponsel: tautan NOTIIF terbuka sendiri.
+631|Kamera tidak tersedia atau ditolak.
+632|Pindai kode QR
+633|Bergabunglah denganku di NOTIIF, jaringan pribadi orang-orang terdekat kita (keluarga, teman, rekan kerja, klub…), tanpa iklan. Pasang aplikasinya di sini: {inviteLink} (kodeku: {code})
+634|Kontak
+635|Tidak ada kontak dengan nomor atau email.
+636|Akses kontak ditolak atau dibatalkan.
+637|Pesan disalin: tempel di mana pun kamu mau.
+638|Undang orang-orang terdekatku
+639|📇 Pilih dari kontakku
+640|Di ponsel atau peramban ini, aplikasi tidak bisa membaca kontakmu. Tambahkan nomor atau email secara manual atau bagikan tautan.
+641|Nomor atau email
+642|Undang {name}
+643|Kirim undangan:
+644|Bergabunglah denganku di NOTIIF
+645|Email
+646|🔗 Bagikan tautan undangan
+647|🔒 Kontakmu tidak disimpan dan tidak dikirim ke NOTIIF: hanya dipakai untuk menulis pesan dari ponselmu. Impor dari Google atau Facebook akan hadir bersama sambungan server.
+648|Permintaan diterima ({length})
+649|{name} kini menjadi temanmu.
+650|Terima
+651|Kodeku:
+652|Kode disalin
+653|Salin
+654|Kode orang terdekat (NID-…)
+655|Kode undangan
+656|Undang
+657|📇 Undang dari kontakku
+658|Mode demo: kode untuk dicoba
+659|(orang fiktif)
+660|Temanku ({length})
+661|Pilih daftar
+662|Semua ({length})
+663|＋ Daftar baru
+664|Opsi untuk {name}
+665|Tidak ada siapa pun di daftar ini.
+666|Belum ada teman.
+667|Laporkan orang ini
+668|Mengapa? Tiga laporan dari orang berbeda secara otomatis menangguhkan akun selama peninjauan.
+669|Profil palsu
+670|Penjualan, iklan, atau penawaran
+671|Penipuan
+672|Penawaran seksual atau eskort
+673|Konten ilegal
+674|Pelecehan
+675|Lainnya
+676|Terima kasih, laporan tercatat.
+677|💬 Tulis
+678|Hapus {name} dari teman?
+679|Hapus dari teman
+680|Laporkan
+681|Blokir {name}? Dia tidak akan melihat kontenmu lagi.
+682|Diblokir.
+683|Blokir
+684|Daftarku
+685|Mis. „Sepupu”, „Rekan kerja”… untuk memilih cepat siapa yang melihat kirimanmu.
+686|Orang yang diblokir
+687|Buka blokir
+688|Daftar baru
+689|🔎 Cari seseorang (nama atau @nama pengguna)
+690|Cari
+691|Tidak ada yang ditemukan. Orang „tak terlihat” atau „terbatas” hanya bisa ditemukan lewat kode QR, kode, atau nama pengguna persisnya.
+692|📜 Aturan grup
+693|Anggota ({length})
+694|Keluarkan {name} dari grup?
+695|Keluarkan
+696|Tinggalkan grup ini?
+697|Tinggalkan grup
+698|Baru
+699|{n, plural, other{# anggota}}
+700|Buat grup untuk keluarga, liburan, pesta…
+701|Grup baru
+702|Emoji
+703|Nama grup
+704|Deskripsi
+705|Aturan grup (opsional)
+706|Anggota (dari antara temanmu)
+707|Grup dibuat.
+708|Buat grup
+709|✅ Datang
+710|❌ Tidak datang
+711|🤔 Mungkin
+712|Ulang tahun, makan siang keluarga, liburan… buat yang pertama!
+713|· sudah berlalu
+714|Hapus acara ini?
+715|Diselenggarakan oleh {name}
+716|👥 Lihat siapa yang datang
+717|✅ Datang
+718|❌ Tidak datang
+719|⏳ Belum menjawab
+720|Acara baru
+721|Nama (mis. Ulang tahun nenek)
+722|Tanggal dan jam
+723|Tempat
+724|Acara dibuat.
+725|Temanku
+726|Semua
+727|Tidak ada
+728|Edit profilku
+729|Ganti foto
+730|Tambahkan foto
+731|Hapus foto
+732|Nama pengguna: @{handle}
+733|Sudah pernah diubah sekali: final.
+734|Hanya bisa diubah sekali dan berbayar (untuk membatasi profil palsu).
+735|Nama pengguna baru
+736|Ubah
+737|Siapa yang bisa melihat fotoku?
+738|Orang lain lalu melihat inisialmu sebagai ganti foto.
+739|Nama atau nama pengguna
+740|Status
+741|Statusmu
+742|Bio singkatmu
+743|Profil diperbarui.
+744|Simpan
+745|Pilih apa yang bisa dilakukan temanmu dengan fotomu, videomu, dan teksmu.
+746|Suka dan reaksi
+747|Jika dimatikan, tidak ada yang bisa bereaksi pada kirimanmu dan tidak ada penghitung yang ditampilkan.
+748|Komentar
+749|Jika dimatikan, tidak ada yang bisa mengomentari kirimanmu.
+750|{n, plural, other{# kiriman}}
+751|{n, plural, other{# teman}}
+752|Anggota sejak {toLocaleDateString}
+753|Edit profilku (foto, nama, bio)
+754|Pengaturan notifikasi
+755|Pengaturan
+756|Tandai semua sudah dibaca
+757|🌙 Mode senyap aktif: tanpa peringatan, tetapi daftar tetap di sini.
+758|Tidak ada yang baru.
+759|Notifikasi tidak pernah memuat isi kiriman sekilas.
+760|🎵 Nada dering dan getar
+761|Nada dering notifikasi
+762|Nada dering panggilan
+763|Getar pesan
+764|Getar panggilan
+765|Otras selalu bergetar maksimal. Ketuk sebuah opsi untuk mencobanya.
+766|🔔 Notifikasi ponsel
+767|Terima notifikasi
+768|Pesan, permintaan pertemanan, pembagian, acara…
+769|Notifikasi ponsel
+770|Notifikasi diaktifkan.
+771|Izinkan notifikasi di jendela ponsel.
+772|Notifikasi ditolak: izinkan di pengaturan ponsel (Aplikasi > Cercle > Notifikasi).
+773|Peramban ini tidak mendukung notifikasi. Pasang aplikasi (QR Android) atau ikon layar utama.
+774|Notifikasi ditolak: izinkan di pengaturan ponsel lalu coba lagi.
+775|Notifikasi mana yang ingin diterima?
+776|💬 Pesan
+777|👋 Permintaan pertemanan
+778|📰 Kiriman dan cerita
+779|🔁 Berbagi
+780|📅 Acara
+781|👥 Grup
+782|🖼 Album
+783|🎮 Permainan
+784|Notifikasi: {l}
+785|Tes: semuanya berfungsi ✅
+786|Notifikasi tes tidak dapat ditampilkan.
+787|Kirim tes
+788|Jujur saja: untuk saat ini notifikasi muncul saat aplikasi terbuka atau berjalan di latar belakang. Menerimanya saat aplikasi tertutup memerlukan server (pengiriman jarak jauh), yang direncanakan bersama akun sungguhan. Panggilan: segera hadir.
+789|4 efek favoritku
+790|Tampil lebih dulu di percakapan. Sisanya tetap di bawah tombol „+”.
+791|Favorit: {label}
+792|Maksimal 4 favorit: matikan satu dulu.
+793|Sisakan minimal satu favorit.
+794|Kembalikan default
+795|Bilah atas
+796|Tombol „Lainnya” (semua menu) selalu di kanan atas. Tambahkan hingga 4 pintasan di sebelahnya.
+797|Atas: {l}
+798|Maksimal 4 pintasan: matikan satu dulu.
+799|Sisakan minimal satu pintasan.
+800|Bilah bawah
+801|Pilih hingga 4 pintasan. Tombol „Buat” selalu di tengah. Menu lainnya ada di tombol „Lainnya” di kanan atas.
+802|Pintasan {l}
+803|Gelembung pesan
+804|Gelembung kecil yang bisa kamu geser ke mana saja. Saat ditampilkan, „Pesan” di bilah bawah diganti „Grup”.
+805|Layar awal
+806|Halaman yang terbuka saat NOTIIF dijalankan.
+807|Tema terang
+808|Latar terang, putih dan toska.
+809|Tema gelap
+810|Latar biru malam dan toska, lebih lembut di malam hari.
+811|Efek di percakapan
+812|Layar Otras dengan suara, hati, ulang tahun: saat teman mengirimnya, kamu akan melihat dan mendengarnya. Aktif secara default.
+813|Jam tenang
+814|Meredam peringatan di malam hari (dalam mode server).
+815|Putar video otomatis
+816|Untuk video pendek (segera hadir).
+817|🔒 Privasi
+818|Tanpa iklan. Tanpa menjual data.
+819|Tidak ada tombol berbagi keluar, tidak ada profil publik.
+820|Tidak ada yang bisa menemukanmu tanpa kode undanganmu.
+821|Tidak ada aplikasi yang bisa mencegah orang yang berwenang memotret layar dengan perangkat lain.
+822|🧪 Mode demo (di perangkat ini)
+823|Untuk saat ini datamu tetap di perangkat ini dan teman-temannya fiktif. Akun sungguhan, pesan antarponsel, dan panggilan memerlukan server: lihat panduan di folder „docs” proyek.
+824|Keluar
+825|Ekspor dataku
+826|Hapus semua data NOTIIF-mu dari perangkat ini?
+827|Hapus akun dan dataku
+828|🔁 Ganti anggota (demo)
+829|Untuk mencoba durasi per orang: publikasikan foto 5 dtk untuk Céline dan Thomas, lalu beralih di antara mereka.
+830|Sekarang kamu adalah {name}.
+831|Tangkapan layar diblokir oleh NOTIIF
+832|Logo NOTIIF
+833|baru saja
+834|{n} mnt lalu
+835|{n} jam lalu
+836|Wajah
+837|Tangan
+838|Hati
+839|Perayaan dan alam
+840|Tutup emoji
+841|Hapus {what}?
+842|Tindakan ini tidak dapat dibatalkan.
+843|Pertahankan
+844|NOTIIF — Lingkaranmu. Momen-momenmu.

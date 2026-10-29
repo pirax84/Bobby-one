@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { useStore, type User } from "../lib/store";
+import { t, T, locale } from "../i18n";
 
 const P: Record<string, string> = {
   home: "M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z",
@@ -29,9 +30,9 @@ const P: Record<string, string> = {
   back: "M15 5l-7 7 7 7",
 };
 export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
-  <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={P[n] || P.more} /></svg>
+  <svg className={n === "back" ? "ico-flip" : undefined} width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={P[n] || P.more} /></svg>
 );
-export const Logo = ({ s = 44 }: { s?: number }) => <img src={s > 96 ? "./logo-512.png" : "./logo-192.png"} width={s} height={s} alt="Logo NOTIIF" style={{ borderRadius: s * 0.24 }} />;
+export const Logo = ({ s = 44 }: { s?: number }) => <img src={s > 96 ? "./logo-512.png" : "./logo-192.png"} width={s} height={s} alt={t("Logo NOTIIF")} style={{ borderRadius: s * 0.24 }} />;
 
 export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
   const me = useStore((x) => x.me); const isFriend = useStore((x) => !!u && (x.social.friends[x.me] || []).includes(u.id));
@@ -43,13 +44,13 @@ export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
 export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   useEffect(() => { const k = (e: KeyboardEvent) => e.key === "Escape" && onClose(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [onClose]);
   return (<div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}><div className="modal" role="dialog" aria-modal="true" aria-label={title}>
-    <div className="row" style={{ marginBottom: 12 }}><h2 className="grow" style={{ fontSize: "1.2rem" }}>{title}</h2><button className="btn ghost sm" onClick={onClose} aria-label="Fermer"><Ico n="x" s={18} /></button></div>{children}</div></div>);
+    <div className="row" style={{ marginBottom: 12 }}><h2 className="grow" style={{ fontSize: "1.2rem" }}>{title}</h2><button className="btn ghost sm" onClick={onClose} aria-label={t("Fermer")}><Ico n="x" s={18} /></button></div>{children}</div></div>);
 }
 let toastSet: ((s: string) => void) | null = null;
 export const toast = (s: string) => toastSet?.(s);
 export function ToastHost() { const [m, setM] = useState(""); useEffect(() => { toastSet = (s) => { setM(s); setTimeout(() => setM((x) => (x === s ? "" : x)), 3500); }; return () => { toastSet = null; }; }, []); return m ? <div className="toast" role="status">{m}</div> : null; }
 
-export function ago(t: number, n = Date.now()) { const d = Math.max(0, n - t) / 1000; if (d < 60) return "à l'instant"; if (d < 3600) return `il y a ${Math.floor(d / 60)} min`; if (d < 86400) return `il y a ${Math.floor(d / 3600)} h`; return new Date(t).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }); }
+export function ago(tx: number, n = Date.now()) { const d = Math.max(0, n - tx) / 1000; if (d < 60) return t("à l'instant"); if (d < 3600) return t("il y a {n} min", { n: Math.floor(d / 60) }); if (d < 86400) return t("il y a {n} h", { n: Math.floor(d / 3600) }); return new Date(tx).toLocaleDateString(locale(), { day: "numeric", month: "short" }); }
 // Réduit la photo avant de la garder (légère, rapide à charger).
 export function fileToDataUrl(f: File, max = 960, q = 0.74): Promise<string> {
   return new Promise((res, rej) => { const r = new FileReader(); r.onerror = () => rej(new Error("lecture")); r.onload = () => { const im = new Image(); im.onerror = () => rej(new Error("image")); im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement("canvas"); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext("2d")!.drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL("image/jpeg", q)); }; im.src = String(r.result); }; r.readAsDataURL(f); });
@@ -57,15 +58,15 @@ export function fileToDataUrl(f: File, max = 960, q = 0.74): Promise<string> {
 export const BG = ["linear-gradient(135deg,#8B5CF6,#3B82F6)", "linear-gradient(135deg,#FF9A5A,#F43F5E)", "linear-gradient(135deg,#2FCDBE,#0EA5E9)", "linear-gradient(135deg,#F472B6,#8B5CF6)", "linear-gradient(135deg,#F59E0B,#EF4444)"];
 export const EMOJIS = ["❤️", "😂", "😮", "😢", "👏", "🔥"];
 export const EMOJI_GROUPS: [string, string[]][] = [
-  ["Visages", ["😀", "😃", "😄", "😁", "😆", "🥹", "😅", "😂", "🤣", "😊", "😇", "🙂", "😉", "😍", "🥰", "😘", "😋", "😛", "😜", "🤪", "🤗", "🤭", "🤔", "😎", "🤩", "🥳", "😏", "😌", "😴", "😢", "😭", "🥺", "😮", "😱", "😡", "🤯", "🥶", "🥵", "🤒", "🤮"]],
-  ["Mains", ["👍", "👎", "👏", "🙌", "🙏", "🤝", "💪", "✌️", "🤞", "👌", "🤟", "🫶", "👋", "🤙", "☝️", "🫡"]],
-  ["Cœurs", ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💖", "💗", "💕", "💞", "💝", "💘", "💔", "✨", "💯"]],
-  ["Fête et nature", ["🎉", "🎂", "🎁", "🎈", "🍾", "🥂", "🍕", "🍔", "🍟", "🍰", "☕", "🍷", "🌞", "🌈", "🌸", "🌳", "🐶", "🐱", "🦋", "🐻", "⚽", "🎶", "📸", "🏖️", "🚗", "✈️", "🏡", "🔥", "⭐", "🌙"]],
+  [T("Visages"), ["😀", "😃", "😄", "😁", "😆", "🥹", "😅", "😂", "🤣", "😊", "😇", "🙂", "😉", "😍", "🥰", "😘", "😋", "😛", "😜", "🤪", "🤗", "🤭", "🤔", "😎", "🤩", "🥳", "😏", "😌", "😴", "😢", "😭", "🥺", "😮", "😱", "😡", "🤯", "🥶", "🥵", "🤒", "🤮"]],
+  [T("Mains"), ["👍", "👎", "👏", "🙌", "🙏", "🤝", "💪", "✌️", "🤞", "👌", "🤟", "🫶", "👋", "🤙", "☝️", "🫡"]],
+  [T("Cœurs"), ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💖", "💗", "💕", "💞", "💝", "💘", "💔", "✨", "💯"]],
+  [T("Fête et nature"), ["🎉", "🎂", "🎁", "🎈", "🍾", "🥂", "🍕", "🍔", "🍟", "🍰", "☕", "🍷", "🌞", "🌈", "🌸", "🌳", "🐶", "🐱", "🦋", "🐻", "⚽", "🎶", "📸", "🏖️", "🚗", "✈️", "🏡", "🔥", "⭐", "🌙"]],
 ];
 export function EmojiGrid({ onPick, onClose }: { onPick: (e: string) => void; onClose?: () => void }) {
-  return <div className="egrid">{onClose && <div style={{ position: "sticky", top: 0, display: "flex", justifyContent: "flex-end", zIndex: 1 }}><button type="button" className="btn ghost sm" onClick={onClose} aria-label="Fermer les emojis" style={{ background: "var(--card)" }}>✕</button></div>}{EMOJI_GROUPS.map(([t, l]) => <div key={t}><div className="muted small" style={{ margin: "6px 2px" }}>{t}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
+  return <div className="egrid">{onClose && <div style={{ position: "sticky", top: 0, display: "flex", justifyContent: "flex-end", zIndex: 1 }}><button type="button" className="btn ghost sm" onClick={onClose} aria-label={t("Fermer les emojis")} style={{ background: "var(--card)" }}>✕</button></div>}{EMOJI_GROUPS.map(([tx, l]) => <div key={tx}><div className="muted small" style={{ margin: "6px 2px" }}>{t(tx)}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
 }
-export function useNow(ms = 1000) { const [t, setT] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setT(Date.now()), ms); return () => clearInterval(i); }, [ms]); return t; }
+export function useNow(ms = 1000) { const [tx, setT] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setT(Date.now()), ms); return () => clearInterval(i); }, [ms]); return tx; }
 
 /** Interrupteur (à la place des cases à cocher). */
 export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boolean) => void; label: string }) {
@@ -73,7 +74,7 @@ export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boo
 }
 
 /** Appui long (ou clic droit) : renvoie les gestes à poser sur un élément. */
-const lpTimer: { t?: number } = {};
+const lpTimer: { tx?: number } = {};
 export function lp(onLong: () => void) {
   const stop = () => { if (lpTimer.t) { clearTimeout(lpTimer.t); lpTimer.t = undefined; } };
   return {
@@ -85,11 +86,11 @@ export function lp(onLong: () => void) {
 }
 /** Fenêtre « Supprimer ? » */
 export function ConfirmDel({ what, onYes, onClose }: { what: string; onYes: () => void; onClose: () => void }) {
-  return <Modal title={"Supprimer " + what + " ?"} onClose={onClose}><p className="muted">Cette action est définitive.</p><div className="row" style={{ gap: 8 }}><button className="btn ghost grow" onClick={onClose}>Garder</button><button className="btn grow" style={{ background: "var(--bad)", color: "#fff" }} onClick={() => { onYes(); onClose(); }}>🗑 Supprimer</button></div></Modal>;
+  return <Modal title={t("Supprimer {what} ?", { what })} onClose={onClose}><p className="muted">{t("Cette action est définitive.")}</p><div className="row" style={{ gap: 8 }}><button className="btn ghost grow" onClick={onClose}>{t("Garder")}</button><button className="btn grow" style={{ background: "var(--bad)", color: "#fff" }} onClick={() => { onYes(); onClose(); }}>{t("🗑 Supprimer")}</button></div></Modal>;
 }
 
 /** Bouton qui réagit à un appui simple (clic) ET à un appui long. */
-const pressState: { t?: number; fired: boolean } = { fired: false };
+const pressState: { tx?: number; fired: boolean } = { fired: false };
 export function pressProps(onShort: () => void, onLong: () => void) {
   const st = pressState; const stop = () => { if (st.t) { clearTimeout(st.t); st.t = undefined; } };
   return {

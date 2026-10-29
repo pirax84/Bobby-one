@@ -1,0 +1,845 @@
+0|Start
+1|Znajomi
+2|Grupy
+3|Wiadomości
+4|Połączenia
+5|Zdjęcia
+6|Gry
+7|Wydarzenia
+8|Udostępnienia
+9|Powiadomienia
+10|Profil
+11|Informacje prawne
+12|Ustawienia
+13|Połączenia audio i wideo
+14|Połączenia wymagają serwera (WebRTC). Zostaną dodane, gdy serwer NOTIIF będzie gotowy.
+15|Twój krąg. Twoje chwile.
+16|Utwórz
+17|Mój profil
+18|Wstecz
+19|Wszystkie menu
+20|Nawigacja
+21|Utwórz: relację lub wpis. Przytrzymaj, aby zrobić selfie wideo
+22|Więcej
+23|Mój krąg
+24|Multimedia i gry
+25|Moje konto
+26|Zaproszenie do NOTIIF
+27|Dodać użytkownika {name}?
+28|Wyślij zaproszenie
+29|Ten kod nie istnieje na tym urządzeniu. W trybie demo konta nie są jeszcze współdzielone między urządzeniami: pojawi się to wraz z serwerem.
+30|Później
+31|Co chcesz udostępnić?
+32|✨ Relację (znika sama)
+33|📝 Wpis
+34|Moje grupy
+35|Nadchodzące
+36|Brak wydarzeń.
+37|Zagrajcie razem z rodziną
+38|Kontynuuj z Apple
+39|Kontynuuj z Google
+40|Kontynuuj z Facebookiem
+41|Kontynuuj z Snapchatem
+42|Snapchat wymaga umowy dla deweloperów (Snap Kit). Trzeba o nią poprosić przed włączeniem.
+43|FranceConnect wymaga zgody państwa (wniosek do złożenia na datapass.api.gouv.fr).
+44|Tożsamość cyfrowa La Poste
+45|Tożsamość cyfrowa La Poste wymaga partnerstwa z La Poste.
+46|Serwer niedostępny.
+47|Wystąpił błąd.
+48|Konto utworzone.
+49|Konto utworzone. Otwórz e-mail z potwierdzeniem, który właśnie wysłaliśmy, a potem wróć i zaloguj się.
+50|Zalogowano.
+51|Ja
+52|Stałe
+53|📳 Wstrząs
+54|📳 Wstrząs!
+55|❤️ Serca
+56|❤️ Deszcz serc!
+57|😘 Buziaki
+58|😘 Wielkie buziaki!
+59|❄️ Śnieg
+60|❄️ Pada śnieg!
+61|🎆 Fajerwerki
+62|🎆 Fajerwerki!
+63|👻 Duch
+64|👻 Uuu!
+65|🔥 Płomienie
+66|🔥 Robi się gorąco!
+67|🫧 Bąbelki
+68|🫧 Bąbelki!
+69|🎂 Impreza
+70|🎂 Czas na imprezę!
+71|🌧️ Deszcz
+72|🌧️ Pada deszcz!
+73|⛈️ Burza
+74|⛈️ Grzmot!
+75|🚀 Rakieta
+76|🚀 Start!
+77|👏 Brawo
+78|👏 Brawo!
+79|😂 Salwa śmiechu
+80|😂 Umieram ze śmiechu!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Urodziny
+86|🎂 Wszystkiego najlepszego!
+87|🎂 Urodziny 2
+88|🤭 Beknięcie
+89|🤭 Bek!
+90|💨 Pierdnięcie
+91|💨 Pierd!
+92|🤮 Wymioty
+93|🤮 Fuj!
+94|Kryształ
+95|Jutrzenka
+96|Bryza
+97|Poblask
+98|Brzeg
+99|Krąg
+100|Poranek
+101|Brak
+102|Lekka
+103|Średnia
+104|Mocna
+105|Pamięć urządzenia jest pełna: usuń stare zdjęcia.
+106|Błąd.
+107|Nazwę użytkownika można zmienić tylko raz, a już to zrobiono.
+108|Zmiana nazwy użytkownika jest płatna (oferta „Plus”). Płatność nie jest jeszcze podłączona: włącz „Plus (demonstracja)” w Ustawieniach, aby wypróbować.
+109|Nazwa użytkownika: od 3 do 20 znaków, małe litery, cyfry, kropka lub podkreślenie.
+110|Ta nazwa użytkownika jest już zajęta.
+111|Nazwa użytkownika zmieniona. Ta zmiana jest ostateczna.
+112|Witaj w moim gniazdku 🪺
+113|Cześć! Witaj! 🌳
+114|Rodzina
+115|Kto będzie w niedzielę na obiedzie?
+116|Obiad rodzinny
+117|Każdy przynosi małe danie.
+118|U babci
+119|Nieprawidłowy czas trwania.
+120|Twoje konto jest weryfikowane po zgłoszeniach.
+121|Nikt nie zobaczy tego wpisu: wybierz innych odbiorców.
+122|Nikt nie zobaczy tego albumu: wybierz innych odbiorców.
+123|Album
+124|{name} utworzył(a) dla Ciebie album „{slice}”.
+125|Nie znaleziono albumu.
+126|{name} zareagował(a) {emoji} na Twój wpis.
+127|{name} skomentował(a) Twój wpis.
+128|Nie znaleziono osoby.
+129|To Ty!
+130|Twoje konto jest weryfikowane po zgłoszeniach: na razie nie możesz wysyłać zaproszeń.
+131|Zbyt wiele zaproszeń dzisiaj (maksymalnie 15). Spróbuj jutro.
+132|Nie można wysłać zaproszenia.
+133|{name} jest już Twoim znajomym.
+134|Zaproszenie już wysłane.
+135|{name} zaprasza Cię do znajomych.
+136|Zaproszenie wysłane do {name}.
+137|Nieznany kod (w trybie demo istnieją tylko konta z tego urządzenia).
+138|Od 3 do 20 znaków: litery, cyfry, _ lub .
+139|Nazwa użytkownika zapisana.
+140|Nie znaleziono.
+141|Wybierz co najmniej jednego znajomego (niezablokowanego przez autora).
+142|Zaproszenie już oczekuje.
+143|{name} prosi o udostępnienie Twojego wpisu.
+144|Prośba wysłana. Decyduje autor.
+145|{name} odrzucił(a) udostępnienie.
+146|{name} zaakceptował(a) udostępnienie.
+147|{name} udostępnił(a) Ci treść.
+148|{name} wycofał(a) udostępnienie: zniknęło wszędzie.
+149|{name} zaakceptował(a) Twoje zaproszenie.
+150|{name} dodał(a) Cię do grupy „{name2}”.
+151|{name} mógł(a) próbować przechwycić jedną z Twoich treści.
+152|{name} zaprasza Cię: {title}.
+153|{name} zaprasza Cię do gry w kółko i krzyżyk.
+154|Wideo zbyt duże: na razie maksymalnie 3 MB (około 10 sekund).
+155|Wideo dodane.
+156|Błąd
+157|Zdjęcie dodane.
+158|Wybierz zdjęcie lub wideo.
+159|Nieczytelny plik.
+160|Otwórz wideo
+161|Otwórz zdjęcie
+162|Zdjęcie
+163|🔒 Prywatne: tylko Ty
+164|👥 Udostępniono: {n}
+165|👥 Album użytkownika {name}
+166|Wróć do albumów
+167|Usunąć ten album i wszystko, co zawiera, także u osób, które go widzą?
+168|Usuń album
+169|Ładowanie…
+170|Dodaj zdjęcie lub wideo
+171|Pusty album: dodaj pierwsze zdjęcie lub wideo.
+172|W tym albumie na razie nic nie ma.
+173|🔒 Te same zasady co wszędzie: znak wodny z Twoim imieniem, zrzuty ekranu zablokowane w aplikacji Android, żadnego udostępniania bez zgody autora.
+174|Moje wideo
+175|Wybierz wideo potem.
+176|Zdjęcia i wideo
+177|📷 Zdjęcia
+178|🎬 Wideo
+179|🗂 Albumy
+180|Moje zdjęcia
+181|Opublikowane zdjęcia pojawią się tutaj.
+182|Udostępnione mi (stałe)
+183|Na razie nic.
+184|Wideo dodane (prywatne, w „Moje wideo”).
+185|Dodaj wideo
+186|Jeszcze brak wideo. Na razie krótkie (około 10 sekund, maks. 3 MB). Dłuższe wideo pojawią się wraz z serwerem.
+187|Aby udostępnić wideo znajomym, umieść je w udostępnionym albumie (karta Albumy).
+188|Nowy album
+189|Prywatny
+190|Udostępniono: {length}
+191|Od: {name}
+192|· {count, plural, one{# element} few{# elementy} many{# elementów} other{# elementu}}
+193|Brak albumów. Utwórz jeden, prywatny lub udostępniony znajomym.
+194|Nazwa (np. Wakacje 2026)
+195|🔒 Prywatny
+196|👥 Wszyscy moi znajomi
+197|✅ Wybrani znajomi
+198|Zobaczysz go tylko Ty.
+199|Liczba znajomych, którzy będą mogli to zobaczyć: {n}. Widzą to tylko Twoi znajomi i nikt nie może tego udostępnić dalej bez Twojej zgody.
+200|Utwórz album
+201|✅ Aplikacja zainstalowana
+202|Już używasz jej jak prawdziwej aplikacji.
+203|📲 Zainstaluj aplikację
+204|Zainstaluj na tym urządzeniu
+205|Pobierz aplikację na Androida
+206|Na iPhonie i iPadzie: dotknij
+207|Udostępnij
+208|⬆️ następnie
+209|„Do ekranu początkowego”
+210|Otwórz menu przeglądarki (⋮), a potem „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”.
+211|Twój krąg.
+212|Twoje chwile.
+213|Prywatna sieć Twoich bliskich: rodziny, przyjaciół, współpracowników, zespołu, grupy teatralnej lub klubu. Bez reklam, bez obcych, bez udostępniania na zewnątrz.
+214|Udostępniaj, komu chcesz
+215|Zdjęcia, wideo i teksty tylko dla osób, które wybierzesz.
+216|Znikające relacje
+217|24 godziny lub kilka sekund dla zdjęcia znikającego.
+218|Wiadomości, głosówki i efekty
+219|Rozmawiaj w grupie lub prywatnie i wysyłaj efekty z dźwiękiem.
+220|Wejdź do NOTIIF
+221|Aby mieć NOTIIF jako prawdziwą aplikację w telefonie:
+222|Zainstaluj aplikację
+223|To logowanie włączy się, gdy serwer zostanie połączony (zobacz przewodnik).
+224|warunki korzystania i politykę prywatności
+225|Utwórz moje konto
+226|Zaloguj się
+227|— lub —
+228|Twoje imię lub nazwa użytkownika
+229|Imię
+230|Nazwa użytkownika @ (opcjonalnie): do zmiany tylko raz, płatne
+231|Nazwa użytkownika
+232|Twój e-mail
+233|Hasło (minimum 8 znaków)
+234|Hasło
+235|Akceptuję warunki
+236|Mam 15 lat lub więcej i akceptuję {legalBtn}.
+237|Mam już konto
+238|Nie mam jeszcze konta
+239|Najpierw wpisz powyżej swoje imię lub nazwę użytkownika.
+240|Najpierw wpisz swoje imię lub nazwę użytkownika.
+241|Zaznacz pole „Mam 15 lat lub więcej”, aby kontynuować.
+242|Zaznacz pole warunków.
+243|🧪 Tryb demo
+244|Prawdziwe konta (e-mail, Google, Apple, Facebook, FranceConnect…) wymagają serwera, który nie jest jeszcze połączony. W międzyczasie możesz wypróbować aplikację na tym urządzeniu z fikcyjnymi znajomymi.
+245|Twoje imię lub nazwa użytkownika (demo)
+246|Wypróbuj tryb demo
+247|Na razie możesz wypróbować aplikację w trybie demo, na tym urządzeniu, z fikcyjnymi znajomymi.
+248|Rozumiem, wypróbuję tryb demo
+249|Dokumenty prawne
+250|🔒 Wiadomość znikająca
+251|🎤 Wiadomość głosowa
+252|📷 Zdjęcie
+253|Szybkie wiadomości
+254|Wróć do listy
+255|Otwórz w pełnym rozmiarze
+256|Zamknij
+257|💬 Rozmowy
+258|👥 Moi znajomi
+259|Napisz wiadomość
+260|Jeszcze brak znajomych. Dodaj ich w karcie Znajomi.
+261|Nowa rozmowa
+262|Brak rozmów. Wybierz znajomego w „Moi znajomi”.
+263|Widziane raz
+264|Wiadomość znikająca
+265|· otwórz w pełnym rozmiarze
+266|Emoji
+267|Twoja wiadomość…
+268|Szybka wiadomość
+269|Wyślij
+270|Zrzut ekranu zablokowany: autor zostanie powiadomiony.
+271|Wiadomość widziana raz
+272|🔥 Widziane raz
+273|Zamknij (zniknie)
+274|Zdjęcie widziane raz
+275|Treść ukryta
+276|Wykryto zrzut ekranu lub zmianę okna
+277|Ta wiadomość znika po zamknięciu. Zdjęcie zawsze można sfotografować innym urządzeniem: szanuj prywatność.
+278|🔎 Szukaj w moich rozmowach
+279|Brak rozmów: napisz do znajomego z karty „Znajomi”.
+280|📹 Rozpoczynam rozmowę wideo: {url}
+281|Rozmowa wideo rozpoczęta: link został wysłany w rozmowie.
+282|Rozpocznij rozmowę wideo
+283|📹 Rozmowa wideo
+284|Wiadomość
+285|🔥 Wiadomość zobaczona i zniknęła
+286|🔥 Wiadomość do zobaczenia tylko raz · dotknij, aby otworzyć
+287|(edytowano)
+288|⏱ {left} s
+289|⏱ znikająca {secs} s po odczytaniu
+290|🔥 jednorazowy podgląd ·
+291|widziane ✓
+292|🔒 Wiadomość znikająca · dotknij, aby przeczytać ({secs} s)
+293|⌛ Wiadomość wygasła
+294|· ✓✓ przeczytano
+295|· ✓ wysłano
+296|Przywitaj się 👋
+297|Opcje wysyłania
+298|Zamknij opcje
+299|Czas trwania wiadomości
+300|♾️ Stała
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Wyślij zdjęcie
+304|🛡 Znak wodny
+305|włączony
+306|usunięty
+307|Efekty
+308|Nieczytelny obraz.
+309|Opcje: czas, zdjęcie, efekty
+310|Edytuj wiadomość…
+311|Ile boków ma sześciokąt?
+312|Jaka jest stolica Włoch?
+313|Mediolan
+314|Neapol
+315|Rzym
+316|Turyn
+317|Które zwierzę jest najszybsze na lądzie?
+318|Lew
+319|Gepard
+320|Koń
+321|Antylopa
+322|Ile minut jest w półtorej godziny?
+323|Która planeta jest najbliżej Słońca?
+324|Wenus
+325|Mars
+326|Ziemia
+327|Merkury
+328|Z jakiego owocu robi się cydr?
+329|Gruszka
+330|Jabłko
+331|Winogrono
+332|Wiśnia
+333|Ilu piłkarzy jednej drużyny jest na boisku?
+334|Jaki kolor powstaje z zmieszania niebieskiego i żółtego?
+335|Zielony
+336|Pomarańczowy
+337|Fioletowy
+338|Brązowy
+339|Jaki jest największy ocean?
+340|Atlantycki
+341|Indyjski
+342|Arktyczny
+343|Spokojny
+344|Ile dni ma luty w roku przestępnym?
+345|{nm} (✕) kontra {nm2} (◯)
+346|Pole {v1}
+347|Remis 🤝
+348|🏆 {name} wygrywa!
+349|Twoja kolej
+350|Kolej gracza {name} (zmień członka w Ustawieniach, aby w demo zagrać za niego)
+351|⭕ Kółko i krzyżyk dla dwojga
+352|🧠 Quiz
+353|♟️ Szachy · wkrótce
+354|🃏 Remik · wkrótce
+355|Zaproś znajomego
+356|Gra rozpoczęta z użytkownikiem {name}.
+357|Brak gier. Zaproś znajomego powyżej.
+358|Brawo! {pts}/{length}
+359|Twój wynik:
+360|punkty
+361|Zagraj ponownie
+362|Pytanie {v1}/{length} · Wynik {pts}
+363|Dalej
+364|Zakończ
+365|Usunąć wszędzie, także u osób, które to otrzymały?
+366|Usuń
+367|Zareaguj {e}
+368|🔒 Zdjęcie chronione: znak wodny z Twoim imieniem, zrzuty ekranu zablokowane w aplikacji Android, udostępnianie tylko za zgodą autora.
+369|Wkrótce dostępne
+370|Spokojnie: jeden efekt na sekundę.
+371|Efekt {label}
+372|Własny efekt {name}
+373|Więcej efektów
+374|＋ Więcej
+375|Wszystkie efekty
+376|Zaznacz 4 efekty, które mają być na wierzchu ({length}/4). Dotknij „Wyślij”, aby wypróbować.
+377|Zostaw na wierzchu: {label}
+378|Maksymalnie 4: najpierw odznacz jeden.
+379|Zostaw co najmniej jeden efekt na wierzchu.
+380|Moje własne efekty
+381|Usuń {name}
+382|＋ Stwórz mój efekt (obraz + mój głos)
+383|Mikrofon niedostępny lub odrzucony.
+384|Nadaj nazwę swojemu efektowi.
+385|Dodaj obraz lub dźwięk.
+386|Maksymalnie 6 własnych efektów.
+387|Efekt dodany.
+388|Nazwa efektu (np. Mój śmiech)
+389|Nazwa efektu
+390|Obraz
+391|Nagrywanie… {left} s (dotknij, aby zakończyć)
+392|Nagraj ponownie
+393|Nagraj (maks. 3 s)
+394|Dźwięk zbyt duży (maksymalnie 450 KB, około 10 sekund).
+395|📁 Wybierz plik dźwiękowy
+396|▶ Wypróbuj
+397|Dodaj
+398|Relacja
+399|Widziane przez:
+400|na razie nikt
+401|Odpowiedz prywatnie…
+402|↩️ Odpowiedź na Twoją relację: {reply}
+403|Odpowiedź wysłana prywatnie.
+404|Reakcja wysłana {e}
+405|Wszyscy moi znajomi
+406|Grupa
+407|Wybrani znajomi
+408|Wszyscy oprócz…
+409|Lista
+410|Tylko ja
+411|Wybierz obraz.
+412|Nie można odczytać tego obrazu.
+413|Relacja opublikowana, bez limitu czasu.
+414|Relacja znikająca opublikowana.
+415|Relacja opublikowana na 24 godz.
+416|Opublikowano!
+417|✨ Moja relacja
+418|📝 Nowy wpis
+419|Relacja znika sama (domyślnie po 24 godz.) i jest oglądana na pełnym ekranie.
+420|Rodzaj treści
+421|✏️ Tekst
+422|🎥 Selfie wideo
+423|🎤 Głos
+424|🔗 Link
+425|Podgląd
+426|Usuń zdjęcie
+427|📷 Wybierz zdjęcie
+428|🗑 Usuń
+429|✅ Opublikuj
+430|🔁 Zacznij od nowa
+431|🎥 Nagraj siebie (maks. 10 s)
+432|🎤 Nagraj głosówkę (maks. 30 s)
+433|Wklej link: playlista Spotify, Deezer lub YouTube, wideo, Instagram, TikTok, Leboncoin…
+434|Link do udostępnienia
+435|Ten link nie wygląda na prawidłowy.
+436|Napisz swoją relację…
+437|Tekst relacji
+438|Co nowego u Twoich bliskich?
+439|Dodaj podpis (opcjonalnie)…
+440|Tekst
+441|Nastrój
+442|Tło {v1}
+443|Bez nastroju
+444|Kto może to zobaczyć?
+445|Czas trwania relacji
+446|24 godziny
+447|Bez limitu
+448|Znikająca
+449|Czas oglądania
+450|Inny…
+451|Sekundy (od 1 do 999)
+452|Własny czas w sekundach
+453|Grupa
+454|Lista
+455|＋ Utwórz listę
+456|Nazwa listy (np. Współpracownicy, Piłka nożna, Teatr)
+457|Nazwa listy
+458|Najpierw dodaj znajomych, aby umieścić ich na liście.
+459|Anuluj
+460|Lista utworzona.
+461|Utwórz listę
+462|Wpisz od 1 do {MAX_CUSTOM_SECS} sekund.
+463|Widoczne tylko dla Ciebie.
+464|{audLabel} · liczba osób: {count}
+465|· {fmtSecs} na osobę od otwarcia
+466|Opublikuj
+467|Wpis znikający
+468|Pozostały czas
+469|{ceil} s
+470|Zdjęcie znikające
+471|Jeśli zamkniesz, czas nadal upływa. Zdjęcie zawsze można sfotografować innym urządzeniem.
+472|Wygasło dla Ciebie
+473|Twój czas oglądania dobiegł końca.
+474|znikający
+475|Pozostało Ci {n} s.
+476|Będziesz mieć {fmtSecs} od otwarcia.
+477|Wznów
+478|Otwórz
+479|Opcje
+480|↪ Udostępnione przez
+481|za zgodą użytkownika {name}
+482|Usunąć ten wpis? Dozwolone udostępnienia również znikną.
+483|Usuń wszędzie
+484|Wycofać to udostępnienie? Zniknie u {name} i jego znajomych.
+485|Wycofaj to udostępnienie
+486|Przestać udostępniać?
+487|Zakończ moje udostępnianie
+488|Powiększ wpis
+489|Komentuj
+490|Widziane przez {length}/{length2}:
+491|↪ {n, plural, one{# dozwolone udostępnienie} few{# dozwolone udostępnienia} many{# dozwolonych udostępnień} other{# dozwolonego udostępnienia}}
+492|przez Ciebie (zobacz „Udostępnienia”).
+493|Widziane przez
+494|· Odbiorcy udostępnienia:
+495|↪ Poproś o udostępnienie
+496|Dotknij zdjęcia, aby zareagować lub skomentować
+497|Dotknij zdjęcia, aby zareagować
+498|Dotknij zdjęcia, aby skomentować
+499|Wpis
+500|Więcej emotikonów
+501|Inne:
+502|Na razie brak komentarzy. Bądź pierwszy!
+503|Odpowiedz
+504|Emotikony
+505|Twoja odpowiedź…
+506|Napisz komentarz…
+507|Komentarz
+508|Wszyscy znajomi
+509|Tylko ja
+510|Wybrani znajomi
+511|Znajomi oprócz…
+512|Wszystko
+513|Moje wpisy
+514|Na razie nic tu nie ma. Opublikuj swoją pierwszą chwilę ✨
+515|✏️ Napisz tekst
+516|Wskazówka: przytrzymaj przycisk, aby od razu otworzyć aparat.
+517|Poproś o udostępnienie
+518|Ta treść należy do
+519|. Ta osoba decyduje, czy się zgodzi. Jeśli się zgodzi, wybrani znajomi zobaczą
+520|oryginalną treść
+521|(nie kopię), z takimi samymi czasami, a {name} będzie mógł
+522|w każdej chwili wycofać udostępnienie
+523|: zniknie ono wtedy u wszystkich.
+524|Udostępnij:
+525|Nie masz innych znajomych.
+526|Krótka wiadomość do autora (opcjonalnie)
+527|Wyślij prośbę do użytkownika {name}
+528|🌍 Język
+529|Wybierz język NOTIIF. Zmienia się od razu, a Twój wybór jest zapamiętywany.
+530|Aktualny język
+531|Szukaj języka
+532|Język
+533|Język zmieniony.
+534|Nie znaleziono języka.
+535|Na razie dokumenty prawne istnieją tylko po francusku.
+536|Wersja {LEGAL_VERSION}
+537|Wikipedia
+538|Link
+539|Odtwarzacz {name}
+540|Zmniejsz
+541|Powiększ
+542|Zatrzymaj muzykę
+543|Link {name}
+544|Zmniejsz i słuchaj dalej
+545|⌄ Zmniejsz
+546|Otwórz osobno
+547|Ta strona nie może być wyświetlona wewnątrz NOTIIF.
+548|Otwórz {name}
+549|Otwórz link {name}
+550|🎧 Słuchaj w NOTIIF (tylko Ty to słyszysz)
+551|▶ Oglądaj tutaj, w NOTIIF
+552|Otwórz link
+553|Aparat lub mikrofon niedostępny lub odrzucony.
+554|🎥 Zacznij
+555|🎤 Zacznij
+556|(maks. {max} s)
+557|⏹ Zakończ · {left} s
+558|📸 Zdjęcie
+559|Przytrzymaj przycisk, aby mówić.
+560|Przytrzymaj, aby nagrać głosówkę
+561|🔴 Puść, aby wysłać
+562|Aparat
+563|Zacznij od nowa
+564|Wyślij ➤
+565|Zamknij aparat
+566|Zmień aparat
+567|s / {max} s
+568|Zoom
+569|Zoom {z}×
+570|{replace}×
+571|Wideo
+572|Zrób zdjęcie
+573|Zatrzymaj
+574|Nagrywaj
+575|Dotknij, aby zrobić zdjęcie
+576|Dotknij, aby zatrzymać
+577|Dotknij, aby nagrywać (maks. {max} s)
+578|Przytrzymaj mikrofon, aby mówić.
+579|🔴 {mm} · puść, aby zakończyć
+580|Przytrzymaj mikrofon, aby mówić (maks. {max} s)
+581|Dopóki go nie usunę
+582|Jak oryginał
+583|Jak długo udostępnienie pozostaje widoczne?
+584|Czas oglądania na osobę
+585|🔒 Tej treści nie można opublikować ponownie gdzie indziej: ma znak wodny, zrzuty ekranu są zablokowane (aplikacja Android), a każde nowe udostępnienie wymaga Twojej zgody. Możesz ją wycofać w każdej chwili.
+586|Udostępnienie dozwolone. Możesz je wycofać, kiedy chcesz.
+587|Potwierdź zgodę
+588|Zezwól…
+589|Odrzuć
+590|treść usunięta
+591|Nikt nie może ponownie opublikować Twojej treści bez Twojej zgody. A nawet po wyrażeniu zgody
+592|zachowujesz pełną kontrolę
+593|: jeśli wycofasz udostępnienie lub usuniesz wpis, zniknie on u wszystkich, którym został udostępniony.
+594|Prośby do rozpatrzenia ({length})
+595|chciał(a)by udostępnić
+596|z: {join} · {ago}
+597|Brak oczekujących próśb.
+598|Udostępnienia, na które zezwoliłem(-am) ({length})
+599|udostępnione przez {nm} z: {join}
+600|Wycofać to udostępnienie? Zniknie u wszystkich.
+601|Udostępnienie wycofane wszędzie.
+602|Wycofaj wszędzie
+603|Brak aktywnych udostępnień.
+604|Moje prośby i udostępnienia ({length})
+605|od {nm}
+606|{v1} · z: {join}
+607|Nie prosisz o udostępnienie niczego.
+608|Kod QR
+609|🌍 Publiczny
+610|Każdy może mnie znaleźć po imieniu lub nazwie użytkownika.
+611|👥 Ograniczony
+612|Tylko po mojej dokładnej nazwie użytkownika lub przez znajomych moich znajomych.
+613|🔒 Niewidoczny
+614|Nikt mnie nie znajdzie. Tylko jeśli podam swój kod QR lub kod.
+615|Mój kod QR
+616|Otwórz lub powiększ kod QR
+617|Kliknij kod QR, aby otworzyć stronę
+618|Dotknij kodu QR, aby go powiększyć
+619|Pokaż go bliskiej osobie: zeskanuje go aparatem telefonu.
+620|Link skopiowany
+621|Nie można skopiować
+622|Skopiuj mój link
+623|Zapisz obraz
+624|Utworzyć nowy kod? Stary kod QR przestanie działać.
+625|Nowy kod utworzony.
+626|Odnów
+627|Kto może mnie znaleźć?
+628|Ustawienie zapisane.
+629|Zapisz nazwę użytkownika
+630|Ta przeglądarka nie umie odczytywać kodów QR. Użyj aparatu telefonu: sam otworzy link NOTIIF.
+631|Aparat niedostępny lub odrzucony.
+632|Zeskanuj kod QR
+633|Dołącz do mnie w NOTIIF, prywatnej sieci naszych bliskich (rodziny, przyjaciół, współpracowników, klubu…), bez reklam. Zainstaluj aplikację tutaj: {inviteLink} (mój kod: {code})
+634|Kontakt
+635|Brak kontaktu z numerem lub e-mailem.
+636|Dostęp do kontaktów odrzucony lub anulowany.
+637|Wiadomość skopiowana: wklej ją, gdzie chcesz.
+638|Zaproś moich bliskich
+639|📇 Wybierz z moich kontaktów
+640|Na tym telefonie lub w tej przeglądarce aplikacja nie może odczytać Twoich kontaktów. Dodaj numer lub e-mail ręcznie albo udostępnij link.
+641|Numer lub e-mail
+642|Zaproś: {name}
+643|Wyślij zaproszenie:
+644|Dołącz do mnie w NOTIIF
+645|E-mail
+646|🔗 Udostępnij link z zaproszeniem
+647|🔒 Twoje kontakty nie są ani zapisywane, ani wysyłane do NOTIIF: służą tylko do napisania wiadomości na Twoim telefonie. Import z Google lub Facebooka pojawi się wraz z połączeniem z serwerem.
+648|Otrzymane zaproszenia ({length})
+649|{name} jest teraz Twoim znajomym.
+650|Akceptuj
+651|Mój kod:
+652|Kod skopiowany
+653|Kopiuj
+654|Kod bliskiej osoby (NID-…)
+655|Kod zaproszenia
+656|Zaproś
+657|📇 Zaproś z moich kontaktów
+658|Tryb demo: kody do testów
+659|(fikcyjne osoby)
+660|Moi znajomi ({length})
+661|Wybierz listę
+662|Wszyscy ({length})
+663|＋ Nowa lista
+664|Opcje dla: {name}
+665|Nikogo na tej liście.
+666|Jeszcze brak znajomych.
+667|Zgłoś tę osobę
+668|Dlaczego? Trzy zgłoszenia od różnych osób automatycznie zawieszają konto na czas weryfikacji.
+669|Fałszywy profil
+670|Sprzedaż, reklama lub nachalne oferty
+671|Oszustwo
+672|Propozycje seksualne lub escort
+673|Treści nielegalne
+674|Nękanie
+675|Inne
+676|Dziękujemy, zgłoszenie zapisane.
+677|💬 Napisz
+678|Usunąć użytkownika {name} ze znajomych?
+679|Usuń ze znajomych
+680|Zgłoś
+681|Zablokować użytkownika {name}? Nie będzie już widzieć Twoich treści.
+682|Zablokowano.
+683|Zablokuj
+684|Moje listy
+685|Np. „Kuzyni”, „Współpracownicy”… aby szybko wybrać, kto widzi Twoje wpisy.
+686|Zablokowane osoby
+687|Odblokuj
+688|Nowa lista
+689|🔎 Znajdź kogoś (imię lub @nazwa)
+690|Szukaj
+691|Nikogo nie znaleziono. Osoby „niewidoczne” lub „ograniczone” można znaleźć tylko przez ich kod QR, kod lub dokładną nazwę użytkownika.
+692|📜 Zasady grupy
+693|Członkowie ({length})
+694|Usunąć użytkownika {name} z grupy?
+695|Usuń
+696|Opuścić tę grupę?
+697|Opuść grupę
+698|Nowe
+699|{n, plural, one{# członek} few{# członków} many{# członków} other{# członka}}
+700|Utwórz grupę dla rodziny, wakacji, imprez…
+701|Nowa grupa
+702|Emoji
+703|Nazwa grupy
+704|Opis
+705|Zasady grupy (opcjonalnie)
+706|Członkowie (spośród znajomych)
+707|Grupa utworzona.
+708|Utwórz grupę
+709|✅ Będę
+710|❌ Nie będzie mnie
+711|🤔 Może
+712|Urodziny, obiady rodzinne, wakacje… utwórz pierwsze!
+713|· minęło
+714|Usunąć to wydarzenie?
+715|Organizator: {name}
+716|👥 Zobacz, kto przyjdzie
+717|✅ Obecni
+718|❌ Nieobecni
+719|⏳ Bez odpowiedzi
+720|Nowe wydarzenie
+721|Tytuł (np. Urodziny babci)
+722|Data i godzina
+723|Miejsce
+724|Wydarzenie utworzone.
+725|Moi znajomi
+726|Wszyscy
+727|Nikt
+728|Edytuj mój profil
+729|Zmień zdjęcie
+730|Dodaj zdjęcie
+731|Usuń zdjęcie
+732|Nazwa użytkownika: @{handle}
+733|Już raz zmieniona: ostateczne.
+734|Do zmiany tylko raz i płatne (aby ograniczyć fałszywe profile).
+735|Nowa nazwa użytkownika
+736|Zmień
+737|Kto może zobaczyć moje zdjęcie?
+738|Inni zobaczą wtedy Twoją inicjał zamiast zdjęcia.
+739|Imię lub nazwa użytkownika
+740|Status
+741|Twój status
+742|Twoje krótkie bio
+743|Profil zaktualizowany.
+744|Zapisz
+745|Wybierz, co znajomi mogą robić z Twoimi zdjęciami, wideo i tekstami.
+746|Polubienia i reakcje
+747|Jeśli wyłączone, nikt nie może reagować na Twoje wpisy i nie jest wyświetlany żaden licznik.
+748|Komentarze
+749|Jeśli wyłączone, nikt nie może komentować Twoich wpisów.
+750|{n, plural, one{# wpis} few{# wpisy} many{# wpisów} other{# wpisu}}
+751|{n, plural, one{# znajomy} few{# znajomych} many{# znajomych} other{# znajomego}}
+752|Członek od {toLocaleDateString}
+753|Edytuj mój profil (zdjęcie, imię, bio)
+754|Ustawienia powiadomień
+755|Ustawienia
+756|Oznacz wszystko jako przeczytane
+757|🌙 Tryb cichy włączony: bez alertów, ale lista zostaje tutaj.
+758|Nic nowego.
+759|Powiadomienia nigdy nie zawierają treści wpisu znikającego.
+760|🎵 Dzwonki i wibracje
+761|Dzwonek powiadomień
+762|Dzwonek połączeń
+763|Wibracje wiadomości
+764|Wibracje połączeń
+765|Wstrząs zawsze wibruje z maksymalną siłą. Dotknij wyboru, aby go wypróbować.
+766|🔔 Powiadomienia w telefonie
+767|Otrzymuj powiadomienia
+768|Wiadomości, zaproszenia do znajomych, udostępnienia, wydarzenia…
+769|Powiadomienia w telefonie
+770|Powiadomienia włączone.
+771|Zezwól na powiadomienia w oknie telefonu.
+772|Powiadomienia odrzucone: zezwól na nie w ustawieniach telefonu (Aplikacje > Cercle > Powiadomienia).
+773|Ta przeglądarka nie obsługuje powiadomień. Zainstaluj aplikację (kod QR Android) lub ikonę na ekranie głównym.
+774|Powiadomienia odrzucone: zezwól na nie w ustawieniach telefonu, a potem spróbuj ponownie.
+775|Jakie powiadomienia otrzymywać?
+776|💬 Wiadomości
+777|👋 Zaproszenia do znajomych
+778|📰 Wpisy i relacje
+779|🔁 Udostępnienia
+780|📅 Wydarzenia
+781|👥 Grupy
+782|🖼 Albumy
+783|🎮 Gry
+784|Powiadomienia: {l}
+785|Test: wszystko działa ✅
+786|Nie można wyświetlić powiadomienia testowego.
+787|Wyślij test
+788|Szczerze: na razie powiadomienia pojawiają się, gdy aplikacja jest otwarta lub działa w tle. Otrzymywanie ich przy zamkniętej aplikacji wymaga serwera (wysyłka zdalna), planowanego wraz z prawdziwymi kontami. Połączenia: wkrótce.
+789|Moje 4 ulubione efekty
+790|Pojawiają się jako pierwsze w rozmowach. Pozostałe są pod przyciskiem „+”.
+791|Ulubiony: {label}
+792|Maksymalnie 4 ulubione: najpierw wyłącz jeden.
+793|Zostaw co najmniej jeden ulubiony.
+794|Przywróć domyślne
+795|Górny pasek
+796|Przycisk „Więcej” (wszystkie menu) jest zawsze w prawym górnym rogu. Dodaj obok niego do 4 skrótów.
+797|Na górze: {l}
+798|Maksymalnie 4 skróty: najpierw wyłącz jeden.
+799|Zostaw co najmniej jeden skrót.
+800|Dolny pasek
+801|Wybierz do 4 skrótów. Przycisk „Utwórz” zawsze zostaje pośrodku. Pozostałe menu są pod przyciskiem „Więcej” w prawym górnym rogu.
+802|Skrót {l}
+803|Dymek wiadomości
+804|Mały dymek, który przesuwasz, gdzie chcesz. Gdy jest wyświetlany, „Wiadomości” w dolnym pasku zastępują „Grupy”.
+805|Ekran startowy
+806|Strona, która otwiera się po uruchomieniu NOTIIF.
+807|Motyw jasny
+808|Jasne tło, biel i turkus.
+809|Motyw ciemny
+810|Granatowe i turkusowe tło, łagodniejsze wieczorem.
+811|Efekty w rozmowach
+812|Wstrząs ekranu z dźwiękiem, serca, urodziny: gdy znajomy wyśle taki efekt, zobaczysz go i usłyszysz. Domyślnie włączone.
+813|Godziny ciszy
+814|Wycisza alerty w nocy (w trybie serwera).
+815|Automatyczne odtwarzanie wideo
+816|Dla krótkich wideo (wkrótce).
+817|🔒 Prywatność
+818|Brak reklam. Brak sprzedaży danych.
+819|Brak przycisku udostępniania na zewnątrz, brak profilu publicznego.
+820|Nikt nie może Cię znaleźć bez Twojego kodu zaproszenia.
+821|Żadna aplikacja nie może uniemożliwić uprawnionej osobie sfotografowania ekranu innym urządzeniem.
+822|🧪 Tryb demo (na tym urządzeniu)
+823|Na razie Twoje dane zostają na tym urządzeniu, a znajomi są fikcyjni. Prawdziwe konta, wiadomości między telefonami i połączenia wymagają serwera: zobacz przewodnik w folderze „docs” projektu.
+824|Wyloguj się
+825|Eksportuj moje dane
+826|Usunąć wszystkie dane NOTIIF z tego urządzenia?
+827|Usuń moje konto i dane
+828|🔁 Zmień członka (demo)
+829|Aby przetestować czasy dla poszczególnych osób: opublikuj zdjęcie na 5 s dla Céline i Thomasa, a potem przełączaj się między nimi.
+830|Jesteś teraz użytkownikiem {name}.
+831|Zrzut ekranu zablokowany przez NOTIIF
+832|Logo NOTIIF
+833|przed chwilą
+834|{n} min temu
+835|{n} godz. temu
+836|Twarze
+837|Dłonie
+838|Serca
+839|Impreza i natura
+840|Zamknij emoji
+841|Usunąć: {what}?
+842|Ta czynność jest nieodwracalna.
+843|Zachowaj
+844|NOTIIF — Twój krąg. Twoje chwile.

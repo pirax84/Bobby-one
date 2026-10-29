@@ -1,0 +1,845 @@
+0|Hjem
+1|Venner
+2|Grupper
+3|Beskeder
+4|Opkald
+5|Billeder
+6|Spil
+7|Begivenheder
+8|Delinger
+9|Notifikationer
+10|Profil
+11|Juridisk
+12|Indstillinger
+13|Lyd- og videoopkald
+14|Opkald kræver en forbindelsesserver (WebRTC). De tilføjes, når NOTIIF-serveren er på plads.
+15|Din kreds. Dine øjeblikke.
+16|Opret
+17|Min profil
+18|Tilbage
+19|Alle menuer
+20|Navigation
+21|Opret: en story eller et opslag. Langt tryk for en videoselfie
+22|Mere
+23|Min kreds
+24|Medier og spil
+25|Min konto
+26|NOTIIF-invitation
+27|Tilføj {name}?
+28|Send anmodningen
+29|Denne kode findes ikke på denne enhed. I demotilstand deles konti endnu ikke mellem enheder: det kommer med serveren.
+30|Senere
+31|Hvad vil du dele?
+32|✨ En story (forsvinder af sig selv)
+33|📝 Et opslag
+34|Mine grupper
+35|Kommende
+36|Ingen begivenheder.
+37|Spil med familien
+38|Fortsæt med Apple
+39|Fortsæt med Google
+40|Fortsæt med Facebook
+41|Fortsæt med Snapchat
+42|Snapchat kræver en udvikleraftale (Snap Kit). Den skal bestilles, før den aktiveres.
+43|FranceConnect kræver en godkendelse fra staten (ansøgning på datapass.api.gouv.fr).
+44|Digital identitet La Poste
+45|Digital identitet La Poste kræver et partnerskab med La Poste.
+46|Serveren kan ikke nås.
+47|Der opstod en fejl.
+48|Konto oprettet.
+49|Konto oprettet. Åbn bekræftelsesmailen, vi lige har sendt, og kom derefter tilbage for at logge ind.
+50|Logget ind.
+51|Mig
+52|Permanent
+53|📳 Rystelse
+54|📳 Rystelse!
+55|❤️ Hjerter
+56|❤️ Regn af hjerter!
+57|😘 Kys
+58|😘 Store kys!
+59|❄️ Sne
+60|❄️ Det sner!
+61|🎆 Fyrværkeri
+62|🎆 Fyrværkeri!
+63|👻 Spøgelse
+64|👻 Bøh!
+65|🔥 Flammer
+66|🔥 Nu bliver det varmt!
+67|🫧 Bobler
+68|🫧 Bobler!
+69|🎂 Fest
+70|🎂 Det er fest!
+71|🌧️ Regn
+72|🌧️ Det regner!
+73|⛈️ Tordenvejr
+74|⛈️ Et tordenskrald!
+75|🚀 Raket
+76|🚀 Affyring!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Latterkrampe
+80|😂 Dør af grin!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Fødselsdag
+86|🎂 Tillykke med fødselsdagen!
+87|🎂 Fødselsdag 2
+88|🤭 Bøvs
+89|🤭 Bøvs!
+90|💨 Prut
+91|💨 Prut!
+92|🤮 Opkast
+93|🤮 Ad!
+94|Krystal
+95|Daggry
+96|Brise
+97|Skær
+98|Kyst
+99|Cirkel
+100|Morgen
+101|Ingen
+102|Let
+103|Middel
+104|Kraftig
+105|Enhedens hukommelse er fuld: slet gamle billeder.
+106|Fejl.
+107|Brugernavnet kan kun ændres én gang, og det har du allerede gjort.
+108|Det koster at ændre brugernavn (tilbuddet "Plus"). Betalingen er ikke koblet på endnu: aktivér "Plus (demonstration)" i Indstillinger for at prøve.
+109|Brugernavn: 3 til 20 tegn, små bogstaver, tal, punktum eller understregning.
+110|Dette brugernavn er allerede optaget.
+111|Brugernavn ændret. Denne ændring er endelig.
+112|Velkommen i min rede 🪺
+113|Hej! Velkommen! 🌳
+114|Familie
+115|Hvem er med søndag til frokosten?
+116|Familiefrokost
+117|Alle tager en lille ret med.
+118|Hos mormor
+119|Ugyldig varighed.
+120|Din konto er under kontrol efter anmeldelser.
+121|Ingen kan se dette opslag: vælg andre modtagere.
+122|Ingen kan se dette album: vælg andre modtagere.
+123|Album
+124|{name} har oprettet albummet "{slice}" til dig.
+125|Albummet blev ikke fundet.
+126|{name} har reageret med {emoji} på dit opslag.
+127|{name} har kommenteret dit opslag.
+128|Personen blev ikke fundet.
+129|Det er dig!
+130|Din konto er under kontrol efter anmeldelser: du kan ikke sende anmodninger lige nu.
+131|For mange anmodninger i dag (højst 15). Prøv igen i morgen.
+132|Anmodningen kan ikke sendes.
+133|{name} er allerede din ven.
+134|Anmodningen er allerede sendt.
+135|{name} har sendt dig en venneanmodning.
+136|Anmodning sendt til {name}.
+137|Ukendt kode (i demotilstand findes kun kontiene på denne enhed).
+138|3 til 20 tegn: bogstaver, tal, _ eller .
+139|Brugernavn gemt.
+140|Ikke fundet.
+141|Vælg mindst én ven (som ikke er blokeret af forfatteren).
+142|Anmodningen afventer allerede.
+143|{name} beder om at dele dit opslag.
+144|Anmodning sendt. Forfatteren bestemmer.
+145|{name} har afvist delingen.
+146|{name} har accepteret delingen.
+147|{name} har delt et indhold med dig.
+148|{name} har trukket delingen tilbage: den er forsvundet overalt.
+149|{name} har accepteret din anmodning.
+150|{name} har tilføjet dig til gruppen "{name2}".
+151|{name} har måske forsøgt at tage et skærmbillede af noget af dit indhold.
+152|{name} inviterer dig: {title}.
+153|{name} inviterer dig til et spil kryds og bolle.
+154|Videoen er for stor: højst 3 MB indtil videre (omkring 10 sekunder).
+155|Video tilføjet.
+156|Fejl
+157|Billede tilføjet.
+158|Vælg et billede eller en video.
+159|Ulæselig fil.
+160|Åbn videoen
+161|Åbn billedet
+162|Billede
+163|🔒 Privat: kun dig
+164|👥 Delt med {n}
+165|👥 Album fra {name}
+166|Tilbage til albummer
+167|Slette dette album og alt i det, også hos dem, der ser det?
+168|Slet albummet
+169|Indlæser…
+170|Tilføj et billede eller en video
+171|Tomt album: tilføj et første billede eller en første video.
+172|Der er endnu intet i dette album.
+173|🔒 Samme regler som alle andre steder: vandmærke med dit navn, skærmbilleder blokeret i Android-appen, ingen deling uden forfatterens accept.
+174|Mine videoer
+175|Vælg videoen bagefter.
+176|Billeder og videoer
+177|📷 Billeder
+178|🎬 Videoer
+179|🗂 Albummer
+180|Mine billeder
+181|Dine offentliggjorte billeder vises her.
+182|Delt med mig (permanente)
+183|Intet lige nu.
+184|Video tilføjet (privat, i "Mine videoer").
+185|Tilføj en video
+186|Ingen video endnu. Indtil videre: korte (omkring 10 sekunder, højst 3 MB). Længere videoer kommer med serveren.
+187|For at dele en video med venner skal du lægge den i et delt album (fanen Albummer).
+188|Nyt album
+189|Privat
+190|Delt med {length}
+191|Fra {name}
+192|· {count, plural, one{# element} other{# elementer}}
+193|Ingen albummer. Opret et, privat eller delt med dine venner.
+194|Navn (f.eks. Ferie 2026)
+195|🔒 Privat
+196|👥 Alle mine venner
+197|✅ Udvalgte venner
+198|Kun du kan se det.
+199|{n} ven(ner) kan se det. Kun dine venner ser det, og ingen kan dele det videre uden din accept.
+200|Opret albummet
+201|✅ Appen er installeret
+202|Du bruger den allerede som en rigtig app.
+203|📲 Installer appen
+204|Installer på denne enhed
+205|Download Android-appen
+206|På iPhone og iPad: tryk på
+207|Del
+208|⬆️ derefter
+209|"Føj til hjemmeskærm"
+210|Åbn browserens menu (⋮) og vælg derefter "Installer app" eller "Føj til startskærmen".
+211|Din kreds.
+212|Dine øjeblikke.
+213|Det private netværk for dine nærmeste: familie, venner, kolleger, hold, teatertrup eller klub. Uden reklamer, uden fremmede, uden deling udadtil.
+214|Del med hvem du vil
+215|Billeder, videoer og tekster, kun til de personer, du vælger.
+216|Stories, der forsvinder
+217|24 timer eller få sekunder for et flygtigt billede.
+218|Beskeder, talebeskeder og effekter
+219|Chat i gruppe eller privat, og send effekter med lyd.
+220|Gå ind i NOTIIF
+221|For at have NOTIIF som en rigtig app på din telefon:
+222|Installer appen
+223|Denne login aktiveres, når serveren er tilsluttet (se vejledningen).
+224|brugsvilkårene og privatlivspolitikken
+225|Opret min konto
+226|Log ind
+227|— eller —
+228|Dit fornavn eller brugernavn
+229|Fornavn
+230|Brugernavn @ (valgfrit): kan kun ændres én gang, koster penge
+231|Brugernavn
+232|Din e-mail
+233|Adgangskode (mindst 8 tegn)
+234|Adgangskode
+235|Jeg accepterer vilkårene
+236|Jeg er 15 år eller ældre og accepterer {legalBtn}.
+237|Jeg har allerede en konto
+238|Jeg har ikke en konto endnu
+239|Skriv først dit fornavn eller brugernavn ovenfor.
+240|Skriv først dit fornavn eller brugernavn.
+241|Sæt kryds i feltet "Jeg er 15 år eller ældre" for at fortsætte.
+242|Sæt kryds i feltet med vilkårene.
+243|🧪 Demotilstand
+244|Rigtige konti (e-mail, Google, Apple, Facebook, FranceConnect…) kræver en server, som endnu ikke er tilsluttet. Indtil da kan du prøve appen på denne enhed med opdigtede venner.
+245|Dit fornavn eller brugernavn (demo)
+246|Prøv demotilstand
+247|Indtil videre kan du prøve appen i demotilstand, på denne enhed, med opdigtede venner.
+248|Forstået, jeg prøver demotilstand
+249|Juridiske dokumenter
+250|🔒 Flygtig besked
+251|🎤 Talebesked
+252|📷 Billede
+253|Hurtige beskeder
+254|Tilbage til listen
+255|Åbn stort
+256|Luk
+257|💬 Samtaler
+258|👥 Mine venner
+259|Skriv en besked
+260|Endnu ingen venner. Tilføj nogle under fanen Venner.
+261|Ny samtale
+262|Ingen samtaler. Vælg en ven under "Mine venner".
+263|Set én gang
+264|Flygtig besked
+265|· åbn stort
+266|Emojis
+267|Din besked…
+268|Hurtig besked
+269|Send
+270|Skærmbillede blokeret: forfatteren får besked.
+271|Besked set én gang
+272|🔥 Set én gang
+273|Luk (den forsvinder)
+274|Billede set én gang
+275|Indhold skjult
+276|Skærmbillede eller vinduesskift registreret
+277|Denne besked forsvinder, når du lukker den. Et billede kan altid fotograferes med en anden enhed: respekter privatlivets fred.
+278|🔎 Søg i mine samtaler
+279|Ingen samtaler: skriv til en ven fra "Venner".
+280|📹 Jeg starter et videoopkald: {url}
+281|Videoopkald startet: linket er sendt i samtalen.
+282|Start et videoopkald
+283|📹 Videoopkald
+284|Besked
+285|🔥 Besked set og væk
+286|🔥 Besked, der kun kan ses én gang · tryk for at åbne
+287|(redigeret)
+288|⏱ {left} s
+289|⏱ flygtig {secs} s efter læsning
+290|🔥 engangsvisning ·
+291|set ✓
+292|🔒 Flygtig besked · tryk for at læse ({secs} s)
+293|⌛ Beskeden er udløbet
+294|· ✓✓ læst
+295|· ✓ sendt
+296|Sig hej 👋
+297|Afsendelsesindstillinger
+298|Luk indstillingerne
+299|Beskedens varighed
+300|♾️ Permanent
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Send et billede
+304|🛡 Vandmærke
+305|til
+306|fjernet
+307|Effekter
+308|Ulæseligt billede.
+309|Indstillinger: varighed, billede, effekter
+310|Rediger beskeden…
+311|Hvor mange sider har en sekskant?
+312|Hvad er Italiens hovedstad?
+313|Milano
+314|Napoli
+315|Rom
+316|Torino
+317|Hvilket dyr er hurtigst på land?
+318|Løve
+319|Gepard
+320|Hest
+321|Antilope
+322|Hvor mange minutter er halvanden time?
+323|Hvilken planet er tættest på Solen?
+324|Venus
+325|Mars
+326|Jorden
+327|Merkur
+328|Hvilken frugt giver cider?
+329|Pære
+330|Æble
+331|Drue
+332|Kirsebær
+333|Hvor mange spillere har et fodboldhold på banen?
+334|Hvilken farve får man ved at blande blå og gul?
+335|Grøn
+336|Orange
+337|Lilla
+338|Brun
+339|Hvad er det største hav?
+340|Atlanterhavet
+341|Det Indiske Ocean
+342|Det Arktiske Ocean
+343|Stillehavet
+344|Hvor mange dage har februar i et skudår?
+345|{nm} (✕) mod {nm2} (◯)
+346|Felt {v1}
+347|Uafgjort 🤝
+348|🏆 {name} har vundet!
+349|Det er din tur
+350|Det er {name}s tur (skift medlem i Indstillinger for at spille på vedkommendes vegne i demoen)
+351|⭕ Kryds og bolle for to
+352|🧠 Quiz
+353|♟️ Skak · snart
+354|🃏 Rommy · snart
+355|Inviter en ven
+356|Spil startet med {name}.
+357|Ingen spil. Inviter en ven ovenfor.
+358|Bravo! {pts}/{length}
+359|Din samlede score:
+360|point
+361|Spil igen
+362|Spørgsmål {v1}/{length} · Point {pts}
+363|Næste
+364|Afslut
+365|Slette overalt, også hos dem, der har modtaget det?
+366|Slet
+367|Reagér {e}
+368|🔒 Beskyttet billede: vandmærke med dit navn, skærmbilleder blokeret i Android-appen, deling kun med forfatterens accept.
+369|Kommer snart
+370|Stille og roligt: én effekt i sekundet.
+371|Effekt {label}
+372|Egen effekt {name}
+373|Flere effekter
+374|＋ Mere
+375|Alle effekter
+376|Sæt kryds ved de 4 effekter, der skal ligge forrest ({length}/4). Tryk på "Send" for at prøve.
+377|Behold forrest: {label}
+378|Højst 4: fjern først et kryds.
+379|Behold mindst én effekt forrest.
+380|Mine egne effekter
+381|Slet {name}
+382|＋ Opret min effekt (billede + min stemme)
+383|Mikrofonen er utilgængelig eller afvist.
+384|Giv din effekt et navn.
+385|Tilføj et billede eller en lyd.
+386|Højst 6 egne effekter.
+387|Effekt tilføjet.
+388|Effektens navn (f.eks. Min latter)
+389|Effektens navn
+390|Billede
+391|Optager… {left} s (tryk for at afslutte)
+392|Optag igen
+393|Optag (højst 3 s)
+394|Lyden er for stor (højst 450 KB, omkring 10 sekunder).
+395|📁 Vælg en lydfil
+396|▶ Prøv
+397|Tilføj
+398|Story
+399|Set af:
+400|ingen endnu
+401|Svar privat…
+402|↩️ Svar på din story: {reply}
+403|Svar sendt privat.
+404|Reaktion sendt {e}
+405|Alle mine venner
+406|En gruppe
+407|Valgte venner
+408|Alle undtagen…
+409|En liste
+410|Kun mig
+411|Vælg et billede.
+412|Dette billede kan ikke læses.
+413|Story offentliggjort uden tidsgrænse.
+414|Flygtig story offentliggjort.
+415|Story offentliggjort i 24 t.
+416|Offentliggjort!
+417|✨ Min story
+418|📝 Nyt opslag
+419|En story forsvinder af sig selv (24 t som standard) og ses på fuld skærm.
+420|Type indhold
+421|✏️ Tekst
+422|🎥 Videoselfie
+423|🎤 Stemme
+424|🔗 Link
+425|Forhåndsvisning
+426|Fjern billedet
+427|📷 Vælg et billede
+428|🗑 Slet
+429|✅ Offentliggør
+430|🔁 Start forfra
+431|🎥 Filme mig selv (højst 10 s)
+432|🎤 Optag en talebesked (højst 30 s)
+433|Indsæt et link: Spotify-, Deezer- eller YouTube-playliste, video, Instagram, TikTok, Leboncoin…
+434|Link til deling
+435|Dette link ser ikke gyldigt ud.
+436|Skriv din story…
+437|Storyens tekst
+438|Hvad er der nyt hos dine nærmeste?
+439|Tilføj en billedtekst (valgfrit)…
+440|Tekst
+441|Humør
+442|Baggrund {v1}
+443|Intet humør
+444|Hvem kan se det?
+445|Storyens varighed
+446|24 timer
+447|Ubegrænset
+448|Flygtig
+449|Visningstid
+450|Andet…
+451|Sekunder (1 til 999)
+452|Egen varighed i sekunder
+453|Gruppe
+454|Liste
+455|＋ Opret en liste
+456|Listens navn (f.eks. Kolleger, Fodbold, Teater)
+457|Listens navn
+458|Tilføj først venner for at lægge dem på en liste.
+459|Annuller
+460|Liste oprettet.
+461|Opret listen
+462|Indtast mellem 1 og {MAX_CUSTOM_SECS} sekunder.
+463|Kun synligt for dig.
+464|{audLabel} · {count} personer
+465|· {fmtSecs} pr. person fra åbning
+466|Offentliggør
+467|Flygtigt opslag
+468|Resterende tid
+469|{ceil} s
+470|Flygtigt billede
+471|Hvis du lukker, løber tiden videre. Et billede kan altid fotograferes med en anden enhed.
+472|Udløbet for dig
+473|Din visningstid er udløbet.
+474|flygtig
+475|Du har {n} s tilbage.
+476|Du får {fmtSecs} fra åbning.
+477|Fortsæt
+478|Åbn
+479|Indstillinger
+480|↪ Delt af
+481|med {name}s accept
+482|Slette dette opslag? De tilladte delinger forsvinder også.
+483|Slet overalt
+484|Trække denne deling tilbage? Den forsvinder hos {name} og vedkommendes venner.
+485|Træk denne deling tilbage
+486|Holde op med at dele?
+487|Stop min deling
+488|Forstør opslaget
+489|Kommentér
+490|Set af {length}/{length2}:
+491|↪ {n, plural, one{# tilladt deling} other{# tilladte delinger}}
+492|af dig (se "Delinger").
+493|Set af
+494|· Delingens publikum:
+495|↪ Bed om at dele
+496|Tryk på billedet for at reagere eller kommentere
+497|Tryk på billedet for at reagere
+498|Tryk på billedet for at kommentere
+499|Opslag
+500|Flere smileys
+501|Andre:
+502|Ingen kommentarer endnu. Vær den første!
+503|Svar
+504|Smileys
+505|Dit svar…
+506|Skriv en kommentar…
+507|Kommentar
+508|Alle venner
+509|Kun mig
+510|Valgte venner
+511|Venner undtagen…
+512|Alt
+513|Mine opslag
+514|Intet her endnu. Offentliggør dit første øjeblik ✨
+515|✏️ Skriv en tekst
+516|Tip: hold knappen nede for at åbne kameraet direkte.
+517|Bed om at dele
+518|Dette indhold tilhører
+519|. Vedkommende afgør, om det accepteres. Hvis det accepteres, vil dine valgte venner se
+520|det oprindelige indhold
+521|(ikke en kopi), med de samme varigheder, og {name} kan
+522|trække delingen tilbage når som helst
+523|: den forsvinder så hos alle.
+524|Del med:
+525|Du har ingen andre venner.
+526|En lille besked til forfatteren (valgfrit)
+527|Send anmodningen til {name}
+528|🌍 Sprog
+529|Vælg sproget i NOTIIF. Det skifter med det samme, og dit valg huskes.
+530|Nuværende sprog
+531|Søg efter et sprog
+532|Sprog
+533|Sprog ændret.
+534|Intet sprog fundet.
+535|Indtil videre findes de juridiske dokumenter kun på fransk.
+536|Version {LEGAL_VERSION}
+537|Wikipedia
+538|Link
+539|{name}-afspiller
+540|Formindsk
+541|Forstør
+542|Stop musikken
+543|{name}-link
+544|Formindsk og fortsæt med at lytte
+545|⌄ Formindsk
+546|Åbn separat
+547|Dette websted kan ikke vises inde i NOTIIF.
+548|Åbn {name}
+549|Åbn {name}-linket
+550|🎧 Lyt i NOTIIF (kun du hører det)
+551|▶ Se her, i NOTIIF
+552|Åbn linket
+553|Kamera eller mikrofon er utilgængelig eller afvist.
+554|🎥 Start
+555|🎤 Start
+556|(højst {max} s)
+557|⏹ Afslut · {left} s
+558|📸 Billede
+559|Hold knappen nede for at tale.
+560|Hold nede for at optage en talebesked
+561|🔴 Slip for at sende
+562|Kamera
+563|Start forfra
+564|Send ➤
+565|Luk kameraet
+566|Skift kamera
+567|s / {max} s
+568|Zoom
+569|Zoom {z} gange
+570|{replace}×
+571|Video
+572|Tag billedet
+573|Stop
+574|Filme
+575|Tryk for at tage billedet
+576|Tryk for at stoppe
+577|Tryk for at filme (højst {max} s)
+578|Hold mikrofonen nede for at tale.
+579|🔴 {mm} · slip for at afslutte
+580|Hold mikrofonen nede for at tale (højst {max} s)
+581|Indtil jeg fjerner det
+582|Som originalen
+583|Hvor længe er delingen synlig?
+584|Visningstid pr. person
+585|🔒 Dette indhold kan ikke genudgives andre steder: det har et vandmærke, skærmbilleder er blokeret (Android-app), og enhver ny deling kræver din accept. Du kan trække det tilbage når som helst.
+586|Deling tilladt. Du kan trække den tilbage, når du vil.
+587|Bekræft tilladelsen
+588|Tillad…
+589|Afvis
+590|indhold slettet
+591|Ingen kan genudgive dit indhold uden din accept. Og selv efter accept
+592|har du fuld kontrol
+593|: hvis du trækker en deling tilbage eller sletter dit opslag, forsvinder det hos alle, som det var delt med.
+594|Anmodninger at behandle ({length})
+595|vil gerne dele
+596|med {join} · {ago}
+597|Ingen ventende anmodninger.
+598|Delinger, jeg har tilladt ({length})
+599|delt af {nm} med {join}
+600|Trække denne deling tilbage? Den forsvinder hos alle.
+601|Deling trukket tilbage overalt.
+602|Træk tilbage overalt
+603|Ingen aktive delinger.
+604|Mine anmodninger og mine delinger ({length})
+605|fra {nm}
+606|{v1} · med {join}
+607|Du har ikke bedt om at dele noget.
+608|QR-kode
+609|🌍 Offentlig
+610|Alle kan finde mig med mit navn eller brugernavn.
+611|👥 Begrænset
+612|Kun med mit nøjagtige brugernavn eller via venners venner.
+613|🔒 Usynlig
+614|Ingen kan finde mig. Kun hvis jeg giver min QR-kode eller min kode.
+615|Min QR-kode
+616|Åbn eller forstør QR-koden
+617|Klik på QR-koden for at åbne siden
+618|Tryk på QR-koden for at forstørre den
+619|Vis den til en nær ven eller et familiemedlem: vedkommende scanner den med telefonens kamera.
+620|Link kopieret
+621|Kopiering mislykkedes
+622|Kopiér mit link
+623|Gem billedet
+624|Oprette en ny kode? Den gamle QR-kode holder op med at virke.
+625|Ny kode oprettet.
+626|Forny
+627|Hvem kan finde mig?
+628|Indstilling gemt.
+629|Gem brugernavnet
+630|Denne browser kan ikke læse QR-koder. Brug telefonens kamera: den åbner selv NOTIIF-linket.
+631|Kamera utilgængeligt eller afvist.
+632|Scan en QR-kode
+633|Kom med mig på NOTIIF, det private netværk for vores nærmeste (familie, venner, kolleger, klub…), uden reklamer. Installér appen her: {inviteLink} (min kode: {code})
+634|Kontakt
+635|Ingen kontakt med et nummer eller en e-mail.
+636|Adgang til kontakter afvist eller annulleret.
+637|Besked kopieret: indsæt den, hvor du vil.
+638|Inviter mine nærmeste
+639|📇 Vælg blandt mine kontakter
+640|På denne telefon eller browser kan appen ikke læse dine kontakter. Tilføj et nummer eller en e-mail manuelt, eller del linket.
+641|Nummer eller e-mail
+642|Inviter {name}
+643|Send invitationen:
+644|Kom med mig på NOTIIF
+645|E-mail
+646|🔗 Del invitationslinket
+647|🔒 Dine kontakter hverken gemmes eller sendes til NOTIIF: de bruges kun til at skrive beskeden på din telefon. Import fra Google eller Facebook kommer med serverforbindelsen.
+648|Modtagne anmodninger ({length})
+649|{name} er nu din ven.
+650|Accepter
+651|Min kode:
+652|Kode kopieret
+653|Kopiér
+654|Kode fra en nær ven (NID-…)
+655|Invitationskode
+656|Inviter
+657|📇 Inviter fra mine kontakter
+658|Demotilstand: koder til test
+659|(opdigtede personer)
+660|Mine venner ({length})
+661|Vælg en liste
+662|Alle ({length})
+663|＋ Ny liste
+664|Indstillinger for {name}
+665|Ingen på denne liste.
+666|Endnu ingen venner.
+667|Anmeld denne person
+668|Hvorfor? Tre anmeldelser fra forskellige personer suspenderer automatisk kontoen, mens den kontrolleres.
+669|Falsk profil
+670|Salg, reklame eller telefonsalg
+671|Svindel
+672|Seksuelle tilbud eller escort
+673|Ulovligt indhold
+674|Chikane
+675|Andet
+676|Tak, anmeldelsen er registreret.
+677|💬 Skriv
+678|Fjerne {name} fra dine venner?
+679|Fjern fra venner
+680|Anmeld
+681|Blokere {name}? Vedkommende vil ikke længere se dit indhold.
+682|Blokeret.
+683|Bloker
+684|Mine lister
+685|F.eks. "Fætre og kusiner", "Kolleger"… så du hurtigt kan vælge, hvem der ser dine opslag.
+686|Blokerede personer
+687|Fjern blokering
+688|Ny liste
+689|🔎 Find nogen (navn eller @brugernavn)
+690|Søg
+691|Ingen fundet. "Usynlige" eller "begrænsede" personer kan kun findes med deres QR-kode, deres kode eller deres nøjagtige brugernavn.
+692|📜 Gruppens regler
+693|Medlemmer ({length})
+694|Fjerne {name} fra gruppen?
+695|Fjern
+696|Forlade denne gruppe?
+697|Forlad gruppen
+698|Ny
+699|{n, plural, one{# medlem} other{# medlemmer}}
+700|Opret en gruppe til familien, ferien, festerne…
+701|Ny gruppe
+702|Emoji
+703|Gruppens navn
+704|Beskrivelse
+705|Gruppens regler (valgfrit)
+706|Medlemmer (blandt dine venner)
+707|Gruppe oprettet.
+708|Opret gruppen
+709|✅ Deltager
+710|❌ Deltager ikke
+711|🤔 Måske
+712|Fødselsdage, familiefrokoster, ferie… opret den første!
+713|· overstået
+714|Slette denne begivenhed?
+715|Arrangeret af {name}
+716|👥 Se, hvem der kommer
+717|✅ Deltager
+718|❌ Deltager ikke
+719|⏳ Intet svar
+720|Ny begivenhed
+721|Titel (f.eks. Mormors fødselsdag)
+722|Dato og tidspunkt
+723|Sted
+724|Begivenhed oprettet.
+725|Mine venner
+726|Alle
+727|Ingen
+728|Rediger min profil
+729|Skift billedet
+730|Tilføj et billede
+731|Fjern billedet
+732|Brugernavn: @{handle}
+733|Allerede ændret én gang: endeligt.
+734|Kan kun ændres én gang og koster penge (for at begrænse falske profiler).
+735|Nyt brugernavn
+736|Skift
+737|Hvem kan se mit billede?
+738|De andre ser så dit forbogstav i stedet for billedet.
+739|Fornavn eller brugernavn
+740|Status
+741|Din status
+742|Din korte bio
+743|Profil opdateret.
+744|Gem
+745|Vælg, hvad dine venner kan gøre med dine billeder, videoer og tekster.
+746|Synes godt om og reaktioner
+747|Hvis det er slået fra, kan ingen reagere på dine opslag, og der vises ingen tæller.
+748|Kommentarer
+749|Hvis det er slået fra, kan ingen kommentere dine opslag.
+750|{n, plural, one{# opslag} other{# opslag}}
+751|{n, plural, one{# ven} other{# venner}}
+752|Medlem siden {toLocaleDateString}
+753|Rediger min profil (billede, navn, bio)
+754|Notifikationsindstillinger
+755|Indstillinger
+756|Markér alt som læst
+757|🌙 Lydløs tilstand slået til: ingen notifikationer, men listen bliver her.
+758|Intet nyt.
+759|Notifikationer indeholder aldrig indholdet af et flygtigt opslag.
+760|🎵 Ringetoner og vibration
+761|Ringetone til notifikationer
+762|Ringetone til opkald
+763|Vibration ved beskeder
+764|Vibration ved opkald
+765|Rystelsen vibrerer altid maksimalt. Tryk på et valg for at prøve det.
+766|🔔 Notifikationer på telefonen
+767|Modtag notifikationer
+768|Beskeder, venneanmodninger, delinger, begivenheder…
+769|Notifikationer på telefonen
+770|Notifikationer slået til.
+771|Tillad notifikationer i telefonens vindue.
+772|Notifikationer afvist: tillad dem i telefonens indstillinger (Apps > Cercle > Notifikationer).
+773|Denne browser understøtter ikke notifikationer. Installér appen (Android-QR) eller ikonet på startskærmen.
+774|Notifikationer afvist: tillad dem i telefonens indstillinger, og prøv derefter igen.
+775|Hvilke notifikationer vil du modtage?
+776|💬 Beskeder
+777|👋 Venneanmodninger
+778|📰 Opslag og stories
+779|🔁 Delinger
+780|📅 Begivenheder
+781|👥 Grupper
+782|🖼 Albummer
+783|🎮 Spil
+784|Notifikationer: {l}
+785|Test: alt fungerer ✅
+786|Testnotifikationen kan ikke vises.
+787|Send en test
+788|Helt ærligt: indtil videre vises notifikationer, når appen er åben eller kører i baggrunden. For at modtage dem med lukket app kræves serveren (fjernsendelse), planlagt sammen med rigtige konti. Opkald: snart.
+789|Mine 4 yndlingseffekter
+790|De vises først i samtalerne. De andre ligger under knappen "+".
+791|Yndling: {label}
+792|Højst 4 yndlinge: slå først én fra.
+793|Behold mindst én yndling.
+794|Gendan standard
+795|Øverste bjælke
+796|Knappen "Mere" (alle menuer) sidder altid øverst til højre. Tilføj op til 4 genveje ved siden af.
+797|Øverst: {l}
+798|Højst 4 genveje: slå først én fra.
+799|Behold mindst én genvej.
+800|Nederste bjælke
+801|Vælg op til 4 genveje. Knappen "Opret" sidder altid i midten. De andre menuer er i knappen "Mere" øverst til højre.
+802|Genvej {l}
+803|Beskedboble
+804|En lille boble, du flytter, hvorhen du vil. Når den vises, erstattes "Beskeder" af "Grupper" i den nederste bjælke.
+805|Startskærm
+806|Siden, der åbnes, når du starter NOTIIF.
+807|Lyst tema
+808|Lys baggrund, hvid og turkis.
+809|Mørkt tema
+810|Natblå og turkis baggrund, blødere om aftenen.
+811|Effekter i samtaler
+812|Skærmrystelse med lyd, hjerter, fødselsdag: når en ven sender en, ser og hører du den. Slået til fra start.
+813|Stille periode
+814|Slår notifikationer fra om natten (i servertilstand).
+815|Automatisk afspilning af videoer
+816|Til korte videoer (snart).
+817|🔒 Privatliv
+818|Ingen reklamer. Intet salg af data.
+819|Ingen delingsknap udadtil, ingen offentlig profil.
+820|Ingen kan finde dig uden din invitationskode.
+821|Ingen app kan forhindre en autoriseret person i at fotografere sin skærm med en anden enhed.
+822|🧪 Demotilstand (på denne enhed)
+823|Indtil videre bliver dine data på denne enhed, og vennerne er opdigtede. Rigtige konti, beskeder mellem telefoner og opkald kræver en server: se vejledningen i projektets mappe "docs".
+824|Log ud
+825|Eksportér mine data
+826|Slette alle dine NOTIIF-data fra denne enhed?
+827|Slet min konto og mine data
+828|🔁 Skift medlem (demo)
+829|Sådan tester du varigheder pr. person: offentliggør et billede på 5 s til Céline og Thomas, og skift derefter mellem dem.
+830|Du er nu {name}.
+831|Skærmbillede blokeret af NOTIIF
+832|NOTIIF-logo
+833|lige nu
+834|{n} min. siden
+835|{n} t. siden
+836|Ansigter
+837|Hænder
+838|Hjerter
+839|Fest og natur
+840|Luk emojis
+841|Slette {what}?
+842|Denne handling er endelig.
+843|Behold
+844|NOTIIF — Din kreds. Dine øjeblikke.

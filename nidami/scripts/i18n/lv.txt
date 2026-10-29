@@ -1,0 +1,845 @@
+0|Sākums
+1|Draugi
+2|Grupas
+3|Ziņojumi
+4|Zvani
+5|Fotoattēli
+6|Spēles
+7|Pasākumi
+8|Kopīgojumi
+9|Paziņojumi
+10|Profils
+11|Juridiskā informācija
+12|Iestatījumi
+13|Audio un video zvani
+14|Zvaniem nepieciešams savienojuma serveris (WebRTC). Tie parādīsies, kad NOTIIF serveris darbosies.
+15|Tavs loks. Tavi mirkļi.
+16|Izveidot
+17|Mans profils
+18|Atpakaļ
+19|Visas izvēlnes
+20|Navigācija
+21|Izveidot: stāsts vai ieraksts. Ilgi nospied selfija video
+22|Vairāk
+23|Mans loks
+24|Mediji un spēles
+25|Mans konts
+26|Ielūgums uz NOTIIF
+27|Pievienot lietotāju {name}?
+28|Nosūtīt pieprasījumu
+29|Šis kods šajā ierīcē nepastāv. Demonstrācijas režīmā konti vēl netiek kopīgoti starp ierīcēm: tas būs ar serveri.
+30|Vēlāk
+31|Ko vēlies kopīgot?
+32|✨ Stāsts (pazūd pats)
+33|📝 Ieraksts
+34|Manas grupas
+35|Gaidāmie
+36|Nav pasākumu.
+37|Spēlēt ar ģimeni
+38|Turpināt ar Apple
+39|Turpināt ar Google
+40|Turpināt ar Facebook
+41|Turpināt ar Snapchat
+42|Snapchat prasa izstrādātāja līgumu (Snap Kit). Tas jāpieprasa pirms aktivizēšanas.
+43|FranceConnect prasa valsts atļauju (pieteikumu iesniedz vietnē datapass.api.gouv.fr).
+44|La Poste digitālā identitāte
+45|La Poste digitālā identitāte prasa partnerību ar La Poste.
+46|Serveris nav pieejams.
+47|Radās kļūda.
+48|Konts izveidots.
+49|Konts izveidots. Atver apstiprinājuma e-pastu, ko tikko nosūtījām, un atgriezies, lai pieteiktos.
+50|Pieteicies.
+51|Es
+52|Pastāvīgs
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Sirdis
+56|❤️ Sirdju lietus!
+57|😘 Skūpsti
+58|😘 Lieli skūpsti!
+59|❄️ Sniegs
+60|❄️ Sniegs snieg!
+61|🎆 Salūts
+62|🎆 Salūts!
+63|👻 Spoks
+64|👻 Bū!
+65|🔥 Liesmas
+66|🔥 Karsts!
+67|🫧 Burbuļi
+68|🫧 Burbuļi!
+69|🎂 Svinības
+70|🎂 Svinam!
+71|🌧️ Lietus
+72|🌧️ Līst!
+73|⛈️ Negaiss
+74|⛈️ Dārd!
+75|🚀 Raķete
+76|🚀 Starts!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Smieklu lēkme
+80|😂 Mirstu no smiekliem!
+81|💰 Džekpots
+82|💰 Džekpots!
+83|💣 Bums
+84|💣 Bums!
+85|🎂 Dzimšanas diena
+86|🎂 Daudz laimes dzimšanas dienā!
+87|🎂 Dzimšanas diena 2
+88|🤭 Atraugas
+89|🤭 Atrauga!
+90|💨 Pirdiens
+91|💨 Pirdiens!
+92|🤮 Vemšana
+93|🤮 Fui!
+94|Kristāls
+95|Rītausma
+96|Vēsma
+97|Mirdzums
+98|Krasts
+99|Aplis
+100|Rīts
+101|Nav
+102|Vāja
+103|Vidēja
+104|Stipra
+105|Ierīces atmiņa ir pilna: izdzēs vecus fotoattēlus.
+106|Kļūda.
+107|Lietotājvārdu var mainīt tikai vienu reizi, un tu to jau esi izdarījis.
+108|Lietotājvārda maiņa ir maksas pakalpojums (piedāvājums „Plus”). Maksājums vēl nav pieslēgts: lai izmēģinātu, iestatījumos ieslēdz „Plus (priekšskatījums)”.
+109|Lietotājvārds: no 3 līdz 20 rakstzīmēm, mazie burti, cipari, punkts vai pasvītrojums.
+110|Šis lietotājvārds jau ir aizņemts.
+111|Lietotājvārds nomainīts. Šī maiņa ir galīga.
+112|Laipni lūdzam manā ligzdā 🪺
+113|Sveiki! Laipni lūdzam! 🌳
+114|Ģimene
+115|Kas svētdien nāk pusdienās?
+116|Ģimenes pusdienas
+117|Katrs atnes nelielu ēdienu.
+118|Pie vecmāmiņas
+119|Nederīgs ilgums.
+120|Tavs konts ir pārbaudē ziņojumu dēļ.
+121|Šo ierakstu neviens neredzētu: izvēlies citus saņēmējus.
+122|Šo albumu neviens neredzētu: izvēlies citus saņēmējus.
+123|Albums
+124|{name} tev izveidoja albumu „{slice}”.
+125|Albums nav atrasts.
+126|{name} reaģēja ar {emoji} uz tavu ierakstu.
+127|{name} komentēja tavu ierakstu.
+128|Persona nav atrasta.
+129|Tas esi tu!
+130|Tavs konts ir pārbaudē ziņojumu dēļ: pagaidām nevari sūtīt pieprasījumus.
+131|Šodien pārāk daudz pieprasījumu (ne vairāk kā 15). Mēģini rīt.
+132|Pieprasījumu nevar nosūtīt.
+133|{name} jau ir tavs draugs.
+134|Pieprasījums jau nosūtīts.
+135|{name} lūdz tevi draudzēties.
+136|Pieprasījums nosūtīts lietotājam {name}.
+137|Nezināms kods (demonstrācijas režīmā pastāv tikai šīs ierīces konti).
+138|No 3 līdz 20 rakstzīmēm: burti, cipari, _ vai .
+139|Lietotājvārds saglabāts.
+140|Nav atrasts.
+141|Izvēlies vismaz vienu draugu (ko autors nav bloķējis).
+142|Pieprasījums jau gaida.
+143|{name} lūdz atļauju kopīgot tavu ierakstu.
+144|Pieprasījums nosūtīts. Lēmumu pieņem autors.
+145|{name} noraidīja kopīgošanu.
+146|{name} pieņēma kopīgošanu.
+147|{name} kopīgoja ar tevi saturu.
+148|{name} atsauca kopīgošanu: tas visur pazuda.
+149|{name} pieņēma tavu pieprasījumu.
+150|{name} pievienoja tevi grupai „{name2}”.
+151|{name} varbūt mēģināja uzņemt ekrānuzņēmumu kādam no taviem saturiem.
+152|{name} tevi uzaicina: {title}.
+153|{name} uzaicina tevi uz nulles un krustiņu partiju.
+154|Video ir pārāk liels: pagaidām ne vairāk kā 3 MB (apmēram 10 sekundes).
+155|Video pievienots.
+156|Kļūda
+157|Fotoattēls pievienots.
+158|Izvēlies fotoattēlu vai video.
+159|Nelasāms fails.
+160|Atvērt video
+161|Atvērt fotoattēlu
+162|Fotoattēls
+163|🔒 Privāts: tikai tu
+164|👥 Kopīgots ar: {n}
+165|👥 Lietotāja {name} albums
+166|Atpakaļ uz albumiem
+167|Dzēst šo albumu un visu tajā, arī tiem, kas to redz?
+168|Dzēst albumu
+169|Ielādē…
+170|Pievienot fotoattēlu vai video
+171|Tukšs albums: pievieno pirmo fotoattēlu vai video.
+172|Šajā albumā vēl nekā nav.
+173|🔒 Tie paši noteikumi kā visur: ūdenszīme ar tavu vārdu, ekrānuzņēmumi bloķēti Android lietotnē, nekādas kopīgošanas bez autora piekrišanas.
+174|Mani video
+175|Video izvēlies pēc tam.
+176|Fotoattēli un video
+177|📷 Fotoattēli
+178|🎬 Video
+179|🗂 Albumi
+180|Mani fotoattēli
+181|Tavi publicētie fotoattēli parādīsies šeit.
+182|Kopīgots ar mani (pastāvīgs)
+183|Pagaidām nekā.
+184|Video pievienots (privāts, sadaļā „Mani video”).
+185|Pievienot video
+186|Video vēl nav. Pagaidām īsi (apmēram 10 sekundes, ne vairāk kā 3 MB). Garāki video būs ar serveri.
+187|Lai video kopīgotu ar draugiem, ieliec to kopīgotā albumā (cilne Albumi).
+188|Jauns albums
+189|Privāts
+190|Kopīgots ar: {length}
+191|No lietotāja {name}
+192|· {count, plural, one{# vienums} other{# vienumi}}
+193|Nav albumu. Izveido vienu, privātu vai kopīgotu ar draugiem.
+194|Nosaukums (piem., Atvaļinājums 2026)
+195|🔒 Privāts
+196|👥 Visi mani draugi
+197|✅ Izvēlētie draugi
+198|To redzēsi tikai tu.
+199|Draugu skaits, kas to varēs redzēt: {n}. To redz tikai tavi draugi, un neviens to nevar kopīgot tālāk bez tavas piekrišanas.
+200|Izveidot albumu
+201|✅ Lietotne instalēta
+202|Tu to jau lieto kā īstu lietotni.
+203|📲 Instalēt lietotni
+204|Instalēt šajā ierīcē
+205|Lejupielādēt Android lietotni
+206|iPhone un iPad ierīcēs: pieskaries
+207|Kopīgot
+208|⬆️ pēc tam
+209|„Pievienot sākuma ekrānam”
+210|Atver pārlūka izvēlni (⋮) un izvēlies „Instalēt lietotni” vai „Pievienot sākuma ekrānam”.
+211|Tavs loks.
+212|Tavi mirkļi.
+213|Tavu tuvāko privātais tīkls: ģimene, draugi, kolēģi, komanda, teātra trupa vai klubs. Bez reklāmām, bez svešiniekiem, bez kopīgošanas uz āru.
+214|Kopīgo ar ko vēlies
+215|Fotoattēli, video un teksti tikai tiem, ko izvēlies.
+216|Stāsti, kas pazūd
+217|24 stundas vai dažas sekundes pārejoša fotoattēla gadījumā.
+218|Ziņojumi, balss ziņojumi un efekti
+219|Tērzē grupā vai privāti un sūti efektus ar skaņu.
+220|Ieiet NOTIIF
+221|Lai NOTIIF būtu kā īsta lietotne tavā tālrunī:
+222|Instalēt lietotni
+223|Šī pieteikšanās aktivizēsies, kad serveris būs pieslēgts (skat. rokasgrāmatu).
+224|lietošanas noteikumi un privātuma politika
+225|Izveidot manu kontu
+226|Pieteikties
+227|— vai —
+228|Tavs vārds vai lietotājvārds
+229|Vārds
+230|Lietotājvārds ar @ (neobligāts): var mainīt tikai vienu reizi, par maksu
+231|Lietotājvārds
+232|Tava e-pasta adrese
+233|Parole (vismaz 8 rakstzīmes)
+234|Parole
+235|Piekrītu noteikumiem
+236|Esmu sasniedzis 15 gadu vecumu un piekrītu dokumentiem: {legalBtn}.
+237|Man jau ir konts
+238|Man vēl nav konta
+239|Vispirms augšā ieraksti savu vārdu vai lietotājvārdu.
+240|Vispirms ieraksti savu vārdu vai lietotājvārdu.
+241|Lai turpinātu, atzīmē lodziņu „Esmu sasniedzis 15 gadu vecumu”.
+242|Atzīmē lodziņu ar noteikumiem.
+243|🧪 Demonstrācijas režīms
+244|Īstiem kontiem (e-pasts, Google, Apple, Facebook, FranceConnect…) vajadzīgs serveris, kas vēl nav pieslēgts. Pagaidām vari izmēģināt lietotni šajā ierīcē ar izdomātiem draugiem.
+245|Tavs vārds vai lietotājvārds (demonstrācija)
+246|Izmēģināt demonstrācijas režīmu
+247|Pagaidām vari izmēģināt lietotni demonstrācijas režīmā šajā ierīcē ar izdomātiem draugiem.
+248|Sapratu, izmēģināšu demonstrācijas režīmu
+249|Juridiskie dokumenti
+250|🔒 Pārejošs ziņojums
+251|🎤 Balss ziņojums
+252|📷 Fotoattēls
+253|Ātrie ziņojumi
+254|Atpakaļ uz sarakstu
+255|Atvērt lielu
+256|Aizvērt
+257|💬 Sarunas
+258|👥 Mani draugi
+259|Rakstīt ziņojumu
+260|Draugu vēl nav. Pievieno tos cilnē Draugi.
+261|Jauna saruna
+262|Nav sarunu. Izvēlies draugu sadaļā „Mani draugi”.
+263|Redzēts vienreiz
+264|Pārejošs ziņojums
+265|· atvērt lielu
+266|Emocijzīme
+267|Tavs ziņojums…
+268|Ātrais ziņojums
+269|Sūtīt
+270|Ekrānuzņēmums bloķēts: autors tiks brīdināts.
+271|Ziņojums redzēts vienreiz
+272|🔥 Redzēts vienreiz
+273|Aizvērt (pazūd)
+274|Fotoattēls redzēts vienreiz
+275|Saturs paslēpts
+276|Konstatēts ekrānuzņēmums vai loga maiņa
+277|Šis ziņojums pazūd, kad to aizver. Fotoattēlu vienmēr var nofotografēt ar citu ierīci: cieni privātumu.
+278|🔎 Meklēt manās sarunās
+279|Nav sarunu: uzraksti draugam no sadaļas „Draugi”.
+280|📹 Sāku video zvanu: {url}
+281|Video zvans sākts: saite nosūtīta sarunā.
+282|Sākt video zvanu
+283|📹 Video zvans
+284|Ziņojums
+285|🔥 Ziņojums redzēts un pazudis
+286|🔥 Vienreiz skatāms ziņojums · pieskaries, lai atvērtu
+287|(rediģēts)
+288|⏱ {left} s
+289|⏱ pārejošs, {secs} s pēc izlasīšanas
+290|🔥 vienreizēja skatīšanās ·
+291|redzēts ✓
+292|🔒 Pārejošs ziņojums · pieskaries, lai lasītu ({secs} s)
+293|⌛ Ziņojumam beidzies derīgums
+294|· ✓✓ izlasīts
+295|· ✓ nosūtīts
+296|Sasveicinies 👋
+297|Sūtīšanas opcijas
+298|Aizvērt opcijas
+299|Ziņojuma ilgums
+300|♾️ Pastāvīgs
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Sūtīt fotoattēlu
+304|🛡 Ūdenszīme
+305|ieslēgta
+306|noņemta
+307|Efekti
+308|Nelasāms attēls.
+309|Opcijas: ilgums, fotoattēls, efekti
+310|Rediģēt ziņojumu…
+311|Cik malu ir sešstūrim?
+312|Kāda ir Itālijas galvaspilsēta?
+313|Milāna
+314|Neapole
+315|Roma
+316|Turīna
+317|Kurš ir ātrākais sauszemes dzīvnieks?
+318|Lauva
+319|Gepards
+320|Zirgs
+321|Antilope
+322|Cik minūšu ir pusotrā stundā?
+323|Kura planēta ir vistuvāk Saulei?
+324|Venēra
+325|Marss
+326|Zeme
+327|Merkurs
+328|No kāda auglim gatavo sidru?
+329|Bumbieris
+330|Ābols
+331|Vīnogas
+332|Ķirsis
+333|Cik spēlētāju laukumā ir futbola komandai?
+334|Kādu krāsu iegūst, sajaucot zilu un dzeltenu?
+335|Zaļa
+336|Oranža
+337|Violeta
+338|Brūna
+339|Kurš ir lielākais okeāns?
+340|Atlantijas
+341|Indijas
+342|Ziemeļu Ledus
+343|Klusais
+344|Cik dienu ir februārī garajā gadā?
+345|{nm} (✕) pret {nm2} (◯)
+346|Lauciņš {v1}
+347|Neizšķirts 🤝
+348|🏆 {name} uzvarēja!
+349|Tava kārta
+350|Kārta ir lietotājam {name} (iestatījumos nomaini dalībnieku, lai demonstrācijā spēlētu viņa vietā)
+351|⭕ Nulles un krustiņi diviem
+352|🧠 Viktorīna
+353|♟️ Šahs · drīz
+354|🃏 Kāršu spēle · drīz
+355|Uzaicināt draugu
+356|Spēle sākta ar lietotāju {name}.
+357|Nav spēļu. Augšā uzaicini draugu.
+358|Bravo! {pts}/{length}
+359|Tavs kopsavilkums:
+360|punkti
+361|Spēlēt vēlreiz
+362|Jautājums {v1}/{length} · Rezultāts {pts}
+363|Tālāk
+364|Pabeigt
+365|Dzēst visur, arī tiem, kas to saņēma?
+366|Dzēst
+367|Reaģēt ar {e}
+368|🔒 Aizsargāts fotoattēls: ūdenszīme ar tavu vārdu, ekrānuzņēmumi bloķēti Android lietotnē, kopīgošana tikai ar autora piekrišanu.
+369|Drīz pieejams
+370|Lēnām: viens efekts sekundē.
+371|Efekts {label}
+372|Pielāgots efekts {name}
+373|Vairāk efektu
+374|＋ Vairāk
+375|Visi efekti
+376|Atzīmē 4 efektus, kas paliek priekšplānā ({length}/4). Izmēģini tos ar „Sūtīt”.
+377|Paliek priekšplānā: {label}
+378|Ne vairāk kā 4: vispirms vienu noņem.
+379|Atstāj priekšplānā vismaz vienu efektu.
+380|Mani pielāgotie efekti
+381|Dzēst {name}
+382|＋ Izveidot savu efektu (attēls + mana balss)
+383|Mikrofons nav pieejams vai ir noraidīts.
+384|Nosauc savu efektu.
+385|Pievieno attēlu vai skaņu.
+386|Ne vairāk kā 6 pielāgoti efekti.
+387|Efekts pievienots.
+388|Efekta nosaukums (piem., Mani smiekli)
+389|Efekta nosaukums
+390|Attēls
+391|Ieraksta… {left} s (pieskaries, lai beigtu)
+392|Ierakstīt vēlreiz
+393|Ierakstīt (ne vairāk kā 3 s)
+394|Skaņa ir pārāk liela (ne vairāk kā 450 kB, apmēram 10 sekundes).
+395|📁 Izvēlēties audio failu
+396|▶ Izmēģināt
+397|Pievienot
+398|Stāsts
+399|Redzēja:
+400|vēl neviens
+401|Atbildēt privāti…
+402|↩️ Atbilde uz tavu stāstu: {reply}
+403|Atbilde nosūtīta privāti.
+404|Reakcija nosūtīta {e}
+405|Visi mani draugi
+406|Grupa
+407|Izvēlētie draugi
+408|Visi, izņemot…
+409|Saraksts
+410|Tikai es
+411|Izvēlies attēlu.
+412|Šo attēlu nevar nolasīt.
+413|Stāsts publicēts bez laika ierobežojuma.
+414|Pārejošs stāsts publicēts.
+415|Stāsts publicēts uz 24 h.
+416|Publicēts!
+417|✨ Mans stāsts
+418|📝 Jauns ieraksts
+419|Stāsts pazūd pats (pēc noklusējuma pēc 24 h) un tiek skatīts pilnekrānā.
+420|Satura veids
+421|✏️ Teksts
+422|🎥 Selfija video
+423|🎤 Balss
+424|🔗 Saite
+425|Priekšskatījums
+426|Noņemt fotoattēlu
+427|📷 Izvēlēties fotoattēlu
+428|🗑 Dzēst
+429|✅ Publicēt
+430|🔁 Sākt no jauna
+431|🎥 Nofilmēt sevi (ne vairāk kā 10 s)
+432|🎤 Ierakstīt balss ziņojumu (ne vairāk kā 30 s)
+433|Ielīmē saiti: Spotify, Deezer vai YouTube atskaņošanas saraksts, video, Instagram, TikTok, Leboncoin…
+434|Kopīgojamā saite
+435|Šī saite neizskatās derīga.
+436|Uzraksti savu stāstu…
+437|Stāsta teksts
+438|Kas jauns pie taviem tuvajiem?
+439|Pievienot parakstu (neobligāti)…
+440|Teksts
+441|Garastāvoklis
+442|Fons {v1}
+443|Bez garastāvokļa
+444|Kas to var redzēt?
+445|Stāsta ilgums
+446|24 stundas
+447|Neierobežots
+448|Pārejošs
+449|Rādīšanas laiks
+450|Cits…
+451|Sekundes (no 1 līdz 999)
+452|Pielāgots ilgums sekundēs
+453|Grupa
+454|Saraksts
+455|＋ Izveidot sarakstu
+456|Saraksta nosaukums (piem., Kolēģi, Futbols, Teātris)
+457|Saraksta nosaukums
+458|Vispirms pievieno draugus, lai varētu tos ievietot sarakstā.
+459|Atcelt
+460|Saraksts izveidots.
+461|Izveidot sarakstu
+462|Ievadi sekunžu skaitu no 1 līdz {MAX_CUSTOM_SECS}.
+463|Redzams tikai tev.
+464|{audLabel} · cilvēku skaits: {count}
+465|· {fmtSecs} katram no atvēršanas brīža
+466|Publicēt
+467|Pārejošs ieraksts
+468|Atlikušais laiks
+469|{ceil} s
+470|Pārejošs fotoattēls
+471|Ja aizver, laiks turpina iet. Fotoattēlu vienmēr var nofotografēt ar citu ierīci.
+472|Tavs laiks beidzies
+473|Tavs skatīšanās laiks ir beidzies.
+474|pārejošs
+475|Tev atlikušas {n} s.
+476|Tev būs {fmtSecs} no atvēršanas brīža.
+477|Turpināt
+478|Atvērt
+479|Opcijas
+480|↪ Kopīgoja
+481|ar lietotāja {name} piekrišanu
+482|Dzēst šo ierakstu? Atļautie kopīgojumi arī pazudīs.
+483|Dzēst visur
+484|Atsaukt šo kopīgojumu? Tas pazudīs pie lietotāja {name} un viņa draugiem.
+485|Atsaukt šo kopīgojumu
+486|Pārtraukt kopīgošanu?
+487|Pārtraukt manu kopīgošanu
+488|Palielināt ierakstu
+489|Komentēt
+490|Redzēja {length}/{length2}:
+491|↪ {n, plural, one{# atļauts kopīgojums} other{# atļauti kopīgojumi}}
+492|tevis (skat. „Kopīgojumi”).
+493|Redzēja
+494|· Kopīgojuma auditorija:
+495|↪ Lūgt kopīgošanu
+496|Pieskaries fotoattēlam, lai reaģētu vai komentētu
+497|Pieskaries fotoattēlam, lai reaģētu
+498|Pieskaries fotoattēlam, lai komentētu
+499|Ieraksts
+500|Vairāk emocijzīmju
+501|Vairāk:
+502|Komentāru vēl nav. Esi pirmais!
+503|Atbildēt
+504|Emocijzīmes
+505|Tava atbilde…
+506|Uzrakstīt komentāru…
+507|Komentārs
+508|Visi draugi
+509|Tikai es
+510|Izvēlētie draugi
+511|Draugi, izņemot…
+512|Viss
+513|Mani ieraksti
+514|Šeit vēl nekā nav. Publicē savu pirmo mirkli ✨
+515|✏️ Rakstīt tekstu
+516|Padoms: tur nospiestu pogu, un kamera atveras uzreiz.
+517|Lūgt kopīgošanu
+518|Šis saturs pieder lietotājam
+519|. Šī persona izlemj, vai piekrist. Ja piekrīt, izvēlētie draugi redzēs
+520|oriģinālo saturu
+521|(nevis kopiju) ar tādiem pašiem ilgumiem, un {name} varēs
+522|jebkurā brīdī atsaukt kopīgojumu
+523|: tad tas pazūd pie visiem.
+524|Kopīgot ar:
+525|Tev nav neviena cita drauga.
+526|Īss ziņojums autoram (neobligāti)
+527|Nosūtīt pieprasījumu lietotājam {name}
+528|🌍 Valoda
+529|Izvēlies NOTIIF valodu. Tā mainās uzreiz, un tava izvēle tiek saglabāta.
+530|Pašreizējā valoda
+531|Meklēt valodu
+532|Valoda
+533|Valoda nomainīta.
+534|Neviena valoda nav atrasta.
+535|Pagaidām juridiskie dokumenti ir tikai franču valodā.
+536|Versija {LEGAL_VERSION}
+537|Vikipēdija
+538|Saite
+539|Atskaņotājs {name}
+540|Samazināt
+541|Palielināt
+542|Apturēt mūziku
+543|Saite {name}
+544|Samazināt un turpināt klausīties
+545|⌄ Samazināt
+546|Atvērt atsevišķi
+547|Šo lapu nevar attēlot NOTIIF iekšienē.
+548|Atvērt {name}
+549|Atvērt saiti {name}
+550|🎧 Klausīties NOTIIF (dzirdi tikai tu)
+551|▶ Skatīties šeit, NOTIIF
+552|Atvērt saiti
+553|Kamera vai mikrofons nav pieejams vai ir noraidīts.
+554|🎥 Sākt
+555|🎤 Sākt
+556|(ne vairāk kā {max} s)
+557|⏹ Beigt · {left} s
+558|📸 Fotoattēls
+559|Tur nospiestu pogu, lai runātu.
+560|Tur nospiestu, lai ierakstītu balss ziņojumu
+561|🔴 Atlaid, lai nosūtītu
+562|Kamera
+563|Sākt no jauna
+564|Sūtīt ➤
+565|Aizvērt kameru
+566|Mainīt kameru
+567|s / {max} s
+568|Tālummaiņa
+569|Tālummaiņa {z}×
+570|{replace}×
+571|Video
+572|Fotografēt
+573|Apturēt
+574|Filmēt
+575|Pieskaries, lai fotografētu
+576|Pieskaries, lai apturētu
+577|Pieskaries, lai sāktu filmēt (ne vairāk kā {max} s)
+578|Tur nospiestu mikrofonu, lai runātu.
+579|🔴 {mm} · atlaid, lai beigtu
+580|Tur nospiestu mikrofonu, lai runātu (ne vairāk kā {max} s)
+581|Līdz es to noņemšu
+582|Kā oriģināls
+583|Cik ilgi kopīgojums paliek redzams?
+584|Rādīšanas laiks katram cilvēkam
+585|🔒 Šo saturu nevar publicēt citur: tam ir ūdenszīme, ekrānuzņēmumi ir bloķēti (Android lietotne), un katram jaunam kopīgojumam vajadzīga tava piekrišana. To var atsaukt jebkurā brīdī.
+586|Kopīgojums atļauts. Vari to atsaukt, kad vien vēlies.
+587|Apstiprināt atļauju
+588|Atļaut…
+589|Noraidīt
+590|saturs izdzēsts
+591|Neviens nevar atkārtoti publicēt tavu saturu bez tavas piekrišanas. Un arī pēc piekrišanas
+592|tev ir pilnīga kontrole
+593|: ja atsauc kopīgojumu vai izdzēs ierakstu, tas pazūd pie visiem, ar kuriem tas bija kopīgots.
+594|Apstrādājamie pieprasījumi ({length})
+595|vēlētos kopīgot
+596|ar: {join} · {ago}
+597|Nav gaidošu pieprasījumu.
+598|Kopīgojumi, ko esmu atļāvis ({length})
+599|kopīgoja {nm} ar: {join}
+600|Atsaukt šo kopīgojumu? Tas pazudīs pie visiem.
+601|Kopīgojums visur atsaukts.
+602|Atsaukt visur
+603|Nav aktīvu kopīgojumu.
+604|Mani pieprasījumi un kopīgojumi ({length})
+605|no lietotāja {nm}
+606|{v1} · ar: {join}
+607|Tu neesi lūdzis kopīgot neko.
+608|QR kods
+609|🌍 Publisks
+610|Ikviens mani var atrast pēc vārda vai lietotājvārda.
+611|👥 Ierobežots
+612|Tikai pēc mana precīza lietotājvārda vai caur manu draugu draugiem.
+613|🔒 Neredzams
+614|Neviens mani nevar atrast. Tikai ja iedodu savu QR kodu vai kodu.
+615|Mans QR kods
+616|Atvērt vai palielināt QR kodu
+617|Noklikšķini uz QR koda, lai atvērtu lapu
+618|Pieskaries QR kodam, lai to palielinātu
+619|Parādi to tuvam cilvēkam: viņš to noskenēs ar tālruņa kameru.
+620|Saite nokopēta
+621|Kopēšana neizdevās
+622|Kopēt manu saiti
+623|Saglabāt attēlu
+624|Izveidot jaunu kodu? Vecais QR kods pārstās darboties.
+625|Jauns kods izveidots.
+626|Atjaunot
+627|Kas mani var atrast?
+628|Iestatījums saglabāts.
+629|Saglabāt lietotājvārdu
+630|Šis pārlūks nevar nolasīt QR kodus. Izmanto tālruņa kameru: NOTIIF saite atveras pati.
+631|Kamera nav pieejama vai ir noraidīta.
+632|Skenēt QR kodu
+633|Pievienojies man NOTIIF, mūsu tuvāko privātajā tīklā (ģimene, draugi, kolēģi, klubs…), bez reklāmām. Instalē lietotni šeit: {inviteLink} (mans kods: {code})
+634|Kontaktpersona
+635|Nav kontaktpersonu ar numuru vai e-pastu.
+636|Piekļuve kontaktpersonām tika noraidīta vai atcelta.
+637|Ziņojums nokopēts: ielīmē to, kur vēlies.
+638|Uzaicināt manus tuvos
+639|📇 Izvēlēties no manām kontaktpersonām
+640|Šajā tālrunī vai pārlūkā lietotne nevar nolasīt tavas kontaktpersonas. Pievieno numuru vai e-pastu manuāli vai kopīgo saiti.
+641|Numurs vai e-pasts
+642|Uzaicināt lietotāju {name}
+643|Nosūtīt ielūgumu:
+644|Pievienojies man NOTIIF
+645|E-pasts
+646|🔗 Kopīgot ielūguma saiti
+647|🔒 Tavas kontaktpersonas netiek glabātas un netiek sūtītas uz NOTIIF: tās kalpo tikai ziņojuma rakstīšanai no tava tālruņa. Imports no Google vai Facebook būs ar servera pieslēgšanu.
+648|Saņemtie pieprasījumi ({length})
+649|{name} tagad ir tavs draugs.
+650|Pieņemt
+651|Mans kods:
+652|Kods nokopēts
+653|Kopēt
+654|Tuva cilvēka kods (NID-…)
+655|Ielūguma kods
+656|Uzaicināt
+657|📇 Uzaicināt no manām kontaktpersonām
+658|Demonstrācijas režīms: kodi izmēģināšanai
+659|(izdomātas personas)
+660|Mani draugi ({length})
+661|Izvēlēties sarakstu
+662|Visi ({length})
+663|＋ Jauns saraksts
+664|Opcijas lietotājam {name}
+665|Šajā sarakstā nav neviena.
+666|Draugu vēl nav.
+667|Ziņot par šo personu
+668|Kāpēc? Trīs dažādu cilvēku ziņojumi automātiski aptur kontu uz pārbaudes laiku.
+669|Viltots profils
+670|Pārdošana, reklāma vai uzmākšanās
+671|Krāpšana
+672|Seksuāli piedāvājumi vai eskorts
+673|Nelikumīgs saturs
+674|Uzmākšanās
+675|Cits
+676|Paldies, ziņojums reģistrēts.
+677|💬 Rakstīt
+678|Noņemt lietotāju {name} no draugiem?
+679|Noņemt no draugiem
+680|Ziņot
+681|Bloķēt lietotāju {name}? Viņš vairs neredzēs tavu saturu.
+682|Bloķēts.
+683|Bloķēt
+684|Mani saraksti
+685|Piem., „Brālēni”, „Kolēģi”… lai ātri izvēlētos, kas redz tavus ierakstus.
+686|Bloķētās personas
+687|Atbloķēt
+688|Jauns saraksts
+689|🔎 Atrast kādu (vārds vai @lietotājvārds)
+690|Meklēt
+691|Neviens nav atrasts. „Neredzamas” vai „ierobežotas” personas var atrast tikai pēc to QR koda, koda vai precīza lietotājvārda.
+692|📜 Grupas noteikumi
+693|Dalībnieki ({length})
+694|Noņemt lietotāju {name} no grupas?
+695|Noņemt
+696|Pamest šo grupu?
+697|Pamest grupu
+698|Jauns
+699|{n, plural, one{# dalībnieks} other{# dalībnieki}}
+700|Izveido grupu ģimenei, atvaļinājumam, ballītēm…
+701|Jauna grupa
+702|Emocijzīme
+703|Grupas nosaukums
+704|Apraksts
+705|Grupas noteikumi (neobligāti)
+706|Dalībnieki (no taviem draugiem)
+707|Grupa izveidota.
+708|Izveidot grupu
+709|✅ Nāku
+710|❌ Nenāku
+711|🤔 Varbūt
+712|Dzimšanas dienas, ģimenes pusdienas, atvaļinājums… izveido pirmo!
+713|· notika
+714|Dzēst šo pasākumu?
+715|Organizē {name}
+716|👥 Skatīt, kas nāk
+717|✅ Nāk
+718|❌ Nenāk
+719|⏳ Bez atbildes
+720|Jauns pasākums
+721|Nosaukums (piem., Vecmāmiņas dzimšanas diena)
+722|Datums un laiks
+723|Vieta
+724|Pasākums izveidots.
+725|Mani draugi
+726|Visi
+727|Neviens
+728|Rediģēt manu profilu
+729|Mainīt fotoattēlu
+730|Pievienot fotoattēlu
+731|Noņemt fotoattēlu
+732|Lietotājvārds: @{handle}
+733|Jau reizi mainīts: galīgs.
+734|Var mainīt tikai vienu reizi, un tas ir par maksu (lai ierobežotu viltotus profilus).
+735|Jauns lietotājvārds
+736|Mainīt
+737|Kas var redzēt manu fotoattēlu?
+738|Citi tad redzēs tavu pirmo burtu fotoattēla vietā.
+739|Vārds vai lietotājvārds
+740|Statuss
+741|Tavs statuss
+742|Tavs īsais apraksts
+743|Profils atjaunināts.
+744|Saglabāt
+745|Izvēlies, ko tavi draugi var darīt ar taviem fotoattēliem, video un tekstiem.
+746|Patīk un reakcijas
+747|Ja izslēgts, neviens nevar reaģēt uz taviem ierakstiem, un skaitītājs netiek rādīts.
+748|Komentāri
+749|Ja izslēgts, neviens nevar komentēt tavus ierakstus.
+750|{n, plural, one{# ieraksts} other{# ieraksti}}
+751|{n, plural, one{# draugs} other{# draugi}}
+752|Dalībnieks kopš {toLocaleDateString}
+753|Rediģēt manu profilu (fotoattēls, vārds, apraksts)
+754|Paziņojumu iestatījumi
+755|Iestatījumi
+756|Atzīmēt visu kā izlasītu
+757|🌙 Klusais režīms ieslēgts: nekādu brīdinājumu, bet saraksts paliek šeit.
+758|Nekā jauna.
+759|Paziņojumi nekad nesatur pārejoša ieraksta saturu.
+760|🎵 Zvana signāli un vibrācija
+761|Paziņojumu zvana signāls
+762|Zvanu zvana signāls
+763|Ziņojumu vibrācija
+764|Zvanu vibrācija
+765|Otras vienmēr vibrē ar maksimālu spēku. Pieskaries opcijai, lai to izmēģinātu.
+766|🔔 Tālruņa paziņojumi
+767|Saņemt paziņojumus
+768|Ziņojumi, draudzības pieprasījumi, kopīgojumi, pasākumi…
+769|Tālruņa paziņojumi
+770|Paziņojumi ieslēgti.
+771|Atļauj paziņojumus tālruņa logā.
+772|Paziņojumi noraidīti: atļauj tos tālruņa iestatījumos (Lietotnes > Cercle > Paziņojumi).
+773|Šis pārlūks neatbalsta paziņojumus. Instalē lietotni (Android QR) vai ikonu uz sākuma ekrāna.
+774|Paziņojumi noraidīti: atļauj tos tālruņa iestatījumos un mēģini vēlreiz.
+775|Kādus paziņojumus saņemt?
+776|💬 Ziņojumi
+777|👋 Draudzības pieprasījumi
+778|📰 Ieraksti un stāsti
+779|🔁 Kopīgojumi
+780|📅 Pasākumi
+781|👥 Grupas
+782|🖼 Albumi
+783|🎮 Spēles
+784|Paziņojumi: {l}
+785|Tests: viss darbojas ✅
+786|Testa paziņojumu nevar attēlot.
+787|Nosūtīt testu
+788|Godīgi: pagaidām paziņojumi parādās, kad lietotne ir atvērta vai fonā. To saņemšanai ar aizvērtu lietotni vajadzīgs serveris (attālā sūtīšana), kas plānots ar īstajiem kontiem. Zvani: drīz.
+789|Mani 4 iecienītākie efekti
+790|Sarunās tie parādās pirmie. Pārējie paliek zem pogas „+”.
+791|Iecienīts: {label}
+792|Ne vairāk kā 4 iecienīti: vispirms vienu izslēdz.
+793|Atstāj vismaz vienu iecienītu.
+794|Atjaunot noklusējumu
+795|Augšējā josla
+796|Poga „Vairāk” (visas izvēlnes) vienmēr ir augšējā labajā stūrī. Blakus tai pievieno līdz 4 saīsnēm.
+797|Augšā: {l}
+798|Ne vairāk kā 4 saīsnes: vispirms vienu izslēdz.
+799|Atstāj vismaz vienu saīsni.
+800|Apakšējā josla
+801|Izvēlies līdz 4 saīsnēm. Poga „Izveidot” vienmēr paliek vidū. Pārējās izvēlnes ir pogā „Vairāk” augšējā labajā stūrī.
+802|Saīsne {l}
+803|Ziņojumu burbulis
+804|Mazs burbulis, ko velc, kur vēlies. Kad tas ir redzams, apakšējā joslā „Ziņojumi” tiek aizstāti ar „Grupas”.
+805|Sākuma ekrāns
+806|Lapa, kas atveras, startējot NOTIIF.
+807|Gaišā tēma
+808|Gaišs fons, balts un tirkīzzils.
+809|Tumšā tēma
+810|Nakts zils un tirkīzzils fons, vakarā maigāks.
+811|Efekti sarunās
+812|Otras ekrāni ar skaņu, sirdis, dzimšanas dienas: kad draugs tos nosūta, tu tos redzēsi un dzirdēsi. Pēc noklusējuma ieslēgts.
+813|Klusās stundas
+814|Naktī izslēdz brīdinājumus (servera režīmā).
+815|Automātiska video atskaņošana
+816|Īsiem video (drīz).
+817|🔒 Privātums
+818|Nav reklāmu. Nav datu pārdošanas.
+819|Nav pogas kopīgošanai uz āru, nav publiska profila.
+820|Neviens tevi nevar atrast bez tava ielūguma koda.
+821|Neviena lietotne nevar liegt pilnvarotai personai nofotografēt ekrānu ar citu ierīci.
+822|🧪 Demonstrācijas režīms (šajā ierīcē)
+823|Pagaidām tavi dati paliek šajā ierīcē, un draugi ir izdomāti. Īstiem kontiem, ziņojumiem starp tālruņiem un zvaniem vajadzīgs serveris: skat. rokasgrāmatu projekta mapē „docs”.
+824|Atteikties
+825|Eksportēt manus datus
+826|Dzēst visus tavus NOTIIF datus no šīs ierīces?
+827|Dzēst manu kontu un datus
+828|🔁 Mainīt dalībnieku (demonstrācija)
+829|Lai izmēģinātu ilgumus katram cilvēkam: publicē fotoattēlu uz 5 s Céline un Thomas, pēc tam pārslēdzies starp viņiem.
+830|Tagad tu esi {name}.
+831|NOTIIF bloķēja ekrānuzņēmumu
+832|NOTIIF logotips
+833|tikko
+834|pirms {n} min
+835|pirms {n} h
+836|Sejas
+837|Rokas
+838|Sirdis
+839|Svinības un daba
+840|Aizvērt emocijzīmes
+841|Dzēst {what}?
+842|Šo darbību nevar atsaukt.
+843|Paturēt
+844|NOTIIF — Tavs loks. Tavi mirkļi.

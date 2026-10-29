@@ -1,0 +1,845 @@
+0|Dar
+1|Ħbieb
+2|Gruppi
+3|Messaġġi
+4|Sejħiet
+5|Ritratti
+6|Logħob
+7|Avvenimenti
+8|Qsim
+9|Notifiki
+10|Profil
+11|Informazzjoni legali
+12|Settings
+13|Sejħiet bl-awdjo u bil-vidjo
+14|Is-sejħiet jeħtieġu server tal-konnessjoni (WebRTC). Se jaslu meta s-server ta' NOTIIF jibda jaħdem.
+15|Iċ-ċirku tiegħek. Il-mumenti tiegħek.
+16|Oħloq
+17|Il-profil tiegħi
+18|Lura
+19|Il-menus kollha
+20|Navigazzjoni
+21|Oħloq: storja jew post. Agħfas fit-tul għal vidjo selfie
+22|Aktar
+23|Iċ-ċirku tiegħi
+24|Midja u logħob
+25|Il-kont tiegħi
+26|Stedina għal NOTIIF
+27|Iżżid lil {name}?
+28|Ibgħat it-talba
+29|Dan il-kodiċi ma jeżistix fuq dan l-apparat. Fil-modalità dimostrattiva l-kontijiet għadhom ma jinqasmux bejn l-apparati: dan jiġi mas-server.
+30|Aktar tard
+31|X'tixtieq taqsam?
+32|✨ Storja (tisparixxi waħedha)
+33|📝 Post
+34|Il-gruppi tiegħi
+35|Li ġejjin
+36|L-ebda avveniment.
+37|Ilgħab mal-familja
+38|Kompli bi Apple
+39|Kompli b'Google
+40|Kompli bi Facebook
+41|Kompli bi Snapchat
+42|Snapchat jeħtieġ kuntratt għall-iżviluppaturi (Snap Kit). Għandu jintalab qabel l-attivazzjoni.
+43|FranceConnect jeħtieġ awtorizzazzjoni mill-Istat (it-talba ssir fuq datapass.api.gouv.fr).
+44|Identità diġitali La Poste
+45|L-identità diġitali La Poste teħtieġ sħubija ma' La Poste.
+46|Is-server mhuwiex disponibbli.
+47|Seħħet żball.
+48|Il-kont inħoloq.
+49|Il-kont inħoloq. Iftaħ l-email ta' konferma li għadna kemm bgħatnielek u erġa' ejja idħol.
+50|Dħalt.
+51|Jien
+52|Permanenti
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Qlub
+56|❤️ Xita ta' qlub!
+57|😘 Bews
+58|😘 Bews kbar!
+59|❄️ Borra
+60|❄️ Qed tqiegħed borra!
+61|🎆 Logħob tan-nar
+62|🎆 Logħob tan-nar!
+63|👻 Fantażma
+64|👻 Bu!
+65|🔥 Fjammi
+66|🔥 Sħun!
+67|🫧 Bżieżaq
+68|🫧 Bżieżaq!
+69|🎂 Festa
+70|🎂 Qed niċċelebraw!
+71|🌧️ Xita
+72|🌧️ Qed tagħmel ix-xita!
+73|⛈️ Maltempata
+74|⛈️ Qed ittaqtaq!
+75|🚀 Rokit
+76|🚀 Tluq!
+77|👏 Brava
+78|👏 Brava!
+79|😂 Daħk bla waqfien
+80|😂 Qed mmut bid-daħk!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Għeluq is-snin
+86|🎂 Għeluq is-snin ferħan!
+87|🎂 Għeluq is-snin 2
+88|🤭 Burp
+89|🤭 Burp!
+90|💨 Tiċrita
+91|💨 Pfff!
+92|🤮 Rimettar
+93|🤮 Iww!
+94|Kristall
+95|Fjakkola
+96|Brieża
+97|Dija
+98|Kosta
+99|Ċirku
+100|Filgħodu
+101|Xejn
+102|Dgħajfa
+103|Medja
+104|Qawwija
+105|Il-memorja tal-apparat mimlija: ħassar ritratti qodma.
+106|Żball.
+107|L-isem tal-utent jista' jinbidel darba biss, u inti diġà għamilt dan.
+108|Il-bidla tal-isem tal-utent hija bi ħlas (l-offerta „Plus”). Il-ħlas għadu mhux imqabbad: biex tipprova, ixgħel „Plus (dimostrazzjoni)” fis-Settings.
+109|Isem tal-utent: minn 3 sa 20 karattru, ittri żgħar, numri, punt jew sottolinjar.
+110|Dan l-isem tal-utent diġà ttieħed.
+111|L-isem tal-utent inbidel. Din il-bidla hija definittiva.
+112|Merħba fil-bejta tiegħi 🪺
+113|Ċaw! Merħba! 🌳
+114|Familja
+115|Min ġej nhar ta' Ħadd għall-ikel?
+116|Ikla tal-familja
+117|Kulħadd iġib ftit ikel.
+118|Għand in-nanna
+119|Tul ta' żmien invalidu.
+120|Il-kont tiegħek qed jiġi eżaminat minħabba rapporti.
+121|Ħadd ma jara dan il-post: agħżel riċevituri oħra.
+122|Ħadd ma jara dan l-album: agħżel riċevituri oħra.
+123|Album
+124|{name} ħoloq l-album „{slice}” għalik.
+125|Album ma nstabx.
+126|{name} irreaġixxa bi {emoji} għall-post tiegħek.
+127|{name} ikkummenta fuq il-post tiegħek.
+128|Persuna ma nstabitx.
+129|Dan int!
+130|Il-kont tiegħek qed jiġi eżaminat minħabba rapporti: għalissa ma tistax tibgħat talbiet.
+131|Wisq talbiet illum (massimu 15). Erġa' pprova għada.
+132|It-talba ma tistax tintbagħat.
+133|{name} diġà huwa ħabib tiegħek.
+134|It-talba diġà intbagħtet.
+135|{name} qed jitlob l-ħbiberija tiegħek.
+136|Talba mibgħuta lil {name}.
+137|Kodiċi mhux magħruf (fil-modalità dimostrattiva jeżistu biss il-kontijiet ta' dan l-apparat).
+138|Minn 3 sa 20 karattru: ittri, numri, _ jew .
+139|Isem tal-utent issejvjat.
+140|Ma nstabx.
+141|Agħżel mill-inqas ħabib wieħed (li l-awtur ma żammx barra).
+142|Talba diġà qed tistenna.
+143|{name} qed jitlob il-permess biex jaqsam il-post tiegħek.
+144|Talba mibgħuta. L-awtur jiddeċiedi.
+145|{name} irrifjuta l-qsim.
+146|{name} aċċetta l-qsim.
+147|{name} qasam kontenut miegħek.
+148|{name} irtira l-qsim: għebet kullimkien.
+149|{name} aċċetta t-talba tiegħek.
+150|{name} żiedek mal-grupp „{name2}”.
+151|{name} forsi pprova jaqbad wieħed mill-kontenuti tiegħek.
+152|{name} qed jistiednek: {title}.
+153|{name} qed jistiednek għal logħba ta' tris.
+154|Il-vidjo huwa kbir wisq: għalissa massimu 3 MB (madwar 10 sekondi).
+155|Vidjo miżjud.
+156|Żball
+157|Ritratt miżjud.
+158|Agħżel ritratt jew vidjo.
+159|Fajl li ma jinqarax.
+160|Iftaħ il-vidjo
+161|Iftaħ ir-ritratt
+162|Ritratt
+163|🔒 Privat: int biss
+164|👥 Maqsum ma': {n}
+165|👥 Album ta' {name}
+166|Lura għall-albums
+167|Tħassar dan l-album u kollox fih, anki għal dawk li jarawh?
+168|Ħassar l-album
+169|Qed jgħabbi…
+170|Żid ritratt jew vidjo
+171|Album vojt: żid l-ewwel ritratt jew vidjo.
+172|Għad m'hemm xejn f'dan l-album.
+173|🔒 L-istess regoli bħal kullimkien: watermark bl-isem tiegħek, screenshots imblukkati fl-app tal-Android, l-ebda qsim mingħajr il-kunsens tal-awtur.
+174|Il-vidjos tiegħi
+175|Agħżel il-vidjo wara.
+176|Ritratti u vidjos
+177|📷 Ritratti
+178|🎬 Vidjos
+179|🗂 Albums
+180|Ir-ritratti tiegħi
+181|Ir-ritratti ppubblikati tiegħek se jidhru hawn.
+182|Maqsum miegħi (permanenti)
+183|Għad xejn.
+184|Vidjo miżjud (privat, f'„Il-vidjos tiegħi”).
+185|Żid vidjo
+186|Għad m'hemm l-ebda vidjo. Qosra għalissa (madwar 10 sekondi, massimu 3 MB). Vidjos itwal jiġu mas-server.
+187|Biex taqsam vidjo mal-ħbieb, poġġih f'album maqsum (tab Albums).
+188|Album ġdid
+189|Privat
+190|Maqsum ma': {length}
+191|Minn {name}
+192|· {count, plural, one{# element} few{# elementi} many{# element} other{# elementi}}
+193|L-ebda album. Oħloq wieħed, privat jew maqsum mal-ħbieb.
+194|Isem (eż. Btala 2026)
+195|🔒 Privat
+196|👥 Il-ħbieb kollha tiegħi
+197|✅ Ħbieb magħżulin
+198|Int biss se tarah.
+199|In-numru ta' ħbieb li se jkunu jistgħu jarawh: {n}. Jarawh biss il-ħbieb tiegħek u ħadd ma jista' jaqsmu aktar mingħajr il-kunsens tiegħek.
+200|Oħloq l-album
+201|✅ L-app installata
+202|Diġà qed tużaha bħala app vera.
+203|📲 Installa l-app
+204|Installa fuq dan l-apparat
+205|Niżżel l-app tal-Android
+206|Fuq iPhone u iPad: tektek
+207|Aqsam
+208|⬆️ imbagħad
+209|„Żid mal-iskrin ewlieni”
+210|Iftaħ il-menu tal-browser (⋮) u agħżel „Installa l-app” jew „Żid mal-iskrin ewlieni”.
+211|Iċ-ċirku tiegħek.
+212|Il-mumenti tiegħek.
+213|In-netwerk privat tal-għeżież tiegħek: familja, ħbieb, kollegi, tim, kumpanija tat-teatru jew klabb. Mingħajr reklami, mingħajr barranin, mingħajr qsim lejn barra.
+214|Aqsam ma' min trid
+215|Ritratti, vidjos u testi biss għall-persuni li tagħżel.
+216|Stejjer li jisparixxu
+217|24 siegħa jew ftit sekondi għal ritratt fugaċi.
+218|Messaġġi, messaġġi vokali u effetti
+219|Iddiskuti fi grupp jew privatament u ibgħat effetti bil-ħoss.
+220|Idħol f'NOTIIF
+221|Biex ikollok NOTIIF bħala app vera fuq it-telefon:
+222|Installa l-app
+223|Dan id-dħul jiġi attivat meta s-server ikun imqabbad (ara l-gwida).
+224|il-kundizzjonijiet tal-użu u l-politika tal-privatezza
+225|Oħloq il-kont tiegħi
+226|Idħol
+227|— jew —
+228|Ismek jew l-isem tal-utent tiegħek
+229|Isem
+230|Isem tal-utent @ (mhux obbligatorju): jista' jinbidel darba biss, bi ħlas
+231|Isem tal-utent
+232|L-email tiegħek
+233|Password (mill-inqas 8 karattri)
+234|Password
+235|Naċċetta l-kundizzjonijiet
+236|Għandi 15-il sena jew aktar u naċċetta d-dokumenti: {legalBtn}.
+237|Diġà għandi kont
+238|Għad m'għandix kont
+239|Ikteb l-ewwel ismek jew l-isem tal-utent tiegħek hawn fuq.
+240|Ikteb l-ewwel ismek jew l-isem tal-utent tiegħek.
+241|Immarka l-kaxxa „Għandi 15-il sena jew aktar” biex tkompli.
+242|Immarka l-kaxxa tal-kundizzjonijiet.
+243|🧪 Modalità dimostrattiva
+244|Kontijiet reali (email, Google, Apple, Facebook, FranceConnect…) jeħtieġu server li għadu mhux imqabbad. Għalissa tista' tipprova l-app fuq dan l-apparat b'ħbieb immaġinarji.
+245|Ismek jew l-isem tal-utent tiegħek (dimostrazzjoni)
+246|Ipprova l-modalità dimostrattiva
+247|Għalissa tista' tipprova l-app fil-modalità dimostrattiva fuq dan l-apparat b'ħbieb immaġinarji.
+248|Fhimt, se nipprova l-modalità dimostrattiva
+249|Dokumenti legali
+250|🔒 Messaġġ fugaċi
+251|🎤 Messaġġ vokali
+252|📷 Ritratt
+253|Messaġġi ta' malajr
+254|Lura għal-lista
+255|Iftaħ kbir
+256|Agħlaq
+257|💬 Konversazzjonijiet
+258|👥 Il-ħbieb tiegħi
+259|Ikteb messaġġ
+260|Għad m'hemm l-ebda ħabib. Żidhom mit-tab Ħbieb.
+261|Konversazzjoni ġdida
+262|L-ebda konversazzjoni. Agħżel ħabib f'„Il-ħbieb tiegħi”.
+263|Ra darba
+264|Messaġġ fugaċi
+265|· iftaħ kbir
+266|Emoji
+267|Il-messaġġ tiegħek…
+268|Messaġġ ta' malajr
+269|Ibgħat
+270|Screenshot imblukkat: l-awtur se jiġi avżat.
+271|Messaġġ li deher darba
+272|🔥 Deher darba
+273|Agħlaq (jisparixxi)
+274|Ritratt li deher darba
+275|Kontenut moħbi
+276|Instab screenshot jew bidla tat-tieqa
+277|Dan il-messaġġ jisparixxi meta tagħlqu. Ritratt jista' dejjem jittieħed b'apparat ieħor: irrispetta l-privatezza.
+278|🔎 Fittex fil-konversazzjonijiet tiegħi
+279|L-ebda konversazzjoni: ikteb lil ħabib minn „Ħbieb”.
+280|📹 Qed nibda sejħa bil-vidjo: {url}
+281|Sejħa bil-vidjo bdiet: il-link intbagħat fil-konversazzjoni.
+282|Ibda sejħa bil-vidjo
+283|📹 Sejħa bil-vidjo
+284|Messaġġ
+285|🔥 Messaġġ li deher u sparixxa
+286|🔥 Messaġġ li jidher darba biss · tektek biex tiftaħ
+287|(editjat)
+288|⏱ {left} s
+289|⏱ fugaċi {secs} s wara l-qari
+290|🔥 dehra waħda ·
+291|deher ✓
+292|🔒 Messaġġ fugaċi · tektek biex taqra ({secs} s)
+293|⌛ Il-messaġġ skada
+294|· ✓✓ moqri
+295|· ✓ mibgħut
+296|Ħu ħsieb 👋
+297|Għażliet tal-ibgħat
+298|Agħlaq l-għażliet
+299|Tul tal-messaġġ
+300|♾️ Permanenti
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Ibgħat ritratt
+304|🛡 Watermark
+305|mixgħul
+306|imneħħi
+307|Effetti
+308|Immaġni li ma tinqarax.
+309|Għażliet: tul, ritratt, effetti
+310|Editja l-messaġġ…
+311|Kemm għandu in-naħat eżagonu?
+312|X'inhi l-belt kapitali tal-Italja?
+313|Milan
+314|Napli
+315|Ruma
+316|Torino
+317|Liema hu l-aktar annimal mgħaġġel fuq l-art?
+318|Iljun
+319|Ġeparda
+320|Ħakma
+321|Antilopa
+322|Kemm hemm minuti f'siegħa u nofs?
+323|Liema pjaneta hija l-eqreb lix-xemx?
+324|Venere
+325|Marte
+326|Art
+327|Merkurju
+328|Minn liema frott isir is-sider?
+329|Lanġas
+330|Tuffieħa
+331|Għeneb
+332|Ċirasa
+333|Kemm għandu plejers tim tal-futbol fuq il-grawnd?
+334|Liema kulur nieħdu billi nħalltu l-blu mas-safra?
+335|Aħdar
+336|Oranġjo
+337|Vjola
+338|Kannella
+339|Liema hu l-akbar oċean?
+340|Atlantiku
+341|Indjan
+342|Artiku
+343|Paċifiku
+344|Kemm għandu jiem Frar f'sena bisestili?
+345|{nm} (✕) kontra {nm2} (◯)
+346|Kaxxa {v1}
+347|Draw 🤝
+348|🏆 {name} rebaħ!
+349|Id-dawra tiegħek
+350|Id-dawra ta' {name} (fis-Settings biddel il-membru biex tilgħab minfloku fid-dimostrazzjoni)
+351|⭕ Tris għal tnejn
+352|🧠 Kwiz
+353|♟️ Skak · dalwaqt
+354|🃏 Karti · dalwaqt
+355|Stieden ħabib
+356|Logħba bdiet ma' {name}.
+357|L-ebda logħba. Stieden ħabib hawn fuq.
+358|Brava! {pts}/{length}
+359|It-total tiegħek:
+360|punti
+361|Ilgħab mill-ġdid
+362|Mistoqsija {v1}/{length} · Punteġġ {pts}
+363|Li jmiss
+364|Spiċċa
+365|Tħassar kullimkien, anki għal dawk li rċevewh?
+366|Ħassar
+367|Irreaġixxi {e}
+368|🔒 Ritratt protett: watermark bl-isem tiegħek, screenshots imblukkati fl-app tal-Android, qsim biss bil-kunsens tal-awtur.
+369|Dalwaqt disponibbli
+370|Bil-mod: effett wieħed kull sekonda.
+371|Effett {label}
+372|Effett personalizzat {name}
+373|Aktar effetti
+374|＋ Aktar
+375|L-effetti kollha
+376|Immarka 4 effetti li jibqgħu quddiem ({length}/4). Ipprovahom b'„Ibgħat”.
+377|Jibqa' quddiem: {label}
+378|Massimu 4: neħħi wieħed l-ewwel.
+379|Ħalli mill-inqas effett wieħed quddiem.
+380|L-effetti personalizzati tiegħi
+381|Ħassar {name}
+382|＋ Oħloq l-effett tiegħi (immaġni + leħni)
+383|Il-mikrofonu mhuwiex disponibbli jew ġie rifjutat.
+384|Agħti isem lill-effett tiegħek.
+385|Żid immaġni jew ħoss.
+386|Massimu 6 effetti personalizzati.
+387|Effett miżjud.
+388|Isem tal-effett (eż. Id-daħka tiegħi)
+389|Isem tal-effett
+390|Immaġni
+391|Qed jirrekordja… {left} s (tektek biex tieqaf)
+392|Irrekordja mill-ġdid
+393|Irrekordja (massimu 3 s)
+394|Il-ħoss huwa kbir wisq (massimu 450 kB, madwar 10 sekondi).
+395|📁 Agħżel fajl tal-awdjo
+396|▶ Ipprova
+397|Żid
+398|Storja
+399|Raw:
+400|għadu ħadd
+401|Wieġeb privatament…
+402|↩️ Tweġiba għall-istorja tiegħek: {reply}
+403|Tweġiba mibgħuta privatament.
+404|Reazzjoni mibgħuta {e}
+405|Il-ħbieb kollha tiegħi
+406|Grupp
+407|Ħbieb magħżulin
+408|Kulħadd minbarra…
+409|Lista
+410|Jien biss
+411|Agħżel immaġni.
+412|Din l-immaġni ma tistax tinqara.
+413|Storja ppubblikata mingħajr limitu ta' żmien.
+414|Storja fugaċi ppubblikata.
+415|Storja ppubblikata għal 24 siegħa.
+416|Ippubblikat!
+417|✨ L-istorja tiegħi
+418|📝 Post ġdid
+419|L-istorja tisparixxi waħedha (b'mod awtomatiku wara 24 siegħa) u tidher fuq l-iskrin kollu.
+420|Tip ta' kontenut
+421|✏️ Test
+422|🎥 Vidjo selfie
+423|🎤 Vuċi
+424|🔗 Link
+425|Dehra minn qabel
+426|Neħħi r-ritratt
+427|📷 Agħżel ritratt
+428|🗑 Ħassar
+429|✅ Ippubblika
+430|🔁 Ibda mill-ġdid
+431|🎥 Iffilmja lilek innifsek (massimu 10 s)
+432|🎤 Irrekordja messaġġ vokali (massimu 30 s)
+433|Waħħal link: playlist ta' Spotify, Deezer jew YouTube, vidjo, Instagram, TikTok, Leboncoin…
+434|Link biex taqsam
+435|Dan il-link ma jidhirx validu.
+436|Ikteb l-istorja tiegħek…
+437|Test tal-istorja
+438|X'hemm ġdid mal-għeżież tiegħek?
+439|Żid didaskalija (mhux obbligatorju)…
+440|Test
+441|Burdata
+442|Sfond {v1}
+443|Bla burdata
+444|Min jista' jarah?
+445|Tul tal-istorja
+446|24 siegħa
+447|Bla limitu
+448|Fugaċi
+449|Ħin tal-wiri
+450|Oħra…
+451|Sekondi (minn 1 sa 999)
+452|Tul personalizzat f'sekondi
+453|Grupp
+454|Lista
+455|＋ Oħloq lista
+456|Isem tal-lista (eż. Kollegi, Futbol, Teatru)
+457|Isem tal-lista
+458|Żid l-ewwel ħbieb biex tpoġġihom f'lista.
+459|Ikkanċella
+460|Lista maħluqa.
+461|Oħloq il-lista
+462|Daħħal numru ta' sekondi minn 1 sa {MAX_CUSTOM_SECS}.
+463|Jidher biss lilek.
+464|{audLabel} · numru ta' persuni: {count}
+465|· {fmtSecs} għal kull persuna mill-ftuħ
+466|Ippubblika
+467|Post fugaċi
+468|Ħin li fadal
+469|{ceil} s
+470|Ritratt fugaċi
+471|Jekk tagħlaq, il-ħin ikompli għaddej. Ritratt jista' dejjem jittieħed b'apparat ieħor.
+472|Il-ħin tiegħek spiċċa
+473|Il-ħin tal-wiri tiegħek spiċċa.
+474|fugaċi
+475|Fadlilek {n} s.
+476|Se jkollok {fmtSecs} mill-ftuħ.
+477|Kompli
+478|Iftaħ
+479|Għażliet
+480|↪ Qasam
+481|bil-kunsens ta' {name}
+482|Tħassar dan il-post? Il-qsim permess jisparixxi wkoll.
+483|Ħassar kullimkien
+484|Tirtira dan il-qsim? Se jisparixxi għand {name} u l-ħbieb tiegħu.
+485|Irtira dan il-qsim
+486|Tieqaf taqsam?
+487|Waqqaf il-qsim tiegħi
+488|Kabbar il-post
+489|Ikkummenta
+490|Raw {length}/{length2}:
+491|↪ {n, plural, one{# qsim permess} few{# qsim permessi} many{# qsim permess} other{# qsim permessi}}
+492|minnek (ara „Qsim”).
+493|Raw
+494|· Udjenza tal-qsim:
+495|↪ Itlob qsim
+496|Tektek ir-ritratt biex tirreaġixxi jew tikkummenta
+497|Tektek ir-ritratt biex tirreaġixxi
+498|Tektek ir-ritratt biex tikkummenta
+499|Post
+500|Aktar emoji
+501|Aktar:
+502|Għad m'hemm l-ebda kumment. Kun l-ewwel!
+503|Wieġeb
+504|Emoji
+505|It-tweġiba tiegħek…
+506|Ikteb kumment…
+507|Kumment
+508|Il-ħbieb kollha
+509|Jien biss
+510|Ħbieb magħżulin
+511|Ħbieb minbarra…
+512|Kollox
+513|Il-posts tiegħi
+514|Għad m'hemm xejn hawn. Ippubblika l-ewwel mument tiegħek ✨
+515|✏️ Ikteb test
+516|Pariri: żomm il-buttuna u l-kamera tinfetaħ minnufih.
+517|Itlob qsim
+518|Dan il-kontenut jappartjeni lil
+519|. Din il-persuna tiddeċiedi jekk taqbilx. Jekk taqbel, il-ħbieb magħżulin se jaraw
+520|il-kontenut oriġinali
+521|(mhux kopja) bl-istess tul, u {name} se jkun jista'
+522|jirtira l-qsim fi kwalunkwe ħin
+523|: imbagħad jisparixxi għal kulħadd.
+524|Aqsam ma':
+525|M'għandekx ħabib ieħor.
+526|Messaġġ qasir lill-awtur (mhux obbligatorju)
+527|Ibgħat it-talba lil {name}
+528|🌍 Lingwa
+529|Agħżel il-lingwa ta' NOTIIF. Tinbidel mill-ewwel u l-għażla tiegħek tinżamm.
+530|Lingwa attwali
+531|Fittex lingwa
+532|Lingwa
+533|Lingwa mibdula.
+534|L-ebda lingwa ma nstabet.
+535|Għalissa d-dokumenti legali jeżistu biss bil-Franċiż.
+536|Verżjoni {LEGAL_VERSION}
+537|Wikipedija
+538|Link
+539|Plejer {name}
+540|Naqqas
+541|Kabbar
+542|Waqqaf il-mużika
+543|Link {name}
+544|Naqqas u kompli isma'
+545|⌄ Naqqas
+546|Iftaħ separatament
+547|Din il-paġna ma tistax tintwera ġewwa NOTIIF.
+548|Iftaħ {name}
+549|Iftaħ il-link {name}
+550|🎧 Isma' f'NOTIIF (tisma' inti biss)
+551|▶ Ara hawn, f'NOTIIF
+552|Iftaħ il-link
+553|Il-kamera jew il-mikrofonu mhuwiex disponibbli jew ġie rifjutat.
+554|🎥 Ibda
+555|🎤 Ibda
+556|(massimu {max} s)
+557|⏹ Spiċċa · {left} s
+558|📸 Ritratt
+559|Żomm il-buttuna biex titkellem.
+560|Żomm biex tirrekordja messaġġ vokali
+561|🔴 Ħalli biex tibgħat
+562|Kamera
+563|Ibda mill-ġdid
+564|Ibgħat ➤
+565|Agħlaq il-kamera
+566|Biddel il-kamera
+567|s / {max} s
+568|Zoom
+569|Zoom {z}×
+570|{replace}×
+571|Vidjo
+572|Ħu ritratt
+573|Waqqaf
+574|Iffilmja
+575|Tektek biex tieħu ritratt
+576|Tektek biex twaqqaf
+577|Tektek biex tibda tiffilmja (massimu {max} s)
+578|Żomm il-mikrofonu biex titkellem.
+579|🔴 {mm} · ħalli biex tispiċċa
+580|Żomm il-mikrofonu biex titkellem (massimu {max} s)
+581|Sakemm ineħħih
+582|Bħall-oriġinal
+583|Kemm idum jidher il-qsim?
+584|Ħin tal-wiri għal kull persuna
+585|🔒 Dan il-kontenut ma jistax jiġi ppubblikat band'oħra: għandu watermark, l-iscreenshots huma mblukkati (app tal-Android) u kull qsim ġdid jeħtieġ il-kunsens tiegħek. Tista' tirtirah fi kwalunkwe ħin.
+586|Qsim permess. Tista' tirtirah meta trid.
+587|Ikkonferma l-permess
+588|Ippermetti…
+589|Irrifjuta
+590|kontenut imħassar
+591|Ħadd ma jista' jerġa' jippubblika l-kontenut tiegħek mingħajr il-kunsens tiegħek. U anki wara l-kunsens,
+592|għandek kontroll sħiħ
+593|: jekk tirtira l-qsim jew tħassar il-post, jisparixxi għal dawk kollha li magħhom ġie maqsum.
+594|Talbiet biex jiġu trattati ({length})
+595|jixtieq jaqsam
+596|ma': {join} · {ago}
+597|L-ebda talba li qed tistenna.
+598|Qsim li ppermettejt ({length})
+599|qasam {nm} ma': {join}
+600|Tirtira dan il-qsim? Se jisparixxi għal kulħadd.
+601|Qsim irtirat kullimkien.
+602|Irtira kullimkien
+603|L-ebda qsim attiv.
+604|It-talbiet u l-qsim tiegħi ({length})
+605|minn {nm}
+606|{v1} · ma': {join}
+607|Ma tlabtx li taqsam xejn.
+608|Kodiċi QR
+609|🌍 Pubbliku
+610|Kulħadd jista' jsibni bl-isem jew bl-isem tal-utent.
+611|👥 Limitat
+612|Biss bl-isem tal-utent eżatt tiegħi jew permezz tal-ħbieb tal-ħbieb tiegħi.
+613|🔒 Inviżibbli
+614|Ħadd ma jsibni. Biss jekk nagħti l-kodiċi QR jew il-kodiċi tiegħi.
+615|Il-kodiċi QR tiegħi
+616|Iftaħ jew kabbar il-kodiċi QR
+617|Ikklikkja fuq il-kodiċi QR biex tiftaħ il-paġna
+618|Tektek fuq il-kodiċi QR biex tkabbru
+619|Uriħ lil persuna qrib: tiskennjah bil-kamera tat-telefon.
+620|Link ikkupjat
+621|Il-kopjar naqas
+622|Ikkopja l-link tiegħi
+623|Issejvja l-immaġni
+624|Toħloq kodiċi ġdid? Il-kodiċi QR il-qadim jieqaf jaħdem.
+625|Kodiċi ġdid maħluq.
+626|Ġedded
+627|Min jista' jsibni?
+628|Settings issejvjat.
+629|Issejvja l-isem tal-utent
+630|Dan il-browser ma jistax jaqra kodiċijiet QR. Uża l-kamera tat-telefon: il-link ta' NOTIIF jinfetaħ waħdu.
+631|Il-kamera mhijiex disponibbli jew ġiet rifjutata.
+632|Skennja kodiċi QR
+633|Ingħaqad miegħi fuq NOTIIF, in-netwerk privat tal-għeżież tagħna (familja, ħbieb, kollegi, klabb…), mingħajr reklami. Installa l-app hawn: {inviteLink} (il-kodiċi tiegħi: {code})
+634|Kuntatt
+635|L-ebda kuntatt b'numru jew email.
+636|L-aċċess għall-kuntatti ġie rifjutat jew ikkanċellat.
+637|Messaġġ ikkupjat: waħħlu fejn trid.
+638|Stieden lill-għeżież tiegħi
+639|📇 Agħżel mill-kuntatti tiegħi
+640|Fuq dan it-telefon jew f'dan il-browser, l-app ma tistax taqra l-kuntatti tiegħek. Żid numru jew email manwalment jew aqsam il-link.
+641|Numru jew email
+642|Stieden lil {name}
+643|Ibgħat l-istedina:
+644|Ingħaqad miegħi fuq NOTIIF
+645|Email
+646|🔗 Aqsam il-link tal-istedina
+647|🔒 Il-kuntatti tiegħek ma jinħażnux u ma jintbagħtux lil NOTIIF: jintużaw biss biex tikteb messaġġ mit-telefon tiegħek. L-importazzjoni minn Google jew Facebook tiġi mal-konnessjoni tas-server.
+648|Talbiet riċevuti ({length})
+649|{name} issa huwa ħabib tiegħek.
+650|Aċċetta
+651|Il-kodiċi tiegħi:
+652|Kodiċi ikkupjat
+653|Ikkopja
+654|Kodiċi ta' persuna qrib (NID-…)
+655|Kodiċi tal-istedina
+656|Stieden
+657|📇 Stieden mill-kuntatti tiegħi
+658|Modalità dimostrattiva: kodiċijiet biex tipprova
+659|(persuni immaġinarji)
+660|Il-ħbieb tiegħi ({length})
+661|Agħżel lista
+662|Kollha ({length})
+663|＋ Lista ġdida
+664|Għażliet għal {name}
+665|Ħadd f'din il-lista.
+666|Għad m'hemm l-ebda ħabib.
+667|Irrapporta din il-persuna
+668|Għaliex? Tliet rapporti minn persuni differenti jissospendu l-kont awtomatikament matul l-eżami.
+669|Profil falz
+670|Bejgħ, reklam jew sollicitazzjoni
+671|Frodi
+672|Offerti sesswali jew eskort
+673|Kontenut illegali
+674|Fastidju
+675|Oħra
+676|Grazzi, ir-rapport ġie reġistrat.
+677|💬 Ikteb
+678|Tneħħi lil {name} mill-ħbieb?
+679|Neħħi mill-ħbieb
+680|Irrapporta
+681|Tbloċċa lil {name}? Ma jibqax jara l-kontenut tiegħek.
+682|Imblukkat.
+683|Bloċċa
+684|Il-listi tiegħi
+685|Eż. „Kużini”, „Kollegi”… biex tagħżel malajr min jara l-posts tiegħek.
+686|Persuni mblukkati
+687|Neħħi l-blokk
+688|Lista ġdida
+689|🔎 Sib lil xi ħadd (isem jew @isem tal-utent)
+690|Fittex
+691|Ħadd ma nstab. Persuni „inviżibbli” jew „limitati” jistgħu jinstabu biss bil-kodiċi QR tagħhom, bil-kodiċi jew bl-isem tal-utent eżatt.
+692|📜 Regoli tal-grupp
+693|Membri ({length})
+694|Tneħħi lil {name} mill-grupp?
+695|Neħħi
+696|Tħalli dan il-grupp?
+697|Ħalli l-grupp
+698|Ġdid
+699|{n, plural, one{# membru} few{# membri} many{# membru} other{# membri}}
+700|Oħloq grupp għall-familja, il-btala, il-festi…
+701|Grupp ġdid
+702|Emoji
+703|Isem tal-grupp
+704|Deskrizzjoni
+705|Regoli tal-grupp (mhux obbligatorju)
+706|Membri (fost il-ħbieb tiegħek)
+707|Grupp maħluq.
+708|Oħloq il-grupp
+709|✅ Ġej
+710|❌ Mhux ġej
+711|🤔 Forsi
+712|Għeluq is-snin, ikliet tal-familja, btala… oħloq l-ewwel wieħed!
+713|· għadda
+714|Tħassar dan l-avveniment?
+715|Organizzat minn {name}
+716|👥 Ara min ġej
+717|✅ Ġejjin
+718|❌ Mhux ġejjin
+719|⏳ Bla tweġiba
+720|Avveniment ġdid
+721|Isem (eż. Għeluq is-snin tan-nanna)
+722|Data u ħin
+723|Post
+724|Avveniment maħluq.
+725|Il-ħbieb tiegħi
+726|Kulħadd
+727|Ħadd
+728|Editja l-profil tiegħi
+729|Biddel ir-ritratt
+730|Żid ritratt
+731|Neħħi r-ritratt
+732|Isem tal-utent: @{handle}
+733|Diġà nbidel darba: definittiv.
+734|Jista' jinbidel darba biss u huwa bi ħlas (biex jiġu limitati l-profili foloz).
+735|Isem tal-utent ġdid
+736|Biddel
+737|Min jista' jara r-ritratt tiegħi?
+738|L-oħrajn imbagħad jaraw l-inizjali tiegħek minflok ir-ritratt.
+739|Isem jew isem tal-utent
+740|Status
+741|L-istatus tiegħek
+742|Il-bijografija qasira tiegħek
+743|Profil aġġornat.
+744|Issejvja
+745|Agħżel x'jistgħu jagħmlu l-ħbieb tiegħek bir-ritratti, bil-vidjos u bit-testi tiegħek.
+746|Likes u reazzjonijiet
+747|Jekk mitfi, ħadd ma jista' jirreaġixxi għall-posts tiegħek u ma jidher l-ebda għadd.
+748|Kummenti
+749|Jekk mitfi, ħadd ma jista' jikkummenta fuq il-posts tiegħek.
+750|{n, plural, one{# post} few{# posts} many{# post} other{# posts}}
+751|{n, plural, one{# ħabib} few{# ħbieb} many{# ħabib} other{# ħbieb}}
+752|Membru minn {toLocaleDateString}
+753|Editja l-profil tiegħi (ritratt, isem, bijografija)
+754|Settings tan-notifiki
+755|Settings
+756|Immarka kollox bħala moqri
+757|🌙 Modalità kwieta mixgħula: l-ebda twissija, imma l-lista tibqa' hawn.
+758|Xejn ġdid.
+759|In-notifiki qatt ma jinkludu l-kontenut ta' post fugaċi.
+760|🎵 Ringtones u vibrazzjoni
+761|Ringtone tan-notifiki
+762|Ringtone tas-sejħiet
+763|Vibrazzjoni tal-messaġġi
+764|Vibrazzjoni tas-sejħiet
+765|Otras dejjem tvibra bl-aktar qawwa. Tektek għażla biex tipprovaha.
+766|🔔 Notifiki tat-telefon
+767|Irċievi notifiki
+768|Messaġġi, talbiet ta' ħbiberija, qsim, avvenimenti…
+769|Notifiki tat-telefon
+770|Notifiki mixgħula.
+771|Ippermetti n-notifiki fit-tieqa tat-telefon.
+772|Notifiki rifjutati: ippermettihom fis-settings tat-telefon (Apps > Cercle > Notifiki).
+773|Dan il-browser ma jappoġġjax in-notifiki. Installa l-app (QR tal-Android) jew l-ikona fuq l-iskrin ewlieni.
+774|Notifiki rifjutati: ippermettihom fis-settings tat-telefon u erġa' pprova.
+775|Liema notifiki tixtieq tirċievi?
+776|💬 Messaġġi
+777|👋 Talbiet ta' ħbiberija
+778|📰 Posts u stejjer
+779|🔁 Qsim
+780|📅 Avvenimenti
+781|👥 Gruppi
+782|🖼 Albums
+783|🎮 Logħob
+784|Notifiki: {l}
+785|Test: kollox jaħdem ✅
+786|In-notifika tat-test ma tistax tintwera.
+787|Ibgħat test
+788|Onestament: għalissa n-notifiki jidhru meta l-app tkun miftuħa jew fl-isfond. Biex jaslu meta l-app tkun magħluqa jeħtieġ server (ibgħat mill-bogħod), ippjanat mal-kontijiet reali. Sejħiet: dalwaqt.
+789|L-4 effetti favoriti tiegħi
+790|Jidhru l-ewwel fil-konversazzjonijiet. L-oħrajn jibqgħu taħt il-buttuna „+”.
+791|Favorit: {label}
+792|Massimu 4 favoriti: itfi wieħed l-ewwel.
+793|Ħalli mill-inqas favorit wieħed.
+794|Irrestawra d-default
+795|Bar ta' fuq
+796|Il-buttuna „Aktar” (il-menus kollha) hija dejjem fuq il-lemin fuq. Żid sa 4 shortcuts maġenbha.
+797|Fuq: {l}
+798|Massimu 4 shortcuts: itfi waħda l-ewwel.
+799|Ħalli mill-inqas shortcut wieħed.
+800|Bar ta' isfel
+801|Agħżel sa 4 shortcuts. Il-buttuna „Oħloq” tibqa' dejjem fnofs. Il-menus l-oħra jinsabu fil-buttuna „Aktar” fuq il-lemin fuq.
+802|Shortcut {l}
+803|Bużżieqa tal-messaġġi
+804|Bużżieqa żgħira li tċaqlaq fejn trid. Meta tidher, „Messaġġi” fil-bar ta' isfel jiġu sostitwiti minn „Gruppi”.
+805|Skrin tal-bidu
+806|Il-paġna li tinfetaħ meta tniedi NOTIIF.
+807|Tema ċara
+808|Sfond ċar, abjad u turkważ.
+809|Tema skura
+810|Sfond blu skur u turkważ, eħfef filgħaxija.
+811|Effetti fil-konversazzjonijiet
+812|Skrins Otras bil-ħoss, qlub, għeluq is-snin: meta ħabib jibgħat wieħed, tarah u tisimgħu. Mixgħul b'mod awtomatiku.
+813|Sigħat kwieti
+814|Jaħbi t-twissijiet bil-lejl (fil-modalità tas-server).
+815|Tħaddim awtomatiku tal-vidjos
+816|Għal vidjos qosra (dalwaqt).
+817|🔒 Privatezza
+818|L-ebda reklami. L-ebda bejgħ ta' dejta.
+819|L-ebda buttuna għall-qsim lejn barra, l-ebda profil pubbliku.
+820|Ħadd ma jista' jsibek mingħajr il-kodiċi tal-istedina tiegħek.
+821|L-ebda app ma tista' twaqqaf persuna awtorizzata milli tiffotografa l-iskrin b'apparat ieħor.
+822|🧪 Modalità dimostrattiva (fuq dan l-apparat)
+823|Għalissa d-dejta tiegħek tibqa' fuq dan l-apparat u l-ħbieb huma immaġinarji. Kontijiet reali, messaġġi bejn telefons u sejħiet jeħtieġu server: ara l-gwida fil-folder „docs” tal-proġett.
+824|Oħroġ
+825|Esporta d-dejta tiegħi
+826|Tħassar id-dejta kollha tiegħek ta' NOTIIF minn dan l-apparat?
+827|Ħassar il-kont u d-dejta tiegħi
+828|🔁 Biddel il-membru (dimostrazzjoni)
+829|Biex tipprova t-tul għal kull persuna: ippubblika ritratt għal 5 s lil Céline u Thomas, imbagħad aqleb bejniethom.
+830|Issa int {name}.
+831|Screenshot imblukkat minn NOTIIF
+832|Logo ta' NOTIIF
+833|issa stess
+834|{n} min ilu
+835|{n} h ilu
+836|Wiċċ
+837|Idejn
+838|Qlub
+839|Festa u natura
+840|Agħlaq l-emoji
+841|Tħassar {what}?
+842|Din l-azzjoni ma tistax titreġġa' lura.
+843|Żomm
+844|NOTIIF — Iċ-ċirku tiegħek. Il-mumenti tiegħek.

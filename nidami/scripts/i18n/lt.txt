@@ -1,0 +1,845 @@
+0|Pradžia
+1|Draugai
+2|Grupės
+3|Žinutės
+4|Skambučiai
+5|Nuotraukos
+6|Žaidimai
+7|Renginiai
+8|Bendrinimai
+9|Pranešimai
+10|Profilis
+11|Teisinė informacija
+12|Nustatymai
+13|Garso ir vaizdo skambučiai
+14|Skambučiams reikalingas ryšio serveris (WebRTC). Jie atsiras, kai NOTIIF serveris pradės veikti.
+15|Tavo ratas. Tavo akimirkos.
+16|Sukurti
+17|Mano profilis
+18|Atgal
+19|Visi meniu
+20|Naršymas
+21|Sukurti: istorija arba įrašas. Ilgai spausk selfio vaizdo įrašui
+22|Daugiau
+23|Mano ratas
+24|Medija ir žaidimai
+25|Mano paskyra
+26|Kvietimas į NOTIIF
+27|Pridėti naudotoją {name}?
+28|Siųsti prašymą
+29|Šio kodo šiame įrenginyje nėra. Demonstraciniu režimu paskyros dar nebendrinamos tarp įrenginių: tai ateis su serveriu.
+30|Vėliau
+31|Ką nori bendrinti?
+32|✨ Istorija (pati išnyksta)
+33|📝 Įrašas
+34|Mano grupės
+35|Artėjantys
+36|Renginių nėra.
+37|Žaisti su šeima
+38|Tęsti su Apple
+39|Tęsti su Google
+40|Tęsti su Facebook
+41|Tęsti su Snapchat
+42|Snapchat reikalauja kūrėjo sutarties (Snap Kit). Jos reikia paprašyti prieš aktyvuojant.
+43|FranceConnect reikalauja valstybės leidimo (paraiška pateikiama datapass.api.gouv.fr).
+44|La Poste skaitmeninė tapatybė
+45|La Poste skaitmeninei tapatybei reikalinga partnerystė su La Poste.
+46|Serveris nepasiekiamas.
+47|Įvyko klaida.
+48|Paskyra sukurta.
+49|Paskyra sukurta. Atidaryk ką tik išsiųstą patvirtinimo el. laišką ir grįžk prisijungti.
+50|Prisijungta.
+51|Aš
+52|Nuolatinis
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Širdelės
+56|❤️ Širdžių lietus!
+57|😘 Bučiniai
+58|😘 Dideli bučiniai!
+59|❄️ Sniegas
+60|❄️ Sninga!
+61|🎆 Fejerverkai
+62|🎆 Fejerverkai!
+63|👻 Vaiduoklis
+64|👻 Bū!
+65|🔥 Liepsnos
+66|🔥 Karšta!
+67|🫧 Burbulai
+68|🫧 Burbulai!
+69|🎂 Šventė
+70|🎂 Švenčiame!
+71|🌧️ Lietus
+72|🌧️ Lyja!
+73|⛈️ Audra
+74|⛈️ Griaudžia!
+75|🚀 Raketa
+76|🚀 Startas!
+77|👏 Valio
+78|👏 Valio!
+79|😂 Juoko priepuolis
+80|😂 Mirštu iš juoko!
+81|💰 Džekpotas
+82|💰 Džekpotas!
+83|💣 Bumas
+84|💣 Bumas!
+85|🎂 Gimtadienis
+86|🎂 Su gimtadieniu!
+87|🎂 Gimtadienis 2
+88|🤭 Atrūgimas
+89|🤭 Atrūgo!
+90|💨 Perdimas
+91|💨 Pyst!
+92|🤮 Vėmimas
+93|🤮 Fui!
+94|Kristalas
+95|Aušra
+96|Vėjelis
+97|Spindesys
+98|Pakrantė
+99|Ratas
+100|Rytas
+101|Nėra
+102|Silpnas
+103|Vidutinis
+104|Stiprus
+105|Įrenginio atmintis pilna: ištrink senas nuotraukas.
+106|Klaida.
+107|Naudotojo vardą galima pakeisti tik vieną kartą, o tu jau tai padarei.
+108|Naudotojo vardo keitimas mokamas (pasiūlymas „Plus“). Mokėjimas dar neprijungtas: norėdamas išbandyti, nustatymuose įjunk „Plus (peržiūra)“.
+109|Naudotojo vardas: nuo 3 iki 20 simbolių, mažosios raidės, skaičiai, taškas arba pabraukimas.
+110|Šis naudotojo vardas jau užimtas.
+111|Naudotojo vardas pakeistas. Šis pakeitimas galutinis.
+112|Sveiki atvykę į mano lizdą 🪺
+113|Labas! Sveiki atvykę! 🌳
+114|Šeima
+115|Kas ateina sekmadienį pietų?
+116|Šeimos pietūs
+117|Kiekvienas atsineša po patiekalą.
+118|Pas močiutę
+119|Netinkama trukmė.
+120|Tavo paskyra tikrinama dėl pranešimų.
+121|Šio įrašo niekas nematytų: pasirink kitus gavėjus.
+122|Šio albumo niekas nematytų: pasirink kitus gavėjus.
+123|Albumas
+124|Naudotojas {name} sukūrė tau albumą „{slice}“.
+125|Albumas nerastas.
+126|Naudotojas {name} sureagavo {emoji} į tavo įrašą.
+127|Naudotojas {name} pakomentavo tavo įrašą.
+128|Asmuo nerastas.
+129|Tai tu!
+130|Tavo paskyra tikrinama dėl pranešimų: kol kas negali siųsti prašymų.
+131|Šiandien per daug prašymų (daugiausia 15). Pabandyk rytoj.
+132|Prašymo išsiųsti nepavyksta.
+133|Naudotojas {name} jau yra tavo draugas.
+134|Prašymas jau išsiųstas.
+135|Naudotojas {name} prašo draugystės.
+136|Prašymas išsiųstas naudotojui {name}.
+137|Nežinomas kodas (demonstraciniu režimu egzistuoja tik šio įrenginio paskyros).
+138|Nuo 3 iki 20 simbolių: raidės, skaičiai, _ arba .
+139|Naudotojo vardas išsaugotas.
+140|Nerasta.
+141|Pasirink bent vieną draugą (kurio autorius neužblokavo).
+142|Prašymas jau laukia.
+143|Naudotojas {name} prašo leidimo bendrinti tavo įrašą.
+144|Prašymas išsiųstas. Sprendžia autorius.
+145|Naudotojas {name} atmetė bendrinimą.
+146|Naudotojas {name} priėmė bendrinimą.
+147|Naudotojas {name} su tavimi pasidalijo turiniu.
+148|Naudotojas {name} atšaukė bendrinimą: jis visur dingo.
+149|Naudotojas {name} priėmė tavo prašymą.
+150|Naudotojas {name} pridėjo tave į grupę „{name2}“.
+151|Naudotojas {name} galbūt bandė užfiksuoti vieną iš tavo turinių.
+152|Naudotojas {name} kviečia tave: {title}.
+153|Naudotojas {name} kviečia tave sužaisti kryžiukus ir nuliukus.
+154|Vaizdo įrašas per didelis: kol kas daugiausia 3 MB (apie 10 sekundžių).
+155|Vaizdo įrašas pridėtas.
+156|Klaida
+157|Nuotrauka pridėta.
+158|Pasirink nuotrauką arba vaizdo įrašą.
+159|Neįskaitomas failas.
+160|Atidaryti vaizdo įrašą
+161|Atidaryti nuotrauką
+162|Nuotrauka
+163|🔒 Privatu: tik tu
+164|👥 Bendrinama su: {n}
+165|👥 Naudotojo {name} albumas
+166|Atgal į albumus
+167|Ištrinti šį albumą ir viską jame, net pas tuos, kurie jį mato?
+168|Ištrinti albumą
+169|Įkeliama…
+170|Pridėti nuotrauką arba vaizdo įrašą
+171|Tuščias albumas: pridėk pirmą nuotrauką arba vaizdo įrašą.
+172|Šiame albume dar nieko nėra.
+173|🔒 Tos pačios taisyklės kaip visur: vandens ženklas su tavo vardu, ekrano nuotraukos užblokuotos „Android“ programėlėje, jokio bendrinimo be autoriaus sutikimo.
+174|Mano vaizdo įrašai
+175|Vaizdo įrašą pasirink vėliau.
+176|Nuotraukos ir vaizdo įrašai
+177|📷 Nuotraukos
+178|🎬 Vaizdo įrašai
+179|🗂 Albumai
+180|Mano nuotraukos
+181|Tavo paskelbtos nuotraukos pasirodys čia.
+182|Bendrinta su manimi (nuolatinė)
+183|Kol kas nieko.
+184|Vaizdo įrašas pridėtas (privatus, skiltyje „Mano vaizdo įrašai“).
+185|Pridėti vaizdo įrašą
+186|Vaizdo įrašų dar nėra. Kol kas trumpi (apie 10 sekundžių, daugiausia 3 MB). Ilgesni vaizdo įrašai atkeliaus su serveriu.
+187|Jei nori bendrinti vaizdo įrašą su draugais, įdėk jį į bendrinamą albumą (skirtukas Albumai).
+188|Naujas albumas
+189|Privatus
+190|Bendrinama su: {length}
+191|Nuo naudotojo {name}
+192|· {count, plural, one{# elementas} few{# elementai} other{# elementų}}
+193|Albumų nėra. Sukurk vieną, privatų arba bendrinamą su draugais.
+194|Pavadinimas (pvz., Atostogos 2026)
+195|🔒 Privatus
+196|👥 Visi mano draugai
+197|✅ Pasirinkti draugai
+198|Matysi tik tu.
+199|Draugų, kurie galės jį matyti, skaičius: {n}. Jį mato tik tavo draugai ir niekas negali jo bendrinti toliau be tavo sutikimo.
+200|Sukurti albumą
+201|✅ Programėlė įdiegta
+202|Jau naudoji ją kaip tikrą programėlę.
+203|📲 Įdiegti programėlę
+204|Įdiegti šiame įrenginyje
+205|Atsisiųsti „Android“ programėlę
+206|„iPhone“ ir „iPad“: palieski
+207|Bendrinti
+208|⬆️ tada
+209|„Pridėti prie pagrindinio ekrano“
+210|Atidaryk naršyklės meniu (⋮) ir pasirink „Įdiegti programėlę“ arba „Pridėti prie pagrindinio ekrano“.
+211|Tavo ratas.
+212|Tavo akimirkos.
+213|Privatus artimųjų tinklas: šeima, draugai, kolegos, komanda, teatro trupė ar klubas. Be reklamos, be nepažįstamųjų, be bendrinimo į išorę.
+214|Bendrink su kuo nori
+215|Nuotraukos, vaizdo įrašai ir tekstai tik tiems, kuriuos pasirenki.
+216|Istorijos, kurios išnyksta
+217|24 valandos arba keletas sekundžių praeinančiai nuotraukai.
+218|Žinutės, balso žinutės ir efektai
+219|Kalbėkis grupėje arba privačiai ir siųsk efektus su garsu.
+220|Įeiti į NOTIIF
+221|Kad turėtum NOTIIF kaip tikrą programėlę telefone:
+222|Įdiegti programėlę
+223|Šis prisijungimas aktyvuosis, kai serveris bus prijungtas (žr. vadovą).
+224|naudojimo sąlygos ir privatumo politika
+225|Sukurti mano paskyrą
+226|Prisijungti
+227|— arba —
+228|Tavo vardas arba naudotojo vardas
+229|Vardas
+230|Naudotojo vardas su @ (neprivalomas): galima pakeisti tik vieną kartą, mokamai
+231|Naudotojo vardas
+232|Tavo el. paštas
+233|Slaptažodis (bent 8 simboliai)
+234|Slaptažodis
+235|Sutinku su sąlygomis
+236|Man yra 15 metų ar daugiau ir sutinku su dokumentais: {legalBtn}.
+237|Jau turiu paskyrą
+238|Dar neturiu paskyros
+239|Pirmiausia aukščiau įrašyk savo vardą arba naudotojo vardą.
+240|Pirmiausia įrašyk savo vardą arba naudotojo vardą.
+241|Norėdamas tęsti, pažymėk langelį „Man yra 15 metų ar daugiau“.
+242|Pažymėk langelį su sąlygomis.
+243|🧪 Demonstracinis režimas
+244|Tikroms paskyroms (el. paštas, Google, Apple, Facebook, FranceConnect…) reikia serverio, kuris dar neprijungtas. Kol kas gali išbandyti programėlę šiame įrenginyje su išgalvotais draugais.
+245|Tavo vardas arba naudotojo vardas (demonstracija)
+246|Išbandyti demonstracinį režimą
+247|Kol kas gali išbandyti programėlę demonstraciniu režimu šiame įrenginyje su išgalvotais draugais.
+248|Supratau, išbandysiu demonstracinį režimą
+249|Teisiniai dokumentai
+250|🔒 Praeinanti žinutė
+251|🎤 Balso žinutė
+252|📷 Nuotrauka
+253|Greitos žinutės
+254|Atgal į sąrašą
+255|Atidaryti dideliu
+256|Uždaryti
+257|💬 Pokalbiai
+258|👥 Mano draugai
+259|Rašyti žinutę
+260|Draugų dar nėra. Pridėk juos skirtuke Draugai.
+261|Naujas pokalbis
+262|Pokalbių nėra. Pasirink draugą skiltyje „Mano draugai“.
+263|Peržiūrėta vieną kartą
+264|Praeinanti žinutė
+265|· atidaryti dideliu
+266|Jaustukas
+267|Tavo žinutė…
+268|Greita žinutė
+269|Siųsti
+270|Ekrano nuotrauka užblokuota: autorius bus įspėtas.
+271|Žinutė peržiūrėta vieną kartą
+272|🔥 Peržiūrėta vieną kartą
+273|Uždaryti (išnyksta)
+274|Nuotrauka peržiūrėta vieną kartą
+275|Turinys paslėptas
+276|Aptikta ekrano nuotrauka arba lango pakeitimas
+277|Ši žinutė išnyksta, kai ją uždarai. Nuotrauką visada galima nufotografuoti kitu įrenginiu: gerbk privatumą.
+278|🔎 Ieškoti mano pokalbiuose
+279|Pokalbių nėra: parašyk draugui iš skilties „Draugai“.
+280|📹 Pradedu vaizdo skambutį: {url}
+281|Vaizdo skambutis pradėtas: nuoroda išsiųsta pokalbyje.
+282|Pradėti vaizdo skambutį
+283|📹 Vaizdo skambutis
+284|Žinutė
+285|🔥 Žinutė peržiūrėta ir išnyko
+286|🔥 Vieną kartą peržiūrima žinutė · palieski, kad atidarytum
+287|(redaguota)
+288|⏱ {left} s
+289|⏱ praeinanti, {secs} s po perskaitymo
+290|🔥 vienkartinė peržiūra ·
+291|peržiūrėta ✓
+292|🔒 Praeinanti žinutė · palieski, kad perskaitytum ({secs} s)
+293|⌛ Žinutės galiojimas baigėsi
+294|· ✓✓ perskaityta
+295|· ✓ išsiųsta
+296|Pasisveikink 👋
+297|Siuntimo parinktys
+298|Uždaryti parinktis
+299|Žinutės trukmė
+300|♾️ Nuolatinė
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Siųsti nuotrauką
+304|🛡 Vandens ženklas
+305|įjungtas
+306|pašalintas
+307|Efektai
+308|Neįskaitomas vaizdas.
+309|Parinktys: trukmė, nuotrauka, efektai
+310|Redaguoti žinutę…
+311|Kiek kraštinių turi šešiakampis?
+312|Kokia Italijos sostinė?
+313|Milanas
+314|Neapolis
+315|Roma
+316|Turinas
+317|Koks yra greičiausias sausumos gyvūnas?
+318|Liūtas
+319|Gepardas
+320|Arklys
+321|Antilopė
+322|Kiek minučių yra pusantros valandos?
+323|Kuri planeta arčiausiai Saulės?
+324|Venera
+325|Marsas
+326|Žemė
+327|Merkurijus
+328|Iš kokio vaisiaus gaminamas sidras?
+329|Kriaušė
+330|Obuolys
+331|Vynuogės
+332|Vyšnia
+333|Kiek žaidėjų aikštėje turi futbolo komanda?
+334|Kokią spalvą gauname sumaišę mėlyną ir geltoną?
+335|Žalia
+336|Oranžinė
+337|Violetinė
+338|Ruda
+339|Koks yra didžiausias vandenynas?
+340|Atlanto
+341|Indijos
+342|Arkties
+343|Ramusis
+344|Kiek dienų turi vasaris keliamaisiais metais?
+345|{nm} (✕) prieš {nm2} (◯)
+346|Langelis {v1}
+347|Lygiosios 🤝
+348|🏆 {name} laimėjo!
+349|Tavo eilė
+350|Eilė naudotojo {name} (nustatymuose pakeisk narį, kad demonstracijoje žaistum jo vietoje)
+351|⭕ Kryžiukai ir nuliukai dviem
+352|🧠 Viktorina
+353|♟️ Šachmatai · netrukus
+354|🃏 Kortos · netrukus
+355|Pakviesti draugą
+356|Žaidimas pradėtas su naudotoju {name}.
+357|Žaidimų nėra. Aukščiau pakviesk draugą.
+358|Valio! {pts}/{length}
+359|Tavo bendras rezultatas:
+360|taškų
+361|Žaisti dar kartą
+362|Klausimas {v1}/{length} · Rezultatas {pts}
+363|Toliau
+364|Baigti
+365|Ištrinti visur, net pas tuos, kurie jį gavo?
+366|Ištrinti
+367|Sureaguoti {e}
+368|🔒 Apsaugota nuotrauka: vandens ženklas su tavo vardu, ekrano nuotraukos užblokuotos „Android“ programėlėje, bendrinimas tik su autoriaus sutikimu.
+369|Netrukus bus prieinama
+370|Lėtai: vienas efektas per sekundę.
+371|Efektas {label}
+372|Pasirinktinis efektas {name}
+373|Daugiau efektų
+374|＋ Daugiau
+375|Visi efektai
+376|Pažymėk 4 efektus, kurie liks priekyje ({length}/4). Išbandyk juos paspaudęs „Siųsti“.
+377|Lieka priekyje: {label}
+378|Daugiausia 4: pirmiausia vieną atžymėk.
+379|Palik priekyje bent vieną efektą.
+380|Mano pasirinktiniai efektai
+381|Ištrinti {name}
+382|＋ Sukurti savo efektą (vaizdas + mano balsas)
+383|Mikrofonas nepasiekiamas arba atmestas.
+384|Pavadink savo efektą.
+385|Pridėk vaizdą arba garsą.
+386|Daugiausia 6 pasirinktiniai efektai.
+387|Efektas pridėtas.
+388|Efekto pavadinimas (pvz., Mano juokas)
+389|Efekto pavadinimas
+390|Vaizdas
+391|Įrašoma… {left} s (palieski, kad baigtum)
+392|Įrašyti iš naujo
+393|Įrašyti (daugiausia 3 s)
+394|Garsas per didelis (daugiausia 450 kB, apie 10 sekundžių).
+395|📁 Pasirinkti garso failą
+396|▶ Išbandyti
+397|Pridėti
+398|Istorija
+399|Matė:
+400|dar niekas
+401|Atsakyti privačiai…
+402|↩️ Atsakymas į tavo istoriją: {reply}
+403|Atsakymas išsiųstas privačiai.
+404|Reakcija išsiųsta {e}
+405|Visi mano draugai
+406|Grupė
+407|Pasirinkti draugai
+408|Visi, išskyrus…
+409|Sąrašas
+410|Tik aš
+411|Pasirink vaizdą.
+412|Šio vaizdo perskaityti nepavyksta.
+413|Istorija paskelbta be laiko apribojimo.
+414|Praeinanti istorija paskelbta.
+415|Istorija paskelbta 24 val.
+416|Paskelbta!
+417|✨ Mano istorija
+418|📝 Naujas įrašas
+419|Istorija išnyksta pati (pagal numatytuosius nustatymus po 24 val.) ir žiūrima per visą ekraną.
+420|Turinio tipas
+421|✏️ Tekstas
+422|🎥 Selfio vaizdo įrašas
+423|🎤 Balsas
+424|🔗 Nuoroda
+425|Peržiūra
+426|Pašalinti nuotrauką
+427|📷 Pasirinkti nuotrauką
+428|🗑 Ištrinti
+429|✅ Paskelbti
+430|🔁 Pradėti iš naujo
+431|🎥 Nufilmuoti save (daugiausia 10 s)
+432|🎤 Įrašyti balso žinutę (daugiausia 30 s)
+433|Įklijuok nuorodą: „Spotify“, „Deezer“ ar „YouTube“ grojaraštį, vaizdo įrašą, „Instagram“, „TikTok“, „Leboncoin“…
+434|Bendrintina nuoroda
+435|Ši nuoroda neatrodo tinkama.
+436|Parašyk savo istoriją…
+437|Istorijos tekstas
+438|Kas naujo pas tavo artimuosius?
+439|Pridėti paantraštę (neprivaloma)…
+440|Tekstas
+441|Nuotaika
+442|Fonas {v1}
+443|Be nuotaikos
+444|Kas gali tai matyti?
+445|Istorijos trukmė
+446|24 valandos
+447|Neribota
+448|Praeinanti
+449|Rodymo laikas
+450|Kita…
+451|Sekundės (nuo 1 iki 999)
+452|Pasirinktinė trukmė sekundėmis
+453|Grupė
+454|Sąrašas
+455|＋ Sukurti sąrašą
+456|Sąrašo pavadinimas (pvz., Kolegos, Futbolas, Teatras)
+457|Sąrašo pavadinimas
+458|Pirmiausia pridėk draugų, kad galėtum juos įtraukti į sąrašą.
+459|Atšaukti
+460|Sąrašas sukurtas.
+461|Sukurti sąrašą
+462|Įvesk sekundžių skaičių nuo 1 iki {MAX_CUSTOM_SECS}.
+463|Matoma tik tau.
+464|{audLabel} · žmonių skaičius: {count}
+465|· {fmtSecs} vienam žmogui nuo atidarymo
+466|Paskelbti
+467|Praeinantis įrašas
+468|Likęs laikas
+469|{ceil} s
+470|Praeinanti nuotrauka
+471|Jei uždarysi, laikas toliau bėga. Nuotrauką visada galima nufotografuoti kitu įrenginiu.
+472|Tavo laikas baigėsi
+473|Tavo peržiūros laikas baigėsi.
+474|praeinantis
+475|Tau liko {n} s.
+476|Turėsi {fmtSecs} nuo atidarymo.
+477|Tęsti
+478|Atidaryti
+479|Parinktys
+480|↪ Pasidalijo
+481|su naudotojo {name} sutikimu
+482|Ištrinti šį įrašą? Leistini bendrinimai taip pat išnyks.
+483|Ištrinti visur
+484|Atšaukti šį bendrinimą? Jis išnyks pas naudotoją {name} ir jo draugus.
+485|Atšaukti šį bendrinimą
+486|Nebebendrinti?
+487|Sustabdyti mano bendrinimą
+488|Padidinti įrašą
+489|Komentuoti
+490|Matė {length}/{length2}:
+491|↪ {n, plural, one{# leistinas bendrinimas} few{# leistini bendrinimai} other{# leistinų bendrinimų}}
+492|tavo (žr. „Bendrinimai“).
+493|Matė
+494|· Bendrinimo auditorija:
+495|↪ Prašyti bendrinimo
+496|Palieski nuotrauką, kad sureaguotum arba pakomentuotum
+497|Palieski nuotrauką, kad sureaguotum
+498|Palieski nuotrauką, kad pakomentuotum
+499|Įrašas
+500|Daugiau jaustukų
+501|Daugiau:
+502|Komentarų dar nėra. Būk pirmas!
+503|Atsakyti
+504|Jaustukai
+505|Tavo atsakymas…
+506|Parašyk komentarą…
+507|Komentaras
+508|Visi draugai
+509|Tik aš
+510|Pasirinkti draugai
+511|Draugai, išskyrus…
+512|Viskas
+513|Mano įrašai
+514|Čia kol kas nieko nėra. Paskelbk savo pirmą akimirką ✨
+515|✏️ Rašyti tekstą
+516|Patarimas: palaikyk nuspaudęs mygtuką ir kamera atsidarys iš karto.
+517|Prašyti bendrinimo
+518|Šis turinys priklauso naudotojui
+519|. Šis asmuo nusprendžia, ar sutikti. Jei sutiks, pasirinkti draugai matys
+520|originalų turinį
+521|(ne kopiją) su tomis pačiomis trukmėmis, o {name} galės
+522|bet kada atšaukti bendrinimą
+523|: tada jis išnyks pas visus.
+524|Bendrinti su:
+525|Neturi kito draugo.
+526|Trumpa žinutė autoriui (neprivaloma)
+527|Siųsti prašymą naudotojui {name}
+528|🌍 Kalba
+529|Pasirink NOTIIF kalbą. Ji pasikeičia iš karto, o tavo pasirinkimas įsimenamas.
+530|Dabartinė kalba
+531|Ieškoti kalbos
+532|Kalba
+533|Kalba pakeista.
+534|Kalbų nerasta.
+535|Kol kas teisiniai dokumentai egzistuoja tik prancūzų kalba.
+536|Versija {LEGAL_VERSION}
+537|Vikipedija
+538|Nuoroda
+539|Grotuvas {name}
+540|Sumažinti
+541|Padidinti
+542|Sustabdyti muziką
+543|Nuoroda {name}
+544|Sumažinti ir toliau klausytis
+545|⌄ Sumažinti
+546|Atidaryti atskirai
+547|Šio puslapio negalima rodyti NOTIIF viduje.
+548|Atidaryti {name}
+549|Atidaryti nuorodą {name}
+550|🎧 Klausytis NOTIIF (girdi tik tu)
+551|▶ Žiūrėti čia, NOTIIF
+552|Atidaryti nuorodą
+553|Kamera arba mikrofonas nepasiekiamas arba atmestas.
+554|🎥 Pradėti
+555|🎤 Pradėti
+556|(daugiausia {max} s)
+557|⏹ Baigti · {left} s
+558|📸 Nuotrauka
+559|Laikyk nuspaudęs mygtuką, kad kalbėtum.
+560|Laikyk nuspaudęs, kad įrašytum balso žinutę
+561|🔴 Atleisk, kad išsiųstum
+562|Kamera
+563|Pradėti iš naujo
+564|Siųsti ➤
+565|Uždaryti kamerą
+566|Perjungti kamerą
+567|s / {max} s
+568|Artinimas
+569|Artinimas {z}×
+570|{replace}×
+571|Vaizdo įrašas
+572|Fotografuoti
+573|Sustabdyti
+574|Filmuoti
+575|Palieski, kad nufotografuotum
+576|Palieski, kad sustabdytum
+577|Palieski, kad pradėtum filmuoti (daugiausia {max} s)
+578|Laikyk nuspaudęs mikrofoną, kad kalbėtum.
+579|🔴 {mm} · atleisk, kad baigtum
+580|Laikyk nuspaudęs mikrofoną, kad kalbėtum (daugiausia {max} s)
+581|Kol pašalinsiu
+582|Kaip originalas
+583|Kiek laiko bendrinimas lieka matomas?
+584|Rodymo laikas vienam žmogui
+585|🔒 Šio turinio negalima paskelbti kitur: jis turi vandens ženklą, ekrano nuotraukos užblokuotos („Android“ programėlė), o kiekvienam naujam bendrinimui reikia tavo sutikimo. Gali jį atšaukti bet kada.
+586|Bendrinimas leistas. Gali jį atšaukti, kada tik nori.
+587|Patvirtinti leidimą
+588|Leisti…
+589|Atmesti
+590|turinys ištrintas
+591|Niekas negali iš naujo paskelbti tavo turinio be tavo sutikimo. Ir net davus sutikimą
+592|visiškai viską kontroliuoji
+593|: jei atšauksi bendrinimą arba ištrinsi įrašą, jis išnyks pas visus, su kuriais buvo bendrintas.
+594|Nagrinėtini prašymai ({length})
+595|norėtų pasidalyti
+596|su: {join} · {ago}
+597|Laukiančių prašymų nėra.
+598|Bendrinimai, kuriuos leidau ({length})
+599|pasidalijo {nm} su: {join}
+600|Atšaukti šį bendrinimą? Jis išnyks pas visus.
+601|Bendrinimas visur atšauktas.
+602|Atšaukti visur
+603|Aktyvių bendrinimų nėra.
+604|Mano prašymai ir bendrinimai ({length})
+605|nuo naudotojo {nm}
+606|{v1} · su: {join}
+607|Neprašei bendrinti nieko.
+608|QR kodas
+609|🌍 Viešas
+610|Bet kas gali mane rasti pagal vardą arba naudotojo vardą.
+611|👥 Ribotas
+612|Tik pagal mano tikslų naudotojo vardą arba per mano draugų draugus.
+613|🔒 Nematomas
+614|Niekas negali manęs rasti. Tik jei duosiu savo QR kodą arba kodą.
+615|Mano QR kodas
+616|Atidaryti arba padidinti QR kodą
+617|Spustelėk QR kodą, kad atidarytum puslapį
+618|Palieski QR kodą, kad jį padidintum
+619|Parodyk jį artimam žmogui: jis nuskaitys telefono kamera.
+620|Nuoroda nukopijuota
+621|Nukopijuoti nepavyko
+622|Kopijuoti mano nuorodą
+623|Išsaugoti vaizdą
+624|Sukurti naują kodą? Senas QR kodas nustos veikti.
+625|Naujas kodas sukurtas.
+626|Atnaujinti
+627|Kas gali mane rasti?
+628|Nustatymas išsaugotas.
+629|Išsaugoti naudotojo vardą
+630|Ši naršyklė negali skaityti QR kodų. Naudok telefono kamerą: NOTIIF nuoroda atsidaro pati.
+631|Kamera nepasiekiama arba atmesta.
+632|Nuskaityti QR kodą
+633|Prisijunk prie manęs NOTIIF, privačiame mūsų artimųjų tinkle (šeima, draugai, kolegos, klubas…), be reklamos. Įdiek programėlę čia: {inviteLink} (mano kodas: {code})
+634|Kontaktas
+635|Nėra kontakto su numeriu ar el. paštu.
+636|Prieiga prie kontaktų atmesta arba atšaukta.
+637|Žinutė nukopijuota: įklijuok, kur nori.
+638|Pakviesti mano artimuosius
+639|📇 Pasirinkti iš mano kontaktų
+640|Šiame telefone ar naršyklėje programėlė negali skaityti tavo kontaktų. Pridėk numerį ar el. paštą rankiniu būdu arba bendrink nuorodą.
+641|Numeris arba el. paštas
+642|Pakviesti naudotoją {name}
+643|Siųsti kvietimą:
+644|Prisijunk prie manęs NOTIIF
+645|El. paštas
+646|🔗 Bendrinti kvietimo nuorodą
+647|🔒 Tavo kontaktai nesaugomi ir nesiunčiami į NOTIIF: jie naudojami tik žinutei parašyti iš tavo telefono. Importas iš „Google“ ar „Facebook“ ateis su serverio prijungimu.
+648|Gauti prašymai ({length})
+649|Naudotojas {name} dabar yra tavo draugas.
+650|Priimti
+651|Mano kodas:
+652|Kodas nukopijuotas
+653|Kopijuoti
+654|Artimo žmogaus kodas (NID-…)
+655|Kvietimo kodas
+656|Pakviesti
+657|📇 Pakviesti iš mano kontaktų
+658|Demonstracinis režimas: kodai išbandymui
+659|(išgalvoti asmenys)
+660|Mano draugai ({length})
+661|Pasirinkti sąrašą
+662|Visi ({length})
+663|＋ Naujas sąrašas
+664|Parinktys naudotojui {name}
+665|Šiame sąraše nieko nėra.
+666|Draugų dar nėra.
+667|Pranešti apie šį asmenį
+668|Kodėl? Trys skirtingų žmonių pranešimai automatiškai sustabdo paskyrą tikrinimo laikotarpiui.
+669|Netikras profilis
+670|Pardavimas, reklama ar siūlymai
+671|Sukčiavimas
+672|Seksualiniai pasiūlymai ar palydovės
+673|Neteisėtas turinys
+674|Priekabiavimas
+675|Kita
+676|Ačiū, pranešimas užregistruotas.
+677|💬 Rašyti
+678|Pašalinti naudotoją {name} iš draugų?
+679|Pašalinti iš draugų
+680|Pranešti
+681|Užblokuoti naudotoją {name}? Jis nebematys tavo turinio.
+682|Užblokuota.
+683|Blokuoti
+684|Mano sąrašai
+685|Pvz., „Pusbroliai“, „Kolegos“… kad greitai pasirinktum, kas mato tavo įrašus.
+686|Užblokuoti asmenys
+687|Atblokuoti
+688|Naujas sąrašas
+689|🔎 Rasti žmogų (vardas arba @naudotojo vardas)
+690|Ieškoti
+691|Niekas nerastas. „Nematomus“ ar „ribotus“ asmenis galima rasti tik pagal jų QR kodą, kodą arba tikslų naudotojo vardą.
+692|📜 Grupės taisyklės
+693|Nariai ({length})
+694|Pašalinti naudotoją {name} iš grupės?
+695|Pašalinti
+696|Palikti šią grupę?
+697|Palikti grupę
+698|Nauja
+699|{n, plural, one{# narys} few{# nariai} other{# narių}}
+700|Sukurk grupę šeimai, atostogoms, vakarėliams…
+701|Nauja grupė
+702|Jaustukas
+703|Grupės pavadinimas
+704|Aprašymas
+705|Grupės taisyklės (neprivaloma)
+706|Nariai (iš tavo draugų)
+707|Grupė sukurta.
+708|Sukurti grupę
+709|✅ Ateinu
+710|❌ Neateinu
+711|🤔 Gal
+712|Gimtadieniai, šeimos pietūs, atostogos… sukurk pirmąjį!
+713|· įvyko
+714|Ištrinti šį renginį?
+715|Organizuoja {name}
+716|👥 Žiūrėti, kas ateina
+717|✅ Ateina
+718|❌ Neateina
+719|⏳ Neatsakė
+720|Naujas renginys
+721|Pavadinimas (pvz., Močiutės gimtadienis)
+722|Data ir laikas
+723|Vieta
+724|Renginys sukurtas.
+725|Mano draugai
+726|Visi
+727|Niekas
+728|Redaguoti mano profilį
+729|Pakeisti nuotrauką
+730|Pridėti nuotrauką
+731|Pašalinti nuotrauką
+732|Naudotojo vardas: @{handle}
+733|Jau kartą pakeistas: galutinis.
+734|Galima pakeisti tik vieną kartą ir tai mokama (kad būtų apribojami netikri profiliai).
+735|Naujas naudotojo vardas
+736|Pakeisti
+737|Kas gali matyti mano nuotrauką?
+738|Kiti tada matys tavo pirmąją raidę vietoj nuotraukos.
+739|Vardas arba naudotojo vardas
+740|Būsena
+741|Tavo būsena
+742|Tavo trumpas aprašas
+743|Profilis atnaujintas.
+744|Išsaugoti
+745|Pasirink, ką tavo draugai gali daryti su tavo nuotraukomis, vaizdo įrašais ir tekstais.
+746|Patinka ir reakcijos
+747|Jei išjungta, niekas negali reaguoti į tavo įrašus ir skaitiklis nerodomas.
+748|Komentarai
+749|Jei išjungta, niekas negali komentuoti tavo įrašų.
+750|{n, plural, one{# įrašas} few{# įrašai} other{# įrašų}}
+751|{n, plural, one{# draugas} few{# draugai} other{# draugų}}
+752|Narys nuo {toLocaleDateString}
+753|Redaguoti mano profilį (nuotrauka, vardas, aprašas)
+754|Pranešimų nustatymai
+755|Nustatymai
+756|Pažymėti viską kaip perskaitytą
+757|🌙 Tylusis režimas įjungtas: jokių įspėjimų, bet sąrašas lieka čia.
+758|Naujienų nėra.
+759|Pranešimuose niekada nėra praeinančio įrašo turinio.
+760|🎵 Skambėjimo tonai ir vibracija
+761|Pranešimų skambėjimo tonas
+762|Skambučių skambėjimo tonas
+763|Žinučių vibracija
+764|Skambučių vibracija
+765|Otras visada vibruoja maksimaliai. Palieski parinktį, kad išbandytum.
+766|🔔 Telefono pranešimai
+767|Gauti pranešimus
+768|Žinutės, draugystės prašymai, bendrinimai, renginiai…
+769|Telefono pranešimai
+770|Pranešimai įjungti.
+771|Leisk pranešimus telefono lange.
+772|Pranešimai atmesti: leisk juos telefono nustatymuose (Programėlės > Cercle > Pranešimai).
+773|Ši naršyklė nepalaiko pranešimų. Įdiek programėlę („Android“ QR) arba piktogramą pagrindiniame ekrane.
+774|Pranešimai atmesti: leisk juos telefono nustatymuose ir bandyk dar kartą.
+775|Kokius pranešimus gauti?
+776|💬 Žinutės
+777|👋 Draugystės prašymai
+778|📰 Įrašai ir istorijos
+779|🔁 Bendrinimai
+780|📅 Renginiai
+781|👥 Grupės
+782|🖼 Albumai
+783|🎮 Žaidimai
+784|Pranešimai: {l}
+785|Testas: viskas veikia ✅
+786|Bandomojo pranešimo parodyti nepavyksta.
+787|Siųsti testą
+788|Sąžiningai: kol kas pranešimai rodomi, kai programėlė atidaryta arba veikia fone. Norint juos gauti uždarius programėlę reikia serverio (nuotolinis siuntimas), numatyto su tikromis paskyromis. Skambučiai: netrukus.
+789|Mano 4 mėgstamiausi efektai
+790|Pokalbiuose jie rodomi pirmi. Kiti lieka po mygtuku „+“.
+791|Mėgstamas: {label}
+792|Daugiausia 4 mėgstami: pirmiausia vieną išjunk.
+793|Palik bent vieną mėgstamą.
+794|Atkurti numatytuosius
+795|Viršutinė juosta
+796|Mygtukas „Daugiau“ (visi meniu) visada viršuje dešinėje. Šalia jo pridėk iki 4 nuorodų.
+797|Viršuje: {l}
+798|Daugiausia 4 nuorodos: pirmiausia vieną išjunk.
+799|Palik bent vieną nuorodą.
+800|Apatinė juosta
+801|Pasirink iki 4 nuorodų. Mygtukas „Sukurti“ visada lieka viduryje. Kiti meniu yra mygtuke „Daugiau“ viršuje dešinėje.
+802|Nuoroda {l}
+803|Žinučių burbulas
+804|Mažas burbulas, kurį perkeli, kur nori. Kai jis rodomas, apatinėje juostoje „Žinutės“ pakeičiamos „Grupėmis“.
+805|Pradžios ekranas
+806|Puslapis, kuris atsidaro paleidus NOTIIF.
+807|Šviesi tema
+808|Šviesus fonas, balta ir turkio spalva.
+809|Tamsi tema
+810|Naktinis mėlynas ir turkio fonas, vakare švelnesnis.
+811|Efektai pokalbiuose
+812|Otras ekranai su garsu, širdelės, gimtadieniai: kai draugas jį išsiunčia, matysi ir girdėsi. Pagal numatytuosius nustatymus įjungta.
+813|Tylos valandos
+814|Naktį nutildo įspėjimus (serverio režimu).
+815|Automatinis vaizdo įrašų atkūrimas
+816|Trumpiems vaizdo įrašams (netrukus).
+817|🔒 Privatumas
+818|Jokios reklamos. Jokio duomenų pardavimo.
+819|Jokio bendrinimo į išorę mygtuko, jokio viešo profilio.
+820|Niekas negali tavęs rasti be tavo kvietimo kodo.
+821|Jokia programėlė negali sutrukdyti įgaliotam asmeniui kitu įrenginiu nufotografuoti ekraną.
+822|🧪 Demonstracinis režimas (šiame įrenginyje)
+823|Kol kas tavo duomenys lieka šiame įrenginyje, o draugai išgalvoti. Tikroms paskyroms, žinutėms tarp telefonų ir skambučiams reikia serverio: žr. vadovą projekto aplanke „docs“.
+824|Atsijungti
+825|Eksportuoti mano duomenis
+826|Ištrinti visus tavo NOTIIF duomenis iš šio įrenginio?
+827|Ištrinti mano paskyrą ir duomenis
+828|🔁 Pakeisti narį (demonstracija)
+829|Norėdamas išbandyti trukmes vienam žmogui: paskelbk nuotrauką 5 s Céline ir Thomas, tada perjunk tarp jų.
+830|Dabar esi {name}.
+831|NOTIIF užblokavo ekrano nuotrauką
+832|NOTIIF logotipas
+833|ką tik
+834|prieš {n} min.
+835|prieš {n} val.
+836|Veidai
+837|Rankos
+838|Širdelės
+839|Šventė ir gamta
+840|Uždaryti jaustukus
+841|Ištrinti {what}?
+842|Šio veiksmo atšaukti negalima.
+843|Palikti
+844|NOTIIF — Tavo ratas. Tavo akimirkos.

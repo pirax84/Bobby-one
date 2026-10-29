@@ -1,0 +1,845 @@
+0|Koti
+1|Ystävät
+2|Ryhmät
+3|Viestit
+4|Puhelut
+5|Kuvat
+6|Pelit
+7|Tapahtumat
+8|Jaot
+9|Ilmoitukset
+10|Profiili
+11|Lakitiedot
+12|Asetukset
+13|Ääni- ja videopuhelut
+14|Puhelut tarvitsevat yhteyspalvelimen (WebRTC). Ne lisätään, kun NOTIIF-palvelin on käytössä.
+15|Sinun piirisi. Sinun hetkesi.
+16|Luo
+17|Oma profiili
+18|Takaisin
+19|Kaikki valikot
+20|Navigointi
+21|Luo: tarina tai julkaisu. Pitkä painallus videoitsarille
+22|Lisää
+23|Oma piirini
+24|Media ja pelit
+25|Oma tili
+26|NOTIIF-kutsu
+27|Lisätäänkö {name}?
+28|Lähetä pyyntö
+29|Tätä koodia ei ole tällä laitteella. Demotilassa tilejä ei vielä jaeta laitteiden välillä: se tulee palvelimen mukana.
+30|Myöhemmin
+31|Mitä haluat jakaa?
+32|✨ Tarina (katoaa itsestään)
+33|📝 Julkaisu
+34|Omat ryhmäni
+35|Tulossa
+36|Ei tapahtumia.
+37|Pelaa perheen kanssa
+38|Jatka Applella
+39|Jatka Googlella
+40|Jatka Facebookilla
+41|Jatka Snapchatilla
+42|Snapchat vaatii kehittäjäsopimuksen (Snap Kit). Se on pyydettävä ennen käyttöönottoa.
+43|FranceConnect vaatii valtion luvan (hakemus jätetään osoitteessa datapass.api.gouv.fr).
+44|La Poste -digitaalinen identiteetti
+45|La Poste -digitaalinen identiteetti vaatii kumppanuuden La Posten kanssa.
+46|Palvelimeen ei saada yhteyttä.
+47|Tapahtui virhe.
+48|Tili luotu.
+49|Tili luotu. Avaa juuri lähettämämme vahvistussähköposti ja palaa sitten kirjautumaan.
+50|Kirjauduttu sisään.
+51|Minä
+52|Pysyvä
+53|📳 Täräys
+54|📳 Täräys!
+55|❤️ Sydämet
+56|❤️ Sydänsade!
+57|😘 Suukot
+58|😘 Isot suukot!
+59|❄️ Lumi
+60|❄️ Sataa lunta!
+61|🎆 Ilotulitus
+62|🎆 Ilotulitus!
+63|👻 Aave
+64|👻 Huh!
+65|🔥 Liekit
+66|🔥 Alkaa kuumentua!
+67|🫧 Kuplat
+68|🫧 Kuplia!
+69|🎂 Juhlat
+70|🎂 Juhlat alkavat!
+71|🌧️ Sade
+72|🌧️ Sataa!
+73|⛈️ Ukonilma
+74|⛈️ Ukkonen jyrähtää!
+75|🚀 Raketti
+76|🚀 Lähtö!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Naurukohtaus
+80|😂 Kuolen nauruun!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Pamaus
+84|💣 Pam!
+85|🎂 Syntymäpäivä
+86|🎂 Hyvää syntymäpäivää!
+87|🎂 Syntymäpäivä 2
+88|🤭 Röyhtäisy
+89|🤭 Röyh!
+90|💨 Pieru
+91|💨 Pieru!
+92|🤮 Oksennus
+93|🤮 Yök!
+94|Kristalli
+95|Aamurusko
+96|Tuulenvire
+97|Hohde
+98|Ranta
+99|Kehä
+100|Aamu
+101|Ei mitään
+102|Kevyt
+103|Keskitaso
+104|Voimakas
+105|Laitteen muisti on täynnä: poista vanhoja kuvia.
+106|Virhe.
+107|Käyttäjänimen voi vaihtaa vain kerran, ja olet jo tehnyt sen.
+108|Käyttäjänimen vaihtaminen on maksullista (tarjous "Plus"). Maksua ei ole vielä kytketty: ota "Plus (esittely)" käyttöön Asetuksissa kokeillaksesi.
+109|Käyttäjänimi: 3–20 merkkiä, pieniä kirjaimia, numeroita, piste tai alaviiva.
+110|Tämä käyttäjänimi on jo käytössä.
+111|Käyttäjänimi vaihdettu. Muutos on lopullinen.
+112|Tervetuloa pesääni 🪺
+113|Hei! Tervetuloa! 🌳
+114|Perhe
+115|Kuka tulee sunnuntaina ruokailemaan?
+116|Perheateria
+117|Jokainen tuo pienen ruoan.
+118|Mummolassa
+119|Virheellinen kesto.
+120|Tilisi on tarkistettavana ilmoitusten vuoksi.
+121|Kukaan ei voi nähdä tätä julkaisua: valitse muita vastaanottajia.
+122|Kukaan ei voi nähdä tätä albumia: valitse muita vastaanottajia.
+123|Albumi
+124|{name} loi sinulle albumin "{slice}".
+125|Albumia ei löytynyt.
+126|{name} reagoi julkaisuusi: {emoji}.
+127|{name} kommentoi julkaisuasi.
+128|Henkilöä ei löytynyt.
+129|Se olet sinä!
+130|Tilisi on tarkistettavana ilmoitusten vuoksi: et voi toistaiseksi lähettää pyyntöjä.
+131|Liian monta pyyntöä tänään (enintään 15). Yritä huomenna uudelleen.
+132|Pyyntöä ei voi lähettää.
+133|{name} on jo ystäväsi.
+134|Pyyntö on jo lähetetty.
+135|{name} haluaa ystäväksesi.
+136|Pyyntö lähetetty käyttäjälle {name}.
+137|Tuntematon koodi (demotilassa on vain tämän laitteen tilit).
+138|3–20 merkkiä: kirjaimia, numeroita, _ tai .
+139|Käyttäjänimi tallennettu.
+140|Ei löytynyt.
+141|Valitse vähintään yksi ystävä (jota tekijä ei ole estänyt).
+142|Pyyntö on jo odottamassa.
+143|{name} pyytää saada jakaa julkaisusi.
+144|Pyyntö lähetetty. Tekijä päättää.
+145|{name} kieltäytyi jakamisesta.
+146|{name} hyväksyi jakamisen.
+147|{name} jakoi sinulle sisältöä.
+148|{name} perui jaon: se on kadonnut kaikkialta.
+149|{name} hyväksyi pyyntösi.
+150|{name} lisäsi sinut ryhmään "{name2}".
+151|{name} on voinut yrittää kaapata jonkin sisältösi.
+152|{name} kutsuu sinut: {title}.
+153|{name} kutsuu sinut ristinollapeliin.
+154|Video on liian raskas: toistaiseksi enintään 3 Mt (noin 10 sekuntia).
+155|Video lisätty.
+156|Virhe
+157|Kuva lisätty.
+158|Valitse kuva tai video.
+159|Tiedostoa ei voi lukea.
+160|Avaa video
+161|Avaa kuva
+162|Kuva
+163|🔒 Yksityinen: vain sinä
+164|👥 Jaettu: {n}
+165|👥 Käyttäjän {name} albumi
+166|Takaisin albumeihin
+167|Poistetaanko tämä albumi ja kaikki sen sisältö, myös niiltä, jotka sen näkevät?
+168|Poista albumi
+169|Ladataan…
+170|Lisää kuva tai video
+171|Tyhjä albumi: lisää ensimmäinen kuva tai video.
+172|Tässä albumissa ei ole vielä mitään.
+173|🔒 Samat säännöt kuin kaikkialla: vesileima nimelläsi, kuvakaappaukset estetty Android-sovelluksessa, ei jakamista ilman tekijän lupaa.
+174|Omat videoni
+175|Valitse video sen jälkeen.
+176|Kuvat ja videot
+177|📷 Kuvat
+178|🎬 Videot
+179|🗂 Albumit
+180|Omat kuvani
+181|Julkaisemasi kuvat näkyvät täällä.
+182|Minulle jaetut (pysyvät)
+183|Toistaiseksi ei mitään.
+184|Video lisätty (yksityinen, kohdassa "Omat videoni").
+185|Lisää video
+186|Ei vielä videota. Toistaiseksi: lyhyitä (noin 10 sekuntia, enintään 3 Mt). Pidemmät videot tulevat palvelimen mukana.
+187|Jaa video ystäville laittamalla se jaettuun albumiin (Albumit-välilehti).
+188|Uusi albumi
+189|Yksityinen
+190|Jaettu: {length}
+191|Käyttäjältä {name}
+192|· {count, plural, one{# kohde} other{# kohdetta}}
+193|Ei albumeita. Luo yksi, yksityinen tai ystävien kanssa jaettu.
+194|Nimi (esim. Loma 2026)
+195|🔒 Yksityinen
+196|👥 Kaikki ystäväni
+197|✅ Valitut ystävät
+198|Vain sinä näet sen.
+199|{n} ystävä(ä) voi nähdä sen. Vain ystäväsi näkevät sen, eikä kukaan voi jakaa sitä edelleen ilman lupaasi.
+200|Luo albumi
+201|✅ Sovellus asennettu
+202|Käytät sitä jo oikean sovelluksen tavoin.
+203|📲 Asenna sovellus
+204|Asenna tälle laitteelle
+205|Lataa Android-sovellus
+206|iPhonessa ja iPadissa: napauta
+207|Jaa
+208|⬆️ sitten
+209|"Lisää Koti-valikkoon"
+210|Avaa selaimen valikko (⋮) ja valitse "Asenna sovellus" tai "Lisää aloitusnäyttöön".
+211|Sinun piirisi.
+212|Sinun hetkesi.
+213|Läheistesi yksityinen verkosto: perhe, ystävät, työkaverit, tiimi, teatteriryhmä tai seura. Ei mainoksia, ei tuntemattomia, ei jakamista ulospäin.
+214|Jaa kenen kanssa haluat
+215|Kuvat, videot ja tekstit vain valitsemillesi ihmisille.
+216|Katoavat tarinat
+217|24 tuntia tai muutama sekunti katoavalle kuvalle.
+218|Viestit, äänipostit ja tehosteet
+219|Keskustele ryhmässä tai yksityisesti ja lähetä tehosteita äänellä.
+220|Siirry NOTIIFiin
+221|Jotta NOTIIF olisi puhelimessasi oikea sovellus:
+222|Asenna sovellus
+223|Tämä kirjautuminen otetaan käyttöön, kun palvelin on kytketty (katso opas).
+224|käyttöehdot ja tietosuojakäytännön
+225|Luo tilini
+226|Kirjaudu sisään
+227|— tai —
+228|Etunimesi tai käyttäjänimesi
+229|Etunimi
+230|Käyttäjänimi @ (valinnainen): vaihdettavissa vain kerran, maksullinen
+231|Käyttäjänimi
+232|Sähköpostiosoitteesi
+233|Salasana (vähintään 8 merkkiä)
+234|Salasana
+235|Hyväksyn ehdot
+236|Olen vähintään 15-vuotias ja hyväksyn {legalBtn}.
+237|Minulla on jo tili
+238|Minulla ei ole vielä tiliä
+239|Kirjoita ensin etunimesi tai käyttäjänimesi yläpuolelle.
+240|Kirjoita ensin etunimesi tai käyttäjänimesi.
+241|Rastita ruutu "Olen vähintään 15-vuotias" jatkaaksesi.
+242|Rastita ehtojen ruutu.
+243|🧪 Demotila
+244|Oikeat tilit (sähköposti, Google, Apple, Facebook, FranceConnect…) tarvitsevat palvelimen, jota ei ole vielä kytketty. Sillä välin voit kokeilla sovellusta tällä laitteella kuvitteellisten ystävien kanssa.
+245|Etunimesi tai käyttäjänimesi (demo)
+246|Kokeile demotilaa
+247|Toistaiseksi voit kokeilla sovellusta demotilassa tällä laitteella kuvitteellisten ystävien kanssa.
+248|Selvä, kokeilen demotilaa
+249|Lakiasiakirjat
+250|🔒 Katoava viesti
+251|🎤 Ääniviesti
+252|📷 Kuva
+253|Pikaviestit
+254|Takaisin luetteloon
+255|Avaa suurena
+256|Sulje
+257|💬 Keskustelut
+258|👥 Ystäväni
+259|Kirjoita viesti
+260|Ei vielä ystäviä. Lisää heitä Ystävät-välilehdellä.
+261|Uusi keskustelu
+262|Ei keskusteluja. Valitse ystävä kohdasta "Ystäväni".
+263|Nähty kerran
+264|Katoava viesti
+265|· avaa suurena
+266|Emojit
+267|Viestisi…
+268|Pikaviesti
+269|Lähetä
+270|Kuvakaappaus estetty: tekijälle ilmoitetaan.
+271|Kerran nähty viesti
+272|🔥 Nähty kerran
+273|Sulje (se katoaa)
+274|Kerran nähty kuva
+275|Sisältö piilotettu
+276|Kuvakaappaus tai ikkunan vaihto havaittu
+277|Tämä viesti katoaa, kun suljet sen. Kuvan voi aina valokuvata toisella laitteella: kunnioita yksityisyyttä.
+278|🔎 Hae keskusteluistani
+279|Ei keskusteluja: kirjoita ystävälle kohdasta "Ystävät".
+280|📹 Aloitan videopuhelun: {url}
+281|Videopuhelu aloitettu: linkki lähetettiin keskusteluun.
+282|Aloita videopuhelu
+283|📹 Videopuhelu
+284|Viesti
+285|🔥 Viesti nähty ja kadonnut
+286|🔥 Vain kerran katsottava viesti · avaa napauttamalla
+287|(muokattu)
+288|⏱ {left} s
+289|⏱ katoava {secs} s lukemisen jälkeen
+290|🔥 kertakatselu ·
+291|nähty ✓
+292|🔒 Katoava viesti · lue napauttamalla ({secs} s)
+293|⌛ Viesti vanhentunut
+294|· ✓✓ luettu
+295|· ✓ lähetetty
+296|Sano hei 👋
+297|Lähetysasetukset
+298|Sulje asetukset
+299|Viestin kesto
+300|♾️ Pysyvä
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Lähetä kuva
+304|🛡 Vesileima
+305|päällä
+306|poistettu
+307|Tehosteet
+308|Kuvaa ei voi lukea.
+309|Asetukset: kesto, kuva, tehosteet
+310|Muokkaa viestiä…
+311|Montako sivua kuusikulmiolla on?
+312|Mikä on Italian pääkaupunki?
+313|Milano
+314|Napoli
+315|Rooma
+316|Torino
+317|Mikä eläin on maalla nopein?
+318|Leijona
+319|Gepardi
+320|Hevonen
+321|Antilooppi
+322|Montako minuuttia on puolitoista tuntia?
+323|Mikä planeetta on lähinnä aurinkoa?
+324|Venus
+325|Mars
+326|Maa
+327|Merkurius
+328|Mistä hedelmästä saadaan siideriä?
+329|Päärynä
+330|Omena
+331|Viinirypäle
+332|Kirsikka
+333|Montako pelaajaa jalkapallojoukkueella on kentällä?
+334|Minkä värin saa sekoittamalla sinistä ja keltaista?
+335|Vihreä
+336|Oranssi
+337|Violetti
+338|Ruskea
+339|Mikä on suurin valtameri?
+340|Atlantti
+341|Intian valtameri
+342|Pohjoinen jäämeri
+343|Tyyni valtameri
+344|Montako päivää helmikuussa on karkausvuonna?
+345|{nm} (✕) vastaan {nm2} (◯)
+346|Ruutu {v1}
+347|Tasapeli 🤝
+348|🏆 {name} voitti!
+349|Sinun vuorosi
+350|Käyttäjän {name} vuoro (vaihda jäsentä Asetuksissa pelataksesi hänen puolestaan demossa)
+351|⭕ Ristinolla kahdelle
+352|🧠 Visa
+353|♟️ Šakki · tulossa pian
+354|🃏 Romme · tulossa pian
+355|Kutsu ystävä
+356|Peli aloitettu käyttäjän {name} kanssa.
+357|Ei pelejä. Kutsu ystävä yllä.
+358|Bravo! {pts}/{length}
+359|Kokonaispisteesi:
+360|pistettä
+361|Pelaa uudelleen
+362|Kysymys {v1}/{length} · Pisteet {pts}
+363|Seuraava
+364|Lopeta
+365|Poistetaanko kaikkialta, myös niiltä, jotka saivat sen?
+366|Poista
+367|Reagoi {e}
+368|🔒 Suojattu kuva: vesileima nimelläsi, kuvakaappaukset estetty Android-sovelluksessa, jakaminen vain tekijän luvalla.
+369|Tulossa pian
+370|Rauhassa: yksi tehoste sekunnissa.
+371|Tehoste {label}
+372|Oma tehoste {name}
+373|Lisää tehosteita
+374|＋ Lisää
+375|Kaikki tehosteet
+376|Rastita 4 tehostetta pidettäväksi edessä ({length}/4). Kokeile napauttamalla "Lähetä".
+377|Pidä edessä: {label}
+378|Enintään 4: poista ensin yksi rasti.
+379|Pidä vähintään yksi tehoste edessä.
+380|Omat tehosteeni
+381|Poista {name}
+382|＋ Luo oma tehosteeni (kuva + oma ääneni)
+383|Mikrofoni ei ole käytettävissä tai se evättiin.
+384|Anna tehosteellesi nimi.
+385|Lisää kuva tai ääni.
+386|Enintään 6 omaa tehostetta.
+387|Tehoste lisätty.
+388|Tehosteen nimi (esim. Oma nauruni)
+389|Tehosteen nimi
+390|Kuva
+391|Tallennetaan… {left} s (lopeta napauttamalla)
+392|Tallenna uudelleen
+393|Tallenna (enintään 3 s)
+394|Ääni on liian raskas (enintään 450 kt, noin 10 sekuntia).
+395|📁 Valitse äänitiedosto
+396|▶ Kokeile
+397|Lisää
+398|Tarina
+399|Nähnyt:
+400|ei vielä kukaan
+401|Vastaa yksityisesti…
+402|↩️ Vastaus tarinaasi: {reply}
+403|Vastaus lähetetty yksityisesti.
+404|Reaktio lähetetty {e}
+405|Kaikki ystäväni
+406|Ryhmä
+407|Valitut ystävät
+408|Kaikki paitsi…
+409|Lista
+410|Vain minä
+411|Valitse kuva.
+412|Tätä kuvaa ei voi lukea.
+413|Tarina julkaistu ilman aikarajaa.
+414|Katoava tarina julkaistu.
+415|Tarina julkaistu 24 tunniksi.
+416|Julkaistu!
+417|✨ Tarinani
+418|📝 Uusi julkaisu
+419|Tarina katoaa itsestään (oletuksena 24 h) ja sitä katsotaan koko näytöllä.
+420|Sisällön tyyppi
+421|✏️ Teksti
+422|🎥 Videoitsari
+423|🎤 Ääni
+424|🔗 Linkki
+425|Esikatselu
+426|Poista kuva
+427|📷 Valitse kuva
+428|🗑 Poista
+429|✅ Julkaise
+430|🔁 Aloita alusta
+431|🎥 Kuvaa itseni (enintään 10 s)
+432|🎤 Tallenna ääniviesti (enintään 30 s)
+433|Liitä linkki: Spotify-, Deezer- tai YouTube-soittolista, video, Instagram, TikTok, Leboncoin…
+434|Jaettava linkki
+435|Tämä linkki ei näytä kelvolliselta.
+436|Kirjoita tarinasi…
+437|Tarinan teksti
+438|Mitä uutta läheisillesi kuuluu?
+439|Lisää kuvateksti (valinnainen)…
+440|Teksti
+441|Mieliala
+442|Tausta {v1}
+443|Ei mielialaa
+444|Kuka voi nähdä?
+445|Tarinan kesto
+446|24 tuntia
+447|Rajoittamaton
+448|Katoava
+449|Katseluaika
+450|Muu…
+451|Sekuntia (1–999)
+452|Oma kesto sekunteina
+453|Ryhmä
+454|Lista
+455|＋ Luo lista
+456|Listan nimi (esim. Työkaverit, Jalkapallo, Teatteri)
+457|Listan nimi
+458|Lisää ensin ystäviä, jotta voit laittaa heidät listaan.
+459|Peruuta
+460|Lista luotu.
+461|Luo lista
+462|Anna väliltä 1–{MAX_CUSTOM_SECS} sekuntia.
+463|Näkyy vain sinulle.
+464|{audLabel} · {count} henkilöä
+465|· {fmtSecs} henkilöä kohti avaamisesta alkaen
+466|Julkaise
+467|Katoava julkaisu
+468|Aikaa jäljellä
+469|{ceil} s
+470|Katoava kuva
+471|Jos suljet, aika kuluu silti. Kuvan voi aina valokuvata toisella laitteella.
+472|Vanhentunut sinulle
+473|Katseluaikasi on päättynyt.
+474|katoava
+475|Sinulla on {n} s jäljellä.
+476|Sinulla on {fmtSecs} avaamisesta alkaen.
+477|Jatka
+478|Avaa
+479|Asetukset
+480|↪ Jakanut
+481|käyttäjän {name} luvalla
+482|Poistetaanko tämä julkaisu? Sallitut jaotkin katoavat.
+483|Poista kaikkialta
+484|Perutaanko tämä jako? Se katoaa käyttäjältä {name} ja hänen ystäviltään.
+485|Peru tämä jako
+486|Lopetetaanko jakaminen?
+487|Lopeta jakamiseni
+488|Suurenna julkaisu
+489|Kommentoi
+490|Nähnyt {length}/{length2}:
+491|↪ {n, plural, one{# sallittu jako} other{# sallittua jakoa}}
+492|sinun toimestasi (katso "Jaot").
+493|Nähnyt
+494|· Jaon yleisö:
+495|↪ Pyydä lupaa jakaa
+496|Napauta kuvaa reagoidaksesi tai kommentoidaksesi
+497|Napauta kuvaa reagoidaksesi
+498|Napauta kuvaa kommentoidaksesi
+499|Julkaisu
+500|Lisää hymiöitä
+501|Muut:
+502|Ei vielä kommentteja. Ole ensimmäinen!
+503|Vastaa
+504|Hymiöt
+505|Vastauksesi…
+506|Kirjoita kommentti…
+507|Kommentti
+508|Kaikki ystävät
+509|Vain minä
+510|Valitut ystävät
+511|Ystävät paitsi…
+512|Kaikki
+513|Omat julkaisuni
+514|Täällä ei ole vielä mitään. Julkaise ensimmäinen hetkesi ✨
+515|✏️ Kirjoita teksti
+516|Vinkki: pidä painiketta painettuna avataksesi kameran suoraan.
+517|Pyydä lupaa jakaa
+518|Tämä sisältö kuuluu käyttäjälle
+519|. Hän päättää, hyväksyykö hän. Jos hyväksyy, valitsemasi ystävät näkevät
+520|alkuperäisen sisällön
+521|(ei kopiota), samoilla kestoilla, ja {name} voi
+522|perua jaon milloin tahansa
+523|: se katoaa silloin kaikilta.
+524|Jaa seuraaville:
+525|Sinulla ei ole muita ystäviä.
+526|Pieni viesti tekijälle (valinnainen)
+527|Lähetä pyyntö käyttäjälle {name}
+528|🌍 Kieli
+529|Valitse NOTIIFin kieli. Se vaihtuu heti ja valintasi tallennetaan.
+530|Nykyinen kieli
+531|Hae kieltä
+532|Kieli
+533|Kieli vaihdettu.
+534|Kieltä ei löytynyt.
+535|Toistaiseksi lakiasiakirjat ovat vain ranskaksi.
+536|Versio {LEGAL_VERSION}
+537|Wikipedia
+538|Linkki
+539|{name}-soitin
+540|Pienennä
+541|Suurenna
+542|Pysäytä musiikki
+543|{name}-linkki
+544|Pienennä ja jatka kuuntelua
+545|⌄ Pienennä
+546|Avaa erikseen
+547|Tätä sivustoa ei voi näyttää NOTIIFin sisällä.
+548|Avaa {name}
+549|Avaa {name}-linkki
+550|🎧 Kuuntele NOTIIFissa (vain sinä kuulet sen)
+551|▶ Katso täällä, NOTIIFissa
+552|Avaa linkki
+553|Kamera tai mikrofoni ei ole käytettävissä tai se evättiin.
+554|🎥 Aloita
+555|🎤 Aloita
+556|(enintään {max} s)
+557|⏹ Lopeta · {left} s
+558|📸 Kuva
+559|Pidä painiketta painettuna puhuaksesi.
+560|Pidä painettuna tallentaaksesi ääniviestin
+561|🔴 Päästä irti lähettääksesi
+562|Kamera
+563|Aloita alusta
+564|Lähetä ➤
+565|Sulje kamera
+566|Vaihda kameraa
+567|s / {max} s
+568|Zoomaus
+569|Zoomaus {z}-kertainen
+570|{replace}×
+571|Video
+572|Ota kuva
+573|Pysäytä
+574|Kuvaa
+575|Napauta ottaaksesi kuvan
+576|Napauta pysäyttääksesi
+577|Napauta kuvataksesi (enintään {max} s)
+578|Pidä mikrofonia painettuna puhuaksesi.
+579|🔴 {mm} · päästä irti lopettaaksesi
+580|Pidä mikrofonia painettuna puhuaksesi (enintään {max} s)
+581|Kunnes poistan sen
+582|Kuten alkuperäinen
+583|Kuinka kauan jako pysyy näkyvissä?
+584|Katseluaika henkilöä kohti
+585|🔒 Tätä sisältöä ei voi julkaista uudelleen muualla: siinä on vesileima, kuvakaappaukset on estetty (Android-sovellus) ja jokainen uusi jako vaatii lupasi. Voit perua sen milloin tahansa.
+586|Jako sallittu. Voit perua sen milloin haluat.
+587|Vahvista lupa
+588|Salli…
+589|Kieltäydy
+590|sisältö poistettu
+591|Kukaan ei voi julkaista sisältöäsi uudelleen ilman lupaasi. Ja luvankin jälkeen
+592|sinulla on täysi hallinta
+593|: jos perut jaon tai poistat julkaisusi, se katoaa kaikilta, joille se oli jaettu.
+594|Käsiteltävät pyynnöt ({length})
+595|haluaisi jakaa
+596|kenelle: {join} · {ago}
+597|Ei odottavia pyyntöjä.
+598|Sallimani jaot ({length})
+599|jakanut {nm}, kenelle: {join}
+600|Perutaanko tämä jako? Se katoaa kaikilta.
+601|Jako peruttu kaikkialta.
+602|Peru kaikkialta
+603|Ei aktiivisia jakoja.
+604|Pyyntöni ja jakoni ({length})
+605|käyttäjältä {nm}
+606|{v1} · kenelle: {join}
+607|Et ole pyytänyt jakamaan mitään.
+608|QR-koodi
+609|🌍 Julkinen
+610|Kaikki voivat löytää minut nimelläni tai käyttäjänimelläni.
+611|👥 Rajoitettu
+612|Vain tarkalla käyttäjänimelläni tai ystävieni ystävien kautta.
+613|🔒 Näkymätön
+614|Kukaan ei löydä minua. Vain jos annan QR-koodini tai koodini.
+615|Oma QR-koodini
+616|Avaa tai suurenna QR-koodi
+617|Napsauta QR-koodia avataksesi sivun
+618|Napauta QR-koodia suurentaaksesi sen
+619|Näytä se läheiselle: hän skannaa sen puhelimen kameralla.
+620|Linkki kopioitu
+621|Kopiointi ei onnistu
+622|Kopioi linkkini
+623|Tallenna kuva
+624|Luodaanko uusi koodi? Vanha QR-koodi lakkaa toimimasta.
+625|Uusi koodi luotu.
+626|Uusi
+627|Kuka voi löytää minut?
+628|Asetus tallennettu.
+629|Tallenna käyttäjänimi
+630|Tämä selain ei osaa lukea QR-koodeja. Käytä puhelimen kameraa: se avaa NOTIIF-linkin itse.
+631|Kamera ei ole käytettävissä tai se evättiin.
+632|Skannaa QR-koodi
+633|Liity seuraani NOTIIFissa, läheistemme yksityisessä verkostossa (perhe, ystävät, työkaverit, seura…), ilman mainoksia. Asenna sovellus täältä: {inviteLink} (koodini: {code})
+634|Yhteystieto
+635|Ei yhteystietoa, jolla on numero tai sähköposti.
+636|Pääsy yhteystietoihin evättiin tai peruttiin.
+637|Viesti kopioitu: liitä se minne haluat.
+638|Kutsu läheiseni
+639|📇 Valitse yhteystiedoistani
+640|Tässä puhelimessa tai selaimessa sovellus ei voi lukea yhteystietojasi. Lisää numero tai sähköposti käsin tai jaa linkki.
+641|Numero tai sähköposti
+642|Kutsu {name}
+643|Lähetä kutsu:
+644|Liity seuraani NOTIIFissa
+645|Sähköposti
+646|🔗 Jaa kutsulinkki
+647|🔒 Yhteystietojasi ei tallenneta eikä lähetetä NOTIIFille: niitä käytetään vain viestin kirjoittamiseen puhelimellasi. Tuonti Googlesta tai Facebookista tulee palvelinyhteyden mukana.
+648|Saadut pyynnöt ({length})
+649|{name} on nyt ystäväsi.
+650|Hyväksy
+651|Koodini:
+652|Koodi kopioitu
+653|Kopioi
+654|Läheisen koodi (NID-…)
+655|Kutsukoodi
+656|Kutsu
+657|📇 Kutsu yhteystiedoistani
+658|Demotila: testattavia koodeja
+659|(kuvitteellisia henkilöitä)
+660|Ystäväni ({length})
+661|Valitse lista
+662|Kaikki ({length})
+663|＋ Uusi lista
+664|Valinnat: {name}
+665|Ei ketään tässä listassa.
+666|Ei vielä ystäviä.
+667|Ilmianna tämä henkilö
+668|Miksi? Kolme eri ihmisten tekemää ilmoitusta keskeyttää tilin automaattisesti tarkistuksen ajaksi.
+669|Väärä profiili
+670|Myynti, mainonta tai kauppaaminen
+671|Huijaus
+672|Seksuaaliset ehdotukset tai saattajapalvelut
+673|Laiton sisältö
+674|Häirintä
+675|Muu
+676|Kiitos, ilmoitus tallennettu.
+677|💬 Kirjoita
+678|Poistetaanko {name} ystävistäsi?
+679|Poista ystävistä
+680|Ilmianna
+681|Estetäänkö {name}? Hän ei enää näe sisältöäsi.
+682|Estetty.
+683|Estä
+684|Listani
+685|Esim. "Serkut", "Työkaverit"… jotta valitset nopeasti, kuka näkee julkaisusi.
+686|Estetyt henkilöt
+687|Poista esto
+688|Uusi lista
+689|🔎 Etsi joku (nimi tai @käyttäjänimi)
+690|Hae
+691|Ketään ei löytynyt. "Näkymättömät" tai "rajoitetut" henkilöt löytyvät vain QR-koodilla, koodilla tai tarkalla käyttäjänimellä.
+692|📜 Ryhmän säännöt
+693|Jäsenet ({length})
+694|Poistetaanko {name} ryhmästä?
+695|Poista
+696|Poistutaanko tästä ryhmästä?
+697|Poistu ryhmästä
+698|Uusi
+699|{n, plural, one{# jäsen} other{# jäsentä}}
+700|Luo ryhmä perheelle, lomille, juhlille…
+701|Uusi ryhmä
+702|Emoji
+703|Ryhmän nimi
+704|Kuvaus
+705|Ryhmän säännöt (valinnainen)
+706|Jäsenet (ystäviesi joukosta)
+707|Ryhmä luotu.
+708|Luo ryhmä
+709|✅ Tulossa
+710|❌ Ei tule
+711|🤔 Ehkä
+712|Syntymäpäivät, perheateriat, lomat… luo ensimmäinen!
+713|· mennyt
+714|Poistetaanko tämä tapahtuma?
+715|Järjestäjä: {name}
+716|👥 Katso, ketkä tulevat
+717|✅ Tulossa
+718|❌ Ei tule
+719|⏳ Ei vastausta
+720|Uusi tapahtuma
+721|Otsikko (esim. Mummon syntymäpäivä)
+722|Päivämäärä ja aika
+723|Paikka
+724|Tapahtuma luotu.
+725|Ystäväni
+726|Kaikki
+727|Ei kukaan
+728|Muokkaa profiiliani
+729|Vaihda kuva
+730|Lisää kuva
+731|Poista kuva
+732|Käyttäjänimi: @{handle}
+733|Vaihdettu jo kerran: lopullinen.
+734|Vaihdettavissa vain kerran, ja se on maksullista (väärien profiilien rajoittamiseksi).
+735|Uusi käyttäjänimi
+736|Vaihda
+737|Kuka voi nähdä kuvani?
+738|Muut näkevät silloin nimikirjaimesi kuvan sijaan.
+739|Etunimi tai käyttäjänimi
+740|Tila
+741|Tilasi
+742|Lyhyt esittelysi
+743|Profiili päivitetty.
+744|Tallenna
+745|Valitse, mitä ystäväsi voivat tehdä kuvillesi, videoillesi ja teksteillesi.
+746|Tykkäykset ja reaktiot
+747|Jos tämä on pois päältä, kukaan ei voi reagoida julkaisuihisi, eikä laskuria näytetä.
+748|Kommentit
+749|Jos tämä on pois päältä, kukaan ei voi kommentoida julkaisujasi.
+750|{n, plural, one{# julkaisu} other{# julkaisua}}
+751|{n, plural, one{# ystävä} other{# ystävää}}
+752|Jäsen alkaen {toLocaleDateString}
+753|Muokkaa profiiliani (kuva, nimi, esittely)
+754|Ilmoitusasetukset
+755|Asetukset
+756|Merkitse kaikki luetuiksi
+757|🌙 Äänetön tila päällä: ei hälytyksiä, mutta lista pysyy täällä.
+758|Ei uutta.
+759|Ilmoitukset eivät koskaan sisällä katoavan julkaisun sisältöä.
+760|🎵 Soittoäänet ja värinä
+761|Ilmoitusten soittoääni
+762|Puhelujen soittoääni
+763|Viestien värinä
+764|Puhelujen värinä
+765|Täräys värisee aina maksimilla. Kokeile napauttamalla valintaa.
+766|🔔 Ilmoitukset puhelimessa
+767|Vastaanota ilmoituksia
+768|Viestit, kaveripyynnöt, jaot, tapahtumat…
+769|Ilmoitukset puhelimessa
+770|Ilmoitukset otettu käyttöön.
+771|Salli ilmoitukset puhelimen ikkunassa.
+772|Ilmoitukset evätty: salli ne puhelimen asetuksissa (Sovellukset > Cercle > Ilmoitukset).
+773|Tämä selain ei tue ilmoituksia. Asenna sovellus (Android-QR) tai kuvake aloitusnäyttöön.
+774|Ilmoitukset evätty: salli ne puhelimen asetuksissa ja yritä sitten uudelleen.
+775|Mitä ilmoituksia vastaanotetaan?
+776|💬 Viestit
+777|👋 Kaveripyynnöt
+778|📰 Julkaisut ja tarinat
+779|🔁 Jaot
+780|📅 Tapahtumat
+781|👥 Ryhmät
+782|🖼 Albumit
+783|🎮 Pelit
+784|Ilmoitukset: {l}
+785|Testi: kaikki toimii ✅
+786|Testi-ilmoitusta ei voi näyttää.
+787|Lähetä testi
+788|Rehellisesti: toistaiseksi ilmoitukset näkyvät, kun sovellus on auki tai taustalla. Niiden vastaanottaminen suljetulla sovelluksella vaatii palvelimen (etälähetys), joka on suunniteltu oikeiden tilien mukana. Puhelut: pian.
+789|4 suosikkitehostettani
+790|Ne näkyvät ensin keskusteluissa. Muut jäävät "+"-painikkeen alle.
+791|Suosikki: {label}
+792|Enintään 4 suosikkia: poista ensin yksi käytöstä.
+793|Pidä vähintään yksi suosikki.
+794|Palauta oletukset
+795|Ylärivi
+796|"Lisää"-painike (kaikki valikot) on aina oikeassa yläkulmassa. Lisää sen viereen enintään 4 pikakuvaketta.
+797|Ylhäällä: {l}
+798|Enintään 4 pikakuvaketta: poista ensin yksi käytöstä.
+799|Pidä vähintään yksi pikakuvake.
+800|Alarivi
+801|Valitse enintään 4 pikakuvaketta. "Luo"-painike pysyy aina keskellä. Muut valikot ovat oikean yläkulman "Lisää"-painikkeessa.
+802|Pikakuvake {l}
+803|Viestikupla
+804|Pieni kupla, jota siirrät minne haluat. Kun se näkyy, "Viestit" korvataan alarivillä "Ryhmillä".
+805|Aloitusnäyttö
+806|Sivu, joka avautuu, kun käynnistät NOTIIFin.
+807|Vaalea teema
+808|Vaalea tausta, valkoinen ja turkoosi.
+809|Tumma teema
+810|Yönsininen ja turkoosi tausta, pehmeämpi illalla.
+811|Tehosteet keskusteluissa
+812|Näytön täräys äänellä, sydämet, syntymäpäivä: kun ystävä lähettää sellaisen, näet ja kuulet sen. Oletuksena päällä.
+813|Hiljainen aika
+814|Mykistää hälytykset yöllä (palvelintilassa).
+815|Videoiden automaattinen toisto
+816|Lyhyille videoille (pian).
+817|🔒 Yksityisyys
+818|Ei mainoksia. Ei tietojen myyntiä.
+819|Ei jakopainiketta ulospäin, ei julkista profiilia.
+820|Kukaan ei löydä sinua ilman kutsukoodiasi.
+821|Mikään sovellus ei voi estää valtuutettua henkilöä valokuvaamasta näyttöään toisella laitteella.
+822|🧪 Demotila (tällä laitteella)
+823|Toistaiseksi tietosi pysyvät tällä laitteella ja ystävät ovat kuvitteellisia. Oikeat tilit, viestit puhelinten välillä ja puhelut vaativat palvelimen: katso opas projektin "docs"-kansiosta.
+824|Kirjaudu ulos
+825|Vie tietoni
+826|Poistetaanko kaikki NOTIIF-tietosi tältä laitteelta?
+827|Poista tilini ja tietoni
+828|🔁 Vaihda jäsentä (demo)
+829|Henkilökohtaisten kestojen testaamiseksi: julkaise 5 s kuva Célinelle ja Thomasille ja vaihda sitten toisesta toiseen.
+830|Olet nyt {name}.
+831|NOTIIF esti kuvakaappauksen
+832|NOTIIF-logo
+833|juuri nyt
+834|{n} min sitten
+835|{n} t sitten
+836|Kasvot
+837|Kädet
+838|Sydämet
+839|Juhla ja luonto
+840|Sulje emojit
+841|Poistetaanko {what}?
+842|Tämä toiminto on lopullinen.
+843|Säilytä
+844|NOTIIF — Sinun piirisi. Sinun hetkesi.

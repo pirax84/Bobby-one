@@ -1,0 +1,845 @@
+0|Početna
+1|Prijatelji
+2|Grupe
+3|Poruke
+4|Pozivi
+5|Fotografije
+6|Igre
+7|Događaji
+8|Dijeljenja
+9|Obavijesti
+10|Profil
+11|Pravne informacije
+12|Postavke
+13|Audio i video pozivi
+14|Pozivima je potreban poslužitelj za povezivanje (WebRTC). Stižu kad NOTIIF poslužitelj proradi.
+15|Tvoj krug. Tvoji trenuci.
+16|Izradi
+17|Moj profil
+18|Natrag
+19|Svi izbornici
+20|Navigacija
+21|Izradi: priča ili objava. Dugi pritisak za selfie video
+22|Više
+23|Moj krug
+24|Mediji i igre
+25|Moj račun
+26|Pozivnica za NOTIIF
+27|Dodati korisnika {name}?
+28|Pošalji zahtjev
+29|Ovaj kod ne postoji na ovom uređaju. U demo načinu računi se još ne dijele među uređajima: to dolazi s poslužiteljem.
+30|Kasnije
+31|Što želiš podijeliti?
+32|✨ Priča (nestaje sama)
+33|📝 Objava
+34|Moje grupe
+35|Nadolazeći
+36|Nema događaja.
+37|Igraj s obitelji
+38|Nastavi s Appleom
+39|Nastavi s Googleom
+40|Nastavi s Facebookom
+41|Nastavi sa Snapchatom
+42|Snapchat traži ugovor za programere (Snap Kit). Treba ga zatražiti prije aktivacije.
+43|FranceConnect traži odobrenje države (zahtjev se podnosi na datapass.api.gouv.fr).
+44|Digitalni identitet La Poste
+45|Digitalni identitet La Poste traži partnerstvo s La Posteom.
+46|Poslužitelj nije dostupan.
+47|Došlo je do pogreške.
+48|Račun je izrađen.
+49|Račun je izrađen. Otvori e-poruku za potvrdu koju smo ti upravo poslali, pa se vrati prijaviti.
+50|Prijavljen si.
+51|Ja
+52|Trajno
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Srca
+56|❤️ Kiša srca!
+57|😘 Poljupci
+58|😘 Veliki poljupci!
+59|❄️ Snijeg
+60|❄️ Pada snijeg!
+61|🎆 Vatromet
+62|🎆 Vatromet!
+63|👻 Duh
+64|👻 Bu!
+65|🔥 Plamen
+66|🔥 Vruće je!
+67|🫧 Mjehurići
+68|🫧 Mjehurići!
+69|🎂 Zabava
+70|🎂 Slavimo!
+71|🌧️ Kiša
+72|🌧️ Pada kiša!
+73|⛈️ Oluja
+74|⛈️ Grmi!
+75|🚀 Raketa
+76|🚀 Polijetanje!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Napadaj smijeha
+80|😂 Umirem od smijeha!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Rođendan
+86|🎂 Sretan rođendan!
+87|🎂 Rođendan 2
+88|🤭 Podrigivanje
+89|🤭 Ruk!
+90|💨 Prdac
+91|💨 Prc!
+92|🤮 Povraćanje
+93|🤮 Fuj!
+94|Kristal
+95|Zora
+96|Povjetarac
+97|Sjaj
+98|Obala
+99|Krug
+100|Jutro
+101|Nijedna
+102|Slaba
+103|Srednja
+104|Jaka
+105|Memorija uređaja je puna: izbriši stare fotografije.
+106|Pogreška.
+107|Korisničko ime može se promijeniti samo jednom, a ti si to već učinio.
+108|Promjena korisničkog imena je plaćena (ponuda „Plus”). Plaćanje još nije povezano: za isprobavanje uključi „Plus (pregled)” u Postavkama.
+109|Korisničko ime: 3 do 20 znakova, mala slova, brojevi, točka ili podcrta.
+110|To korisničko ime već je zauzeto.
+111|Korisničko ime je promijenjeno. Ova je promjena konačna.
+112|Dobrodošao u moje gnijezdo 🪺
+113|Bok! Dobrodošao! 🌳
+114|Obitelj
+115|Tko dolazi u nedjelju na ručak?
+116|Obiteljski ručak
+117|Svatko donosi malo jela.
+118|Kod bake
+119|Neispravno trajanje.
+120|Tvoj je račun na provjeri zbog prijava.
+121|Nitko ne bi vidio ovu objavu: odaberi druge primatelje.
+122|Nitko ne bi vidio ovaj album: odaberi druge primatelje.
+123|Album
+124|Korisnik {name} izradio je za tebe album „{slice}”.
+125|Album nije pronađen.
+126|Korisnik {name} reagirao je s {emoji} na tvoju objavu.
+127|Korisnik {name} komentirao je tvoju objavu.
+128|Osoba nije pronađena.
+129|To si ti!
+130|Tvoj je račun na provjeri zbog prijava: zasad ne možeš slati zahtjeve.
+131|Danas je previše zahtjeva (najviše 15). Pokušaj sutra.
+132|Zahtjev se ne može poslati.
+133|Korisnik {name} već ti je prijatelj.
+134|Zahtjev je već poslan.
+135|Korisnik {name} traži da budete prijatelji.
+136|Zahtjev poslan korisniku {name}.
+137|Nepoznat kod (u demo načinu postoje samo računi na ovom uređaju).
+138|3 do 20 znakova: slova, brojevi, _ ili .
+139|Korisničko ime je spremljeno.
+140|Nije pronađeno.
+141|Odaberi barem jednog prijatelja (kojeg autor nije blokirao).
+142|Zahtjev već čeka.
+143|Korisnik {name} traži dopuštenje za dijeljenje tvoje objave.
+144|Zahtjev poslan. Autor odlučuje.
+145|Korisnik {name} odbio je dijeljenje.
+146|Korisnik {name} prihvatio je dijeljenje.
+147|Korisnik {name} podijelio je sadržaj s tobom.
+148|Korisnik {name} povukao je dijeljenje: posvuda je nestalo.
+149|Korisnik {name} prihvatio je tvoj zahtjev.
+150|Korisnik {name} dodao te u grupu „{name2}”.
+151|Korisnik {name} možda je pokušao snimiti neki tvoj sadržaj.
+152|Korisnik {name} poziva te: {title}.
+153|Korisnik {name} poziva te na partiju križić-kružića.
+154|Videozapis je prevelik: zasad najviše 3 MB (oko 10 sekundi).
+155|Videozapis je dodan.
+156|Pogreška
+157|Fotografija je dodana.
+158|Odaberi fotografiju ili videozapis.
+159|Datoteka je nečitljiva.
+160|Otvori videozapis
+161|Otvori fotografiju
+162|Fotografija
+163|🔒 Privatno: samo ti
+164|👥 Podijeljeno s: {n}
+165|👥 Album korisnika {name}
+166|Natrag na albume
+167|Izbrisati ovaj album i sve u njemu, i kod onih koji ga vide?
+168|Izbriši album
+169|Učitavanje…
+170|Dodaj fotografiju ili videozapis
+171|Prazan album: dodaj prvu fotografiju ili prvi videozapis.
+172|U ovom albumu još nema ničega.
+173|🔒 Ista pravila kao svugdje: vodeni žig s tvojim imenom, blokirane snimke zaslona u Android aplikaciji, nikakvo dijeljenje bez pristanka autora.
+174|Moji videozapisi
+175|Videozapis odaberi poslije.
+176|Fotografije i videozapisi
+177|📷 Fotografije
+178|🎬 Videozapisi
+179|🗂 Albumi
+180|Moje fotografije
+181|Tvoje objavljene fotografije pojavit će se ovdje.
+182|Podijeljeno sa mnom (trajno)
+183|Zasad ništa.
+184|Videozapis je dodan (privatno, u „Moji videozapisi”).
+185|Dodaj videozapis
+186|Još nema videozapisa. Zasad kratki (oko 10 sekundi, najviše 3 MB). Dulji videozapisi dolaze s poslužiteljem.
+187|Za dijeljenje videozapisa s prijateljima stavi ga u dijeljeni album (kartica Albumi).
+188|Novi album
+189|Privatno
+190|Podijeljeno s: {length}
+191|Od korisnika {name}
+192|· {count, plural, one{# stavka} few{# stavke} other{# stavki}}
+193|Nema albuma. Izradi jedan, privatni ili podijeljen s prijateljima.
+194|Naziv (npr. Odmor 2026.)
+195|🔒 Privatno
+196|👥 Svi moji prijatelji
+197|✅ Odabrani prijatelji
+198|Vidjet ćeš ga samo ti.
+199|Broj prijatelja koji će ga moći vidjeti: {n}. Vide ga samo tvoji prijatelji i nitko ga ne može dalje dijeliti bez tvog pristanka.
+200|Izradi album
+201|✅ Aplikacija je instalirana
+202|Već je koristiš kao pravu aplikaciju.
+203|📲 Instaliraj aplikaciju
+204|Instaliraj na ovaj uređaj
+205|Preuzmi Android aplikaciju
+206|Na iPhoneu i iPadu: dodirni
+207|Podijeli
+208|⬆️ zatim
+209|„Dodaj na početni zaslon”
+210|Otvori izbornik preglednika (⋮) i odaberi „Instaliraj aplikaciju” ili „Dodaj na početni zaslon”.
+211|Tvoj krug.
+212|Tvoji trenuci.
+213|Privatna mreža tvojih najdražih: obitelj, prijatelji, kolege, tim, kazališna družina ili klub. Bez reklama, bez nepoznatih ljudi, bez dijeljenja prema van.
+214|Dijeli s kim želiš
+215|Fotografije, videozapisi i tekstovi samo za osobe koje odabereš.
+216|Priče koje nestaju
+217|24 sata ili nekoliko sekundi kod prolazne fotografije.
+218|Poruke, glasovne poruke i efekti
+219|Razgovaraj u grupi ili privatno i šalji efekte sa zvukom.
+220|Uđi u NOTIIF
+221|Da imaš NOTIIF kao pravu aplikaciju na telefonu:
+222|Instaliraj aplikaciju
+223|Ova se prijava aktivira kad se poslužitelj poveže (vidi vodič).
+224|uvjeti korištenja i pravila privatnosti
+225|Izradi moj račun
+226|Prijava
+227|— ili —
+228|Tvoje ime ili korisničko ime
+229|Ime
+230|Korisničko ime s @ (neobavezno): može se promijeniti samo jednom, uz naknadu
+231|Korisničko ime
+232|Tvoja e-adresa
+233|Lozinka (najmanje 8 znakova)
+234|Lozinka
+235|Prihvaćam uvjete
+236|Imam 15 godina ili više i prihvaćam dokumente: {legalBtn}.
+237|Već imam račun
+238|Još nemam račun
+239|Najprije gore upiši svoje ime ili korisničko ime.
+240|Najprije upiši svoje ime ili korisničko ime.
+241|Za nastavak označi okvir „Imam 15 godina ili više”.
+242|Označi okvir s uvjetima.
+243|🧪 Demo način
+244|Pravi računi (e-pošta, Google, Apple, Facebook, FranceConnect…) traže poslužitelj koji još nije povezan. Zasad možeš isprobati aplikaciju na ovom uređaju s izmišljenim prijateljima.
+245|Tvoje ime ili korisničko ime (demo)
+246|Isprobaj demo način
+247|Zasad možeš isprobati aplikaciju u demo načinu na ovom uređaju s izmišljenim prijateljima.
+248|Razumijem, isprobat ću demo način
+249|Pravni dokumenti
+250|🔒 Prolazna poruka
+251|🎤 Glasovna poruka
+252|📷 Fotografija
+253|Brze poruke
+254|Natrag na popis
+255|Otvori veliko
+256|Zatvori
+257|💬 Razgovori
+258|👥 Moji prijatelji
+259|Napiši poruku
+260|Još nema prijatelja. Dodaj ih na kartici Prijatelji.
+261|Novi razgovor
+262|Nema razgovora. Odaberi prijatelja u „Moji prijatelji”.
+263|Viđeno jednom
+264|Prolazna poruka
+265|· otvori veliko
+266|Emotikon
+267|Tvoja poruka…
+268|Brza poruka
+269|Pošalji
+270|Snimka zaslona blokirana: autor će biti upozoren.
+271|Poruka viđena jednom
+272|🔥 Viđeno jednom
+273|Zatvori (nestaje)
+274|Fotografija viđena jednom
+275|Sadržaj je skriven
+276|Otkrivena je snimka zaslona ili promjena prozora
+277|Ova poruka nestaje kad je zatvoriš. Fotografiju je uvijek moguće snimiti drugim uređajem: poštuj privatnost.
+278|🔎 Traži u mojim razgovorima
+279|Nema razgovora: napiši prijatelju iz „Prijatelji”.
+280|📹 Započinjem videopoziv: {url}
+281|Videopoziv je započet: poveznica je poslana u razgovor.
+282|Započni videopoziv
+283|📹 Videopoziv
+284|Poruka
+285|🔥 Poruka viđena i nestala
+286|🔥 Poruka za jednokratni pregled · dodirni za otvaranje
+287|(uređeno)
+288|⏱ {left} s
+289|⏱ prolazno {secs} s nakon čitanja
+290|🔥 jednokratni pregled ·
+291|viđeno ✓
+292|🔒 Prolazna poruka · dodirni za čitanje ({secs} s)
+293|⌛ Poruka je istekla
+294|· ✓✓ pročitano
+295|· ✓ poslano
+296|Pozdravi 👋
+297|Mogućnosti slanja
+298|Zatvori mogućnosti
+299|Trajanje poruke
+300|♾️ Trajno
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Pošalji fotografiju
+304|🛡 Vodeni žig
+305|uključen
+306|uklonjen
+307|Efekti
+308|Nečitljiva slika.
+309|Mogućnosti: trajanje, fotografija, efekti
+310|Uredi poruku…
+311|Koliko stranica ima šesterokut?
+312|Koji je glavni grad Italije?
+313|Milano
+314|Napulj
+315|Rim
+316|Torino
+317|Koja je najbrža kopnena životinja?
+318|Lav
+319|Gepard
+320|Konj
+321|Antilopa
+322|Koliko minuta ima u sat i pol?
+323|Koji je planet najbliži Suncu?
+324|Venera
+325|Mars
+326|Zemlja
+327|Merkur
+328|Od kojeg se voća pravi jabukovača?
+329|Kruška
+330|Jabuka
+331|Grožđe
+332|Trešnja
+333|Koliko igrača ima nogometna momčad na terenu?
+334|Koju boju dobijemo miješanjem plave i žute?
+335|Zelena
+336|Narančasta
+337|Ljubičasta
+338|Smeđa
+339|Koji je najveći ocean?
+340|Atlantski
+341|Indijski
+342|Arktički
+343|Tihi
+344|Koliko dana ima veljača u prijestupnoj godini?
+345|{nm} (✕) protiv {nm2} (◯)
+346|Polje {v1}
+347|Neriješeno 🤝
+348|🏆 {name} je pobijedio!
+349|Tvoj je red
+350|Na redu je {name} (u Postavkama promijeni člana da u demu igraš umjesto njega)
+351|⭕ Križić-kružić za dvoje
+352|🧠 Kviz
+353|♟️ Šah · uskoro
+354|🃏 Karte · uskoro
+355|Pozovi prijatelja
+356|Igra je započeta s korisnikom {name}.
+357|Nema igara. Pozovi prijatelja iznad.
+358|Bravo! {pts}/{length}
+359|Tvoj ukupni rezultat:
+360|bodova
+361|Igraj ponovno
+362|Pitanje {v1}/{length} · Rezultat {pts}
+363|Dalje
+364|Završi
+365|Izbrisati posvuda, i kod onih koji su je primili?
+366|Izbriši
+367|Reagiraj s {e}
+368|🔒 Zaštićena fotografija: vodeni žig s tvojim imenom, blokirane snimke zaslona u Android aplikaciji, dijeljenje samo uz pristanak autora.
+369|Uskoro dostupno
+370|Sporo: jedan efekt u sekundi.
+371|Efekt {label}
+372|Prilagođeni efekt {name}
+373|Više efekata
+374|＋ Više
+375|Svi efekti
+376|Označi 4 efekta koji će ostati sprijeda ({length}/4). Isprobaj ih tipkom „Pošalji”.
+377|Ostaje sprijeda: {label}
+378|Najviše 4: najprije jedan odznači.
+379|Ostavi barem jedan efekt sprijeda.
+380|Moji prilagođeni efekti
+381|Izbriši {name}
+382|＋ Izradi svoj efekt (slika + moj glas)
+383|Mikrofon nije dostupan ili je odbijen.
+384|Imenuj svoj efekt.
+385|Dodaj sliku ili zvuk.
+386|Najviše 6 prilagođenih efekata.
+387|Efekt je dodan.
+388|Naziv efekta (npr. Moj smijeh)
+389|Naziv efekta
+390|Slika
+391|Snimanje… {left} s (dodirni za završetak)
+392|Snimi ponovno
+393|Snimi (najviše 3 s)
+394|Zvuk je prevelik (najviše 450 kB, oko 10 sekundi).
+395|📁 Odaberi audiodatoteku
+396|▶ Isprobaj
+397|Dodaj
+398|Priča
+399|Vidjeli su:
+400|još nitko
+401|Odgovori privatno…
+402|↩️ Odgovor na tvoju priču: {reply}
+403|Odgovor je poslan privatno.
+404|Reakcija je poslana {e}
+405|Svi moji prijatelji
+406|Grupa
+407|Odabrani prijatelji
+408|Svi osim…
+409|Popis
+410|Samo ja
+411|Odaberi sliku.
+412|Ova se slika ne može pročitati.
+413|Priča je objavljena bez vremenskog ograničenja.
+414|Prolazna priča je objavljena.
+415|Priča je objavljena na 24 h.
+416|Objavljeno!
+417|✨ Moja priča
+418|📝 Nova objava
+419|Priča nestaje sama (prema zadanim postavkama nakon 24 h) i gleda se preko cijelog zaslona.
+420|Vrsta sadržaja
+421|✏️ Tekst
+422|🎥 Selfie video
+423|🎤 Glas
+424|🔗 Poveznica
+425|Pregled
+426|Ukloni fotografiju
+427|📷 Odaberi fotografiju
+428|🗑 Izbriši
+429|✅ Objavi
+430|🔁 Počni ispočetka
+431|🎥 Snimi se (najviše 10 s)
+432|🎤 Snimi glasovnu poruku (najviše 30 s)
+433|Zalijepi poveznicu: Spotify, Deezer ili YouTube popis, videozapis, Instagram, TikTok, Leboncoin…
+434|Poveznica za dijeljenje
+435|Ova poveznica ne izgleda ispravno.
+436|Napiši svoju priču…
+437|Tekst priče
+438|Što je novo kod tvojih najdražih?
+439|Dodaj opis (neobavezno)…
+440|Tekst
+441|Raspoloženje
+442|Pozadina {v1}
+443|Bez raspoloženja
+444|Tko to može vidjeti?
+445|Trajanje priče
+446|24 sata
+447|Neograničeno
+448|Prolazno
+449|Vrijeme prikaza
+450|Drugo…
+451|Sekunde (1 do 999)
+452|Prilagođeno trajanje u sekundama
+453|Grupa
+454|Popis
+455|＋ Izradi popis
+456|Naziv popisa (npr. Kolege, Nogomet, Kazalište)
+457|Naziv popisa
+458|Najprije dodaj prijatelje da ih možeš staviti na popis.
+459|Odustani
+460|Popis je izrađen.
+461|Izradi popis
+462|Unesi broj sekundi od 1 do {MAX_CUSTOM_SECS}.
+463|Vidljivo samo tebi.
+464|{audLabel} · broj osoba: {count}
+465|· {fmtSecs} po osobi od otvaranja
+466|Objavi
+467|Prolazna objava
+468|Preostalo vrijeme
+469|{ceil} s
+470|Prolazna fotografija
+471|Ako zatvoriš, vrijeme i dalje teče. Fotografiju je uvijek moguće snimiti drugim uređajem.
+472|Tvoje je vrijeme isteklo
+473|Tvoje vrijeme gledanja je završilo.
+474|prolazno
+475|Preostalo ti je {n} s.
+476|Imat ćeš {fmtSecs} od otvaranja.
+477|Nastavi
+478|Otvori
+479|Mogućnosti
+480|↪ Podijelio/la
+481|uz pristanak korisnika {name}
+482|Izbrisati ovu objavu? Odobrena dijeljenja također nestaju.
+483|Izbriši posvuda
+484|Povući ovo dijeljenje? Nestat će kod korisnika {name} i njegovih prijatelja.
+485|Povuci ovo dijeljenje
+486|Prestati dijeliti?
+487|Prekini moje dijeljenje
+488|Povećaj objavu
+489|Komentiraj
+490|Vidjelo {length}/{length2}:
+491|↪ {n, plural, one{# odobreno dijeljenje} few{# odobrena dijeljenja} other{# odobrenih dijeljenja}}
+492|od tebe (vidi „Dijeljenja”).
+493|Vidjeli su
+494|· Publika dijeljenja:
+495|↪ Zatraži dijeljenje
+496|Dodirni fotografiju za reakciju ili komentar
+497|Dodirni fotografiju za reakciju
+498|Dodirni fotografiju za komentar
+499|Objava
+500|Više emotikona
+501|Više:
+502|Još nema komentara. Budi prvi!
+503|Odgovori
+504|Emotikoni
+505|Tvoj odgovor…
+506|Napiši komentar…
+507|Komentar
+508|Svi prijatelji
+509|Samo ja
+510|Odabrani prijatelji
+511|Prijatelji osim…
+512|Sve
+513|Moje objave
+514|Ovdje još nema ničega. Objavi svoj prvi trenutak ✨
+515|✏️ Napiši tekst
+516|Savjet: drži pritisnutu tipku i kamera se odmah otvara.
+517|Zatraži dijeljenje
+518|Ovaj sadržaj pripada korisniku
+519|. Ta osoba odlučuje pristaje li. Ako pristane, odabrani prijatelji vidjet će
+520|izvorni sadržaj
+521|(a ne kopiju) s istim trajanjima, a {name} će moći
+522|bilo kada povući dijeljenje
+523|: tada nestaje kod svih.
+524|Podijeli s:
+525|Nemaš drugog prijatelja.
+526|Kratka poruka autoru (neobavezno)
+527|Pošalji zahtjev korisniku {name}
+528|🌍 Jezik
+529|Odaberi jezik aplikacije NOTIIF. Mijenja se odmah, a tvoj se izbor pamti.
+530|Trenutni jezik
+531|Traži jezik
+532|Jezik
+533|Jezik je promijenjen.
+534|Nije pronađen nijedan jezik.
+535|Zasad pravni dokumenti postoje samo na francuskom.
+536|Verzija {LEGAL_VERSION}
+537|Wikipedija
+538|Poveznica
+539|Reproduktor {name}
+540|Smanji
+541|Povećaj
+542|Zaustavi glazbu
+543|Poveznica {name}
+544|Smanji i nastavi slušati
+545|⌄ Smanji
+546|Otvori zasebno
+547|Ova se stranica ne može prikazati unutar NOTIIF-a.
+548|Otvori {name}
+549|Otvori poveznicu {name}
+550|🎧 Slušaj u NOTIIF-u (čuješ samo ti)
+551|▶ Gledaj ovdje, u NOTIIF-u
+552|Otvori poveznicu
+553|Kamera ili mikrofon nije dostupan ili je odbijen.
+554|🎥 Počni
+555|🎤 Počni
+556|(najviše {max} s)
+557|⏹ Završi · {left} s
+558|📸 Fotografija
+559|Drži pritisnutu tipku da govoriš.
+560|Drži za snimanje glasovne poruke
+561|🔴 Otpusti za slanje
+562|Kamera
+563|Počni ispočetka
+564|Pošalji ➤
+565|Zatvori kameru
+566|Promijeni kameru
+567|s / {max} s
+568|Zumiranje
+569|Zumiranje {z}×
+570|{replace}×
+571|Video
+572|Fotografiraj
+573|Zaustavi
+574|Snimaj
+575|Dodirni za fotografiranje
+576|Dodirni za zaustavljanje
+577|Dodirni za početak snimanja (najviše {max} s)
+578|Drži pritisnut mikrofon da govoriš.
+579|🔴 {mm} · otpusti za završetak
+580|Drži pritisnut mikrofon da govoriš (najviše {max} s)
+581|Dok ga ne uklonim
+582|Kao original
+583|Koliko dugo dijeljenje ostaje vidljivo?
+584|Vrijeme prikaza po osobi
+585|🔒 Ovaj sadržaj ne može se objaviti drugdje: ima vodeni žig, snimke zaslona su blokirane (Android aplikacija) i svako novo dijeljenje traži tvoj pristanak. Možeš ga povući bilo kada.
+586|Dijeljenje je odobreno. Možeš ga povući kad god želiš.
+587|Potvrdi odobrenje
+588|Odobri…
+589|Odbij
+590|sadržaj je izbrisan
+591|Nitko ne može ponovno objaviti tvoj sadržaj bez tvog pristanka. A i nakon pristanka
+592|imaš potpunu kontrolu
+593|: ako povučeš dijeljenje ili izbrišeš objavu, nestaje kod svih s kojima je podijeljena.
+594|Zahtjevi za obradu ({length})
+595|želi podijeliti
+596|s: {join} · {ago}
+597|Nema zahtjeva na čekanju.
+598|Dijeljenja koja sam odobrio ({length})
+599|je podijelio/la {nm} s: {join}
+600|Povući ovo dijeljenje? Nestat će kod svih.
+601|Dijeljenje je povučeno posvuda.
+602|Povuci posvuda
+603|Nema aktivnih dijeljenja.
+604|Moji zahtjevi i dijeljenja ({length})
+605|od korisnika {nm}
+606|{v1} · s: {join}
+607|Nisi tražio dijeljenje ničega.
+608|QR kod
+609|🌍 Javno
+610|Svatko me može pronaći po imenu ili korisničkom imenu.
+611|👥 Ograničeno
+612|Samo po mom točnom korisničkom imenu ili preko prijatelja mojih prijatelja.
+613|🔒 Nevidljivo
+614|Nitko me ne može pronaći. Samo ako dam svoj QR kod ili kod.
+615|Moj QR kod
+616|Otvori ili povećaj QR kod
+617|Klikni na QR kod za otvaranje stranice
+618|Dodirni QR kod za povećanje
+619|Pokaži ga bliskoj osobi: skenira ga kamerom telefona.
+620|Poveznica je kopirana
+621|Kopiranje nije uspjelo
+622|Kopiraj moju poveznicu
+623|Spremi sliku
+624|Izraditi novi kod? Stari QR kod prestat će raditi.
+625|Novi kod je izrađen.
+626|Obnovi
+627|Tko me može pronaći?
+628|Postavka je spremljena.
+629|Spremi korisničko ime
+630|Ovaj preglednik ne može čitati QR kodove. Koristi kameru telefona: poveznica NOTIIF-a otvara se sama.
+631|Kamera nije dostupna ili je odbijena.
+632|Skeniraj QR kod
+633|Pridruži mi se na NOTIIF-u, privatnoj mreži naših najdražih (obitelj, prijatelji, kolege, klub…), bez reklama. Instaliraj aplikaciju ovdje: {inviteLink} (moj kod: {code})
+634|Kontakt
+635|Nema kontakta s brojem ili e-adresom.
+636|Pristup kontaktima je odbijen ili otkazan.
+637|Poruka je kopirana: zalijepi je gdje želiš.
+638|Pozovi moje najdraže
+639|📇 Odaberi iz mojih kontakata
+640|Na ovom telefonu ili u ovom pregledniku aplikacija ne može čitati tvoje kontakte. Dodaj broj ili e-adresu ručno ili podijeli poveznicu.
+641|Broj ili e-adresa
+642|Pozovi korisnika {name}
+643|Pošalji pozivnicu:
+644|Pridruži mi se na NOTIIF-u
+645|E-pošta
+646|🔗 Podijeli poveznicu pozivnice
+647|🔒 Tvoji kontakti ne spremaju se niti šalju NOTIIF-u: služe samo za pisanje poruke s tvog telefona. Uvoz iz Googlea ili Facebooka dolazi s povezivanjem poslužitelja.
+648|Primljeni zahtjevi ({length})
+649|Korisnik {name} sada ti je prijatelj.
+650|Prihvati
+651|Moj kod:
+652|Kod je kopiran
+653|Kopiraj
+654|Kod bliske osobe (NID-…)
+655|Kod pozivnice
+656|Pozovi
+657|📇 Pozovi iz mojih kontakata
+658|Demo način: kodovi za isprobavanje
+659|(izmišljene osobe)
+660|Moji prijatelji ({length})
+661|Odaberi popis
+662|Svi ({length})
+663|＋ Novi popis
+664|Mogućnosti za korisnika {name}
+665|Nitko na ovom popisu.
+666|Još nema prijatelja.
+667|Prijavi ovu osobu
+668|Zašto? Tri prijave različitih osoba automatski suspendiraju račun na vrijeme provjere.
+669|Lažni profil
+670|Prodaja, reklama ili nuđenje
+671|Prijevara
+672|Seksualne ponude ili pratnja
+673|Nezakonit sadržaj
+674|Uznemiravanje
+675|Drugo
+676|Hvala, prijava je zabilježena.
+677|💬 Piši
+678|Ukloniti korisnika {name} iz prijatelja?
+679|Ukloni iz prijatelja
+680|Prijavi
+681|Blokirati korisnika {name}? Više neće vidjeti tvoj sadržaj.
+682|Blokirano.
+683|Blokiraj
+684|Moji popisi
+685|Npr. „Bratići”, „Kolege”… za brz odabir tko vidi tvoje objave.
+686|Blokirane osobe
+687|Odblokiraj
+688|Novi popis
+689|🔎 Pronađi nekoga (ime ili @korisničko ime)
+690|Traži
+691|Nitko nije pronađen. „Nevidljive” ili „ograničene” osobe mogu se pronaći samo po QR kodu, kodu ili točnom korisničkom imenu.
+692|📜 Pravila grupe
+693|Članovi ({length})
+694|Ukloniti korisnika {name} iz grupe?
+695|Ukloni
+696|Napustiti ovu grupu?
+697|Napusti grupu
+698|Novo
+699|{n, plural, one{# član} few{# člana} other{# članova}}
+700|Izradi grupu za obitelj, odmor, zabave…
+701|Nova grupa
+702|Emotikon
+703|Naziv grupe
+704|Opis
+705|Pravila grupe (neobavezno)
+706|Članovi (među tvojim prijateljima)
+707|Grupa je izrađena.
+708|Izradi grupu
+709|✅ Dolazim
+710|❌ Ne dolazim
+711|🤔 Možda
+712|Rođendani, obiteljski ručkovi, odmor… izradi prvi!
+713|· održano
+714|Izbrisati ovaj događaj?
+715|Organizira {name}
+716|👥 Vidi tko dolazi
+717|✅ Dolaze
+718|❌ Ne dolaze
+719|⏳ Bez odgovora
+720|Novi događaj
+721|Naziv (npr. Bakin rođendan)
+722|Datum i vrijeme
+723|Mjesto
+724|Događaj je izrađen.
+725|Moji prijatelji
+726|Svi
+727|Nitko
+728|Uredi moj profil
+729|Promijeni fotografiju
+730|Dodaj fotografiju
+731|Ukloni fotografiju
+732|Korisničko ime: @{handle}
+733|Već jednom promijenjeno: konačno.
+734|Može se promijeniti samo jednom i plaćeno je (radi ograničavanja lažnih profila).
+735|Novo korisničko ime
+736|Promijeni
+737|Tko može vidjeti moju fotografiju?
+738|Ostali će tada vidjeti tvoje početno slovo umjesto fotografije.
+739|Ime ili korisničko ime
+740|Status
+741|Tvoj status
+742|Tvoj kratki opis
+743|Profil je ažuriran.
+744|Spremi
+745|Odaberi što tvoji prijatelji mogu činiti s tvojim fotografijama, videozapisima i tekstovima.
+746|Sviđanja i reakcije
+747|Ako je isključeno, nitko ne može reagirati na tvoje objave i ne prikazuje se brojač.
+748|Komentari
+749|Ako je isključeno, nitko ne može komentirati tvoje objave.
+750|{n, plural, one{# objava} few{# objave} other{# objava}}
+751|{n, plural, one{# prijatelj} few{# prijatelja} other{# prijatelja}}
+752|Član od {toLocaleDateString}
+753|Uredi moj profil (fotografija, ime, opis)
+754|Postavke obavijesti
+755|Postavke
+756|Označi sve kao pročitano
+757|🌙 Tihi način je uključen: nema upozorenja, ali popis ostaje ovdje.
+758|Nema novosti.
+759|Obavijesti nikada ne sadrže sadržaj prolazne objave.
+760|🎵 Melodije zvona i vibracije
+761|Melodija obavijesti
+762|Melodija poziva
+763|Vibracija poruka
+764|Vibracija poziva
+765|Otras uvijek vibrira maksimalno. Dodirni opciju da je isprobaš.
+766|🔔 Obavijesti na telefonu
+767|Primaj obavijesti
+768|Poruke, zahtjevi za prijateljstvo, dijeljenja, događaji…
+769|Obavijesti na telefonu
+770|Obavijesti su uključene.
+771|Dopusti obavijesti u prozoru telefona.
+772|Obavijesti su odbijene: dopusti ih u postavkama telefona (Aplikacije > Cercle > Obavijesti).
+773|Ovaj preglednik ne podržava obavijesti. Instaliraj aplikaciju (QR za Android) ili ikonu na početnom zaslonu.
+774|Obavijesti su odbijene: dopusti ih u postavkama telefona i pokušaj ponovno.
+775|Koje obavijesti primati?
+776|💬 Poruke
+777|👋 Zahtjevi za prijateljstvo
+778|📰 Objave i priče
+779|🔁 Dijeljenja
+780|📅 Događaji
+781|👥 Grupe
+782|🖼 Albumi
+783|🎮 Igre
+784|Obavijesti: {l}
+785|Test: sve radi ✅
+786|Probna obavijest ne može se prikazati.
+787|Pošalji test
+788|Iskreno: zasad se obavijesti prikazuju kad je aplikacija otvorena ili u pozadini. Primanje s zatvorenom aplikacijom traži poslužitelj (udaljeno slanje), planiran uz prave račune. Pozivi: uskoro.
+789|Moja 4 omiljena efekta
+790|U razgovorima se prikazuju prvi. Ostali ostaju pod tipkom „+”.
+791|Omiljeno: {label}
+792|Najviše 4 omiljena: najprije jedan isključi.
+793|Ostavi barem jedan omiljeni.
+794|Vrati zadano
+795|Gornja traka
+796|Tipka „Više” (svi izbornici) uvijek je gore desno. Pored nje dodaj do 4 prečaca.
+797|Gore: {l}
+798|Najviše 4 prečaca: najprije jedan isključi.
+799|Ostavi barem jedan prečac.
+800|Donja traka
+801|Odaberi do 4 prečaca. Tipka „Izradi” uvijek ostaje u sredini. Ostali izbornici su u tipki „Više” gore desno.
+802|Prečac {l}
+803|Balončić poruka
+804|Mali balončić koji premještaš gdje želiš. Kad je prikazan, „Poruke” se u donjoj traci zamjenjuju s „Grupe”.
+805|Početni zaslon
+806|Stranica koja se otvara pri pokretanju NOTIIF-a.
+807|Svijetla tema
+808|Svijetla pozadina, bijela i tirkizna.
+809|Tamna tema
+810|Noćnoplava i tirkizna pozadina, blaža navečer.
+811|Efekti u razgovorima
+812|Otras zasloni sa zvukom, srca, rođendani: kad ih prijatelj pošalje, vidjet ćeš ih i čuti. Prema zadanim postavkama uključeno.
+813|Tihi sati
+814|Noću stišava upozorenja (u načinu s poslužiteljem).
+815|Automatska reprodukcija videozapisa
+816|Za kratke videozapise (uskoro).
+817|🔒 Privatnost
+818|Bez reklama. Bez prodaje podataka.
+819|Nema tipke za dijeljenje prema van, nema javnog profila.
+820|Nitko te ne može pronaći bez tvog koda pozivnice.
+821|Nijedna aplikacija ne može spriječiti ovlaštenu osobu da drugim uređajem fotografira zaslon.
+822|🧪 Demo način (na ovom uređaju)
+823|Zasad tvoji podaci ostaju na ovom uređaju, a prijatelji su izmišljeni. Pravi računi, poruke među telefonima i pozivi traže poslužitelj: vidi vodič u mapi „docs” projekta.
+824|Odjava
+825|Izvezi moje podatke
+826|Izbrisati sve tvoje NOTIIF podatke s ovog uređaja?
+827|Izbriši moj račun i podatke
+828|🔁 Promijeni člana (demo)
+829|Za isprobavanje trajanja po osobi: objavi fotografiju na 5 s za Céline i Thomasa, pa prebacuj između njih.
+830|Sada si {name}.
+831|NOTIIF je blokirao snimku zaslona
+832|NOTIIF logotip
+833|upravo sada
+834|prije {n} min
+835|prije {n} h
+836|Lica
+837|Ruke
+838|Srca
+839|Slavlje i priroda
+840|Zatvori emotikone
+841|Izbrisati {what}?
+842|Ova radnja je nepovratna.
+843|Zadrži
+844|NOTIIF — Tvoj krug. Tvoji trenuci.

@@ -226,3 +226,17 @@ html.shake body{animation:shk .8s ease-in-out 3}
 
 .brandbar{display:flex;justify-content:center;padding:0 0 6px}
 .brandbar img{height:46px;width:auto;display:block}
+
+/* Langues : sélecteur, écritures non latines et sens de lecture (arabe : droite → gauche) */
+.langlist{max-height:280px;overflow:auto;display:flex;flex-direction:column;gap:4px;padding:2px}
+.langitem{display:flex;align-items:center;gap:10px;width:100%;text-align:start;padding:10px 12px;border-radius:12px;border:1px solid var(--line,rgba(127,127,127,.25));background:transparent;color:inherit;font:inherit;cursor:pointer;min-height:44px}
+.langitem.on{border-color:var(--brand2,#14b8a6);background:rgba(20,184,166,.12)}
+.langnat{font-weight:700;flex:0 1 auto;overflow-wrap:anywhere}
+.langen{margin-inline-start:auto;overflow-wrap:anywhere;text-align:end}
+.langck{color:var(--brand2,#14b8a6);font-weight:700}
+html[lang="ja"] body,html[lang="zh-CN"] body{word-break:normal;line-break:strict}
+button,.btn,.chip,.navbtn,.tabs button{overflow-wrap:anywhere}
+html[dir="rtl"] .ico-flip,html[dir="rtl"] .topb svg.back{transform:scaleX(-1)}
+html[dir="rtl"] .navbtn .badge{margin-left:0;margin-right:auto}
+html[dir="rtl"] input[type="search"],html[dir="rtl"] input[type="text"],html[dir="rtl"] textarea{text-align:start}
+html[dir="rtl"] .ltr,html[dir="rtl"] code,html[dir="rtl"] .qr{direction:ltr;unicode-bidi:embed}

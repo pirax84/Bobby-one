@@ -1,0 +1,845 @@
+0|Kezdőlap
+1|Barátok
+2|Csoportok
+3|Üzenetek
+4|Hívások
+5|Fotók
+6|Játékok
+7|Események
+8|Megosztások
+9|Értesítések
+10|Profil
+11|Jogi tudnivalók
+12|Beállítások
+13|Hang- és videóhívások
+14|A hívásokhoz kapcsolódási szerver (WebRTC) kell. Akkor jönnek, amikor a NOTIIF szerver működik.
+15|A te köröd. A te pillanataid.
+16|Létrehozás
+17|Profilom
+18|Vissza
+19|Minden menü
+20|Navigáció
+21|Létrehozás: történet vagy bejegyzés. Hosszan nyomva: szelfivideó
+22|Továbbiak
+23|A köröm
+24|Média és játékok
+25|Fiókom
+26|Meghívó a NOTIIF-ba
+27|Hozzáadod: {name}?
+28|Kérés küldése
+29|Ez a kód nem létezik ezen az eszközön. Demó módban a fiókok még nem oszlanak meg az eszközök között: ez a szerverrel jön.
+30|Később
+31|Mit szeretnél megosztani?
+32|✨ Történet (magától eltűnik)
+33|📝 Bejegyzés
+34|Csoportjaim
+35|Közelgő
+36|Nincs esemény.
+37|Játék a családdal
+38|Folytatás Apple-lel
+39|Folytatás Google-lel
+40|Folytatás Facebookkal
+41|Folytatás Snapchattel
+42|A Snapchathoz fejlesztői szerződés kell (Snap Kit). Aktiválás előtt kérni kell.
+43|A FranceConnecthez állami engedély kell (a kérelmet a datapass.api.gouv.fr oldalon kell benyújtani).
+44|La Poste digitális azonosító
+45|A La Poste digitális azonosítóhoz partnerség kell a La Postéval.
+46|A szerver nem érhető el.
+47|Hiba történt.
+48|Fiók létrehozva.
+49|Fiók létrehozva. Nyisd meg az imént küldött megerősítő e-mailt, majd gyere vissza bejelentkezni.
+50|Bejelentkeztél.
+51|Én
+52|Tartós
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Szívek
+56|❤️ Szíveső!
+57|😘 Puszik
+58|😘 Nagy puszik!
+59|❄️ Hó
+60|❄️ Havazik!
+61|🎆 Tűzijáték
+62|🎆 Tűzijáték!
+63|👻 Szellem
+64|👻 Bú!
+65|🔥 Lángok
+66|🔥 Forró a hangulat!
+67|🫧 Buborékok
+68|🫧 Buborékok!
+69|🎂 Ünnep
+70|🎂 Ünnepelünk!
+71|🌧️ Eső
+72|🌧️ Esik!
+73|⛈️ Vihar
+74|⛈️ Dörög!
+75|🚀 Rakéta
+76|🚀 Indulás!
+77|👏 Bravó
+78|👏 Bravó!
+79|😂 Nevetőgörcs
+80|😂 Meghalok a nevetéstől!
+81|💰 Főnyeremény
+82|💰 Főnyeremény!
+83|💣 Bumm
+84|💣 Bumm!
+85|🎂 Születésnap
+86|🎂 Boldog szülinapot!
+87|🎂 Születésnap 2
+88|🤭 Büfi
+89|🤭 Büfi!
+90|💨 Pukk
+91|💨 Pukk!
+92|🤮 Hányás
+93|🤮 Fúj!
+94|Kristály
+95|Hajnal
+96|Szellő
+97|Fény
+98|Part
+99|Kör
+100|Reggel
+101|Nincs
+102|Gyenge
+103|Közepes
+104|Erős
+105|Az eszköz memóriája megtelt: töröld a régi fotókat.
+106|Hiba.
+107|A felhasználónevet csak egyszer lehet módosítani, és te már megtetted.
+108|A felhasználónév módosítása fizetős (a „Plus” ajánlat). A fizetés még nincs bekötve: kipróbáláshoz kapcsold be a „Plus (előnézet)” opciót a Beállításokban.
+109|Felhasználónév: 3–20 karakter, kisbetű, szám, pont vagy aláhúzás.
+110|Ez a felhasználónév már foglalt.
+111|Felhasználónév módosítva. Ez a módosítás végleges.
+112|Üdv a fészkemben 🪺
+113|Szia! Isten hozott! 🌳
+114|Család
+115|Ki jön vasárnap ebédelni?
+116|Családi ebéd
+117|Mindenki hoz egy kis ételt.
+118|Nagymamánál
+119|Érvénytelen időtartam.
+120|A fiókod jelentések miatt ellenőrzés alatt áll.
+121|Ezt a bejegyzést senki sem látná: válassz másik címzetteket.
+122|Ezt az albumot senki sem látná: válassz másik címzetteket.
+123|Album
+124|{name} létrehozott neked egy albumot: „{slice}”.
+125|Az album nem található.
+126|{name} {emoji} reakciót adott a bejegyzésedre.
+127|{name} hozzászólt a bejegyzésedhez.
+128|A személy nem található.
+129|Ez te vagy!
+130|A fiókod jelentések miatt ellenőrzés alatt áll: egyelőre nem küldhetsz kéréseket.
+131|Ma túl sok kérés (legfeljebb 15). Próbáld újra holnap.
+132|A kérés nem küldhető el.
+133|{name} már a barátod.
+134|A kérés már el van küldve.
+135|{name} barátnak jelölt.
+136|Kérés elküldve neki: {name}.
+137|Ismeretlen kód (demó módban csak az ezen az eszközön létrehozott fiókok léteznek).
+138|3–20 karakter: betűk, számok, _ vagy .
+139|Felhasználónév mentve.
+140|Nem található.
+141|Válassz legalább egy barátot (akit a szerző nem tiltott le).
+142|Egy kérés már függőben van.
+143|{name} engedélyt kér a bejegyzésed megosztásához.
+144|Kérés elküldve. A szerző dönt.
+145|{name} elutasította a megosztást.
+146|{name} elfogadta a megosztást.
+147|{name} megosztott veled egy tartalmat.
+148|{name} visszavonta a megosztást: mindenhol eltűnt.
+149|{name} elfogadta a kérésedet.
+150|{name} hozzáadott a(z) „{name2}” csoporthoz.
+151|{name} esetleg megpróbálta elmenteni az egyik tartalmadat.
+152|{name} meghív: {title}.
+153|{name} meghív egy amőbapartira.
+154|A videó túl nagy: egyelőre legfeljebb 3 MB (kb. 10 másodperc).
+155|Videó hozzáadva.
+156|Hiba
+157|Fotó hozzáadva.
+158|Válassz egy fotót vagy videót.
+159|Olvashatatlan fájl.
+160|Videó megnyitása
+161|Fotó megnyitása
+162|Fotó
+163|🔒 Privát: csak te
+164|👥 Megosztva velük: {n}
+165|👥 {name} albuma
+166|Vissza az albumokhoz
+167|Törlöd ezt az albumot és minden tartalmát, azoknál is, akik látják?
+168|Album törlése
+169|Betöltés…
+170|Fotó vagy videó hozzáadása
+171|Üres album: add hozzá az első fotót vagy videót.
+172|Ebben az albumban még nincs semmi.
+173|🔒 Ugyanazok a szabályok, mint mindenhol: vízjel a nevedvel, letiltott képernyőfotó az Android alkalmazásban, megosztás a szerző jóváhagyása nélkül nincs.
+174|Videóim
+175|A videót később válaszd ki.
+176|Fotók és videók
+177|📷 Fotók
+178|🎬 Videók
+179|🗂 Albumok
+180|Fotóim
+181|A közzétett fotóid itt jelennek meg.
+182|Velem megosztva (tartós)
+183|Még semmi.
+184|Videó hozzáadva (privát, a „Videóim” között).
+185|Videó hozzáadása
+186|Még nincs videó. Egyelőre rövid (kb. 10 másodperc, legfeljebb 3 MB). A hosszabb videók a szerverrel jönnek.
+187|Ha videót szeretnél megosztani a barátaiddal, tedd egy megosztott albumba (Albumok fül).
+188|Új album
+189|Privát
+190|Megosztva velük: {length}
+191|{name} részéről
+192|· {count, plural, one{# elem} other{# elem}}
+193|Nincs album. Hozz létre egyet, privátot vagy barátokkal megosztottat.
+194|Név (pl. Nyaralás 2026)
+195|🔒 Privát
+196|👥 Az összes barátom
+197|✅ Kiválasztott barátok
+198|Csak te látod.
+199|Ennyi barát láthatja: {n}. Csak a barátaid látják, és senki sem oszthatja meg tovább a jóváhagyásod nélkül.
+200|Album létrehozása
+201|✅ Alkalmazás telepítve
+202|Már igazi alkalmazásként használod.
+203|📲 Alkalmazás telepítése
+204|Telepítés erre az eszközre
+205|Android alkalmazás letöltése
+206|iPhone-on és iPaden: koppints erre:
+207|Megosztás
+208|⬆️ majd
+209|„Hozzáadás a főképernyőhöz”
+210|Nyisd meg a böngésző menüjét (⋮), és válaszd az „Alkalmazás telepítése” vagy a „Hozzáadás a főképernyőhöz” lehetőséget.
+211|A te köröd.
+212|A te pillanataid.
+213|A szeretteid privát hálózata: család, barátok, kollégák, csapat, színtársulat vagy klub. Reklámok nélkül, idegenek nélkül, kifelé való megosztás nélkül.
+214|Oszd meg, akivel akarod
+215|Fotók, videók és szövegek csak az általad választott embereknek.
+216|Eltűnő történetek
+217|24 óra, vagy néhány másodperc egy múló fotónál.
+218|Üzenetek, hangüzenetek és effektek
+219|Beszélgess csoportban vagy privátban, és küldj hanggal kísért effekteket.
+220|Belépés a NOTIIF-ba
+221|Ha igazi alkalmazásként szeretnéd a telefonodon a NOTIIF-ot:
+222|Alkalmazás telepítése
+223|Ez a bejelentkezés akkor aktiválódik, ha a szerver csatlakoztatva van (lásd az útmutatót).
+224|felhasználási feltételek és adatvédelmi szabályzat
+225|Fiók létrehozása
+226|Bejelentkezés
+227|— vagy —
+228|A neved vagy felhasználóneved
+229|Név
+230|@ felhasználónév (nem kötelező): csak egyszer módosítható, fizetős
+231|Felhasználónév
+232|E-mail-címed
+233|Jelszó (legalább 8 karakter)
+234|Jelszó
+235|Elfogadom a feltételeket
+236|Elmúltam 15 éves, és elfogadom a dokumentumokat: {legalBtn}.
+237|Már van fiókom
+238|Még nincs fiókom
+239|Írd be fent előbb a neved vagy a felhasználóneved.
+240|Írd be előbb a neved vagy a felhasználóneved.
+241|A folytatáshoz jelöld be az „Elmúltam 15 éves” négyzetet.
+242|Jelöld be a feltételek négyzetét.
+243|🧪 Demó mód
+244|Az igazi fiókokhoz (e-mail, Google, Apple, Facebook, FranceConnect…) szerver kell, ami még nincs csatlakoztatva. Egyelőre kipróbálhatod az alkalmazást ezen az eszközön képzeletbeli barátokkal.
+245|A neved vagy felhasználóneved (demó)
+246|Demó mód kipróbálása
+247|Egyelőre kipróbálhatod az alkalmazást demó módban ezen az eszközön képzeletbeli barátokkal.
+248|Értem, kipróbálom a demó módot
+249|Jogi dokumentumok
+250|🔒 Múló üzenet
+251|🎤 Hangüzenet
+252|📷 Fotó
+253|Gyors üzenetek
+254|Vissza a listához
+255|Megnyitás nagyban
+256|Bezárás
+257|💬 Beszélgetések
+258|👥 Barátaim
+259|Üzenet írása
+260|Még nincsenek barátok. Adj hozzá a Barátok fülön.
+261|Új beszélgetés
+262|Nincs beszélgetés. Válassz egy barátot a „Barátaim” között.
+263|Egyszer megtekintve
+264|Múló üzenet
+265|· megnyitás nagyban
+266|Emoji
+267|Az üzeneted…
+268|Gyors üzenet
+269|Küldés
+270|A képernyőfotó le van tiltva: a szerzőt értesítjük.
+271|Üzenet egyszer megtekintve
+272|🔥 Egyszer megtekintve
+273|Bezárás (eltűnik)
+274|Fotó egyszer megtekintve
+275|Tartalom elrejtve
+276|Képernyőfotót vagy ablakváltást észleltünk
+277|Ez az üzenet bezáráskor eltűnik. Egy fotót mindig le lehet fényképezni másik eszközzel: tiszteld a magánéletet.
+278|🔎 Keresés a beszélgetéseimben
+279|Nincs beszélgetés: írj egy barátodnak a „Barátok” oldalról.
+280|📹 Videóhívást indítok: {url}
+281|Videóhívás elindítva: a hivatkozás elment a beszélgetésbe.
+282|Videóhívás indítása
+283|📹 Videóhívás
+284|Üzenet
+285|🔥 Üzenet megtekintve és eltűnt
+286|🔥 Egyszer megtekinthető üzenet · koppints a megnyitáshoz
+287|(szerkesztve)
+288|⏱ {left} mp
+289|⏱ múló, {secs} mp az elolvasás után
+290|🔥 egyszeri megtekintés ·
+291|megtekintve ✓
+292|🔒 Múló üzenet · koppints az olvasáshoz ({secs} mp)
+293|⌛ Az üzenet lejárt
+294|· ✓✓ elolvasva
+295|· ✓ elküldve
+296|Köszönj be 👋
+297|Küldési beállítások
+298|Beállítások bezárása
+299|Az üzenet időtartama
+300|♾️ Tartós
+301|⏱ 10 mp
+302|⏱ 1 perc
+303|📷 Fotó küldése
+304|🛡 Vízjel
+305|bekapcsolva
+306|eltávolítva
+307|Effektek
+308|Olvashatatlan kép.
+309|Beállítások: időtartam, fotó, effektek
+310|Üzenet szerkesztése…
+311|Hány oldala van egy hatszögnek?
+312|Mi Olaszország fővárosa?
+313|Milánó
+314|Nápoly
+315|Róma
+316|Torino
+317|Melyik a leggyorsabb szárazföldi állat?
+318|Oroszlán
+319|Gepárd
+320|Ló
+321|Antilop
+322|Hány perc van másfél órában?
+323|Melyik bolygó van a legközelebb a Naphoz?
+324|Vénusz
+325|Mars
+326|Föld
+327|Merkúr
+328|Melyik gyümölcsből készül az almabor?
+329|Körte
+330|Alma
+331|Szőlő
+332|Cseresznye
+333|Hány játékosa van egy focicsapatnak a pályán?
+334|Milyen színt kapunk a kék és a sárga keverésével?
+335|Zöld
+336|Narancssárga
+337|Lila
+338|Barna
+339|Melyik a legnagyobb óceán?
+340|Atlanti
+341|Indiai
+342|Északi-sarki
+343|Csendes
+344|Hány napos a február szökőévben?
+345|{nm} (✕) {nm2} (◯) ellen
+346|{v1}. mező
+347|Döntetlen 🤝
+348|🏆 {name} nyert!
+349|Te jössz
+350|{name} következik (a Beállításokban válts tagot, hogy a demóban az ő nevében játssz)
+351|⭕ Amőba kettesben
+352|🧠 Kvíz
+353|♟️ Sakk · hamarosan
+354|🃏 Römi · hamarosan
+355|Barát meghívása
+356|Játék elindítva vele: {name}.
+357|Nincs játék. Hívj meg fent egy barátot.
+358|Bravó! {pts}/{length}
+359|Összesen:
+360|pont
+361|Új játék
+362|{v1}/{length}. kérdés · Pontszám: {pts}
+363|Következő
+364|Befejezés
+365|Törlöd mindenhol, azoknál is, akik megkapták?
+366|Törlés
+367|Reagálás: {e}
+368|🔒 Védett fotó: vízjel a nevedvel, letiltott képernyőfotó az Android alkalmazásban, megosztás csak a szerző jóváhagyásával.
+369|Hamarosan elérhető
+370|Lassan: másodpercenként egy effekt.
+371|Effekt: {label}
+372|Saját effekt: {name}
+373|További effektek
+374|＋ Több
+375|Minden effekt
+376|Jelölj be 4 effektet, ami elöl marad ({length}/4). Próbáld ki a „Küldés” gombbal.
+377|Elöl marad: {label}
+378|Legfeljebb 4: előbb vegyél le egyet.
+379|Legalább egy effekt maradjon elöl.
+380|Saját effektjeim
+381|Törlés: {name}
+382|＋ Saját effekt létrehozása (kép + a hangom)
+383|A mikrofon nem érhető el, vagy megtagadták a hozzáférést.
+384|Nevezd el az effektet.
+385|Adj hozzá képet vagy hangot.
+386|Legfeljebb 6 saját effekt.
+387|Effekt hozzáadva.
+388|Effekt neve (pl. Az én nevetésem)
+389|Effekt neve
+390|Kép
+391|Felvétel… {left} mp (koppints a befejezéshez)
+392|Újrafelvétel
+393|Felvétel (legfeljebb 3 mp)
+394|A hang túl nagy (legfeljebb 450 kB, kb. 10 másodperc).
+395|📁 Hangfájl kiválasztása
+396|▶ Kipróbálás
+397|Hozzáadás
+398|Történet
+399|Látták:
+400|még senki
+401|Privát válasz…
+402|↩️ Válasz a történetedre: {reply}
+403|Válasz privátban elküldve.
+404|Reakció elküldve: {e}
+405|Az összes barátom
+406|Csoport
+407|Kiválasztott barátok
+408|Mindenki, kivéve…
+409|Lista
+410|Csak én
+411|Válassz egy képet.
+412|Ez a kép nem olvasható.
+413|A történet időkorlát nélkül közzétéve.
+414|Múló történet közzétéve.
+415|A történet 24 órára közzétéve.
+416|Közzétéve!
+417|✨ Történetem
+418|📝 Új bejegyzés
+419|A történet magától eltűnik (alapesetben 24 óra múlva), és teljes képernyőn nézhető.
+420|Tartalom típusa
+421|✏️ Szöveg
+422|🎥 Szelfivideó
+423|🎤 Hang
+424|🔗 Hivatkozás
+425|Előnézet
+426|Fotó eltávolítása
+427|📷 Fotó kiválasztása
+428|🗑 Törlés
+429|✅ Közzététel
+430|🔁 Újrakezdés
+431|🎥 Felvétel magamról (legfeljebb 10 mp)
+432|🎤 Hangüzenet felvétele (legfeljebb 30 mp)
+433|Illessz be egy hivatkozást: Spotify, Deezer vagy YouTube lejátszási lista, videó, Instagram, TikTok, Leboncoin…
+434|Megosztandó hivatkozás
+435|Ez a hivatkozás nem tűnik érvényesnek.
+436|Írd meg a történeted…
+437|A történet szövege
+438|Mi újság a szeretteidnél?
+439|Képaláírás hozzáadása (nem kötelező)…
+440|Szöveg
+441|Hangulat
+442|{v1}. háttér
+443|Nincs hangulat
+444|Ki láthatja?
+445|A történet időtartama
+446|24 óra
+447|Korlátlan
+448|Múló
+449|Megjelenítési idő
+450|Egyéb…
+451|Másodperc (1–999)
+452|Egyéni időtartam másodpercben
+453|Csoport
+454|Lista
+455|＋ Lista létrehozása
+456|A lista neve (pl. Kollégák, Foci, Színház)
+457|A lista neve
+458|Előbb adj hozzá barátokat, hogy listába tehesd őket.
+459|Mégse
+460|Lista létrehozva.
+461|Lista létrehozása
+462|Adj meg 1 és {MAX_CUSTOM_SECS} közötti másodpercet.
+463|Csak te látod.
+464|{audLabel} · személyek száma: {count}
+465|· {fmtSecs} személyenként a megnyitástól
+466|Közzététel
+467|Múló bejegyzés
+468|Hátralévő idő
+469|{ceil} mp
+470|Múló fotó
+471|Ha bezárod, az idő tovább fut. Egy fotót mindig le lehet fényképezni másik eszközzel.
+472|Lejárt az idő
+473|A megtekintési időd lejárt.
+474|múló
+475|{n} mp-ed van hátra.
+476|{fmtSecs} áll majd rendelkezésedre a megnyitástól.
+477|Tovább
+478|Megnyitás
+479|Beállítások
+480|↪ Megosztotta
+481|{name} jóváhagyásával
+482|Törlöd ezt a bejegyzést? Az engedélyezett megosztások is eltűnnek.
+483|Törlés mindenhol
+484|Visszavonod ezt a megosztást? Eltűnik {name} és barátai elől.
+485|Megosztás visszavonása
+486|Leállítod a megosztást?
+487|Megosztásom leállítása
+488|Bejegyzés nagyítása
+489|Hozzászólás
+490|{length}/{length2} látta:
+491|↪ {n, plural, one{# engedélyezett megosztás} other{# engedélyezett megosztás}}
+492|általad (lásd: „Megosztások”).
+493|Látták
+494|· A megosztás közönsége:
+495|↪ Megosztás kérése
+496|Koppints a fotóra a reagáláshoz vagy hozzászóláshoz
+497|Koppints a fotóra a reagáláshoz
+498|Koppints a fotóra a hozzászóláshoz
+499|Bejegyzés
+500|További emojik
+501|Továbbiak:
+502|Még nincs hozzászólás. Légy te az első!
+503|Válasz
+504|Emojik
+505|A válaszod…
+506|Írj hozzászólást…
+507|Hozzászólás
+508|Minden barát
+509|Csak én
+510|Kiválasztott barátok
+511|Barátok, kivéve…
+512|Mind
+513|Bejegyzéseim
+514|Itt még nincs semmi. Tedd közzé az első pillanatodat ✨
+515|✏️ Szöveg írása
+516|Tipp: tartsd nyomva a gombot, és rögtön megnyílik a kamera.
+517|Megosztás kérése
+518|Ez a tartalom
+519|tulajdona. Ő dönt arról, hogy beleegyezik-e. Ha igen, a kiválasztott barátok az
+520|eredeti tartalmat
+521|látják (nem másolatot), ugyanazokkal az időtartamokkal, és {name} bármikor
+522|visszavonhatja a megosztást
+523|: ekkor mindenkinél eltűnik.
+524|Megosztás velük:
+525|Nincs több barátod.
+526|Rövid üzenet a szerzőnek (nem kötelező)
+527|Kérés küldése neki: {name}
+528|🌍 Nyelv
+529|Válaszd ki a NOTIIF nyelvét. Azonnal változik, és a választásod megmarad.
+530|Jelenlegi nyelv
+531|Nyelv keresése
+532|Nyelv
+533|Nyelv módosítva.
+534|Nem található nyelv.
+535|A jogi dokumentumok egyelőre csak franciául érhetők el.
+536|{LEGAL_VERSION}. verzió
+537|Wikipédia
+538|Hivatkozás
+539|{name} lejátszó
+540|Kicsinyítés
+541|Nagyítás
+542|Zene leállítása
+543|{name} hivatkozás
+544|Kicsinyítés és hallgatás folytatása
+545|⌄ Kicsinyítés
+546|Megnyitás külön
+547|Ez az oldal nem jeleníthető meg a NOTIIF-on belül.
+548|Megnyitás: {name}
+549|{name} hivatkozás megnyitása
+550|🎧 Hallgatás a NOTIIF-ban (csak te hallod)
+551|▶ Megnézem itt, a NOTIIF-ban
+552|Hivatkozás megnyitása
+553|A kamera vagy a mikrofon nem érhető el, vagy megtagadták a hozzáférést.
+554|🎥 Indítás
+555|🎤 Indítás
+556|(legfeljebb {max} mp)
+557|⏹ Befejezés · {left} mp
+558|📸 Fotó
+559|Tartsd nyomva a gombot a beszédhez.
+560|Tartsd nyomva a hangüzenet felvételéhez
+561|🔴 Engedd el a küldéshez
+562|Kamera
+563|Újrakezdés
+564|Küldés ➤
+565|Kamera bezárása
+566|Kamera váltása
+567|mp / {max} mp
+568|Nagyítás
+569|Nagyítás {z}×
+570|{replace}×
+571|Videó
+572|Fotózás
+573|Leállítás
+574|Felvétel
+575|Koppints a fotózáshoz
+576|Koppints a leállításhoz
+577|Koppints a felvétel indításához (legfeljebb {max} mp)
+578|Tartsd nyomva a mikrofont a beszédhez.
+579|🔴 {mm} · engedd el a befejezéshez
+580|Tartsd nyomva a mikrofont a beszédhez (legfeljebb {max} mp)
+581|Amíg el nem távolítom
+582|Mint az eredeti
+583|Meddig legyen látható a megosztás?
+584|Megjelenítési idő személyenként
+585|🔒 Ez a tartalom máshol nem tehető közzé: vízjeles, a képernyőfotó le van tiltva (Android alkalmazás), és minden új megosztáshoz a te jóváhagyásod kell. Bármikor visszavonhatod.
+586|Megosztás engedélyezve. Bármikor visszavonhatod.
+587|Engedély megerősítése
+588|Engedélyezés…
+589|Elutasítás
+590|a tartalom törölve
+591|Senki sem teheti közzé újra a tartalmadat a hozzájárulásod nélkül. És a beleegyezés után is
+592|teljes az irányításod
+593|: ha visszavonod a megosztást vagy törlöd a bejegyzést, mindenkinél eltűnik, akivel megosztották.
+594|Megválaszolandó kérések ({length})
+595|szeretné megosztani:
+596|velük: {join} · {ago}
+597|Nincs függőben lévő kérés.
+598|Általam engedélyezett megosztások ({length})
+599|megosztotta ({nm}) velük: {join}
+600|Visszavonod ezt a megosztást? Mindenkinél eltűnik.
+601|Megosztás mindenhol visszavonva.
+602|Visszavonás mindenhol
+603|Nincs aktív megosztás.
+604|Kéréseim és megosztásaim ({length})
+605|tőle: {nm}
+606|{v1} · velük: {join}
+607|Nem kértél engedélyt semmi megosztására.
+608|QR-kód
+609|🌍 Nyilvános
+610|Bárki megtalálhat a nevem vagy a felhasználónevem alapján.
+611|👥 Korlátozott
+612|Csak a pontos felhasználónevem alapján, vagy a barátaim barátain keresztül.
+613|🔒 Láthatatlan
+614|Senki sem talál meg. Csak ha megadom a QR-kódomat vagy a kódomat.
+615|QR-kódom
+616|QR-kód megnyitása vagy nagyítása
+617|Kattints a QR-kódra az oldal megnyitásához
+618|Koppints a QR-kódra a nagyításhoz
+619|Mutasd meg egy szeretteidnek: a telefon kamerájával beolvashatja.
+620|Hivatkozás másolva
+621|A másolás nem sikerült
+622|Hivatkozásom másolása
+623|Kép mentése
+624|Új kódot hozol létre? A régi QR-kód megszűnik működni.
+625|Új kód létrehozva.
+626|Megújítás
+627|Ki találhat meg?
+628|Beállítás mentve.
+629|Felhasználónév mentése
+630|Ez a böngésző nem tud QR-kódot olvasni. Használd a telefon kameráját: a NOTIIF hivatkozás magától megnyílik.
+631|A kamera nem érhető el, vagy megtagadták a hozzáférést.
+632|QR-kód beolvasása
+633|Csatlakozz hozzám a NOTIIF-on, a szeretteink privát hálózatán (család, barátok, kollégák, klub…), reklámok nélkül. Itt telepítheted az alkalmazást: {inviteLink} (az én kódom: {code})
+634|Névjegy
+635|Nincs telefonszámmal vagy e-mail-címmel rendelkező névjegy.
+636|A névjegyekhez való hozzáférést megtagadták vagy megszakították.
+637|Üzenet másolva: illeszd be, ahová szeretnéd.
+638|Szeretteim meghívása
+639|📇 Választás a névjegyeimből
+640|Ezen a telefonon vagy böngészőben az alkalmazás nem tudja olvasni a névjegyeidet. Adj meg kézzel egy számot vagy e-mail-címet, vagy oszd meg a hivatkozást.
+641|Szám vagy e-mail-cím
+642|Meghívás: {name}
+643|Meghívó küldése:
+644|Csatlakozz hozzám a NOTIIF-on
+645|E-mail
+646|🔗 Meghívó hivatkozás megosztása
+647|🔒 A névjegyeidet nem mentjük el, és nem küldjük el a NOTIIF-nak: csak arra szolgálnak, hogy üzenetet írj a telefonodon. A Google- vagy Facebook-importálás a szerverkapcsolattal jön.
+648|Kapott kérések ({length})
+649|{name} mostantól a barátod.
+650|Elfogadás
+651|Kódom:
+652|Kód másolva
+653|Másolás
+654|Egy szeretted kódja (NID-…)
+655|Meghívókód
+656|Meghívás
+657|📇 Meghívás a névjegyeimből
+658|Demó mód: kipróbálható kódok
+659|(képzeletbeli személyek)
+660|Barátaim ({length})
+661|Lista választása
+662|Mind ({length})
+663|＋ Új lista
+664|Beállítások: {name}
+665|Ebben a listában senki sincs.
+666|Még nincsenek barátok.
+667|Személy jelentése
+668|Miért? Három különböző személytől érkező jelentés automatikusan felfüggeszti a fiókot az ellenőrzés idejére.
+669|Hamis profil
+670|Értékesítés, reklám vagy kéretlen ajánlat
+671|Csalás
+672|Szexuális ajánlatok vagy kísérőszolgáltatás
+673|Jogellenes tartalom
+674|Zaklatás
+675|Egyéb
+676|Köszönjük, a jelentést rögzítettük.
+677|💬 Írás
+678|Eltávolítod a barátaid közül: {name}?
+679|Eltávolítás a barátok közül
+680|Jelentés
+681|Letiltod: {name}? Nem fogja látni a tartalmaidat.
+682|Letiltva.
+683|Letiltás
+684|Listáim
+685|Pl. „Unokatestvérek”, „Kollégák”… hogy gyorsan kiválaszthasd, ki lássa a bejegyzéseidet.
+686|Letiltott személyek
+687|Tiltás feloldása
+688|Új lista
+689|🔎 Valaki keresése (név vagy @felhasználónév)
+690|Keresés
+691|Nem található senki. A „láthatatlan” vagy „korlátozott” személyek csak a QR-kódjukkal, kódjukkal vagy pontos felhasználónevükkel találhatók meg.
+692|📜 Csoportszabályok
+693|Tagok ({length})
+694|Eltávolítod a csoportból: {name}?
+695|Eltávolítás
+696|Elhagyod ezt a csoportot?
+697|Csoport elhagyása
+698|Új
+699|{n, plural, one{# tag} other{# tag}}
+700|Hozz létre csoportot a családnak, nyaraláshoz, bulikhoz…
+701|Új csoport
+702|Emoji
+703|Csoport neve
+704|Leírás
+705|Csoportszabályok (nem kötelező)
+706|Tagok (a barátaid közül)
+707|Csoport létrehozva.
+708|Csoport létrehozása
+709|✅ Megy
+710|❌ Nem megy
+711|🤔 Talán
+712|Szülinapok, családi ebédek, nyaralás… hozd létre az elsőt!
+713|· lezajlott
+714|Törlöd ezt az eseményt?
+715|Szervező: {name}
+716|👥 Ki jön?
+717|✅ Jönnek
+718|❌ Nem jönnek
+719|⏳ Nem válaszoltak
+720|Új esemény
+721|Név (pl. Nagymama szülinapja)
+722|Dátum és idő
+723|Helyszín
+724|Esemény létrehozva.
+725|Barátaim
+726|Mindenki
+727|Senki
+728|Profilom szerkesztése
+729|Fotó módosítása
+730|Fotó hozzáadása
+731|Fotó eltávolítása
+732|Felhasználónév: @{handle}
+733|Már egyszer módosítva: végleges.
+734|Csak egyszer módosítható, és fizetős (a hamis profilok korlátozása miatt).
+735|Új felhasználónév
+736|Módosítás
+737|Ki láthatja a fotómat?
+738|Mások ilyenkor a fotó helyett a kezdőbetűdet látják.
+739|Név vagy felhasználónév
+740|Állapot
+741|Az állapotod
+742|Rövid bemutatkozásod
+743|Profil frissítve.
+744|Mentés
+745|Válaszd ki, mit tehetnek a barátaid a fotóiddal, videóiddal és szövegeiddel.
+746|Kedvelések és reakciók
+747|Ha ki van kapcsolva, senki sem reagálhat a bejegyzéseidre, és nem látszik számláló.
+748|Hozzászólások
+749|Ha ki van kapcsolva, senki sem szólhat hozzá a bejegyzéseidhez.
+750|{n, plural, one{# bejegyzés} other{# bejegyzés}}
+751|{n, plural, one{# barát} other{# barát}}
+752|Tag ekkortól: {toLocaleDateString}
+753|Profilom szerkesztése (fotó, név, bemutatkozás)
+754|Értesítési beállítások
+755|Beállítások
+756|Összes megjelölése olvasottként
+757|🌙 Csendes mód bekapcsolva: nincsenek figyelmeztetések, de a lista itt marad.
+758|Nincs újdonság.
+759|Az értesítések sosem tartalmazzák egy múló bejegyzés tartalmát.
+760|🎵 Csengőhangok és rezgés
+761|Értesítési csengőhang
+762|Hívás csengőhang
+763|Üzenetrezgés
+764|Hívásrezgés
+765|Az Otras mindig maximális erővel rezeg. Koppints egy opcióra a kipróbáláshoz.
+766|🔔 Telefonos értesítések
+767|Értesítések fogadása
+768|Üzenetek, barátkérések, megosztások, események…
+769|Telefonos értesítések
+770|Értesítések bekapcsolva.
+771|Engedélyezd az értesítéseket a telefon ablakában.
+772|Az értesítéseket megtagadták: engedélyezd a telefon beállításaiban (Alkalmazások > Cercle > Értesítések).
+773|Ez a böngésző nem támogatja az értesítéseket. Telepítsd az alkalmazást (Android QR) vagy az asztali ikont.
+774|Az értesítéseket megtagadták: engedélyezd a telefon beállításaiban, és próbáld újra.
+775|Milyen értesítéseket kapj?
+776|💬 Üzenetek
+777|👋 Barátkérések
+778|📰 Bejegyzések és történetek
+779|🔁 Megosztások
+780|📅 Események
+781|👥 Csoportok
+782|🖼 Albumok
+783|🎮 Játékok
+784|Értesítések: {l}
+785|Teszt: minden működik ✅
+786|A tesztértesítés nem jeleníthető meg.
+787|Teszt küldése
+788|Őszintén: az értesítések egyelőre akkor jelennek meg, ha az alkalmazás nyitva van vagy a háttérben fut. Zárt alkalmazásnál való fogadásukhoz szerver kell (távoli küldés), ez a valódi fiókokkal együtt van tervezve. Hívások: hamarosan.
+789|4 kedvenc effektem
+790|A beszélgetésekben ezek jelennek meg elsőként. A többi a „+” gomb alatt marad.
+791|Kedvenc: {label}
+792|Legfeljebb 4 kedvenc: előbb vegyél le egyet.
+793|Legalább egy kedvenc maradjon.
+794|Alapértelmezések visszaállítása
+795|Felső sáv
+796|A „Továbbiak” gomb (minden menü) mindig jobb felül van. Mellé legfeljebb 4 gyorsparancsot tehetsz.
+797|Felül: {l}
+798|Legfeljebb 4 gyorsparancs: előbb vegyél le egyet.
+799|Legalább egy gyorsparancs maradjon.
+800|Alsó sáv
+801|Válassz legfeljebb 4 gyorsparancsot. A „Létrehozás” gomb mindig középen marad. A többi menü a jobb felső „Továbbiak” gombban van.
+802|Gyorsparancs: {l}
+803|Üzenetbuborék
+804|Egy kis buborék, amelyet bárhová húzhatsz. Ha látszik, az alsó sávban az „Üzenetek” helyét a „Csoportok” veszi át.
+805|Kezdőképernyő
+806|A NOTIIF indításakor megnyíló oldal.
+807|Világos téma
+808|Világos háttér, fehér és türkiz.
+809|Sötét téma
+810|Éjkék és türkiz háttér, esténként lágyabb.
+811|Effektek a beszélgetésekben
+812|Hanggal kísért Otras képernyők, szívek, szülinapok: ha egy barátod küld ilyet, látni és hallani fogod. Alapértelmezetten bekapcsolva.
+813|Csendes órák
+814|Éjszaka elnémítja a figyelmeztetéseket (szerver módban).
+815|Videók automatikus lejátszása
+816|Rövid videókhoz (hamarosan).
+817|🔒 Adatvédelem
+818|Nincs reklám. Nincs adatértékesítés.
+819|Nincs kifelé megosztó gomb, nincs nyilvános profil.
+820|Meghívókód nélkül senki sem talál meg.
+821|Egy alkalmazás sem akadályozhatja meg, hogy egy arra jogosult személy másik eszközzel lefényképezze a képernyőt.
+822|🧪 Demó mód (ezen az eszközön)
+823|Egyelőre az adataid ezen az eszközön maradnak, és a barátok képzeletbeliek. A valódi fiókokhoz, a telefonok közötti üzenetekhez és a hívásokhoz szerver kell: lásd a projekt „docs” mappájában lévő útmutatót.
+824|Kijelentkezés
+825|Adataim exportálása
+826|Törlöd az összes NOTIIF-adatodat erről az eszközről?
+827|Fiókom és adataim törlése
+828|🔁 Tagváltás (demó)
+829|Az egy személyre jutó időtartamok kipróbálásához: tégy közzé egy fotót 5 mp-re Céline és Thomas számára, majd válts köztük.
+830|Most te vagy: {name}.
+831|A NOTIIF letiltotta a képernyőfotót
+832|NOTIIF logó
+833|éppen most
+834|{n} perccel ezelőtt
+835|{n} órával ezelőtt
+836|Arcok
+837|Kezek
+838|Szívek
+839|Ünnep és természet
+840|Emojik bezárása
+841|Törlöd: {what}?
+842|Ez a művelet nem vonható vissza.
+843|Megtartás
+844|NOTIIF — A te köröd. A te pillanataid.

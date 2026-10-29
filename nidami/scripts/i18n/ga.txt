@@ -1,0 +1,845 @@
+0|Baile
+1|Cairde
+2|Grúpaí
+3|Teachtaireachtaí
+4|Glaonna
+5|Grianghraif
+6|Cluichí
+7|Imeachtaí
+8|Comhroinnt
+9|Fógraí
+10|Próifíl
+11|Eolas dlíthiúil
+12|Socruithe
+13|Glaonna fuaime agus físe
+14|Tá freastalaí nasctha (WebRTC) ag teastáil le haghaidh glaonna. Beidh siad ann nuair a bheidh freastalaí NOTIIF ar siúl.
+15|Do chiorcal. Do chuimhneacháin.
+16|Cruthaigh
+17|Mo phróifíl
+18|Ar ais
+19|Gach roghchlár
+20|Nascleanúint
+21|Cruthaigh: scéal nó postáil. Brúigh go fada le haghaidh físeán féinghlacadh
+22|Tuilleadh
+23|Mo chiorcal
+24|Meáin agus cluichí
+25|Mo chuntas
+26|Cuireadh chuig NOTIIF
+27|An gcuirfidh tú {name} leis?
+28|Seol an iarratas
+29|Níl an cód seo ann ar an ngléas seo. Sa mhodh taispeána, ní chomhroinntear cuntais idir gléasanna go fóill: tiocfaidh sin leis an bhfreastalaí.
+30|Níos déanaí
+31|Cad ba mhaith leat a chomhroinnt?
+32|✨ Scéal (imíonn sé leis féin)
+33|📝 Postáil
+34|Mo ghrúpaí
+35|Ag teacht
+36|Níl aon imeacht ann.
+37|Imir leis an teaghlach
+38|Lean ar aghaidh le hApple
+39|Lean ar aghaidh le Google
+40|Lean ar aghaidh le Facebook
+41|Lean ar aghaidh le Snapchat
+42|Teastaíonn conradh forbróra ó Snapchat (Snap Kit). Ní mór é a iarraidh sula gcuirtear i ngníomh é.
+43|Teastaíonn údarú ón Stát ó FranceConnect (déantar an t-iarratas ar datapass.api.gouv.fr).
+44|Féiniúlacht dhigiteach La Poste
+45|Teastaíonn comhpháirtíocht le La Poste le haghaidh féiniúlacht dhigiteach La Poste.
+46|Níl an freastalaí ar fáil.
+47|Tharla earráid.
+48|Cruthaíodh an cuntas.
+49|Cruthaíodh an cuntas. Oscail an ríomhphost deimhnithe a sheolamar díreach, agus tar ar ais chun logáil isteach.
+50|Logáilte isteach.
+51|Mise
+52|Buan
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Croíthe
+56|❤️ Báisteach croíthe!
+57|😘 Póga
+58|😘 Póga móra!
+59|❄️ Sneachta
+60|❄️ Tá sé ag cur sneachta!
+61|🎆 Tinte ealaíne
+62|🎆 Tinte ealaíne!
+63|👻 Taibhse
+64|👻 Bú!
+65|🔥 Lasracha
+66|🔥 Tá sé te!
+67|🫧 Builgíní
+68|🫧 Builgíní!
+69|🎂 Cóisir
+70|🎂 Táimid ag ceiliúradh!
+71|🌧️ Báisteach
+72|🌧️ Tá sé ag cur báistí!
+73|⛈️ Stoirm
+74|⛈️ Tá toirneach ann!
+75|🚀 Roicéad
+76|🚀 Tosaigh!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Racht gáire
+80|😂 Tá mé básaithe le gáire!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Búm
+84|💣 Búm!
+85|🎂 Lá breithe
+86|🎂 Lá breithe sona duit!
+87|🎂 Lá breithe 2
+88|🤭 Broim
+89|🤭 Broim!
+90|💨 Broim ghaoithe
+91|💨 Prff!
+92|🤮 Urlacan
+93|🤮 Yuck!
+94|Criostal
+95|Fáinne an lae
+96|Leoithne
+97|Glioscarnach
+98|Cósta
+99|Ciorcal
+100|Maidin
+101|Ceann ar bith
+102|Lag
+103|Measartha
+104|Láidir
+105|Tá cuimhne an ghléis lán: scrios sean-ghrianghraif.
+106|Earráid.
+107|Is féidir an t-ainm úsáideora a athrú uair amháin amháin, agus rinne tú sin cheana.
+108|Is íocaíocht atá in athrú an ainm úsáideora (an tairiscint „Plus”). Níl an íocaíocht ceangailte go fóill: chun triail a bhaint as, cuir „Plus (réamhamharc)” ar siúl sna Socruithe.
+109|Ainm úsáideora: 3 go 20 carachtar, litreacha beaga, uimhreacha, ponc nó fobhrú.
+110|Tá an t-ainm úsáideora seo in úsáid cheana.
+111|Athraíodh an t-ainm úsáideora. Tá an t-athrú seo deiridh.
+112|Fáilte go dtí mo nead 🪺
+113|Haigh! Fáilte! 🌳
+114|Teaghlach
+115|Cé atá ag teacht don lón Dé Domhnaigh?
+116|Lón teaghlaigh
+117|Tugann gach duine béile beag leis.
+118|Ag teach mhamó
+119|Fad neamhbhailí.
+120|Tá do chuntas á athbhreithniú mar gheall ar thuairiscí.
+121|Ní fheicfeadh aon duine an phostáil seo: roghnaigh faighteoirí eile.
+122|Ní fheicfeadh aon duine an albam seo: roghnaigh faighteoirí eile.
+123|Albam
+124|Chruthaigh {name} an t-albam „{slice}” duit.
+125|Níor aimsíodh an t-albam.
+126|D'fhreagair {name} le {emoji} do phostáil.
+127|Rinne {name} trácht ar do phostáil.
+128|Níor aimsíodh an duine.
+129|Is tusa é seo!
+130|Tá do chuntas á athbhreithniú mar gheall ar thuairiscí: ní féidir leat iarratais a sheoladh faoi láthair.
+131|An iomarca iarratas inniu (15 ar a mhéad). Bain triail eile as amárach.
+132|Ní féidir an t-iarratas a sheoladh.
+133|Is cara leat {name} cheana.
+134|Seoladh an t-iarratas cheana.
+135|Tá {name} ag iarraidh bheith ina chara agat.
+136|Iarratas seolta chuig {name}.
+137|Cód anaithnid (sa mhodh taispeána, ní bhíonn ann ach cuntais an ghléis seo).
+138|3 go 20 carachtar: litreacha, uimhreacha, _ nó .
+139|Sábháladh an t-ainm úsáideora.
+140|Níor aimsíodh é.
+141|Roghnaigh cara amháin ar a laghad (nár chuir an t-údar bac air).
+142|Tá iarratas ar feitheamh cheana.
+143|Tá {name} ag iarraidh cead do phostáil a chomhroinnt.
+144|Iarratas seolta. Is é an t-údar a chinneann.
+145|Dhiúltaigh {name} don chomhroinnt.
+146|Ghlac {name} leis an gcomhroinnt.
+147|Chomhroinn {name} ábhar leat.
+148|Tharraing {name} siar an chomhroinnt: d'imigh sé i ngach áit.
+149|Ghlac {name} le d'iarratas.
+150|Chuir {name} leis an ngrúpa „{name2}” thú.
+151|B'fhéidir gur bhain {name} triail as ceann de d'ábhar a ghabháil.
+152|Tá {name} ag tabhairt cuireadh duit: {title}.
+153|Tá {name} ag tabhairt cuireadh duit chuig cluiche X agus O.
+154|Tá an físeán ró-mhór: 3 MB ar a mhéad go fóill (thart ar 10 soicind).
+155|Cuireadh an físeán leis.
+156|Earráid
+157|Cuireadh an grianghraf leis.
+158|Roghnaigh grianghraf nó físeán.
+159|Comhad do-léite.
+160|Oscail an físeán
+161|Oscail an grianghraf
+162|Grianghraf
+163|🔒 Príobháideach: tusa amháin
+164|👥 Comhroinnte le: {n}
+165|👥 Albam {name}
+166|Ar ais chuig albaim
+167|An scriosfaidh tú an t-albam seo agus gach rud ann, fiú dóibh siúd a fhéachann air?
+168|Scrios an t-albam
+169|Ag lódáil…
+170|Cuir grianghraf nó físeán leis
+171|Albam folamh: cuir an chéad ghrianghraf nó físeán leis.
+172|Níl aon rud san albam seo go fóill.
+173|🔒 Na rialacha céanna is atá i ngach áit: comhartha uisce le d'ainm, scáileáin bhlocáilte san aip Android, gan aon chomhroinnt gan toiliú an údair.
+174|Mo fhíseáin
+175|Roghnaigh an físeán ina dhiaidh sin.
+176|Grianghraif agus físeáin
+177|📷 Grianghraif
+178|🎬 Físeáin
+179|🗂 Albaim
+180|Mo ghrianghraif
+181|Taispeánfar do ghrianghraif fhoilsithe anseo.
+182|Comhroinnte liom (buan)
+183|Faic go fóill.
+184|Cuireadh an físeán leis (príobháideach, in „Mo fhíseáin”).
+185|Cuir físeán leis
+186|Níl aon fhíseán ann go fóill. Gearr go fóill (thart ar 10 soicind, 3 MB ar a mhéad). Tiocfaidh físeáin níos faide leis an bhfreastalaí.
+187|Chun físeán a chomhroinnt le cairde, cuir i albam comhroinnte é (an cluaisín Albaim).
+188|Albam nua
+189|Príobháideach
+190|Comhroinnte le: {length}
+191|Ó {name}
+192|· {count, plural, one{# mír} two{# mhír} few{# mhír} many{# mír} other{# mír}}
+193|Níl aon albam ann. Cruthaigh ceann, príobháideach nó comhroinnte le cairde.
+194|Ainm (m.sh. Laethanta saoire 2026)
+195|🔒 Príobháideach
+196|👥 Mo chairde go léir
+197|✅ Cairde roghnaithe
+198|Ní fheicfidh ach tusa é.
+199|Líon na gcarad a bheidh in ann é a fheiceáil: {n}. Ní fheiceann ach do chairde é agus ní féidir le haon duine é a chomhroinnt níos faide gan do thoiliú.
+200|Cruthaigh an t-albam
+201|✅ Aip suiteáilte
+202|Tá tú á húsáid mar fhíor-aip cheana.
+203|📲 Suiteáil an aip
+204|Suiteáil ar an ngléas seo
+205|Íoslódáil an aip Android
+206|Ar iPhone agus iPad: tapáil
+207|Comhroinn
+208|⬆️ ansin
+209|„Cuir leis an scáileán baile”
+210|Oscail roghchlár an bhrabhsálaí (⋮) agus roghnaigh „Suiteáil an aip” nó „Cuir leis an scáileán baile”.
+211|Do chiorcal.
+212|Do chuimhneacháin.
+213|Líonra príobháideach do mhuintire: teaghlach, cairde, comhghleacaithe, foireann, compántas amharclainne nó club. Gan fógraí, gan strainséirí, gan comhroinnt amach.
+214|Comhroinn le cibé duine is mian leat
+215|Grianghraif, físeáin agus téacsanna do na daoine a roghnaíonn tú amháin.
+216|Scéalta a imíonn
+217|24 uair nó cúpla soicind le haghaidh grianghraif thaimhsithe.
+218|Teachtaireachtaí, teachtaireachtaí gutha agus maisíochtaí
+219|Comhrá i ngrúpa nó go príobháideach agus seol maisíochtaí le fuaim.
+220|Téigh isteach i NOTIIF
+221|Chun NOTIIF a bheith agat mar fhíor-aip ar do ghuthán:
+222|Suiteáil an aip
+223|Gníomhófar an logáil isteach seo nuair a bheidh an freastalaí ceangailte (féach an treoir).
+224|na coinníollacha úsáide agus an polasaí príobháideachta
+225|Cruthaigh mo chuntas
+226|Logáil isteach
+227|— nó —
+228|D'ainm nó d'ainm úsáideora
+229|Ainm
+230|Ainm úsáideora @ (roghnach): is féidir é a athrú uair amháin amháin, íocaíocht
+231|Ainm úsáideora
+232|Do ríomhphost
+233|Pasfhocal (8 gcarachtar ar a laghad)
+234|Pasfhocal
+235|Glacaim leis na coinníollacha
+236|Táim 15 bliana d'aois nó níos mó agus glacaim leis na cáipéisí: {legalBtn}.
+237|Tá cuntas agam cheana
+238|Níl cuntas agam go fóill
+239|Scríobh d'ainm nó d'ainm úsáideora thuas ar dtús.
+240|Scríobh d'ainm nó d'ainm úsáideora ar dtús.
+241|Cuir tic sa bhosca „Táim 15 bliana d'aois nó níos mó” chun leanúint ar aghaidh.
+242|Cuir tic sa bhosca coinníollacha.
+243|🧪 Mód taispeána
+244|Teastaíonn freastalaí le haghaidh fíor-chuntais (ríomhphost, Google, Apple, Facebook, FranceConnect…) nach bhfuil ceangailte go fóill. Faoi láthair is féidir leat triail a bhaint as an aip ar an ngléas seo le cairde samhailteacha.
+245|D'ainm nó d'ainm úsáideora (taispeántas)
+246|Bain triail as an mód taispeána
+247|Faoi láthair is féidir leat triail a bhaint as an aip sa mhód taispeána ar an ngléas seo le cairde samhailteacha.
+248|Tuigim, bainfidh mé triail as an mód taispeána
+249|Cáipéisí dlíthiúla
+250|🔒 Teachtaireacht thaimhsithe
+251|🎤 Teachtaireacht ghutha
+252|📷 Grianghraf
+253|Teachtaireachtaí tapa
+254|Ar ais chuig an liosta
+255|Oscail mór
+256|Dún
+257|💬 Comhráite
+258|👥 Mo chairde
+259|Scríobh teachtaireacht
+260|Níl aon chara ann go fóill. Cuir leis iad ón gcluaisín Cairde.
+261|Comhrá nua
+262|Níl aon chomhrá ann. Roghnaigh cara in „Mo chairde”.
+263|Feicthe uair amháin
+264|Teachtaireacht thaimhsithe
+265|· oscail mór
+266|Emoji
+267|Do theachtaireacht…
+268|Teachtaireacht thapa
+269|Seol
+270|Scáileán blocáilte: cuirfear an t-údar ar an eolas.
+271|Teachtaireacht feicthe uair amháin
+272|🔥 Feicthe uair amháin
+273|Dún (imíonn sé)
+274|Grianghraf feicthe uair amháin
+275|Ábhar folaithe
+276|Braitheadh scáileán gafa nó athrú fuinneoige
+277|Imíonn an teachtaireacht seo nuair a dhúnann tú í. Is féidir grianghraf a thógáil i gcónaí le gléas eile: tabhair meas don phríobháideacht.
+278|🔎 Cuardaigh i mo chomhráite
+279|Níl aon chomhrá ann: scríobh chuig cara ó „Cairde”.
+280|📹 Ag tosú físghlao: {url}
+281|Físghlao tosaithe: seoladh an nasc sa chomhrá.
+282|Tosaigh físghlao
+283|📹 Físghlao
+284|Teachtaireacht
+285|🔥 Teachtaireacht feicthe agus imithe
+286|🔥 Teachtaireacht le feiceáil uair amháin · tapáil chun oscailt
+287|(curtha in eagar)
+288|⏱ {left} s
+289|⏱ taimhsithe {secs} s tar éis léamh
+290|🔥 amharc aonuaire ·
+291|feicthe ✓
+292|🔒 Teachtaireacht thaimhsithe · tapáil chun léamh ({secs} s)
+293|⌛ Tá an teachtaireacht imithe in éag
+294|· ✓✓ léite
+295|· ✓ seolta
+296|Abair haigh 👋
+297|Roghanna seolta
+298|Dún na roghanna
+299|Fad na teachtaireachta
+300|♾️ Buan
+301|⏱ 10 s
+302|⏱ 1 nóim
+303|📷 Seol grianghraf
+304|🛡 Comhartha uisce
+305|ar siúl
+306|bainte
+307|Maisíochtaí
+308|Íomhá do-léite.
+309|Roghanna: fad, grianghraf, maisíochtaí
+310|Cuir an teachtaireacht in eagar…
+311|Cé mhéad taobh atá ar heicseagán?
+312|Cad é príomhchathair na hIodáile?
+313|Milano
+314|Napoli
+315|An Róimh
+316|Torino
+317|Cén t-ainmhí is tapúla ar thalamh?
+318|Leon
+319|Síota
+320|Capall
+321|Antalóp
+322|Cé mhéad nóiméad atá in uair go leith?
+323|Cén pláinéad is gaire don Ghrian?
+324|Véineas
+325|Mars
+326|An Domhan
+327|Mearcair
+328|As cén toradh a dhéantar leann úll?
+329|Piorra
+330|Úll
+331|Fíonchaora
+332|Silín
+333|Cé mhéad imreoir atá ag foireann sacair ar an bpáirc?
+334|Cén dath a fhaighimid trí ghorm agus buí a mheascadh?
+335|Glas
+336|Oráiste
+337|Corcra
+338|Donn
+339|Cén aigéan is mó?
+340|An tAtlantach
+341|An tIndiach
+342|An tAigéan Artach
+343|An Aigéan Ciúin
+344|Cé mhéad lá atá i mí Feabhra i mbliain bhisigh?
+345|{nm} (✕) in aghaidh {nm2} (◯)
+346|Cearnóg {v1}
+347|Cluiche cothrom 🤝
+348|🏆 Bhuaigh {name}!
+349|Do sheal
+350|Seal {name} é (sna Socruithe, athraigh an ball chun imirt ina áit sa taispeántas)
+351|⭕ X agus O do bheirt
+352|🧠 Tráth na gceist
+353|♟️ Ficheall · go luath
+354|🃏 Cártaí · go luath
+355|Tabhair cuireadh do chara
+356|Cluiche tosaithe le {name}.
+357|Níl aon chluiche ann. Tabhair cuireadh do chara thuas.
+358|Bravo! {pts}/{length}
+359|Do iomlán:
+360|pointe
+361|Imir arís
+362|Ceist {v1}/{length} · Scór {pts}
+363|Ar aghaidh
+364|Críochnaigh
+365|An scriosfaidh tú i ngach áit é, fiú dóibh siúd a fuair é?
+366|Scrios
+367|Freagair le {e}
+368|🔒 Grianghraf cosanta: comhartha uisce le d'ainm, scáileáin bhlocáilte san aip Android, comhroinnt le toiliú an údair amháin.
+369|Ar fáil go luath
+370|Go mall: maisíocht amháin in aghaidh an tsoicind.
+371|Maisíocht {label}
+372|Maisíocht saincheaptha {name}
+373|Tuilleadh maisíochtaí
+374|＋ Tuilleadh
+375|Gach maisíocht
+376|Cuir tic le 4 mhaisíocht chun iad a choinneáil chun tosaigh ({length}/4). Bain triail astu le „Seol”.
+377|Coinnítear chun tosaigh: {label}
+378|4 ar a mhéad: bain tic de cheann amháin ar dtús.
+379|Fág maisíocht amháin ar a laghad chun tosaigh.
+380|Mo mhaisíochtaí saincheaptha
+381|Scrios {name}
+382|＋ Cruthaigh mo mhaisíocht (íomhá + mo ghuth)
+383|Níl an micreafón ar fáil nó diúltaíodh dó.
+384|Ainmnigh do mhaisíocht.
+385|Cuir íomhá nó fuaim leis.
+386|6 mhaisíocht shaincheaptha ar a mhéad.
+387|Maisíocht curtha leis.
+388|Ainm na maisíochta (m.sh. Mo gháire)
+389|Ainm na maisíochta
+390|Íomhá
+391|Ag taifeadadh… {left} s (tapáil chun stopadh)
+392|Taifead arís
+393|Taifead (3 s ar a mhéad)
+394|Tá an fhuaim rómhór (450 kB ar a mhéad, thart ar 10 soicind).
+395|📁 Roghnaigh comhad fuaime
+396|▶ Bain triail as
+397|Cuir leis
+398|Scéal
+399|Chonaic:
+400|aon duine go fóill
+401|Freagair go príobháideach…
+402|↩️ Freagra ar do scéal: {reply}
+403|Freagra seolta go príobháideach.
+404|Freagairt seolta {e}
+405|Mo chairde go léir
+406|Grúpa
+407|Cairde roghnaithe
+408|Gach duine seachas…
+409|Liosta
+410|Mise amháin
+411|Roghnaigh íomhá.
+412|Ní féidir an íomhá seo a léamh.
+413|Scéal foilsithe gan teorainn ama.
+414|Scéal taimhsithe foilsithe.
+415|Scéal foilsithe ar feadh 24 uair.
+416|Foilsithe!
+417|✨ Mo scéal
+418|📝 Postáil nua
+419|Imíonn an scéal leis féin (tar éis 24 uair de réir réamhshocraithe) agus féachtar air ar an scáileán iomlán.
+420|Cineál ábhair
+421|✏️ Téacs
+422|🎥 Físeán féinghlacadh
+423|🎤 Guth
+424|🔗 Nasc
+425|Réamhamharc
+426|Bain an grianghraf
+427|📷 Roghnaigh grianghraf
+428|🗑 Scrios
+429|✅ Foilsigh
+430|🔁 Tosaigh arís
+431|🎥 Scannán thú féin (10 s ar a mhéad)
+432|🎤 Taifead teachtaireacht ghutha (30 s ar a mhéad)
+433|Greamaigh nasc: seinnliosta Spotify, Deezer nó YouTube, físeán, Instagram, TikTok, Leboncoin…
+434|Nasc le comhroinnt
+435|Ní cosúil go bhfuil an nasc seo bailí.
+436|Scríobh do scéal…
+437|Téacs an scéil
+438|Cad atá nua ag do mhuintir?
+439|Cuir fotheideal leis (roghnach)…
+440|Téacs
+441|Giúmar
+442|Cúlra {v1}
+443|Gan giúmar
+444|Cé a fheiceann é?
+445|Fad an scéil
+446|24 uair
+447|Gan teorainn
+448|Taimhsithe
+449|Am taispeána
+450|Eile…
+451|Soicindí (1 go 999)
+452|Fad saincheaptha i soicindí
+453|Grúpa
+454|Liosta
+455|＋ Cruthaigh liosta
+456|Ainm an liosta (m.sh. Comhghleacaithe, Sacar, Amharclann)
+457|Ainm an liosta
+458|Cuir cairde leis ar dtús chun iad a chur i liosta.
+459|Cealaigh
+460|Liosta cruthaithe.
+461|Cruthaigh an liosta
+462|Cuir isteach líon soicindí idir 1 agus {MAX_CUSTOM_SECS}.
+463|Infheicthe duitse amháin.
+464|{audLabel} · líon daoine: {count}
+465|· {fmtSecs} in aghaidh an duine ón oscailt
+466|Foilsigh
+467|Postáil thaimhsithe
+468|An t-am atá fágtha
+469|{ceil} s
+470|Grianghraf taimhsithe
+471|Má dhúnann tú, leanann an t-am ar aghaidh. Is féidir grianghraf a thógáil i gcónaí le gléas eile.
+472|Tá d'am istigh
+473|Tá d'am amhairc istigh.
+474|taimhsithe
+475|Tá {n} s fágtha agat.
+476|Beidh {fmtSecs} agat ón oscailt.
+477|Lean ar aghaidh
+478|Oscail
+479|Roghanna
+480|↪ Comhroinnte ag
+481|le toiliú {name}
+482|An scriosfaidh tú an phostáil seo? Imeoidh na comhroinnt údaraithe freisin.
+483|Scrios i ngach áit
+484|An tarraingeoidh tú siar an chomhroinnt seo? Imeoidh sí ó {name} agus óna chairde.
+485|Tarraing siar an chomhroinnt seo
+486|An stopfaidh tú de chomhroinnt?
+487|Stop mo chomhroinnt
+488|Méadaigh an phostáil
+489|Déan trácht
+490|Chonaic {length}/{length2}:
+491|↪ {n, plural, one{# chomhroinnt údaraithe} two{# chomhroinnt údaraithe} few{# chomhroinnt údaraithe} many{# gcomhroinnt údaraithe} other{# comhroinnt údaraithe}}
+492|agatsa (féach „Comhroinnt”).
+493|Chonaic
+494|· Lucht féachana na comhroinnte:
+495|↪ Iarr comhroinnt
+496|Tapáil an grianghraf chun freagairt nó trácht a dhéanamh
+497|Tapáil an grianghraf chun freagairt
+498|Tapáil an grianghraf chun trácht a dhéanamh
+499|Postáil
+500|Tuilleadh emoji
+501|Tuilleadh:
+502|Níl aon trácht ann go fóill. Bí ar an gcéad duine!
+503|Freagair
+504|Emoji
+505|Do fhreagra…
+506|Scríobh trácht…
+507|Trácht
+508|Gach cara
+509|Mise amháin
+510|Cairde roghnaithe
+511|Cairde seachas…
+512|Gach rud
+513|Mo phostálacha
+514|Níl aon rud anseo go fóill. Foilsigh do chéad nóiméad ✨
+515|✏️ Scríobh téacs
+516|Leid: coinnigh an cnaipe síos agus osclaíonn an ceamara láithreach.
+517|Iarr comhroinnt
+518|Is leis seo an t-ábhar seo
+519|. Cinneann an duine seo an gcomhaontaíonn sé. Má chomhaontaíonn, feicfidh na cairde roghnaithe
+520|an t-ábhar bunaidh
+521|(ní cóip) leis na faid chéanna, agus beidh {name} in ann
+522|an chomhroinnt a tharraingt siar am ar bith
+523|: imeoidh sé ansin ó gach duine.
+524|Comhroinn le:
+525|Níl aon chara eile agat.
+526|Teachtaireacht ghearr chuig an údar (roghnach)
+527|Seol iarratas chuig {name}
+528|🌍 Teanga
+529|Roghnaigh teanga NOTIIF. Athraíonn sí láithreach agus cuimhnítear ar do rogha.
+530|Teanga reatha
+531|Cuardaigh teanga
+532|Teanga
+533|Teanga athraithe.
+534|Níor aimsíodh aon teanga.
+535|Faoi láthair níl na cáipéisí dlíthiúla ar fáil ach i bhFraincis.
+536|Leagan {LEGAL_VERSION}
+537|Vicipéid
+538|Nasc
+539|Seinnteoir {name}
+540|Laghdaigh
+541|Méadaigh
+542|Stop an ceol
+543|Nasc {name}
+544|Laghdaigh agus lean ort ag éisteacht
+545|⌄ Laghdaigh
+546|Oscail ar leith
+547|Ní féidir an leathanach seo a thaispeáint laistigh de NOTIIF.
+548|Oscail {name}
+549|Oscail an nasc {name}
+550|🎧 Éist i NOTIIF (ní chloiseann ach tusa)
+551|▶ Féach anseo, i NOTIIF
+552|Oscail an nasc
+553|Níl an ceamara nó an micreafón ar fáil nó diúltaíodh dó.
+554|🎥 Tosaigh
+555|🎤 Tosaigh
+556|({max} s ar a mhéad)
+557|⏹ Críochnaigh · {left} s
+558|📸 Grianghraf
+559|Coinnigh an cnaipe síos chun labhairt.
+560|Coinnigh síos chun teachtaireacht ghutha a thaifeadadh
+561|🔴 Lig uait chun seoladh
+562|Ceamara
+563|Tosaigh arís
+564|Seol ➤
+565|Dún an ceamara
+566|Athraigh an ceamara
+567|s / {max} s
+568|Súmáil
+569|Súmáil {z}×
+570|{replace}×
+571|Físeán
+572|Tóg grianghraf
+573|Stop
+574|Scannánaigh
+575|Tapáil chun grianghraf a thógáil
+576|Tapáil chun stopadh
+577|Tapáil chun tosú ag scannánú ({max} s ar a mhéad)
+578|Coinnigh an micreafón síos chun labhairt.
+579|🔴 {mm} · lig uait chun críochnú
+580|Coinnigh an micreafón síos chun labhairt ({max} s ar a mhéad)
+581|Go dtí go mbainfidh mé é
+582|Mar an bunchóip
+583|Cá fhad a fhanann an chomhroinnt infheicthe?
+584|Am taispeána in aghaidh an duine
+585|🔒 Ní féidir an t-ábhar seo a fhoilsiú in áit eile: tá comhartha uisce air, tá scáileáin bhlocáilte (aip Android) agus teastaíonn do thoiliú le haghaidh gach comhroinnt nua. Is féidir leat é a tharraingt siar am ar bith.
+586|Comhroinnt údaraithe. Is féidir leat é a tharraingt siar am ar bith.
+587|Deimhnigh an t-údarú
+588|Údaraigh…
+589|Diúltaigh
+590|ábhar scriosta
+591|Ní féidir le haon duine d'ábhar a athfhoilsiú gan do thoiliú. Agus fiú tar éis toilithe,
+592|tá smacht iomlán agat
+593|: má tharraingíonn tú siar an chomhroinnt nó má scriosann tú an phostáil, imíonn sí ó gach duine lenar comhroinneadh í.
+594|Iarratais le cur i gcrích ({length})
+595|ba mhaith leis comhroinnt
+596|le: {join} · {ago}
+597|Níl aon iarratas ar feitheamh.
+598|Comhroinnt a d'údaraigh mé ({length})
+599|chomhroinn {nm} le: {join}
+600|An tarraingeoidh tú siar an chomhroinnt seo? Imeoidh sí ó gach duine.
+601|Comhroinnt tarraingthe siar i ngach áit.
+602|Tarraing siar i ngach áit
+603|Níl aon chomhroinnt ghníomhach ann.
+604|Mo iarratais agus mo chomhroinnt ({length})
+605|ó {nm}
+606|{v1} · le: {join}
+607|Níor iarr tú aon rud a chomhroinnt.
+608|Cód QR
+609|🌍 Poiblí
+610|Is féidir le gach duine mé a aimsiú de réir ainm nó ainm úsáideora.
+611|👥 Teoranta
+612|Ach amháin le m'ainm úsáideora cruinn nó trí chairde mo chairde.
+613|🔒 Dofheicthe
+614|Ní aimseoidh aon duine mé. Ach amháin má thugaim mo chód QR nó mo chód.
+615|Mo chód QR
+616|Oscail nó méadaigh an cód QR
+617|Cliceáil ar an gcód QR chun an leathanach a oscailt
+618|Tapáil ar an gcód QR chun é a mhéadú
+619|Taispeáin do dhuine gar duit é: scanann sé le ceamara an ghutháin é.
+620|Nasc cóipeáilte
+621|Theip ar an gcóipeáil
+622|Cóipeáil mo nasc
+623|Sábháil an íomhá
+624|An gcruthóidh tú cód nua? Stopfaidh an seanchód QR ag obair.
+625|Cód nua cruthaithe.
+626|Athnuaigh
+627|Cé a fhéadfaidh mé a aimsiú?
+628|Socrú sábháilte.
+629|Sábháil an t-ainm úsáideora
+630|Ní féidir leis an mbrabhsálaí seo cóid QR a léamh. Úsáid ceamara an ghutháin: osclaíonn nasc NOTIIF leis féin.
+631|Níl an ceamara ar fáil nó diúltaíodh dó.
+632|Scan cód QR
+633|Tar liom ar NOTIIF, líonra príobháideach ár muintire (teaghlach, cairde, comhghleacaithe, club…), gan fógraí. Suiteáil an aip anseo: {inviteLink} (mo chód: {code})
+634|Teagmhálaí
+635|Níl aon teagmhálaí ann le huimhir nó ríomhphost.
+636|Diúltaíodh nó cealaíodh rochtain ar theagmhálaithe.
+637|Teachtaireacht cóipeáilte: greamaigh san áit is mian leat í.
+638|Tabhair cuireadh do mo mhuintir
+639|📇 Roghnaigh as mo theagmhálaithe
+640|Ar an nguthán seo nó sa bhrabhsálaí seo, ní féidir leis an aip do theagmhálaithe a léamh. Cuir uimhir nó ríomhphost leis de láimh nó comhroinn an nasc.
+641|Uimhir nó ríomhphost
+642|Tabhair cuireadh do {name}
+643|Seol an cuireadh:
+644|Tar liom ar NOTIIF
+645|Ríomhphost
+646|🔗 Comhroinn nasc an chuiridh
+647|🔒 Ní stóráiltear do theagmhálaithe agus ní sheoltar chuig NOTIIF iad: ní úsáidtear iad ach chun teachtaireacht a scríobh ó d'fhón. Tiocfaidh iompórtáil ó Google nó Facebook le ceangal an fhreastalaí.
+648|Iarratais faighte ({length})
+649|Is cara leat {name} anois.
+650|Glac leis
+651|Mo chód:
+652|Cód cóipeáilte
+653|Cóipeáil
+654|Cód duine gar duit (NID-…)
+655|Cód cuiridh
+656|Tabhair cuireadh
+657|📇 Tabhair cuireadh as mo theagmhálaithe
+658|Mód taispeána: cóid le triail
+659|(daoine samhailteacha)
+660|Mo chairde ({length})
+661|Roghnaigh liosta
+662|Gach duine ({length})
+663|＋ Liosta nua
+664|Roghanna do {name}
+665|Níl aon duine sa liosta seo.
+666|Níl aon chara ann go fóill.
+667|Tuairiscigh an duine seo
+668|Cén fáth? Cuireann trí thuairisc ó dhaoine éagsúla an cuntas ar fionraí go huathoibríoch le linn an athbhreithnithe.
+669|Próifíl bhréige
+670|Díol, fógraíocht nó iarraidh gan iarraidh
+671|Calaois
+672|Tairiscintí gnéasacha nó escort
+673|Ábhar mídhleathach
+674|Ciapadh
+675|Eile
+676|Go raibh maith agat, taifeadadh an tuairisc.
+677|💬 Scríobh
+678|An mbainfidh tú {name} de do chairde?
+679|Bain de na cairde
+680|Tuairiscigh
+681|An gcuirfidh tú bac ar {name}? Ní fheicfidh sé d'ábhar a thuilleadh.
+682|Bac curtha.
+683|Cuir bac
+684|Mo liostaí
+685|M.sh. „Col ceathracha”, „Comhghleacaithe”… chun a roghnú go tapa cé a fheiceann do phostálacha.
+686|Daoine blocáilte
+687|Bain an bac
+688|Liosta nua
+689|🔎 Aimsigh duine éigin (ainm nó @ainm úsáideora)
+690|Cuardaigh
+691|Níor aimsíodh aon duine. Ní féidir daoine „dofheicthe” nó „teoranta” a aimsiú ach lena gcód QR, a gcód nó a n-ainm úsáideora cruinn.
+692|📜 Rialacha an ghrúpa
+693|Baill ({length})
+694|An mbainfidh tú {name} den ghrúpa?
+695|Bain
+696|An bhfágfaidh tú an grúpa seo?
+697|Fág an grúpa
+698|Nua
+699|{n, plural, one{# bhall} two{# bhall} few{# bhaill} many{# mball} other{# ball}}
+700|Cruthaigh grúpa don teaghlach, do laethanta saoire, do chóisirí…
+701|Grúpa nua
+702|Emoji
+703|Ainm an ghrúpa
+704|Cur síos
+705|Rialacha an ghrúpa (roghnach)
+706|Baill (as measc do chairde)
+707|Grúpa cruthaithe.
+708|Cruthaigh an grúpa
+709|✅ Táim ag teacht
+710|❌ Níl mé ag teacht
+711|🤔 B'fhéidir
+712|Laethanta breithe, lónta teaghlaigh, laethanta saoire… cruthaigh an chéad cheann!
+713|· tharla
+714|An scriosfaidh tú an t-imeacht seo?
+715|Eagraithe ag {name}
+716|👥 Féach cé atá ag teacht
+717|✅ Ag teacht
+718|❌ Gan teacht
+719|⏳ Gan freagra
+720|Imeacht nua
+721|Ainm (m.sh. Lá breithe mhamó)
+722|Dáta agus am
+723|Áit
+724|Imeacht cruthaithe.
+725|Mo chairde
+726|Gach duine
+727|Aon duine
+728|Cuir mo phróifíl in eagar
+729|Athraigh an grianghraf
+730|Cuir grianghraf leis
+731|Bain an grianghraf
+732|Ainm úsáideora: @{handle}
+733|Athraithe cheana uair amháin: deiridh.
+734|Is féidir é a athrú uair amháin amháin agus is íocaíocht atá ann (chun próifílí bréige a theorannú).
+735|Ainm úsáideora nua
+736|Athraigh
+737|Cé a fheiceann mo ghrianghraf?
+738|Feicfidh daoine eile do chéad litir in ionad an ghrianghraif.
+739|Ainm nó ainm úsáideora
+740|Stádas
+741|Do stádas
+742|Do bheathaisnéis ghairid
+743|Próifíl nuashonraithe.
+744|Sábháil
+745|Roghnaigh cad is féidir le do chairde a dhéanamh le do ghrianghraif, d'fhíseáin agus do théacsanna.
+746|Moltaí agus freagairtí
+747|Má tá sé múchta, ní féidir le haon duine freagairt do do phostálacha agus ní thaispeántar aon chuntar.
+748|Tráchtanna
+749|Má tá sé múchta, ní féidir le haon duine trácht a dhéanamh ar do phostálacha.
+750|{n, plural, one{# phostáil} two{# phostáil} few{# phostáil} many{# bpostáil} other{# postáil}}
+751|{n, plural, one{# chara} two{# chara} few{# chairde} many{# gcarad} other{# cara}}
+752|Ball ó {toLocaleDateString}
+753|Cuir mo phróifíl in eagar (grianghraf, ainm, beathaisnéis)
+754|Socruithe fógraí
+755|Socruithe
+756|Marcáil gach rud mar léite
+757|🌙 Mód ciúin ar siúl: gan rabhaidh, ach fanann an liosta anseo.
+758|Aon rud nua.
+759|Ní bhíonn ábhar postála taimhsithe i bhfógraí riamh.
+760|🎵 Fuaimeanna glaonna agus creathadh
+761|Fuaim fógraí
+762|Fuaim glaonna
+763|Creathadh teachtaireachtaí
+764|Creathadh glaonna
+765|Creathann Otras ar an uasmhéid i gcónaí. Tapáil rogha chun triail a bhaint aisti.
+766|🔔 Fógraí fóin
+767|Faigh fógraí
+768|Teachtaireachtaí, iarratais cairdis, comhroinnt, imeachtaí…
+769|Fógraí fóin
+770|Fógraí ar siúl.
+771|Ceadaigh fógraí i bhfuinneog an fhóin.
+772|Fógraí diúltaithe: ceadaigh iad i socruithe an fhóin (Aipeanna > Cercle > Fógraí).
+773|Ní thacaíonn an brabhsálaí seo le fógraí. Suiteáil an aip (QR Android) nó deilbhín an scáileáin baile.
+774|Fógraí diúltaithe: ceadaigh iad i socruithe an fhóin agus bain triail eile as.
+775|Cé na fógraí ba mhaith leat a fháil?
+776|💬 Teachtaireachtaí
+777|👋 Iarratais cairdis
+778|📰 Postálacha agus scéalta
+779|🔁 Comhroinnt
+780|📅 Imeachtaí
+781|👥 Grúpaí
+782|🖼 Albaim
+783|🎮 Cluichí
+784|Fógraí: {l}
+785|Tástáil: oibríonn gach rud ✅
+786|Ní féidir an fógra tástála a thaispeáint.
+787|Seol tástáil
+788|Go hionraic: faoi láthair taispeántar fógraí nuair a bhíonn an aip oscailte nó sa chúlra. Chun iad a fháil agus an aip dúnta, teastaíonn freastalaí (seoladh cianda), pleanáilte leis na fíor-chuntais. Glaonna: go luath.
+789|Mo 4 mhaisíocht is fearr leat
+790|Taispeántar ar dtús iad sna comhráite. Fanann na cinn eile faoin gcnaipe „+”.
+791|Is fearr leat: {label}
+792|4 is fearr leat ar a mhéad: múch ceann amháin ar dtús.
+793|Fág ceann is fearr leat ar a laghad.
+794|Athshocraigh na réamhshocruithe
+795|An barra uachtarach
+796|Tá an cnaipe „Tuilleadh” (gach roghchlár) i gcónaí ar thaobh na láimhe deise ag an mbarr. Cuir suas le 4 aicearra in aice leis.
+797|Barr: {l}
+798|4 aicearra ar a mhéad: múch ceann amháin ar dtús.
+799|Fág aicearra amháin ar a laghad.
+800|An barra íochtarach
+801|Roghnaigh suas le 4 aicearra. Fanann an cnaipe „Cruthaigh” sa lár i gcónaí. Tá na roghchláir eile sa chnaipe „Tuilleadh” ag an mbarr ar dheis.
+802|Aicearra {l}
+803|Builín teachtaireachtaí
+804|Builín beag a bhogann tú áit ar bith. Nuair a thaispeántar é, cuirtear „Grúpaí” in ionad „Teachtaireachtaí” sa bharra íochtarach.
+805|Scáileán tosaigh
+806|An leathanach a osclaíonn nuair a thosaíonn NOTIIF.
+807|Téama geal
+808|Cúlra geal, bán agus tuircess.
+809|Téama dorcha
+810|Cúlra gorm oíche agus tuircess, níos boige tráthnóna.
+811|Maisíochtaí sna comhráite
+812|Scáileáin Otras le fuaim, croíthe, laethanta breithe: nuair a sheolann cara ceann, feicfidh tú agus cloisfidh tú é. Ar siúl de réir réamhshocraithe.
+813|Uaireanta ciúine
+814|Ciúnaíonn sé rabhaidh san oíche (sa mhód freastalaí).
+815|Seinm uathoibríoch físeán
+816|Do fhíseáin ghearra (go luath).
+817|🔒 Príobháideacht
+818|Gan fógraí. Gan sonraí a dhíol.
+819|Gan cnaipe comhroinnte amach, gan próifíl phoiblí.
+820|Ní féidir le haon duine thú a aimsiú gan do chód cuiridh.
+821|Ní féidir le haon aip duine údaraithe a stopadh ó ghrianghraf den scáileán a thógáil le gléas eile.
+822|🧪 Mód taispeána (ar an ngléas seo)
+823|Faoi láthair fanann do shonraí ar an ngléas seo agus tá na cairde samhailteach. Teastaíonn freastalaí le haghaidh fíor-chuntais, teachtaireachtaí idir fóin agus glaonna: féach an treoir i bhfillteán „docs” an tionscadail.
+824|Logáil amach
+825|Easpórtáil mo shonraí
+826|An scriosfaidh tú do shonraí NOTIIF go léir ón ngléas seo?
+827|Scrios mo chuntas agus mo shonraí
+828|🔁 Athraigh ball (taispeántas)
+829|Chun faid in aghaidh an duine a thriail: foilsigh grianghraf ar feadh 5 s do Céline agus Thomas, ansin athraigh eatarthu.
+830|Is tusa {name} anois.
+831|Scáileán gafa blocáilte ag NOTIIF
+832|Lógó NOTIIF
+833|díreach anois
+834|{n} nóim ó shin
+835|{n} u ó shin
+836|Aghaidheanna
+837|Lámha
+838|Croíthe
+839|Ceiliúradh agus nádúr
+840|Dún na emoji
+841|An scriosfaidh tú {what}?
+842|Ní féidir an gníomh seo a chealú.
+843|Coinnigh
+844|NOTIIF — Do chiorcal. Do chuimhneacháin.

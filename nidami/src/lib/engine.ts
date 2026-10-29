@@ -1,3 +1,4 @@
+import { t } from "../i18n";
 // ─────────────────────────────────────────────────────────────────────────────
 // Moteur de règles de NOTIIF : qui peut voir quoi, et pendant combien de temps.
 // Pur (sans écran, sans stockage) pour pouvoir être testé. Le temps vient TOUJOURS
@@ -103,7 +104,7 @@ export function feedFor(posts: Post[], userId: ID, now: number, s: Social): Post
 }
 export const storiesFor = (posts: Post[], userId: ID, now: number, s: Social) => posts.filter((p) => p.story && checkAccess(p, userId, now, s).ok).sort((a, b) => a.createdAt - b.createdAt);
 
-export const fmtSecs = (n: number) => (n === 0 ? "Permanente" : n < 60 ? `${n} s` : n % 60 === 0 ? `${n / 60} min` : `${Math.floor(n / 60)} min ${n % 60} s`);
+export const fmtSecs = (n: number) => (n === 0 ? t("Permanente") : n < 60 ? `${n} s` : n % 60 === 0 ? `${n / 60} min` : `${Math.floor(n / 60)} min ${n % 60} s`);
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 
 // ── Partage avec accord : la republication n'est qu'un lien vers l'original ─────────────────────────

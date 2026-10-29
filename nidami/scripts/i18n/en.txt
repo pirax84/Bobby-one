@@ -1,0 +1,845 @@
+0|Home
+1|Friends
+2|Groups
+3|Messages
+4|Calls
+5|Photos
+6|Games
+7|Events
+8|Shares
+9|Notifications
+10|Profile
+11|Legal
+12|Settings
+13|Audio and video calls
+14|Calls need a connection server (WebRTC). They will be added once the NOTIIF server is in place.
+15|Your circle. Your moments.
+16|Create
+17|My profile
+18|Back
+19|All menus
+20|Navigation
+21|Create: a story or a post. Long press for a video selfie
+22|More
+23|My circle
+24|Media and games
+25|My account
+26|NOTIIF invitation
+27|Add {name}?
+28|Send request
+29|This code does not exist on this device. In demo mode, accounts are not yet shared between devices: that will come with the server.
+30|Later
+31|What do you want to share?
+32|✨ A story (disappears on its own)
+33|📝 A post
+34|My groups
+35|Upcoming
+36|No events.
+37|Play with family
+38|Continue with Apple
+39|Continue with Google
+40|Continue with Facebook
+41|Continue with Snapchat
+42|Snapchat requires a developer agreement (Snap Kit). It must be requested before turning it on.
+43|FranceConnect requires State authorization (file to submit on datapass.api.gouv.fr).
+44|La Poste Digital Identity
+45|La Poste Digital Identity requires a partnership with La Poste.
+46|Server unreachable.
+47|An error occurred.
+48|Account created.
+49|Account created. Open the confirmation e-mail we just sent you, then come back and sign in.
+50|Signed in.
+51|Me
+52|Permanent
+53|📳 Shake
+54|📳 Shake!
+55|❤️ Hearts
+56|❤️ Rain of hearts!
+57|😘 Kisses
+58|😘 Big kisses!
+59|❄️ Snow
+60|❄️ It's snowing!
+61|🎆 Fireworks
+62|🎆 Fireworks!
+63|👻 Ghost
+64|👻 Boo!
+65|🔥 Flames
+66|🔥 It's getting hot!
+67|🫧 Bubbles
+68|🫧 Bubbles!
+69|🎂 Party
+70|🎂 Party time!
+71|🌧️ Rain
+72|🌧️ It's raining!
+73|⛈️ Storm
+74|⛈️ Thunderclap!
+75|🚀 Rocket
+76|🚀 Liftoff!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Giggles
+80|😂 Dying of laughter!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Boom
+84|💣 Boom!
+85|🎂 Birthday
+86|🎂 Happy birthday!
+87|🎂 Birthday 2
+88|🤭 Burp
+89|🤭 Burp!
+90|💨 Fart
+91|💨 Toot!
+92|🤮 Vomit
+93|🤮 Yuck!
+94|Crystal
+95|Dawn
+96|Breeze
+97|Glow
+98|Shore
+99|Circle
+100|Morning
+101|None
+102|Light
+103|Medium
+104|Strong
+105|Device memory is full: delete some old photos.
+106|Error.
+107|The username can only be changed once, and you have already done it.
+108|Changing your username is a paid feature ("Plus" plan). Payment is not connected yet: turn on "Plus (demo)" in Settings to try it.
+109|Username: 3 to 20 characters, lowercase letters, digits, dot or underscore.
+110|This username is already taken.
+111|Username changed. This change is final.
+112|Welcome to my nest 🪺
+113|Hi! Welcome! 🌳
+114|Family
+115|Who's here on Sunday for the meal?
+116|Family meal
+117|Everyone brings a small dish.
+118|At Grandma's
+119|Invalid duration.
+120|Your account is being reviewed following reports.
+121|Nobody will be able to see this post: choose other recipients.
+122|Nobody will be able to see this album: choose other recipients.
+123|Album
+124|{name} created the album "{slice}" for you.
+125|Album not found.
+126|{name} reacted {emoji} to your post.
+127|{name} commented on your post.
+128|Person not found.
+129|That's you!
+130|Your account is being reviewed following reports: you cannot send requests for now.
+131|Too many requests today (15 maximum). Try again tomorrow.
+132|Unable to send the request.
+133|{name} is already your friend.
+134|Request already sent.
+135|{name} sent you a friend request.
+136|Request sent to {name}.
+137|Unknown code (in demo mode, only accounts on this device exist).
+138|3 to 20 characters: letters, digits, _ or .
+139|Username saved.
+140|Not found.
+141|Choose at least one friend (who is not blocked by the author).
+142|Request already pending.
+143|{name} asks to share your post.
+144|Request sent. The author decides.
+145|{name} declined the share.
+146|{name} accepted the share.
+147|{name} shared content with you.
+148|{name} withdrew the share: it has disappeared everywhere.
+149|{name} accepted your request.
+150|{name} added you to the group "{name2}".
+151|{name} may have tried to capture one of your items.
+152|{name} invites you: {title}.
+153|{name} invites you to a game of Tic-tac-toe.
+154|Video too large: 3 MB maximum for now (about 10 seconds).
+155|Video added.
+156|Error
+157|Photo added.
+158|Choose a photo or a video.
+159|Unreadable file.
+160|Open the video
+161|Open the photo
+162|Photo
+163|🔒 Private: only you
+164|👥 Shared with {n}
+165|👥 Album by {name}
+166|Back to albums
+167|Delete this album and everything in it, including for those who can see it?
+168|Delete the album
+169|Loading…
+170|Add a photo or a video
+171|Empty album: add a first photo or video.
+172|Nothing in this album yet.
+173|🔒 Same rules as everywhere: watermark with your name, screenshots blocked in the Android app, no sharing without the author's consent.
+174|My videos
+175|Choose the video next.
+176|Photos and videos
+177|📷 Photos
+178|🎬 Videos
+179|🗂 Albums
+180|My photos
+181|Your published photos will appear here.
+182|Shared with me (permanent)
+183|Nothing for now.
+184|Video added (private, in "My videos").
+185|Add a video
+186|No video yet. For now: short ones (about 10 seconds, 3 MB max). Longer videos will come with the server.
+187|To share a video with friends, put it in a shared album (Albums tab).
+188|New album
+189|Private
+190|Shared with {length}
+191|From {name}
+192|· {count, plural, one{# item} other{# items}}
+193|No albums. Create one, private or shared with your friends.
+194|Name (e.g. Holidays 2026)
+195|🔒 Private
+196|👥 All my friends
+197|✅ Chosen friends
+198|Only you will see it.
+199|{n} friend(s) will be able to see it. Only your friends can see it, and nobody can re-share it without your consent.
+200|Create the album
+201|✅ App installed
+202|You are already using it like a real app.
+203|📲 Install the app
+204|Install on this device
+205|Download the Android app
+206|On iPhone and iPad: tap
+207|Share
+208|⬆️ then
+209|"Add to Home Screen"
+210|Open the browser menu (⋮) then "Install app" or "Add to Home screen".
+211|Your circle.
+212|Your moments.
+213|The private network for your loved ones: family, friends, colleagues, team, troupe or club. No ads, no strangers, no sharing with the outside world.
+214|Share with whoever you want
+215|Photos, videos and texts, only for the people you choose.
+216|Stories that disappear
+217|24 hours, or a few seconds for a temporary photo.
+218|Messages, voice notes and effects
+219|Chat in a group or in private, and send effects with sound.
+220|Enter NOTIIF
+221|To have NOTIIF as a real app on your phone:
+222|Install the app
+223|This sign-in will work once the server is connected (see the guide).
+224|terms of use and the privacy policy
+225|Create my account
+226|Sign in
+227|— or —
+228|Your first name or username
+229|First name
+230|Username @ (optional): can only be changed once, paid
+231|Username
+232|Your e-mail
+233|Password (8 characters minimum)
+234|Password
+235|I accept the terms
+236|I am 15 or older and I accept the {legalBtn}.
+237|I already have an account
+238|I don't have an account yet
+239|First write your first name or username above.
+240|First write your first name or username.
+241|Tick the "I am 15 or older" box to continue.
+242|Tick the terms box.
+243|🧪 Demo mode
+244|Real accounts (e-mail, Google, Apple, Facebook, FranceConnect…) need a server, which is not connected yet. Meanwhile, you can try the app on this device with fictional friends.
+245|Your first name or username (demo)
+246|Try demo mode
+247|For now, you can try the app in demo mode, on this device, with fictional friends.
+248|Got it, I'll try demo mode
+249|Legal documents
+250|🔒 Temporary message
+251|🎤 Voice message
+252|📷 Photo
+253|Quick messages
+254|Back to the list
+255|Open full screen
+256|Close
+257|💬 Conversations
+258|👥 My friends
+259|Write a message
+260|No friends yet. Add some in the Friends tab.
+261|New conversation
+262|No conversations. Pick a friend in "My friends".
+263|Seen once
+264|Temporary message
+265|· open full screen
+266|Emojis
+267|Your message…
+268|Quick message
+269|Send
+270|Screenshot blocked: the author will be notified.
+271|Message seen once
+272|🔥 Seen once
+273|Close (it will disappear)
+274|Photo seen once
+275|Content hidden
+276|Screenshot or window switch detected
+277|This message disappears when you close it. A photo can still be photographed with another device: please respect privacy.
+278|🔎 Search my conversations
+279|No conversations: write to a friend from "Friends".
+280|📹 I'm starting a video call: {url}
+281|Video call started: the link was sent in the conversation.
+282|Start a video call
+283|📹 Video call
+284|Message
+285|🔥 Message seen and gone
+286|🔥 Message to view only once · tap to open
+287|(edited)
+288|⏱ {left} s
+289|⏱ temporary {secs} s after reading
+290|🔥 view once ·
+291|seen ✓
+292|🔒 Temporary message · tap to read ({secs} s)
+293|⌛ Message expired
+294|· ✓✓ read
+295|· ✓ sent
+296|Say hello 👋
+297|Sending options
+298|Close options
+299|Message duration
+300|♾️ Permanent
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Send a photo
+304|🛡 Watermark
+305|on
+306|removed
+307|Effects
+308|Unreadable image.
+309|Options: duration, photo, effects
+310|Edit the message…
+311|How many sides does a hexagon have?
+312|What is the capital of Italy?
+313|Milan
+314|Naples
+315|Rome
+316|Turin
+317|Which animal is the fastest on land?
+318|Lion
+319|Cheetah
+320|Horse
+321|Antelope
+322|How many minutes are there in an hour and a half?
+323|Which planet is closest to the Sun?
+324|Venus
+325|Mars
+326|Earth
+327|Mercury
+328|Which fruit makes cider?
+329|Pear
+330|Apple
+331|Grape
+332|Cherry
+333|How many football players are on the pitch per team?
+334|What color do you get by mixing blue and yellow?
+335|Green
+336|Orange
+337|Purple
+338|Brown
+339|What is the largest ocean?
+340|Atlantic
+341|Indian
+342|Arctic
+343|Pacific
+344|How many days are there in February in a leap year?
+345|{nm} (✕) vs {nm2} (◯)
+346|Square {v1}
+347|Draw 🤝
+348|🏆 {name} won!
+349|It's your turn
+350|{name}'s turn (switch member in Settings to play in their place in demo mode)
+351|⭕ Tic-tac-toe for two
+352|🧠 Quiz
+353|♟️ Chess · soon
+354|🃏 Rummy · soon
+355|Invite a friend
+356|Game started with {name}.
+357|No games. Invite a friend above.
+358|Bravo! {pts}/{length}
+359|Your total:
+360|points
+361|Play again
+362|Question {v1}/{length} · Score {pts}
+363|Next
+364|Finish
+365|Delete everywhere, including for those who received it?
+366|Delete
+367|React {e}
+368|🔒 Protected photo: watermark with your name, screenshots blocked in the Android app, sharing only with the author's consent.
+369|Coming soon
+370|Slow down: one effect per second.
+371|Effect {label}
+372|Custom effect {name}
+373|More effects
+374|＋ More
+375|All effects
+376|Tick the 4 effects to keep up front ({length}/4). Tap "Send" to try it.
+377|Keep up front: {label}
+378|4 maximum: untick one first.
+379|Keep at least one effect up front.
+380|My custom effects
+381|Delete {name}
+382|＋ Create my effect (image + my voice)
+383|Microphone unavailable or denied.
+384|Give your effect a name.
+385|Add an image or a sound.
+386|6 custom effects maximum.
+387|Effect added.
+388|Effect name (e.g. My laugh)
+389|Effect name
+390|Image
+391|Recording… {left} s (tap to finish)
+392|Record again
+393|Record (3 s max)
+394|Sound too large (450 KB maximum, about 10 seconds).
+395|📁 Choose a sound file
+396|▶ Try
+397|Add
+398|Story
+399|Seen by:
+400|nobody yet
+401|Reply privately…
+402|↩️ Reply to your story: {reply}
+403|Reply sent privately.
+404|Reaction sent {e}
+405|All my friends
+406|A group
+407|Selected friends
+408|All except…
+409|A list
+410|Only me
+411|Choose an image.
+412|Unable to read this image.
+413|Story published, with no time limit.
+414|Temporary story published.
+415|Story published for 24 h.
+416|Published!
+417|✨ My story
+418|📝 New post
+419|A story disappears on its own (24 h by default) and is viewed full screen.
+420|Content type
+421|✏️ Text
+422|🎥 Video selfie
+423|🎤 Voice
+424|🔗 Link
+425|Preview
+426|Remove the photo
+427|📷 Choose a photo
+428|🗑 Delete
+429|✅ Publish
+430|🔁 Start over
+431|🎥 Film myself (10 s max)
+432|🎤 Record a voice note (30 s max)
+433|Paste a link: Spotify, Deezer or YouTube playlist, video, Instagram, TikTok, Leboncoin…
+434|Link to share
+435|This link doesn't look valid.
+436|Write your story…
+437|Story text
+438|What's new with your loved ones?
+439|Add a caption (optional)…
+440|Text
+441|Mood
+442|Background {v1}
+443|No mood
+444|Who can see it?
+445|Story duration
+446|24 hours
+447|Unlimited
+448|Temporary
+449|Viewing time
+450|Other…
+451|Seconds (1 to 999)
+452|Custom duration in seconds
+453|Group
+454|List
+455|＋ Create a list
+456|List name (e.g. Colleagues, Football, Theatre)
+457|List name
+458|First add friends so you can put them in a list.
+459|Cancel
+460|List created.
+461|Create the list
+462|Enter between 1 and {MAX_CUSTOM_SECS} seconds.
+463|Visible to you only.
+464|{audLabel} · {count} people
+465|· {fmtSecs} per person from opening
+466|Publish
+467|Temporary post
+468|Time left
+469|{ceil} s
+470|Temporary photo
+471|If you close it, the time keeps running. A photo can still be photographed with another device.
+472|Expired for you
+473|Your viewing time is over.
+474|temporary
+475|You have {n} s left.
+476|You will have {fmtSecs} from opening.
+477|Resume
+478|Open
+479|Options
+480|↪ Shared by
+481|with {name}'s consent
+482|Delete this post? Authorized shares disappear too.
+483|Delete everywhere
+484|Withdraw this share? It disappears for {name} and their friends.
+485|Withdraw this share
+486|Stop sharing?
+487|Stop my share
+488|Enlarge the post
+489|Comment
+490|Seen by {length}/{length2}:
+491|↪ {n, plural, one{# authorized share} other{# authorized shares}}
+492|by you (see "Shares").
+493|Seen by
+494|· Share audience:
+495|↪ Ask to share
+496|Tap the photo to react or comment
+497|Tap the photo to react
+498|Tap the photo to comment
+499|Post
+500|More emoticons
+501|Others:
+502|No comments yet. Be the first!
+503|Reply
+504|Emoticons
+505|Your reply…
+506|Write a comment…
+507|Comment
+508|All friends
+509|Only me
+510|Chosen friends
+511|Friends except…
+512|All
+513|My posts
+514|Nothing here yet. Publish your first moment ✨
+515|✏️ Write a text
+516|Tip: keep the button pressed to open the camera directly.
+517|Ask to share
+518|This content belongs to
+519|. They decide whether to accept. If they accept, your chosen friends will see
+520|the original content
+521|(not a copy), with the same durations, and {name} will be able to
+522|withdraw the share at any time
+523|: it will then disappear for everyone.
+524|Share with:
+525|You have no other friend.
+526|A short note for the author (optional)
+527|Send the request to {name}
+528|🌍 Language
+529|Choose the language of NOTIIF. It changes right away and your choice is kept.
+530|Current language
+531|Search for a language
+532|Language
+533|Language changed.
+534|No language found.
+535|For now, legal documents exist only in French.
+536|Version {LEGAL_VERSION}
+537|Wikipedia
+538|Link
+539|{name} player
+540|Collapse
+541|Expand
+542|Stop the music
+543|{name} link
+544|Collapse and keep listening
+545|⌄ Collapse
+546|Open separately
+547|This site cannot be displayed inside NOTIIF.
+548|Open {name}
+549|Open the {name} link
+550|🎧 Listen in NOTIIF (only you can hear it)
+551|▶ Watch here, in NOTIIF
+552|Open the link
+553|Camera or microphone unavailable or denied.
+554|🎥 Start
+555|🎤 Start
+556|({max} s max)
+557|⏹ Finish · {left} s
+558|📸 Photo
+559|Keep the button pressed to speak.
+560|Hold to record a voice note
+561|🔴 Release to send
+562|Camera
+563|Start over
+564|Send ➤
+565|Close the camera
+566|Switch camera
+567|s / {max} s
+568|Zoom
+569|Zoom {z} times
+570|{replace}×
+571|Video
+572|Take the photo
+573|Stop
+574|Record
+575|Tap to take the photo
+576|Tap to stop
+577|Tap to record ({max} s max)
+578|Keep the microphone pressed to speak.
+579|🔴 {mm} · release to finish
+580|Keep pressing the microphone to speak ({max} s max)
+581|Until I remove it
+582|Same as the original
+583|How long does the share stay visible?
+584|Viewing time per person
+585|🔒 This content cannot be re-published elsewhere: it carries a watermark, screenshots are blocked (Android app) and any new share requires your consent. You can withdraw it at any time.
+586|Share authorized. You can withdraw it whenever you want.
+587|Confirm the authorization
+588|Authorize…
+589|Decline
+590|content deleted
+591|Nobody can re-publish your content without your consent. And even after consent,
+592|you keep full control
+593|: if you withdraw a share or delete your post, it disappears for everyone it had been shared with.
+594|Requests to handle ({length})
+595|would like to share
+596|with {join} · {ago}
+597|No pending requests.
+598|Shares I authorized ({length})
+599|shared by {nm} with {join}
+600|Withdraw this share? It will disappear for everyone.
+601|Share withdrawn everywhere.
+602|Withdraw everywhere
+603|No active shares.
+604|My requests and my shares ({length})
+605|from {nm}
+606|{v1} · with {join}
+607|You haven't asked to share anything.
+608|QR code
+609|🌍 Public
+610|Everyone can find me by my name or username.
+611|👥 Limited
+612|Only with my exact username, or friends of my friends.
+613|🔒 Invisible
+614|Nobody can find me. Only if I give my QR code or my code.
+615|My QR code
+616|Open or enlarge the QR code
+617|Click the QR code to open the page
+618|Tap the QR code to enlarge it
+619|Show it to a loved one: they scan it with their phone's camera.
+620|Link copied
+621|Copy failed
+622|Copy my link
+623|Save the image
+624|Create a new code? The old QR code will stop working.
+625|New code created.
+626|Renew
+627|Who can find me?
+628|Setting saved.
+629|Save the username
+630|This browser cannot read QR codes. Use your phone's camera: it will open the NOTIIF link by itself.
+631|Camera unavailable or denied.
+632|Scan a QR code
+633|Join me on NOTIIF, the private network for our loved ones (family, friends, colleagues, club…), with no ads. Install the app here: {inviteLink} (my code: {code})
+634|Contact
+635|No contact with a number or an e-mail.
+636|Access to contacts denied or cancelled.
+637|Message copied: paste it wherever you like.
+638|Invite my loved ones
+639|📇 Choose from my contacts
+640|On this phone or browser, the app cannot read your contacts. Add a number or an e-mail by hand, or share the link.
+641|Number or e-mail
+642|Invite {name}
+643|Send the invitation:
+644|Join me on NOTIIF
+645|E-mail
+646|🔗 Share the invitation link
+647|🔒 Your contacts are neither saved nor sent to NOTIIF: they are only used to write the message on your phone. Import from Google or Facebook will come with the server connection.
+648|Requests received ({length})
+649|{name} is now your friend.
+650|Accept
+651|My code:
+652|Code copied
+653|Copy
+654|Code of a loved one (NID-…)
+655|Invitation code
+656|Invite
+657|📇 Invite from my contacts
+658|Demo mode: codes to test
+659|(fictional people)
+660|My friends ({length})
+661|Choose a list
+662|All ({length})
+663|＋ New list
+664|Options for {name}
+665|Nobody in this list.
+666|No friends yet.
+667|Report this person
+668|Why? Three reports from different people automatically suspend the account while it is reviewed.
+669|Fake profile
+670|Sales, advertising or solicitation
+671|Scam
+672|Sexual propositions or escorting
+673|Illegal content
+674|Harassment
+675|Other
+676|Thank you, report recorded.
+677|💬 Write
+678|Remove {name} from your friends?
+679|Remove from friends
+680|Report
+681|Block {name}? They will no longer see your content.
+682|Blocked.
+683|Block
+684|My lists
+685|E.g. "Cousins", "Colleagues"… to quickly choose who sees your posts.
+686|Blocked people
+687|Unblock
+688|New list
+689|🔎 Find someone (name or @username)
+690|Search
+691|No one found. "Invisible" or "limited" people can only be found with their QR code, their code or their exact username.
+692|📜 Group rules
+693|Members ({length})
+694|Remove {name} from the group?
+695|Remove
+696|Leave this group?
+697|Leave the group
+698|New
+699|{n, plural, one{# member} other{# members}}
+700|Create a group for the family, holidays, parties…
+701|New group
+702|Emoji
+703|Group name
+704|Description
+705|Group rules (optional)
+706|Members (from your friends)
+707|Group created.
+708|Create the group
+709|✅ Attending
+710|❌ Not attending
+711|🤔 Maybe
+712|Birthdays, family meals, holidays… create the first one!
+713|· past
+714|Delete this event?
+715|Organized by {name}
+716|👥 See who's coming
+717|✅ Attending
+718|❌ Not attending
+719|⏳ No answer
+720|New event
+721|Title (e.g. Grandma's birthday)
+722|Date and time
+723|Place
+724|Event created.
+725|My friends
+726|Everyone
+727|Nobody
+728|Edit my profile
+729|Change the photo
+730|Add a photo
+731|Remove the photo
+732|Username: @{handle}
+733|Already changed once: final.
+734|Can only be changed once, and it's paid (to limit fake profiles).
+735|New username
+736|Change
+737|Who can see my photo?
+738|Others will then see your initial instead of the photo.
+739|First name or username
+740|Status
+741|Your status
+742|Your short bio
+743|Profile updated.
+744|Save
+745|Choose what your friends can do on your photos, videos and texts.
+746|Likes and reactions
+747|If turned off, nobody can react to your posts, and no counter is shown.
+748|Comments
+749|If turned off, nobody can comment on your posts.
+750|{n, plural, one{# post} other{# posts}}
+751|{n, plural, one{# friend} other{# friends}}
+752|Member since {toLocaleDateString}
+753|Edit my profile (photo, name, bio)
+754|Notification settings
+755|Settings
+756|Mark all as read
+757|🌙 Silent mode on: no alerts, but the list stays here.
+758|Nothing new.
+759|Notifications never contain the content of a temporary post.
+760|🎵 Ringtones and vibration
+761|Notification ringtone
+762|Call ringtone
+763|Message vibration
+764|Call vibration
+765|The shake always vibrates at maximum. Tap a choice to try it.
+766|🔔 Phone notifications
+767|Receive notifications
+768|Messages, friend requests, shares, events…
+769|Phone notifications
+770|Notifications turned on.
+771|Allow notifications in the phone's window.
+772|Notifications denied: allow them in the phone settings (Apps > Cercle > Notifications).
+773|This browser doesn't support notifications. Install the app (Android QR) or the icon on the home screen.
+774|Notifications denied: allow them in the phone settings, then try again.
+775|Which notifications to receive?
+776|💬 Messages
+777|👋 Friend requests
+778|📰 Posts and stories
+779|🔁 Shares
+780|📅 Events
+781|👥 Groups
+782|🖼 Albums
+783|🎮 Games
+784|Notifications: {l}
+785|Test: everything works ✅
+786|Unable to display the test notification.
+787|Send a test
+788|Honestly: for now, notifications appear when the app is open or in the background. Receiving them with the app closed needs the server (remote sending), planned with real accounts. Calls: soon.
+789|My 4 favorite effects
+790|They appear first in conversations. The others stay under the "+" button.
+791|Favorite: {label}
+792|4 favorites maximum: turn one off first.
+793|Keep at least one favorite.
+794|Reset to default
+795|Top bar
+796|The "More" button (all menus) is always at the top right. Add up to 4 shortcuts next to it.
+797|At the top: {l}
+798|4 shortcuts maximum: turn one off first.
+799|Keep at least one shortcut.
+800|Bottom bar
+801|Choose up to 4 shortcuts. The "Create" button always stays in the middle. The other menus are in the "More" button at the top right.
+802|Shortcut {l}
+803|Message bubble
+804|A small bubble that you move wherever you want. When it is shown, "Messages" is replaced by "Groups" in the bottom bar.
+805|Start screen
+806|The page that opens when you launch NOTIIF.
+807|Light theme
+808|Light background, white and turquoise.
+809|Dark theme
+810|Midnight blue and turquoise background, softer in the evening.
+811|Effects in conversations
+812|Screen shake with sound, hearts, birthday: when a friend sends one, you see it and hear it. On by default.
+813|Quiet hours
+814|Mutes alerts at night (in server mode).
+815|Autoplay videos
+816|For short videos (soon).
+817|🔒 Privacy
+818|No ads. No selling of data.
+819|No sharing button to the outside, no public profile.
+820|Nobody can find you without your invitation code.
+821|No app can stop an authorized person from photographing their screen with another device.
+822|🧪 Demo mode (on this device)
+823|For now, your data stays on this device and friends are fictional. Real accounts, messages between phones and calls need a server: see the guide in the project's "docs" folder.
+824|Sign out
+825|Export my data
+826|Delete all your NOTIIF data from this device?
+827|Delete my account and my data
+828|🔁 Switch member (demo)
+829|To test per-person durations: publish a 5 s photo for Céline and Thomas, then switch from one to the other.
+830|You are now {name}.
+831|Screenshot blocked by NOTIIF
+832|NOTIIF logo
+833|just now
+834|{n} min ago
+835|{n} h ago
+836|Faces
+837|Hands
+838|Hearts
+839|Party and nature
+840|Close emojis
+841|Delete {what}?
+842|This action is final.
+843|Keep
+844|NOTIIF — Your circle. Your moments.

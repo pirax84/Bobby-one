@@ -1,0 +1,845 @@
+0|Domov
+1|Priatelia
+2|Skupiny
+3|Správy
+4|Hovory
+5|Fotky
+6|Hry
+7|Udalosti
+8|Zdieľania
+9|Oznámenia
+10|Profil
+11|Právne informácie
+12|Nastavenia
+13|Audio a video hovory
+14|Hovory potrebujú pripájací server (WebRTC). Pribudnú, keď bude server NOTIIF v prevádzke.
+15|Váš okruh. Vaše chvíle.
+16|Vytvoriť
+17|Môj profil
+18|Späť
+19|Všetky ponuky
+20|Navigácia
+21|Vytvoriť: príbeh alebo príspevok. Dlhé podržanie pre video selfie
+22|Viac
+23|Môj okruh
+24|Médiá a hry
+25|Môj účet
+26|Pozvánka do NOTIIF
+27|Pridať používateľa {name}?
+28|Odoslať žiadosť
+29|Tento kód na tomto zariadení neexistuje. V demo režime sa účty zatiaľ nezdieľajú medzi zariadeniami: to príde so serverom.
+30|Neskôr
+31|Čo chcete zdieľať?
+32|✨ Príbeh (zmizne sám)
+33|📝 Príspevok
+34|Moje skupiny
+35|Nadchádzajúce
+36|Žiadne udalosti.
+37|Hrať s rodinou
+38|Pokračovať cez Apple
+39|Pokračovať cez Google
+40|Pokračovať cez Facebook
+41|Pokračovať cez Snapchat
+42|Snapchat vyžaduje vývojársku zmluvu (Snap Kit). Treba oň požiadať pred aktiváciou.
+43|FranceConnect vyžaduje povolenie štátu (žiadosť sa podáva na datapass.api.gouv.fr).
+44|Digitálna identita La Poste
+45|Digitálna identita La Poste vyžaduje partnerstvo s La Poste.
+46|Server je nedostupný.
+47|Vyskytla sa chyba.
+48|Účet vytvorený.
+49|Účet vytvorený. Otvorte potvrdzovací e-mail, ktorý sme vám práve poslali, a vráťte sa prihlásiť.
+50|Prihlásený.
+51|Ja
+52|Trvalé
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Srdcia
+56|❤️ Dážď sŕdc!
+57|😘 Pusinky
+58|😘 Veľké bozky!
+59|❄️ Sneh
+60|❄️ Sneží!
+61|🎆 Ohňostroj
+62|🎆 Ohňostroj!
+63|👻 Duch
+64|👻 Bú!
+65|🔥 Plamene
+66|🔥 Je horúco!
+67|🫧 Bubliny
+68|🫧 Bubliny!
+69|🎂 Oslava
+70|🎂 Oslavujeme!
+71|🌧️ Dážď
+72|🌧️ Prší!
+73|⛈️ Búrka
+74|⛈️ Hrom!
+75|🚀 Raketa
+76|🚀 Štart!
+77|👏 Bravo
+78|👏 Bravo!
+79|😂 Záchvat smiechu
+80|😂 Umieram od smiechu!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Bum
+84|💣 Bum!
+85|🎂 Narodeniny
+86|🎂 Všetko najlepšie!
+87|🎂 Narodeniny 2
+88|🤭 Grckanie
+89|🤭 Grc!
+90|💨 Prd
+91|💨 Prd!
+92|🤮 Vracanie
+93|🤮 Fuj!
+94|Krištáľ
+95|Svitanie
+96|Vánok
+97|Žiara
+98|Pobrežie
+99|Kruh
+100|Ráno
+101|Žiadna
+102|Slabá
+103|Stredná
+104|Silná
+105|Pamäť zariadenia je plná: zmažte staré fotky.
+106|Chyba.
+107|Používateľské meno sa dá zmeniť iba raz a vy ste to už urobili.
+108|Zmena používateľského mena je platená (ponuka „Plus“). Platba zatiaľ nie je pripojená: na vyskúšanie zapnite „Plus (ukážka)“ v Nastaveniach.
+109|Používateľské meno: 3 až 20 znakov, malé písmená, číslice, bodka alebo podčiarkovník.
+110|Toto používateľské meno je už obsadené.
+111|Používateľské meno zmenené. Táto zmena je konečná.
+112|Vitajte v mojom hniezde 🪺
+113|Ahoj! Vitajte! 🌳
+114|Rodina
+115|Kto je v nedeľu na obede?
+116|Rodinný obed
+117|Každý prinesie malé jedlo.
+118|U starej mamy
+119|Neplatné trvanie.
+120|Váš účet je kvôli nahláseniam v kontrole.
+121|Tento príspevok nikto neuvidí: vyberte iných príjemcov.
+122|Toto album nikto neuvidí: vyberte iných príjemcov.
+123|Album
+124|Používateľ {name} pre vás vytvoril album „{slice}“.
+125|Album sa nenašlo.
+126|Používateľ {name} zareagoval {emoji} na váš príspevok.
+127|Používateľ {name} okomentoval váš príspevok.
+128|Osoba sa nenašla.
+129|To ste vy!
+130|Váš účet je kvôli nahláseniam v kontrole: zatiaľ nemôžete odosielať žiadosti.
+131|Dnes príliš veľa žiadostí (najviac 15). Skúste to zajtra.
+132|Žiadosť sa nedá odoslať.
+133|Používateľ {name} je už váš priateľ.
+134|Žiadosť už bola odoslaná.
+135|Používateľ {name} vás žiada o priateľstvo.
+136|Žiadosť odoslaná používateľovi {name}.
+137|Neznámy kód (v demo režime existujú len účty na tomto zariadení).
+138|3 až 20 znakov: písmená, číslice, _ alebo .
+139|Používateľské meno uložené.
+140|Nenájdené.
+141|Vyberte aspoň jedného priateľa (ktorého autor neblokuje).
+142|Žiadosť už čaká na vybavenie.
+143|Používateľ {name} žiada o zdieľanie vášho príspevku.
+144|Žiadosť odoslaná. Rozhoduje autor.
+145|Používateľ {name} zdieľanie odmietol.
+146|Používateľ {name} zdieľanie prijal.
+147|Používateľ {name} s vami zdieľal obsah.
+148|Používateľ {name} zdieľanie stiahol: zmizlo všade.
+149|Používateľ {name} prijal vašu žiadosť.
+150|Používateľ {name} vás pridal do skupiny „{name2}“.
+151|Používateľ {name} sa možno pokúsil zachytiť niektorý z vašich obsahov.
+152|Používateľ {name} vás pozýva: {title}.
+153|Používateľ {name} vás pozýva na partiu piškvoriek.
+154|Video je príliš veľké: zatiaľ najviac 3 MB (asi 10 sekúnd).
+155|Video pridané.
+156|Chyba
+157|Fotka pridaná.
+158|Vyberte fotku alebo video.
+159|Nečitateľný súbor.
+160|Otvoriť video
+161|Otvoriť fotku
+162|Fotka
+163|🔒 Súkromné: iba vy
+164|👥 Zdieľané s počtom: {n}
+165|👥 Album používateľa {name}
+166|Späť na albumy
+167|Zmazať toto album a všetko v ňom, aj u tých, ktorí ho vidia?
+168|Zmazať album
+169|Načítava sa…
+170|Pridať fotku alebo video
+171|Prázdne album: pridajte prvú fotku alebo video.
+172|V tomto albume zatiaľ nič nie je.
+173|🔒 Rovnaké pravidlá ako všade: vodoznak s vaším menom, snímky obrazovky zablokované v aplikácii pre Android, žiadne zdieľanie bez súhlasu autora.
+174|Moje videá
+175|Video vyberte potom.
+176|Fotky a videá
+177|📷 Fotky
+178|🎬 Videá
+179|🗂 Albumy
+180|Moje fotky
+181|Vaše zverejnené fotky sa zobrazia tu.
+182|Zdieľané so mnou (trvalé)
+183|Zatiaľ nič.
+184|Video pridané (súkromné, v „Moje videá“).
+185|Pridať video
+186|Zatiaľ žiadne video. Zatiaľ krátke (asi 10 sekúnd, najviac 3 MB). Dlhšie videá prídu so serverom.
+187|Ak chcete zdieľať video s priateľmi, vložte ho do zdieľaného albumu (karta Albumy).
+188|Nové album
+189|Súkromné
+190|Zdieľané s počtom: {length}
+191|Od používateľa {name}
+192|· {count, plural, one{# položka} few{# položky} many{# položky} other{# položiek}}
+193|Žiadne albumy. Vytvorte jedno, súkromné alebo zdieľané s priateľmi.
+194|Názov (napr. Dovolenka 2026)
+195|🔒 Súkromné
+196|👥 Všetci moji priatelia
+197|✅ Vybraní priatelia
+198|Uvidíte ho iba vy.
+199|Počet priateľov, ktorí to budú môcť vidieť: {n}. Vidia to len vaši priatelia a nikto to nemôže zdieľať ďalej bez vášho súhlasu.
+200|Vytvoriť album
+201|✅ Aplikácia nainštalovaná
+202|Už ju používate ako skutočnú aplikáciu.
+203|📲 Nainštalovať aplikáciu
+204|Nainštalovať na toto zariadenie
+205|Stiahnuť aplikáciu pre Android
+206|Na iPhone a iPade: ťuknite na
+207|Zdieľať
+208|⬆️ potom
+209|„Pridať na plochu“
+210|Otvorte ponuku prehliadača (⋮) a zvoľte „Nainštalovať aplikáciu“ alebo „Pridať na plochu“.
+211|Váš okruh.
+212|Vaše chvíle.
+213|Súkromná sieť vašich blízkych: rodina, priatelia, kolegovia, tím, divadelný súbor alebo klub. Bez reklám, bez cudzích ľudí, bez zdieľania navonok.
+214|Zdieľajte s kým chcete
+215|Fotky, videá a texty iba pre ľudí, ktorých vyberiete.
+216|Príbehy, ktoré miznú
+217|24 hodín alebo pár sekúnd pri pomíjivej fotke.
+218|Správy, hlasovky a efekty
+219|Rozprávajte sa v skupine alebo súkromne a posielajte efekty so zvukom.
+220|Vstúpiť do NOTIIF
+221|Ak chcete mať NOTIIF ako skutočnú aplikáciu v telefóne:
+222|Nainštalovať aplikáciu
+223|Toto prihlásenie sa aktivuje, keď bude server pripojený (pozrite si sprievodcu).
+224|podmienky používania a zásady ochrany osobných údajov
+225|Vytvoriť môj účet
+226|Prihlásiť sa
+227|— alebo —
+228|Vaše meno alebo používateľské meno
+229|Meno
+230|Používateľské meno @ (nepovinné): dá sa zmeniť iba raz, platené
+231|Používateľské meno
+232|Váš e-mail
+233|Heslo (najmenej 8 znakov)
+234|Heslo
+235|Súhlasím s podmienkami
+236|Mám 15 rokov alebo viac a súhlasím s dokumentmi: {legalBtn}.
+237|Už mám účet
+238|Zatiaľ nemám účet
+239|Najprv vyššie napíšte svoje meno alebo používateľské meno.
+240|Najprv napíšte svoje meno alebo používateľské meno.
+241|Ak chcete pokračovať, zaškrtnite políčko „Mám 15 rokov alebo viac“.
+242|Zaškrtnite políčko s podmienkami.
+243|🧪 Demo režim
+244|Skutočné účty (e-mail, Google, Apple, Facebook, FranceConnect…) vyžadujú server, ktorý zatiaľ nie je pripojený. Zatiaľ si môžete aplikáciu vyskúšať na tomto zariadení s fiktívnymi priateľmi.
+245|Vaše meno alebo používateľské meno (demo)
+246|Vyskúšať demo režim
+247|Zatiaľ si môžete aplikáciu vyskúšať v demo režime na tomto zariadení s fiktívnymi priateľmi.
+248|Rozumiem, skúsim demo režim
+249|Právne dokumenty
+250|🔒 Pomíjivá správa
+251|🎤 Hlasová správa
+252|📷 Fotka
+253|Rýchle správy
+254|Späť na zoznam
+255|Otvoriť veľké
+256|Zavrieť
+257|💬 Konverzácie
+258|👥 Moji priatelia
+259|Napísať správu
+260|Zatiaľ žiadni priatelia. Pridajte ich na karte Priatelia.
+261|Nová konverzácia
+262|Žiadne konverzácie. Vyberte priateľa v časti „Moji priatelia“.
+263|Zobrazené raz
+264|Pomíjivá správa
+265|· otvoriť veľké
+266|Emoji
+267|Vaša správa…
+268|Rýchla správa
+269|Odoslať
+270|Snímka obrazovky zablokovaná: autor bude upozornený.
+271|Správa zobrazená raz
+272|🔥 Zobrazené raz
+273|Zavrieť (zmizne)
+274|Fotka zobrazená raz
+275|Obsah skrytý
+276|Zistená snímka obrazovky alebo prepnutie okna
+277|Táto správa po zatvorení zmizne. Fotku možno vždy odfotiť iným zariadením: rešpektujte súkromie.
+278|🔎 Hľadať v mojich konverzáciách
+279|Žiadne konverzácie: napíšte priateľovi z časti „Priatelia“.
+280|📹 Začínam videohovor: {url}
+281|Videohovor začatý: odkaz bol odoslaný do konverzácie.
+282|Začať videohovor
+283|📹 Videohovor
+284|Správa
+285|🔥 Správa zobrazená a zmizla
+286|🔥 Správa na jednorazové zobrazenie · ťuknutím otvoríte
+287|(upravené)
+288|⏱ {left} s
+289|⏱ pomíjivá {secs} s po prečítaní
+290|🔥 jednorazové zobrazenie ·
+291|zobrazené ✓
+292|🔒 Pomíjivá správa · ťuknutím prečítate ({secs} s)
+293|⌛ Správa vypršala
+294|· ✓✓ prečítané
+295|· ✓ odoslané
+296|Pozdravte 👋
+297|Možnosti odoslania
+298|Zavrieť možnosti
+299|Trvanie správy
+300|♾️ Trvalá
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Odoslať fotku
+304|🛡 Vodoznak
+305|zapnutý
+306|odstránený
+307|Efekty
+308|Nečitateľný obrázok.
+309|Možnosti: trvanie, fotka, efekty
+310|Upraviť správu…
+311|Koľko strán má šesťuholník?
+312|Aké je hlavné mesto Talianska?
+313|Miláno
+314|Neapol
+315|Rím
+316|Turín
+317|Ktoré zviera je na súši najrýchlejšie?
+318|Lev
+319|Gepard
+320|Kôň
+321|Antilopa
+322|Koľko minút je v hodine a pol?
+323|Ktorá planéta je najbližšie k Slnku?
+324|Venuša
+325|Mars
+326|Zem
+327|Merkúr
+328|Z akého ovocia sa vyrába cider?
+329|Hruška
+330|Jablko
+331|Hrozno
+332|Čerešňa
+333|Koľko hráčov má futbalový tím na ihrisku?
+334|Akú farbu dostaneme zmiešaním modrej a žltej?
+335|Zelená
+336|Oranžová
+337|Fialová
+338|Hnedá
+339|Ktorý oceán je najväčší?
+340|Atlantický
+341|Indický
+342|Severný ľadový
+343|Tichý
+344|Koľko dní má február v priestupnom roku?
+345|{nm} (✕) proti {nm2} (◯)
+346|Políčko {v1}
+347|Remíza 🤝
+348|🏆 Vyhral(a) {name}!
+349|Ste na ťahu
+350|Na ťahu je {name} (v Nastaveniach prepnite člena, aby ste v deme hrali za neho)
+351|⭕ Piškvorky pre dvoch
+352|🧠 Kvíz
+353|♟️ Šach · čoskoro
+354|🃏 Žolíky · čoskoro
+355|Pozvať priateľa
+356|Hra začatá s používateľom {name}.
+357|Žiadne hry. Pozvite vyššie priateľa.
+358|Bravo! {pts}/{length}
+359|Váš celkový počet:
+360|bodov
+361|Hrať znova
+362|Otázka {v1}/{length} · Skóre {pts}
+363|Ďalej
+364|Dokončiť
+365|Zmazať všade, aj u tých, ktorí to dostali?
+366|Zmazať
+367|Reagovať {e}
+368|🔒 Chránená fotka: vodoznak s vaším menom, snímky obrazovky zablokované v aplikácii pre Android, zdieľanie len so súhlasom autora.
+369|Čoskoro k dispozícii
+370|Pomaly: jeden efekt za sekundu.
+371|Efekt {label}
+372|Vlastný efekt {name}
+373|Ďalšie efekty
+374|＋ Viac
+375|Všetky efekty
+376|Zaškrtnite 4 efekty, ktoré majú zostať vpredu ({length}/4). Vyskúšajte ťuknutím na „Odoslať“.
+377|Ponechať vpredu: {label}
+378|Najviac 4: najprv jeden odškrtnite.
+379|Ponechajte vpredu aspoň jeden efekt.
+380|Moje vlastné efekty
+381|Zmazať {name}
+382|＋ Vytvoriť môj efekt (obrázok + môj hlas)
+383|Mikrofón nie je dostupný alebo bol zamietnutý.
+384|Pomenujte svoj efekt.
+385|Pridajte obrázok alebo zvuk.
+386|Najviac 6 vlastných efektov.
+387|Efekt pridaný.
+388|Názov efektu (napr. Môj smiech)
+389|Názov efektu
+390|Obrázok
+391|Nahrávanie… {left} s (ťuknutím ukončíte)
+392|Nahrať znova
+393|Nahrať (najviac 3 s)
+394|Zvuk je príliš veľký (najviac 450 kB, asi 10 sekúnd).
+395|📁 Vybrať zvukový súbor
+396|▶ Vyskúšať
+397|Pridať
+398|Príbeh
+399|Videli:
+400|zatiaľ nikto
+401|Odpovedať súkromne…
+402|↩️ Odpoveď na váš príbeh: {reply}
+403|Odpoveď odoslaná súkromne.
+404|Reakcia odoslaná {e}
+405|Všetci moji priatelia
+406|Skupina
+407|Vybraní priatelia
+408|Všetci okrem…
+409|Zoznam
+410|Iba ja
+411|Vyberte obrázok.
+412|Tento obrázok sa nedá prečítať.
+413|Príbeh zverejnený bez časového obmedzenia.
+414|Pomíjivý príbeh zverejnený.
+415|Príbeh zverejnený na 24 h.
+416|Zverejnené!
+417|✨ Môj príbeh
+418|📝 Nový príspevok
+419|Príbeh sám zmizne (predvolene o 24 h) a prezerá sa na celej obrazovke.
+420|Typ obsahu
+421|✏️ Text
+422|🎥 Video selfie
+423|🎤 Hlas
+424|🔗 Odkaz
+425|Náhľad
+426|Odstrániť fotku
+427|📷 Vybrať fotku
+428|🗑 Zmazať
+429|✅ Zverejniť
+430|🔁 Začať odznova
+431|🎥 Natočiť sa (najviac 10 s)
+432|🎤 Nahrať hlasovku (najviac 30 s)
+433|Vložte odkaz: playlist zo Spotify, Deezer alebo YouTube, video, Instagram, TikTok, Leboncoin…
+434|Odkaz na zdieľanie
+435|Tento odkaz nevyzerá platne.
+436|Napíšte svoj príbeh…
+437|Text príbehu
+438|Čo je nové u vašich blízkych?
+439|Pridať popis (nepovinné)…
+440|Text
+441|Nálada
+442|Pozadie {v1}
+443|Žiadna nálada
+444|Kto to môže vidieť?
+445|Trvanie príbehu
+446|24 hodín
+447|Neobmedzené
+448|Pomíjivý
+449|Čas zobrazenia
+450|Iné…
+451|Sekundy (1 až 999)
+452|Vlastné trvanie v sekundách
+453|Skupina
+454|Zoznam
+455|＋ Vytvoriť zoznam
+456|Názov zoznamu (napr. Kolegovia, Futbal, Divadlo)
+457|Názov zoznamu
+458|Najprv pridajte priateľov, aby ste ich mohli dať do zoznamu.
+459|Zrušiť
+460|Zoznam vytvorený.
+461|Vytvoriť zoznam
+462|Zadajte hodnotu od 1 do {MAX_CUSTOM_SECS} sekúnd.
+463|Viditeľné iba pre vás.
+464|{audLabel} · počet osôb: {count}
+465|· {fmtSecs} na osobu od otvorenia
+466|Zverejniť
+467|Pomíjivý príspevok
+468|Zostávajúci čas
+469|{ceil} s
+470|Pomíjivá fotka
+471|Ak zatvoríte, čas ďalej beží. Fotku možno vždy odfotiť iným zariadením.
+472|Pre vás vypršalo
+473|Váš čas zobrazenia skončil.
+474|pomíjivý
+475|Zostáva vám {n} s.
+476|Budete mať {fmtSecs} od otvorenia.
+477|Pokračovať
+478|Otvoriť
+479|Možnosti
+480|↪ Zdieľal(a)
+481|so súhlasom používateľa {name}
+482|Zmazať tento príspevok? Povolené zdieľania tiež zmiznú.
+483|Zmazať všade
+484|Stiahnuť toto zdieľanie? Zmizne u používateľa {name} a jeho priateľov.
+485|Stiahnuť toto zdieľanie
+486|Prestať zdieľať?
+487|Ukončiť moje zdieľanie
+488|Zväčšiť príspevok
+489|Komentovať
+490|Videlo {length}/{length2}:
+491|↪ {n, plural, one{# povolené zdieľanie} few{# povolené zdieľania} many{# povoleného zdieľania} other{# povolených zdieľaní}}
+492|vami (pozrite „Zdieľania“).
+493|Videli
+494|· Publikum zdieľania:
+495|↪ Požiadať o zdieľanie
+496|Ťuknutím na fotku zareagujete alebo okomentujete
+497|Ťuknutím na fotku zareagujete
+498|Ťuknutím na fotku okomentujete
+499|Príspevok
+500|Ďalšie smajlíky
+501|Ďalšie:
+502|Zatiaľ žiadne komentáre. Buďte prví!
+503|Odpovedať
+504|Smajlíky
+505|Vaša odpoveď…
+506|Napísať komentár…
+507|Komentár
+508|Všetci priatelia
+509|Iba ja
+510|Vybraní priatelia
+511|Priatelia okrem…
+512|Všetko
+513|Moje príspevky
+514|Zatiaľ tu nič nie je. Zverejnite svoju prvú chvíľu ✨
+515|✏️ Napísať text
+516|Tip: podržte tlačidlo a hneď sa otvorí fotoaparát.
+517|Požiadať o zdieľanie
+518|Tento obsah patrí
+519|. Táto osoba rozhoduje, či súhlasí. Ak súhlasí, vybraní priatelia uvidia
+520|pôvodný obsah
+521|(nie kópiu) s rovnakými dobami trvania a {name} bude môcť
+522|zdieľanie kedykoľvek stiahnuť
+523|: potom zmizne u všetkých.
+524|Zdieľať s:
+525|Nemáte žiadneho ďalšieho priateľa.
+526|Krátka správa pre autora (nepovinné)
+527|Odoslať žiadosť používateľovi {name}
+528|🌍 Jazyk
+529|Vyberte jazyk NOTIIF. Zmení sa hneď a vaša voľba sa uloží.
+530|Aktuálny jazyk
+531|Hľadať jazyk
+532|Jazyk
+533|Jazyk zmenený.
+534|Nenašiel sa žiadny jazyk.
+535|Zatiaľ existujú právne dokumenty iba vo francúzštine.
+536|Verzia {LEGAL_VERSION}
+537|Wikipédia
+538|Odkaz
+539|Prehrávač {name}
+540|Zmenšiť
+541|Zväčšiť
+542|Zastaviť hudbu
+543|Odkaz {name}
+544|Zmenšiť a ďalej počúvať
+545|⌄ Zmenšiť
+546|Otvoriť osobitne
+547|Túto stránku nemožno zobraziť vo vnútri NOTIIF.
+548|Otvoriť {name}
+549|Otvoriť odkaz {name}
+550|🎧 Počúvať v NOTIIF (počujete to iba vy)
+551|▶ Sledovať tu, v NOTIIF
+552|Otvoriť odkaz
+553|Fotoaparát alebo mikrofón nie je dostupný alebo bol zamietnutý.
+554|🎥 Začať
+555|🎤 Začať
+556|(najviac {max} s)
+557|⏹ Ukončiť · {left} s
+558|📸 Fotka
+559|Podržte tlačidlo, aby ste mohli hovoriť.
+560|Podržte na nahratie hlasovky
+561|🔴 Pustite na odoslanie
+562|Fotoaparát
+563|Začať odznova
+564|Odoslať ➤
+565|Zavrieť fotoaparát
+566|Prepnúť fotoaparát
+567|s / {max} s
+568|Zoom
+569|Zoom {z}×
+570|{replace}×
+571|Video
+572|Odfotiť
+573|Zastaviť
+574|Natáčať
+575|Ťuknutím odfotíte
+576|Ťuknutím zastavíte
+577|Ťuknutím začnete natáčať (najviac {max} s)
+578|Podržte mikrofón, aby ste mohli hovoriť.
+579|🔴 {mm} · pustite na ukončenie
+580|Podržte mikrofón, aby ste mohli hovoriť (najviac {max} s)
+581|Kým ho neodstránim
+582|Ako originál
+583|Ako dlho zostane zdieľanie viditeľné?
+584|Čas zobrazenia na osobu
+585|🔒 Tento obsah sa nedá zverejniť inde: má vodoznak, snímky obrazovky sú zablokované (aplikácia pre Android) a každé nové zdieľanie vyžaduje váš súhlas. Môžete ho kedykoľvek stiahnuť.
+586|Zdieľanie povolené. Môžete ho stiahnuť, kedykoľvek chcete.
+587|Potvrdiť povolenie
+588|Povoliť…
+589|Odmietnuť
+590|obsah zmazaný
+591|Nikto nemôže znovu zverejniť váš obsah bez vášho súhlasu. A aj po súhlase
+592|máte plnú kontrolu
+593|: ak zdieľanie stiahnete alebo zmažete príspevok, zmizne u všetkých, s ktorými bol zdieľaný.
+594|Žiadosti na vybavenie ({length})
+595|by chcel(a) zdieľať
+596|s: {join} · {ago}
+597|Žiadne čakajúce žiadosti.
+598|Zdieľania, ktoré som povolil(a) ({length})
+599|zdieľal(a) {nm} s: {join}
+600|Stiahnuť toto zdieľanie? Zmizne u všetkých.
+601|Zdieľanie stiahnuté všade.
+602|Stiahnuť všade
+603|Žiadne aktívne zdieľania.
+604|Moje žiadosti a moje zdieľania ({length})
+605|od používateľa {nm}
+606|{v1} · s: {join}
+607|Nežiadali ste o zdieľanie ničoho.
+608|QR kód
+609|🌍 Verejný
+610|Každý ma môže nájsť podľa mena alebo používateľského mena.
+611|👥 Obmedzený
+612|Iba podľa môjho presného používateľského mena alebo cez priateľov mojich priateľov.
+613|🔒 Neviditeľný
+614|Nikto ma nenájde. Iba ak dám svoj QR kód alebo kód.
+615|Môj QR kód
+616|Otvoriť alebo zväčšiť QR kód
+617|Kliknutím na QR kód otvoríte stránku
+618|Ťuknutím na QR kód ho zväčšíte
+619|Ukážte ho blízkej osobe: naskenuje ho fotoaparátom telefónu.
+620|Odkaz skopírovaný
+621|Kopírovanie sa nepodarilo
+622|Kopírovať môj odkaz
+623|Uložiť obrázok
+624|Vytvoriť nový kód? Starý QR kód prestane fungovať.
+625|Nový kód vytvorený.
+626|Obnoviť
+627|Kto ma môže nájsť?
+628|Nastavenie uložené.
+629|Uložiť používateľské meno
+630|Tento prehliadač nevie čítať QR kódy. Použite fotoaparát telefónu: odkaz NOTIIF otvorí sám.
+631|Fotoaparát nie je dostupný alebo bol zamietnutý.
+632|Naskenovať QR kód
+633|Pridaj sa ku mne v NOTIIF, súkromnej sieti našich blízkych (rodina, priatelia, kolegovia, klub…), bez reklám. Nainštaluj aplikáciu tu: {inviteLink} (môj kód: {code})
+634|Kontakt
+635|Žiadny kontakt s číslom alebo e-mailom.
+636|Prístup ku kontaktom bol zamietnutý alebo zrušený.
+637|Správa skopírovaná: vložte ju, kam chcete.
+638|Pozvať mojich blízkych
+639|📇 Vybrať z mojich kontaktov
+640|Na tomto telefóne alebo v tomto prehliadači aplikácia nemôže čítať vaše kontakty. Pridajte číslo alebo e-mail ručne, alebo zdieľajte odkaz.
+641|Číslo alebo e-mail
+642|Pozvať používateľa {name}
+643|Odoslať pozvánku:
+644|Pridaj sa ku mne v NOTIIF
+645|E-mail
+646|🔗 Zdieľať odkaz s pozvánkou
+647|🔒 Vaše kontakty sa neukladajú ani neposielajú do NOTIIF: slúžia len na napísanie správy vo vašom telefóne. Import z Googlu alebo Facebooku príde s pripojením k serveru.
+648|Prijaté žiadosti ({length})
+649|Používateľ {name} je teraz váš priateľ.
+650|Prijať
+651|Môj kód:
+652|Kód skopírovaný
+653|Kopírovať
+654|Kód blízkej osoby (NID-…)
+655|Kód pozvánky
+656|Pozvať
+657|📇 Pozvať z mojich kontaktov
+658|Demo režim: kódy na vyskúšanie
+659|(fiktívne osoby)
+660|Moji priatelia ({length})
+661|Vybrať zoznam
+662|Všetci ({length})
+663|＋ Nový zoznam
+664|Možnosti pre používateľa {name}
+665|V tomto zozname nikto nie je.
+666|Zatiaľ žiadni priatelia.
+667|Nahlásiť túto osobu
+668|Prečo? Tri nahlásenia od rôznych ľudí automaticky pozastavia účet na čas kontroly.
+669|Falošný profil
+670|Predaj, reklama alebo ponúkanie
+671|Podvod
+672|Sexuálne ponuky alebo eskort
+673|Nezákonný obsah
+674|Obťažovanie
+675|Iné
+676|Ďakujeme, nahlásenie zaznamenané.
+677|💬 Napísať
+678|Odstrániť používateľa {name} z priateľov?
+679|Odstrániť z priateľov
+680|Nahlásiť
+681|Zablokovať používateľa {name}? Už neuvidí váš obsah.
+682|Zablokované.
+683|Zablokovať
+684|Moje zoznamy
+685|Napr. „Bratranci“, „Kolegovia“… na rýchly výber, kto uvidí vaše príspevky.
+686|Zablokované osoby
+687|Odblokovať
+688|Nový zoznam
+689|🔎 Nájsť niekoho (meno alebo @používateľské meno)
+690|Hľadať
+691|Nikto sa nenašiel. „Neviditeľné“ alebo „obmedzené“ osoby možno nájsť iba podľa ich QR kódu, kódu alebo presného používateľského mena.
+692|📜 Pravidlá skupiny
+693|Členovia ({length})
+694|Odstrániť používateľa {name} zo skupiny?
+695|Odstrániť
+696|Opustiť túto skupinu?
+697|Opustiť skupinu
+698|Nové
+699|{n, plural, one{# člen} few{# členovia} many{# člena} other{# členov}}
+700|Vytvorte skupinu pre rodinu, dovolenku, večierky…
+701|Nová skupina
+702|Emoji
+703|Názov skupiny
+704|Popis
+705|Pravidlá skupiny (nepovinné)
+706|Členovia (spomedzi vašich priateľov)
+707|Skupina vytvorená.
+708|Vytvoriť skupinu
+709|✅ Príde
+710|❌ Nepríde
+711|🤔 Možno
+712|Narodeniny, rodinné obedy, dovolenka… vytvorte prvú!
+713|· prebehlo
+714|Zmazať túto udalosť?
+715|Organizuje {name}
+716|👥 Zobraziť, kto príde
+717|✅ Prídu
+718|❌ Neprídu
+719|⏳ Bez odpovede
+720|Nová udalosť
+721|Názov (napr. Narodeniny starej mamy)
+722|Dátum a čas
+723|Miesto
+724|Udalosť vytvorená.
+725|Moji priatelia
+726|Všetci
+727|Nikto
+728|Upraviť môj profil
+729|Zmeniť fotku
+730|Pridať fotku
+731|Odstrániť fotku
+732|Používateľské meno: @{handle}
+733|Už raz zmenené: konečné.
+734|Dá sa zmeniť iba raz a je to platené (kvôli obmedzeniu falošných profilov).
+735|Nové používateľské meno
+736|Zmeniť
+737|Kto môže vidieť moju fotku?
+738|Ostatní potom uvidia vašu iniciálu namiesto fotky.
+739|Meno alebo používateľské meno
+740|Stav
+741|Váš stav
+742|Vaše krátke bio
+743|Profil aktualizovaný.
+744|Uložiť
+745|Vyberte, čo môžu vaši priatelia robiť s vašimi fotkami, videami a textami.
+746|Páči sa mi to a reakcie
+747|Ak je vypnuté, nikto nemôže reagovať na vaše príspevky a nezobrazuje sa žiadne počítadlo.
+748|Komentáre
+749|Ak je vypnuté, nikto nemôže komentovať vaše príspevky.
+750|{n, plural, one{# príspevok} few{# príspevky} many{# príspevku} other{# príspevkov}}
+751|{n, plural, one{# priateľ} few{# priatelia} many{# priateľa} other{# priateľov}}
+752|Členom od {toLocaleDateString}
+753|Upraviť môj profil (fotka, meno, bio)
+754|Nastavenia oznámení
+755|Nastavenia
+756|Označiť všetko ako prečítané
+757|🌙 Tichý režim zapnutý: žiadne upozornenia, ale zoznam zostáva tu.
+758|Nič nové.
+759|Oznámenia nikdy neobsahujú obsah pomíjivého príspevku.
+760|🎵 Vyzváňanie a vibrácie
+761|Vyzváňanie oznámení
+762|Vyzváňanie hovorov
+763|Vibrácie správ
+764|Vibrácie hovorov
+765|Otras vždy vibruje na maximum. Ťuknutím na voľbu ju vyskúšate.
+766|🔔 Oznámenia v telefóne
+767|Prijímať oznámenia
+768|Správy, žiadosti o priateľstvo, zdieľania, udalosti…
+769|Oznámenia v telefóne
+770|Oznámenia zapnuté.
+771|Povoľte oznámenia v okne telefónu.
+772|Oznámenia zamietnuté: povoľte ich v nastaveniach telefónu (Aplikácie > Cercle > Oznámenia).
+773|Tento prehliadač oznámenia nepodporuje. Nainštalujte aplikáciu (QR pre Android) alebo ikonu na ploche.
+774|Oznámenia zamietnuté: povoľte ich v nastaveniach telefónu a skúste to znova.
+775|Ktoré oznámenia prijímať?
+776|💬 Správy
+777|👋 Žiadosti o priateľstvo
+778|📰 Príspevky a príbehy
+779|🔁 Zdieľania
+780|📅 Udalosti
+781|👥 Skupiny
+782|🖼 Albumy
+783|🎮 Hry
+784|Oznámenia: {l}
+785|Test: všetko funguje ✅
+786|Testovacie oznámenie sa nedá zobraziť.
+787|Odoslať test
+788|Úprimne: zatiaľ sa oznámenia zobrazujú, keď je aplikácia otvorená alebo na pozadí. Ich príjem pri zatvorenej aplikácii vyžaduje server (vzdialené odosielanie), plánovaný so skutočnými účtami. Hovory: čoskoro.
+789|Moje 4 obľúbené efekty
+790|V konverzáciách sa zobrazujú ako prvé. Ostatné zostávajú pod tlačidlom „+“.
+791|Obľúbený: {label}
+792|Najviac 4 obľúbené: najprv jeden vypnite.
+793|Ponechajte aspoň jeden obľúbený.
+794|Obnoviť predvolené
+795|Horná lišta
+796|Tlačidlo „Viac“ (všetky ponuky) je vždy vpravo hore. Pridajte vedľa neho až 4 skratky.
+797|Hore: {l}
+798|Najviac 4 skratky: najprv jednu vypnite.
+799|Ponechajte aspoň jednu skratku.
+800|Dolná lišta
+801|Vyberte až 4 skratky. Tlačidlo „Vytvoriť“ zostáva vždy v strede. Ostatné ponuky sú v tlačidle „Viac“ vpravo hore.
+802|Skratka {l}
+803|Bublina správ
+804|Malá bublina, ktorú presuniete, kam chcete. Keď je zobrazená, „Správy“ sú v dolnej lište nahradené „Skupinami“.
+805|Úvodná obrazovka
+806|Stránka, ktorá sa otvorí po spustení NOTIIF.
+807|Svetlá téma
+808|Svetlé pozadie, biela a tyrkysová.
+809|Tmavá téma
+810|Polnočné modré a tyrkysové pozadie, večer jemnejšie.
+811|Efekty v konverzáciách
+812|Otras obrazovky so zvukom, srdcia, narodeniny: keď nejaký pošle priateľ, uvidíte a započujete ho. Predvolene zapnuté.
+813|Tiché hodiny
+814|V noci stlmí upozornenia (v režime servera).
+815|Automatické prehrávanie videí
+816|Pre krátke videá (čoskoro).
+817|🔒 Súkromie
+818|Žiadne reklamy. Žiadny predaj údajov.
+819|Žiadne tlačidlo na zdieľanie navonok, žiadny verejný profil.
+820|Nikto vás nemôže nájsť bez vášho pozvánkového kódu.
+821|Žiadna aplikácia nemôže oprávnenej osobe zabrániť odfotiť si obrazovku iným zariadením.
+822|🧪 Demo režim (na tomto zariadení)
+823|Zatiaľ vaše údaje zostávajú na tomto zariadení a priatelia sú fiktívni. Skutočné účty, správy medzi telefónmi a hovory vyžadujú server: pozrite si sprievodcu v priečinku „docs“ projektu.
+824|Odhlásiť sa
+825|Exportovať moje údaje
+826|Zmazať všetky vaše údaje NOTIIF z tohto zariadenia?
+827|Zmazať môj účet a moje údaje
+828|🔁 Prepnúť člena (demo)
+829|Na vyskúšanie dôb trvania na osobu: zverejnite fotku na 5 s pre Céline a Thomasa a potom prepínajte medzi nimi.
+830|Teraz ste {name}.
+831|Snímka obrazovky zablokovaná aplikáciou NOTIIF
+832|Logo NOTIIF
+833|práve teraz
+834|pred {n} min
+835|pred {n} h
+836|Tváre
+837|Ruky
+838|Srdcia
+839|Oslava a príroda
+840|Zavrieť emoji
+841|Zmazať {what}?
+842|Táto akcia je nezvratná.
+843|Ponechať
+844|NOTIIF — Váš okruh. Vaše chvíle.

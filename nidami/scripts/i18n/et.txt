@@ -1,0 +1,845 @@
+0|Avaleht
+1|Sõbrad
+2|Grupid
+3|Sõnumid
+4|Kõned
+5|Fotod
+6|Mängud
+7|Sündmused
+8|Jagamised
+9|Teavitused
+10|Profiil
+11|Õiguslik teave
+12|Seaded
+13|Heli- ja videokõned
+14|Kõned vajavad ühendusserverit (WebRTC). Need tulevad, kui NOTIIF-i server tööle hakkab.
+15|Sinu ring. Sinu hetked.
+16|Loo
+17|Minu profiil
+18|Tagasi
+19|Kõik menüüd
+20|Navigeerimine
+21|Loo: lugu või postitus. Pikk vajutus iseenda videoks
+22|Rohkem
+23|Minu ring
+24|Meedia ja mängud
+25|Minu konto
+26|Kutse NOTIIF-i
+27|Kas lisada kasutaja {name}?
+28|Saada taotlus
+29|Seda koodi ei ole selles seadmes olemas. Demorežiimis ei jagata kontosid veel seadmete vahel: see tuleb serveriga.
+30|Hiljem
+31|Mida soovid jagada?
+32|✨ Lugu (kaob ise)
+33|📝 Postitus
+34|Minu grupid
+35|Eelseisvad
+36|Sündmusi pole.
+37|Mängi perega
+38|Jätka Apple'iga
+39|Jätka Google'iga
+40|Jätka Facebookiga
+41|Jätka Snapchatiga
+42|Snapchat nõuab arendajalepingut (Snap Kit). Seda tuleb enne aktiveerimist taotleda.
+43|FranceConnect nõuab riigi luba (taotlus esitatakse aadressil datapass.api.gouv.fr).
+44|La Poste'i digitaalne identiteet
+45|La Poste'i digitaalne identiteet nõuab partnerlust La Poste'iga.
+46|Server ei ole kättesaadav.
+47|Tekkis viga.
+48|Konto loodud.
+49|Konto loodud. Ava äsja saadetud kinnituskiri ja tule tagasi sisse logima.
+50|Sisse logitud.
+51|Mina
+52|Püsiv
+53|📳 Otras
+54|📳 Otras!
+55|❤️ Südamed
+56|❤️ Südamevihm!
+57|😘 Suudlused
+58|😘 Suured suudlused!
+59|❄️ Lumi
+60|❄️ Sajab lund!
+61|🎆 Ilutulestik
+62|🎆 Ilutulestik!
+63|👻 Kummitus
+64|👻 Buu!
+65|🔥 Leegid
+66|🔥 Kuum!
+67|🫧 Mullid
+68|🫧 Mullid!
+69|🎂 Pidu
+70|🎂 Peame pidu!
+71|🌧️ Vihm
+72|🌧️ Sajab vihma!
+73|⛈️ Äike
+74|⛈️ Müristab!
+75|🚀 Rakett
+76|🚀 Start!
+77|👏 Braavo
+78|👏 Braavo!
+79|😂 Naerukrambid
+80|😂 Suren naeru kätte!
+81|💰 Jackpot
+82|💰 Jackpot!
+83|💣 Pauk
+84|💣 Pauk!
+85|🎂 Sünnipäev
+86|🎂 Palju õnne sünnipäevaks!
+87|🎂 Sünnipäev 2
+88|🤭 Röhatus
+89|🤭 Röh!
+90|💨 Pearaha
+91|💨 Pruuts!
+92|🤮 Oksendamine
+93|🤮 Fuih!
+94|Kristall
+95|Koidik
+96|Tuulehoog
+97|Sära
+98|Rannik
+99|Ring
+100|Hommik
+101|Puudub
+102|Nõrk
+103|Keskmine
+104|Tugev
+105|Seadme mälu on täis: kustuta vanu fotosid.
+106|Viga.
+107|Kasutajanime saab muuta ainult ühe korra ja sa oled seda juba teinud.
+108|Kasutajanime muutmine on tasuline (pakett „Plus”). Makse ei ole veel ühendatud: proovimiseks lülita seadetes sisse „Plus (eelvaade)”.
+109|Kasutajanimi: 3 kuni 20 märki, väiketähed, numbrid, punkt või alakriips.
+110|See kasutajanimi on juba võetud.
+111|Kasutajanimi muudetud. See muudatus on lõplik.
+112|Tere tulemast minu pessa 🪺
+113|Tere! Tere tulemast! 🌳
+114|Perekond
+115|Kes tuleb pühapäeval lõunale?
+116|Perelõuna
+117|Igaüks toob väikese roa.
+118|Vanaema juures
+119|Kehtetu kestus.
+120|Sinu konto on teavituste tõttu kontrolli all.
+121|Seda postitust ei näeks keegi: vali teised saajad.
+122|Seda albumit ei näeks keegi: vali teised saajad.
+123|Album
+124|{name} lõi sulle albumi „{slice}”.
+125|Albumit ei leitud.
+126|{name} reageeris sinu postitusele {emoji}.
+127|{name} kommenteeris sinu postitust.
+128|Inimest ei leitud.
+129|See oled sina!
+130|Sinu konto on teavituste tõttu kontrolli all: praegu ei saa taotlusi saata.
+131|Täna on liiga palju taotlusi (kuni 15). Proovi homme uuesti.
+132|Taotlust ei saa saata.
+133|{name} on juba sinu sõber.
+134|Taotlus on juba saadetud.
+135|{name} soovib sinuga sõbruneda.
+136|Taotlus saadetud kasutajale {name}.
+137|Tundmatu kood (demorežiimis on olemas ainult selle seadme kontod).
+138|3 kuni 20 märki: tähed, numbrid, _ või .
+139|Kasutajanimi salvestatud.
+140|Ei leitud.
+141|Vali vähemalt üks sõber (keda autor pole blokeerinud).
+142|Taotlus juba ootab.
+143|{name} palub luba sinu postituse jagamiseks.
+144|Taotlus saadetud. Otsustab autor.
+145|{name} keeldus jagamisest.
+146|{name} nõustus jagamisega.
+147|{name} jagas sinuga sisu.
+148|{name} võttis jagamise tagasi: see kadus kõikjalt.
+149|{name} võttis sinu taotluse vastu.
+150|{name} lisas sind gruppi „{name2}”.
+151|{name} võis proovida jäädvustada mõnda sinu sisu.
+152|{name} kutsub sind: {title}.
+153|{name} kutsub sind ristikut ja nulli mängima.
+154|Video on liiga suur: praegu kuni 3 MB (umbes 10 sekundit).
+155|Video lisatud.
+156|Viga
+157|Foto lisatud.
+158|Vali foto või video.
+159|Loetamatu fail.
+160|Ava video
+161|Ava foto
+162|Foto
+163|🔒 Privaatne: ainult sina
+164|👥 Jagatud: {n}
+165|👥 Kasutaja {name} album
+166|Tagasi albumite juurde
+167|Kas kustutada see album ja kõik selles, ka nende juures, kes seda näevad?
+168|Kustuta album
+169|Laadimine…
+170|Lisa foto või video
+171|Tühi album: lisa esimene foto või video.
+172|Selles albumis ei ole veel midagi.
+173|🔒 Samad reeglid mis kõikjal: veemärk sinu nimega, ekraanipildid blokeeritud Androidi rakenduses, jagamine ainult autori nõusolekul.
+174|Minu videod
+175|Vali video pärast.
+176|Fotod ja videod
+177|📷 Fotod
+178|🎬 Videod
+179|🗂 Albumid
+180|Minu fotod
+181|Sinu avaldatud fotod ilmuvad siia.
+182|Minuga jagatud (püsiv)
+183|Seni veel mitte midagi.
+184|Video lisatud (privaatne, jaotises „Minu videod”).
+185|Lisa video
+186|Videoid veel ei ole. Praegu lühikesed (umbes 10 sekundit, kuni 3 MB). Pikemad videod tulevad serveriga.
+187|Video jagamiseks sõpradega pane see jagatud albumisse (vahekaart Albumid).
+188|Uus album
+189|Privaatne
+190|Jagatud: {length}
+191|Kasutajalt {name}
+192|· {count, plural, one{# üksus} other{# üksust}}
+193|Albumeid pole. Loo üks, privaatne või sõpradega jagatud.
+194|Nimi (nt Puhkus 2026)
+195|🔒 Privaatne
+196|👥 Kõik mu sõbrad
+197|✅ Valitud sõbrad
+198|Näed seda ainult sina.
+199|Sõprade arv, kes seda näevad: {n}. Seda näevad ainult sinu sõbrad ja keegi ei saa seda ilma sinu nõusolekuta edasi jagada.
+200|Loo album
+201|✅ Rakendus paigaldatud
+202|Kasutad seda juba päris rakendusena.
+203|📲 Paigalda rakendus
+204|Paigalda sellesse seadmesse
+205|Laadi alla Androidi rakendus
+206|iPhone'is ja iPadis: puuduta
+207|Jaga
+208|⬆️ siis
+209|„Lisa avakuvale”
+210|Ava brauseri menüü (⋮) ja vali „Paigalda rakendus” või „Lisa avakuvale”.
+211|Sinu ring.
+212|Sinu hetked.
+213|Sinu lähedaste privaatne võrgustik: pere, sõbrad, kolleegid, meeskond, teatritrupp või klubi. Ilma reklaamideta, ilma võõrasteta, ilma väljapoole jagamiseta.
+214|Jaga, kellega soovid
+215|Fotod, videod ja tekstid ainult inimestele, keda valid.
+216|Lood, mis kaovad
+217|24 tundi või mõni sekund möödaminev foto puhul.
+218|Sõnumid, häälsõnumid ja efektid
+219|Vestle grupis või privaatselt ning saada heliga efekte.
+220|Sisene NOTIIF-i
+221|Et sul oleks NOTIIF päris rakendusena telefonis:
+222|Paigalda rakendus
+223|See sisselogimine aktiveerub, kui server on ühendatud (vaata juhendit).
+224|kasutustingimused ja privaatsuspoliitika
+225|Loo minu konto
+226|Logi sisse
+227|— või —
+228|Sinu nimi või kasutajanimi
+229|Nimi
+230|@ kasutajanimi (valikuline): saab muuta ainult ühe korra, tasuline
+231|Kasutajanimi
+232|Sinu e-posti aadress
+233|Parool (vähemalt 8 märki)
+234|Parool
+235|Nõustun tingimustega
+236|Olen vähemalt 15-aastane ja nõustun dokumentidega: {legalBtn}.
+237|Mul on juba konto
+238|Mul ei ole veel kontot
+239|Kirjuta esmalt ülal oma nimi või kasutajanimi.
+240|Kirjuta esmalt oma nimi või kasutajanimi.
+241|Jätkamiseks märgi ruut „Olen vähemalt 15-aastane”.
+242|Märgi tingimuste ruut.
+243|🧪 Demorežiim
+244|Päris kontod (e-post, Google, Apple, Facebook, FranceConnect…) vajavad serverit, mis ei ole veel ühendatud. Praegu saad rakendust selles seadmes proovida väljamõeldud sõpradega.
+245|Sinu nimi või kasutajanimi (demo)
+246|Proovi demorežiimi
+247|Praegu saad rakendust selles seadmes demorežiimis proovida väljamõeldud sõpradega.
+248|Sain aru, proovin demorežiimi
+249|Õigusdokumendid
+250|🔒 Möödaminev sõnum
+251|🎤 Häälsõnum
+252|📷 Foto
+253|Kiirsõnumid
+254|Tagasi loendisse
+255|Ava suurelt
+256|Sulge
+257|💬 Vestlused
+258|👥 Mu sõbrad
+259|Kirjuta sõnum
+260|Sõpru veel ei ole. Lisa nad vahekaardil Sõbrad.
+261|Uus vestlus
+262|Vestlusi pole. Vali sõber jaotises „Mu sõbrad”.
+263|Nähtud üks kord
+264|Möödaminev sõnum
+265|· ava suurelt
+266|Emoji
+267|Sinu sõnum…
+268|Kiirsõnum
+269|Saada
+270|Ekraanipilt blokeeritud: autorit hoiatatakse.
+271|Sõnum nähtud üks kord
+272|🔥 Nähtud üks kord
+273|Sulge (kaob)
+274|Foto nähtud üks kord
+275|Sisu on peidetud
+276|Tuvastati ekraanipilt või akna vahetus
+277|See sõnum kaob, kui selle sulged. Fotot saab alati teise seadmega pildistada: austa privaatsust.
+278|🔎 Otsi minu vestlustest
+279|Vestlusi pole: kirjuta sõbrale jaotisest „Sõbrad”.
+280|📹 Alustan videokõnet: {url}
+281|Videokõne alustatud: link saadeti vestlusesse.
+282|Alusta videokõnet
+283|📹 Videokõne
+284|Sõnum
+285|🔥 Sõnum nähtud ja kadunud
+286|🔥 Ühekordselt vaadatav sõnum · puuduta avamiseks
+287|(muudetud)
+288|⏱ {left} s
+289|⏱ möödaminev {secs} s pärast lugemist
+290|🔥 ühekordne vaatamine ·
+291|nähtud ✓
+292|🔒 Möödaminev sõnum · puuduta lugemiseks ({secs} s)
+293|⌛ Sõnum on aegunud
+294|· ✓✓ loetud
+295|· ✓ saadetud
+296|Ütle tere 👋
+297|Saatmisvalikud
+298|Sulge valikud
+299|Sõnumi kestus
+300|♾️ Püsiv
+301|⏱ 10 s
+302|⏱ 1 min
+303|📷 Saada foto
+304|🛡 Veemärk
+305|sees
+306|eemaldatud
+307|Efektid
+308|Loetamatu pilt.
+309|Valikud: kestus, foto, efektid
+310|Muuda sõnumit…
+311|Mitu külge on kuusnurgal?
+312|Mis on Itaalia pealinn?
+313|Milano
+314|Napoli
+315|Rooma
+316|Torino
+317|Milline on kiireim maismaaloom?
+318|Lõvi
+319|Gepard
+320|Hobune
+321|Antiloop
+322|Mitu minutit on poolteises tunnis?
+323|Milline planeet on Päikesele kõige lähemal?
+324|Veenus
+325|Marss
+326|Maa
+327|Merkuur
+328|Millisest puuviljast tehakse siidrit?
+329|Pirn
+330|Õun
+331|Viinamari
+332|Kirss
+333|Mitu mängijat on jalgpallimeeskonnal väljakul?
+334|Millise värvi saame sinise ja kollase segamisel?
+335|Roheline
+336|Oranž
+337|Lilla
+338|Pruun
+339|Milline on suurim ookean?
+340|Atlandi
+341|India
+342|Põhja-Jäämeri
+343|Vaikne
+344|Mitu päeva on veebruaris liigaastal?
+345|{nm} (✕) vs {nm2} (◯)
+346|Ruut {v1}
+347|Viik 🤝
+348|🏆 {name} võitis!
+349|Sinu kord
+350|Kord on kasutajal {name} (seadetes vaheta liiget, et demos tema eest mängida)
+351|⭕ Ristik ja null kahele
+352|🧠 Viktoriin
+353|♟️ Male · varsti
+354|🃏 Kaardid · varsti
+355|Kutsu sõber
+356|Mäng alustatud kasutajaga {name}.
+357|Mänge pole. Kutsu ülal sõber.
+358|Braavo! {pts}/{length}
+359|Sinu kogusumma:
+360|punkti
+361|Mängi uuesti
+362|Küsimus {v1}/{length} · Tulemus {pts}
+363|Edasi
+364|Lõpeta
+365|Kas kustutada kõikjalt, ka nende juures, kes selle said?
+366|Kustuta
+367|Reageeri {e}
+368|🔒 Kaitstud foto: veemärk sinu nimega, ekraanipildid blokeeritud Androidi rakenduses, jagamine ainult autori nõusolekul.
+369|Varsti saadaval
+370|Aeglaselt: üks efekt sekundis.
+371|Efekt {label}
+372|Oma efekt {name}
+373|Rohkem efekte
+374|＋ Rohkem
+375|Kõik efektid
+376|Märgi 4 efekti, mis jäävad ette ({length}/4). Proovi neid nupuga „Saada”.
+377|Jääb ette: {label}
+378|Kuni 4: eemalda esmalt üks märge.
+379|Jäta ette vähemalt üks efekt.
+380|Minu enda efektid
+381|Kustuta {name}
+382|＋ Loo oma efekt (pilt + minu hääl)
+383|Mikrofon ei ole saadaval või sellest keelduti.
+384|Anna oma efektile nimi.
+385|Lisa pilt või heli.
+386|Kuni 6 oma efekti.
+387|Efekt lisatud.
+388|Efekti nimi (nt Minu naer)
+389|Efekti nimi
+390|Pilt
+391|Salvestan… {left} s (puuduta lõpetamiseks)
+392|Salvesta uuesti
+393|Salvesta (kuni 3 s)
+394|Heli on liiga suur (kuni 450 kB, umbes 10 sekundit).
+395|📁 Vali helifail
+396|▶ Proovi
+397|Lisa
+398|Lugu
+399|Nägid:
+400|veel keegi
+401|Vasta privaatselt…
+402|↩️ Vastus sinu loole: {reply}
+403|Vastus saadetud privaatselt.
+404|Reaktsioon saadetud {e}
+405|Kõik mu sõbrad
+406|Grupp
+407|Valitud sõbrad
+408|Kõik peale…
+409|Loend
+410|Ainult mina
+411|Vali pilt.
+412|Seda pilti ei saa lugeda.
+413|Lugu avaldatud ajapiiranguta.
+414|Möödaminev lugu avaldatud.
+415|Lugu avaldatud 24 tunniks.
+416|Avaldatud!
+417|✨ Minu lugu
+418|📝 Uus postitus
+419|Lugu kaob ise (vaikimisi 24 tunni pärast) ja seda vaadatakse täisekraanil.
+420|Sisu tüüp
+421|✏️ Tekst
+422|🎥 Selfie-video
+423|🎤 Hääl
+424|🔗 Link
+425|Eelvaade
+426|Eemalda foto
+427|📷 Vali foto
+428|🗑 Kustuta
+429|✅ Avalda
+430|🔁 Alusta uuesti
+431|🎥 Filmi ennast (kuni 10 s)
+432|🎤 Salvesta häälsõnum (kuni 30 s)
+433|Kleebi link: Spotify, Deezeri või YouTube'i esitusloend, video, Instagram, TikTok, Leboncoin…
+434|Jagatav link
+435|See link ei paista kehtiv.
+436|Kirjuta oma lugu…
+437|Loo tekst
+438|Mis on sinu lähedastel uut?
+439|Lisa allkiri (valikuline)…
+440|Tekst
+441|Tuju
+442|Taust {v1}
+443|Tujuta
+444|Kes seda näeb?
+445|Loo kestus
+446|24 tundi
+447|Piiramatu
+448|Möödaminev
+449|Kuvamisaeg
+450|Muu…
+451|Sekundid (1 kuni 999)
+452|Kohandatud kestus sekundites
+453|Grupp
+454|Loend
+455|＋ Loo loend
+456|Loendi nimi (nt Kolleegid, Jalgpall, Teater)
+457|Loendi nimi
+458|Lisa esmalt sõpru, et neid loendisse panna.
+459|Tühista
+460|Loend loodud.
+461|Loo loend
+462|Sisesta sekundite arv vahemikus 1 kuni {MAX_CUSTOM_SECS}.
+463|Nähtav ainult sulle.
+464|{audLabel} · inimeste arv: {count}
+465|· {fmtSecs} inimese kohta avamisest alates
+466|Avalda
+467|Möödaminev postitus
+468|Järelejäänud aeg
+469|{ceil} s
+470|Möödaminev foto
+471|Kui sulged, aeg jookseb edasi. Fotot saab alati teise seadmega pildistada.
+472|Sinu aeg sai läbi
+473|Sinu vaatamisaeg on lõppenud.
+474|möödaminev
+475|Sul on jäänud {n} s.
+476|Sul on {fmtSecs} avamisest alates.
+477|Jätka
+478|Ava
+479|Valikud
+480|↪ Jagas
+481|kasutaja {name} nõusolekul
+482|Kas kustutada see postitus? Lubatud jagamised kaovad samuti.
+483|Kustuta kõikjalt
+484|Kas võtta see jagamine tagasi? See kaob kasutaja {name} ja tema sõprade juurest.
+485|Võta see jagamine tagasi
+486|Kas lõpetada jagamine?
+487|Lõpeta minu jagamine
+488|Suurenda postitust
+489|Kommenteeri
+490|Nägi {length}/{length2}:
+491|↪ {n, plural, one{# lubatud jagamine} other{# lubatud jagamist}}
+492|sinu poolt (vaata „Jagamised”).
+493|Nägid
+494|· Jagamise vaatajaskond:
+495|↪ Palu jagamist
+496|Puuduta fotot, et reageerida või kommenteerida
+497|Puuduta fotot, et reageerida
+498|Puuduta fotot, et kommenteerida
+499|Postitus
+500|Rohkem emotikone
+501|Rohkem:
+502|Kommentaare veel ei ole. Ole esimene!
+503|Vasta
+504|Emotikonid
+505|Sinu vastus…
+506|Kirjuta kommentaar…
+507|Kommentaar
+508|Kõik sõbrad
+509|Ainult mina
+510|Valitud sõbrad
+511|Sõbrad peale…
+512|Kõik
+513|Minu postitused
+514|Siin ei ole veel midagi. Avalda oma esimene hetk ✨
+515|✏️ Kirjuta tekst
+516|Nõuanne: hoia nuppu all ja kaamera avaneb kohe.
+517|Palu jagamist
+518|See sisu kuulub kasutajale
+519|. See inimene otsustab, kas nõustub. Kui nõustub, näevad valitud sõbrad
+520|algset sisu
+521|(mitte koopiat) samade kestustega ning {name} saab
+522|jagamise igal ajal tagasi võtta
+523|: siis kaob see kõigi juurest.
+524|Jaga kasutajatega:
+525|Sul ei ole rohkem sõpru.
+526|Lühike sõnum autorile (valikuline)
+527|Saada taotlus kasutajale {name}
+528|🌍 Keel
+529|Vali NOTIIF-i keel. See muutub kohe ja sinu valik jäetakse meelde.
+530|Praegune keel
+531|Otsi keelt
+532|Keel
+533|Keel muudetud.
+534|Keelt ei leitud.
+535|Praegu on õigusdokumendid olemas ainult prantsuse keeles.
+536|Versioon {LEGAL_VERSION}
+537|Vikipeedia
+538|Link
+539|Mängija {name}
+540|Vähenda
+541|Suurenda
+542|Peata muusika
+543|Link {name}
+544|Vähenda ja kuula edasi
+545|⌄ Vähenda
+546|Ava eraldi
+547|Seda lehte ei saa NOTIIF-i sees kuvada.
+548|Ava {name}
+549|Ava link {name}
+550|🎧 Kuula NOTIIF-is (kuuled ainult sina)
+551|▶ Vaata siin, NOTIIF-is
+552|Ava link
+553|Kaamera või mikrofon ei ole saadaval või sellest keelduti.
+554|🎥 Alusta
+555|🎤 Alusta
+556|(kuni {max} s)
+557|⏹ Lõpeta · {left} s
+558|📸 Foto
+559|Hoia nuppu all, et rääkida.
+560|Hoia all häälsõnumi salvestamiseks
+561|🔴 Lase lahti saatmiseks
+562|Kaamera
+563|Alusta uuesti
+564|Saada ➤
+565|Sulge kaamera
+566|Vaheta kaamerat
+567|s / {max} s
+568|Suum
+569|Suum {z}×
+570|{replace}×
+571|Video
+572|Pildista
+573|Peata
+574|Filmi
+575|Puuduta pildistamiseks
+576|Puuduta peatamiseks
+577|Puuduta filmimise alustamiseks (kuni {max} s)
+578|Hoia mikrofoni all, et rääkida.
+579|🔴 {mm} · lase lahti lõpetamiseks
+580|Hoia mikrofoni all, et rääkida (kuni {max} s)
+581|Kuni ma selle eemaldan
+582|Nagu originaal
+583|Kui kaua jagamine nähtavaks jääb?
+584|Kuvamisaeg inimese kohta
+585|🔒 Seda sisu ei saa mujal avaldada: sellel on veemärk, ekraanipildid on blokeeritud (Androidi rakendus) ja iga uus jagamine vajab sinu nõusolekut. Võid selle igal ajal tagasi võtta.
+586|Jagamine lubatud. Võid selle tagasi võtta, millal tahes.
+587|Kinnita luba
+588|Luba…
+589|Keeldu
+590|sisu kustutatud
+591|Keegi ei saa sinu sisu uuesti avaldada ilma sinu nõusolekuta. Ja ka pärast nõusolekut
+592|on sul täielik kontroll
+593|: kui võtad jagamise tagasi või kustutad postituse, kaob see kõigi juurest, kellega seda jagati.
+594|Töötlemist ootavad taotlused ({length})
+595|soovib jagada
+596|kasutajatega: {join} · {ago}
+597|Ootel taotlusi pole.
+598|Jagamised, mida olen lubanud ({length})
+599|jagas {nm} kasutajatega: {join}
+600|Kas võtta see jagamine tagasi? See kaob kõigi juurest.
+601|Jagamine võetud kõikjal tagasi.
+602|Võta kõikjal tagasi
+603|Aktiivseid jagamisi pole.
+604|Minu taotlused ja jagamised ({length})
+605|kasutajalt {nm}
+606|{v1} · kasutajatega: {join}
+607|Sa ei ole midagi jagada palunud.
+608|QR-kood
+609|🌍 Avalik
+610|Igaüks saab mind leida nime või kasutajanime järgi.
+611|👥 Piiratud
+612|Ainult minu täpse kasutajanime järgi või minu sõprade sõprade kaudu.
+613|🔒 Nähtamatu
+614|Keegi ei leia mind. Ainult siis, kui annan oma QR-koodi või koodi.
+615|Minu QR-kood
+616|Ava või suurenda QR-koodi
+617|Lehe avamiseks klõpsa QR-koodil
+618|Suurendamiseks puuduta QR-koodi
+619|Näita seda lähedasele: ta skannib selle telefoni kaameraga.
+620|Link kopeeritud
+621|Kopeerimine ebaõnnestus
+622|Kopeeri minu link
+623|Salvesta pilt
+624|Kas luua uus kood? Vana QR-kood lakkab töötamast.
+625|Uus kood loodud.
+626|Uuenda
+627|Kes saab mind leida?
+628|Säte salvestatud.
+629|Salvesta kasutajanimi
+630|See brauser ei oska QR-koode lugeda. Kasuta telefoni kaamerat: NOTIIF-i link avaneb ise.
+631|Kaamera ei ole saadaval või sellest keelduti.
+632|Skanni QR-kood
+633|Liitu minuga NOTIIF-is, meie lähedaste privaatses võrgustikus (pere, sõbrad, kolleegid, klubi…), ilma reklaamideta. Paigalda rakendus siit: {inviteLink} (minu kood: {code})
+634|Kontakt
+635|Numbri või e-posti aadressiga kontakti pole.
+636|Juurdepääs kontaktidele on keelatud või tühistatud.
+637|Sõnum kopeeritud: kleebi see, kuhu soovid.
+638|Kutsu mu lähedasi
+639|📇 Vali minu kontaktidest
+640|Selles telefonis või brauseris ei saa rakendus sinu kontakte lugeda. Lisa number või e-posti aadress käsitsi või jaga linki.
+641|Number või e-posti aadress
+642|Kutsu kasutaja {name}
+643|Saada kutse:
+644|Liitu minuga NOTIIF-is
+645|E-post
+646|🔗 Jaga kutse linki
+647|🔒 Sinu kontakte ei salvestata ega saadeta NOTIIF-ile: neid kasutatakse ainult sõnumi kirjutamiseks sinu telefonist. Google'i või Facebooki import tuleb serveriühendusega.
+648|Saadud taotlused ({length})
+649|{name} on nüüd sinu sõber.
+650|Nõustu
+651|Minu kood:
+652|Kood kopeeritud
+653|Kopeeri
+654|Lähedase kood (NID-…)
+655|Kutsekood
+656|Kutsu
+657|📇 Kutsu minu kontaktidest
+658|Demorežiim: koodid proovimiseks
+659|(väljamõeldud inimesed)
+660|Mu sõbrad ({length})
+661|Vali loend
+662|Kõik ({length})
+663|＋ Uus loend
+664|Valikud kasutajale {name}
+665|Selles loendis pole kedagi.
+666|Sõpru veel ei ole.
+667|Teata sellest inimesest
+668|Miks? Kolm erinevate inimeste teadet peatavad konto automaatselt kontrolli ajaks.
+669|Võlts profiil
+670|Müük, reklaam või pealetükkivus
+671|Pettus
+672|Seksuaalpakkumised või saatjateenus
+673|Ebaseaduslik sisu
+674|Ahistamine
+675|Muu
+676|Aitäh, teade on registreeritud.
+677|💬 Kirjuta
+678|Kas eemaldada kasutaja {name} sõprade hulgast?
+679|Eemalda sõprade hulgast
+680|Teata
+681|Kas blokeerida kasutaja {name}? Ta ei näe enam sinu sisu.
+682|Blokeeritud.
+683|Blokeeri
+684|Minu loendid
+685|Nt „Nõbud”, „Kolleegid”… et kiiresti valida, kes sinu postitusi näeb.
+686|Blokeeritud inimesed
+687|Eemalda blokeering
+688|Uus loend
+689|🔎 Leia keegi (nimi või @kasutajanimi)
+690|Otsi
+691|Kedagi ei leitud. „Nähtamatuid” või „piiratud” inimesi leiab ainult nende QR-koodi, koodi või täpse kasutajanime järgi.
+692|📜 Grupi reeglid
+693|Liikmed ({length})
+694|Kas eemaldada kasutaja {name} grupist?
+695|Eemalda
+696|Kas lahkuda sellest grupist?
+697|Lahku grupist
+698|Uus
+699|{n, plural, one{# liige} other{# liiget}}
+700|Loo grupp perele, puhkusele, pidudele…
+701|Uus grupp
+702|Emoji
+703|Grupi nimi
+704|Kirjeldus
+705|Grupi reeglid (valikuline)
+706|Liikmed (sinu sõprade seast)
+707|Grupp loodud.
+708|Loo grupp
+709|✅ Tulen
+710|❌ Ei tule
+711|🤔 Võib-olla
+712|Sünnipäevad, perelõunad, puhkus… loo esimene!
+713|· toimunud
+714|Kas kustutada see sündmus?
+715|Korraldab {name}
+716|👥 Vaata, kes tuleb
+717|✅ Tulevad
+718|❌ Ei tule
+719|⏳ Vastamata
+720|Uus sündmus
+721|Nimi (nt Vanaema sünnipäev)
+722|Kuupäev ja kellaaeg
+723|Koht
+724|Sündmus loodud.
+725|Mu sõbrad
+726|Kõik
+727|Mitte keegi
+728|Muuda minu profiili
+729|Muuda fotot
+730|Lisa foto
+731|Eemalda foto
+732|Kasutajanimi: @{handle}
+733|Juba ühe korra muudetud: lõplik.
+734|Saab muuta ainult ühe korra ja see on tasuline (võltsprofiilide piiramiseks).
+735|Uus kasutajanimi
+736|Muuda
+737|Kes saab mu fotot näha?
+738|Teised näevad siis foto asemel sinu esitähte.
+739|Nimi või kasutajanimi
+740|Staatus
+741|Sinu staatus
+742|Sinu lühike tutvustus
+743|Profiil uuendatud.
+744|Salvesta
+745|Vali, mida sinu sõbrad sinu fotode, videote ja tekstidega teha saavad.
+746|Meeldimised ja reaktsioonid
+747|Kui välja lülitatud, ei saa keegi sinu postitustele reageerida ja loendurit ei kuvata.
+748|Kommentaarid
+749|Kui välja lülitatud, ei saa keegi sinu postitusi kommenteerida.
+750|{n, plural, one{# postitus} other{# postitust}}
+751|{n, plural, one{# sõber} other{# sõpra}}
+752|Liige alates {toLocaleDateString}
+753|Muuda minu profiili (foto, nimi, tutvustus)
+754|Teavituste seaded
+755|Seaded
+756|Märgi kõik loetuks
+757|🌙 Vaikne režiim sees: hoiatusi pole, aga loend jääb siia.
+758|Midagi uut pole.
+759|Teavitused ei sisalda kunagi möödaminevate postituste sisu.
+760|🎵 Helinad ja vibratsioon
+761|Teavituste helin
+762|Kõnede helin
+763|Sõnumite vibratsioon
+764|Kõnede vibratsioon
+765|Otras vibreerib alati maksimaalselt. Puuduta valikut, et seda proovida.
+766|🔔 Telefoni teavitused
+767|Võta teavitusi vastu
+768|Sõnumid, sõbrataotlused, jagamised, sündmused…
+769|Telefoni teavitused
+770|Teavitused sisse lülitatud.
+771|Luba teavitused telefoni aknas.
+772|Teavitustest keelduti: luba need telefoni seadetes (Rakendused > Cercle > Teavitused).
+773|See brauser ei toeta teavitusi. Paigalda rakendus (Androidi QR) või avakuva ikoon.
+774|Teavitustest keelduti: luba need telefoni seadetes ja proovi uuesti.
+775|Milliseid teavitusi vastu võtta?
+776|💬 Sõnumid
+777|👋 Sõbrataotlused
+778|📰 Postitused ja lood
+779|🔁 Jagamised
+780|📅 Sündmused
+781|👥 Grupid
+782|🖼 Albumid
+783|🎮 Mängud
+784|Teavitused: {l}
+785|Test: kõik töötab ✅
+786|Katseteavitust ei saa kuvada.
+787|Saada test
+788|Ausalt: praegu kuvatakse teavitusi, kui rakendus on avatud või taustal. Nende vastuvõtmine suletud rakenduse puhul vajab serverit (kaugsaatmine), mis on kavandatud päris kontodega. Kõned: varsti.
+789|Minu 4 lemmikefekti
+790|Vestlustes kuvatakse need esimestena. Teised jäävad nupu „+” alla.
+791|Lemmik: {label}
+792|Kuni 4 lemmikut: lülita esmalt üks välja.
+793|Jäta vähemalt üks lemmik.
+794|Taasta vaikeväärtused
+795|Ülariba
+796|Nupp „Rohkem” (kõik menüüd) on alati paremal üleval. Lisa selle kõrvale kuni 4 otseteed.
+797|Üleval: {l}
+798|Kuni 4 otseteed: lülita esmalt üks välja.
+799|Jäta vähemalt üks otsetee.
+800|Alariba
+801|Vali kuni 4 otseteed. Nupp „Loo” jääb alati keskele. Teised menüüd on nupus „Rohkem” paremal üleval.
+802|Otsetee {l}
+803|Sõnumimull
+804|Väike mull, mida saad liigutada, kuhu soovid. Kui see on kuvatud, asendatakse alaribal „Sõnumid” kategooriaga „Grupid”.
+805|Avaekraan
+806|Leht, mis avaneb NOTIIF-i käivitamisel.
+807|Hele teema
+808|Hele taust, valge ja türkiissinine.
+809|Tume teema
+810|Öösinine ja türkiissinine taust, õhtul pehmem.
+811|Efektid vestlustes
+812|Otras-ekraanid heliga, südamed, sünnipäevad: kui sõber neid saadab, näed ja kuuled neid. Vaikimisi sees.
+813|Vaiksed tunnid
+814|Vaigistab öösel hoiatused (serverirežiimis).
+815|Videote automaatesitus
+816|Lühikeste videote jaoks (varsti).
+817|🔒 Privaatsus
+818|Reklaame pole. Andmeid ei müüda.
+819|Väljapoole jagamise nuppu pole, avalikku profiili pole.
+820|Keegi ei leia sind ilma sinu kutsekoodita.
+821|Ükski rakendus ei saa takistada volitatud inimesel teise seadmega ekraani pildistamast.
+822|🧪 Demorežiim (selles seadmes)
+823|Praegu jäävad sinu andmed sellesse seadmesse ja sõbrad on väljamõeldud. Päris kontod, telefonide vahelised sõnumid ja kõned vajavad serverit: vaata juhendit projekti kaustas „docs”.
+824|Logi välja
+825|Ekspordi minu andmed
+826|Kas kustutada kõik sinu NOTIIF-i andmed sellest seadmest?
+827|Kustuta minu konto ja andmed
+828|🔁 Vaheta liiget (demo)
+829|Inimese kohta kestuste proovimiseks: avalda foto 5 sekundiks Céline'ile ja Thomasele, seejärel lülitu nende vahel.
+830|Nüüd oled {name}.
+831|NOTIIF blokeeris ekraanipildi
+832|NOTIIF-i logo
+833|just praegu
+834|{n} min tagasi
+835|{n} h tagasi
+836|Näod
+837|Käed
+838|Südamed
+839|Pidu ja loodus
+840|Sulge emotikonid
+841|Kas kustutada {what}?
+842|Seda toimingut ei saa tagasi võtta.
+843|Jäta alles
+844|NOTIIF — Sinu ring. Sinu hetked.
