@@ -843,3 +843,16 @@
 842|Den här åtgärden är slutgiltig.
 843|Behåll
 844|NOTIIF — Din krets. Dina ögonblick.
+845|Vem har reagerat?
+846|Ingen har reagerat än.
+847|Välj en emoji
+848|Håll in hjärtat: se vem som har reagerat
+849|den här kommentaren
+850|det här meddelandet
+851|Gilla
+852|Djur
+853|Mat
+854|Sport och fritid
+855|Resor
+856|Föremål
+857|Symboler

@@ -843,3 +843,16 @@
 842|Ta czynność jest nieodwracalna.
 843|Zachowaj
 844|NOTIIF — Twój krąg. Twoje chwile.
+845|Kto zareagował?
+846|Nikt jeszcze nie zareagował.
+847|Wybierz emoji
+848|Przytrzymaj serce: zobacz, kto zareagował
+849|ten komentarz
+850|tę wiadomość
+851|Lubię to
+852|Zwierzęta
+853|Jedzenie
+854|Sport i rozrywka
+855|Podróże
+856|Przedmioty
+857|Symbole

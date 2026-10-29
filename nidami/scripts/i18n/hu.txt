@@ -843,3 +843,16 @@
 842|Ez a művelet nem vonható vissza.
 843|Megtartás
 844|NOTIIF — A te köröd. A te pillanataid.
+845|Ki reagált?
+846|Még senki sem reagált.
+847|Emoji kiválasztása
+848|Tartsd nyomva a szívet: lásd, ki reagált
+849|ezt a megjegyzést
+850|ezt az üzenetet
+851|Tetszik
+852|Állatok
+853|Étel
+854|Sport és szabadidő
+855|Utazás
+856|Tárgyak
+857|Szimbólumok

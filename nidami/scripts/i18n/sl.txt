@@ -843,3 +843,16 @@
 842|Tega dejanja ni mogoče razveljaviti.
 843|Obdrži
 844|NOTIIF — Tvoj krog. Tvoji trenutki.
+845|Kdo se je odzval?
+846|Nihče se še ni odzval.
+847|Izberi emoji
+848|Dolgo pritisnite srce: oglejte si, kdo se je odzval
+849|ta komentar
+850|to sporočilo
+851|Všeč mi je
+852|Živali
+853|Hrana
+854|Šport in prosti čas
+855|Potovanja
+856|Predmeti
+857|Simboli

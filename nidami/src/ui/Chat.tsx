@@ -49,7 +49,7 @@ export function Messages() {
           {ok && <><button style={{ background: "none", border: 0, color: "inherit", padding: 0 }} onClick={() => setRep(m)}>↩︎</button><button style={{ background: "none", border: 0, color: "inherit", padding: 0 }} onClick={() => actions.pinMsg(c.id, m.id)}>📌</button></>}
           {mine && <><button style={{ background: "none", border: 0, color: "inherit", padding: 0 }} onClick={() => { setEdit(m.id); setTxt(m.text); }}>✎</button><button style={{ background: "none", border: 0, color: "inherit", padding: 0 }} onClick={() => actions.deleteMsg(c.id, m.id)}>🗑</button></>}</div></div>; })}
       {!c.msgs.length && <p className="muted center">{t("Dites bonjour 👋")}</p>}<div ref={end} /></div>
-    {del && <ConfirmDel what="ce message" onYes={() => actions.deleteMsg(c.id, del)} onClose={() => setDel(null)} />}
+    {del && <ConfirmDel what={t("ce message")} onYes={() => actions.deleteMsg(c.id, del)} onClose={() => setDel(null)} />}
     {onceMsg && <OnceViewer conv={c.id} m={onceMsg} me={me} name={userOf(s, me)?.name || ""} onClose={() => setOpenOnce(null)} />}
     {rep && <div className="card small row"><span className="grow ell">↩︎ {rep.text.slice(0, 60)}</span><button className="btn ghost sm" onClick={() => setRep(null)}><Ico n="x" s={14} /></button></div>}
     {opt && <div className="card col" style={{ gap: 10 }}>

@@ -843,3 +843,16 @@
 842|Tato akce je nevratná.
 843|Ponechat
 844|NOTIIF — Váš okruh. Vaše chvíle.
+845|Kdo reagoval?
+846|Zatím nikdo nereagoval.
+847|Vybrat emoji
+848|Podržte srdce: zobrazí se, kdo reagoval
+849|tento komentář
+850|tuto zprávu
+851|To se mi líbí
+852|Zvířata
+853|Jídlo
+854|Sport a volný čas
+855|Cestování
+856|Předměty
+857|Symboly

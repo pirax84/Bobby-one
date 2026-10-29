@@ -843,3 +843,16 @@
 842|Ní féidir an gníomh seo a chealú.
 843|Coinnigh
 844|NOTIIF — Do chiorcal. Do chuimhneacháin.
+845|Cé a d'fhreagair?
+846|Níor fhreagair aon duine go fóill.
+847|Roghnaigh emoji
+848|Brúigh i bhfad ar an gcroí: féach cé a d'fhreagair
+849|an trácht seo
+850|an teachtaireacht seo
+851|Is maith liom
+852|Ainmhithe
+853|Bia
+854|Spórt agus fóillíocht
+855|Taisteal
+856|Rudaí
+857|Siombailí

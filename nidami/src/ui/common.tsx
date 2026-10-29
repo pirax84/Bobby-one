@@ -62,6 +62,12 @@ export const EMOJI_GROUPS: [string, string[]][] = [
   [T("Mains"), ["👍", "👎", "👏", "🙌", "🙏", "🤝", "💪", "✌️", "🤞", "👌", "🤟", "🫶", "👋", "🤙", "☝️", "🫡"]],
   [T("Cœurs"), ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💖", "💗", "💕", "💞", "💝", "💘", "💔", "✨", "💯"]],
   [T("Fête et nature"), ["🎉", "🎂", "🎁", "🎈", "🍾", "🥂", "🍕", "🍔", "🍟", "🍰", "☕", "🍷", "🌞", "🌈", "🌸", "🌳", "🐶", "🐱", "🦋", "🐻", "⚽", "🎶", "📸", "🏖️", "🚗", "✈️", "🏡", "🔥", "⭐", "🌙"]],
+  [T("Animaux"), ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐸", "🐵", "🐔", "🐧", "🐦", "🦆", "🦉", "🦋", "🐝", "🐞", "🐢", "🐍", "🐙", "🐠", "🐬", "🐳", "🦄"]],
+  [T("Nourriture"), ["🍎", "🍌", "🍇", "🍓", "🍑", "🍍", "🥑", "🍅", "🥕", "🌽", "🥐", "🍞", "🧀", "🍳", "🍗", "🍝", "🍣", "🍩", "🍪", "🍫", "🍦", "🥤", "🍺", "🍹"]],
+  [T("Sport et loisirs"), ["⚽", "🏀", "🏈", "🎾", "🏐", "🏓", "🥊", "🏊", "🚴", "🎮", "🎯", "🎲", "🎸", "🎤", "🎧", "🎬", "🎨", "📚", "🧩", "🏆"]],
+  [T("Voyages"), ["🚗", "🚕", "🚌", "🚲", "🛵", "🚆", "✈️", "🚀", "⛵", "🏖️", "🏔️", "🌋", "🏕️", "🗼", "🏰", "🌍", "🗺️", "🌅", "🌃", "🏠"]],
+  [T("Objets"), ["📱", "💻", "📷", "🎥", "💡", "🔑", "🎁", "💰", "💎", "⏰", "🔔", "📌", "✏️", "📖", "🧸", "🛒", "💊", "🔧", "🧭", "🕯️"]],
+  [T("Symboles"), ["✅", "❌", "❗", "❓", "💤", "💥", "💫", "🔥", "⭐", "🌟", "⚡", "☀️", "🌙", "☁️", "❄️", "🌈", "♻️", "➕", "➖", "🔴", "🟢", "🔵", "⚠️", "🚫"]],
 ];
 export function EmojiGrid({ onPick, onClose }: { onPick: (e: string) => void; onClose?: () => void }) {
   return <div className="egrid">{onClose && <div style={{ position: "sticky", top: 0, display: "flex", justifyContent: "flex-end", zIndex: 1 }}><button type="button" className="btn ghost sm" onClick={onClose} aria-label={t("Fermer les emojis")} style={{ background: "var(--card)" }}>✕</button></div>}{EMOJI_GROUPS.map(([tx, l]) => <div key={tx}><div className="muted small" style={{ margin: "6px 2px" }}>{t(tx)}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;

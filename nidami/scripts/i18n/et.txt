@@ -843,3 +843,16 @@
 842|Seda toimingut ei saa tagasi võtta.
 843|Jäta alles
 844|NOTIIF — Sinu ring. Sinu hetked.
+845|Kes reageeris?
+846|Keegi pole veel reageerinud.
+847|Vali emoji
+848|Vajuta südamele pikalt: vaata, kes reageeris
+849|see kommentaar
+850|see sõnum
+851|Meeldib
+852|Loomad
+853|Toit
+854|Sport ja vaba aeg
+855|Reisimine
+856|Esemed
+857|Sümbolid

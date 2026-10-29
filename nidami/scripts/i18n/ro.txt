@@ -843,3 +843,16 @@
 842|Această acțiune este ireversibilă.
 843|Păstrează
 844|NOTIIF — Cercul tău. Momentele tale.
+845|Cine a reacționat?
+846|Nimeni nu a reacționat încă.
+847|Alege un emoji
+848|Apasă lung inima: vezi cine a reacționat
+849|acest comentariu
+850|acest mesaj
+851|Îmi place
+852|Animale
+853|Mâncare
+854|Sport și timp liber
+855|Călătorii
+856|Obiecte
+857|Simboluri

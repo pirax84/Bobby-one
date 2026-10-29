@@ -843,3 +843,16 @@
 842|Esta acción es definitiva.
 843|Conservar
 844|NOTIIF — Tu círculo. Tus momentos.
+845|¿Quién ha reaccionado?
+846|Nadie ha reaccionado todavía.
+847|Elegir un emoji
+848|Mantén pulsado el corazón: ver quién ha reaccionado
+849|este comentario
+850|este mensaje
+851|Me gusta
+852|Animales
+853|Comida
+854|Deporte y ocio
+855|Viajes
+856|Objetos
+857|Símbolos

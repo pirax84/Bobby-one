@@ -843,3 +843,16 @@
 842|Tindakan ini tidak dapat dibatalkan.
 843|Pertahankan
 844|NOTIIF — Lingkaranmu. Momen-momenmu.
+845|Siapa yang bereaksi?
+846|Belum ada yang bereaksi.
+847|Pilih emoji
+848|Tekan lama hati: lihat siapa yang bereaksi
+849|komentar ini
+850|pesan ini
+851|Suka
+852|Hewan
+853|Makanan
+854|Olahraga dan hobi
+855|Perjalanan
+856|Benda
+857|Simbol

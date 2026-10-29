@@ -843,3 +843,16 @@
 842|Šo darbību nevar atsaukt.
 843|Paturēt
 844|NOTIIF — Tavs loks. Tavi mirkļi.
+845|Kurš reaģēja?
+846|Neviens vēl nav reaģējis.
+847|Izvēlēties emocijzīmi
+848|Ilgi turiet sirdi: skatiet, kurš reaģēja
+849|šo komentāru
+850|šo ziņojumu
+851|Patīk
+852|Dzīvnieki
+853|Ēdiens
+854|Sports un brīvais laiks
+855|Ceļojumi
+856|Priekšmeti
+857|Simboli

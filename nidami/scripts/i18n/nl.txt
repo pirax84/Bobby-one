@@ -843,3 +843,16 @@
 842|Deze actie is definitief.
 843|Houden
 844|NOTIIF — Jouw kring. Jouw momenten.
+845|Wie heeft gereageerd?
+846|Nog niemand heeft gereageerd.
+847|Kies een emoji
+848|Houd het hartje ingedrukt: zie wie er heeft gereageerd
+849|deze reactie
+850|dit bericht
+851|Leuk
+852|Dieren
+853|Eten
+854|Sport en vrije tijd
+855|Reizen
+856|Voorwerpen
+857|Symbolen

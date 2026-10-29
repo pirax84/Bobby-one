@@ -843,3 +843,16 @@
 842|Bu işlem geri alınamaz.
 843|Koru
 844|NOTIIF — Çevren. Anların.
+845|Kimler tepki verdi?
+846|Henüz kimse tepki vermedi.
+847|Emoji seç
+848|Kalbe uzun basın: kimlerin tepki verdiğini görün
+849|bu yorum
+850|bu mesaj
+851|Beğen
+852|Hayvanlar
+853|Yiyecek
+854|Spor ve eğlence
+855|Seyahat
+856|Nesneler
+857|Semboller

@@ -843,3 +843,16 @@
 842|Tämä toiminto on lopullinen.
 843|Säilytä
 844|NOTIIF — Sinun piirisi. Sinun hetkesi.
+845|Kuka on reagoinut?
+846|Kukaan ei ole vielä reagoinut.
+847|Valitse emoji
+848|Pidä sydäntä painettuna: katso, kuka on reagoinut
+849|tämä kommentti
+850|tämä viesti
+851|Tykkää
+852|Eläimet
+853|Ruoka
+854|Urheilu ja vapaa-aika
+855|Matkailu
+856|Esineet
+857|Symbolit

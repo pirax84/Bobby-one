@@ -843,3 +843,16 @@
 842|Questa azione è definitiva.
 843|Tieni
 844|NOTIIF — La tua cerchia. I tuoi momenti.
+845|Chi ha reagito?
+846|Nessuno ha ancora reagito.
+847|Scegli un'emoji
+848|Tieni premuto il cuore: vedi chi ha reagito
+849|questo commento
+850|questo messaggio
+851|Mi piace
+852|Animali
+853|Cibo
+854|Sport e tempo libero
+855|Viaggi
+856|Oggetti
+857|Simboli

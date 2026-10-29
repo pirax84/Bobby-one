@@ -843,3 +843,16 @@
 842|Ova radnja je nepovratna.
 843|Zadrži
 844|NOTIIF — Tvoj krug. Tvoji trenuci.
+845|Tko je reagirao?
+846|Još nitko nije reagirao.
+847|Odaberi emoji
+848|Dugo pritisnite srce: pogledajte tko je reagirao
+849|ovaj komentar
+850|ovu poruku
+851|Sviđa mi se
+852|Životinje
+853|Hrana
+854|Sport i slobodno vrijeme
+855|Putovanja
+856|Predmeti
+857|Simboli

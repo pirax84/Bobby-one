@@ -843,3 +843,16 @@
 842|Denne handling er endelig.
 843|Behold
 844|NOTIIF — Din kreds. Dine øjeblikke.
+845|Hvem har reageret?
+846|Ingen har reageret endnu.
+847|Vælg en emoji
+848|Hold hjertet nede: se, hvem der har reageret
+849|denne kommentar
+850|denne besked
+851|Synes godt om
+852|Dyr
+853|Mad
+854|Sport og fritid
+855|Rejser
+856|Ting
+857|Symboler

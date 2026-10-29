@@ -843,3 +843,16 @@
 842|Šio veiksmo atšaukti negalima.
 843|Palikti
 844|NOTIIF — Tavo ratas. Tavo akimirkos.
+845|Kas sureagavo?
+846|Dar niekas nesureagavo.
+847|Pasirinkti jaustuką
+848|Ilgai palaikykite širdelę: pamatykite, kas sureagavo
+849|šį komentarą
+850|šį pranešimą
+851|Patinka
+852|Gyvūnai
+853|Maistas
+854|Sportas ir laisvalaikis
+855|Kelionės
+856|Daiktai
+857|Simboliai

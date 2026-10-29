@@ -843,3 +843,16 @@
 842|Din l-azzjoni ma tistax titreġġa' lura.
 843|Żomm
 844|NOTIIF — Iċ-ċirku tiegħek. Il-mumenti tiegħek.
+845|Min irreaġixxa?
+846|Għadu ħadd ma rreaġixxa.
+847|Agħżel emoji
+848|Żomm il-qalb magħfusa: ara min irreaġixxa
+849|dan il-kumment
+850|dan il-messaġġ
+851|Għoġbitni
+852|Annimali
+853|Ikel
+854|Sport u divertiment
+855|Ivvjaġġar
+856|Oġġetti
+857|Simboli
