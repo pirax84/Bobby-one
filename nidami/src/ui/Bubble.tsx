@@ -12,6 +12,7 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
   const total = convs.reduce((a, c) => a + unread(c), 0);
   const [tab, setTab] = useState<"conv" | "amis">("conv"); const friends = (s.social.friends[me] || []).map((id) => userOf(s, id)).filter(Boolean) as NonNullable<ReturnType<typeof userOf>>[]; const [del, setDel] = useState<string | null>(null); const [open, setOpen] = useState(false); const [sel, setSel] = useState<string | null>(null); const [txt, setTxt] = useState("");
   const [pop, setPop] = useState<{ id: string; who: string; text: string } | null>(null);
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(() => { try { const j = JSON.parse(localStorage.getItem("notiif-bubble") || "null"); return j && typeof j.x === "number" && typeof j.y === "number" ? j : null; } catch { return null; } }); const posRef = useRef(pos); const drag = useRef<{ dx: number; dy: number; sx: number; sy: number; moved: boolean } | null>(null);
   const prev = useRef(total); const end = useRef<HTMLDivElement>(null);
   const title = (c: Conv) => c.title || c.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
   const c = convs.find((x) => x.id === sel);
@@ -38,6 +39,11 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
           <FxBar convId={c.id} compact />
           <form className="bform" onSubmit={(e) => { e.preventDefault(); send(); }}><button type="button" className="bi2" onClick={() => setEmo(!emo)} aria-label="Emojis"><Ico n="smile" s={18} /></button><HoldMic className="btn sm" onDone={(u) => actions.send(c.id, "", 0, null, undefined, u, false)}><Ico n="mic" s={18} /></HoldMic><input className="inp sm" placeholder="Votre message…" value={txt} onChange={(e) => setTxt(e.target.value)} aria-label="Message rapide" autoFocus /><button className="btn sm" disabled={!txt.trim()} aria-label="Envoyer"><Ico n="send" s={16} /></button></form></>}
     </div>}
-    {!open && <button className="bfab" onClick={() => { setOpen(true); setPop(null); }} aria-label={"Messages" + (total ? ` (${total} non lus)` : "")}><Ico n="chat" s={26} />{total > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{total}</span>}</button>}
+    {!open && <button className="bfab" style={pos ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto", touchAction: "none" } : { touchAction: "none" }}
+      onPointerDown={(e) => { const r = e.currentTarget.getBoundingClientRect(); drag.current = { dx: e.clientX - r.left, dy: e.clientY - r.top, sx: e.clientX, sy: e.clientY, moved: false }; try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* ignoré */ } }}
+      onPointerMove={(e) => { const d = drag.current; if (!d) return; if (!d.moved && Math.hypot(e.clientX - d.sx, e.clientY - d.sy) < 8) return; d.moved = true; const p = { x: Math.min(Math.max(4, e.clientX - d.dx), window.innerWidth - 56), y: Math.min(Math.max(4, e.clientY - d.dy), window.innerHeight - 56) }; posRef.current = p; setPos(p); }}
+      onPointerUp={() => { const d = drag.current; drag.current = null; if (d?.moved) { try { localStorage.setItem("notiif-bubble", JSON.stringify(posRef.current)); } catch { /* ignoré */ } } else { setOpen(true); setPop(null); } }}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(true); setPop(null); } }}
+      aria-label={"Messages" + (total ? ` (${total} non lus)` : "")}><Ico n="chat" s={26} />{total > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{total}</span>}</button>}
   </>);
 }

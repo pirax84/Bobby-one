@@ -9,19 +9,14 @@ import { Recorder, Camera } from "./Recorder";
 // ───────── Barre des stories
 export function Stories({ me }: { me: string }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(5000);
-  const [open, setOpen] = useState<string | null>(null); const [add, setAdd] = useState<false | "short" | "long">(false); const [ask, setAsk] = useState(false); const [post, setPost] = useState(false);
+  const [open, setOpen] = useState<string | null>(null); 
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
   return (<><div className="brandbar"><img src="./wordmark.png" alt="NOTIIF" /></div><div className="stories">
-    <button className="story" {...pressProps(() => setAsk(true), () => setAdd("long"))} aria-label="Créer : une story ou une publication. Appui long pour un selfie vidéo"><span className="ring add" style={{ position: "relative", border: "3px solid var(--brand)", borderRadius: "50%", padding: 0, background: "none" }}><img src="./icon-192.png" alt="" width={62} height={62} style={{ borderRadius: "50%", display: "block" }} /><span className="pbadge" style={{ width: 22, height: 22, fontSize: ".9rem" }}>+</span></span><div>Créer</div></button>
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = list.filter((p) => p.authorId === a).every((p) => p.authorId === me || p.views[me] !== undefined);
       return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"ring" + (seen ? " seen" : "")}><Avatar u={u} s={58} /></span><div className="ell">{a === me ? "Moi" : u?.name}</div></button>; })}
   </div>
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}
-  {ask && <Modal title="Que voulez-vous partager ?" onClose={() => setAsk(false)}><div className="col" style={{ gap: 10 }}>
-    <button className="btn" onClick={() => { setAsk(false); setAdd("short"); }}>✨ Une story (disparaît toute seule)</button>
-    <button className="btn" onClick={() => { setAsk(false); setPost(true); }}>📝 Une publication</button></div></Modal>}
-  {add && <QuickCompose story long={add === "long"} onClose={() => setAdd(false)} />}
-  {post && <QuickCompose onClose={() => setPost(false)} />}</>);
+</>);
 }
 function MediaBox({ p, label, auto = false, story = false, onEnd, onTime }: { p: { video?: string | null; audio?: string | null; text?: string }; label: string; auto?: boolean; story?: boolean; onEnd?: () => void; onTime?: (cur: number, dur: number) => void }) {
   if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} bare={story} onEnded={onEnd} onTime={onTime} /></div>;

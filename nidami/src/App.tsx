@@ -21,7 +21,7 @@ export const NAV: [V, string, string][] = [["home", "Accueil", "home"], ["friend
 export default function App() {
   const pushOn = useStore((x) => !!x.settings[x.me]?.push); const lastNotif = useStore((x) => x.notifs.filter((n) => n.to === x.me && !n.read).sort((a, b) => b.at - a.at)[0]); const seenN = useRef<string | undefined>(undefined);
   const fxOn = useStore((x) => x.settings[x.me]?.fx ?? true); const lastFxMsg = useStore((x) => { let b: { id: string; fx?: string; at: number } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me && (!b || m.at > b.at)) b = m; return b ? b.id + "|" + b.fx : ""; }); const lastCfx = useStore((x) => { let b: { at: number; cfx?: { name: string; img?: string; audio?: string } } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me && (!b || m.at > b.at)) b = m; return b?.cfx; }); const seenFx = useRef<string | undefined>(undefined); const th0 = useStore((x) => x.settings[x.me]); const lastCall = useStore((x) => { let b: { id: string; at: number } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.from !== x.me && m.text.startsWith("📹") && (!b || m.at > b.at)) b = m; return b?.id || ""; }); const seenCall = useRef<string | undefined>(undefined);
-  const navCfg = useStore((x) => x.settings[x.me]?.nav); const topCfg = useStore((x) => x.settings[x.me]?.top); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
+  const bubbleOn = useStore((x) => x.settings[x.me]?.bubble ?? true); const startCfg = useStore((x) => x.settings[x.me]?.start); const navCfg = useStore((x) => x.settings[x.me]?.nav); const topCfg = useStore((x) => x.settings[x.me]?.top); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
   const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
   const pendShares = useStore((s) => s.shares.filter((h) => h.authorId === s.me && h.status === "pending").length);
@@ -29,7 +29,7 @@ export default function App() {
   const parseHash = () => { const m = location.hash.match(/add=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
-  const [v, setV] = useState<V>(() => (history.state?.v as V) || "home"); const [compose, setCompose] = useState<false | "short" | "long">(false); const [more, setMore] = useState(false);
+  const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && NAV.some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long">(false); const [more, setMore] = useState(false);
   useEffect(() => { applyTheme({ light: !!light }); }, [light]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
@@ -48,8 +48,10 @@ export default function App() {
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
   const go = (x: string) => { if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
-  const bar = (navCfg ? navCfg.split(",") : ["home", "friends", "messages", "groups", "events"]).map((k) => NAV.find((n) => n[0] === k)).filter(Boolean).slice(0, 5) as [V, string, string][];
-  const topKeys = (topCfg ? topCfg.split(",") : ["notifs", "settings", "profile"]).filter((k) => NAV.some((n) => n[0] === k)).slice(0, 3);
+  let keys = navCfg ? navCfg.split(",") : ["home", "friends", "messages", "notifs"];
+  if (bubbleOn && keys.includes("messages")) { const alt = ["groups", "events", "media", "games"].find((x) => !keys.includes(x)) || "groups"; keys = keys.map((k) => (k === "messages" ? alt : k)); }
+  const bar = keys.map((k) => NAV.find((n) => n[0] === k)).filter(Boolean).slice(0, 4) as [V, string, string][]; const half = Math.ceil(bar.length / 2);
+  const topKeys = (topCfg ? topCfg.split(",") : ["settings"]).filter((k) => NAV.some((n) => n[0] === k)).slice(0, 4);
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
   const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs go={go} /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings />
     : <Soon title="Appels audio et vidéo" icon="📞" why="Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur NOTIIF sera en place." />;
@@ -58,7 +60,7 @@ export default function App() {
   return (<div className="shell">
     <aside className="side"><div className="brand"><Logo /><div><div className="wordmark sm" style={{ textAlign: "left" }}>{BRAND}</div><div className="muted small">Votre cercle. Vos moments.</div></div></div>
       {NAV.map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
-      <button className="btn" style={{ marginTop: 10 }} onClick={() => setCompose("short")}><Ico n="plus" s={18} /> Publier</button></aside>
+      <button className="btn" style={{ marginTop: 10 }} onClick={() => setAsk(true)}><Ico n="plus" s={18} /> Créer</button></aside>
     <main className="main">
       <div className="top">{v !== "home" ? <button className="topb" onClick={() => history.back()} aria-label="Retour"><Ico n="back" s={20} /></button> : <span className="grow" />}<span className="grow" /><div className="topr">{topKeys.map((k) => k === "profile" ? <button key={k} style={{ background: "none", border: 0, padding: 0 }} onClick={() => go("profile")} aria-label="Mon profil"><Avatar u={user} s={34} /></button> : (() => { const it = NAV.find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label="Tous les menus"><Ico n="apps" s={20} /></button></div></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
@@ -68,14 +70,20 @@ export default function App() {
       <RightPanel go={go} />
     </aside>
     <nav className="bottom" aria-label="Navigation">
-      {bar.map(tab)}</nav>
+      {bar.slice(0, half).map(tab)}
+      <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("long"))} aria-label="Créer : une story ou une publication. Appui long pour un selfie vidéo"><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
+      {bar.slice(half).map(tab)}</nav>
     {more && <Modal title="Plus" onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([["Mon cercle", [["groups", "Groupes", "group"], ["events", "Événements", "cal"], ["shares", "Partages", "send"]]], ["Médias et jeux", [["media", "Photos", "img"], ["games", "Jeux", "game"], ["calls", "Appels", "phone"]]], ["Mon compte", [["notifs", "Notifications", "bell"], ["profile", "Profil", "user"], ["settings", "Paramètres", "cog"], ["legal", "Légal", "lock"]]]] as [string, [V, string, string][]][]).map(([t, items]) =>
         <div key={t} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{t}</b>
           <div className="tiles">{items.map(([k, l, i]) => <button key={k} className="tile" onClick={() => go(k)}><span className="tic"><Ico n={i} s={24} /></span><span>{l}</span>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 6, right: 6 }}>{badge(k)}</span>}</button>)}</div></div>)}</div></Modal>}
     {pendCode && (() => { const t = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
       return <Modal title="Invitation NOTIIF" onClose={done}><div className="col center" style={{ alignItems: "center" }}>{t ? <><Avatar u={t} s={72} /><h3>Ajouter {t.name} ?</h3><p className="muted small">@{t.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>Envoyer la demande</button></> : <p className="muted">Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.</p>}<button className="btn ghost" onClick={done}>Plus tard</button></div></Modal>; })()}
-    {v !== "messages" && <ChatBubble openFull={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} />}
+    {v !== "messages" && bubbleOn && <ChatBubble openFull={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} />}
+    {ask && <Modal title="Que voulez-vous partager ?" onClose={() => setAsk(false)}><div className="col" style={{ gap: 10 }}>
+      <button className="btn" onClick={() => { setAsk(false); setStoryC(true); }}>✨ Une story (disparaît toute seule)</button>
+      <button className="btn" onClick={() => { setAsk(false); setCompose("short"); }}>📝 Une publication</button></div></Modal>}
+    {storyC && <QuickCompose story onClose={() => setStoryC(false)} />}
     {compose && <QuickCompose long={compose === "long"} onClose={() => setCompose(false)} />}
     <ToastHost /></div>);
 }
