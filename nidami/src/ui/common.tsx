@@ -74,7 +74,7 @@ export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boo
 }
 
 /** Appui long (ou clic droit) : renvoie les gestes à poser sur un élément. */
-const lpTimer: { tx?: number } = {};
+const lpTimer: { t?: number } = {};
 export function lp(onLong: () => void) {
   const stop = () => { if (lpTimer.t) { clearTimeout(lpTimer.t); lpTimer.t = undefined; } };
   return {
@@ -90,7 +90,7 @@ export function ConfirmDel({ what, onYes, onClose }: { what: string; onYes: () =
 }
 
 /** Bouton qui réagit à un appui simple (clic) ET à un appui long. */
-const pressState: { tx?: number; fired: boolean } = { fired: false };
+const pressState: { t?: number; fired: boolean } = { fired: false };
 export function pressProps(onShort: () => void, onLong: () => void) {
   const st = pressState; const stop = () => { if (st.t) { clearTimeout(st.t); st.t = undefined; } };
   return {
