@@ -73,7 +73,7 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true, 
       {!recording && <button className="cam-flip" onClick={() => setFace(face === "user" ? "environment" : "user")} aria-label="Changer de caméra">🔄</button>}
       {recording && <div className="cam-time">🔴 {max - (left ?? 0)} s / {max} s</div>}
       <div className="cam-bar" style={{ flexDirection: "column", gap: 14 }}>
-        <div className="cam-zoom" role="group" aria-label="Zoom">{[0.6, 1, 3, 5, 10].map((z) => { return <button key={z} className={zoom === z ? "on" : ""} onClick={() => setZoom(z)} aria-label={"Zoom " + z + " fois"}>{String(z).replace(".", ",")}×</button>; })}</div>
+        <div className="cam-zoom" role="group" aria-label="Zoom">{[0.6, 1, 3].map((z) => { return <button key={z} className={zoom === z ? "on" : ""} onClick={() => setZoom(z)} aria-label={"Zoom " + z + " fois"}>{String(z).replace(".", ",")}×</button>; })}</div>
         {!recording && withPhoto && <div className="cam-tabs"><button className={mode === "video" ? "on" : ""} onClick={() => setMode("video")}>Vidéo</button><button className={mode === "photo" ? "on" : ""} onClick={() => setMode("photo")}>Photo</button></div>}
         <button className={"cam-shut" + (recording ? " rec" : "") + (mode === "photo" ? " ph" : "")} disabled={!ready} onClick={mode === "photo" ? shoot : toggleRec} aria-label={mode === "photo" ? "Prendre la photo" : recording ? "Arrêter" : "Filmer"}><span /></button>
         <small style={{ color: "#fff", opacity: .8 }}>{mode === "photo" ? "Touchez pour prendre la photo" : recording ? "Touchez pour arrêter" : `Touchez pour filmer (${max} s max)`}</small></div></>}
