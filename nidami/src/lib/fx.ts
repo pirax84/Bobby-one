@@ -21,7 +21,7 @@ export const FX: Record<Fx, Def> = {
   money: { label: "💰 Jackpot", text: "💰 Jackpot !", em: ["💰", "🪙", "💎", "🤑"] },
   bomb: { label: "💣 Boum", text: "💣 Boum !", em: ["💣", "💥", "🔥", "💨"] },
   birthday: { label: "🎂 Anniversaire", text: "🎂 Joyeux anniversaire !", em: ["🎂", "🎈", "🎁", "🥳", "🎉", "🎈"] },
-  burp: { label: "🤭 Rot", text: "🤭 Burp !", em: ["🤭", "🥴", "💨", "🍺"] },
+  burp: { label: "🤭 Rot", text: "🤭 Burp !", em: ["🤭", "🥴", "💨", "🍺"], file: "./sounds/rot.mp3" },
   fart: { label: "💨 Pet", text: "💨 Prout !", em: [] },
   vomit: { label: "🤮 Vomi", text: "🤮 Beurk !", em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
 };
