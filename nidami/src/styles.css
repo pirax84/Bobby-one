@@ -193,6 +193,9 @@ html.shake body{animation:shk .8s ease-in-out 3}
 .fxbox span.smoke{border-radius:50%;background:radial-gradient(circle,rgba(150,210,40,.8),rgba(90,170,30,.45) 45%,rgba(60,140,20,0) 72%);filter:blur(5px)}
 .cam{position:fixed;inset:0;z-index:95;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .cam-v{width:100%;height:100%;object-fit:cover;background:#000}
+.cam-v.live{object-fit:contain}
+.cam-v::-webkit-media-controls,.cam-v::-webkit-media-controls-panel,.cam-v::-webkit-media-controls-start-playback-button,.cam-v::-webkit-media-controls-overlay-play-button{display:none!important;-webkit-appearance:none}
+.cam-zoom{display:flex;gap:6px;background:rgba(0,0,0,.45);border-radius:99px;padding:4px}.cam-zoom button{border:0;background:none;color:#fff;min-width:42px;height:36px;border-radius:99px;font-weight:700;font-size:.85rem;padding:0 8px}.cam-zoom .on{background:#fff;color:#111}.cam-zoom button:disabled{opacity:.35}
 .cam-x,.cam-flip{position:absolute;top:max(14px,env(safe-area-inset-top));width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:1.2rem;display:grid;place-items:center}
 .cam-x{left:14px}.cam-flip{right:14px}
 .cam-time{position:absolute;top:max(18px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;padding:6px 14px;border-radius:99px;font-weight:700}

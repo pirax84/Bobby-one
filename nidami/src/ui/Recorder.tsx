@@ -39,9 +39,12 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true }
   const vid = useRef<HTMLVideoElement>(null); const stream = useRef<MediaStream | null>(null); const rec = useRef<MediaRecorder | null>(null); const cancelled = useRef(false);
   const [mode, setMode] = useState<"video" | "photo">("video"); const [face, setFace] = useState<"user" | "environment">("user"); const [left, setLeft] = useState<number | null>(null); const [ready, setReady] = useState(false);
   const [res, setRes] = useState<{ video?: string; photo?: string } | null>(null);
+  const [zoom, setZoom] = useState(0.6); const [zr, setZr] = useState<{ min: number; max: number } | null>(null);
+  const applyZoom = () => { const tr = stream.current?.getVideoTracks()[0]; if (!tr) return; const z = (tr.getCapabilities?.() as { zoom?: { min: number; max: number } } | undefined)?.zoom; if (!z) { setZr(null); return; } setZr({ min: z.min, max: z.max }); tr.applyConstraints({ advanced: [{ zoom: Math.min(Math.max(zoom, z.min), z.max) } as MediaTrackConstraintSet] }).catch(() => {}); };
+  useEffect(() => { if (ready) applyZoom(); }, [ready, zoom]);
   const stop = () => stream.current?.getTracks().forEach((t) => t.stop());
   useEffect(() => { let dead = false; setReady(false); stop(); if (res) return; (async () => {
-    try { const st = await navigator.mediaDevices.getUserMedia({ video: { facingMode: face, width: { ideal: 720 }, height: { ideal: 1280 } }, audio: true }); if (dead) { st.getTracks().forEach((t) => t.stop()); return; } stream.current = st; if (vid.current) { vid.current.srcObject = st; void vid.current.play().catch(() => {}); } setReady(true); }
+    try { const st = await navigator.mediaDevices.getUserMedia({ video: { facingMode: face, width: { ideal: 960 }, height: { ideal: 1280 } }, audio: true }); if (dead) { st.getTracks().forEach((t) => t.stop()); return; } stream.current = st; if (vid.current) { vid.current.srcObject = st; void vid.current.play().catch(() => {}); } setReady(true); }
     catch { toast("Caméra ou micro indisponible ou refusé."); onClose(); } })(); return () => { dead = true; stop(); }; }, [face, res]);
   const shoot = () => { const v = vid.current; if (!v || !v.videoWidth) return; const cv = document.createElement("canvas"); const k = Math.min(1, 900 / Math.max(v.videoWidth, v.videoHeight)); cv.width = v.videoWidth * k; cv.height = v.videoHeight * k; const x = cv.getContext("2d")!; if (face === "user") { x.translate(cv.width, 0); x.scale(-1, 1); } x.drawImage(v, 0, 0, cv.width, cv.height); stop(); setRes({ photo: cv.toDataURL("image/jpeg", 0.82) }); };
   const toggleRec = () => {
@@ -60,11 +63,12 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true }
         <button className="cam-send" onClick={() => (res.video ? onVideo(res.video) : onPhoto?.(res.photo!))}>Envoyer ➤</button>
         <button className="cam-r" onClick={close} aria-label="Supprimer">🗑<small>Supprimer</small></button></div></>
     : <>
-      <video ref={vid} className="cam-v" muted playsInline style={{ transform: face === "user" ? "scaleX(-1)" : undefined }} />
+      <video ref={vid} className="cam-v live" muted playsInline controls={false} disablePictureInPicture style={{ transform: face === "user" ? "scaleX(-1)" : undefined, visibility: ready ? "visible" : "hidden" }} />
       <button className="cam-x" onClick={close} aria-label="Fermer la caméra">✕</button>
       {!recording && <button className="cam-flip" onClick={() => setFace(face === "user" ? "environment" : "user")} aria-label="Changer de caméra">🔄</button>}
       {recording && <div className="cam-time">🔴 {max - (left ?? 0)} s / {max} s</div>}
       <div className="cam-bar" style={{ flexDirection: "column", gap: 14 }}>
+        <div className="cam-zoom" role="group" aria-label="Zoom">{[0.6, 1, 3, 5, 10].map((z) => { const ok = zr ? z <= zr.max + 0.001 : z <= 1; return <button key={z} disabled={!ok} className={zoom === z ? "on" : ""} onClick={() => setZoom(z)} aria-label={"Zoom " + z + " fois"}>{String(z).replace(".", ",")}×</button>; })}</div>
         {!recording && withPhoto && <div className="cam-tabs"><button className={mode === "video" ? "on" : ""} onClick={() => setMode("video")}>Vidéo</button><button className={mode === "photo" ? "on" : ""} onClick={() => setMode("photo")}>Photo</button></div>}
         <button className={"cam-shut" + (recording ? " rec" : "") + (mode === "photo" ? " ph" : "")} disabled={!ready} onClick={mode === "photo" ? shoot : toggleRec} aria-label={mode === "photo" ? "Prendre la photo" : recording ? "Arrêter" : "Filmer"}><span /></button>
         <small style={{ color: "#fff", opacity: .8 }}>{mode === "photo" ? "Touchez pour prendre la photo" : recording ? "Touchez pour arrêter" : `Touchez pour filmer (${max} s max)`}</small></div></>}
