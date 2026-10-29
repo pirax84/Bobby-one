@@ -29,8 +29,8 @@ import android.webkit.WebViewClient
 
 class MainActivity : Activity() {
     companion object {
-        const val HOME = "https://nidami-three.vercel.app/"
-        const val HOST = "nidami-three.vercel.app"
+        const val HOME = "https://notiif.vercel.app/"
+        const val HOST = "notiif.vercel.app"
         const val RC_FILE = 1
         const val RC_PERM = 2
         const val RC_NOTIF = 3
