@@ -1,4 +1,4 @@
-name: Application Android Cercle
+name: NOTIIF Android
 
 on:
   workflow_dispatch:
@@ -55,6 +55,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp android-cercle/app/build/outputs/apk/release/app-release.apk cercle.apk
-          gh release delete cercle-android-latest --yes --cleanup-tag || true
-          gh release create cercle-android-latest cercle.apk --title "Mon cercle pour Android" --notes "Version ${{ github.run_number }} — à installer directement sur le téléphone." --latest=false
+          cp android-cercle/app/build/outputs/apk/release/app-release.apk notiif.apk
+          gh release delete notiif-android-latest --yes --cleanup-tag || true
+          gh release create notiif-android-latest notiif.apk --title "NOTIIF pour Android" --notes "Version ${{ github.run_number }} — à installer directement sur le téléphone." --latest=false

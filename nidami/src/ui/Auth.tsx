@@ -7,7 +7,7 @@ import { LegalView } from "./Legal";
 // L'événement d'installation arrive tôt : on l'écoute dès le chargement du fichier.
 let deferred: any = null; const subs = new Set<() => void>();
 if (typeof window !== "undefined") { window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferred = e; subs.forEach((f) => f()); }); window.addEventListener("appinstalled", () => { deferred = null; subs.forEach((f) => f()); }); }
-const APK = "https://github.com/pirax84/Bobby-one/releases/download/cercle-android-latest/cercle.apk";
+const APK = "https://github.com/pirax84/Bobby-one/releases/download/notiif-android-latest/notiif.apk";
 const isApp = () => /CercleApp/.test(navigator.userAgent);
 const isAndroid = () => /Android/.test(navigator.userAgent);
 const standalone = () => typeof window !== "undefined" && (isApp() || window.matchMedia?.("(display-mode: standalone)").matches || (navigator as any).standalone === true);
@@ -26,15 +26,23 @@ export function InstallCard() {
 function InstallStep({ onSkip }: { onSkip: () => void }) {
   const [, force] = useState(0); useEffect(() => { const f = () => force((n) => n + 1); subs.add(f); return () => { subs.delete(f); }; }, []);
   const ios = isIOS();
+  const point = (e: string, t: string, d: string) => <div className="row" style={{ gap: 12, textAlign: "left", alignItems: "flex-start" }}><span style={{ fontSize: "1.5rem", lineHeight: 1.2 }}>{e}</span><div><b>{t}</b><div className="muted small">{d}</div></div></div>;
   return (<div className="card col center" style={{ alignItems: "center", gap: 16, padding: 28 }}>
     <Logo s={150} /><h1 style={{ fontSize: "1.5rem", letterSpacing: "-.03em" }}>Votre cercle.<br />Vos moments.</h1>
-    <p className="muted" style={{ margin: 0 }}>Installez l'application sur cet appareil : une vraie icône, sans barre de navigateur.</p>
-    {deferred && <button className="btn ghost" style={{ width: "100%" }} onClick={async () => { deferred.prompt(); try { await deferred.userChoice; } catch { /* ignoré */ } deferred = null; subs.forEach((f) => f()); }}>Installer l'application</button>}
-    {isAndroid() && <a className="btn" style={{ width: "100%", textDecoration: "none" }} href={APK}>Télécharger l'application Android</a>}
-    {isAndroid() && <div className="muted small">Android demandera d'autoriser l'installation depuis ce navigateur : acceptez, puis ouvrez le fichier téléchargé.</div>}
-    {ios && !deferred && <div className="card col" style={{ textAlign: "left", width: "100%", gap: 8 }}><b>Sur iPhone et iPad (2 gestes) :</b><div>1. Touchez le bouton <b>Partager</b> ⬆️ en bas de Safari.</div><div>2. Choisissez <b>« Sur l'écran d'accueil »</b>, puis <b>Ajouter</b>.</div><div className="muted small">Apple n'autorise pas l'installation en un seul bouton.</div></div>}
-    {!ios && !deferred && <div className="muted small">Si le bouton n'apparaît pas : ouvrez le menu du navigateur (⋮) puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».</div>}
-    <button className="btn ghost" style={{ width: "100%" }} onClick={onSkip}>Continuer dans le navigateur</button>
+    <p className="muted" style={{ margin: 0 }}>Le réseau privé de votre famille et de vos amis. Sans publicité, sans partage vers l'extérieur.</p>
+    <div className="col" style={{ gap: 12, width: "100%" }}>
+      {point("📸", "Partagez avec qui vous voulez", "Photos, vidéos et textes, seulement pour les personnes que vous choisissez.")}
+      {point("✨", "Des stories qui disparaissent", "24 heures, ou quelques secondes pour une photo éphémère.")}
+      {point("💬", "Messages, vocaux et effets", "Discutez en groupe ou en privé, et envoyez des effets avec du son.")}
+    </div>
+    <button className="btn" style={{ width: "100%" }} onClick={onSkip}>Entrer dans NOTIIF</button>
+    <div className="col" style={{ width: "100%", gap: 8, paddingTop: 6, borderTop: "1px solid var(--bd)" }}>
+      <div className="muted small">Pour avoir NOTIIF comme une vraie application sur votre téléphone :</div>
+      {deferred && <button className="btn ghost" style={{ width: "100%" }} onClick={async () => { deferred.prompt(); try { await deferred.userChoice; } catch { /* ignoré */ } deferred = null; subs.forEach((f) => f()); }}>Installer l'application</button>}
+      {isAndroid() && <a className="btn ghost" style={{ width: "100%", textDecoration: "none" }} href={APK}>Télécharger l'application Android</a>}
+      {ios && !deferred && <div className="small" style={{ textAlign: "left" }}>Sur iPhone et iPad : touchez <b>Partager</b> ⬆️ puis <b>« Sur l'écran d'accueil »</b>.</div>}
+      {!ios && !deferred && !isAndroid() && <div className="muted small">Ouvrez le menu du navigateur (⋮) puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».</div>}
+    </div>
   </div>);
 }
 
@@ -72,7 +80,7 @@ function SignUp() {
 }
 
 const seenInstall = () => { try { return sessionStorage.getItem("install-seen") === "1"; } catch { return false; } };
-/** L'écran d'installation s'affiche à chaque nouvelle ouverture dans le navigateur (pas dans l'application installée). */
+/** La page de présentation s'affiche à chaque nouvelle ouverture dans le navigateur (pas dans l'application installée). */
 export const needInstall = () => !standalone() && !seenInstall();
 export function Onboarding({ started = false }: { started?: boolean }) {
   const [, force] = useState(0); useEffect(() => { const f = () => force((n) => n + 1); subs.add(f); return () => { subs.delete(f); }; }, []);
