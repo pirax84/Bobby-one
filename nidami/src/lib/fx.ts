@@ -2,7 +2,7 @@
 export type Fx = "shake" | "confetti" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "music" | "money" | "bomb" | "birthday" | "burp" | "fart" | "vomit";
 type Def = { label: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
-  shake: { label: "📳 Secousse", text: "📳 Secousse !", em: [] },
+  shake: { label: "📳 Secousse", text: "📳 Secousse !", em: [], file: "./sounds/secousse.mp3" },
   confetti: { label: "🎉 Confettis", text: "🎉 Confettis !", em: ["🎉", "🎊", "✨", "⭐"] },
   hearts: { label: "❤️ Cœurs", text: "❤️ Pluie de cœurs !", em: ["❤️", "💕", "💖", "💗"], file: "./sounds/hearts.mp3" },
   kiss: { label: "😘 Bisous", text: "😘 Gros bisous !", em: ["💋", "😘", "💋", "😚", "💋", "😗", "💋", "😙"], file: "./sounds/kiss.mp3" },
@@ -14,12 +14,12 @@ export const FX: Record<Fx, Def> = {
   party: { label: "🎂 Fête", text: "🎂 C'est la fête !", em: ["🎂", "🎈", "🎁", "🥳"], file: "./sounds/party.mp3" },
   rain: { label: "🌧️ Pluie", text: "🌧️ Il pleut !", em: ["💧", "🌧️", "💦", "☔"], file: "./sounds/rain.mp3" },
   thunder: { label: "⛈️ Orage", text: "⛈️ Coup de tonnerre !", em: ["⚡", "⛈️", "🌩️", "⚡"], file: "./sounds/thunder.mp3" },
-  rocket: { label: "🚀 Fusée", text: "🚀 Décollage !", em: ["🚀", "🌟", "💫", "🛸"] },
-  clap: { label: "👏 Bravo", text: "👏 Bravo !", em: ["👏", "🙌", "👏", "🌟"] },
-  laugh: { label: "😂 Fou rire", text: "😂 Mort de rire !", em: ["😂", "🤣", "😆", "😹"] },
+  rocket: { label: "🚀 Fusée", text: "🚀 Décollage !", em: ["🚀", "🌟", "💫", "🛸"], file: "./sounds/fusee.mp3" },
+  clap: { label: "👏 Bravo", text: "👏 Bravo !", em: ["👏", "🙌", "👏", "🌟"], file: "./sounds/bravo.mp3" },
+  laugh: { label: "😂 Fou rire", text: "😂 Mort de rire !", em: ["😂", "🤣", "😆", "😹"], file: "./sounds/fourire.mp3" },
   music: { label: "🎵 Musique", text: "🎵 On met l'ambiance !", em: ["🎵", "🎶", "🎸", "🎤"] },
-  money: { label: "💰 Jackpot", text: "💰 Jackpot !", em: ["💰", "🪙", "💎", "🤑"] },
-  bomb: { label: "💣 Boum", text: "💣 Boum !", em: ["💣", "💥", "🔥", "💨"] },
+  money: { label: "💰 Jackpot", text: "💰 Jackpot !", em: ["💰", "🪙", "💎", "🤑"], file: "./sounds/jackpot.mp3" },
+  bomb: { label: "💣 Boum", text: "💣 Boum !", em: ["💣", "💥", "🔥", "💨"], file: "./sounds/boum.mp3" },
   birthday: { label: "🎂 Anniversaire", text: "🎂 Joyeux anniversaire !", em: ["🎂", "🎈", "🎁", "🥳", "🎉", "🎈"] },
   burp: { label: "🤭 Rot", text: "🤭 Burp !", em: ["🤭", "🥴", "💨", "🍺"], file: "./sounds/rot.mp3" },
   fart: { label: "💨 Pet", text: "💨 Prout !", em: [] },
