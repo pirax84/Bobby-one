@@ -891,3 +891,4 @@
 890|↩︎ Răspunde
 891|📌 Fixează
 892|✎ Editează
+893|Larg

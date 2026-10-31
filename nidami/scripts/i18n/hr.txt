@@ -891,3 +891,4 @@
 890|↩︎ Odgovori
 891|📌 Prikvači
 892|✎ Uredi
+893|Široko

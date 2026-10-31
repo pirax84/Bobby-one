@@ -891,3 +891,4 @@
 890|↩︎ Svara
 891|📌 Fäst
 892|✎ Redigera
+893|Bred

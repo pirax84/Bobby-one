@@ -891,3 +891,4 @@
 890|↩︎ Odpowiedz
 891|📌 Przypnij
 892|✎ Edytuj
+893|Szeroki

@@ -891,3 +891,4 @@
 890|↩︎ Atsakyti
 891|📌 Prisegti
 892|✎ Redaguoti
+893|Platus

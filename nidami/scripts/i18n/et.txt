@@ -891,3 +891,4 @@
 890|↩︎ Vasta
 891|📌 Kinnita
 892|✎ Muuda
+893|Lai

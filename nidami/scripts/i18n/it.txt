@@ -891,3 +891,4 @@
 890|↩︎ Rispondi
 891|📌 Fissa
 892|✎ Modifica
+893|Ampio

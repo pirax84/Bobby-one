@@ -891,3 +891,4 @@
 890|↩︎ Válasz
 891|📌 Kitűzés
 892|✎ Szerkesztés
+893|Széles

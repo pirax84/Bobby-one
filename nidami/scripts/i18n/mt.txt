@@ -891,3 +891,4 @@
 890|↩︎ Wieġeb
 891|📌 Waħħal
 892|✎ Editja
+893|Wiesa

@@ -891,3 +891,4 @@
 890|↩︎ Yanıtla
 891|📌 Sabitle
 892|✎ Düzenle
+893|Geniş

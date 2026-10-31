@@ -891,3 +891,4 @@
 890|↩︎ Balas
 891|📌 Sematkan
 892|✎ Ubah
+893|Lebar

@@ -891,3 +891,4 @@
 890|↩︎ Odpovedať
 891|📌 Pripnúť
 892|✎ Upraviť
+893|Široký
