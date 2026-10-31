@@ -895,3 +895,12 @@
 894|Reagoi kommenttiin
 895|Vastaus käyttäjälle {name}
 896|Peruuta vastaus
+897|Mikä käsi?
+898|Kummalla kädellä pidät puhelinta? Isot painikkeet siirtyvät peukalon puolelle. Voit muuttaa tätä myöhemmin asetuksissa.
+899|✋ Vasen käsi
+900|🤚 Oikea käsi
+901|Puhelinta pitelevä käsi
+902|Isot painikkeet ovat peukalon puolella.
+903|Tauko
+904|Toista
+905|Kohta

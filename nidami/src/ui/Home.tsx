@@ -6,6 +6,7 @@ import { Wreath, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, Emoj
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder, Camera, VoicePad } from "./Recorder";
+import { AudioWave } from "./AudioWave";
 import { LinkCard, safeUrl } from "./Links";
 import { t } from "../i18n";
 
@@ -31,7 +32,7 @@ export function Stories({ me }: { me: string }) {
 }
 function MediaBox({ p, label, auto = false, story = false, onEnd, onTime }: { p: { video?: string | null; audio?: string | null; text?: string }; label: string; auto?: boolean; story?: boolean; onEnd?: () => void; onTime?: (cur: number, dur: number) => void }) {
   if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} bare={story} onEnded={onEnd} onTime={onTime} /></div>;
-  if (p.audio) return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 200, flexDirection: "column", gap: 12 }}><div style={{ fontSize: "3rem" }}>🎤</div>{story ? <audio autoPlay src={p.audio} onEnded={onEnd} onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime, e.currentTarget.duration)} /> : <audio controls autoPlay={auto} src={p.audio} style={{ maxWidth: "100%" }} />}{p.text && <div>{p.text}</div>}</div>;
+  if (p.audio) return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 200, flexDirection: "column", gap: 12 }}><div style={{ fontSize: "3rem" }}>🎤</div>{story ? <audio autoPlay src={p.audio} onEnded={onEnd} onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime, e.currentTarget.duration)} /> : <AudioWave src={p.audio} autoPlay={auto} mine />}{p.text && <div>{p.text}</div>}</div>;
   return null;
 }
 function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; onClose: () => void }) {
@@ -72,7 +73,7 @@ export function Composer({ onClose, story = false, groupId, init, alsoWall = fal
   const toggle = (id: string) => setSel((x) => (x.includes(id) ? x.filter((y) => y !== id) : [...x, id]));
   const [em, setEm] = useState(false); const durVal = custom ? "c" : String(secs); const setDur = (v: string) => { if (v === "c") { setCustom("10"); } else { setCustom(""); setSecs(Number(v)); } };
   const audLabel = audOpts().find(([k]) => k === mode)?.[1] || "";
-  return (<Modal title={story ? t("✨ Ma story") : t("📝 Nouvelle publication")} onClose={onClose}><div className="col composer" style={{ gap: 8 }}>
+  return (<Modal title={init?.kind === "audio" && !story ? t("🎤 Message vocal") : story ? t("✨ Ma story") : t("📝 Nouvelle publication")} onClose={onClose}><div className={"col composer" + (init?.kind === "audio" && !story ? " voice" + (aud0 ? "" : " pre") : "")} style={{ gap: 8 }}>
     <input ref={file} type="file" accept="image/*" hidden onChange={(e) => pick(e.target.files?.[0])} />
     {story && <p className="muted small" style={{ margin: 0 }}>{t("Une story disparaît toute seule (24 h par défaut) et se regarde plein écran.")}</p>}
     <div className="tabs" role="tablist" aria-label={t("Type de contenu")}>{([["text", t("✏️ Texte")], ["photo", t("📷 Photo")], ["video", t("🤳 Selfie")], ["audio", t("🎤 Vocal")], ["link", t("🔗 Lien")]] as const).filter(([k]) => !(story && k === "link")).map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={kind === k} className={"chip" + (kind === k ? " on" : "")} onClick={() => { setKind(k); setRecK(k === "video" && !vid ? "video" : null); if (k === "photo" && !img) file.current?.click(); }}>{l}</button>)}</div>
@@ -80,7 +81,7 @@ export function Composer({ onClose, story = false, groupId, init, alsoWall = fal
     {kind === "photo" && !img && <button type="button" className="btn ghost" onClick={() => file.current?.click()}>{t("📷 Choisir une photo")}</button>}
     {kind === "video" && recK === "video" && <Camera onClose={() => setRecK(null)} onVideo={(u) => { setVid(u); setRecK(null); }} onPhoto={(u) => { setImg(u); setKind("photo"); setRecK(null); }} />}
     {(kind === "video" || kind === "audio") && (kind === "audio" && !aud0 ? <VoicePad max={60} onDone={(u) => setAud0(u)} />
-      : (kind === "video" ? vid : aud0) ? <div className="card col" style={{ gap: 6 }}>{kind === "video" ? <video src={vid!} controls playsInline className="vprev" /> : <audio controls src={aud0!} style={{ width: "100%" }} />}{kind === "audio" ? <div className="row" style={{ gap: 8 }}><button type="button" className="btn ghost sm" onClick={() => setAud0(null)}>{t("🗑 Supprimer")}</button><button type="button" className="btn sm" disabled={!ok || busy} onClick={go}>{t("✅ Publier")}</button></div> : <button type="button" className="btn ghost sm" onClick={() => { setVid(null); setRecK(kind); }}>{t("🔁 Recommencer")}</button>}</div>
+      : (kind === "video" ? vid : aud0) ? <div className="card col" style={{ gap: 6 }}>{kind === "video" ? <video src={vid!} controls playsInline className="vprev" /> : <AudioWave src={aud0!} />}{kind === "audio" ? <div className="row" style={{ gap: 8 }}><button type="button" className="btn ghost sm" onClick={() => setAud0(null)}>{t("🗑 Supprimer")}</button><button type="button" className="btn sm" disabled={!ok || busy} onClick={go}>{t("✅ Publier")}</button></div> : <button type="button" className="btn ghost sm" onClick={() => { setVid(null); setRecK(kind); }}>{t("🔁 Recommencer")}</button>}</div>
       : <button type="button" className="btn ghost" onClick={() => setRecK(kind)}>{kind === "video" ? t("🎥 Me filmer (10 s max)") : t("🎤 Enregistrer un vocal (30 s max)")}</button>)}
     {kind === "link" && <div className="col" style={{ gap: 8 }}><input className="inp" type="url" inputMode="url" placeholder={t("Collez un lien : playlist Spotify, Deezer ou YouTube, vidéo, Instagram, TikTok, Leboncoin…")} value={linkUrl} onChange={(e) => setLinkUrl(e.target.value)} aria-label={t("Lien à partager")} autoFocus />{safeUrl(linkUrl) ? <LinkCard url={safeUrl(linkUrl)!} /> : linkUrl.trim() && <p className="small" style={{ color: "var(--bad)", margin: 0 }}>{t("Ce lien n'a pas l'air valide.")}</p>}</div>}
     {story && kind === "text" ? <div className="tbg" style={{ background: BG[bg % BG.length], minHeight: 180 }}><textarea className="inp" rows={4} placeholder={t("Écrivez votre story…")} value={text} onChange={(e) => setText(e.target.value)} maxLength={300} aria-label={t("Texte de la story")} style={{ background: "transparent", border: 0, color: "#fff", textAlign: "center", fontSize: "1.2rem", fontWeight: 700, resize: "none", width: "100%" }} /></div>

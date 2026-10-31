@@ -895,3 +895,12 @@
 894|Reagir ao comentário
 895|Resposta a {name}
 896|Cancelar resposta
+897|Qual mão?
+898|Com que mão você segura o telefone? Os botões grandes ficarão do lado do seu polegar. Você pode mudar depois nas configurações.
+899|✋ Mão esquerda
+900|🤚 Mão direita
+901|Mão que segura o telefone
+902|Os botões grandes ficam do lado do seu polegar.
+903|Pausa
+904|Reproduzir
+905|Posição

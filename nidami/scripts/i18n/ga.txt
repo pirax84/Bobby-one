@@ -895,3 +895,12 @@
 894|Freagair don trácht
 895|Freagra do {name}
 896|Cealaigh an freagra
+897|Cén lámh?
+898|Cén lámh a choinníonn tú do ghuthán léi? Beidh na cnaipí móra ar thaobh do ordóige. Is féidir é a athrú níos déanaí sna socruithe.
+899|✋ Lámh chlé
+900|🤚 Lámh dheas
+901|An lámh a choinníonn an guthán
+902|Tá na cnaipí móra ar thaobh d'ordóige.
+903|Sos
+904|Seinn
+905|Suíomh

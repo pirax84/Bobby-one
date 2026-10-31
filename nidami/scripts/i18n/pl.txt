@@ -895,3 +895,12 @@
 894|Zareaguj na komentarz
 895|Odpowiedź dla {name}
 896|Anuluj odpowiedź
+897|Która ręka?
+898|Którą ręką trzymasz telefon? Duże przyciski będą po stronie kciuka. Możesz to później zmienić w ustawieniach.
+899|✋ Lewa ręka
+900|🤚 Prawa ręka
+901|Ręka trzymająca telefon
+902|Duże przyciski są po stronie kciuka.
+903|Pauza
+904|Odtwórz
+905|Pozycja

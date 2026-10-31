@@ -895,3 +895,12 @@
 894|React to this comment
 895|Reply to {name}
 896|Cancel reply
+897|Which hand?
+898|Which hand do you hold your phone with? The big buttons will sit on your thumb's side. You can change it later in settings.
+899|✋ Left hand
+900|🤚 Right hand
+901|Hand holding the phone
+902|The big buttons sit on your thumb's side.
+903|Pause
+904|Play
+905|Position

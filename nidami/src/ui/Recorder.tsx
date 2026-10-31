@@ -100,5 +100,6 @@ export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; 
   const mm = (n: number) => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
   return (<div className="col" style={{ alignItems: "center", gap: 10, padding: "14px 0" }}>
     <button type="button" className={"voice-mic" + (on ? " on" : "")} aria-label={t("Maintenir pour enregistrer un vocal")} onPointerDown={(e) => { e.preventDefault(); (e.target as Element).setPointerCapture?.(e.pointerId); void begin(); }} onPointerUp={end} onPointerCancel={end} onContextMenu={(e) => e.preventDefault()}>🎤</button>
+    <div className={"livebars" + (on ? " on" : "")} aria-hidden="true">{Array.from({ length: 13 }, (_, i) => <i key={i} style={{ animationDelay: `${(i % 6) * 0.11}s` }} />)}</div>
     <div className="muted small center" aria-live="polite">{on ? t("🔴 {mm} · relâchez pour terminer", { mm: mm(sec) }) : t("Restez appuyé sur le micro pour parler ({max} s max)", { max })}</div></div>);
 }

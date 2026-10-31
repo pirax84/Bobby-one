@@ -895,3 +895,12 @@
 894|Reagiraj na komentar
 895|Odgovor korisniku {name}
 896|Odustani od odgovora
+897|Koja ruka?
+898|Kojom rukom držiš telefon? Veliki gumbi bit će na strani tvog palca. Kasnije to možeš promijeniti u postavkama.
+899|✋ Lijeva ruka
+900|🤚 Desna ruka
+901|Ruka kojom držiš telefon
+902|Veliki gumbi su na strani tvog palca.
+903|Pauza
+904|Reproduciraj
+905|Položaj

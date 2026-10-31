@@ -367,3 +367,31 @@ html[dir=rtl] .setch{transform:scaleX(-1)}
 /* Commentaires : réactions et réponses */
 .react.sm{padding:2px 8px;min-height:30px;font-size:.95rem}
 .cact{background:none;border:0;padding:4px 6px;min-height:30px}
+
+/* Vocal : onde en barres */
+.awave{display:flex;align-items:center;gap:10px;min-width:210px;max-width:100%}
+.awplay{flex:none;width:42px;height:42px;border-radius:50%;border:2px solid var(--ink);background:var(--grad,#0A838B);color:#fff;display:grid;place-items:center;padding:0}
+.awbars{flex:1;height:36px;display:flex;align-items:center;gap:2px;cursor:pointer;min-width:100px}
+.awbars i{flex:1;min-width:2px;border-radius:2px;background:rgba(10,131,139,.32)}
+.awbars i.on{background:#0A838B}
+.awtime{flex:none;font-variant-numeric:tabular-nums;opacity:.8}
+.awave.mine .awbars i{background:rgba(255,255,255,.45)}.awave.mine .awbars i.on{background:#fff}
+.awave.mine .awplay{background:#fff;color:#0A838B}
+
+/* Vocal : petit écran en bas */
+.overlay:has(.composer.voice){place-items:end center;padding:0}
+.modal:has(.composer.voice){border-radius:26px 26px 0 0!important;max-width:none;width:100%;max-height:78vh;padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+.composer.voice .tabs{display:none}
+.composer.voice.pre textarea,.composer.voice.pre .opts,.composer.voice.pre .pubbtn,.composer.voice.pre p.muted{display:none}
+.composer.voice .card.col .row .btn:not(.ghost){display:none}
+.composer.voice .card.col{border:0!important;box-shadow:none!important;background:transparent;padding:0;align-items:stretch}
+.livebars{display:flex;align-items:center;justify-content:center;gap:4px;height:34px}
+.livebars i{width:4px;height:8px;border-radius:2px;background:rgba(10,131,139,.35)}
+.livebars.on i{background:#0A838B;animation:lb .7s ease-in-out infinite}
+@keyframes lb{0%,100%{height:8px}50%{height:32px}}
+
+/* Gaucher : gros boutons du côté du pouce */
+html[data-hand=left] .bfab{right:auto!important;left:14px}
+html[data-hand=left] .bottom{flex-direction:row-reverse}
+html[data-hand=left] .toast{left:auto}
+.composer.voice .tool{display:none}

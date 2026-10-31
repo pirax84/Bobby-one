@@ -895,3 +895,12 @@
 894|Reager på kommentaren
 895|Svar til {name}
 896|Annuller svar
+897|Hvilken hånd?
+898|Med hvilken hånd holder du din telefon? De store knapper placeres på din tommelfingers side. Du kan ændre det senere i indstillinger.
+899|✋ Venstre hånd
+900|🤚 Højre hånd
+901|Hånd der holder telefonen
+902|De store knapper sidder på din tommelfingers side.
+903|Pause
+904|Afspil
+905|Position

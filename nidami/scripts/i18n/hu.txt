@@ -895,3 +895,12 @@
 894|Reagálás a hozzászólásra
 895|Válasz neki: {name}
 896|Válasz elvetése
+897|Melyik kéz?
+898|Melyik kezeddel tartod a telefont? A nagy gombok a hüvelykujjad oldalára kerülnek. Később módosíthatod a beállításokban.
+899|✋ Bal kéz
+900|🤚 Jobb kéz
+901|A telefont tartó kéz
+902|A nagy gombok a hüvelykujjad oldalán vannak.
+903|Szünet
+904|Lejátszás
+905|Pozíció

@@ -895,3 +895,12 @@
 894|Yoruma tepki ver
 895|{name} kişisine yanıt
 896|Yanıtı iptal et
+897|Hangi el?
+898|Telefonunu hangi elinle tutuyorsun? Büyük düğmeler başparmağının tarafına yerleşir. Daha sonra ayarlardan değiştirebilirsin.
+899|✋ Sol el
+900|🤚 Sağ el
+901|Telefonu tutan el
+902|Büyük düğmeler başparmağının tarafındadır.
+903|Duraklat
+904|Oynat
+905|Konum

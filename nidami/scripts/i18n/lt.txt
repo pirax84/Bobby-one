@@ -895,3 +895,12 @@
 894|Reaguoti į komentarą
 895|Atsakymas {name}
 896|Atšaukti atsakymą
+897|Kuri ranka?
+898|Kuria ranka laikai telefoną? Dideli mygtukai bus nykščio pusėje. Vėliau galėsi pakeisti nustatymuose.
+899|✋ Kairė ranka
+900|🤚 Dešinė ranka
+901|Telefoną laikanti ranka
+902|Dideli mygtukai yra nykščio pusėje.
+903|Pauzė
+904|Groti
+905|Padėtis

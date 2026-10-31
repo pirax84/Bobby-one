@@ -895,3 +895,12 @@
 894|Reacționează la comentariu
 895|Răspuns pentru {name}
 896|Anulează răspunsul
+897|Care mână?
+898|Cu ce mână ții telefonul? Butoanele mari vor fi de partea degetului mare. Poți schimba mai târziu în setări.
+899|✋ Mâna stângă
+900|🤚 Mâna dreaptă
+901|Mâna care ține telefonul
+902|Butoanele mari sunt de partea degetului mare.
+903|Pauză
+904|Redă
+905|Poziție

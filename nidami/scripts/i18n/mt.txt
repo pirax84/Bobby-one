@@ -895,3 +895,12 @@
 894|Irreaġixxi għall-kumment
 895|Tweġiba lil {name}
 896|Ikkanċella t-tweġiba
+897|Liema id?
+898|B'liema id żżomm it-telefon? Il-buttuni l-kbar se jkunu fuq in-naħa tal-wiżgħa tiegħek. Tista' tibdel dan aktar tard fis-settings.
+899|✋ Id xellugija
+900|🤚 Id-id il-leminija
+901|Id li żżomm it-telefon
+902|Il-buttuni l-kbar huma fuq in-naħa tal-wiżgħa tiegħek.
+903|Pawża
+904|Ixgħel
+905|Pożizzjoni

@@ -895,3 +895,12 @@
 894|Reaģēt uz komentāru
 895|Atbilde lietotājam {name}
 896|Atcelt atbildi
+897|Kura roka?
+898|Ar kuru roku tu tur tālruni? Lielās pogas atradīsies īkšķa pusē. To var mainīt vēlāk iestatījumos.
+899|✋ Kreisā roka
+900|🤚 Labā roka
+901|Roka, kas tur tālruni
+902|Lielās pogas atrodas īkšķa pusē.
+903|Pauze
+904|Atskaņot
+905|Pozīcija

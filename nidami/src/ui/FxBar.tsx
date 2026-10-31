@@ -1,3 +1,4 @@
+import { AudioWave } from "./AudioWave";
 import { useRef, useState } from "react";
 import { useStore, actions } from "../lib/store";
 import { FX, FX_KEYS, Fx, playFx, playCustom } from "../lib/fx";
@@ -51,6 +52,6 @@ export function CustomMaker({ onDone }: { onDone: () => void }) {
       <button type="button" className="chip" onClick={record} style={left ? { background: "var(--bad)", color: "#fff" } : undefined}>🎙 {left ? t("Enregistrement… {left} s (toucher pour finir)", { left }) : audio ? t("Réenregistrer") : t("Enregistrer (3 s max)")}</button></div>
     <input ref={snd} type="file" accept="audio/*" hidden onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (!f) return; if (f.size > 450000) return toast(t("Son trop lourd (450 Ko maximum, environ 10 secondes).")); const fr = new FileReader(); fr.onload = () => setAudio(String(fr.result)); fr.readAsDataURL(f); }} />
     <button type="button" className="chip" style={{ alignSelf: "flex-start" }} onClick={() => snd.current?.click()}>{t("📁 Choisir un fichier son")}</button>
-    {audio && <audio controls src={audio} style={{ width: "100%" }} />}
+    {audio && <AudioWave src={audio} />}
     <div className="row" style={{ gap: 8 }}><button type="button" className="btn ghost grow" onClick={() => playCustom({ img, audio, name })}>{t("▶ Essayer")}</button><button type="button" className="btn grow" onClick={save}>{t("Ajouter")}</button></div></div>;
 }

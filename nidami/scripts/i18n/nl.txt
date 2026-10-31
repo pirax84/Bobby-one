@@ -895,3 +895,12 @@
 894|Reageer op de reactie
 895|Antwoord aan {name}
 896|Antwoord annuleren
+897|Welke hand?
+898|Met welke hand houd je je telefoon vast? De grote knoppen komen aan de kant van je duim. Je kunt dit later wijzigen in de instellingen.
+899|✋ Linkerhand
+900|🤚 Rechterhand
+901|Hand die de telefoon vasthoudt
+902|De grote knoppen staan aan de kant van je duim.
+903|Pauze
+904|Afspelen
+905|Positie

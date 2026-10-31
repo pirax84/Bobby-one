@@ -895,3 +895,12 @@
 894|Reaccionar al comentario
 895|Respuesta a {name}
 896|Cancelar respuesta
+897|¿Qué mano?
+898|¿Con qué mano sostienes el móvil? Los botones grandes se colocarán del lado de tu pulgar. Puedes cambiarlo luego en los ajustes.
+899|✋ Mano izquierda
+900|🤚 Mano derecha
+901|Mano que sostiene el móvil
+902|Los botones grandes se colocan del lado de tu pulgar.
+903|Pausa
+904|Reproducir
+905|Posición

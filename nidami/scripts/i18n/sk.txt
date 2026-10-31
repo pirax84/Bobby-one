@@ -895,3 +895,12 @@
 894|Reagovať na komentár
 895|Odpoveď pre {name}
 896|Zrušiť odpoveď
+897|Ktorá ruka?
+898|Ktorou rukou držíš telefón? Veľké tlačidlá budú na strane tvojho palca. Neskôr to môžeš zmeniť v nastaveniach.
+899|✋ Ľavá ruka
+900|🤚 Pravá ruka
+901|Ruka, ktorá drží telefón
+902|Veľké tlačidlá sú na strane tvojho palca.
+903|Pozastaviť
+904|Prehrať
+905|Pozícia

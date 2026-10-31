@@ -895,3 +895,12 @@
 894|Auf Kommentar reagieren
 895|Antwort an {name}
 896|Antwort abbrechen
+897|Welche Hand?
+898|Mit welcher Hand hältst du dein Handy? Die großen Tasten sitzen dann auf der Daumenseite. Du kannst das später in den Einstellungen ändern.
+899|✋ Linke Hand
+900|🤚 Rechte Hand
+901|Hand, die das Handy hält
+902|Die großen Tasten sitzen auf der Daumenseite.
+903|Pause
+904|Abspielen
+905|Position

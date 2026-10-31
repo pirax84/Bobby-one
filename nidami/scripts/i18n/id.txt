@@ -895,3 +895,12 @@
 894|Beri reaksi pada komentar
 895|Balasan untuk {name}
 896|Batalkan balasan
+897|Tangan mana?
+898|Kamu memegang ponsel dengan tangan mana? Tombol besar akan berada di sisi jempolmu. Bisa diubah nanti di pengaturan.
+899|✋ Tangan kiri
+900|🤚 Tangan kanan
+901|Tangan yang memegang ponsel
+902|Tombol besar berada di sisi jempolmu.
+903|Jeda
+904|Putar
+905|Posisi

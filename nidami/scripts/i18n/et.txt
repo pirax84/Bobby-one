@@ -895,3 +895,12 @@
 894|Reageeri kommentaarile
 895|Vastus kasutajale {name}
 896|Tühista vastus
+897|Milline käsi?
+898|Millise käega telefoni hoiad? Suured nupud tulevad pöidla poolele. Hiljem saad seda seadetes muuta.
+899|✋ Vasak käsi
+900|🤚 Parem käsi
+901|Telefoni hoidev käsi
+902|Suured nupud asuvad pöidla pool.
+903|Paus
+904|Esita
+905|Asukoht

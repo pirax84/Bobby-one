@@ -895,3 +895,12 @@
 894|Reagisci al commento
 895|Risposta a {name}
 896|Annulla risposta
+897|Quale mano?
+898|Con quale mano tieni il telefono? I pulsanti grandi si sposteranno dal lato del pollice. Puoi cambiarlo dopo nelle impostazioni.
+899|✋ Mano sinistra
+900|🤚 Mano destra
+901|Mano che tiene il telefono
+902|I pulsanti grandi si trovano dal lato del pollice.
+903|Pausa
+904|Riproduci
+905|Posizione
