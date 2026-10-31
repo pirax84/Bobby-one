@@ -36,19 +36,21 @@ export function useCaptureGuard(onSuspect: () => void, active: boolean) {
 /** Vidéo avec filigrane par-dessus (nom du spectateur + date). Pas de bouton de téléchargement ; ce n'est pas une protection absolue. */
 export function VideoWm({ src, label, poster = false, bare = false, onEnded, onTime }: { src: string; label: string; poster?: boolean; bare?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void }) {
   const wm = `${label} · NOTIIF · ${new Date().toLocaleDateString(locale())}`;
-  const vid = useRef<HTMLVideoElement>(null); const [started, setStarted] = useState(false); const [playing, setPlaying] = useState(false); const [cur, setCur] = useState(0); const [dur, setDur] = useState(0);
+  const vid = useRef<HTMLVideoElement>(null); const [started, setStarted] = useState(false); const [playing, setPlaying] = useState(false); const [cur, setCur] = useState(0); const [dur, setDur] = useState(0); const [barOn, setBarOn] = useState(true); const hide = useRef<number | undefined>(undefined);
+  const flash = () => { setBarOn(true); clearTimeout(hide.current); hide.current = window.setTimeout(() => setBarOn(false), 2200); }; useEffect(() => () => clearTimeout(hide.current), []);
   const custom = !poster && !bare; const mmss = (n: number) => { const m = Math.floor(n / 60), x = Math.floor(n % 60); return `${m}:${x < 10 ? "0" : ""}${x}`; };
-  const toggle = () => { const v = vid.current; if (!v) return; if (v.paused) { setStarted(true); void v.play().catch(() => {}); } else v.pause(); };
+  const toggle = () => { const v = vid.current; if (!v) return; if (v.paused) { setStarted(true); void v.play().catch(() => {}); flash(); } else { v.pause(); clearTimeout(hide.current); setBarOn(true); } };
+  const tap = () => { const v = vid.current; if (!v) return; if (!v.paused && !barOn) flash(); else toggle(); };
   const jump = (d: number) => { const v = vid.current; if (v) v.currentTime = Math.max(0, Math.min(v.duration || 0, v.currentTime + d)); };
   return <div className="vwrap protected" onContextMenu={(e) => e.preventDefault()}>
-    <video ref={vid} src={custom ? src + "#t=0.1" : src} controls={false} autoPlay={bare} muted={poster} playsInline preload={bare ? "auto" : "metadata"} onClick={custom ? (e) => { e.stopPropagation(); toggle(); } : undefined}
+    <video ref={vid} src={custom ? src + "#t=0.1" : src} controls={false} autoPlay={bare} muted={poster} playsInline preload={bare ? "auto" : "metadata"} onClick={custom ? (e) => { e.stopPropagation(); tap(); } : undefined}
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onLoadedMetadata={(e) => setDur(e.currentTarget.duration || 0)}
       onEnded={() => { setPlaying(false); onEnded?.(); }} onTimeUpdate={(e) => { setCur(e.currentTarget.currentTime); onTime?.(e.currentTarget.currentTime, e.currentTarget.duration); }} controlsList="nodownload noremoteplayback" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} />
-    {custom && started && <div className="vbar" onClick={(e) => e.stopPropagation()} onPointerDown={(e) => e.stopPropagation()}>
-      <button type="button" onClick={() => jump(-10)} aria-label="−10 s">⏪</button>
-      <button type="button" onClick={toggle} aria-label={playing ? "⏸" : "▶"}>{playing ? "⏸" : "▶"}</button>
-      <button type="button" onClick={() => jump(10)} aria-label="+10 s">⏩</button>
-      <input type="range" min={0} max={dur || 1} step={0.1} value={Math.min(cur, dur || 1)} onChange={(e) => { const v = vid.current; if (v) v.currentTime = Number(e.target.value); }} aria-label="0:00" />
+    {custom && started && <div className={"vbar" + (barOn ? "" : " off")} onClick={(e) => { e.stopPropagation(); flash(); }} onPointerDown={(e) => e.stopPropagation()}>
+      <button type="button" onClick={() => { jump(-10); flash(); }} aria-label="−10 s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7" /><path d="M3 4v5h5" /></svg></button>
+      <button type="button" onClick={() => { toggle(); }} aria-label={playing ? "⏸" : "▶"}>{playing ? (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M8 5v14M16 5v14" /></svg>) : (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 4l13 8-13 8z" fill="currentColor" /></svg>)}</button>
+      <button type="button" onClick={() => { jump(10); flash(); }} aria-label="+10 s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7" /><path d="M21 4v5h-5" /></svg></button>
+      <input type="range" min={0} max={dur || 1} step={0.1} value={Math.min(cur, dur || 1)} onChange={(e) => { const v = vid.current; if (v) v.currentTime = Number(e.target.value); flash(); }} aria-label="0:00" />
       <span>{mmss(cur)}</span></div>}
     <div className="vwm" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i}>{wm}</span>)}</div></div>;
 }

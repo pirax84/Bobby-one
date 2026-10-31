@@ -321,3 +321,8 @@ html[dir=rtl] .setch{transform:scaleX(-1)}
 .legalrow{padding:10px 14px}
 .legalrow.on{background:linear-gradient(135deg,#0A838B,#0E7FA6);color:#fff;box-shadow:3px 3px 0 var(--ink)}
 .legalrow.on .setch{color:#fff}
+.vbar{transition:opacity .2s}.vbar.off{opacity:0;pointer-events:none}
+.vbar button{color:#fff;display:grid;place-items:center}
+.vbar input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:rgba(255,255,255,.35);outline:0}
+.vbar input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#2FCDBE;border:2px solid var(--ink)}
+.vbar input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#2FCDBE;border:2px solid var(--ink)}
