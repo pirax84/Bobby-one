@@ -921,3 +921,8 @@
 920|Sprache gerade nicht verfügbar: Prüfe deine Verbindung und versuche es erneut.
 921|📷 Foto aufnehmen
 922|Wähle unten „Foto“, um dein Profilfoto aufzunehmen.
+923|Anrufen
+924|Der einfache Anruf kommt bald: Er braucht den NOTIIF-Server.
+925|📞 Einfacher Anruf
+926|Nur Sprache · bald
+927|Sprache und Bild · verfügbar

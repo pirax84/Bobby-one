@@ -921,3 +921,8 @@
 920|Il-lingwa mhix disponibbli issa: iċċekkja l-konnessjoni u erġa' pprova.
 921|📷 Ħu ritratt
 922|Agħżel “Ritratt” hawn taħt biex tieħu r-ritratt tal-profil.
+923|Ċempel
+924|Is-sejħa sempliċi ġejja dalwaqt: teħtieġ is-server NOTIIF.
+925|📞 Sejħa sempliċi
+926|Leħen biss · dalwaqt
+927|Leħen u immaġni · disponibbli

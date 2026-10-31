@@ -921,3 +921,8 @@
 920|Kalba šiuo metu nepasiekiama: patikrink ryšį ir bandyk dar kartą.
 921|📷 Nufotografuoti
 922|Apačioje pasirink „Nuotrauka“, kad nufotografuotum profilio nuotrauką.
+923|Skambinti
+924|Paprastas skambutis netrukus: jam reikia NOTIIF serverio.
+925|📞 Paprastas skambutis
+926|Tik balsas · netrukus
+927|Balsas ir vaizdas · galima

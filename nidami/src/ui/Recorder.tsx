@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { toast, MicIcon } from "./common";
+import { toast, MicIcon, Ico } from "./common";
 import { actions } from "../lib/store";
 import { stopPlayer } from "./Links";
 import { AudioWave } from "./AudioWave";
@@ -93,6 +93,9 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
         <small style={{ color: "#fff", opacity: .8 }}>{mode === "voice" ? t("Maintiens pour parler · relâche pour finir") : mode === "photo" ? t("Touchez pour prendre la photo") : recording ? t("Touchez pour arrêter") : t("Touchez pour filmer ({max} s max)", { max })}</small></div></>}
   </div>, document.body);
 }
+
+/** Bouton micro + bouton d'envoi : identiques partout (conversation en grand et bulle). */
+export function MicBtn({ onDone }: { onDone: (url: string) => void }) { return <HoldMic className="btn micbtn" onDone={onDone}><Ico n="mic" s={20} /></HoldMic>; }
 
 /** Grand micro rond : on reste appuyé pour parler, on lâche pour terminer. */
 export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; max?: number }) {

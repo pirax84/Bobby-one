@@ -921,3 +921,8 @@
 920|Jezik trenutno ni na voljo: preveri povezavo in poskusi znova.
 921|📷 Posnemi fotografijo
 922|Spodaj izberi »Foto« za profilno fotografijo.
+923|Pokliči
+924|Navaden klic prihaja kmalu: potrebuje strežnik NOTIIF.
+925|📞 Navaden klic
+926|Samo glas · kmalu
+927|Glas in slika · na voljo

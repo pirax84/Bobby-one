@@ -921,3 +921,8 @@
 920|A nyelv most nem érhető el: ellenőrizd a kapcsolatot, és próbáld újra.
 921|📷 Fénykép készítése
 922|Válaszd alul a „Fotó” lehetőséget a profilkép elkészítéséhez.
+923|Hívás
+924|Az egyszerű hívás hamarosan jön: szükség van hozzá a NOTIIF-szerverre.
+925|📞 Egyszerű hívás
+926|Csak hang · hamarosan
+927|Hang és kép · elérhető

@@ -428,3 +428,6 @@ html[data-hand=left] .toast{left:auto}
 .wreath .wblur img.wbg{transform:scale(1.3)}
 .wreath .wmedia .wicon{position:absolute;left:9%;top:8%;width:82%;height:68%;display:grid;place-items:center}
 .wreath .wblur .wfg{transform:none}
+
+.micbtn{width:44px;height:44px;min-width:44px;padding:0;border-radius:14px;display:grid;place-items:center;flex:none}
+.bhead .bi2{background:transparent;border:0;color:#fff;width:34px;height:34px}

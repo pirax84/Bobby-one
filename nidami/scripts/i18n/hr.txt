@@ -921,3 +921,8 @@
 920|Jezik trenutno nije dostupan: provjeri vezu i pokušaj ponovno.
 921|📷 Snimi fotografiju
 922|Dolje odaberi „Foto” za profilnu fotografiju.
+923|Nazovi
+924|Obični poziv stiže uskoro: treba mu NOTIIF poslužitelj.
+925|📞 Običan poziv
+926|Samo glas · uskoro
+927|Glas i slika · dostupno

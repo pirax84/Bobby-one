@@ -921,3 +921,8 @@
 920|Valoda pašlaik nav pieejama: pārbaudi savienojumu un mēģini vēlreiz.
 921|📷 Uzņemt foto
 922|Apakšā izvēlies “Foto”, lai uzņemtu profila foto.
+923|Zvanīt
+924|Parastais zvans drīz būs: tam vajadzīgs NOTIIF serveris.
+925|📞 Parasts zvans
+926|Tikai balss · drīz
+927|Balss un attēls · pieejams

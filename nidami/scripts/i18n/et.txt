@@ -921,3 +921,8 @@
 920|Keel pole praegu saadaval: kontrolli ühendust ja proovi uuesti.
 921|📷 Tee foto
 922|Vali all „Foto“, et teha profiilipilt.
+923|Helista
+924|Tavaline kõne tuleb varsti: see vajab NOTIIFi serverit.
+925|📞 Tavaline kõne
+926|Ainult hääl · varsti
+927|Hääl ja pilt · saadaval

@@ -3,10 +3,10 @@ import { LinkifiedText } from "./Links";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, Msg, Conv } from "../lib/store";
 import { areFriends } from "../lib/engine";
-import { Avatar, Ico, toast, ago, fileToDataUrl, useNow, EMOJIS, EmojiGrid, lp, ConfirmDel } from "./common";
+import { Avatar, Ico, toast, ago, fileToDataUrl, useNow, EMOJIS, EmojiGrid, lp, ConfirmDel, Modal } from "./common";
 import { FxBar } from "./FxBar";
 import { AudioWave } from "./AudioWave";
-import { HoldMic } from "./Recorder";
+import { MicBtn } from "./Recorder";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { t, T } from "../i18n";
 
@@ -19,6 +19,15 @@ function OnceViewer({ conv, m, me, name, onClose }: { conv: string; m: Msg; me: 
   return (<div className="viewer protected" role="dialog" aria-label={t("Message vu une fois")}><div className="row" style={{ width: "min(560px,100%)" }}><b className="grow">{t("🔥 Vu une fois")}</b><button className="btn warm sm" onClick={close}>{t("Fermer (il disparaîtra)")}</button></div>
     <div style={{ position: "relative", width: "min(560px,100%)" }}>{m.img && <WmImage src={m.img} label={name} plain={!!m.nowm} alt={t("Photo vue une fois")} />}{m.text && <div className="tbg" style={{ background: "linear-gradient(135deg,#8B5CF6,#3B82F6)" }}>{m.text}</div>}{m.audio && <AudioWave src={m.audio} />}{hidden && <div className="shield"><b>{t("Contenu masqué")}<br />{t("Capture ou changement de fenêtre détecté")}</b></div>}</div>
     <p className="muted small center" style={{ maxWidth: 520 }}>{t("Ce message disparaît quand vous fermez. Une photo peut toujours être photographiée avec un autre appareil : merci de respecter la confidentialité.")}</p></div>);
+}
+/** Bouton « Appeler » : on choisit appel simple ou visio. L'appel simple demande le serveur (bientôt) ; la visio marche déjà par un lien. */
+export function CallButton({ convId }: { convId: string }) {
+  const [open, setOpen] = useState(false);
+  const visio = () => { const a = new Uint8Array(9); crypto.getRandomValues(a); const room = t("Cercle") + Array.from(a, (x) => x.toString(36)).join(""); const url = "https://meet.jit.si/" + room; actions.send(convId, t("📹 Je lance une visio : {url}", { url }), 0); window.open(url, "_blank", "noopener"); toast(t("Visio lancée : le lien est envoyé dans la conversation."));  setOpen(false); };
+  return <><button type="button" className="bi2" onClick={() => setOpen(true)} aria-label={t("Appeler")}><Ico n="phone" s={18} /></button>
+    {open && createPortal(<Modal title={t("Appeler")} onClose={() => setOpen(false)}><div className="col" style={{ gap: 10 }}>
+      <button className="btn bigbtn" onClick={() => { toast(t("L'appel simple arrive bientôt : il demande le serveur NOTIIF.")); setOpen(false); }}><span className="grow"><b>{t("📞 Appel simple")}</b><small>{t("Voix seulement · bientôt")}</small></span></button>
+      <button className="btn bigbtn" onClick={visio}><span className="grow"><b>{t("📹 Visio")}</b><small>{t("Voix et image · disponible")}</small></span></button></div></Modal>, document.body)}</>;
 }
 export function Messages() {
   const s = useStore((x) => x); const me = s.me; const now = useNow(500); const [sel, setSelRaw] = useState<string | null>(() => (history.state?.conv as string) || null); const setSel = (id: string | null) => { if (id) history.pushState({ v: "messages", conv: id }, ""); setSelRaw(id); }; const closeConv = () => { if (history.state?.conv) history.back(); else setSelRaw(null); }; useEffect(() => { const f = (e: PopStateEvent) => { if (!(e.state && e.state.conv)) setSelRaw(null); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []); const [txt, setTxt] = useState(""); const [secs, setSecs] = useState(0); const [once, setOnce] = useState(false); const [openOnce, setOpenOnce] = useState<string | null>(null); const [q, setQ] = useState(""); const [edit, setEdit] = useState<string | null>(null); const [rep, setRep] = useState<Msg | null>(null);
@@ -38,9 +47,8 @@ export function Messages() {
   if (!c) return (<div className="col"><h1>{t("Messages")}</h1>{list}</div>);
   const onceMsg = c.msgs.find((m) => m.id === openOnce);
   const fxOn = (s.settings[me]?.fx ?? true);
-  const visio = () => { const a = new Uint8Array(9); crypto.getRandomValues(a); const room = t("Cercle") + Array.from(a, (x) => x.toString(36)).join(""); const url = "https://meet.jit.si/" + room; actions.send(c.id, t("📹 Je lance une visio : {url}", { url }), 0); window.open(url, "_blank", "noopener"); toast(t("Visio lancée : le lien est envoyé dans la conversation.")); };
   const pinned = c.msgs.filter((m) => m.pinned && visible(m, me, now));
-  return (<div className="col"><div className="row"><button className="btn ghost sm" onClick={closeConv} aria-label={t("Retour")}><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><button className="btn ghost sm" onClick={visio} aria-label={t("Lancer un appel visio")}>{t("📹 Visio")}</button></div>
+  return (<div className="col"><div className="row"><button className="btn ghost sm" onClick={closeConv} aria-label={t("Retour")}><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><CallButton convId={c.id} /></div>
     {pinned.length > 0 && <div className="card small">📌 {pinned.map((m) => m.text || t("Message")).join(" · ")}</div>}
     <div className="card msgs" role="log" aria-live="polite">{c.msgs.filter((m) => !q || m.text.toLowerCase().includes(q.toLowerCase())).map((m) => { const mine = m.from === me; const ok = visible(m, me, now); const left = m.secs && m.reads[me] !== undefined ? Math.max(0, Math.ceil((m.reads[me] + m.secs * 1000 - now) / 1000)) : 0; const from = userOf(s, m.from); const rp = m.replyTo ? c.msgs.find((x) => x.id === m.replyTo) : null;
       return <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start" }}>{!mine && c.groupId && <span className="muted small">{from?.name}</span>}
@@ -69,7 +77,7 @@ export function Messages() {
       <button type="button" className={"btn ghost sm" + (opt ? " on" : "")} onClick={() => setOpt(!opt)} aria-label={t("Options : durée, photo, effets")} aria-expanded={opt}>＋{(once || secs > 0) && <span className="small"> ⏱</span>}</button>
       <button type="button" className="btn ghost sm" onClick={() => setEmo(!emo)} aria-label={t("Emojis")}><Ico n="smile" s={18} /></button>
       <input className="inp grow" placeholder={edit ? t("Modifier le message…") : t("Votre message…")} value={txt} onChange={(e) => setTxt(e.target.value)} aria-label={t("Message")} />
-      {txt.trim() ? <button className="btn" aria-label={t("Envoyer")}><Ico n="send" s={18} /></button> : <HoldMic className="btn" onDone={(u) => actions.send(c.id, "", secs, null, undefined, u, once)}><Ico n="mic" s={20} /></HoldMic>}</form></div>);
+      {txt.trim() ? <button className="btn micbtn" aria-label={t("Envoyer")}><Ico n="send" s={20} /></button> : <MicBtn onDone={(u) => actions.send(c.id, "", secs, null, undefined, u, once)} />}</form></div>);
 }
 
 // ───────── Jeux : Morpion à deux (chacun joue depuis son profil) + Quiz solo

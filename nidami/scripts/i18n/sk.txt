@@ -921,3 +921,8 @@
 920|Jazyk teraz nie je dostupný: skontroluj pripojenie a skús znova.
 921|📷 Odfotiť
 922|Dole vyber „Foto“ a odfoť si profilovú fotku.
+923|Volať
+924|Bežný hovor čoskoro pribudne: potrebuje server NOTIIF.
+925|📞 Bežný hovor
+926|Len hlas · čoskoro
+927|Hlas a obraz · dostupné

@@ -921,3 +921,8 @@
 920|Taal nu niet beschikbaar: controleer je verbinding en probeer opnieuw.
 921|📷 Foto maken
 922|Kies onderaan “Foto” om je profielfoto te maken.
+923|Bellen
+924|Gewoon bellen komt binnenkort: dat heeft de NOTIIF-server nodig.
+925|📞 Gewoon bellen
+926|Alleen stem · binnenkort
+927|Stem en beeld · beschikbaar

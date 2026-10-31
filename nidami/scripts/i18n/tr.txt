@@ -921,3 +921,8 @@
 920|Dil şu anda kullanılamıyor: bağlantını kontrol et ve tekrar dene.
 921|📷 Fotoğraf çek
 922|Profil fotoğrafı çekmek için altta “Fotoğraf”ı seç.
+923|Ara
+924|Basit arama yakında geliyor: NOTIIF sunucusu gerekiyor.
+925|📞 Basit arama
+926|Sadece ses · yakında
+927|Ses ve görüntü · mevcut

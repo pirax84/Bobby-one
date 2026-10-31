@@ -921,3 +921,8 @@
 920|Sproget er ikke tilgængeligt lige nu: tjek din forbindelse og prøv igen.
 921|📷 Tag et foto
 922|Vælg »Foto« nederst for at tage dit profilbillede.
+923|Ring op
+924|Almindeligt opkald kommer snart: det kræver NOTIIF-serveren.
+925|📞 Almindeligt opkald
+926|Kun stemme · snart
+927|Stemme og billede · tilgængeligt

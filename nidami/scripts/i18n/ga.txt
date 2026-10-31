@@ -921,3 +921,8 @@
 920|Níl an teanga ar fáil faoi láthair: seiceáil do cheangal agus bain triail eile as.
 921|📷 Tóg grianghraf
 922|Roghnaigh “Grianghraf” thíos chun grianghraf próifíle a thógáil.
+923|Glaoigh
+924|Beidh gnáth-ghlao ar fáil go luath: tá freastalaí NOTIIF de dhíth.
+925|📞 Gnáth-ghlao
+926|Guth amháin · go luath
+927|Guth agus pictiúr · ar fáil

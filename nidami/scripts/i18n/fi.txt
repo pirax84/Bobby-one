@@ -921,3 +921,8 @@
 920|Kieli ei ole nyt saatavilla: tarkista yhteys ja yritä uudelleen.
 921|📷 Ota kuva
 922|Valitse alhaalta ”Kuva” ottaaksesi profiilikuvan.
+923|Soita
+924|Tavallinen puhelu tulee pian: se tarvitsee NOTIIF-palvelimen.
+925|📞 Tavallinen puhelu
+926|Vain ääni · pian
+927|Ääni ja kuva · käytettävissä

@@ -921,3 +921,8 @@
 920|Language unavailable right now: check your connection and try again.
 921|📷 Take a photo
 922|Choose “Photo” at the bottom to take your profile picture.
+923|Call
+924|Simple calls are coming soon: they need the NOTIIF server.
+925|📞 Voice call
+926|Voice only · coming soon
+927|Voice and video · available

@@ -921,3 +921,8 @@
 920|Idioma no disponible ahora: revisa tu conexión e inténtalo de nuevo.
 921|📷 Hacer una foto
 922|Elige «Foto» abajo para hacer tu foto de perfil.
+923|Llamar
+924|La llamada simple llegará pronto: necesita el servidor de NOTIIF.
+925|📞 Llamada simple
+926|Solo voz · próximamente
+927|Voz e imagen · disponible

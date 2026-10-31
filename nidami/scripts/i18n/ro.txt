@@ -921,3 +921,8 @@
 920|Limba nu este disponibilă acum: verifică conexiunea și încearcă din nou.
 921|📷 Fă o poză
 922|Alege „Poză” jos pentru a face poza de profil.
+923|Sună
+924|Apelul simplu vine în curând: necesită serverul NOTIIF.
+925|📞 Apel simplu
+926|Doar voce · în curând
+927|Voce și imagine · disponibil

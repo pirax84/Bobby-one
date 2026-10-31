@@ -921,3 +921,8 @@
 920|Bahasa belum tersedia: periksa koneksimu dan coba lagi.
 921|📷 Ambil foto
 922|Pilih “Foto” di bawah untuk mengambil foto profilmu.
+923|Telepon
+924|Panggilan biasa segera hadir: butuh server NOTIIF.
+925|📞 Panggilan biasa
+926|Suara saja · segera
+927|Suara dan gambar · tersedia
