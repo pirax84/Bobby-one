@@ -45,13 +45,29 @@ export function Framer({ src, frame, onChange }: { src: string; frame: Frame; on
 // ───────── Cacher des visages (flou ou smiley)
 interface Face { x: number; y: number; r: number; on: boolean } // x, y, r : fractions de la largeur de la photo
 
+type Box = { x: number; y: number; width: number; height: number };
+const mk = (b: Box, im: HTMLImageElement): Face => ({ x: (b.x + b.width / 2) / im.naturalWidth, y: (b.y + b.height / 2) / im.naturalWidth, r: Math.max(b.width, b.height) * 0.62 / im.naturalWidth, on: false });
+let mp: Promise<{ detect: (i: HTMLImageElement) => { detections: { boundingBox?: { originX: number; originY: number; width: number; height: number } }[] } }> | null = null;
+/** Détecteur de secours (MediaPipe, chargé seulement à la demande) quand le navigateur n'en a pas. */
+function loadMp() {
+  if (!mp) mp = (async () => {
+    const base = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14";
+    const mod = await import(/* @vite-ignore */ base + "/vision_bundle.mjs");
+    const fs = await mod.FilesetResolver.forVisionTasks(base + "/wasm");
+    return mod.FaceDetector.createFromOptions(fs, { baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite" }, runningMode: "IMAGE", minDetectionConfidence: 0.35 });
+  })();
+  return mp;
+}
+const timeout = <T,>(p: Promise<T>, ms: number) => Promise.race([p, new Promise<T>((_, ko) => setTimeout(() => ko(new Error("lent")), ms))]);
 async function detect(im: HTMLImageElement): Promise<Face[]> {
   try {
     const FD = (window as unknown as { FaceDetector?: new (o?: object) => { detect: (i: CanvasImageSource) => Promise<{ boundingBox: DOMRectReadOnly }[]> } }).FaceDetector;
-    if (!FD) return [];
-    const res = await new FD({ fastMode: true, maxDetectedFaces: 12 }).detect(im);
-    return res.map((f) => { const b = f.boundingBox; return { x: (b.x + b.width / 2) / im.naturalWidth, y: (b.y + b.height / 2) / im.naturalWidth, r: Math.max(b.width, b.height) * 0.62 / im.naturalWidth, on: false }; });
-  } catch { return []; }
+    if (FD) { const res = await new FD({ fastMode: false, maxDetectedFaces: 12 }).detect(im); if (res.length) return res.map((f) => mk(f.boundingBox, im)); }
+  } catch { /* on essaie l'autre détecteur */ }
+  try {
+    const det = await timeout(loadMp(), 25000); const r = det.detect(im);
+    return r.detections.filter((d) => d.boundingBox).map((d) => mk({ x: d.boundingBox!.originX, y: d.boundingBox!.originY, width: d.boundingBox!.width, height: d.boundingBox!.height }, im));
+  } catch { mp = null; return []; }
 }
 
 /** Dessine les visages choisis dans la photo : flou réel ou smiley par-dessus un flou. */
