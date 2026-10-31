@@ -864,3 +864,16 @@
 863|Favorit
 864|Ven
 865|Ingen
+866|Udseende
+867|Tema, bjælker, startskærm
+868|Notifikationer og lyde
+869|Ringetoner, vibration, favoriteffekter
+870|Privatliv
+871|Hvem ser hvad, blokerede
+872|Foto, navn, status
+873|Telefon, tablet, computer
+874|Hjælp og juridisk information
+875|Spørgsmål, vilkår
+876|Konto og data
+877|Demotilstand, eksport, log ud
+878|Søg i indstillinger

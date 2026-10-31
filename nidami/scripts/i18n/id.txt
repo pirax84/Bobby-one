@@ -864,3 +864,16 @@
 863|Favorit
 864|Teman
 865|Tidak ada
+866|Tampilan
+867|Tema, bilah, layar awal
+868|Notifikasi dan suara
+869|Nada dering, getar, efek favorit
+870|Privasi
+871|Siapa melihat apa, diblokir
+872|Foto, nama, status
+873|Ponsel, tablet, komputer
+874|Bantuan dan informasi hukum
+875|Pertanyaan, ketentuan
+876|Akun dan data
+877|Mode demo, ekspor, keluar
+878|Cari pengaturan

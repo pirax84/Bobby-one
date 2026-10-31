@@ -864,3 +864,16 @@
 863|Favorite
 864|Friend
 865|None
+866|Appearance
+867|Theme, bars, start screen
+868|Notifications and sounds
+869|Ringtones, vibration, favorite effects
+870|Privacy
+871|Who sees what, blocked people
+872|Photo, name, status
+873|Phone, tablet, computer
+874|Help and legal notices
+875|Questions, terms
+876|Account and data
+877|Demo mode, export, log out
+878|Search settings

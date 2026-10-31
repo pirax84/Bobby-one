@@ -864,3 +864,16 @@
 863|Favorit
 864|Vän
 865|Ingen
+866|Utseende
+867|Tema, fält, startskärm
+868|Aviseringar och ljud
+869|Ringsignaler, vibration, favoriteffekter
+870|Integritet
+871|Vem ser vad, blockerade
+872|Foto, namn, status
+873|Telefon, surfplatta, dator
+874|Hjälp och juridisk information
+875|Frågor, villkor
+876|Konto och data
+877|Demoläge, exportera, logga ut
+878|Sök inställning

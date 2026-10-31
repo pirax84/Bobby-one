@@ -864,3 +864,16 @@
 863|Priljubljen
 864|Prijatelj
 865|Brez
+866|Videz
+867|Tema, vrstice, začetni zaslon
+868|Obvestila in zvoki
+869|Zvonjenja, vibriranje, priljubljeni učinki
+870|Zasebnost
+871|Kdo kaj vidi, blokirani
+872|Fotografija, ime, stanje
+873|Telefon, tablični računalnik, računalnik
+874|Pomoč in pravna obvestila
+875|Vprašanja, pogoji
+876|Račun in podatki
+877|Demo način, izvoz, odjava
+878|Poišči nastavitev

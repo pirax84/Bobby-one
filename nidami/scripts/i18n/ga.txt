@@ -864,3 +864,16 @@
 863|Ceann is fearr leat
 864|Cara
 865|Ceann ar bith
+866|Cuma
+867|Téama, barraí, scáileán tosaigh
+868|Fógraí agus fuaimeanna
+869|Cloigíní, creathadh, éifeachtaí is fearr leat
+870|Príobháideacht
+871|Cé a fheiceann cad, daoine blocáilte
+872|Grianghraf, ainm, stádas
+873|Guthán, táibléad, ríomhaire
+874|Cabhair agus fógraí dlíthiúla
+875|Ceisteanna, coinníollacha
+876|Cuntas agus sonraí
+877|Mód taispeána, easpórtáil, logáil amach
+878|Cuardaigh socrú

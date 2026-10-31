@@ -300,3 +300,8 @@ html.moving .bfab{opacity:0;pointer-events:none}
  .tw{display:block}
  .top{padding:6px 0 12px!important}
 }
+.setrow{display:flex;align-items:center;gap:12px;width:100%;text-align:start;background:var(--bg2);border:2.5px solid var(--ink);border-radius:22px 14px 24px 12px / 14px 24px 12px 22px;box-shadow:4px 4px 0 var(--shade);padding:12px 14px;color:var(--fg);margin:0}
+.setrow b{display:block}.setrow small{display:block;font-weight:500;color:var(--mute);font-size:.78rem}
+.seti{width:42px;height:42px;display:grid;place-items:center;font-size:1.3rem;border:2.5px solid var(--ink);border-radius:12px 5px 12px 5px;background:rgba(var(--brand-rgb),.16);flex:none}
+.setch{font-size:1.4rem;color:var(--mute)}
+html[dir=rtl] .setch{transform:scaleX(-1)}

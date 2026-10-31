@@ -864,3 +864,16 @@
 863|Lemmik
 864|Sõber
 865|Puudub
+866|Välimus
+867|Teema, ribad, avaekraan
+868|Teavitused ja helid
+869|Helinad, vibratsioon, lemmikefektid
+870|Privaatsus
+871|Kes mida näeb, blokeeritud
+872|Foto, nimi, olek
+873|Telefon, tahvel, arvuti
+874|Abi ja õigusteave
+875|Küsimused, tingimused
+876|Konto ja andmed
+877|Demorežiim, eksport, väljalogimine
+878|Otsi seadet

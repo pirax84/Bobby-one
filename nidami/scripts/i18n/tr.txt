@@ -864,3 +864,16 @@
 863|Favori
 864|Arkadaş
 865|Yok
+866|Görünüm
+867|Tema, çubuklar, başlangıç ekranı
+868|Bildirimler ve sesler
+869|Zil sesleri, titreşim, favori efektler
+870|Gizlilik
+871|Kim neyi görür, engellenenler
+872|Fotoğraf, ad, durum
+873|Telefon, tablet, bilgisayar
+874|Yardım ve yasal bildirimler
+875|Sorular, koşullar
+876|Hesap ve veriler
+877|Demo modu, dışa aktar, çıkış yap
+878|Ayar ara

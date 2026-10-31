@@ -864,3 +864,16 @@
 863|Mėgstamiausias
 864|Draugas
 865|Nėra
+866|Išvaizda
+867|Tema, juostos, pradžios ekranas
+868|Pranešimai ir garsai
+869|Skambėjimo tonai, vibracija, mėgstami efektai
+870|Privatumas
+871|Kas ką mato, užblokuoti
+872|Nuotrauka, vardas, būsena
+873|Telefonas, planšetė, kompiuteris
+874|Pagalba ir teisinė informacija
+875|Klausimai, sąlygos
+876|Paskyra ir duomenys
+877|Demonstracinis režimas, eksportas, atsijungimas
+878|Ieškoti nustatymo

@@ -864,3 +864,16 @@
 863|Kedvenc
 864|Barát
 865|Nincs
+866|Megjelenés
+867|Téma, sávok, kezdőképernyő
+868|Értesítések és hangok
+869|Csengőhangok, rezgés, kedvenc effektek
+870|Adatvédelem
+871|Ki mit lát, letiltottak
+872|Fotó, név, állapot
+873|Telefon, tablet, számítógép
+874|Súgó és jogi tudnivalók
+875|Kérdések, feltételek
+876|Fiók és adatok
+877|Demó mód, exportálás, kijelentkezés
+878|Beállítás keresése

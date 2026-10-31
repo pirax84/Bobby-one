@@ -864,3 +864,16 @@
 863|Favorito
 864|Amigo
 865|Ninguno
+866|Apariencia
+867|Tema, barras, pantalla de inicio
+868|Notificaciones y sonidos
+869|Tonos, vibración, efectos favoritos
+870|Privacidad
+871|Quién ve qué, bloqueados
+872|Foto, nombre, estado
+873|Teléfono, tableta, ordenador
+874|Ayuda y avisos legales
+875|Preguntas, condiciones
+876|Cuenta y datos
+877|Modo demo, exportar, cerrar sesión
+878|Buscar un ajuste

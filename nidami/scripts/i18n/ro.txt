@@ -864,3 +864,16 @@
 863|Favorit
 864|Prieten
 865|Niciuna
+866|Aspect
+867|Temă, bare, ecran de start
+868|Notificări și sunete
+869|Tonuri, vibrații, efecte favorite
+870|Confidențialitate
+871|Cine vede ce, blocați
+872|Fotografie, nume, stare
+873|Telefon, tabletă, computer
+874|Ajutor și informații legale
+875|Întrebări, condiții
+876|Cont și date
+877|Mod demo, export, deconectare
+878|Caută o setare

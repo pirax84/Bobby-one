@@ -864,3 +864,16 @@
 863|Suosikki
 864|Ystävä
 865|Ei mitään
+866|Ulkoasu
+867|Teema, palkit, aloitusnäyttö
+868|Ilmoitukset ja äänet
+869|Soittoäänet, värinä, suosikkitehosteet
+870|Yksityisyys
+871|Kuka näkee mitä, estetyt
+872|Kuva, nimi, tila
+873|Puhelin, tabletti, tietokone
+874|Ohje ja oikeudelliset tiedot
+875|Kysymykset, ehdot
+876|Tili ja tiedot
+877|Demotila, vienti, kirjaudu ulos
+878|Hae asetusta

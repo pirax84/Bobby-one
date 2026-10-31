@@ -864,3 +864,16 @@
 863|Izlase
 864|Draugs
 865|Nav
+866|Izskats
+867|Motīvs, joslas, sākuma ekrāns
+868|Paziņojumi un skaņas
+869|Zvana signāli, vibrācija, iecienītie efekti
+870|Privātums
+871|Kas ko redz, bloķētie
+872|Foto, vārds, statuss
+873|Tālrunis, planšete, dators
+874|Palīdzība un juridiskā informācija
+875|Jautājumi, noteikumi
+876|Konts un dati
+877|Demo režīms, eksports, izrakstīšanās
+878|Meklēt iestatījumu

@@ -9,6 +9,7 @@ import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from ".
 import { Home } from "./Home";
 import { t, T, locale } from "../i18n";
 import { LangPicker } from "./LangPicker";
+import { LegalView } from "./Legal";
 
 export const inviteLink = (code: string) => location.origin + location.pathname.replace(/index\.html$/, "") + "#add=" + code;
 export function QrSvg({ text, size = 220 }: { text: string; size?: number }) {
@@ -187,18 +188,36 @@ export function Notifs({ go, openConv }: { go?: (v: string) => void; openConv?: 
 }
 
 const navopts = (): [string, string][] => [["home", t("Accueil")], ["friends", t("Amis")], ["groups", t("Groupes")], ["messages", t("Messages")], ["calls", t("Appels")], ["media", t("Photos et vidéos")], ["games", t("Jeux")], ["events", t("Événements")], ["shares", t("Partages")], ["notifs", t("Notifications")], ["profile", t("Profil")], ["legal", t("Légal")], ["settings", t("Paramètres")]];
-export function Settings() {
+export function Settings({ go }: { go?: (v: any) => void }) {
   const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
+  const [sec, setSec] = useState<string | null>(() => (history.state?.sec as string) || null); const [q, setQ] = useState(""); const [legal, setLegal] = useState(false);
+  useEffect(() => { const h = () => setSec((history.state?.sec as string) || null); window.addEventListener("popstate", h); return () => window.removeEventListener("popstate", h); }, []);
+  const open = (k: string) => { history.pushState({ ...(history.state || {}), v: "settings", sec: k }, ""); setSec(k); window.scrollTo(0, 0); };
   const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay" | "fx"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><Switch on={cfg[k]} onChange={(v) => actions.setSetting(k, v)} label={label} /></label>;
-  return (<div className="col"><h1>{t("Paramètres")}</h1>
+  const rows: [string, string, string, string][] = [["look", "🎨", t("Apparence"), t("Thème, barres, écran de démarrage")], ["notifs", "🔔", t("Notifications et sons"), t("Sonneries, vibreur, effets favoris")], ["priv", "🔒", t("Confidentialité"), t("Qui voit quoi, bloqués")], ["profile", "👤", t("Mon profil"), t("Photo, nom, statut")], ["lang", "🌍", t("Langue"), ""], ["install", "📲", t("Installer l'application"), t("Téléphone, tablette, ordinateur")], ["legal", "ℹ️", t("Aide et mentions légales"), t("Questions, conditions")], ["acct", "🧪", t("Compte et données"), t("Mode démo, export, déconnexion")]];
+  const shown = rows.filter(([, , a, b]) => !q.trim() || (a + " " + b).toLowerCase().includes(q.trim().toLowerCase()));
+  const titles: Record<string, string> = Object.fromEntries(rows.map((r) => [r[0], r[2]]));
+  if (!sec) return (<div className="col"><h1>{t("Paramètres")}</h1>
+    <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
+    {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
+    {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
+    {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView /></div></Modal>}</div>);
+  return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
+    {sec === "install" && <>
     <InstallCard />
+    </>}
+    {sec === "lang" && <>
     <LangPicker />
+    </>}
+    {sec === "notifs" && <>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🎵 Sonneries et vibreur")}</h3>
       <b className="small">{t("Sonnerie des notifications")}</b><div className="row wrap" style={{ gap: 6 }}>{TONE_IDS.n.map((id) => <button key={id} className={"chip" + ((cfg.ntone || "n1") === id ? " on" : "")} onClick={() => { actions.setSetting("ntone", id); playTone(id); }}>{TONES[id].label}</button>)}</div>
       <b className="small">{t("Sonnerie des appels")}</b><div className="row wrap" style={{ gap: 6 }}>{TONE_IDS.c.map((id) => <button key={id} className={"chip" + ((cfg.ctone || "c1") === id ? " on" : "")} onClick={() => { actions.setSetting("ctone", id); playTone(id); }}>{TONES[id].label}</button>)}</div>
       <b className="small">{t("Vibreur des messages")}</b><div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} className={"chip" + ((cfg.vibm || "2") === v.id ? " on" : "")} onClick={() => { actions.setSetting("vibm", v.id); vibrate(v.id); }}>{v.label}</button>)}</div>
       <b className="small">{t("Vibreur des appels")}</b><div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} className={"chip" + ((cfg.vibc || "3") === v.id ? " on" : "")} onClick={() => { actions.setSetting("vibc", v.id); vibrate(v.id, 2); }}>{v.label}</button>)}</div>
       <p className="muted small" style={{ margin: 0 }}>{t("La secousse fait toujours vibrer au maximum. Touchez un choix pour l'essayer.")}</p></div>
+    </>}
+    {sec === "notifs" && <>
     <div className="card col" style={{ gap: 6 }}><h3>{t("🔔 Notifications sur le téléphone")}</h3>
       <label className="row"><span className="grow"><b>{t("Recevoir les notifications")}</b><span className="muted small" style={{ display: "block" }}>{t("Messages, demandes d'amis, partages, événements…")}</span></span><Switch on={!!cfg.push} label={t("Notifications sur le téléphone")} onChange={async (v) => { if (!v) { actions.setSetting("push", false); return; } const nat = (window as any).CercleNative; if (nat) { if (nat.hasNotifPermission()) { actions.setSetting("push", true); toast(t("Notifications activées.")); return; } nat.askNotif(); toast(t("Autorisez les notifications dans la fenêtre du téléphone.")); for (let i = 0; i < 40; i++) { await new Promise((r) => setTimeout(r, 750)); if (nat.hasNotifPermission()) { actions.setSetting("push", true); toast(t("Notifications activées.")); return; } } return toast(t("Notifications refusées : autorisez-les dans les réglages du téléphone (Applications > Cercle > Notifications).")); }
         if (typeof Notification === "undefined") return toast(t("Ce navigateur ne gère pas les notifications. Installez l'application (QR Android) ou l'icône sur l'écran d'accueil.")); const r = await Notification.requestPermission(); if (r !== "granted") return toast(t("Notifications refusées : autorisez-les dans les réglages du téléphone, puis réessayez.")); actions.setSetting("push", true); toast(t("Notifications activées.")); }} /></label>
@@ -206,22 +225,42 @@ export function Settings() {
       {([["messages", t("💬 Messages")], ["friends", t("👋 Demandes d'amis")], ["home", t("📰 Publications et stories")], ["shares", t("🔁 Partages")], ["events", t("📅 Événements")], ["groups", t("👥 Groupes")], ["media", t("🖼 Albums")], ["games", t("🎮 Jeux")]] as const).map(([k, l]) => <label key={k} className="row" style={{ padding: "4px 0" }}><span className="grow">{l}</span><Switch on={cfg.nt?.[k] !== false} label={t("Notifications : {l}", { l })} onChange={(v) => actions.setNotifType(k, v)} /></label>)}
       {cfg.push && <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => { navigator.serviceWorker?.ready.then((r) => r.showNotification("NOTIIF", { body: t("Test : tout fonctionne ✅"), icon: "./icon-192.png" })).catch(() => toast(t("Impossible d'afficher la notification de test."))); }}>{t("Envoyer un test")}</button>}
       <p className="muted small" style={{ margin: 0 }}>{t("Honnêtement : pour l'instant, les notifications s'affichent quand l'application est ouverte ou en arrière-plan. Les recevoir application fermée demande le serveur (envoi à distance), prévu avec la connexion de vrais comptes. Appels : bientôt.")}</p></div>
+    </>}
+    {sec === "notifs" && <>
     <div className="card col" style={{ gap: 4 }}><h3>{t("Mes 4 effets favoris")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Ils s'affichent en premier dans les conversations. Les autres restent sous le bouton « + ».")}</p>
       {FX_KEYS.map((k) => { const cur = favOf(cfg.fxfav); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "5px 0" }}><span className="grow">{FX[k].label}</span><Switch on={on} label={t("Favori : {label}", { label: FX[k].label })} onChange={(v) => { if (v && cur.length >= 4) return toast(t("4 favoris au maximum : désactivez-en un d'abord.")); if (!v && cur.length <= 1) return toast(t("Gardez au moins un favori.")); actions.setSetting("fxfav", FX_KEYS.filter((x) => (x === k ? v : cur.includes(x))).join(",")); }} /></label>; })}
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("fxfav", DEFAULT_FAV.join(","))}>{t("Remettre par défaut")}</button></div>
+    </>}
+    {sec === "look" && <>
+    <div className="card"><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème clair")}</b><div className="muted small">{t("Fond clair, blanc et turquoise.")}</div></div><Switch on={cfg.light} onChange={(v) => actions.setSetting("light", v)} label={t("Thème clair")} /></label><hr /><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème sombre")}</b><div className="muted small">{t("Fond bleu nuit et turquoise, plus doux le soir.")}</div></div><Switch on={!cfg.light} onChange={(v) => actions.setSetting("light", !v)} label={t("Thème sombre")} /></label><hr /><Tg k="fx" label={t("Effets dans les conversations")} desc={t("Secousse d'écran avec son, cœurs, anniversaire : quand un ami en envoie un, vous le voyez et l'entendez. Activé au départ.")} /><hr /><Tg k="quiet" label={t("Plage silencieuse")} desc={t("Coupe les alertes la nuit (en mode serveur).")} /><hr /><Tg k="autoplay" label={t("Lecture automatique des vidéos")} desc={t("Pour les vidéos courtes (bientôt).")} /></div>
+    </>}
+    {sec === "look" && <>
     <div className="card col" style={{ gap: 4 }}><h3>{t("Barre du haut")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Le bouton « Plus » (tous les menus) est toujours en haut à droite. Ajoutez jusqu'à 4 raccourcis à côté.")}</p>
       {([["search", t("Rechercher")], ...navopts()] as [string, string][]).map(([k, l]) => { const cur = (cfg.top ? cfg.top.split(",") : ["search", "settings"]); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "6px 0" }}><span className="grow"><b>{l}</b></span><Switch on={on} label={t("En haut : {l}", { l })} onChange={(v) => { if (v && cur.length >= 4) return toast(t("4 raccourcis au maximum : désactivez-en un d'abord.")); if (!v && cur.length <= 1) return toast(t("Gardez au moins un raccourci.")); const order = ["settings", ...navopts().map(([x]) => x)]; const nx = order.filter((x, i) => order.indexOf(x) === i && (x === k ? v : cur.includes(x))); actions.setSetting("top", nx.join(",")); }} /></label>; })}
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("top", "search,settings")}>{t("Remettre par défaut")}</button></div>
+    </>}
+    {sec === "look" && <>
     <div className="card col" style={{ gap: 4 }}><h3>{t("Barre du bas")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Choisissez jusqu'à 4 raccourcis. Le bouton « Créer » reste toujours au milieu. Les autres menus sont dans le bouton « Plus » en haut à droite.")}</p>
       {navopts().map(([k, l]) => { const cur = (cfg.nav ? cfg.nav.split(",") : ["home", "friends", "messages", "notifs"]); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "6px 0" }}><span className="grow"><b>{l}</b></span><Switch on={on} label={t("Raccourci {l}", { l })} onChange={(v) => { if (v && cur.length >= 4) return toast(t("4 raccourcis au maximum : désactivez-en un d'abord.")); if (!v && cur.length <= 1) return toast(t("Gardez au moins un raccourci.")); const nx = navopts().map(([x]) => x).filter((x) => (x === k ? v : cur.includes(x))); actions.setSetting("nav", nx.join(",")); }} /></label>; })}
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("nav", "home,friends,messages,notifs")}>{t("Remettre par défaut")}</button></div>
+    </>}
+    {sec === "look" && <>
     <PostChoices />
+    </>}
+    {sec === "look" && <>
     <div className="card col" style={{ gap: 6 }}><label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Bulle de messages")}</b><div className="muted small">{t("Une petite bulle que vous déplacez où vous voulez. Quand elle est affichée, « Messages » est remplacé par « Groupes » dans la barre du bas.")}</div></div><Switch on={cfg.bubble !== false} onChange={(v) => actions.setSetting("bubble", v)} label={t("Bulle de messages")} /></label><hr /><label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Écran de démarrage")}</b><div className="muted small">{t("La page qui s'ouvre quand vous lancez NOTIIF.")}</div></div><select className="inp sm" style={{ width: "auto" }} value={cfg.start || "home"} onChange={(e) => actions.setSetting("start", e.target.value)} aria-label={t("Écran de démarrage")}>{[["home", t("Accueil")], ["create", t("Créer")], ["friends", t("Amis")], ["messages", t("Messages")], ["groups", t("Groupes")], ["calls", t("Appels")], ["notifs", t("Notifications")], ["media", t("Photos")], ["events", t("Événements")], ["games", t("Jeux")]].map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></label></div>
-    <div className="card"><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème clair")}</b><div className="muted small">{t("Fond clair, blanc et turquoise.")}</div></div><Switch on={cfg.light} onChange={(v) => actions.setSetting("light", v)} label={t("Thème clair")} /></label><hr /><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème sombre")}</b><div className="muted small">{t("Fond bleu nuit et turquoise, plus doux le soir.")}</div></div><Switch on={!cfg.light} onChange={(v) => actions.setSetting("light", !v)} label={t("Thème sombre")} /></label><hr /><Tg k="fx" label={t("Effets dans les conversations")} desc={t("Secousse d'écran avec son, cœurs, anniversaire : quand un ami en envoie un, vous le voyez et l'entendez. Activé au départ.")} /><hr /><Tg k="quiet" label={t("Plage silencieuse")} desc={t("Coupe les alertes la nuit (en mode serveur).")} /><hr /><Tg k="autoplay" label={t("Lecture automatique des vidéos")} desc={t("Pour les vidéos courtes (bientôt).")} /></div>
+    </>}
+    {sec === "priv" && <>
     <div className="card col"><h3>{t("🔒 Confidentialité")}</h3><ul className="muted" style={{ margin: 0, paddingLeft: 18 }}><li>{t("Aucune publicité. Aucune vente de données.")}</li><li>{t("Aucun bouton de partage vers l'extérieur, aucun profil public.")}</li><li>{t("Personne ne peut vous trouver sans votre code d'invitation.")}</li><li>{t("Aucune application ne peut empêcher une personne autorisée de photographier son écran avec un autre appareil.")}</li></ul></div>
+    </>}
+    {sec === "acct" && <>
     <div className="card col"><h3>{t("🧪 Mode démo (sur cet appareil)")}</h3><p className="muted small">{t("Pour l'instant, vos données restent sur cet appareil et les amis sont fictifs. Les vrais comptes, les messages entre téléphones et les appels demandent un serveur : voir le guide dans le dossier « docs » du projet.")}</p>
       <button className="btn ghost" onClick={() => actions.logout()}>{t("Se déconnecter")}</button>
       <button className="btn ghost" onClick={() => { const b = new Blob([actions.exportData()], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "mes-donnees-cercle.json"; a.click(); }}>{t("Exporter mes données")}</button>
       <button className="btn danger" onClick={() => { if (confirm(t("Supprimer toutes vos données NOTIIF de cet appareil ?"))) actions.deleteAccountData(); }}>{t("Supprimer mon compte et mes données")}</button></div>
-    <div className="card col"><h3>{t("🔁 Changer de membre (démo)")}</h3><p className="muted small">{t("Pour tester les durées par personne : publiez une photo de 5 s pour Céline et Thomas, puis passez de l'un à l'autre.")}</p><div className="tabs" style={{ flexWrap: "wrap" }}>{s.users.filter((u) => u.id === s.me || (s.social.friends[s.me] || []).includes(u.id) || u.demo || s.users.length).map((u) => <button key={u.id} className={"chip" + (u.id === s.me ? " on" : "")} onClick={() => { actions.switchUser(u.id); toast(t("Vous êtes maintenant {name}.", { name: u.name })); }}>{u.name}</button>)}</div></div></div>);
+    </>}
+    {sec === "acct" && <>
+    <div className="card col"><h3>{t("🔁 Changer de membre (démo)")}</h3><p className="muted small">{t("Pour tester les durées par personne : publiez une photo de 5 s pour Céline et Thomas, puis passez de l'un à l'autre.")}</p><div className="tabs" style={{ flexWrap: "wrap" }}>{s.users.filter((u) => u.id === s.me || (s.social.friends[s.me] || []).includes(u.id) || u.demo || s.users.length).map((u) => <button key={u.id} className={"chip" + (u.id === s.me ? " on" : "")} onClick={() => { actions.switchUser(u.id); toast(t("Vous êtes maintenant {name}.", { name: u.name })); }}>{u.name}</button>)}</div></div>
+    </>}
+  </div>);
 }

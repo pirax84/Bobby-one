@@ -864,3 +864,16 @@
 863|Oblíbený
 864|Přítel
 865|Žádný
+866|Vzhled
+867|Motiv, panely, úvodní obrazovka
+868|Oznámení a zvuky
+869|Vyzvánění, vibrace, oblíbené efekty
+870|Soukromí
+871|Kdo co vidí, blokovaní
+872|Fotka, jméno, stav
+873|Telefon, tablet, počítač
+874|Nápověda a právní informace
+875|Otázky, podmínky
+876|Účet a data
+877|Demo režim, export, odhlášení
+878|Hledat nastavení

@@ -864,3 +864,16 @@
 863|Favoriet
 864|Vriend
 865|Geen
+866|Uiterlijk
+867|Thema, balken, startscherm
+868|Meldingen en geluiden
+869|Beltonen, trilling, favoriete effecten
+870|Privacy
+871|Wie ziet wat, geblokkeerd
+872|Foto, naam, status
+873|Telefoon, tablet, computer
+874|Help en juridische info
+875|Vragen, voorwaarden
+876|Account en gegevens
+877|Demomodus, exporteren, uitloggen
+878|Instelling zoeken

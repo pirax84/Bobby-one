@@ -864,3 +864,16 @@
 863|Favorit
 864|Ħabib
 865|L-ebda
+866|Dehra
+867|Tema, vireg, skrin tal-bidu
+868|Notifiki u ħsejjes
+869|Ringtones, vibrazzjoni, effetti favoriti
+870|Privatezza
+871|Min jara xiex, imblukkati
+872|Ritratt, isem, status
+873|Telefon, tablet, kompjuter
+874|Għajnuna u avviżi legali
+875|Mistoqsijiet, termini
+876|Kont u dejta
+877|Modalità demo, esporta, oħroġ
+878|Fittex issettjar

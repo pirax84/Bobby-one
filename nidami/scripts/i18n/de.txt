@@ -864,3 +864,16 @@
 863|Favorit
 864|Freund
 865|Keine
+866|Darstellung
+867|Design, Leisten, Startbildschirm
+868|Benachrichtigungen und Töne
+869|Klingeltöne, Vibration, Lieblingseffekte
+870|Datenschutz
+871|Wer sieht was, Blockierte
+872|Foto, Name, Status
+873|Handy, Tablet, Computer
+874|Hilfe und rechtliche Hinweise
+875|Fragen, Bedingungen
+876|Konto und Daten
+877|Demo-Modus, Export, Abmelden
+878|Einstellung suchen
