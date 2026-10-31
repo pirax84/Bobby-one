@@ -305,3 +305,16 @@ html.moving .bfab{opacity:0;pointer-events:none}
 .seti{width:42px;height:42px;display:grid;place-items:center;font-size:1.3rem;border:2.5px solid var(--ink);border-radius:12px 5px 12px 5px;background:rgba(var(--brand-rgb),.16);flex:none}
 .setch{font-size:1.4rem;color:var(--mute)}
 html[dir=rtl] .setch{transform:scaleX(-1)}
+/* aperçu flouté des contenus éphémères */
+.wreath .wblur img,.wreath .wblur video{filter:blur(7px);transform:scale(1.25)}
+.ephv{position:relative;overflow:hidden;padding:0!important}
+.ephv .ephbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(18px) brightness(.85);transform:scale(1.2)}
+.ephv .ephin{position:relative;padding:22px 16px;display:flex;flex-direction:column;align-items:center;gap:2px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.ephv .ephin .muted{color:#fff;opacity:.9}
+/* lecteur vidéo : on touche l'image pour lancer, barre en bas une fois lancée */
+.vwrap video{cursor:pointer}
+.vbar{position:absolute;left:8px;right:8px;bottom:8px;display:flex;align-items:center;gap:6px;padding:6px 8px;background:rgba(4,20,26,.72);border:2px solid var(--ink);border-radius:14px 6px 14px 6px;line-height:1;color:#fff;font-size:.75rem;z-index:3}
+.vbar button{background:none;border:0;color:#fff;font-size:1.05rem;padding:4px;min-width:30px;min-height:30px}
+.vbar input[type=range]{flex:1;min-width:0;accent-color:#2FCDBE}
+.bottom,.bfab{transition:opacity .15s,transform .15s}
+@media (max-width:760px){.bottom .plus{width:60px!important;height:54px!important;margin-top:0!important;align-self:center}}

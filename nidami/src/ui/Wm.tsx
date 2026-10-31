@@ -35,8 +35,20 @@ export function useCaptureGuard(onSuspect: () => void, active: boolean) {
 
 /** Vidéo avec filigrane par-dessus (nom du spectateur + date). Pas de bouton de téléchargement ; ce n'est pas une protection absolue. */
 export function VideoWm({ src, label, poster = false, bare = false, onEnded, onTime }: { src: string; label: string; poster?: boolean; bare?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void }) {
-  const t = `${label} · NOTIIF · ${new Date().toLocaleDateString(locale())}`;
+  const wm = `${label} · NOTIIF · ${new Date().toLocaleDateString(locale())}`;
+  const vid = useRef<HTMLVideoElement>(null); const [started, setStarted] = useState(false); const [playing, setPlaying] = useState(false); const [cur, setCur] = useState(0); const [dur, setDur] = useState(0);
+  const custom = !poster && !bare; const mmss = (n: number) => { const m = Math.floor(n / 60), x = Math.floor(n % 60); return `${m}:${x < 10 ? "0" : ""}${x}`; };
+  const toggle = () => { const v = vid.current; if (!v) return; if (v.paused) { setStarted(true); void v.play().catch(() => {}); } else v.pause(); };
+  const jump = (d: number) => { const v = vid.current; if (v) v.currentTime = Math.max(0, Math.min(v.duration || 0, v.currentTime + d)); };
   return <div className="vwrap protected" onContextMenu={(e) => e.preventDefault()}>
-    <video src={src} controls={!poster && !bare} autoPlay={bare} muted={poster} playsInline preload={bare ? "auto" : "metadata"} onEnded={onEnded} onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime, e.currentTarget.duration)} controlsList="nodownload noremoteplayback" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} />
-    <div className="vwm" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i}>{t}</span>)}</div></div>;
+    <video ref={vid} src={custom ? src + "#t=0.1" : src} controls={false} autoPlay={bare} muted={poster} playsInline preload={bare ? "auto" : "metadata"} onClick={custom ? (e) => { e.stopPropagation(); toggle(); } : undefined}
+      onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onLoadedMetadata={(e) => setDur(e.currentTarget.duration || 0)}
+      onEnded={() => { setPlaying(false); onEnded?.(); }} onTimeUpdate={(e) => { setCur(e.currentTarget.currentTime); onTime?.(e.currentTarget.currentTime, e.currentTarget.duration); }} controlsList="nodownload noremoteplayback" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} />
+    {custom && started && <div className="vbar" onClick={(e) => e.stopPropagation()} onPointerDown={(e) => e.stopPropagation()}>
+      <button type="button" onClick={() => jump(-10)} aria-label="−10 s">⏪</button>
+      <button type="button" onClick={toggle} aria-label={playing ? "⏸" : "▶"}>{playing ? "⏸" : "▶"}</button>
+      <button type="button" onClick={() => jump(10)} aria-label="+10 s">⏩</button>
+      <input type="range" min={0} max={dur || 1} step={0.1} value={Math.min(cur, dur || 1)} onChange={(e) => { const v = vid.current; if (v) v.currentTime = Number(e.target.value); }} aria-label="0:00" />
+      <span>{mmss(cur)}</span></div>}
+    <div className="vwm" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i}>{wm}</span>)}</div></div>;
 }

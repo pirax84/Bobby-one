@@ -11,10 +11,10 @@ import { t } from "../i18n";
 
 // ───────── Barre des stories
 /** Aperçu d'une story dans la bulle : la photo ou la vidéo ; jamais pour une story éphémère (elle reste cachée). */
-function preview(posts: Post[], u?: { avatar?: string | null }): { img?: string | null; video?: string | null; bg?: string; icon?: string } {
+function preview(posts: Post[], u?: { avatar?: string | null }): { img?: string | null; video?: string | null; bg?: string; icon?: string; blur?: boolean } {
   const p = [...posts].sort((x, y) => y.createdAt - x.createdAt)[0]; if (!p) return {};
-  if (p.viewSecs > 0) return { icon: "⏱" };
-  if (p.img) return { img: p.img }; if (p.video) return { video: p.video }; if (p.audio) return { icon: "🎤" };
+  const blur = p.viewSecs > 0 ? true : undefined;
+  if (p.img) return { img: p.img, blur }; if (p.video) return { video: p.video, blur }; if (p.viewSecs > 0) return { icon: "⏱" }; if (p.audio) return { icon: "🎤" };
   if (p.bg !== undefined) return { bg: BG[p.bg % BG.length] };
   return u?.avatar ? { img: u.avatar } : {};
 }
@@ -141,8 +141,8 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
   const likesOn = useStore((s) => s.settings[post.authorId]?.likes !== false); const commOn = useStore((s) => s.settings[post.authorId]?.comm !== false);
   const body = (() => {
     if (expired) return <div className="eph gone"><div style={{ fontSize: "2rem" }}>⌛</div><b>{t("Expirée pour vous")}</b><div className="muted small">{t("Votre temps de consultation est écoulé.")}</div></div>;
-    if (lock) { const opened = rp.views[me] !== undefined; return <div className="eph"><div style={{ fontSize: "2rem" }}>{post.kind === "photo" ? "📸" : "✉️"}</div><b>{post.kind === "photo" ? t("Photo") : t("Message")}{" "}{t("éphémère")}</b>
-      <div className="muted small" style={{ margin: "4px 0 12px" }}>{opened ? t("Il vous reste {n} s.", { n: Math.ceil((a.ok ? a.remainingMs || 0 : 0) / 1000) }) : t("Vous aurez {fmtSecs} à partir de l'ouverture.", { fmtSecs: fmtSecs(post.viewSecs) })}</div><button className="btn" onClick={() => { const r = actions.open(rp.id); if (r.ok) setView(true); }}><Ico n="eye" s={18} /> {opened ? t("Reprendre") : t("Ouvrir")}</button></div>; }
+    if (lock) { const opened = rp.views[me] !== undefined; return <div className="eph ephv">{post.img ? <img className="ephbg" src={post.img} alt="" /> : post.video ? <video className="ephbg" src={post.video + "#t=0.1"} muted playsInline preload="metadata" /> : null}<div className="ephin"><div style={{ fontSize: "1.6rem" }}>{post.kind === "photo" ? "📸" : "✉️"}</div><b>{post.kind === "photo" ? t("Photo") : t("Message")}{" "}{t("éphémère")}</b>
+      <div className="muted small" style={{ margin: "4px 0 12px" }}>{opened ? t("Il vous reste {n} s.", { n: Math.ceil((a.ok ? a.remainingMs || 0 : 0) / 1000) }) : t("Vous aurez {fmtSecs} à partir de l'ouverture.", { fmtSecs: fmtSecs(post.viewSecs) })}</div><button className="btn sm" onClick={() => { const r = actions.open(rp.id); if (r.ok) setView(true); }}><Ico n="eye" s={16} /> {opened ? t("Reprendre") : t("Ouvrir")}</button></div></div>; }
     return <>{(post.video || post.audio) && <MediaBox p={post} label={users.find((x) => x.id === me)?.name || ""} />}{post.img && <div className="protected"><WmImage src={post.img} label={users.find((x) => x.id === me)?.name || ""} alt={post.text || t("Photo")} /></div>}{post.kind === "text" ? <div className={post.bg !== undefined ? "tbg" : ""} style={post.bg !== undefined ? { background: BG[post.bg % BG.length] } : undefined}>{post.text}</div> : post.text && <p style={{ margin: "10px 0 0" }}>{post.text}</p>}{post.link && <LinkCard url={post.link} />}</>;
   })();
   const canSee = mine || rp.authorId === me; const heart = pressProps(() => actions.react(rp.id, rp.reactions[me] ? rp.reactions[me] : "❤️"), () => (canSee ? setWho(true) : setEmoSheet(true)));

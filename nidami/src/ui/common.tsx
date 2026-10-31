@@ -34,9 +34,9 @@ export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
   <svg className={n === "back" ? "ico-flip" : undefined} width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={P[n] || P.more} /></svg>
 );
 /** Bulle de BD dessinée à la main : l'aperçu de la story remplit toute la forme, avec un contour aux couleurs de l'application. */
-export function Wreath({ img, video, bg, icon }: { img?: string | null; video?: string | null; bg?: string; icon?: string }) {
+export function Wreath({ img, video, bg, icon, blur }: { img?: string | null; video?: string | null; bg?: string; icon?: string; blur?: boolean }) {
   return <><svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true"><clipPath id="bubbleclip" clipPathUnits="objectBoundingBox"><path transform="scale(0.01)" d="M17 12C40 5 70 5 86 13C97 22 96 55 89 70C85 79 70 81 62 80C57 81 57 88 64 95C53 91 47 85 44 80C29 81 13 78 8 66C2 50 6 22 17 12Z" /></clipPath></svg>
-    <span className="wmedia" style={{ background: bg || "var(--grad)" }}>{img ? <img src={img} alt="" /> : video ? <video src={video} muted playsInline preload="metadata" /> : icon ? <span className="wicon">{icon}</span> : null}</span>
+    <span className={"wmedia" + (blur ? " wblur" : "")} style={{ background: bg || "var(--grad)" }}>{img ? <img src={img} alt="" /> : video ? <video src={video + "#t=0.1"} muted playsInline preload="metadata" /> : icon ? <span className="wicon">{icon}</span> : null}</span>
     <svg className="wreathsvg" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="var(--brand)" /><stop offset="1" stopColor="var(--brand2)" /></linearGradient></defs>
       <g className="wl" fill="none" strokeLinecap="round" strokeLinejoin="round"><path strokeWidth="4.2" d="M17 12C40 5 70 5 86 13C97 22 96 55 89 70C85 79 70 81 62 80C57 81 57 88 64 95C53 91 47 85 44 80C29 81 13 78 8 66C2 50 6 22 17 12Z" /><path strokeWidth="1.8" opacity=".75" d="M19 9C42 3 72 4 88 11C99 21 99 56 91 72C86 82 71 83 63 82" /></g></svg></>;
 }
