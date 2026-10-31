@@ -245,3 +245,5 @@ html[dir="rtl"] .ltr,html[dir="rtl"] code,html[dir="rtl"] .qr{direction:ltr;unic
 .srch .srcht{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:370px){.srch .srcht{display:none}.srch{padding:0 10px;max-width:56px}}
 .brow{width:100%;text-align:start}
+.dsearch{display:flex;justify-content:center;padding:2px 0 14px}.dsearch .srch{flex:none;width:min(420px,100%);max-width:420px;margin:0}
+@media (max-width:760px){.dsearch{display:none}}

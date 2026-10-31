@@ -14,7 +14,7 @@ export function Stories({ me }: { me: string }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(5000);
   const [open, setOpen] = useState<string | null>(null); 
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
-  return (<><div className="brandbar"><img src="./wordmark.png" alt="NOTIIF" /></div><div className="stories">
+  return (<><div className="stories">
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = list.filter((p) => p.authorId === a).every((p) => p.authorId === me || p.views[me] !== undefined);
       return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"ring" + (seen ? " seen" : "")}><Avatar u={u} s={58} /></span><div className="ell">{a === me ? t("Moi") : u?.name}</div></button>; })}
   </div>
