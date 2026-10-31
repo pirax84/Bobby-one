@@ -75,10 +75,10 @@ export function Composer({ onClose, story = false, groupId, init }: { onClose: (
   return (<Modal title={story ? t("✨ Ma story") : t("📝 Nouvelle publication")} onClose={onClose}><div className="col" style={{ gap: 10 }}>
     <input ref={file} type="file" accept="image/*" hidden onChange={(e) => pick(e.target.files?.[0])} />
     {story && <p className="muted small" style={{ margin: 0 }}>{t("Une story disparaît toute seule (24 h par défaut) et se regarde plein écran.")}</p>}
-    <div className="tabs" role="tablist" aria-label={t("Type de contenu")}>{([["text", t("✏️ Texte")], ["photo", t("📷 Photo")], ["video", t("🎥 Selfie vidéo")], ["audio", t("🎤 Vocal")], ["link", t("🔗 Lien")]] as const).filter(([k]) => !(story && k === "link")).map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={kind === k} className={"chip" + (kind === k ? " on" : "")} onClick={() => { setKind(k); setRecK(null); if (k === "photo" && !img) file.current?.click(); }}>{l}</button>)}</div>
+    <div className="tabs" role="tablist" aria-label={t("Type de contenu")}>{([["text", t("✏️ Texte")], ["photo", t("📷 Photo")], ["video", t("🤳 Selfie")], ["audio", t("🎤 Vocal")], ["link", t("🔗 Lien")]] as const).filter(([k]) => !(story && k === "link")).map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={kind === k} className={"chip" + (kind === k ? " on" : "")} onClick={() => { setKind(k); setRecK(k === "video" && !vid ? "video" : null); if (k === "photo" && !img) file.current?.click(); }}>{l}</button>)}</div>
     {kind === "photo" && img && <div style={{ position: "relative" }}><img className="vprev" src={img} alt={t("Aperçu")} /><button className="btn ghost sm" style={{ position: "absolute", top: 6, right: 6 }} onClick={() => { setImg(null); setKind("text"); }} aria-label={t("Retirer la photo")}><Ico n="x" s={16} /></button></div>}
     {kind === "photo" && !img && <button type="button" className="btn ghost" onClick={() => file.current?.click()}>{t("📷 Choisir une photo")}</button>}
-    {kind === "video" && recK === "video" && <Camera withPhoto={false} onClose={() => setRecK(null)} onVideo={(u) => { setVid(u); setRecK(null); }} />}
+    {kind === "video" && recK === "video" && <Camera onClose={() => setRecK(null)} onVideo={(u) => { setVid(u); setRecK(null); }} onPhoto={(u) => { setImg(u); setKind("photo"); setRecK(null); }} />}
     {(kind === "video" || kind === "audio") && (kind === "audio" && !aud0 ? <VoicePad max={60} onDone={(u) => setAud0(u)} />
       : (kind === "video" ? vid : aud0) ? <div className="card col" style={{ gap: 6 }}>{kind === "video" ? <video src={vid!} controls playsInline className="vprev" /> : <audio controls src={aud0!} style={{ width: "100%" }} />}{kind === "audio" ? <div className="row" style={{ gap: 8 }}><button type="button" className="btn ghost sm" onClick={() => setAud0(null)}>{t("🗑 Supprimer")}</button><button type="button" className="btn sm" disabled={!ok || busy} onClick={go}>{t("✅ Publier")}</button></div> : <button type="button" className="btn ghost sm" onClick={() => { setVid(null); setRecK(kind); }}>{t("🔁 Recommencer")}</button>}</div>
       : <button type="button" className="btn ghost" onClick={() => setRecK(kind)}>{kind === "video" ? t("🎥 Me filmer (10 s max)") : t("🎤 Enregistrer un vocal (30 s max)")}</button>)}
@@ -207,7 +207,7 @@ export function QuickCompose({ onClose, story = false, groupId, long = false }: 
     <button className="btn" onClick={() => { setK("text"); setStep("composer"); }}>{t("✏️ Écrire un texte")}</button>
     <button className="btn" onClick={() => { setK("photo"); setStep("composer"); }}>{t("📷 Photo")}</button>
     <button className="btn" onClick={() => { setK("audio"); setStep("composer"); }}>{t("🎤 Message vocal")}</button>
-    <button className="btn" onClick={() => { setK("video"); setStep("composer"); }}>{t("🎥 Selfie vidéo")}</button>
+    <button className="btn" onClick={() => setStep("record")}>{t("🤳 Selfie")}</button>
     <p className="muted small center" style={{ margin: 0 }}>{t("Astuce : restez appuyé sur le bouton pour ouvrir directement la caméra.")}</p></div></Modal>;
   return <Camera onClose={onClose} onVideo={(u) => { setVid(u); setStep("composer"); }} onPhoto={(u) => { setPhoto(u); setStep("composer"); }} />;
 }

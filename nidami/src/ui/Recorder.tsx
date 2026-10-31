@@ -43,9 +43,11 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true, 
   const [res, setRes] = useState<{ video?: string; photo?: string } | null>(null);
   useEffect(() => { stopPlayer(); }, []);
   const [zoom, setZoom] = useState(1);
+  // Zoom arrière (0,6×) : si le téléphone sait élargir l'image par la caméra elle-même, on l'utilise ; sinon l'image reste plein écran comme en 1×.
+  useEffect(() => { const tr = stream.current?.getVideoTracks()[0]; const cap = (tr?.getCapabilities?.() || {}) as { zoom?: { min: number; max: number } }; if (!tr || !cap.zoom) return; const z = Math.max(cap.zoom.min, zoom < 1 ? zoom : 1); void tr.applyConstraints({ advanced: [{ zoom: z } as MediaTrackConstraintSet] }).catch(() => {}); }, [zoom, ready]);
   useEffect(() => { zRef.current = zoom; }, [zoom]);
   // Le zoom est fait ici (image redessinée) : il marche sur tous les téléphones, et la vidéo enregistrée est identique à l'aperçu.
-  useEffect(() => { if (!ready || res) return; let raf = 0; const W = 540; const H = Math.round((W * Math.max(window.innerHeight, 1)) / Math.max(window.innerWidth, 1) / 2) * 2; const draw = () => { const c = cv.current, v = vid.current; if (c && v && v.videoWidth) { if (c.width !== W || c.height !== H) { c.width = W; c.height = H; } const x = c.getContext("2d")!; const cover = Math.max(W / v.videoWidth, H / v.videoHeight); const f = zRef.current; const w = v.videoWidth * cover * f, h = v.videoHeight * cover * f;
+  useEffect(() => { if (!ready || res) return; let raf = 0; const W = 540; const H = Math.round((W * Math.max(window.innerHeight, 1)) / Math.max(window.innerWidth, 1) / 2) * 2; const draw = () => { const c = cv.current, v = vid.current; if (c && v && v.videoWidth) { if (c.width !== W || c.height !== H) { c.width = W; c.height = H; } const x = c.getContext("2d")!; const cover = Math.max(W / v.videoWidth, H / v.videoHeight); const f = Math.max(1, zRef.current); const w = v.videoWidth * cover * f, h = v.videoHeight * cover * f;
     // 1× : la vidéo remplit tout l'écran (comme Snap ou TikTok). En dessous de 1×, on voit toute l'image, le reste est rempli par un fond flou.
     x.save(); x.beginPath(); x.rect(0, 0, W, H); x.clip();
     if (f < 1) { x.filter = "blur(14px)"; x.drawImage(v, (W - v.videoWidth * cover) / 2, (H - v.videoHeight * cover) / 2, v.videoWidth * cover, v.videoHeight * cover); x.filter = "none"; x.fillStyle = "rgba(0,0,0,.25)"; x.fillRect(0, 0, W, H); }
