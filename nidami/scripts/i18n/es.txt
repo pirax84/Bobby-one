@@ -914,3 +914,4 @@
 913|Tus amigos ven una corona en tu foto ese día. No se pide el año.
 914|¡Hoy es el cumpleaños de {name}!
 915|¡Mañana es el cumpleaños de {name}!
+916|Nueva conversación

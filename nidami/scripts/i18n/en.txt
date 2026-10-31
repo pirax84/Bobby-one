@@ -914,3 +914,4 @@
 913|Your friends see a crown on your photo that day. The year is not asked.
 914|It's {name}'s birthday today!
 915|It's {name}'s birthday tomorrow!
+916|New chat

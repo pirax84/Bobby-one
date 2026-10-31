@@ -914,3 +914,4 @@
 913|Dina vänner ser en krona på ditt foto den dagen. Året efterfrågas inte.
 914|{name} fyller år idag!
 915|{name} fyller år i morgon!
+916|Ny chatt

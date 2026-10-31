@@ -914,3 +914,4 @@
 913|Tavi draugi šajā dienā redz kroni uz tava foto. Gadu neprasa.
 914|Šodien ir {name} dzimšanas diena!
 915|Rīt ir {name} dzimšanas diena!
+916|Jauna saruna

@@ -914,3 +914,4 @@
 913|Arkadaşların o gün fotoğrafında bir taç görür. Yıl istenmez.
 914|{name} bugün doğum günü!
 915|{name} yarın doğum günü!
+916|Yeni sohbet

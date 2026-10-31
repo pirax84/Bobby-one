@@ -914,3 +914,4 @@
 913|Deine Freunde sehen an diesem Tag eine Krone auf deinem Foto. Das Jahr wird nicht abgefragt.
 914|{name} hat heute Geburtstag!
 915|{name} hat morgen Geburtstag!
+916|Neuer Chat

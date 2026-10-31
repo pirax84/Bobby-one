@@ -914,3 +914,4 @@
 913|I tuoi amici vedono una corona sulla tua foto quel giorno. L'anno non viene chiesto.
 914|Oggi è il compleanno di {name}!
 915|Domani è il compleanno di {name}!
+916|Nuova chat

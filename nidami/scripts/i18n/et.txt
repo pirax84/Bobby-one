@@ -914,3 +914,4 @@
 913|Sinu sõbrad näevad sel päeval sinu fotol krooni. Aastat ei küsita.
 914|{name} sünnipäev on täna!
 915|{name} sünnipäev on homme!
+916|Uus vestlus

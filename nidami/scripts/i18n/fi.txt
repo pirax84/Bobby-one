@@ -914,3 +914,4 @@
 913|Ystäväsi näkevät kruunun kuvassasi sinä päivänä. Vuotta ei kysytä.
 914|{name} täyttää tänään vuosia!
 915|{name} täyttää huomenna vuosia!
+916|Uusi keskustelu

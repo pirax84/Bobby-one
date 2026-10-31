@@ -914,3 +914,4 @@
 913|Teman-temanmu melihat mahkota di fotomu pada hari itu. Tahun tidak diminta.
 914|Hari ini ulang tahun {name}!
 915|Besok ulang tahun {name}!
+916|Percakapan baru

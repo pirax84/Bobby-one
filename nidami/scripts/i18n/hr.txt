@@ -914,3 +914,4 @@
 913|Tvoji prijatelji taj dan vide krunu na tvojoj fotografiji. Godina se ne traži.
 914|{name} danas ima rođendan!
 915|{name} sutra ima rođendan!
+916|Novi razgovor

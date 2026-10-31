@@ -914,3 +914,4 @@
 913|Twoi znajomi widzą w ten dzień koronę na Twoim zdjęciu. Rok nie jest wymagany.
 914|{name} ma dziś urodziny!
 915|{name} ma jutro urodziny!
+916|Nowa rozmowa

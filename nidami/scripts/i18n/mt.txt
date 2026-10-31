@@ -914,3 +914,4 @@
 913|Ħbiebek jaraw kuruna fuq ir-ritratt tiegħek f'dak in-nhar. is-sena ma tintalabx.
 914|Illum huwa l-għeluq snin ta' {name}!
 915|Għada huwa l-għeluq snin ta' {name}!
+916|Konverżazzjoni ġdida

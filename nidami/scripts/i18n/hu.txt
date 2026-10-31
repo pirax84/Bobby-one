@@ -914,3 +914,4 @@
 913|A barátaid ezen a napon koronát látnak a fotódon. Az évet nem kérjük.
 914|{name} ma ünnepli a születésnapját!
 915|{name} holnap ünnepli a születésnapját!
+916|Új beszélgetés

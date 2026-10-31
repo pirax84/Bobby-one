@@ -914,3 +914,4 @@
 913|Feiceann do chairde coróin ar do ghrianghraf an lá sin. Ní iarrtar an bhliain.
 914|Is é lá breithe {name} inniu!
 915|Is é lá breithe {name} amárach!
+916|Comhrá nua

@@ -914,3 +914,4 @@
 913|Je vrienden zien die dag een kroon op je foto. Het jaar wordt niet gevraagd.
 914|{name} is vandaag jarig!
 915|{name} is morgen jarig!
+916|Nieuw gesprek

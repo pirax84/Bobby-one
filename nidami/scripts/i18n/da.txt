@@ -914,3 +914,4 @@
 913|Dine venner ser en krone på dit foto den dag. Året spørges der ikke om.
 914|{name} har fødselsdag i dag!
 915|{name} har fødselsdag i morgen!
+916|Ny samtale

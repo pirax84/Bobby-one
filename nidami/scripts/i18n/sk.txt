@@ -914,3 +914,4 @@
 913|Tvoji priatelia v ten deň uvidia na tvojej fotke korunu. Rok sa nezisťuje.
 914|{name} má dnes narodeniny!
 915|{name} má zajtra narodeniny!
+916|Nová konverzácia

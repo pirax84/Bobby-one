@@ -914,3 +914,4 @@
 913|Tavo draugai tą dieną mato karūną ant tavo nuotraukos. Metų neprašoma.
 914|Šiandien {name} gimtadienis!
 915|Rytoj {name} gimtadienis!
+916|Naujas pokalbis
