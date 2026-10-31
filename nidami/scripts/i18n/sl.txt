@@ -884,3 +884,4 @@
 883|Fotografija ali video čez cel zaslon
 884|Na steni (ostane vidno)
 885|Vidno v oblačku tvojih prijateljev
+886|Nazaj na seznam

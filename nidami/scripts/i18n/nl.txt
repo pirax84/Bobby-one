@@ -884,3 +884,4 @@
 883|Foto of video op volledig scherm
 884|Op de muur (blijft zichtbaar)
 885|Zichtbaar in de bel van je vrienden
+886|Terug naar de lijst

@@ -884,3 +884,4 @@
 883|Nuotrauka ar vaizdo įrašas visu ekranu
 884|Sienoje (lieka matoma)
 885|Matoma draugų debesėlyje
+886|Atgal į sąrašą

@@ -884,3 +884,4 @@
 883|Foto vai video pilnekrāna režīmā
 884|Sienā (paliek redzams)
 885|Redzams draugu burbulī
+886|Atpakaļ uz sarakstu

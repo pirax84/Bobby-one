@@ -884,3 +884,4 @@
 883|Foto o vídeo a pantalla completa
 884|En el muro (se queda visible)
 885|Visible en la burbuja de tus amigos
+886|Volver a la lista

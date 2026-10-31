@@ -884,3 +884,4 @@
 883|Fotografie sau video pe tot ecranul
 884|Pe perete (rămâne vizibil)
 885|Vizibil în bula prietenilor tăi
+886|Înapoi la listă

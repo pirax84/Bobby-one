@@ -884,3 +884,4 @@
 883|Kuva tai video koko näytöllä
 884|Seinällä (pysyy näkyvissä)
 885|Näkyy ystävien kuplassa
+886|Takaisin luetteloon

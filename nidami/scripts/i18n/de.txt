@@ -884,3 +884,4 @@
 883|Foto oder Video im Vollbild
 884|Auf der Pinnwand (bleibt sichtbar)
 885|Sichtbar in der Blase deiner Freunde
+886|Zurück zur Liste

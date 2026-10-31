@@ -884,3 +884,4 @@
 883|Zdjęcie lub wideo na cały ekran
 884|Na tablicy (zostaje widoczne)
 885|Widoczne w dymku Twoich znajomych
+886|Wróć do listy

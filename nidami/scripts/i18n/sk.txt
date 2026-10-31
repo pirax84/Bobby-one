@@ -884,3 +884,4 @@
 883|Fotka alebo video na celú obrazovku
 884|Na nástenke (zostane viditeľné)
 885|Uvidia to priatelia v bubline
+886|Späť na zoznam

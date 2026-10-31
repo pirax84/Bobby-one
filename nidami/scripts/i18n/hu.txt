@@ -884,3 +884,4 @@
 883|Fotó vagy videó, teljes képernyőn
 884|A falon (látható marad)
 885|Látható a barátaid buborékjában
+886|Vissza a listához

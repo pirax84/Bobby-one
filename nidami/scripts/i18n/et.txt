@@ -884,3 +884,4 @@
 883|Foto või video täisekraanil
 884|Seinal (jääb nähtavale)
 885|Nähtav sõprade mullis
+886|Tagasi loendisse

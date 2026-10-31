@@ -884,3 +884,4 @@
 883|Tam ekran fotoğraf veya video
 884|Duvarda (görünür kalır)
 885|Arkadaşlarının baloncuğunda görünür
+886|Listeye dön
