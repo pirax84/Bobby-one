@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { t } from "../i18n";
 import { useScrollLock, toast } from "./common";
 
+const hasFilter = (g: CanvasRenderingContext2D): boolean => "filter" in g;
 const loadImg = (src: string) => new Promise<HTMLImageElement>((ok, ko) => { const im = new Image(); im.onload = () => ok(im); im.onerror = ko; im.src = src; });
 
 // ───────── Cadrage : on déplace et on zoome la photo dans son rectangle
@@ -59,7 +60,7 @@ export async function hideFaces(src: string, faces: Face[], mode: "blur" | "smil
   for (const f of faces.filter((x) => x.on)) {
     const cx = f.x * W, cy = f.y * W, r = f.r * W * 1.12;
     g.save(); g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.clip();
-    if ("filter" in g) { g.filter = `blur(${Math.max(8, r * 0.45)}px)`; g.drawImage(im, 0, 0); g.filter = "none"; }
+    if (hasFilter(g)) { g.filter = `blur(${Math.max(8, r * 0.45)}px)`; g.drawImage(im, 0, 0); g.filter = "none"; }
     else { const s = document.createElement("canvas"); const k = Math.max(4, Math.round(r / 5)); s.width = k; s.height = k; s.getContext("2d")!.drawImage(im, cx - r, cy - r, r * 2, r * 2, 0, 0, k, k); g.imageSmoothingEnabled = true; g.drawImage(s, 0, 0, k, k, cx - r, cy - r, r * 2, r * 2); }
     g.restore();
     if (mode === "smiley") { g.save(); g.font = `${Math.round(r * 2.1)}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("😀", cx, cy + r * 0.08); g.restore(); }
