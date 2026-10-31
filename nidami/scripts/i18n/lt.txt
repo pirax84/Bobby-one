@@ -947,3 +947,7 @@
 946|💧 Išblukinimas
 947|😀 Šypsenėlė
 948|🙂 Slėpti veidus
+949|Sukadruok profilio nuotrauką
+950|Pastumk nuotrauką pirštu, kad tavo veidas būtų žvaigždėje. Du pirštai arba juosta artinimui.
+951|✅ Patvirtinti nuotrauką
+952|Sukadruoti profilio nuotrauką

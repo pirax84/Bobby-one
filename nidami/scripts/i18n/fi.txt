@@ -947,3 +947,7 @@
 946|💧 Sumennus
 947|😀 Hymiö
 948|🙂 Piilota kasvot
+949|Rajaa profiilikuvasi
+950|Siirrä kuvaa sormella, jotta kasvosi ovat tähden sisällä. Kaksi sormea tai palkki zoomaukseen.
+951|✅ Vahvista kuva
+952|Rajaa profiilikuva

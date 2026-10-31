@@ -947,3 +947,7 @@
 946|💧 Rozmycie
 947|😀 Uśmieszek
 948|🙂 Ukryj twarze
+949|Wykadruj zdjęcie profilowe
+950|Przesuń zdjęcie palcem, aby twarz znalazła się w gwiazdce. Dwa palce lub suwak, aby powiększyć.
+951|✅ Zatwierdź zdjęcie
+952|Wykadruj zdjęcie profilowe

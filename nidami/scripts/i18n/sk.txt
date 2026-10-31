@@ -947,3 +947,7 @@
 946|💧 Rozmazanie
 947|😀 Smajlík
 948|🙂 Skryť tváre
+949|Orež profilovú fotku
+950|Posuň fotku prstom, aby bola tvoja tvár v hviezde. Dva prsty alebo posuvník na priblíženie.
+951|✅ Potvrdiť fotku
+952|Orezať profilovú fotku

@@ -947,3 +947,7 @@
 946|💧 Buram
 947|😀 Smiley
 948|🙂 Sembunyikan wajah
+949|Atur foto profilmu
+950|Geser foto dengan jari agar wajahmu masuk ke bintang. Dua jari atau bilah untuk zoom.
+951|✅ Konfirmasi foto
+952|Atur foto profil

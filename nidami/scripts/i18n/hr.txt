@@ -947,3 +947,7 @@
 946|💧 Zamućenje
 947|😀 Smajlić
 948|🙂 Sakrij lica
+949|Namjesti profilnu fotografiju
+950|Pomakni fotografiju prstom da ti lice bude u zvijezdi. Dva prsta ili traka za zumiranje.
+951|✅ Potvrdi fotografiju
+952|Namjesti profilnu fotografiju

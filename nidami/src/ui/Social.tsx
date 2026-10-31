@@ -8,6 +8,7 @@ import { favOf, DEFAULT_FAV } from "./FxBar";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from "./common";
 import { Home } from "./Home";
 import { Camera } from "./Recorder";
+import { AvatarCrop } from "./Photo";
 import { t, T, locale } from "../i18n";
 import { LangPicker } from "./LangPicker";
 import { LegalView } from "./Legal";
@@ -146,13 +147,14 @@ export function Events() {
 }
 
 function EditProfile({ u, onClose }: { u: User; onClose: () => void }) {
-  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const f = useRef<HTMLInputElement>(null); const [cam, setCam] = useState(false); useEffect(() => { setAv(u.avatar || null); }, [u.avatar]);
+  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const f = useRef<HTMLInputElement>(null); const [cam, setCam] = useState(false); const [cropE, setCropE] = useState<string | null>(null); useEffect(() => { setAv(u.avatar || null); }, [u.avatar]);
   const V: [User["avatarVis"], string][] = [["friends", t("Mes amis")], ["all", t("Tout le monde")], ["none", t("Personne")]];
   return <Modal title={t("Modifier mon profil")} onClose={onClose}><div className="col">
     <div className="col center" style={{ alignItems: "center", gap: 10 }}><Avatar u={{ ...u, avatar: av, avatarVis: "all" }} s={104} />
       <div className="row wrap" style={{ justifyContent: "center" }}><button className="btn sm" onClick={() => f.current?.click()}>{av ? t("Changer la photo") : t("Ajouter une photo")}</button><button className="btn sm" onClick={() => setCam(true)}>{t("📷 Prendre une photo")}</button>{av && <button className="btn danger sm" onClick={() => setAv(null)}>{t("Supprimer la photo")}</button>}</div>
-      {cam && <Camera withPhoto startMode="photo" onClose={() => setCam(false)} onPhoto={(u) => { setAv(u); setCam(false); }} onVideo={() => { toast(t("Choisis « Photo » en bas pour prendre ta photo de profil.")); }} />}
-      <input ref={f} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; if (x) { try { setAv(await fileToDataUrl(x)); } catch { toast(t("Impossible de lire cette image.")); } } }} /></div>
+      {cam && <Camera withPhoto startMode="photo" onClose={() => setCam(false)} onPhoto={(u) => { setCropE(u); setCam(false); }} onVideo={() => { toast(t("Choisis « Photo » en bas pour prendre ta photo de profil.")); }} />}
+      {cropE && <AvatarCrop src={cropE} onClose={() => setCropE(null)} onDone={(u) => { setAv(u); setCropE(null); }} />}
+      <input ref={f} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; if (x) { try { setCropE(await fileToDataUrl(x)); } catch { toast(t("Impossible de lire cette image.")); } } }} /></div>
     <div className="card col" style={{ gap: 4, padding: 12 }}><b className="small">{t("Pseudo : @{handle}", { handle: u.handle })}</b><span className="muted small">{u.handleChanged ? t("Déjà changé une fois : définitif.") : t("Modifiable une seule fois, et c'est payant (pour limiter les faux profils).")}</span>{!u.handleChanged && <div className="row" style={{ gap: 6 }}><input className="inp sm" placeholder="nouveau pseudo" value={hh} onChange={(e) => setHh(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 20))} aria-label={t("Nouveau pseudo")} /><button className="btn sm" disabled={hh.length < 3} onClick={() => { const r = actions.changeHandle(hh); toast(r.msg); if (r.ok) setHh(""); }}>{t("Changer")}</button></div>}</div>
     <div className="col" style={{ gap: 6 }}><b className="small">{t("🎂 Mon anniversaire (facultatif)")}</b><div className="row" style={{ gap: 8 }}>
       <select className="inp" value={bd ? Number(bd.slice(3)) : ""} onChange={(e) => { const d = e.target.value; const m = bd ? bd.slice(0, 2) : "01"; setBd(d ? m + "-" + String(d).padStart(2, "0") : ""); }} aria-label={t("Jour")}><option value="">{t("Jour")}</option>{Array.from({ length: 31 }, (_, i) => <option key={i} value={i + 1}>{i + 1}</option>)}</select>
@@ -170,7 +172,7 @@ function PostChoices() {
     <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Commentaires")}</b><div className="muted small">{t("Si c'est coupé, personne ne peut commenter vos publications.")}</div></div><Switch on={cfg.comm !== false} onChange={(v) => actions.setSetting("comm", v)} label={t("Commentaires")} /></label></div>);
 }
 export function Profile() {
-  const s = useStore((x) => x); const u = userOf(s, s.me)!; const [edit, setEdit] = useState(false); const [photoM, setPhotoM] = useState(false); const [big, setBig] = useState(false); const [camP, setCamP] = useState(false); const galP = useRef<HTMLInputElement>(null);
+  const s = useStore((x) => x); const u = userOf(s, s.me)!; const [edit, setEdit] = useState(false); const [cropP, setCropP] = useState<string | null>(null); const [photoM, setPhotoM] = useState(false); const [big, setBig] = useState(false); const [camP, setCamP] = useState(false); const galP = useRef<HTMLInputElement>(null);
   const mine = s.posts.filter((p) => p.authorId === s.me && !p.story).length; const friends = (s.social.friends[s.me] || []).length;
   return (<div className="col"><h1>{t("Mon profil")}</h1><div className="card col center" style={{ alignItems: "center" }}><div style={{ position: "relative" }}><button style={{ background: "none", border: 0, padding: 0, color: "inherit", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }} onClick={() => (u.avatar ? setBig(true) : setPhotoM(true))} aria-label={t("Agrandir la photo")}><span style={{ position: "relative", display: "inline-block" }}><Avatar u={u} s={96} /></span><h2>{u.name}</h2></button><button type="button" className="camdot" onClick={() => setPhotoM(true)} aria-label={t("Changer la photo")}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg></button></div><div className="muted">{u.status}</div><div className="row muted small"><span>{t("{n, plural, one{# publication} other{# publications}}", { n: mine })}</span><span>·</span><span>{t("{n, plural, one{# ami} other{# amis}}", { n: friends })}</span><span>·</span><span>{t("Membre depuis {toLocaleDateString}", { toLocaleDateString: new Date(u.joinedAt).toLocaleDateString(locale(), { month: "long", year: "numeric" }) })}</span></div>
       <button className="btn sm" onClick={() => setEdit(true)}>{t("Modifier mon profil (photo, nom, bio)")}</button></div>
@@ -181,8 +183,9 @@ export function Profile() {
       <button className="btn bigbtn" onClick={() => { setPhotoM(false); setCamP(true); }}><span className="grow"><b>{t("📷 Prendre une photo")}</b></span></button>
       <button className="btn bigbtn" onClick={() => galP.current?.click()}><span className="grow"><b>{"🖼️ "}{t("Photo de la galerie")}</b></span></button>
       {u.avatar && <button className="btn bigbtn alt" onClick={() => { actions.updateProfile({ avatar: null }); setPhotoM(false); toast(t("✅ Photo de profil modifiée !")); }}><span className="grow"><b>{t("Supprimer la photo")}</b></span></button>}</div></Modal>}
-    <input ref={galP} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; e.target.value = ""; if (x) { try { actions.updateProfile({ avatar: await fileToDataUrl(x) }); setPhotoM(false); toast(t("✅ Photo de profil modifiée !")); } catch { toast(t("Impossible de lire cette image.")); } } }} />
-    {camP && <Camera withPhoto startMode="photo" onClose={() => setCamP(false)} onPhoto={(img) => { actions.updateProfile({ avatar: img }); setCamP(false); toast(t("✅ Photo de profil modifiée !")); }} onVideo={() => { toast(t("Choisis « Photo » en bas pour prendre ta photo de profil.")); }} />}</div>);
+    {cropP && <AvatarCrop src={cropP} onClose={() => setCropP(null)} onDone={(u) => { actions.updateProfile({ avatar: u }); setCropP(null); toast(t("✅ Photo de profil modifiée !")); }} />}
+    <input ref={galP} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; e.target.value = ""; if (x) { try { setCropP(await fileToDataUrl(x)); setPhotoM(false); } catch { toast(t("Impossible de lire cette image.")); } } }} />
+    {camP && <Camera withPhoto startMode="photo" onClose={() => setCamP(false)} onPhoto={(img) => { setCropP(img); setCamP(false); }} onVideo={() => { toast(t("Choisis « Photo » en bas pour prendre ta photo de profil.")); }} />}</div>);
 }
 
 const GO_VIEW: Record<string, string> = { home: "home", friends: "friends", media: "media", shares: "shares", groups: "groups", messages: "messages", events: "events", games: "games" };
@@ -218,7 +221,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v68</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v69</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "install" && <>

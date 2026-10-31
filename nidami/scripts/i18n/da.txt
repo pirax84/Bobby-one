@@ -947,3 +947,7 @@
 946|💧 Sløring
 947|😀 Smiley
 948|🙂 Skjul ansigter
+949|Beskær dit profilbillede
+950|Flyt fotoet med fingeren, så dit ansigt er i stjernen. To fingre eller bjælken for at zoome.
+951|✅ Bekræft foto
+952|Beskær profilbilledet

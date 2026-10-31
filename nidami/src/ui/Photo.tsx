@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { t } from "../i18n";
-import { useScrollLock, toast } from "./common";
+import { useScrollLock, toast, SHAPES } from "./common";
 
 const hasFilter = (g: CanvasRenderingContext2D): boolean => "filter" in g;
 const loadImg = (src: string) => new Promise<HTMLImageElement>((ok, ko) => { const im = new Image(); im.onload = () => ok(im); im.onerror = ko; im.src = src; });
@@ -109,5 +109,36 @@ export function FaceHide({ src, onDone, onClose }: { src: string; onDone: (u: st
       <button className={"fhb" + (mode === "smiley" ? " on" : "")} style={{ flex: 1 }} onClick={() => setMode("smiley")}>{t("😀 Smiley")}</button></div>
     <button className="fhb" style={{ width: "min(520px,100%)" }} onClick={add}>{t("➕ Ajouter un rond à la main")}</button>
     <button className="btn" style={{ width: "min(520px,100%)" }} disabled={busy || count === 0} onClick={apply}>{count ? t("{n, plural, one{Cacher # visage} other{Cacher # visages}}", { n: count }) : t("Choisis au moins un visage")}</button>
+  </div>, document.body);
+}
+
+// ───────── Photo de profil : on place la tête dans l'étoile avant de valider
+async function bakeAvatar(src: string, f: Frame): Promise<string> {
+  const im = await loadImg(src); const S = 512; const c = document.createElement("canvas"); c.width = S; c.height = S; const g = c.getContext("2d")!;
+  const sc = Math.max(S / im.naturalWidth, S / im.naturalHeight) * f.z; const w = im.naturalWidth * sc, h = im.naturalHeight * sc;
+  g.drawImage(im, S / 2 + f.x * S - w / 2, S / 2 + f.y * S - h / 2, w, h); return c.toDataURL("image/jpeg", 0.9);
+}
+export function AvatarCrop({ src, onDone, onClose }: { src: string; onDone: (u: string) => void; onClose: () => void }) {
+  useScrollLock();
+  const [f, setF] = useState<Frame>(FRAME0); const [nat, setNat] = useState({ w: 1, h: 1 }); const [busy, setBusy] = useState(false); const box = useRef<HTMLDivElement>(null);
+  const drag = useRef<{ sx: number; sy: number; fx: number; fy: number } | null>(null); const pts = useRef(new Map<number, { x: number; y: number }>()); const pinch = useRef<{ d: number; z: number } | null>(null);
+  useEffect(() => { loadImg(src).then((im) => setNat({ w: im.naturalWidth, h: im.naturalHeight })).catch(() => {}); }, [src]);
+  const lim = (z: number) => { const cover = Math.max(1 / nat.w, 1 / nat.h) * 1; const w = nat.w * cover * z, h = nat.h * cover * z; return { mx: Math.max(0, (w - 1) / 2), my: Math.max(0, (h - 1) / 2) }; };
+  const clamp = (n: Frame): Frame => { const z = Math.min(4, Math.max(1, n.z)); const { mx, my } = lim(z); return { z, x: Math.min(mx, Math.max(-mx, n.x)), y: Math.min(my, Math.max(-my, n.y)) }; };
+  const down = (e: React.PointerEvent) => { (e.currentTarget as Element).setPointerCapture?.(e.pointerId); pts.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); if (pts.current.size === 1) drag.current = { sx: e.clientX, sy: e.clientY, fx: f.x, fy: f.y }; else if (pts.current.size === 2) { const [a, b] = [...pts.current.values()]; pinch.current = { d: Math.hypot(a.x - b.x, a.y - b.y), z: f.z }; drag.current = null; } };
+  const move = (e: React.PointerEvent) => { if (!pts.current.has(e.pointerId)) return; pts.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); const r = box.current!.getBoundingClientRect();
+    if (pts.current.size === 2 && pinch.current) { const [a, b] = [...pts.current.values()]; setF(clamp({ ...f, z: pinch.current.z * (Math.hypot(a.x - b.x, a.y - b.y) / pinch.current.d) })); }
+    else if (drag.current) setF(clamp({ ...f, x: drag.current.fx + (e.clientX - drag.current.sx) / r.width, y: drag.current.fy + (e.clientY - drag.current.sy) / r.height })); };
+  const up = (e: React.PointerEvent) => { pts.current.delete(e.pointerId); pinch.current = null; drag.current = null; if (pts.current.size === 1) { const [p] = [...pts.current.values()]; drag.current = { sx: p.x, sy: p.y, fx: f.x, fy: f.y }; } };
+  const cover = Math.max(1 / nat.w, 1 / nat.h); const iw = nat.w * cover * 100, ih = nat.h * cover * 100;
+  return createPortal(<div className="cam fhscreen" style={{ justifyContent: "flex-start", overflow: "auto", padding: 14, gap: 12 }} role="dialog" aria-label={t("Cadrer la photo de profil")}>
+    <div className="row" style={{ width: "min(420px,100%)", gap: 8 }}><b className="grow" style={{ color: "#fff", fontSize: "1.1rem" }}>{t("Cadre ta photo de profil")}</b><button className="fhb" style={{ padding: "6px 12px" }} onClick={onClose} aria-label={t("Fermer")}>✕</button></div>
+    <p style={{ color: "#fff", opacity: .85, margin: 0, width: "min(420px,100%)", fontSize: ".9rem" }}>{t("Déplace la photo avec le doigt pour mettre ton visage dans l'étoile. Deux doigts ou la barre pour zoomer.")}</p>
+    <div ref={box} style={{ position: "relative", width: "min(420px,100%)", aspectRatio: "1", overflow: "hidden", borderRadius: 18, background: "#0b2c33", touchAction: "none" }} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}>
+      <img src={src} alt="" draggable={false} style={{ position: "absolute", left: `${50 + f.x * 100}%`, top: `${50 + f.y * 100}%`, width: `${iw}%`, height: `${ih}%`, maxWidth: "none", transform: `translate(-50%, -50%) scale(${f.z})`, transformOrigin: "center", userSelect: "none" }} />
+      <svg viewBox="0 0 100 100" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }} aria-hidden="true"><path fillRule="evenodd" d={`M0 0H100V100H0Z ${SHAPES.puffy}`} fill="rgba(5,20,25,.62)" /><path d={SHAPES.puffy} fill="none" stroke="#34d6c6" strokeWidth="1.2" /></svg>
+    </div>
+    <div className="row" style={{ width: "min(420px,100%)", gap: 8, color: "#fff", alignItems: "center" }}><span aria-hidden="true">🔍</span><input type="range" min="1" max="4" step="0.05" value={f.z} onChange={(e) => setF(clamp({ ...f, z: Number(e.target.value) }))} aria-label={t("Zoom")} style={{ flex: 1 }} /><button className="fhb" style={{ padding: "8px 12px" }} onClick={() => setF(FRAME0)}>{t("Recentrer")}</button></div>
+    <button className="btn" style={{ width: "min(420px,100%)" }} disabled={busy} onClick={async () => { setBusy(true); try { onDone(await bakeAvatar(src, f)); } catch { toast(t("Impossible de modifier cette photo.")); setBusy(false); } }}>{t("✅ Valider la photo")}</button>
   </div>, document.body);
 }

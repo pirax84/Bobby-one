@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast, MicIcon, Ico, useScrollLock } from "./common";
 import { actions } from "../lib/store";
-import { FaceHide } from "./Photo";
+import { FaceHide, AvatarCrop } from "./Photo";
 import { stopPlayer } from "./Links";
 import { AudioWave } from "./AudioWave";
 
@@ -45,7 +45,7 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
   const vid = useRef<HTMLVideoElement>(null); const stream = useRef<MediaStream | null>(null); const rec = useRef<MediaRecorder | null>(null); const cancelled = useRef(false);
   const [mode, setMode] = useState<"video" | "photo" | "voice">(startMode === "voice" && onAudio ? "voice" : withPhoto ? (startMode === "voice" ? "video" : startMode) : "video"); const [vsec, setVsec] = useState(0); const vrec = useRef<MediaRecorder | null>(null); const vheld = useRef(false); const vt0 = useRef(0); const viv = useRef<number | undefined>(undefined); const cv = useRef<HTMLCanvasElement>(null); const zRef = useRef(0.3); const [face, setFace] = useState<"user" | "environment">("user"); const [left, setLeft] = useState<number | null>(null); const [ready, setReady] = useState(false);
   useScrollLock();
-  const [res, setRes] = useState<{ video?: string; photo?: string; audio?: string } | null>(null); const [fh, setFh] = useState(false);
+  const [res, setRes] = useState<{ video?: string; photo?: string; audio?: string } | null>(null); const [fh, setFh] = useState(false); const [crop, setCrop] = useState(false);
   useEffect(() => { stopPlayer(); }, []);
   const [zoom, setZoom] = useState(0.3); const hwWide = useRef(false);
   // Zoom arrière (0,6×) : si le téléphone sait élargir l'image par la caméra elle-même, on l'utilise ; sinon l'image reste plein écran comme en 1×.
@@ -78,10 +78,11 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
     {res ? <>
       {res.audio ? <div className="cam-voice"><div className="cam-vplayer"><AudioWave src={res.audio} autoPlay /></div><p style={{ opacity: .8 }}>{t("Tu peux la réécouter avant d'envoyer")}</p></div> : res.video ? <video key={res.video.length} className="cam-v" src={res.video} controls autoPlay loop playsInline /> : <img className="cam-v" src={res.photo} alt={t("Aperçu")} style={{ objectFit: "contain" }} />}
       <button className="cam-x" onClick={close} aria-label={t("Fermer")}>✕</button>
+      {crop && res.photo && <AvatarCrop src={res.photo} onClose={() => setCrop(false)} onDone={(u) => { actions.updateProfile({ avatar: u }); toast(t("✅ Photo de profil modifiée !")); close(); }} />}
       {fh && res.photo && <FaceHide src={res.photo} onClose={() => setFh(false)} onDone={(u) => { setRes({ photo: u }); setFh(false); }} />}
       {res.photo && <div style={{ position: "absolute", left: 0, right: 0, bottom: 158, display: "flex", flexDirection: "column", alignItems: "center", gap: 14, zIndex: 3 }}>
         <button className="cam-send" style={{ width: "auto", padding: "11px 20px", fontSize: 15 }} onClick={() => setFh(true)}>{t("🙂 Cacher des visages")}</button>
-        <button className="cam-send" style={{ width: "auto", padding: "11px 20px", fontSize: 15 }} onClick={() => { actions.updateProfile({ avatar: res.photo! }); toast(t("✅ Photo de profil modifiée !")); close(); }}>{t("👤 Utiliser comme photo de profil")}</button></div>}
+        <button className="cam-send" style={{ width: "auto", padding: "11px 20px", fontSize: 15 }} onClick={() => setCrop(true)}>{t("👤 Utiliser comme photo de profil")}</button></div>}
       <div className="cam-bar"><button className="cam-r" onClick={() => { setRes(null); cancelled.current = false; }} aria-label={t("Recommencer")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9" /><path d="M20 4v5h-5" /></svg><small>{t("Recommencer")}</small></button>
         <button className="cam-send" onClick={() => (res.audio ? onAudio?.(res.audio) : res.video ? onVideo(res.video) : onPhoto?.(res.photo!))}>{t("Envoyer ➤")}</button>
         <button className="cam-r" onClick={close} aria-label={t("Supprimer")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 7h16" /><path d="M9 7V4.5h6V7" /><path d="M6.5 7l1 12.5h9l1-12.5" /><path d="M10 11v5M14 11v5" /></svg><small>{t("Supprimer")}</small></button></div></>

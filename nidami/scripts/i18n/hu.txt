@@ -947,3 +947,7 @@
 946|💧 Elmosás
 947|😀 Smiley
 948|🙂 Arcok elrejtése
+949|Igazítsd a profilképedet
+950|Told el a fotót ujjal, hogy az arcod a csillagba kerüljön. Két ujj vagy a csúszka a nagyításhoz.
+951|✅ Fotó jóváhagyása
+952|Profilkép igazítása

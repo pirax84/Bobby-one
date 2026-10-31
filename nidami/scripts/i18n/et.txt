@@ -947,3 +947,7 @@
 946|💧 Hägustamine
 947|😀 Smaili
 948|🙂 Peida näod
+949|Kohanda oma profiilipilt
+950|Liiguta pilti sõrmega, et su nägu oleks tähes. Kaks sõrme või liugur suumimiseks.
+951|✅ Kinnita pilt
+952|Kohanda profiilipilti

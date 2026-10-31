@@ -947,3 +947,7 @@
 946|💧 Zameglitev
 947|😀 Smeško
 948|🙂 Skrij obraze
+949|Umesti profilno fotografijo
+950|Premakni fotografijo s prstom, da bo tvoj obraz v zvezdi. Dva prsta ali drsnik za povečavo.
+951|✅ Potrdi fotografijo
+952|Umesti profilno fotografijo

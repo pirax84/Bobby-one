@@ -947,3 +947,7 @@
 946|💧 Imċajpar
 947|😀 Smiley
 948|🙂 Aħbi l-uċuħ
+949|Ikkadra r-ritratt tal-profil
+950|Ċaqlaq ir-ritratt b'subgħajk biex wiċċek ikun fil-kewkba. Żewġ swaba' jew il-bar biex tiżżumja.
+951|✅ Ikkonferma r-ritratt
+952|Ikkadra r-ritratt tal-profil

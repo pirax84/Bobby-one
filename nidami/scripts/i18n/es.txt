@@ -947,3 +947,7 @@
 946|💧 Desenfoque
 947|😀 Emoji
 948|🙂 Ocultar rostros
+949|Encuadra tu foto de perfil
+950|Mueve la foto con el dedo para poner tu cara en la estrella. Dos dedos o la barra para hacer zoom.
+951|✅ Confirmar foto
+952|Encuadrar la foto de perfil

@@ -947,3 +947,7 @@
 946|💧 Oskärpa
 947|😀 Smiley
 948|🙂 Dölj ansikten
+949|Beskär din profilbild
+950|Flytta fotot med fingret så att ditt ansikte hamnar i stjärnan. Två fingrar eller reglaget för att zooma.
+951|✅ Bekräfta foto
+952|Beskär profilbilden

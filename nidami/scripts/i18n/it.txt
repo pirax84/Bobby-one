@@ -947,3 +947,7 @@
 946|💧 Sfocatura
 947|😀 Smiley
 948|🙂 Nascondi volti
+949|Inquadra la tua foto del profilo
+950|Sposta la foto con il dito per mettere il viso nella stella. Due dita o la barra per lo zoom.
+951|✅ Conferma foto
+952|Inquadra la foto del profilo

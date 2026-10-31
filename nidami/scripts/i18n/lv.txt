@@ -947,3 +947,7 @@
 946|💧 Izplūdums
 947|😀 Smaidiņš
 948|🙂 Paslēpt sejas
+949|Pielāgo savu profila foto
+950|Pārvieto foto ar pirkstu, lai tava seja būtu zvaigznē. Divi pirksti vai josla tuvināšanai.
+951|✅ Apstiprināt foto
+952|Pielāgot profila foto

@@ -947,3 +947,7 @@
 946|💧 Blur
 947|😀 Smiley
 948|🙂 Hide faces
+949|Frame your profile photo
+950|Move the photo with your finger to put your face in the star. Two fingers or the bar to zoom.
+951|✅ Confirm photo
+952|Frame the profile photo

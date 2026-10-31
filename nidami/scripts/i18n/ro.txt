@@ -947,3 +947,7 @@
 946|💧 Estompare
 947|😀 Smiley
 948|🙂 Ascunde fețe
+949|Încadrează poza de profil
+950|Mută poza cu degetul ca să-ți pui fața în stea. Două degete sau bara pentru zoom.
+951|✅ Confirmă poza
+952|Încadrează poza de profil

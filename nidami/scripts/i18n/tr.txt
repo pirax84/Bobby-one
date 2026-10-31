@@ -947,3 +947,7 @@
 946|💧 Bulanıklaştır
 947|😀 Gülen yüz
 948|🙂 Yüzleri gizle
+949|Profil fotoğrafını ayarla
+950|Yüzünü yıldızın içine almak için fotoğrafı parmağınla kaydır. Yakınlaştırmak için iki parmak veya çubuk.
+951|✅ Fotoğrafı onayla
+952|Profil fotoğrafını ayarla

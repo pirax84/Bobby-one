@@ -947,3 +947,7 @@
 946|💧 Desfoque
 947|😀 Smiley
 948|🙂 Esconder rostos
+949|Enquadre sua foto de perfil
+950|Mova a foto com o dedo para colocar seu rosto na estrela. Dois dedos ou a barra para zoom.
+951|✅ Confirmar foto
+952|Enquadrar a foto de perfil

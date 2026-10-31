@@ -947,3 +947,7 @@
 946|💧 Doiléiriú
 947|😀 Aoibh
 948|🙂 Folaigh aghaidheanna
+949|Frámáil do ghrianghraf próifíle
+950|Bog an grianghraf le do mhéar chun d'aghaidh a chur sa réalta. Dhá mhéar nó an barra chun zúmáil.
+951|✅ Deimhnigh an grianghraf
+952|Frámáil grianghraf próifíle

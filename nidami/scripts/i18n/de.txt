@@ -947,3 +947,7 @@
 946|💧 Weichzeichnen
 947|😀 Smiley
 948|🙂 Gesichter verbergen
+949|Richte dein Profilfoto aus
+950|Verschiebe das Foto mit dem Finger, damit dein Gesicht im Stern ist. Zwei Finger oder der Regler zum Zoomen.
+951|✅ Foto bestätigen
+952|Profilfoto ausrichten

@@ -947,3 +947,7 @@
 946|💧 Vervagen
 947|😀 Smiley
 948|🙂 Gezichten verbergen
+949|Kader je profielfoto
+950|Verplaats de foto met je vinger om je gezicht in de ster te krijgen. Twee vingers of de balk om te zoomen.
+951|✅ Foto bevestigen
+952|Profielfoto uitlijnen

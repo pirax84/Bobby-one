@@ -6,7 +6,7 @@ import { Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMO
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder, Camera } from "./Recorder";
-import { Framer, FRAME0, bakeFrame, FaceHide, type Frame } from "./Photo";
+import { Framer, FRAME0, bakeFrame, FaceHide, AvatarCrop, type Frame } from "./Photo";
 import { AudioWave } from "./AudioWave";
 import { LinkCard, safeUrl } from "./Links";
 import { t } from "../i18n";
@@ -75,7 +75,7 @@ export function Composer({ onClose, story = false, groupId, init, alsoWall = fal
   const groups = s.social.groups.filter((g) => g.memberIds.includes(me)); const lists = s.social.lists.filter((l) => l.ownerId === me);
   const [linkUrl, setLinkUrl] = useState(""); const [newL, setNewL] = useState(false); const [lname, setLname] = useState(""); const [lsel, setLsel] = useState<string[]>([]); const [kind, setKind] = useState<"text" | "photo" | "video" | "audio" | "link">(init?.kind || "text"); const [vid, setVid] = useState<string | null>(init?.vid || null); const [aud0, setAud0] = useState<string | null>(init?.aud || null); const [recK, setRecK] = useState<"video" | "audio" | null>(init?.kind === "audio" ? "audio" : init?.kind === "video" && !init.vid ? "video" : null); const [text, setText] = useState(""); const [img, setImg] = useState<string | null>(init?.img || null); const [bg, setBg] = useState(0); const [mood, setMood] = useState("");
   const [mode, setMode] = useState<string>(groupId ? "group" : "all"); const [sel, setSel] = useState<string[]>([]); const [gid, setGid] = useState(groupId || groups[0]?.id || ""); const [lid, setLid] = useState(lists[0]?.id || "");
-  const [secs, setSecs] = useState(0); const [custom, setCustom] = useState(""); const [sdur, setSdur] = useState<"24h" | "inf" | "eph">("24h"); const [busy, setBusy] = useState(false); const [wm, setWm] = useState(true); const [frame, setFrame] = useState<Frame>(FRAME0); const [fh, setFh] = useState(false); const file = useRef<HTMLInputElement>(null);
+  const [secs, setSecs] = useState(0); const [custom, setCustom] = useState(""); const [sdur, setSdur] = useState<"24h" | "inf" | "eph">("24h"); const [busy, setBusy] = useState(false); const [wm, setWm] = useState(true); const [frame, setFrame] = useState<Frame>(FRAME0); const [fh, setFh] = useState(false); const [crop, setCrop] = useState(false); const file = useRef<HTMLInputElement>(null);
   const aud: Audience = mode === "group" ? { mode: "group", groupId: gid } : mode === "only" ? { mode: "only", ids: sel } : mode === "except" ? { mode: "except", ids: sel } : mode === "list" ? { mode: "list", listId: lid } : mode === "me" ? { mode: "me" } : { mode: "all" };
   const count = resolveRecipients(s.social, me, aud).length; const eff = custom ? Number(custom) : secs;
   const validCustom = !custom || (Number.isInteger(Number(custom)) && Number(custom) >= 1 && Number(custom) <= MAX_CUSTOM_SECS);
@@ -92,7 +92,7 @@ export function Composer({ onClose, story = false, groupId, init, alsoWall = fal
     {kind === "photo" && img && <div style={{ position: "relative" }}><Framer src={img} frame={frame} onChange={setFrame} /><button className="btn ghost sm" style={{ position: "absolute", top: 6, right: 6 }} onClick={() => { setImg(null); setKind("text"); }} aria-label={t("Retirer la photo")}><Ico n="x" s={16} /></button></div>}
     {kind === "photo" && img && <div className="col" style={{ gap: 12, margin: "10px 0 14px" }}><button className="btn" onClick={() => setFh(true)}>{t("🙂 Cacher des visages")}</button>
     {fh && img && <FaceHide src={img} onClose={() => setFh(false)} onDone={(u) => { setImg(u); setFrame(FRAME0); setFh(false); }} />}
-    <button className="btn" onClick={() => { actions.updateProfile({ avatar: img }); toast(t("✅ Photo de profil modifiée !")); }}>{t("👤 Utiliser comme photo de profil")}</button></div>}
+    {crop && img && <AvatarCrop src={img} onClose={() => setCrop(false)} onDone={(u) => { actions.updateProfile({ avatar: u }); setCrop(false); toast(t("✅ Photo de profil modifiée !")); }} />}<button className="btn" onClick={() => setCrop(true)}>{t("👤 Utiliser comme photo de profil")}</button></div>}
     {kind === "photo" && !img && <button type="button" className="btn ghost" onClick={() => file.current?.click()}>{t("📷 Choisir une photo")}</button>}
     {kind === "video" && recK === "video" && <Camera onClose={() => setRecK(null)} onVideo={(u) => { setVid(u); setRecK(null); }} onPhoto={(u) => { setImg(u); setKind("photo"); setRecK(null); }} onAudio={(u) => { setAud0(u); setKind("audio"); setRecK(null); }} />}
     {(kind === "video" || kind === "audio") && (kind === "audio" && !aud0 ? <Camera startMode="voice" onVideo={(u) => { setVid(u); setKind("video"); setRecK(null); }} onPhoto={(u) => { setImg(u); setKind("photo"); setRecK(null); }} onAudio={(u) => setAud0(u)} onClose={() => (init?.kind === "audio" ? onClose() : setKind("text"))} />
