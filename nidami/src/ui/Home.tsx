@@ -72,7 +72,7 @@ export function Composer({ onClose, story = false, groupId, init, alsoWall = fal
   const toggle = (id: string) => setSel((x) => (x.includes(id) ? x.filter((y) => y !== id) : [...x, id]));
   const [em, setEm] = useState(false); const durVal = custom ? "c" : String(secs); const setDur = (v: string) => { if (v === "c") { setCustom("10"); } else { setCustom(""); setSecs(Number(v)); } };
   const audLabel = audOpts().find(([k]) => k === mode)?.[1] || "";
-  return (<Modal title={story ? t("✨ Ma story") : t("📝 Nouvelle publication")} onClose={onClose}><div className="col" style={{ gap: 10 }}>
+  return (<Modal title={story ? t("✨ Ma story") : t("📝 Nouvelle publication")} onClose={onClose}><div className="col composer" style={{ gap: 8 }}>
     <input ref={file} type="file" accept="image/*" hidden onChange={(e) => pick(e.target.files?.[0])} />
     {story && <p className="muted small" style={{ margin: 0 }}>{t("Une story disparaît toute seule (24 h par défaut) et se regarde plein écran.")}</p>}
     <div className="tabs" role="tablist" aria-label={t("Type de contenu")}>{([["text", t("✏️ Texte")], ["photo", t("📷 Photo")], ["video", t("🤳 Selfie")], ["audio", t("🎤 Vocal")], ["link", t("🔗 Lien")]] as const).filter(([k]) => !(story && k === "link")).map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={kind === k} className={"chip" + (kind === k ? " on" : "")} onClick={() => { setKind(k); setRecK(k === "video" && !vid ? "video" : null); if (k === "photo" && !img) file.current?.click(); }}>{l}</button>)}</div>

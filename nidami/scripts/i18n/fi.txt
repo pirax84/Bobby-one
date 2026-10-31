@@ -885,3 +885,9 @@
 884|Seinällä (pysyy näkyvissä)
 885|Näkyy ystävien kuplassa
 886|Takaisin luetteloon
+887|Kutsu läheinen
+888|Ei vielä ketään.
+889|Viestin toiminnot
+890|↩︎ Vastaa
+891|📌 Kiinnitä
+892|✎ Muokkaa

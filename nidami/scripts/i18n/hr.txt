@@ -885,3 +885,9 @@
 884|Na zidu (ostaje vidljivo)
 885|Vidljivo u oblačiću tvojih prijatelja
 886|Natrag na popis
+887|Pozovi bliskog
+888|Još nikoga nema.
+889|Radnje s porukom
+890|↩︎ Odgovori
+891|📌 Prikvači
+892|✎ Uredi

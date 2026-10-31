@@ -885,3 +885,9 @@
 884|Sulla bacheca (resta visibile)
 885|Visibile nella bolla dei tuoi amici
 886|Torna all'elenco
+887|Invita una persona cara
+888|Nessuno qui per ora.
+889|Azioni del messaggio
+890|↩︎ Rispondi
+891|📌 Fissa
+892|✎ Modifica

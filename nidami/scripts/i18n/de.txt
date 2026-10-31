@@ -885,3 +885,9 @@
 884|Auf der Pinnwand (bleibt sichtbar)
 885|Sichtbar in der Blase deiner Freunde
 886|Zurück zur Liste
+887|Vertrauten einladen
+888|Noch niemand hier.
+889|Nachrichten-Aktionen
+890|↩︎ Antworten
+891|📌 Anheften
+892|✎ Bearbeiten

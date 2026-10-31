@@ -885,3 +885,9 @@
 884|A falon (látható marad)
 885|Látható a barátaid buborékjában
 886|Vissza a listához
+887|Hívj meg egy közeli ismerőst
+888|Itt még senki sincs.
+889|Üzenet műveletei
+890|↩︎ Válasz
+891|📌 Kitűzés
+892|✎ Szerkesztés

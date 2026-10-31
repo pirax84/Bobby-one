@@ -885,3 +885,9 @@
 884|Pe perete (rămâne vizibil)
 885|Vizibil în bula prietenilor tăi
 886|Înapoi la listă
+887|Invită o persoană apropiată
+888|Încă nimeni aici.
+889|Acțiuni mesaj
+890|↩︎ Răspunde
+891|📌 Fixează
+892|✎ Editează

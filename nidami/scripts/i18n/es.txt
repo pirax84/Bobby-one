@@ -885,3 +885,9 @@
 884|En el muro (se queda visible)
 885|Visible en la burbuja de tus amigos
 886|Volver a la lista
+887|Invitar a un allegado
+888|Nadie por ahora.
+889|Acciones del mensaje
+890|↩︎ Responder
+891|📌 Fijar
+892|✎ Editar

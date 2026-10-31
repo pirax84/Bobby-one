@@ -885,3 +885,9 @@
 884|Ar an mballa (fanann sé le feiceáil)
 885|Le feiceáil i mbolgán do chairde
 886|Ar ais chuig an liosta
+887|Tabhair cuireadh do dhuine gar
+888|Duine ar bith anseo go fóill.
+889|Gníomhartha teachtaireachta
+890|↩︎ Freagair
+891|📌 Bioráin
+892|✎ Cuir in eagar

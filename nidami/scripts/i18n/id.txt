@@ -885,3 +885,9 @@
 884|Di dinding (tetap terlihat)
 885|Terlihat di gelembung teman Anda
 886|Kembali ke daftar
+887|Undang orang terdekat
+888|Belum ada siapa pun.
+889|Tindakan pesan
+890|↩︎ Balas
+891|📌 Sematkan
+892|✎ Ubah

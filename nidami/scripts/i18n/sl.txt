@@ -885,3 +885,9 @@
 884|Na steni (ostane vidno)
 885|Vidno v oblačku tvojih prijateljev
 886|Nazaj na seznam
+887|Povabi bližnjega
+888|Tu še nikogar ni.
+889|Dejanja sporočila
+890|↩︎ Odgovori
+891|📌 Pripni
+892|✎ Uredi

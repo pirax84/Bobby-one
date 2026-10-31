@@ -885,3 +885,9 @@
 884|På väggen (blir kvar)
 885|Syns i dina vänners bubbla
 886|Tillbaka till listan
+887|Bjud in en närstående
+888|Ingen här än.
+889|Meddelandeåtgärder
+890|↩︎ Svara
+891|📌 Fäst
+892|✎ Redigera

@@ -885,3 +885,9 @@
 884|On the wall (stays visible)
 885|Visible in your friends' bubble
 886|Back to the list
+887|Invite someone close
+888|Nobody here yet.
+889|Message actions
+890|↩︎ Reply
+891|📌 Pin
+892|✎ Edit

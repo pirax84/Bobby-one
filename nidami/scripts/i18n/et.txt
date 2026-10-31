@@ -885,3 +885,9 @@
 884|Seinal (jääb nähtavale)
 885|Nähtav sõprade mullis
 886|Tagasi loendisse
+887|Kutsu lähedane
+888|Siin pole veel kedagi.
+889|Sõnumi toimingud
+890|↩︎ Vasta
+891|📌 Kinnita
+892|✎ Muuda

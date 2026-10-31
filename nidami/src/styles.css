@@ -336,3 +336,30 @@ html[dir=rtl] .setch{transform:scaleX(-1)}
 .bigbtn small{display:block;font-weight:500;opacity:.92;font-size:.75rem}
 .bigbtn.alt{background:rgba(var(--brand-rgb),.18)!important;color:var(--fg)!important;box-shadow:3px 3px 0 var(--shade)!important}
 .btn.bigbtn.alt:not(.ghost):not(.danger){background:rgba(var(--brand-rgb),.18)!important;color:var(--fg)!important;box-shadow:3px 3px 0 var(--shade)!important}
+
+/* Composer : tout sur un seul écran */
+.modal:has(.composer){padding:14px;max-height:96vh}
+.composer>p.muted.small:first-of-type{display:none}
+.composer .tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));overflow:visible;gap:6px;padding:0}
+.composer .tabs .chip{padding:9px 4px;font-size:.85rem;text-align:center;justify-content:center;white-space:nowrap}
+.composer .vprev{height:min(30vh,270px)}
+.composer .tbg{min-height:110px!important;padding:16px}
+.composer textarea.inp{min-height:0;height:46px;resize:none}
+.composer .opts{flex-direction:column;flex-wrap:nowrap;gap:6px}
+.composer .opt{flex:none;min-height:46px;width:100%;padding:0 12px}
+.composer .opt select{flex:1;min-height:44px;font-size:1rem}
+.composer .pubbtn{position:sticky;bottom:0;min-height:50px}
+
+/* Caméra : boutons ronds en verre */
+.cam-x,.cam-flip{background:rgba(255,255,255,.16)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.55)!important;box-shadow:none!important}
+.cam-flip{width:52px;height:52px}
+.cam-x{width:52px;height:52px;font-size:1.1rem}
+
+/* Menu d'un message (appui long) */
+.msgmenu{max-width:340px!important;display:flex;flex-direction:column;gap:8px;padding:12px!important}
+.bigact{min-height:56px;font-size:1.1rem;font-weight:700;text-align:left;padding:0 16px;border:2px solid var(--ink);border-radius:16px;background:var(--bg2);color:var(--ink);box-shadow:3px 3px 0 var(--shade)}
+.bigact.bad{color:#b3261e}
+
+/* Amis : rubriques qui s'ouvrent */
+.acc{display:flex;flex-direction:column;gap:8px}
+.accbody{padding:2px 4px 6px 10px}

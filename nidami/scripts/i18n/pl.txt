@@ -885,3 +885,9 @@
 884|Na tablicy (zostaje widoczne)
 885|Widoczne w dymku Twoich znajomych
 886|Wróć do listy
+887|Zaproś bliską osobę
+888|Nikogo tu jeszcze nie ma.
+889|Działania na wiadomości
+890|↩︎ Odpowiedz
+891|📌 Przypnij
+892|✎ Edytuj

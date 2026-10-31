@@ -885,3 +885,9 @@
 884|På væggen (bliver stående)
 885|Synligt i dine venners boble
 886|Tilbage til listen
+887|Invitér en nærtstående
+888|Ingen her endnu.
+889|Handlinger for beskeden
+890|↩︎ Svar
+891|📌 Fastgør
+892|✎ Rediger

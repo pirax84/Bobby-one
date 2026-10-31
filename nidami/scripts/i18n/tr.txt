@@ -885,3 +885,9 @@
 884|Duvarda (görünür kalır)
 885|Arkadaşlarının baloncuğunda görünür
 886|Listeye dön
+887|Yakınını davet et
+888|Burada henüz kimse yok.
+889|Mesaj işlemleri
+890|↩︎ Yanıtla
+891|📌 Sabitle
+892|✎ Düzenle

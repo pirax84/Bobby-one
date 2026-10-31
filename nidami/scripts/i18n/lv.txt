@@ -885,3 +885,9 @@
 884|Sienā (paliek redzams)
 885|Redzams draugu burbulī
 886|Atpakaļ uz sarakstu
+887|Uzaicināt tuvinieku
+888|Šeit vēl neviena nav.
+889|Ziņas darbības
+890|↩︎ Atbildēt
+891|📌 Piespraust
+892|✎ Rediģēt

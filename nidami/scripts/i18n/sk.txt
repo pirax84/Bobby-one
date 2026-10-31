@@ -885,3 +885,9 @@
 884|Na nástenke (zostane viditeľné)
 885|Uvidia to priatelia v bubline
 886|Späť na zoznam
+887|Pozvať blízkeho
+888|Zatiaľ tu nikto nie je.
+889|Akcie so správou
+890|↩︎ Odpovedať
+891|📌 Pripnúť
+892|✎ Upraviť

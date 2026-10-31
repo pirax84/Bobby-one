@@ -885,3 +885,9 @@
 884|Na zdi (zůstává vidět)
 885|Uvidí ji přátelé v bublině
 886|Zpět na seznam
+887|Pozvat blízkého
+888|Zatím tu nikdo není.
+889|Akce se zprávou
+890|↩︎ Odpovědět
+891|📌 Připnout
+892|✎ Upravit

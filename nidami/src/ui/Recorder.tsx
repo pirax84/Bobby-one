@@ -75,7 +75,7 @@ export function Camera({ onVideo, onPhoto, onClose, max = 10, withPhoto = true, 
     : <>
       <video ref={vid} muted playsInline controls={false} disablePictureInPicture poster="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style={{ position: "absolute", width: 2, height: 2, opacity: 0, pointerEvents: "none" }} /><canvas ref={cv} className="cam-v live" style={{ transform: face === "user" ? "scaleX(-1)" : undefined, visibility: ready ? "visible" : "hidden" }} />
       <button className="cam-x" onClick={close} aria-label={t("Fermer la caméra")}>✕</button>
-      {!recording && <button className="cam-flip" onClick={() => setFace(face === "user" ? "environment" : "user")} aria-label={t("Changer de caméra")}>🔄</button>}
+      {!recording && <button className="cam-flip" onClick={() => setFace(face === "user" ? "environment" : "user")} aria-label={t("Changer de caméra")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8h12l-3-3M20 16H8l3 3" /></svg></button>}
       {recording && <div className="cam-time">🔴 {max - (left ?? 0)}{" "}{t("s / {max} s", { max })}</div>}
       <div className="cam-bar" style={{ flexDirection: "column", gap: 14 }}>
         <div className="cam-zoom" role="group" aria-label={t("Zoom")}>{[0.6, 1, 3].map((z) => { return <button key={z} className={zoom === z ? "on" : ""} onClick={() => setZoom(z)} aria-label={t("Zoom {z} fois", { z })}>{t("{replace}×", { replace: String(z).replace(".", ",") })}</button>; })}</div>

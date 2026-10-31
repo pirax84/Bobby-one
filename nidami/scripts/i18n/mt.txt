@@ -885,3 +885,9 @@
 884|Fuq il-ħajt (jibqa' jidher)
 885|Jidher fil-bużżieqa tal-ħbieb tiegħek
 886|Lura għal-lista
+887|Stieden xi ħadd qrib
+888|Għadu ħadd hawn.
+889|Azzjonijiet tal-messaġġ
+890|↩︎ Wieġeb
+891|📌 Waħħal
+892|✎ Editja

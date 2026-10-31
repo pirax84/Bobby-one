@@ -885,3 +885,9 @@
 884|No mural (fica visível)
 885|Visível na bolha dos teus amigos
 886|Voltar à lista
+887|Convidar alguém próximo
+888|Ninguém por aqui ainda.
+889|Ações da mensagem
+890|↩︎ Responder
+891|📌 Fixar
+892|✎ Editar

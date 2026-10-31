@@ -885,3 +885,9 @@
 884|Op de muur (blijft zichtbaar)
 885|Zichtbaar in de bel van je vrienden
 886|Terug naar de lijst
+887|Nodig een naaste uit
+888|Nog niemand hier.
+889|Berichtacties
+890|↩︎ Beantwoorden
+891|📌 Vastmaken
+892|✎ Bewerken
