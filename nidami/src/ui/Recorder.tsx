@@ -80,7 +80,7 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
       <button className="cam-x" onClick={close} aria-label={t("Fermer")}>✕</button>
       {fh && res.photo && <FaceHide src={res.photo} onClose={() => setFh(false)} onDone={(u) => { setRes({ photo: u }); setFh(false); }} />}
       {res.photo && <div style={{ position: "absolute", left: 0, right: 0, bottom: 158, display: "flex", flexDirection: "column", alignItems: "center", gap: 14, zIndex: 3 }}>
-        <button className="cam-send" style={{ background: "#fff", color: "#0b2c33", width: "auto", padding: "11px 20px", fontSize: 15 }} onClick={() => setFh(true)}>{t("🙂 Cacher des visages")}</button>
+        <button className="cam-send" style={{ width: "auto", padding: "11px 20px", fontSize: 15 }} onClick={() => setFh(true)}>{t("🙂 Cacher des visages")}</button>
         <button className="cam-send" style={{ width: "auto", padding: "11px 20px", fontSize: 15 }} onClick={() => { actions.updateProfile({ avatar: res.photo! }); toast(t("✅ Photo de profil modifiée !")); close(); }}>{t("👤 Utiliser comme photo de profil")}</button></div>}
       <div className="cam-bar"><button className="cam-r" onClick={() => { setRes(null); cancelled.current = false; }} aria-label={t("Recommencer")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9" /><path d="M20 4v5h-5" /></svg><small>{t("Recommencer")}</small></button>
         <button className="cam-send" onClick={() => (res.audio ? onAudio?.(res.audio) : res.video ? onVideo(res.video) : onPhoto?.(res.photo!))}>{t("Envoyer ➤")}</button>

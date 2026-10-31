@@ -453,3 +453,8 @@ html[data-hand=left] .bottom{flex-direction:row-reverse}
 .fhc{position:absolute;border:3px dashed #fff;border-radius:50%;background:rgba(255,255,255,.12);padding:0;display:grid;place-items:center;font-size:2.4rem;color:#fff}
 .fhc.on{border:3px solid #34d6c6;background:rgba(52,214,198,.25);box-shadow:0 0 0 2px #fff}
 .fhc.sel{outline:3px solid #fff;outline-offset:2px}
+
+/* Écran « cacher des visages » aux couleurs de l'application */
+.fhscreen{background:linear-gradient(180deg,#0b2c33,#0a4a52)!important}
+.fhb{border:2px solid #34d6c6;background:rgba(52,214,198,.14);color:#fff;border-radius:16px;padding:13px 16px;font-weight:700;font-size:1rem;cursor:pointer}
+.fhb.on{background:linear-gradient(135deg,#34d6c6,#0a838b);border-color:#fff}

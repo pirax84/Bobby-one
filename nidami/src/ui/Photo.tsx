@@ -37,7 +37,7 @@ export function Framer({ src, frame, onChange }: { src: string; frame: Frame; on
       <img className="fbg" src={src} alt="" draggable={false} />
       <img className="ffg" src={src} alt="" draggable={false} style={{ transform: `translate(${frame.x * 100}%, ${frame.y * 100}%) scale(${frame.z})` }} />
     </div>
-    <div className="row" style={{ gap: 8, width: "100%", alignItems: "center" }}><span aria-hidden="true">🔍</span><input type="range" min="1" max="4" step="0.05" value={frame.z} onChange={(e) => onChange(clamp({ ...frame, z: Number(e.target.value) }))} aria-label={t("Zoom")} style={{ flex: 1 }} /><button type="button" className="btn ghost sm" onClick={() => onChange(FRAME0)}>{t("Recentrer")}</button></div>
+    <div className="row" style={{ gap: 8, width: "100%", alignItems: "center" }}><span aria-hidden="true">🔍</span><input type="range" min="1" max="4" step="0.05" value={frame.z} onChange={(e) => onChange(clamp({ ...frame, z: Number(e.target.value) }))} aria-label={t("Zoom")} style={{ flex: 1 }} /><button type="button" className="btn sm" onClick={() => onChange(FRAME0)}>{t("Recentrer")}</button></div>
     <span className="muted small center">{t("Touche et glisse pour déplacer · deux doigts ou la barre pour zoomer")}</span>
   </div>;
 }
@@ -96,18 +96,18 @@ export function FaceHide({ src, onDone, onClose }: { src: string; onDone: (u: st
   const up = () => { const d = drag.current; drag.current = null; if (d && !d.moved) { setFaces((f) => f.map((x, k) => (k === d.i ? { ...x, on: !x.on } : x))); setSel(d.i); } };
   const apply = async () => { setBusy(true); try { onDone(await hideFaces(src, faces, mode)); } catch { toast(t("Impossible de modifier cette photo.")); setBusy(false); } };
   const count = faces.filter((f) => f.on).length;
-  return createPortal(<div className="cam" style={{ justifyContent: "flex-start", overflow: "auto", padding: 14, gap: 10 }} role="dialog" aria-label={t("Cacher des visages")}>
-    <div className="row" style={{ width: "min(520px,100%)", gap: 8 }}><b className="grow" style={{ color: "#fff", fontSize: "1.1rem" }}>{t("🙂 Cacher des visages")}</b><button className="btn ghost sm" onClick={onClose} aria-label={t("Fermer")}>✕</button></div>
+  return createPortal(<div className="cam fhscreen" style={{ justifyContent: "flex-start", overflow: "auto", padding: 14, gap: 12 }} role="dialog" aria-label={t("Cacher des visages")}>
+    <div className="row" style={{ width: "min(520px,100%)", gap: 8 }}><b className="grow" style={{ color: "#fff", fontSize: "1.1rem" }}>{t("🙂 Cacher des visages")}</b><button className="fhb" style={{ padding: "6px 12px" }} onClick={onClose} aria-label={t("Fermer")}>✕</button></div>
     <p style={{ color: "#fff", opacity: .85, margin: 0, width: "min(520px,100%)", fontSize: ".9rem" }}>{busy ? t("Recherche des visages…") : auto ? t("Touche un visage pour le cacher ou le montrer. Rond turquoise = caché.") : t("Aucun visage trouvé automatiquement : ajoute un rond et place-le sur le visage.")}</p>
     <div ref={box} className="fhbox" style={{ aspectRatio: `${1} / ${ratio}`, width: "min(520px,100%)" }} onPointerMove={move} onPointerUp={up} onPointerCancel={up}>
       <img src={src} alt="" draggable={false} style={{ width: "100%", height: "100%", display: "block", userSelect: "none" }} />
       {faces.map((f, i) => <button key={i} type="button" className={"fhc" + (f.on ? " on" : "") + (sel === i ? " sel" : "")} aria-pressed={f.on} aria-label={t("Visage {n}", { n: i + 1 })} onPointerDown={down(i)} style={{ left: `${(f.x - f.r) * 100}%`, top: `${((f.y - f.r) / ratio) * 100}%`, width: `${f.r * 200}%`, height: `${(f.r * 2 / ratio) * 100}%`, touchAction: "none" }}>{f.on && mode === "smiley" ? "😀" : ""}</button>)}
     </div>
-    {sel !== null && faces[sel] && <div className="row" style={{ width: "min(520px,100%)", gap: 8, color: "#fff", alignItems: "center" }}><span>{t("Taille")}</span><input type="range" min="0.03" max="0.35" step="0.005" value={faces[sel].r} onChange={(e) => setFaces((f) => f.map((x, k) => (k === sel ? { ...x, r: Number(e.target.value) } : x)))} style={{ flex: 1 }} aria-label={t("Taille")} /><button className="btn ghost sm" onClick={() => { setFaces((f) => f.filter((_, k) => k !== sel)); setSel(null); }}>{t("Supprimer")}</button></div>}
+    {sel !== null && faces[sel] && <div className="row" style={{ width: "min(520px,100%)", gap: 8, color: "#fff", alignItems: "center" }}><span>{t("Taille")}</span><input type="range" min="0.03" max="0.35" step="0.005" value={faces[sel].r} onChange={(e) => setFaces((f) => f.map((x, k) => (k === sel ? { ...x, r: Number(e.target.value) } : x)))} style={{ flex: 1 }} aria-label={t("Taille")} /><button className="fhb" style={{ padding: "8px 12px" }} onClick={() => { setFaces((f) => f.filter((_, k) => k !== sel)); setSel(null); }}>{t("Supprimer")}</button></div>}
     <div className="row" style={{ width: "min(520px,100%)", gap: 8 }}>
-      <button className={"btn" + (mode === "blur" ? "" : " ghost")} style={{ flex: 1 }} onClick={() => setMode("blur")}>{t("💧 Flou")}</button>
-      <button className={"btn" + (mode === "smiley" ? "" : " ghost")} style={{ flex: 1 }} onClick={() => setMode("smiley")}>{t("😀 Smiley")}</button></div>
-    <button className="btn ghost" style={{ width: "min(520px,100%)" }} onClick={add}>{t("➕ Ajouter un rond à la main")}</button>
+      <button className={"fhb" + (mode === "blur" ? " on" : "")} style={{ flex: 1 }} onClick={() => setMode("blur")}>{t("💧 Flou")}</button>
+      <button className={"fhb" + (mode === "smiley" ? " on" : "")} style={{ flex: 1 }} onClick={() => setMode("smiley")}>{t("😀 Smiley")}</button></div>
+    <button className="fhb" style={{ width: "min(520px,100%)" }} onClick={add}>{t("➕ Ajouter un rond à la main")}</button>
     <button className="btn" style={{ width: "min(520px,100%)" }} disabled={busy || count === 0} onClick={apply}>{count ? t("{n, plural, one{Cacher # visage} other{Cacher # visages}}", { n: count }) : t("Choisis au moins un visage")}</button>
   </div>, document.body);
 }
