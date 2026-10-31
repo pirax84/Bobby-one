@@ -433,3 +433,6 @@ html[data-hand=left] .bottom{flex-direction:row-reverse}
 
 /* Messages d'information : toujours au milieu de l'écran, au-dessus de tout (caméra comprise). */
 .toast,html[data-hand=left] .toast{position:fixed;left:50%!important;right:auto!important;top:50%!important;bottom:auto!important;transform:translate(-50%,-50%)!important;z-index:300;width:max-content;max-width:86vw;text-align:center;font-weight:600;background:#0b2c33;border:1.5px solid var(--brand);padding:14px 20px;pointer-events:none}
+
+.reactpop{position:fixed;left:50%;top:45%;transform:translate(-50%,-50%);font-size:6rem;z-index:300;pointer-events:none;animation:rpop .9s ease-out forwards}
+@keyframes rpop{0%{opacity:0;transform:translate(-50%,-30%) scale(.4)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}100%{opacity:0;transform:translate(-50%,-90%) scale(1)}}

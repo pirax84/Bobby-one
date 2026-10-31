@@ -42,7 +42,7 @@ function MediaBox({ p, label, auto = false, story = false, onEnd, onTime }: { p:
 function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; onClose: () => void }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users);
   const items = useMemo(() => storiesFor(posts, me, Date.now(), social).filter((p) => p.authorId === authorId), [authorId]);
-  const [i, setI] = useState(0); const [reply, setReply] = useState(""); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : p.video || p.audio ? 90000 : 6000; const [prog, setProg] = useState(0); const media = !!(p && (p.video || p.audio)); const myName = users.find((x) => x.id === me)?.name || "";
+  const [i, setI] = useState(0); const [reply, setReply] = useState(""); const [pop, setPop] = useState<string | null>(null); const [more, setMore] = useState(false); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : p.video || p.audio ? 90000 : 6000; const [prog, setProg] = useState(0); const media = !!(p && (p.video || p.audio)); const myName = users.find((x) => x.id === me)?.name || "";
   const hidden = useCaptureGuard(() => { if (p) actions.suspectCapture(p.id); toast(t("Capture bloquée : l'auteur sera prévenu.")); }, true);
   const next = () => (i + 1 < items.length ? setI(i + 1) : onClose());
   useEffect(() => { if (!p) return onClose(); setProg(0); actions.open(p.id); const tx = setTimeout(next, dur); return () => clearTimeout(tx); }, [i]);
@@ -55,8 +55,14 @@ function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; 
     {live.video || live.audio ? <MediaBox key={live.id} p={live} label={myName} story onEnd={next} onTime={(c, d) => setProg(Math.min(1, c / (isFinite(d) && d > 0 ? d : 10)))} /> : live.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={live.img} label={myName} alt={t("Story")} style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(live.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 320 }}>{live.text}</div>}
     {live.img && live.text && <p>{live.text}</p>}
     {authorId === me ? <div className="card small" style={{ width: "min(560px,100%)" }}><Ico n="eye" s={16} />{" "}{t("Vu par :")}{" "}{Object.keys(live.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || t("personne pour l'instant")}</div>
-      : <div className="row" style={{ width: "min(560px,100%)" }}><input className="inp" placeholder={t("Répondre en privé…")} value={reply} onChange={(e) => setReply(e.target.value)} /><button className="btn" onClick={() => { const c = actions.startDm(authorId); actions.send(c, t("↩️ Réponse à votre story : {reply}", { reply })); setReply(""); toast(t("Réponse envoyée en privé.")); }} disabled={!reply.trim()}><Ico n="send" s={18} /></button>
-        {likesOn && EMOJIS.slice(0, 3).map((e) => <button key={e} className="react" onClick={() => { actions.react(live.id, e); }}>{e}</button>)}</div>}
+      : <div className="col" style={{ width: "min(560px,100%)", gap: 10 }}>
+        <form className="row" style={{ gap: 8 }} onSubmit={(e) => { e.preventDefault(); if (!reply.trim()) return; const c = actions.startDm(authorId); actions.send(c, t("↩️ Réponse à votre story : {reply}", { reply })); setReply(""); toast(t("Réponse envoyée en privé.")); }}>
+          <input className="inp grow" style={{ minHeight: 52, fontSize: "1.05rem", borderRadius: 18 }} placeholder={t("Répondre en privé…")} value={reply} onChange={(e) => setReply(e.target.value)} aria-label={t("Répondre en privé…")} />
+          <button className="btn micbtn" style={{ width: 52, height: 52 }} disabled={!reply.trim()} aria-label={t("Envoyer")}><Ico n="send" s={20} /></button></form>
+        {likesOn && <div className="row" style={{ gap: 6, overflowX: "auto", paddingBottom: 2 }}>{EMOJIS.map((e) => <button key={e} className={"react big" + (live.reactions[me] === e ? " on" : "")} onClick={() => { actions.react(live.id, e); setPop(e); setTimeout(() => setPop(null), 900); }} aria-label={t("Réagir {e}", { e })}>{e}</button>)}<button className="react big" onClick={() => setMore(!more)} aria-label={t("Plus d'émoticônes")}>＋</button></div>}
+        {likesOn && more && <div className="empanel" style={{ maxHeight: 190 }}><EmojiGrid onPick={(e) => { actions.react(live.id, e); setPop(e); setMore(false); setTimeout(() => setPop(null), 900); }} onClose={() => setMore(false)} /></div>}
+      </div>}
+    {pop && <div className="reactpop" aria-hidden="true">{pop}</div>}
   </div>);
 }
 
