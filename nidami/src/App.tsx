@@ -37,7 +37,21 @@ export default function App() {
   useEffect(() => { applyTheme({ light: !!light }); }, [light]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
-  useEffect(() => { if (seenFx.current === undefined) { seenFx.current = lastFxMsg; return; } if (!lastFxMsg || lastFxMsg === seenFx.current) return; seenFx.current = lastFxMsg; if (fxOn) { const k = lastFxMsg.split("|")[1]; if (k === "custom") { if (lastCfx) playCustom(lastCfx); } else playFx(k as Fx); } }, [lastFxMsg]);
+  const fxList = useStore((x) => { const a: { id: string; fx: string; at: number }[] = []; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me) a.push({ id: m.id, fx: m.fx, at: m.at }); a.sort((p, q) => p.at - q.at); return a.map((m) => m.at + "|" + m.fx).join(";"); });
+  const meId = useStore((x) => x.me); const fxBusy = useRef(false);
+  useEffect(() => {
+    const run = () => {
+      if (fxBusy.current || document.visibilityState !== "visible" || !meId) return;
+      const key = "notiif-fxseen-" + meId; const items = fxList ? fxList.split(";").map((v) => { const [at, fx] = v.split("|"); return { at: +at, fx }; }) : [];
+      let seen = 0; try { seen = +(localStorage.getItem(key) || 0); } catch {}
+      if (!seen) { try { localStorage.setItem(key, String(items.length ? items[items.length - 1].at : Date.now())); } catch {} return; }
+      const todo = items.filter((m) => m.at > seen).slice(-8); if (!todo.length) return;
+      try { localStorage.setItem(key, String(todo[todo.length - 1].at)); } catch {}
+      if (!fxOn) return; fxBusy.current = true;
+      todo.forEach((m, n) => setTimeout(() => { if (m.fx === "custom") { if (lastCfx) playCustom(lastCfx); } else playFx(m.fx as Fx); if (n === todo.length - 1) fxBusy.current = false; }, n * 3200));
+    };
+    run(); document.addEventListener("visibilitychange", run); return () => document.removeEventListener("visibilitychange", run);
+  }, [fxList, fxOn, meId]);
   useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { playTone(th0?.ctone || "c1", 3); vibrate(th0?.vibc, 3); } }, [lastCall]);
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
