@@ -1,0 +1,40 @@
+types: success  build: success
+--- types
+
+> cercle@0.1.0 typecheck
+> tsc --noEmit
+
+--- build
+[2mdist/[22m[2massets/[22m[36mhr-Cm7lcA38.js      [39m[1m[2m 61.35 kB[22m[1m[22m[2m │ gzip:  23.87 kB[22m
+[2mdist/[22m[2massets/[22m[36msl-UCPsNn68.js      [39m[1m[2m 61.40 kB[22m[1m[22m[2m │ gzip:  23.86 kB[22m
+[2mdist/[22m[2massets/[22m[36mit-Bj9OVmLG.js      [39m[1m[2m 61.41 kB[22m[1m[22m[2m │ gzip:  22.95 kB[22m
+[2mdist/[22m[2massets/[22m[36mnl-CtRdG4Up.js      [39m[1m[2m 61.67 kB[22m[1m[22m[2m │ gzip:  23.47 kB[22m
+[2mdist/[22m[2massets/[22m[36mtr-zvnQtfba.js      [39m[1m[2m 61.82 kB[22m[1m[22m[2m │ gzip:  23.71 kB[22m
+[2mdist/[22m[2massets/[22m[36mpt-B6w3-cxe.js      [39m[1m[2m 62.34 kB[22m[1m[22m[2m │ gzip:  23.30 kB[22m
+[2mdist/[22m[2massets/[22m[36mmt-DPK4tS5P.js      [39m[1m[2m 62.45 kB[22m[1m[22m[2m │ gzip:  24.02 kB[22m
+[2mdist/[22m[2massets/[22m[36mcs-Crn9uRq2.js      [39m[1m[2m 62.52 kB[22m[1m[22m[2m │ gzip:  24.47 kB[22m
+[2mdist/[22m[2massets/[22m[36mpl-Cwx_aR2f.js      [39m[1m[2m 62.54 kB[22m[1m[22m[2m │ gzip:  24.50 kB[22m
+[2mdist/[22m[2massets/[22m[36mlv-cSZucsrq.js      [39m[1m[2m 62.56 kB[22m[1m[22m[2m │ gzip:  24.20 kB[22m
+[2mdist/[22m[2massets/[22m[36mes-C-CWTTP5.js      [39m[1m[2m 62.69 kB[22m[1m[22m[2m │ gzip:  23.48 kB[22m
+[2mdist/[22m[2massets/[22m[36mde-BxcRM_Uo.js      [39m[1m[2m 62.77 kB[22m[1m[22m[2m │ gzip:  23.94 kB[22m
+[2mdist/[22m[2massets/[22m[36mro-0VnAA30y.js      [39m[1m[2m 62.81 kB[22m[1m[22m[2m │ gzip:  23.58 kB[22m
+[2mdist/[22m[2massets/[22m[36msk-Bz4YVTVz.js      [39m[1m[2m 62.91 kB[22m[1m[22m[2m │ gzip:  24.52 kB[22m
+[2mdist/[22m[2massets/[22m[36mlt-BDBtNlQv.js      [39m[1m[2m 63.51 kB[22m[1m[22m[2m │ gzip:  24.36 kB[22m
+[2mdist/[22m[2massets/[22m[36mhu-BXxWh1RQ.js      [39m[1m[2m 63.93 kB[22m[1m[22m[2m │ gzip:  24.65 kB[22m
+[2mdist/[22m[2massets/[22m[36mga-7raLoQOH.js      [39m[1m[2m 65.84 kB[22m[1m[22m[2m │ gzip:  24.64 kB[22m
+[2mdist/[22m[2massets/[22m[36mja-D9M7nDUg.js      [39m[1m[2m 70.81 kB[22m[1m[22m[2m │ gzip:  25.40 kB[22m
+[2mdist/[22m[2massets/[22m[36mar-BysMro0O.js      [39m[1m[2m 72.65 kB[22m[1m[22m[2m │ gzip:  25.42 kB[22m
+[2mdist/[22m[2massets/[22m[36mbg-CY0CRfb1.js      [39m[1m[2m 80.27 kB[22m[1m[22m[2m │ gzip:  26.53 kB[22m
+[2mdist/[22m[2massets/[22m[36mru-BQ81P8__.js      [39m[1m[2m 81.68 kB[22m[1m[22m[2m │ gzip:  27.22 kB[22m
+[2mdist/[22m[2massets/[22m[36mel-BRr55R46.js      [39m[1m[2m 85.63 kB[22m[1m[22m[2m │ gzip:  27.84 kB[22m
+[2mdist/[22m[2massets/[22m[36mhi-CP7mOM2A.js      [39m[1m[2m 94.48 kB[22m[1m[22m[2m │ gzip:  26.77 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-CQW8D7OY.js   [39m[1m[33m545.07 kB[39m[22m[2m │ gzip: 170.50 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 2.50s[39m
+--- tests
+# pass 20
+# fail 0
