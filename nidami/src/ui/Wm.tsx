@@ -34,7 +34,7 @@ export function useCaptureGuard(onSuspect: () => void, active: boolean) {
 }
 
 /** Vidéo avec filigrane par-dessus (nom du spectateur + date). Pas de bouton de téléchargement ; ce n'est pas une protection absolue. */
-export function VideoWm({ src, label, poster = false, bare = false, onEnded, onTime }: { src: string; label: string; poster?: boolean; bare?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void }) {
+export function VideoWm({ src, label, poster = false, bare = false, plain = false, onEnded, onTime }: { src: string; label: string; poster?: boolean; bare?: boolean; plain?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void }) {
   const wm = `${label} · NOTIIF · ${new Date().toLocaleDateString(locale())}`;
   const vid = useRef<HTMLVideoElement>(null); const [started, setStarted] = useState(false); const [playing, setPlaying] = useState(false); const [cur, setCur] = useState(0); const [dur, setDur] = useState(0); const [barOn, setBarOn] = useState(true); const hide = useRef<number | undefined>(undefined);
   const flash = () => { setBarOn(true); clearTimeout(hide.current); hide.current = window.setTimeout(() => setBarOn(false), 2200); }; useEffect(() => () => clearTimeout(hide.current), []);
@@ -52,5 +52,5 @@ export function VideoWm({ src, label, poster = false, bare = false, onEnded, onT
       <button type="button" onClick={() => { jump(10); flash(); }} aria-label="+10 s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7" /><path d="M21 4v5h-5" /></svg></button>
       <input type="range" min={0} max={dur || 1} step={0.1} value={Math.min(cur, dur || 1)} onChange={(e) => { const v = vid.current; if (v) v.currentTime = Number(e.target.value); flash(); }} aria-label="0:00" />
       <span>{mmss(cur)}</span></div>}
-    <div className="vwm" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i}>{wm}</span>)}</div></div>;
+    {!plain && <div className="vwm" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <span key={i}>{wm}</span>)}</div>}</div>;
 }

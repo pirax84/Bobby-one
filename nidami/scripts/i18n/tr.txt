@@ -929,3 +929,5 @@
 928|✓ Profil fotoğrafı değiştirildi
 929|✅ Profil fotoğrafı güncellendi!
 930|Profil fotoğrafı
+931|Fotoğrafı büyüt
+932|🛡 Filigran (adın fotoğrafın üzerinde)

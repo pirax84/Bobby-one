@@ -64,7 +64,7 @@ export const actions = {
   setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "fxfav" | "cfx" | "ntone" | "ctone" | "vibm" | "vibc" | "nav" | "hand" | "top" | "bubble" | "start" | "likes" | "comm" | "bg" | "fg" | "accent", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
 
-  publish(p: { kind: "text" | "photo" | "video" | "audio"; text: string; img?: string | null; video?: string | null; audio?: string | null; albumId?: ID; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean; link?: string }): { ok: boolean; error?: string; id?: ID } {
+  publish(p: { kind: "text" | "photo" | "video" | "audio"; text: string; img?: string | null; video?: string | null; audio?: string | null; albumId?: ID; bg?: number; mood?: string; audience: Audience; viewSecs: number; permanent: boolean; story?: boolean; link?: string; nowm?: boolean }): { ok: boolean; error?: string; id?: ID } {
     if (!validViewSecs(p.viewSecs)) return { ok: false, error: t("Durée invalide.") };
     if (isRestricted(state, state.me)) return { ok: false, error: t("Votre compte est en cours de vérification suite à des signalements.") };
     let id = ""; let err = "";
@@ -73,7 +73,7 @@ export const actions = {
       if (p.audience.mode !== "me" && !recipients.length) { err = t("Personne ne pourra voir cette publication : choisissez d'autres destinataires."); return; }
       id = "p_" + uid(); const tx = now();
       const eph = !p.permanent && (p.viewSecs > 0 || p.story);
-      s.posts.unshift({ id, authorId: s.me, kind: p.kind, text: p.text.slice(0, 2000), img: p.img || null, video: p.video || null, audio: p.audio || null, albumId: p.albumId, bg: p.bg, mood: p.mood, story: p.story, link: p.link, createdAt: tx, audience: p.audience, recipients, viewSecs: p.permanent ? 0 : p.viewSecs, expiresAt: eph ? tx + DEFAULT_GLOBAL_MS : null, views: {}, reactions: {}, comments: [] });
+      s.posts.unshift({ id, authorId: s.me, kind: p.kind, text: p.text.slice(0, 2000), img: p.img || null, video: p.video || null, audio: p.audio || null, albumId: p.albumId, bg: p.bg, mood: p.mood, story: p.story, link: p.link, nowm: p.nowm || undefined, createdAt: tx, audience: p.audience, recipients, viewSecs: p.permanent ? 0 : p.viewSecs, expiresAt: eph ? tx + DEFAULT_GLOBAL_MS : null, views: {}, reactions: {}, comments: [] });
       if (!p.albumId) for (const r of recipients) notify(s, r, t(p.story ? (eph ? "{name} a partagé une story éphémère." : "{name} a partagé une story.") : (eph ? "{name} a partagé une publication éphémère." : "{name} a partagé une publication."), { name: userOf(s, s.me)!.name }), "home", { by: s.me, v: "home", ref: id, pv: eph ? undefined : p.text.slice(0, 120) });
     });
     return err ? { ok: false, error: err } : { ok: true, id };

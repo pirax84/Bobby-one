@@ -929,3 +929,5 @@
 928|✓ Profilio nuotrauka pakeista
 929|✅ Profilio nuotrauka atnaujinta!
 930|Profilio nuotrauka
+931|Padidinti nuotrauką
+932|🛡 Vandens ženklas (tavo vardas nuotraukoje)

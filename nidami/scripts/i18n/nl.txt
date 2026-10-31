@@ -929,3 +929,5 @@
 928|✓ Profielfoto gewijzigd
 929|✅ Profielfoto bijgewerkt!
 930|Profielfoto
+931|Foto vergroten
+932|🛡 Watermerk (je naam op de foto)

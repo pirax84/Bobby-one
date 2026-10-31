@@ -929,3 +929,5 @@
 928|✓ Profile photo changed
 929|✅ Profile photo updated!
 930|Profile photo
+931|Enlarge photo
+932|🛡 Watermark (your name on the photo)

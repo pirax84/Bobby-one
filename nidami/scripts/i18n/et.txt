@@ -929,3 +929,5 @@
 928|✓ Profiilipilt muudetud
 929|✅ Profiilipilt uuendatud!
 930|Profiilipilt
+931|Suurenda pilti
+932|🛡 Vesimärk (sinu nimi pildil)

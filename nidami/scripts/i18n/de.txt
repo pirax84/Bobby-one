@@ -929,3 +929,5 @@
 928|✓ Profilfoto geändert
 929|✅ Profilfoto aktualisiert!
 930|Profilfoto
+931|Foto vergrößern
+932|🛡 Wasserzeichen (dein Name auf dem Foto)

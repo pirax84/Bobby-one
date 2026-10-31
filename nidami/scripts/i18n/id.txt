@@ -929,3 +929,5 @@
 928|✓ Foto profil diganti
 929|✅ Foto profil diperbarui!
 930|Foto profil
+931|Perbesar foto
+932|🛡 Watermark (namamu di foto)

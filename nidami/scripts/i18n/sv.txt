@@ -929,3 +929,5 @@
 928|✓ Profilbilden ändrades
 929|✅ Profilbilden uppdaterad!
 930|Profilbild
+931|Förstora foto
+932|🛡 Vattenstämpel (ditt namn på fotot)

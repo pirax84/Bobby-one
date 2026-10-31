@@ -929,3 +929,5 @@
 928|✓ Profilbillede ændret
 929|✅ Profilbillede opdateret!
 930|Profilbillede
+931|Forstør foto
+932|🛡 Vandmærke (dit navn på fotoet)

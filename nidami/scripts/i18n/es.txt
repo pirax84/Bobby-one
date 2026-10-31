@@ -929,3 +929,5 @@
 928|✓ Foto de perfil cambiada
 929|✅ ¡Foto de perfil actualizada!
 930|Foto de perfil
+931|Ampliar foto
+932|🛡 Marca de agua (tu nombre en la foto)

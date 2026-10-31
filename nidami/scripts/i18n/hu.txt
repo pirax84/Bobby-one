@@ -929,3 +929,5 @@
 928|✓ Profilkép megváltoztatva
 929|✅ A profilkép frissítve!
 930|Profilkép
+931|Fotó nagyítása
+932|🛡 Vízjel (a neved a fotón)

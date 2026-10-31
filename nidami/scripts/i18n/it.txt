@@ -929,3 +929,5 @@
 928|✓ Foto del profilo cambiata
 929|✅ Foto del profilo aggiornata!
 930|Foto del profilo
+931|Ingrandisci foto
+932|🛡 Filigrana (il tuo nome sulla foto)

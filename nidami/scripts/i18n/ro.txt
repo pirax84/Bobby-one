@@ -929,3 +929,5 @@
 928|✓ Poza de profil a fost schimbată
 929|✅ Poza de profil a fost actualizată!
 930|Poză de profil
+931|Mărește poza
+932|🛡 Filigran (numele tău pe poză)

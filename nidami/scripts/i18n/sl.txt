@@ -929,3 +929,5 @@
 928|✓ Profilna fotografija spremenjena
 929|✅ Profilna fotografija posodobljena!
 930|Profilna fotografija
+931|Povečaj fotografijo
+932|🛡 Vodni žig (tvoje ime na fotografiji)

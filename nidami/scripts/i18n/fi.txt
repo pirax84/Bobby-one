@@ -929,3 +929,5 @@
 928|✓ Profiilikuva vaihdettu
 929|✅ Profiilikuva päivitetty!
 930|Profiilikuva
+931|Suurenna kuva
+932|🛡 Vesileima (nimesi kuvassa)

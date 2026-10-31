@@ -929,3 +929,5 @@
 928|✓ Zmieniono zdjęcie profilowe
 929|✅ Zdjęcie profilowe zaktualizowane!
 930|Zdjęcie profilowe
+931|Powiększ zdjęcie
+932|🛡 Znak wodny (Twoje imię na zdjęciu)

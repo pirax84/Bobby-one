@@ -21,7 +21,7 @@ export interface FriendList { id: ID; ownerId: ID; name: string; memberIds: ID[]
 export interface Comment { id: ID; authorId: ID; text: string; at: number; replyTo?: ID; reacts?: Record<ID, string> }
 export interface Post {
   id: ID; authorId: ID; kind: "text" | "photo" | "video" | "audio"; text: string; img?: string | null; video?: string | null; audio?: string | null; albumId?: ID; bg?: number;
-  mood?: string; story?: boolean; link?: string;
+  mood?: string; story?: boolean; link?: string; nowm?: boolean;
   createdAt: number;
   audience: Audience; recipients: ID[];      // destinataires figés à la publication
   viewSecs: number;                          // 0 = permanente ; sinon durée de consultation PAR PERSONNE

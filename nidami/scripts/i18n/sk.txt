@@ -929,3 +929,5 @@
 928|✓ Profilová fotka zmenená
 929|✅ Profilová fotka aktualizovaná!
 930|Profilová fotka
+931|Zväčšiť fotku
+932|🛡 Vodoznak (tvoje meno na fotke)
