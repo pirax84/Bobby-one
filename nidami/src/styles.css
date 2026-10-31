@@ -458,3 +458,6 @@ html[data-hand=left] .bottom{flex-direction:row-reverse}
 .fhscreen{background:linear-gradient(180deg,#0b2c33,#0a4a52)!important}
 .fhb{border:2px solid #34d6c6;background:rgba(52,214,198,.14);color:#fff;border-radius:16px;padding:13px 16px;font-weight:700;font-size:1rem;cursor:pointer}
 .fhb.on{background:linear-gradient(135deg,#34d6c6,#0a838b);border-color:#fff}
+
+img,canvas,video,svg image{-webkit-touch-callout:none;-webkit-user-drag:none}
+img,canvas,.wreath,.avs{user-select:none;-webkit-user-select:none}
