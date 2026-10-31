@@ -931,3 +931,19 @@
 930|Foto del profilo
 931|Ingrandisci foto
 932|🛡 Filigrana (il tuo nome sulla foto)
+933|Nessun volto trovato automaticamente: aggiungi un cerchio e posizionalo sul volto.
+934|Nascondi volti
+935|Scegli almeno un volto
+936|Impossibile modificare questa foto.
+937|Foto: sposta con un dito, zoom con due
+938|Ricentra
+939|Ricerca dei volti…
+940|Dimensione
+941|Tocca e trascina per spostare · due dita o la barra per lo zoom
+942|Tocca un volto per nasconderlo o mostrarlo. Cerchio turchese = nascosto.
+943|Volto {n}
+944|{n, plural, one{Nascondi # volto} other{Nascondi # volti}}
+945|➕ Aggiungi un cerchio a mano
+946|💧 Sfocatura
+947|😀 Smiley
+948|🙂 Nascondi volti

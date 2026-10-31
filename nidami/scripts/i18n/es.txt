@@ -931,3 +931,19 @@
 930|Foto de perfil
 931|Ampliar foto
 932|🛡 Marca de agua (tu nombre en la foto)
+933|No se encontró ningún rostro: añade un círculo y colócalo sobre el rostro.
+934|Ocultar rostros
+935|Elige al menos un rostro
+936|No se puede editar esta foto.
+937|Foto: mueve con un dedo, zoom con dos
+938|Centrar
+939|Buscando rostros…
+940|Tamaño
+941|Toca y arrastra para mover · dos dedos o la barra para hacer zoom
+942|Toca un rostro para ocultarlo o mostrarlo. Círculo turquesa = oculto.
+943|Rostro {n}
+944|{n, plural, one{Ocultar # rostro} other{Ocultar # rostros}}
+945|➕ Añadir un círculo a mano
+946|💧 Desenfoque
+947|😀 Emoji
+948|🙂 Ocultar rostros

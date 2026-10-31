@@ -931,3 +931,19 @@
 930|Zdjęcie profilowe
 931|Powiększ zdjęcie
 932|🛡 Znak wodny (Twoje imię na zdjęciu)
+933|Nie znaleziono twarzy automatycznie: dodaj kółko i umieść je na twarzy.
+934|Ukryj twarze
+935|Wybierz co najmniej jedną twarz
+936|Nie można edytować tego zdjęcia.
+937|Zdjęcie: przesuwaj jednym palcem, powiększaj dwoma
+938|Wyśrodkuj
+939|Szukam twarzy…
+940|Rozmiar
+941|Dotknij i przeciągnij, by przesunąć · dwa palce lub suwak, by powiększyć
+942|Dotknij twarzy, aby ją ukryć lub pokazać. Turkusowe kółko = ukryta.
+943|Twarz {n}
+944|{n, plural, one{Ukryj # twarz} few{Ukryj # twarze} many{Ukryj # twarzy} other{Ukryj # twarzy}}
+945|➕ Dodaj kółko ręcznie
+946|💧 Rozmycie
+947|😀 Uśmieszek
+948|🙂 Ukryj twarze

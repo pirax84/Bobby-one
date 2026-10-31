@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, Conv } from "../lib/store";
-import { Avatar, Ico, useNow, EmojiGrid, toast, lp, ConfirmDel } from "./common";
+import { Avatar, Ico, useNow, EmojiGrid, toast, lp, ConfirmDel, useScrollLock } from "./common";
 import { FxBar } from "./FxBar";
 import { MicBtn } from "./Recorder";
 import { CallButton } from "./Chat";
@@ -29,7 +29,7 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
     prev.current = total;
   }, [total]);
   useEffect(() => { if (c && open) actions.markRead(c.id); end.current?.scrollIntoView({ block: "end" }); }, [sel, open, c?.msgs.length]);
-  const [emo, setEmo] = useState(false);
+  useScrollLock(open); const [emo, setEmo] = useState(false);
   const [mk, setMk] = useState(false); const [gn, setGn] = useState(""); const [gsel, setGsel] = useState<string[]>([]);
   // À la fermeture : on revient toujours à l'accueil des messages.
   useEffect(() => { if (!open) { setSel(null); setTab("conv"); setMoreOpen(false); setMk(false); setDel(null); setEmo(false); } }, [open]);

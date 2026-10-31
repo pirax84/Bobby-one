@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { toast, MicIcon, Ico } from "./common";
+import { toast, MicIcon, Ico, useScrollLock } from "./common";
 import { actions } from "../lib/store";
+import { FaceHide } from "./Photo";
 import { stopPlayer } from "./Links";
 import { AudioWave } from "./AudioWave";
 
@@ -43,7 +44,8 @@ export function HoldMic({ onDone, className = "btn", max = 60, children }: { onD
 export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto = true, startMode = "video" }: { onVideo: (url: string) => void; onPhoto?: (url: string) => void; onAudio?: (url: string) => void; onClose: () => void; max?: number; withPhoto?: boolean; startMode?: "video" | "photo" | "voice" }) {
   const vid = useRef<HTMLVideoElement>(null); const stream = useRef<MediaStream | null>(null); const rec = useRef<MediaRecorder | null>(null); const cancelled = useRef(false);
   const [mode, setMode] = useState<"video" | "photo" | "voice">(startMode === "voice" && onAudio ? "voice" : withPhoto ? (startMode === "voice" ? "video" : startMode) : "video"); const [vsec, setVsec] = useState(0); const vrec = useRef<MediaRecorder | null>(null); const vheld = useRef(false); const vt0 = useRef(0); const viv = useRef<number | undefined>(undefined); const cv = useRef<HTMLCanvasElement>(null); const zRef = useRef(0.3); const [face, setFace] = useState<"user" | "environment">("user"); const [left, setLeft] = useState<number | null>(null); const [ready, setReady] = useState(false);
-  const [res, setRes] = useState<{ video?: string; photo?: string; audio?: string } | null>(null);
+  useScrollLock();
+  const [res, setRes] = useState<{ video?: string; photo?: string; audio?: string } | null>(null); const [fh, setFh] = useState(false);
   useEffect(() => { stopPlayer(); }, []);
   const [zoom, setZoom] = useState(0.3); const hwWide = useRef(false);
   // Zoom arrière (0,6×) : si le téléphone sait élargir l'image par la caméra elle-même, on l'utilise ; sinon l'image reste plein écran comme en 1×.
@@ -76,6 +78,8 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
     {res ? <>
       {res.audio ? <div className="cam-voice"><div className="cam-vplayer"><AudioWave src={res.audio} autoPlay /></div><p style={{ opacity: .8 }}>{t("Tu peux la réécouter avant d'envoyer")}</p></div> : res.video ? <video key={res.video.length} className="cam-v" src={res.video} controls autoPlay loop playsInline /> : <img className="cam-v" src={res.photo} alt={t("Aperçu")} style={{ objectFit: "contain" }} />}
       <button className="cam-x" onClick={close} aria-label={t("Fermer")}>✕</button>
+      {fh && res.photo && <FaceHide src={res.photo} onClose={() => setFh(false)} onDone={(u) => { setRes({ photo: u }); setFh(false); }} />}
+      {res.photo && <button className="cam-send" style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", bottom: 205, background: "#fff", color: "#0b2c33", width: "auto", padding: "10px 18px", fontSize: 14, zIndex: 3 }} onClick={() => setFh(true)}>{t("🙂 Cacher des visages")}</button>}
       {res.photo && <button className="cam-send" style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", bottom: 150, width: "auto", padding: "10px 18px", fontSize: 14, zIndex: 3 }} onClick={() => { actions.updateProfile({ avatar: res.photo! }); toast(t("✅ Photo de profil modifiée !")); close(); }}>{t("👤 Utiliser comme photo de profil")}</button>}
       <div className="cam-bar"><button className="cam-r" onClick={() => { setRes(null); cancelled.current = false; }} aria-label={t("Recommencer")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9" /><path d="M20 4v5h-5" /></svg><small>{t("Recommencer")}</small></button>
         <button className="cam-send" onClick={() => (res.audio ? onAudio?.(res.audio) : res.video ? onVideo(res.video) : onPhoto?.(res.photo!))}>{t("Envoyer ➤")}</button>

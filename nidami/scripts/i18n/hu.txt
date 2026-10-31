@@ -931,3 +931,19 @@
 930|Profilkép
 931|Fotó nagyítása
 932|🛡 Vízjel (a neved a fotón)
+933|Nem találtunk arcot automatikusan: adj hozzá egy kört, és helyezd az arcra.
+934|Arcok elrejtése
+935|Válassz legalább egy arcot
+936|Ez a fotó nem szerkeszthető.
+937|Fotó: egy ujjal mozgatás, két ujjal nagyítás
+938|Középre
+939|Arcok keresése…
+940|Méret
+941|Érintsd meg és húzd a mozgatáshoz · két ujj vagy a csúszka a nagyításhoz
+942|Koppints egy arcra az elrejtéshez vagy megmutatáshoz. Türkiz kör = elrejtve.
+943|{n}. arc
+944|{n, plural, one{# arc elrejtése} other{# arc elrejtése}}
+945|➕ Kör hozzáadása kézzel
+946|💧 Elmosás
+947|😀 Smiley
+948|🙂 Arcok elrejtése

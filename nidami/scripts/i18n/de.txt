@@ -931,3 +931,19 @@
 930|Profilfoto
 931|Foto vergrößern
 932|🛡 Wasserzeichen (dein Name auf dem Foto)
+933|Kein Gesicht automatisch gefunden: Füge einen Kreis hinzu und platziere ihn auf dem Gesicht.
+934|Gesichter verbergen
+935|Wähle mindestens ein Gesicht
+936|Dieses Foto kann nicht bearbeitet werden.
+937|Foto: mit einem Finger verschieben, mit zwei zoomen
+938|Zentrieren
+939|Suche nach Gesichtern…
+940|Größe
+941|Tippen und ziehen zum Verschieben · zwei Finger oder der Regler zum Zoomen
+942|Tippe auf ein Gesicht, um es zu verbergen oder zu zeigen. Türkiser Kreis = verborgen.
+943|Gesicht {n}
+944|{n, plural, one{# Gesicht verbergen} other{# Gesichter verbergen}}
+945|➕ Kreis von Hand hinzufügen
+946|💧 Weichzeichnen
+947|😀 Smiley
+948|🙂 Gesichter verbergen

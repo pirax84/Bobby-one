@@ -931,3 +931,19 @@
 930|Profile photo
 931|Enlarge photo
 932|🛡 Watermark (your name on the photo)
+933|No face found automatically: add a circle and place it on the face.
+934|Hide faces
+935|Choose at least one face
+936|Can't edit this photo.
+937|Photo: move with one finger, zoom with two
+938|Recenter
+939|Looking for faces…
+940|Size
+941|Touch and drag to move · two fingers or the bar to zoom
+942|Tap a face to hide or show it. Turquoise circle = hidden.
+943|Face {n}
+944|{n, plural, one{Hide # face} other{Hide # faces}}
+945|➕ Add a circle by hand
+946|💧 Blur
+947|😀 Smiley
+948|🙂 Hide faces

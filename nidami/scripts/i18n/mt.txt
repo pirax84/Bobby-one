@@ -931,3 +931,19 @@
 930|Ritratt tal-profil
 931|Kabbar ir-ritratt
 932|🛡 Watermark (ismek fuq ir-ritratt)
+933|Ebda wiċċ misjub awtomatikament: żid ċirku u poġġih fuq il-wiċċ.
+934|Aħbi l-uċuħ
+935|Agħżel mill-inqas wiċċ wieħed
+936|Din ir-ritratt ma tistax tiġi editjata.
+937|Ritratt: ċaqlaq b'subgħajn wieħed, zoom b'tnejn
+938|Iċċentra
+939|Qed infittxu l-uċuħ…
+940|Daqs
+941|Messu u kaxkar biex iċċaqlaq · żewġ swaba' jew il-bar biex tiżżumja
+942|Messu wiċċ biex taħbih jew turih. Ċirku turkważ = moħbi.
+943|Wiċċ {n}
+944|{n, plural, one{Aħbi # wiċċ} other{Aħbi # uċuħ}}
+945|➕ Żid ċirku bl-idejn
+946|💧 Imċajpar
+947|😀 Smiley
+948|🙂 Aħbi l-uċuħ

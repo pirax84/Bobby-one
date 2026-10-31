@@ -931,3 +931,19 @@
 930|Profiilipilt
 931|Suurenda pilti
 932|🛡 Vesimärk (sinu nimi pildil)
+933|Nägu ei leitud automaatselt: lisa ring ja aseta see näole.
+934|Peida näod
+935|Vali vähemalt üks nägu
+936|Seda fotot ei saa muuta.
+937|Foto: liiguta ühe sõrmega, suumi kahega
+938|Tsentreeri
+939|Otsin nägusid…
+940|Suurus
+941|Puuduta ja lohista liigutamiseks · kaks sõrme või liugur suumimiseks
+942|Puuduta nägu, et see peita või näidata. Türkiissinine ring = peidetud.
+943|Nägu {n}
+944|{n, plural, one{Peida # nägu} other{Peida # nägu}}
+945|➕ Lisa ring käsitsi
+946|💧 Hägustamine
+947|😀 Smaili
+948|🙂 Peida näod

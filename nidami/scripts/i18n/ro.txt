@@ -931,3 +931,19 @@
 930|Poză de profil
 931|Mărește poza
 932|🛡 Filigran (numele tău pe poză)
+933|Nicio față găsită automat: adaugă un cerc și pune-l pe față.
+934|Ascunde fețe
+935|Alege cel puțin o față
+936|Poza nu poate fi editată.
+937|Poză: mută cu un deget, mărește cu două
+938|Recentrează
+939|Caut fețe…
+940|Mărime
+941|Atinge și trage pentru a muta · două degete sau bara pentru zoom
+942|Atinge o față pentru a o ascunde sau a o arăta. Cerc turcoaz = ascunsă.
+943|Fața {n}
+944|{n, plural, one{Ascunde # față} other{Ascunde # fețe}}
+945|➕ Adaugă un cerc manual
+946|💧 Estompare
+947|😀 Smiley
+948|🙂 Ascunde fețe

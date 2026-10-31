@@ -931,3 +931,19 @@
 930|Profilbillede
 931|Forstør foto
 932|🛡 Vandmærke (dit navn på fotoet)
+933|Intet ansigt fundet automatisk: tilføj en cirkel og placér den på ansigtet.
+934|Skjul ansigter
+935|Vælg mindst ét ansigt
+936|Dette foto kan ikke redigeres.
+937|Foto: flyt med én finger, zoom med to
+938|Centrér
+939|Leder efter ansigter…
+940|Størrelse
+941|Tryk og træk for at flytte · to fingre eller bjælken for at zoome
+942|Tryk på et ansigt for at skjule eller vise det. Turkis cirkel = skjult.
+943|Ansigt {n}
+944|{n, plural, one{Skjul # ansigt} other{Skjul # ansigter}}
+945|➕ Tilføj en cirkel manuelt
+946|💧 Sløring
+947|😀 Smiley
+948|🙂 Skjul ansigter

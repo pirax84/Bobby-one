@@ -931,3 +931,19 @@
 930|Profila foto
 931|Palielināt foto
 932|🛡 Ūdenszīme (tavs vārds uz foto)
+933|Seja netika atrasta automātiski: pievieno apli un novieto to uz sejas.
+934|Paslēpt sejas
+935|Izvēlies vismaz vienu seju
+936|Šo foto nevar rediģēt.
+937|Foto: pārvieto ar vienu pirkstu, tuvini ar diviem
+938|Centrēt
+939|Meklēju sejas…
+940|Izmērs
+941|Pieskaries un velc, lai pārvietotu · divi pirksti vai josla tuvināšanai
+942|Pieskaries sejai, lai to paslēptu vai parādītu. Tirkīzzaļš aplis = paslēpta.
+943|Seja {n}
+944|{n, plural, zero{Paslēpt # sejas} one{Paslēpt # seju} other{Paslēpt # sejas}}
+945|➕ Pievienot apli ar roku
+946|💧 Izplūdums
+947|😀 Smaidiņš
+948|🙂 Paslēpt sejas

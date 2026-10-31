@@ -931,3 +931,19 @@
 930|Profilna fotografija
 931|Povečaj fotografijo
 932|🛡 Vodni žig (tvoje ime na fotografiji)
+933|Nobenega obraza ni bilo najdenega samodejno: dodaj krog in ga postavi na obraz.
+934|Skrij obraze
+935|Izberi vsaj en obraz
+936|Te fotografije ni mogoče urediti.
+937|Fotografija: premikaj z enim prstom, povečaj z dvema
+938|Na sredino
+939|Iščem obraze…
+940|Velikost
+941|Dotakni se in povleci za premik · dva prsta ali drsnik za povečavo
+942|Tapni obraz, da ga skriješ ali pokažeš. Turkizni krog = skrit.
+943|Obraz {n}
+944|{n, plural, one{Skrij # obraz} two{Skrij # obraza} few{Skrij # obraze} other{Skrij # obrazov}}
+945|➕ Dodaj krog ročno
+946|💧 Zameglitev
+947|😀 Smeško
+948|🙂 Skrij obraze

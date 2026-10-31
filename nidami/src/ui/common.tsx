@@ -58,7 +58,11 @@ export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
     <path d={d} fill="none" stroke="var(--ink)" strokeWidth={s < 40 ? 7 : 6} strokeLinejoin="round" />
     {bday && (u.id === me || isFriend) && <g transform="rotate(-12 50 0)"><path d="M26 2L32 -22L42 -8L50 -26L58 -8L68 -22L74 2Z" fill="#D3EFEA" stroke="var(--ink)" strokeWidth="5" strokeLinejoin="round" /><circle cx="32" cy="-30" r="3" fill="var(--ink)" /><circle cx="50" cy="-34" r="3" fill="var(--ink)" /><circle cx="68" cy="-30" r="3" fill="var(--ink)" /></g>}</svg></span>;
 }
+/** Bloque le défilement de la page derrière une fenêtre ouverte (compteur : plusieurs fenêtres possibles). */
+let lockN = 0;
+export function useScrollLock(on = true) { useEffect(() => { if (!on) return; if (lockN++ === 0) { document.documentElement.style.overflow = "hidden"; document.body.style.overflow = "hidden"; } return () => { if (--lockN === 0) { document.documentElement.style.overflow = ""; document.body.style.overflow = ""; } }; }, [on]); }
 export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
+  useScrollLock();
   useEffect(() => { const k = (e: KeyboardEvent) => e.key === "Escape" && onClose(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [onClose]);
   return (<div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}><div className="modal" role="dialog" aria-modal="true" aria-label={title}>
     <div className="row" style={{ marginBottom: 12 }}><h2 className="grow" style={{ fontSize: "1.2rem" }}>{title}</h2><button className="btn ghost sm" onClick={onClose} aria-label={t("Fermer")}><Ico n="x" s={18} /></button></div>{children}</div></div>);

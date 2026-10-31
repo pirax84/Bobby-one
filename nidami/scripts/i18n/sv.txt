@@ -931,3 +931,19 @@
 930|Profilbild
 931|Förstora foto
 932|🛡 Vattenstämpel (ditt namn på fotot)
+933|Inget ansikte hittades automatiskt: lägg till en cirkel och placera den på ansiktet.
+934|Dölj ansikten
+935|Välj minst ett ansikte
+936|Det går inte att redigera fotot.
+937|Foto: flytta med ett finger, zooma med två
+938|Centrera
+939|Letar efter ansikten…
+940|Storlek
+941|Tryck och dra för att flytta · två fingrar eller reglaget för att zooma
+942|Tryck på ett ansikte för att dölja eller visa det. Turkos cirkel = dolt.
+943|Ansikte {n}
+944|{n, plural, one{Dölj # ansikte} other{Dölj # ansikten}}
+945|➕ Lägg till en cirkel för hand
+946|💧 Oskärpa
+947|😀 Smiley
+948|🙂 Dölj ansikten

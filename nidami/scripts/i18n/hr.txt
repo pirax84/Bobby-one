@@ -931,3 +931,19 @@
 930|Profilna fotografija
 931|Povećaj fotografiju
 932|🛡 Vodeni žig (tvoje ime na fotografiji)
+933|Nijedno lice nije automatski pronađeno: dodaj krug i postavi ga na lice.
+934|Sakrij lica
+935|Odaberi barem jedno lice
+936|Ova se fotografija ne može urediti.
+937|Fotografija: pomiči jednim prstom, zumiraj s dva
+938|Centriraj
+939|Tražim lica…
+940|Veličina
+941|Dodirni i povuci za pomicanje · dva prsta ili traka za zumiranje
+942|Dodirni lice da ga sakriješ ili prikažeš. Tirkizni krug = skriveno.
+943|Lice {n}
+944|{n, plural, one{Sakrij # lice} few{Sakrij # lica} other{Sakrij # lica}}
+945|➕ Dodaj krug ručno
+946|💧 Zamućenje
+947|😀 Smajlić
+948|🙂 Sakrij lica

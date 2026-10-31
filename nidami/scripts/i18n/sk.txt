@@ -931,3 +931,19 @@
 930|Profilová fotka
 931|Zväčšiť fotku
 932|🛡 Vodoznak (tvoje meno na fotke)
+933|Žiadna tvár nenájdená automaticky: pridaj koliesko a umiestni ho na tvár.
+934|Skryť tváre
+935|Vyber aspoň jednu tvár
+936|Túto fotku nemožno upraviť.
+937|Fotka: posúvaj jedným prstom, približuj dvoma
+938|Vycentrovať
+939|Hľadám tváre…
+940|Veľkosť
+941|Dotkni sa a ťahaj pre posun · dva prsty alebo posuvník na priblíženie
+942|Klepni na tvár na skrytie alebo zobrazenie. Tyrkysové koliesko = skrytá.
+943|Tvár {n}
+944|{n, plural, one{Skryť # tvár} few{Skryť # tváre} other{Skryť # tvárí}}
+945|➕ Pridať koliesko ručne
+946|💧 Rozmazanie
+947|😀 Smajlík
+948|🙂 Skryť tváre

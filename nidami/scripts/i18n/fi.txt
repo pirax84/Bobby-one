@@ -931,3 +931,19 @@
 930|Profiilikuva
 931|Suurenna kuva
 932|🛡 Vesileima (nimesi kuvassa)
+933|Kasvoja ei löytynyt automaattisesti: lisää ympyrä ja aseta se kasvojen päälle.
+934|Piilota kasvot
+935|Valitse vähintään yhdet kasvot
+936|Tätä kuvaa ei voi muokata.
+937|Kuva: siirrä yhdellä sormella, zoomaa kahdella
+938|Keskitä
+939|Etsitään kasvoja…
+940|Koko
+941|Kosketa ja vedä siirtääksesi · kaksi sormea tai palkki zoomaukseen
+942|Napauta kasvoja piilottaaksesi tai näyttääksesi ne. Turkoosi ympyrä = piilotettu.
+943|Kasvot {n}
+944|{n, plural, one{Piilota # kasvot} other{Piilota # kasvoa}}
+945|➕ Lisää ympyrä käsin
+946|💧 Sumennus
+947|😀 Hymiö
+948|🙂 Piilota kasvot

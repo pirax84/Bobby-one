@@ -931,3 +931,19 @@
 930|Foto profil
 931|Perbesar foto
 932|🛡 Watermark (namamu di foto)
+933|Tidak ada wajah yang ditemukan otomatis: tambahkan lingkaran dan letakkan di wajah.
+934|Sembunyikan wajah
+935|Pilih setidaknya satu wajah
+936|Foto ini tidak bisa diedit.
+937|Foto: geser dengan satu jari, zoom dengan dua
+938|Tengahkan
+939|Mencari wajah…
+940|Ukuran
+941|Sentuh dan seret untuk menggeser · dua jari atau bilah untuk zoom
+942|Ketuk wajah untuk menyembunyikan atau menampilkannya. Lingkaran turkois = tersembunyi.
+943|Wajah {n}
+944|{n, plural, other{Sembunyikan # wajah}}
+945|➕ Tambah lingkaran manual
+946|💧 Buram
+947|😀 Smiley
+948|🙂 Sembunyikan wajah

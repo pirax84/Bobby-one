@@ -931,3 +931,19 @@
 930|Profilio nuotrauka
 931|Padidinti nuotrauką
 932|🛡 Vandens ženklas (tavo vardas nuotraukoje)
+933|Veidas automatiškai nerastas: pridėk apskritimą ir uždėk jį ant veido.
+934|Slėpti veidus
+935|Pasirink bent vieną veidą
+936|Šios nuotraukos redaguoti neįmanoma.
+937|Nuotrauka: judink vienu pirštu, artink dviem
+938|Centruoti
+939|Ieškoma veidų…
+940|Dydis
+941|Palieski ir tempk, kad perkeltum · du pirštai arba juosta artinimui
+942|Palieski veidą, kad paslėptum arba parodytum. Žydras apskritimas = paslėpta.
+943|Veidas {n}
+944|{n, plural, one{Slėpti # veidą} few{Slėpti # veidus} other{Slėpti # veidų}}
+945|➕ Pridėti apskritimą ranka
+946|💧 Išblukinimas
+947|😀 Šypsenėlė
+948|🙂 Slėpti veidus

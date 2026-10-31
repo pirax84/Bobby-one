@@ -440,3 +440,16 @@ html[data-hand=left] .bottom{flex-direction:row-reverse}
 /* Pastille « changer la photo » : rond turquoise avec appareil photo, posé sur la photo de profil. */
 .camdot{position:absolute;top:58px;left:calc(50% + 20px);width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#34d6c6,#0a838b);border:3px solid #fff;box-shadow:0 4px 12px #0b2c3366;display:grid;place-items:center;padding:0;z-index:2}
 .wreath .wmedia .wfg{left:5%;top:5%;width:90%;height:72%;border-radius:0}
+
+.modal,.bpanel,.blist,.bmsgs{overscroll-behavior:contain}
+.viewer,.overlay,.cam{overscroll-behavior:none;touch-action:manipulation}
+
+/* Cadrage de la photo (story / publication) */
+.framer{position:relative;width:min(340px,100%);border-radius:20px;overflow:hidden;background:#0b2c33;border:2px solid var(--brand)}
+.framer .fbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(18px) brightness(.85);transform:scale(1.2)}
+.framer .ffg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+/* Cacher des visages */
+.fhbox{position:relative;border-radius:14px;overflow:hidden;touch-action:none}
+.fhc{position:absolute;border:3px dashed #fff;border-radius:50%;background:rgba(255,255,255,.12);padding:0;display:grid;place-items:center;font-size:2.4rem;color:#fff}
+.fhc.on{border:3px solid #34d6c6;background:rgba(52,214,198,.25);box-shadow:0 0 0 2px #fff}
+.fhc.sel{outline:3px solid #fff;outline-offset:2px}

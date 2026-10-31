@@ -931,3 +931,19 @@
 930|Profielfoto
 931|Foto vergroten
 932|🛡 Watermerk (je naam op de foto)
+933|Geen gezicht automatisch gevonden: voeg een cirkel toe en plaats die op het gezicht.
+934|Gezichten verbergen
+935|Kies minstens één gezicht
+936|Deze foto kan niet worden bewerkt.
+937|Foto: verplaats met één vinger, zoom met twee
+938|Centreren
+939|Gezichten zoeken…
+940|Grootte
+941|Tik en sleep om te verplaatsen · twee vingers of de balk om te zoomen
+942|Tik op een gezicht om het te verbergen of te tonen. Turkooizen cirkel = verborgen.
+943|Gezicht {n}
+944|{n, plural, one{# gezicht verbergen} other{# gezichten verbergen}}
+945|➕ Cirkel met de hand toevoegen
+946|💧 Vervagen
+947|😀 Smiley
+948|🙂 Gezichten verbergen

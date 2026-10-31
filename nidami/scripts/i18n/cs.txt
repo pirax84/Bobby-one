@@ -931,3 +931,19 @@
 930|Profilová fotka
 931|Zvětšit fotku
 932|🛡 Vodoznak (tvé jméno na fotce)
+933|Žádný obličej nenalezen automaticky: přidej kolečko a umísti ho na obličej.
+934|Skrýt obličeje
+935|Vyber alespoň jeden obličej
+936|Tuto fotku nelze upravit.
+937|Fotka: posouvej jedním prstem, přibližuj dvěma
+938|Vycentrovat
+939|Hledám obličeje…
+940|Velikost
+941|Dotkni se a táhni pro posun · dva prsty nebo posuvník pro přiblížení
+942|Klepni na obličej pro skrytí nebo zobrazení. Tyrkysové kolečko = skrytý.
+943|Obličej {n}
+944|{n, plural, one{Skrýt # obličej} few{Skrýt # obličeje} other{Skrýt # obličejů}}
+945|➕ Přidat kolečko ručně
+946|💧 Rozmazání
+947|😀 Smajlík
+948|🙂 Skrýt obličeje

@@ -931,3 +931,19 @@
 930|Grianghraf próifíle
 931|Méadaigh an grianghraf
 932|🛡 Comhartha uisce (d'ainm ar an ngrianghraf)
+933|Níor aimsíodh aghaidh go huathoibríoch: cuir ciorcal leis agus cuir ar an aghaidh é.
+934|Folaigh aghaidheanna
+935|Roghnaigh aghaidh amháin ar a laghad
+936|Ní féidir an grianghraf seo a chur in eagar.
+937|Grianghraf: bog le méar amháin, zúmáil le dhá mhéar
+938|Láraigh
+939|Aghaidheanna á lorg…
+940|Méid
+941|Teagmháil agus tarraing chun bogadh · dhá mhéar nó an barra chun zúmáil
+942|Tapáil aghaidh chun í a fholú nó a thaispeáint. Ciorcal tuircóis = folaithe.
+943|Aghaidh {n}
+944|{n, plural, one{Folaigh # aghaidh} other{Folaigh # aghaidh}}
+945|➕ Cuir ciorcal leis de láimh
+946|💧 Doiléiriú
+947|😀 Aoibh
+948|🙂 Folaigh aghaidheanna

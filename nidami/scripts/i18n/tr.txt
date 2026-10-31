@@ -931,3 +931,19 @@
 930|Profil fotoğrafı
 931|Fotoğrafı büyüt
 932|🛡 Filigran (adın fotoğrafın üzerinde)
+933|Otomatik yüz bulunamadı: bir daire ekle ve yüzün üstüne yerleştir.
+934|Yüzleri gizle
+935|En az bir yüz seç
+936|Bu fotoğraf düzenlenemiyor.
+937|Fotoğraf: bir parmakla taşı, iki parmakla yakınlaştır
+938|Ortala
+939|Yüzler aranıyor…
+940|Boyut
+941|Taşımak için dokun ve sürükle · yakınlaştırmak için iki parmak veya çubuk
+942|Gizlemek veya göstermek için bir yüze dokun. Turkuaz daire = gizli.
+943|Yüz {n}
+944|{n, plural, one{# yüzü gizle} other{# yüzü gizle}}
+945|➕ Elle daire ekle
+946|💧 Bulanıklaştır
+947|😀 Gülen yüz
+948|🙂 Yüzleri gizle
