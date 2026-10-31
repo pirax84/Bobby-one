@@ -256,7 +256,8 @@ html[dir="rtl"] .ltr,html[dir="rtl"] code,html[dir="rtl"] .qr{direction:ltr;unic
 .wreath .wreathsvg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .wreath .wl{stroke:url(#wg)}
 .wreath.seen .wl{stroke:var(--mute);opacity:.6}.wreath.seen .wmedia{filter:grayscale(.6) opacity(.75)}
-.story{width:88px}
+.story{width:84px;padding:0}
+.stories{gap:2px}
 /* Recherche : petit volet */
 .sbackdrop{position:fixed;inset:0;z-index:94;background:transparent}
 .spanel{position:fixed;z-index:95;max-height:min(70vh,520px);display:flex;flex-direction:column;gap:6px;background:var(--bg2);border:1px solid var(--bd);border-radius:20px;box-shadow:0 22px 50px -14px rgba(10,60,70,.5);padding:10px}
