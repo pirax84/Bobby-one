@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
-import { Wreath, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps } from "./common";
+import { Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps } from "./common";
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder, Camera } from "./Recorder";
@@ -15,7 +15,7 @@ import { t } from "../i18n";
 function preview(posts: Post[], u?: { avatar?: string | null }): { img?: string | null; video?: string | null; bg?: string; icon?: string; blur?: boolean } {
   const p = [...posts].sort((x, y) => y.createdAt - x.createdAt)[0]; if (!p) return {};
   const blur = p.viewSecs > 0 ? true : undefined;
-  if (p.img) return { img: p.img, blur }; if (p.video) return { video: p.video, blur }; if (p.viewSecs > 0) return { icon: "⏱" }; if (p.audio) return { icon: "🎤" };
+  if (p.img) return { img: p.img, blur }; if (p.video) return { video: p.video, blur }; if (p.viewSecs > 0) return { icon: "⏱" }; if (p.audio) return { icon: "mic" };
   if (p.bg !== undefined) return { bg: BG[p.bg % BG.length] };
   return u?.avatar ? { img: u.avatar } : {};
 }
@@ -30,9 +30,13 @@ export function Stories({ me }: { me: string }) {
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}
 </>);
 }
+function VoiceBox({ p, auto, story, onEnd, onTime }: { p: { audio?: string | null; text?: string }; auto: boolean; story: boolean; onEnd?: () => void; onTime?: (cur: number, dur: number) => void }) {
+  const [lv, setLv] = useState(0);
+  return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 240, flexDirection: "column", gap: 14 }}><MicIcon size={120} level={lv} /><AudioWave src={p.audio!} autoPlay={auto || story} mine onEnded={onEnd} onTime={onTime} onLevel={setLv} />{p.text && <div>{p.text}</div>}</div>;
+}
 function MediaBox({ p, label, auto = false, story = false, onEnd, onTime }: { p: { video?: string | null; audio?: string | null; text?: string }; label: string; auto?: boolean; story?: boolean; onEnd?: () => void; onTime?: (cur: number, dur: number) => void }) {
   if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} bare={story} onEnded={onEnd} onTime={onTime} /></div>;
-  if (p.audio) return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 200, flexDirection: "column", gap: 12 }}><div style={{ fontSize: "3rem" }}>🎤</div>{story ? <audio autoPlay src={p.audio} onEnded={onEnd} onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime, e.currentTarget.duration)} /> : <AudioWave src={p.audio} autoPlay={auto} mine />}{p.text && <div>{p.text}</div>}</div>;
+  if (p.audio) return <VoiceBox p={p} auto={auto} story={story} onEnd={onEnd} onTime={onTime} />;
   return null;
 }
 function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; onClose: () => void }) {

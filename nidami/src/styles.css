@@ -404,3 +404,8 @@ html[data-hand=left] .toast{left:auto}
 .cam-bar,.cam-x,.cam-flip,.cam-time{z-index:2}
 .cam-shut span{background:#34d6c6!important}.cam-shut.rec span{background:#fff!important}
 .cam-r{width:84px!important}.cam-r small{font-size:.6rem;white-space:nowrap}
+
+/* Caméra : boutons ronds Recommencer / Supprimer, même couleur qu'Envoyer */
+.cam-r{width:78px!important;height:auto!important;background:none!important;gap:6px;color:#fff;border:0}
+.cam-r svg{box-sizing:content-box;width:26px;height:26px;padding:15px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.cam-r small{font-size:.72rem!important;white-space:nowrap;opacity:.95}

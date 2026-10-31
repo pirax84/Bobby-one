@@ -1,15 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { toast } from "./common";
+import { toast, MicIcon } from "./common";
 import { stopPlayer } from "./Links";
 import { AudioWave } from "./AudioWave";
 
-/** Micro d'époque dessiné pour NOTIIF (aux couleurs de l'application). */
-export function MicIcon({ size = 120 }: { size?: number }) {
-  return (<svg width={size} height={size * 1.17} viewBox="0 0 120 140" aria-hidden="true"><defs><linearGradient id="micg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#34d6c6" /><stop offset="1" stopColor="#0A838B" /></linearGradient></defs>
-    <g stroke="#34d6c6" strokeWidth="3" strokeLinecap="round"><path d="M12 36 L22 40" /><path d="M8 58 L20 58" /><path d="M12 80 L22 76" /><path d="M108 36 L98 40" /><path d="M112 58 L100 58" /><path d="M108 80 L98 76" /><path d="M40 8 L44 18" /><path d="M60 3 L60 14" /><path d="M80 8 L76 18" /></g>
-    <g stroke="#0b2c33" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round"><rect x="38" y="20" width="44" height="72" rx="22" fill="url(#micg)" /><path d="M38 40 H82 M38 52 H82 M38 64 H82 M38 76 H82 M60 20 V92" fill="none" strokeWidth="3" /><path d="M28 62 V74 A32 32 0 0 0 92 74 V62" fill="none" /><path d="M60 106 V122" /><path d="M42 128 H78" strokeWidth="6" /></g></svg>);
-}
 import { t } from "../i18n";
 
 /** Enregistre un selfie vidéo ou un vocal (durée limitée). Rend le résultat en « data URL ». */
@@ -81,9 +75,9 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
     {res ? <>
       {res.audio ? <div className="cam-voice"><div className="cam-vplayer"><AudioWave src={res.audio} autoPlay /></div><p style={{ opacity: .8 }}>{t("Tu peux la réécouter avant d'envoyer")}</p></div> : res.video ? <video key={res.video.length} className="cam-v" src={res.video} controls autoPlay loop playsInline /> : <img className="cam-v" src={res.photo} alt={t("Aperçu")} style={{ objectFit: "contain" }} />}
       <button className="cam-x" onClick={close} aria-label={t("Fermer")}>✕</button>
-      <div className="cam-bar"><button className="cam-r" onClick={() => { setRes(null); cancelled.current = false; }} aria-label={t("Recommencer")}>🔁<small>{t("Recommencer")}</small></button>
+      <div className="cam-bar"><button className="cam-r" onClick={() => { setRes(null); cancelled.current = false; }} aria-label={t("Recommencer")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9" /><path d="M20 4v5h-5" /></svg><small>{t("Recommencer")}</small></button>
         <button className="cam-send" onClick={() => (res.audio ? onAudio?.(res.audio) : res.video ? onVideo(res.video) : onPhoto?.(res.photo!))}>{t("Envoyer ➤")}</button>
-        <button className="cam-r" onClick={close} aria-label={t("Supprimer")}>🗑<small>{t("Supprimer")}</small></button></div></>
+        <button className="cam-r" onClick={close} aria-label={t("Supprimer")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 7h16" /><path d="M9 7V4.5h6V7" /><path d="M6.5 7l1 12.5h9l1-12.5" /><path d="M10 11v5M14 11v5" /></svg><small>{t("Supprimer")}</small></button></div></>
     : <>
       <video ref={vid} muted playsInline controls={false} disablePictureInPicture poster="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style={{ position: "absolute", width: 2, height: 2, opacity: 0, pointerEvents: "none" }} /><canvas ref={cv} className="cam-v live" style={{ transform: face === "user" ? "scaleX(-1)" : undefined, visibility: ready ? "visible" : "hidden" }} />
       <button className="cam-x" onClick={close} aria-label={t("Fermer la caméra")}>✕</button>

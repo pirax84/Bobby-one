@@ -36,7 +36,7 @@ export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
 /** Bulle de BD dessinée à la main : l'aperçu de la story remplit toute la forme, avec un contour aux couleurs de l'application. */
 export function Wreath({ img, video, bg, icon, blur }: { img?: string | null; video?: string | null; bg?: string; icon?: string; blur?: boolean }) {
   return <><svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true"><clipPath id="bubbleclip" clipPathUnits="objectBoundingBox"><path transform="scale(0.01)" d="M17 12C40 5 70 5 86 13C97 22 96 55 89 70C85 79 70 81 62 80C57 81 57 88 64 95C53 91 47 85 44 80C29 81 13 78 8 66C2 50 6 22 17 12Z" /></clipPath></svg>
-    <span className={"wmedia" + (blur ? " wblur" : "")} style={{ background: bg || "var(--grad)" }}>{img ? <img src={img} alt="" /> : video ? <video src={video + "#t=0.1"} muted playsInline preload="metadata" /> : icon ? <span className="wicon">{icon}</span> : null}</span>
+    <span className={"wmedia" + (blur ? " wblur" : "")} style={{ background: bg || "var(--grad)" }}>{img ? <img src={img} alt="" /> : video ? <video src={video + "#t=0.1"} muted playsInline preload="metadata" /> : icon ? <span className="wicon">{icon === "mic" ? <MicIcon size={34} /> : icon}</span> : null}</span>
     <svg className="wreathsvg" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="var(--brand)" /><stop offset="1" stopColor="var(--brand2)" /></linearGradient></defs>
       <g className="wl" fill="none" strokeLinecap="round" strokeLinejoin="round"><path strokeWidth="4.2" d="M17 12C40 5 70 5 86 13C97 22 96 55 89 70C85 79 70 81 62 80C57 81 57 88 64 95C53 91 47 85 44 80C29 81 13 78 8 66C2 50 6 22 17 12Z" /><path strokeWidth="1.8" opacity=".75" d="M19 9C42 3 72 4 88 11C99 21 99 56 91 72C86 82 71 83 63 82" /></g></svg></>;
 }
@@ -120,4 +120,11 @@ export function pressProps(onShort: () => void, onLong: () => void) {
     onContextMenu: (e: { preventDefault: () => void }) => { e.preventDefault(); },
     style: { WebkitTouchCallout: "none", userSelect: "none" } as const,
   };
+}
+
+/** Micro d'époque dessiné pour NOTIIF (aux couleurs de l'application). */
+export function MicIcon({ size = 120, level = 0 }: { size?: number; level?: number }) {
+  return (<svg width={size} height={size * 1.17} viewBox="0 0 120 140" aria-hidden="true" style={level > 0 ? { transform: `scale(${1 + level * 0.28})`, filter: `drop-shadow(0 0 ${Math.round(level * 22)}px #34d6c6)`, transition: "transform .08s, filter .08s" } : undefined}><defs><linearGradient id="micg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#34d6c6" /><stop offset="1" stopColor="#0A838B" /></linearGradient></defs>
+    <g stroke="#34d6c6" strokeWidth="3" strokeLinecap="round"><path d="M12 36 L22 40" /><path d="M8 58 L20 58" /><path d="M12 80 L22 76" /><path d="M108 36 L98 40" /><path d="M112 58 L100 58" /><path d="M108 80 L98 76" /><path d="M40 8 L44 18" /><path d="M60 3 L60 14" /><path d="M80 8 L76 18" /></g>
+    <g stroke="#0b2c33" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round"><rect x="38" y="20" width="44" height="72" rx="22" fill="url(#micg)" /><path d="M38 40 H82 M38 52 H82 M38 64 H82 M38 76 H82 M60 20 V92" fill="none" strokeWidth="3" /><path d="M28 62 V74 A32 32 0 0 0 92 74 V62" fill="none" /><path d="M60 106 V122" /><path d="M42 128 H78" strokeWidth="6" /></g></svg>);
 }

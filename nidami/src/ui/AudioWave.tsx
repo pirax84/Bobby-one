@@ -6,8 +6,14 @@ const bars = (src: string, n: number) => { let h = 2166136261; for (let i = 0; i
 const mm = (n: number) => (isFinite(n) ? Math.floor(n / 60) + ":" + String(Math.floor(n % 60)).padStart(2, "0") : "0:00");
 
 /** Message vocal : bouton lecture + onde en barres qui se remplit. */
-export function AudioWave({ src, autoPlay = false, mine = false, onEnded, onTime }: { src: string; autoPlay?: boolean; mine?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void }) {
+export function AudioWave({ src, autoPlay = false, mine = false, onEnded, onTime, onLevel }: { src: string; autoPlay?: boolean; mine?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void; onLevel?: (level: number) => void }) {
   const au = useRef<HTMLAudioElement>(null); const [play, setPlay] = useState(false); const [cur, setCur] = useState(0); const [dur, setDur] = useState(0); const B = useMemo(() => bars(src, 34), [src]);
+  // Niveau sonore en direct (pour animer le micro quand ça parle).
+  const ac = useRef<{ ctx: AudioContext; an: AnalyserNode } | null>(null);
+  useEffect(() => { if (!onLevel || !play) { if (!play) onLevel?.(0); return; } const a = au.current; if (!a) return; let raf = 0; let dead = false;
+    try { if (!ac.current) { const Ctx = (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext); const ctx = new Ctx(); const src2 = ctx.createMediaElementSource(a); const an = ctx.createAnalyser(); an.fftSize = 256; src2.connect(an); an.connect(ctx.destination); ac.current = { ctx, an }; } void ac.current.ctx.resume(); } catch { return; }
+    const buf = new Uint8Array(ac.current!.an.frequencyBinCount); const loop = () => { if (dead) return; ac.current!.an.getByteTimeDomainData(buf); let sum = 0; for (let i = 0; i < buf.length; i++) { const v = (buf[i] - 128) / 128; sum += v * v; } onLevel(Math.min(1, Math.sqrt(sum / buf.length) * 4)); raf = requestAnimationFrame(loop); }; loop();
+    return () => { dead = true; cancelAnimationFrame(raf); }; }, [play, onLevel]);
   useEffect(() => { if (autoPlay) void au.current?.play().catch(() => {}); }, [autoPlay]);
   const toggle = () => { const a = au.current; if (!a) return; if (a.paused) { if (current && current !== a) current.pause(); current = a; void a.play().catch(() => {}); } else a.pause(); };
   const seek = (e: React.MouseEvent<HTMLDivElement>) => { e.stopPropagation(); const a = au.current; if (!a || !isFinite(a.duration)) return; const r = e.currentTarget.getBoundingClientRect(); a.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * a.duration; };
