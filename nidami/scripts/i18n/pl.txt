@@ -907,3 +907,4 @@
 906|Możesz jej posłuchać przed wysłaniem
 907|Głos
 908|Przytrzymaj, by mówić · puść, by zakończyć
+909|Rozmowy

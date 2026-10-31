@@ -907,3 +907,4 @@
 906|Du kan lyssna på den innan du skickar
 907|Röst
 908|Håll för att tala · släpp för att avsluta
+909|Samtal

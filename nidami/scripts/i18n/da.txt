@@ -907,3 +907,4 @@
 906|Du kan lytte til den før du sender
 907|Lyd
 908|Hold for at tale · slip for at slutte
+909|Samtaler

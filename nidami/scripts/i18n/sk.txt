@@ -907,3 +907,4 @@
 906|Môžeš si ju vypočuť pred odoslaním
 907|Hlas
 908|Drž a hovor · pusti na dokončenie
+909|Konverzácie

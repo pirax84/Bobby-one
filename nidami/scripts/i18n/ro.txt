@@ -907,3 +907,4 @@
 906|O poți asculta înainte de trimitere
 907|Voce
 908|Ține apăsat pentru a vorbi · eliberează pentru a termina
+909|Conversații

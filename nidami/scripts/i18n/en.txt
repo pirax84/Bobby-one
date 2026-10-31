@@ -907,3 +907,4 @@
 906|You can listen to it before sending
 907|Voice
 908|Hold to speak · release to finish
+909|Chats

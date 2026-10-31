@@ -907,3 +907,4 @@
 906|Saad seda enne saatmist kuulata
 907|Hääl
 908|Hoia rääkimiseks · lõpetamiseks lase lahti
+909|Vestlused

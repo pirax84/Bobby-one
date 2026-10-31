@@ -907,3 +907,4 @@
 906|Pred pošiljanjem jo lahko poslušaš
 907|Glas
 908|Drži za govor · spusti za konec
+909|Pogovori

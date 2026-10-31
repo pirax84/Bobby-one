@@ -907,3 +907,4 @@
 906|Kamu bisa mendengarkannya sebelum mengirim
 907|Suara
 908|Tahan untuk bicara · lepas untuk selesai
+909|Obrolan

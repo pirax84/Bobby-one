@@ -907,3 +907,4 @@
 906|Göndermeden önce dinleyebilirsin
 907|Ses
 908|Konuşmak için basılı tut · bitirmek için bırak
+909|Sohbetler
