@@ -18,7 +18,7 @@ export type Audience =
 
 export interface Group { id: ID; name: string; emoji: string; description: string; rules: string; adminIds: ID[]; memberIds: ID[] }
 export interface FriendList { id: ID; ownerId: ID; name: string; memberIds: ID[] }
-export interface Comment { id: ID; authorId: ID; text: string; at: number; replyTo?: ID }
+export interface Comment { id: ID; authorId: ID; text: string; at: number; replyTo?: ID; reacts?: Record<ID, string> }
 export interface Post {
   id: ID; authorId: ID; kind: "text" | "photo" | "video" | "audio"; text: string; img?: string | null; video?: string | null; audio?: string | null; albumId?: ID; bg?: number;
   mood?: string; story?: boolean; link?: string;

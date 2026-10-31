@@ -892,3 +892,6 @@
 891|📌 Anheften
 892|✎ Bearbeiten
 893|Weit
+894|Auf Kommentar reagieren
+895|Antwort an {name}
+896|Antwort abbrechen

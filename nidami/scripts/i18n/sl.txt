@@ -892,3 +892,6 @@
 891|📌 Pripni
 892|✎ Uredi
 893|Široko
+894|Odzovi se na komentar
+895|Odgovor uporabniku {name}
+896|Prekliči odgovor

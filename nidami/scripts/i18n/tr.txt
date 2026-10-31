@@ -892,3 +892,6 @@
 891|📌 Sabitle
 892|✎ Düzenle
 893|Geniş
+894|Yoruma tepki ver
+895|{name} kişisine yanıt
+896|Yanıtı iptal et

@@ -892,3 +892,6 @@
 891|📌 Kinnita
 892|✎ Muuda
 893|Lai
+894|Reageeri kommentaarile
+895|Vastus kasutajale {name}
+896|Tühista vastus

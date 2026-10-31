@@ -892,3 +892,6 @@
 891|📌 Fissa
 892|✎ Modifica
 893|Ampio
+894|Reagisci al commento
+895|Risposta a {name}
+896|Annulla risposta

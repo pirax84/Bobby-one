@@ -892,3 +892,6 @@
 891|📌 Kitűzés
 892|✎ Szerkesztés
 893|Széles
+894|Reagálás a hozzászólásra
+895|Válasz neki: {name}
+896|Válasz elvetése

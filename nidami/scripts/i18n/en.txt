@@ -892,3 +892,6 @@
 891|📌 Pin
 892|✎ Edit
 893|Wide
+894|React to this comment
+895|Reply to {name}
+896|Cancel reply

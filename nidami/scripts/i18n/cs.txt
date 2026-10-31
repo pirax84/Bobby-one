@@ -892,3 +892,6 @@
 891|📌 Připnout
 892|✎ Upravit
 893|Široký
+894|Reagovat na komentář
+895|Odpověď pro {name}
+896|Zrušit odpověď

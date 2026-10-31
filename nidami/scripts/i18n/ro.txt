@@ -892,3 +892,6 @@
 891|📌 Fixează
 892|✎ Editează
 893|Larg
+894|Reacționează la comentariu
+895|Răspuns pentru {name}
+896|Anulează răspunsul

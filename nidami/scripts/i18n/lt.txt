@@ -892,3 +892,6 @@
 891|📌 Prisegti
 892|✎ Redaguoti
 893|Platus
+894|Reaguoti į komentarą
+895|Atsakymas {name}
+896|Atšaukti atsakymą

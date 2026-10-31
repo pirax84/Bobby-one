@@ -892,3 +892,6 @@
 891|📌 Waħħal
 892|✎ Editja
 893|Wiesa
+894|Irreaġixxi għall-kumment
+895|Tweġiba lil {name}
+896|Ikkanċella t-tweġiba

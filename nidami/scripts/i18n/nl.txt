@@ -892,3 +892,6 @@
 891|📌 Vastmaken
 892|✎ Bewerken
 893|Breed
+894|Reageer op de reactie
+895|Antwoord aan {name}
+896|Antwoord annuleren

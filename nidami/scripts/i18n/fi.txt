@@ -892,3 +892,6 @@
 891|📌 Kiinnitä
 892|✎ Muokkaa
 893|Laaja
+894|Reagoi kommenttiin
+895|Vastaus käyttäjälle {name}
+896|Peruuta vastaus

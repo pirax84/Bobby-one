@@ -892,3 +892,6 @@
 891|📌 Fäst
 892|✎ Redigera
 893|Bred
+894|Reagera på kommentaren
+895|Svar till {name}
+896|Avbryt svar

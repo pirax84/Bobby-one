@@ -363,3 +363,7 @@ html[dir=rtl] .setch{transform:scaleX(-1)}
 /* Amis : rubriques qui s'ouvrent */
 .acc{display:flex;flex-direction:column;gap:8px}
 .accbody{padding:2px 4px 6px 10px}
+
+/* Commentaires : réactions et réponses */
+.react.sm{padding:2px 8px;min-height:30px;font-size:.95rem}
+.cact{background:none;border:0;padding:4px 6px;min-height:30px}

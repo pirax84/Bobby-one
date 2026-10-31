@@ -892,3 +892,6 @@
 891|📌 Fijar
 892|✎ Editar
 893|Amplio
+894|Reaccionar al comentario
+895|Respuesta a {name}
+896|Cancelar respuesta

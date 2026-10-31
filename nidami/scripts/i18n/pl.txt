@@ -892,3 +892,6 @@
 891|📌 Przypnij
 892|✎ Edytuj
 893|Szeroki
+894|Zareaguj na komentarz
+895|Odpowiedź dla {name}
+896|Anuluj odpowiedź

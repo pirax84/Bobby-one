@@ -892,3 +892,6 @@
 891|📌 Piespraust
 892|✎ Rediģēt
 893|Plašs
+894|Reaģēt uz komentāru
+895|Atbilde lietotājam {name}
+896|Atcelt atbildi
