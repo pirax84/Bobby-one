@@ -860,3 +860,7 @@
 859|Objave
 860|Nema rezultata.
 861|Upišite barem 2 slova.
+862|Veza s osobom {name}
+863|Favorit
+864|Prijatelj
+865|Nema

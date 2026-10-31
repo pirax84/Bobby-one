@@ -860,3 +860,7 @@
 859|Publicaciones
 860|Sin resultados.
 861|Escribe al menos 2 letras.
+862|Vínculo con {name}
+863|Favorito
+864|Amigo
+865|Ninguno

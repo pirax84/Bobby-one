@@ -860,3 +860,7 @@
 859|Postingan
 860|Tidak ada hasil.
 861|Ketik minimal 2 huruf.
+862|Hubungan dengan {name}
+863|Favorit
+864|Teman
+865|Tidak ada

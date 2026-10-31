@@ -860,3 +860,7 @@
 859|Bejegyzések
 860|Nincs találat.
 861|Írj be legalább 2 betűt.
+862|Kapcsolat: {name}
+863|Kedvenc
+864|Barát
+865|Nincs

@@ -860,3 +860,7 @@
 859|Opslag
 860|Ingen resultater.
 861|Skriv mindst 2 bogstaver.
+862|Forhold til {name}
+863|Favorit
+864|Ven
+865|Ingen

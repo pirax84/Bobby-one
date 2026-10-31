@@ -860,3 +860,7 @@
 859|Inlägg
 860|Inga resultat.
 861|Skriv minst 2 bokstäver.
+862|Relation till {name}
+863|Favorit
+864|Vän
+865|Ingen

@@ -860,3 +860,7 @@
 859|Gönderiler
 860|Sonuç yok.
 861|En az 2 harf yazın.
+862|{name} ile bağ
+863|Favori
+864|Arkadaş
+865|Yok

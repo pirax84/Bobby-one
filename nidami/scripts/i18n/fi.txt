@@ -860,3 +860,7 @@
 859|Julkaisut
 860|Ei tuloksia.
 861|Kirjoita vähintään 2 kirjainta.
+862|Suhde: {name}
+863|Suosikki
+864|Ystävä
+865|Ei mitään

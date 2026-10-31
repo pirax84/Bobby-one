@@ -860,3 +860,7 @@
 859|Posty
 860|Brak wyników.
 861|Wpisz co najmniej 2 litery.
+862|Relacja z {name}
+863|Ulubiony
+864|Przyjaciel
+865|Brak

@@ -7,7 +7,7 @@ import { FX, FX_KEYS, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate } from "../
 import { favOf, DEFAULT_FAV } from "./FxBar";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from "./common";
 import { Home } from "./Home";
-import { t, locale } from "../i18n";
+import { t, T, locale } from "../i18n";
 import { LangPicker } from "./LangPicker";
 
 export const inviteLink = (code: string) => location.origin + location.pathname.replace(/index\.html$/, "") + "#add=" + code;
@@ -79,6 +79,7 @@ export function Friends({ go }: { go: (v: string) => void }) {
     {rep && <Modal title={t("Signaler cette personne")} onClose={() => setRep(null)}><div className="col" style={{ gap: 8 }}><p className="muted small" style={{ margin: 0 }}>{t("Pourquoi ? Trois signalements de personnes différentes suspendent automatiquement le compte le temps d'une vérification.")}</p>{[t("Faux profil"), t("Vente, publicité ou démarchage"), t("Arnaque"), t("Propositions sexuelles ou escorting"), t("Contenu illégal"), t("Harcèlement"), t("Autre")].map((w) => <button key={w} className="btn ghost" onClick={() => { actions.report(rep, w); toast(t("Merci, signalement enregistré.")); setRep(null); }}>{w}</button>)}</div></Modal>}
     {ct && <InviteContacts onClose={() => setCt(false)} />}
     {menu && (() => { const f = userOf(s, menu); if (!f) return null; return <Modal title={f.name} onClose={() => setMenu(null)}><div className="col" style={{ gap: 8 }}><div className="row"><Avatar u={f} s={48} /><div className="muted small">@{f.handle}</div></div>
+      <div><b className="small">{t("Lien avec {name}", { name: f.name })}</b><div className="chiprow" style={{ marginTop: 6 }}>{([[undefined, T("Aucun")], ["family", T("Famille")], ["fav", T("Favori")]] as const).map(([k, l]) => <button key={l} className={"chip" + ((s.social.ties?.[f.id] || undefined) === k ? " on" : "")} onClick={() => actions.setTie(f.id, k || null)}>{k === "family" ? "❤ " : k === "fav" ? "★ " : ""}{t(l)}</button>)}</div></div>
       <button className="btn" onClick={() => { actions.startDm(f.id); setMenu(null); go("messages"); }}>{t("💬 Écrire")}</button>
       <button className="btn ghost" onClick={() => { if (confirm(t("Retirer {name} de vos amis ?", { name: f.name }))) { actions.unfriend(f.id); setMenu(null); } }}>{t("Retirer des amis")}</button>
       <button className="btn ghost" onClick={() => { setRep(f.id); setMenu(null); }}>{t("Signaler")}</button>

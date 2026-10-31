@@ -32,7 +32,7 @@ export interface Post {
   purged?: boolean;                          // fichier supprimé du stockage
   sharedFrom?: ID; shareId?: ID;             // republication AUTORISÉE : simple référence vers l'original (aucune copie)
 }
-export interface Social { friends: Record<ID, ID[]>; blocks: Record<ID, ID[]>; groups: Group[]; lists: FriendList[] }
+export interface Social { ties?: Record<ID, "family" | "fav">; friends: Record<ID, ID[]>; blocks: Record<ID, ID[]>; groups: Group[]; lists: FriendList[] }
 
 export const VIEW_CHOICES = [3, 5, 10, 30, 60] as const;      // secondes proposées
 export const MAX_CUSTOM_SECS = 600;                          // durée personnalisée : 1 s à 10 min

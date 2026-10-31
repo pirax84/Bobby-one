@@ -860,3 +860,7 @@
 859|Ieraksti
 860|Nav rezultātu.
 861|Ierakstiet vismaz 2 burtus.
+862|Saikne ar {name}
+863|Izlase
+864|Draugs
+865|Nav

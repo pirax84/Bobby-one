@@ -860,3 +860,7 @@
 859|Postitused
 860|Tulemusi pole.
 861|Kirjuta vähemalt 2 tähte.
+862|Seos: {name}
+863|Lemmik
+864|Sõber
+865|Puudub

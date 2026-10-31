@@ -860,3 +860,7 @@
 859|Beiträge
 860|Keine Ergebnisse.
 861|Gib mindestens 2 Buchstaben ein.
+862|Beziehung zu {name}
+863|Favorit
+864|Freund
+865|Keine

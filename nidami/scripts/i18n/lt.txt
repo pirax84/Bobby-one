@@ -860,3 +860,7 @@
 859|Įrašai
 860|Rezultatų nėra.
 861|Įveskite bent 2 raides.
+862|Ryšys su {name}
+863|Mėgstamiausias
+864|Draugas
+865|Nėra

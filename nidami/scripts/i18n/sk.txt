@@ -860,3 +860,7 @@
 859|Príspevky
 860|Žiadne výsledky.
 861|Napíšte aspoň 2 písmená.
+862|Vzťah k {name}
+863|Obľúbený
+864|Priateľ
+865|Žiadny

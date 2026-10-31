@@ -860,3 +860,7 @@
 859|Berichten op je tijdlijn
 860|Geen resultaten.
 861|Typ minstens 2 letters.
+862|Band met {name}
+863|Favoriet
+864|Vriend
+865|Geen

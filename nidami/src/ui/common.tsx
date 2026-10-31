@@ -42,12 +42,18 @@ export function Wreath({ img, video, bg, icon }: { img?: string | null; video?: 
 }
 export const Logo = ({ s = 44 }: { s?: number }) => <img src={s > 96 ? "./logo-512.png" : "./logo-192.png"} width={s} height={s} alt={t("Logo NOTIIF")} style={{ borderRadius: s * 0.24 }} />;
 
+const SHAPES: Record<string, string> = { puffy: "M50.0 0.0C57.6 -0.0 65.3 10.9 72.9 16.4C80.5 22.0 93.3 25.9 95.7 33.2C98.0 40.4 90.0 51.1 87.1 60.1C84.2 69.0 84.4 82.3 78.2 86.8C72.0 91.3 59.4 87.0 50.0 87.0C40.6 87.0 28.0 91.3 21.8 86.8C15.6 82.3 15.8 69.0 12.9 60.1C10.0 51.1 2.0 40.4 4.3 33.2C6.7 25.9 19.5 22.0 27.1 16.4C34.7 10.9 42.4 0.0 50.0 0.0Z", star: "M50.0 0.0C55.5 -0.0 58.2 23.4 66.5 29.3C74.7 35.3 97.8 30.7 99.5 35.9C101.2 41.1 79.8 51.0 76.6 60.7C73.5 70.3 85.0 90.8 80.6 94.1C76.1 97.3 60.2 80.0 50.0 80.0C39.8 80.0 23.9 97.3 19.4 94.1C15.0 90.8 26.5 70.3 23.4 60.7C20.2 51.0 -1.2 41.1 0.5 35.9C2.2 30.7 25.3 35.3 33.5 29.3C41.8 23.4 44.5 0.0 50.0 0.0Z", heart: "M50 82C14 58 5 44 5 30C5 14 18 6 30 6C40 6 47 11 50 19C53 11 60 6 70 6C82 6 95 14 95 30C95 44 86 58 50 82Z", hex: "M50 4L92 26L92 68L50 90L8 68L8 26Z" };
+/** Photo de profil en forme : étoile arrondie pour moi, cœur pour la famille, étoile pour les favoris, hexagone pour les autres. */
 export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
-  const me = useStore((x) => x.me); const isFriend = useStore((x) => !!u && (x.social.friends[x.me] || []).includes(u.id));
+  const me = useStore((x) => x.me); const isFriend = useStore((x) => !!u && (x.social.friends[x.me] || []).includes(u.id)); const tie = useStore((x) => (u ? x.social.ties?.[u.id] : undefined));
   if (!u) return <div className="av" style={{ width: s, height: s, background: "#555" }}>?</div>;
   const vis = u.avatarVis || "friends"; const show = !!u.avatar && (u.id === me || vis === "all" || (vis === "friends" && isFriend));
-  const st: React.CSSProperties = show ? { backgroundImage: `url(${u.avatar})` } : { background: `linear-gradient(135deg,hsl(${u.hue} 80% 62%),hsl(${(u.hue + 50) % 360} 75% 48%))` };
-  return <div className="av" style={{ width: s, height: s, fontSize: s * 0.42, ...st }} aria-label={u.name}>{show ? "" : u.name.slice(0, 1).toUpperCase()}</div>;
+  const shape = u.id === me ? "puffy" : tie === "family" ? "heart" : tie === "fav" ? "star" : "hex";
+  const g = u.id === me || tie === "family" ? "ga" : tie === "fav" ? "gb" : isFriend ? "gc" : "gd"; const d = SHAPES[shape];
+  return <span className="avs" style={{ width: s, height: s }} aria-label={u.name} role="img"><svg viewBox="-4 -4 108 108" width={s} height={s} aria-hidden="true">
+    <path d={d} fill={`url(#${g})`} />
+    {show ? <image href={u.avatar!} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${shape})`} /> : <text x="50" y={shape === "star" ? 62 : 58} textAnchor="middle" fontSize="36" fontWeight="800" fill="#fff" fontFamily="system-ui,sans-serif">{u.name.slice(0, 1).toUpperCase()}</text>}
+    <path d={d} fill="none" stroke="var(--ink)" strokeWidth={s < 40 ? 7 : 6} strokeLinejoin="round" /></svg></span>;
 }
 export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   useEffect(() => { const k = (e: KeyboardEvent) => e.key === "Escape" && onClose(); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [onClose]);

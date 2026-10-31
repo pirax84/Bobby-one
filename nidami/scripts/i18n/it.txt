@@ -860,3 +860,7 @@
 859|Post
 860|Nessun risultato.
 861|Scrivi almeno 2 lettere.
+862|Legame con {name}
+863|Preferito
+864|Amico
+865|Nessuno

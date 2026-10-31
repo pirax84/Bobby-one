@@ -860,3 +860,7 @@
 859|Postijiet
 860|Ebda riżultat.
 861|Ikteb mill-inqas 2 ittri.
+862|Rabta ma' {name}
+863|Favorit
+864|Ħabib
+865|L-ebda

@@ -860,3 +860,7 @@
 859|Poist
 860|Gan torthaí.
 861|Scríobh 2 litir ar a laghad.
+862|Nasc le {name}
+863|Ceann is fearr leat
+864|Cara
+865|Ceann ar bith

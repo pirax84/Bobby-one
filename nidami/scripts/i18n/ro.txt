@@ -860,3 +860,7 @@
 859|Postări
 860|Niciun rezultat.
 861|Scrie cel puțin 2 litere.
+862|Legătura cu {name}
+863|Favorit
+864|Prieten
+865|Niciuna

@@ -269,3 +269,34 @@ html[dir="rtl"] .ltr,html[dir="rtl"] code,html[dir="rtl"] .qr{direction:ltr;unic
 .bottom,.bfab{transition:opacity .25s,transform .25s}
 html.moving .bottom{opacity:0;transform:translateY(120%);pointer-events:none}
 html.moving .bfab{opacity:0;pointer-events:none}
+
+/* ===== Style bulles de BD ===== */
+:root{--ink:#04141a;--shade:var(--brand)}
+[data-theme=light]{--ink:#0B1F26}
+.avs{display:inline-block;flex:none;line-height:0;filter:drop-shadow(2px 2px 0 var(--shade))}
+.avs svg{display:block;overflow:visible}
+.topme{box-shadow:none!important;border-radius:0!important;background:none;padding:0}
+.tcenter{display:flex;justify-content:center;align-items:center}.tw{display:none;height:30px;width:auto}
+.card,.modal,.spanel,.right .card{border:2.5px solid var(--ink)!important;box-shadow:4px 4px 0 var(--shade)!important;border-radius:22px 14px 24px 12px / 14px 24px 12px 22px!important}
+.modal{box-shadow:6px 6px 0 var(--shade)!important}
+.btn:not(.ghost):not(.danger){border:2.5px solid var(--ink)!important;box-shadow:3px 3px 0 var(--ink)!important;background:linear-gradient(135deg,#0A838B,#0E7FA6)!important;color:#fff!important;border-radius:16px 8px 18px 8px / 8px 18px 8px 16px!important}
+.btn:not(.ghost):not(.danger):active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)!important}
+.btn.ghost,.btn.danger{border:2.5px solid var(--ink)!important;border-radius:16px 8px 18px 8px / 8px 18px 8px 16px!important}
+.chip{border:2.5px solid var(--ink)!important;border-radius:14px 6px 14px 6px!important;box-shadow:2px 2px 0 var(--shade)}
+.chip:nth-child(even){transform:rotate(-1deg)}.chip:nth-child(odd){transform:rotate(.8deg)}
+.chip.on{background:linear-gradient(135deg,#0A838B,#0E7FA6)!important;color:#fff!important;box-shadow:2px 2px 0 var(--ink)}
+.inp{border:2.5px solid var(--ink)!important;border-radius:14px 6px 14px 6px!important}
+.topb{border:2.5px solid var(--ink)!important;border-radius:12px 5px 12px 5px!important;background:var(--bg2)!important;box-shadow:2px 2px 0 var(--shade)}
+.topr{border:0!important;background:none!important;box-shadow:none!important;padding:0!important;gap:5px!important}
+.topr .topb{width:34px!important;height:34px!important}
+.badge{background:linear-gradient(135deg,#0A838B,#0E7FA6)!important;border:2px solid var(--ink)!important;color:#fff!important;border-radius:8px 3px 8px 3px!important}
+.bottom{border:2.5px solid var(--ink)!important;box-shadow:4px 4px 0 var(--ink)!important;border-radius:26px 12px 26px 12px / 12px 26px 12px 26px!important}
+.bottom .plus{border:3px solid var(--ink)!important;border-radius:28px 28px 8px 28px!important;box-shadow:3px 3px 0 var(--ink)!important;width:66px!important;height:60px!important}
+.bfab{border:2.5px solid var(--ink)!important;border-radius:22px 22px 22px 4px!important;box-shadow:3px 3px 0 var(--ink)!important;width:58px!important;height:52px!important}
+.bubble{border:2.5px solid var(--ink)!important;border-radius:16px 16px 16px 4px!important;box-shadow:3px 3px 0 var(--shade);position:relative}
+.bubble.me{border-radius:16px 16px 4px 16px!important;box-shadow:-3px 3px 0 var(--ink)}
+@media (max-width:760px){
+ .brandbar,.main>.brandbar{display:none!important}
+ .tw{display:block}
+ .top{padding:6px 0 12px!important}
+}

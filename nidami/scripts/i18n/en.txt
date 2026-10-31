@@ -860,3 +860,7 @@
 859|Posts
 860|No results.
 861|Type at least 2 letters.
+862|Link with {name}
+863|Favorite
+864|Friend
+865|None
