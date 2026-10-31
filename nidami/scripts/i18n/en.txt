@@ -904,3 +904,6 @@
 903|Pause
 904|Play
 905|Position
+906|You can listen to it before sending
+907|Voice
+908|Hold to speak · release to finish

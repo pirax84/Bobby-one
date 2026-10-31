@@ -904,3 +904,6 @@
 903|Pauză
 904|Redă
 905|Poziție
+906|O poți asculta înainte de trimitere
+907|Voce
+908|Ține apăsat pentru a vorbi · eliberează pentru a termina

@@ -904,3 +904,6 @@
 903|Jeda
 904|Putar
 905|Posisi
+906|Kamu bisa mendengarkannya sebelum mengirim
+907|Suara
+908|Tahan untuk bicara · lepas untuk selesai

@@ -904,3 +904,6 @@
 903|Pauzė
 904|Groti
 905|Padėtis
+906|Prieš siųsdamas gali ją išklausyti
+907|Balsas
+908|Laikyk ir kalbėk · paleisk, kad baigtum

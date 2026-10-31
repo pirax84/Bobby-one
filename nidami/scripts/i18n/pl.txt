@@ -904,3 +904,6 @@
 903|Pauza
 904|Odtwórz
 905|Pozycja
+906|Możesz jej posłuchać przed wysłaniem
+907|Głos
+908|Przytrzymaj, by mówić · puść, by zakończyć

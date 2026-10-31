@@ -904,3 +904,6 @@
 903|Pozastavit
 904|Přehrát
 905|Pozice
+906|Můžeš si ji poslechnout před odesláním
+907|Hlas
+908|Drž a mluv · pusť pro dokončení

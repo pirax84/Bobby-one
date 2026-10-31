@@ -904,3 +904,6 @@
 903|Pause
 904|Abspielen
 905|Position
+906|Du kannst sie vor dem Senden anhören
+907|Sprache
+908|Halten zum Sprechen · loslassen zum Beenden

@@ -904,3 +904,6 @@
 903|Sos
 904|Seinn
 905|Suíomh
+906|Is féidir leat éisteacht léi roimh sheoladh
+907|Guth
+908|Coinnigh chun labhairt · scaoil chun críochnú

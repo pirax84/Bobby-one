@@ -904,3 +904,6 @@
 903|Pausa
 904|Riproduci
 905|Posizione
+906|Puoi riascoltarlo prima di inviare
+907|Vocale
+908|Tieni premuto per parlare · rilascia per finire

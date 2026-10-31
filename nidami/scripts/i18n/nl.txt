@@ -904,3 +904,6 @@
 903|Pauze
 904|Afspelen
 905|Positie
+906|Je kunt het beluisteren voordat je verstuurt
+907|Spraak
+908|Houd vast om te spreken · laat los om te stoppen

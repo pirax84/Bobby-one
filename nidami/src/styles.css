@@ -395,3 +395,12 @@ html[data-hand=left] .bfab{right:auto!important;left:14px}
 html[data-hand=left] .bottom{flex-direction:row-reverse}
 html[data-hand=left] .toast{left:auto}
 .composer.voice .tool{display:none}
+
+/* Caméra : mode Vocal */
+.cam-voice{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(#0b3a44,#052029);color:#fff;z-index:1;text-align:center;padding:0 24px 220px}
+.cam-vtime{font-size:2.4rem;font-weight:800;font-variant-numeric:tabular-nums}
+.livebars.cam i{background:rgba(52,214,198,.45)}.livebars.cam.on i{background:#34d6c6}
+.cam-vplayer{width:min(360px,100%);background:#fff;border-radius:26px;padding:10px 14px;color:#0b2c33}
+.cam-bar,.cam-x,.cam-flip,.cam-time{z-index:2}
+.cam-shut span{background:#34d6c6!important}.cam-shut.rec span{background:#fff!important}
+.cam-r{width:84px!important}.cam-r small{font-size:.6rem;white-space:nowrap}

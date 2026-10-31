@@ -904,3 +904,6 @@
 903|Pozastaviť
 904|Prehrať
 905|Pozícia
+906|Môžeš si ju vypočuť pred odoslaním
+907|Hlas
+908|Drž a hovor · pusti na dokončenie

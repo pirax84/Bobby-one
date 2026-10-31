@@ -904,3 +904,6 @@
 903|Pause
 904|Afspil
 905|Position
+906|Du kan lytte til den før du sender
+907|Lyd
+908|Hold for at tale · slip for at slutte

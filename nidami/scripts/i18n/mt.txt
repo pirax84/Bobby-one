@@ -904,3 +904,6 @@
 903|Pawża
 904|Ixgħel
 905|Pożizzjoni
+906|Tista' tisimgħu qabel tibgħatu
+907|Vuċi
+908|Żomm biex titkellem · ħalli biex tispiċċa

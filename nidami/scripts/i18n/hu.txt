@@ -904,3 +904,6 @@
 903|Szünet
 904|Lejátszás
 905|Pozíció
+906|Küldés előtt meghallgathatod
+907|Hang
+908|Tartsd a beszédhez · engedd el a befejezéshez

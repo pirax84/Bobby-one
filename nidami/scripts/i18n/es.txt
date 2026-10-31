@@ -904,3 +904,6 @@
 903|Pausa
 904|Reproducir
 905|Posición
+906|Puedes escucharla antes de enviar
+907|Voz
+908|Mantén para hablar · suelta para terminar

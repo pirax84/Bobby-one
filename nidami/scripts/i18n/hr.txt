@@ -904,3 +904,6 @@
 903|Pauza
 904|Reproduciraj
 905|Položaj
+906|Možeš je poslušati prije slanja
+907|Glas
+908|Drži za govor · pusti za kraj

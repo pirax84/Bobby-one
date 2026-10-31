@@ -904,3 +904,6 @@
 903|Tauko
 904|Toista
 905|Kohta
+906|Voit kuunnella sen ennen lähettämistä
+907|Ääni
+908|Pidä puhuaksesi · päätä päästämällä irti
