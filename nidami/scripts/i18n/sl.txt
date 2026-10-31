@@ -856,3 +856,7 @@
 855|Potovanja
 856|Predmeti
 857|Simboli
+858|Nove osebe
+859|Objave
+860|Ni rezultatov.
+861|Vpišite vsaj 2 črki.

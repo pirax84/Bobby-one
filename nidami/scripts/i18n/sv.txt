@@ -856,3 +856,7 @@
 855|Resor
 856|Föremål
 857|Symboler
+858|Nya personer
+859|Inlägg
+860|Inga resultat.
+861|Skriv minst 2 bokstäver.

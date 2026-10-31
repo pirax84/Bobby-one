@@ -856,3 +856,7 @@
 855|Călătorii
 856|Obiecte
 857|Simboluri
+858|Persoane noi
+859|Postări
+860|Niciun rezultat.
+861|Scrie cel puțin 2 litere.

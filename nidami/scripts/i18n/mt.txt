@@ -856,3 +856,7 @@
 855|Ivvjaġġar
 856|Oġġetti
 857|Simboli
+858|Nies ġodda
+859|Postijiet
+860|Ebda riżultat.
+861|Ikteb mill-inqas 2 ittri.

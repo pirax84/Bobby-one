@@ -856,3 +856,7 @@
 855|Perjalanan
 856|Benda
 857|Simbol
+858|Orang baru
+859|Postingan
+860|Tidak ada hasil.
+861|Ketik minimal 2 huruf.

@@ -856,3 +856,7 @@
 855|Ceļojumi
 856|Priekšmeti
 857|Simboli
+858|Jauni cilvēki
+859|Ieraksti
+860|Nav rezultātu.
+861|Ierakstiet vismaz 2 burtus.

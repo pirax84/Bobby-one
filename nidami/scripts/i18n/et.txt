@@ -856,3 +856,7 @@
 855|Reisimine
 856|Esemed
 857|Sümbolid
+858|Uued inimesed
+859|Postitused
+860|Tulemusi pole.
+861|Kirjuta vähemalt 2 tähte.

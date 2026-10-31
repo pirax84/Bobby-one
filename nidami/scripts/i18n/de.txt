@@ -856,3 +856,7 @@
 855|Reisen
 856|Gegenstände
 857|Symbole
+858|Neue Personen
+859|Beiträge
+860|Keine Ergebnisse.
+861|Gib mindestens 2 Buchstaben ein.

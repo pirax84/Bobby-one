@@ -856,3 +856,7 @@
 855|Rejser
 856|Ting
 857|Symboler
+858|Nye personer
+859|Opslag
+860|Ingen resultater.
+861|Skriv mindst 2 bogstaver.

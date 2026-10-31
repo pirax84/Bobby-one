@@ -856,3 +856,7 @@
 855|Podróże
 856|Przedmioty
 857|Symbole
+858|Nowe osoby
+859|Posty
+860|Brak wyników.
+861|Wpisz co najmniej 2 litery.

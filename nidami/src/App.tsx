@@ -11,6 +11,7 @@ import { LegalView } from "./ui/Legal";
 import { Shares } from "./ui/Shares";
 import { Onboarding, needInstall } from "./ui/Auth";
 import { ChatBubble } from "./ui/Bubble";
+import { SearchTop } from "./ui/Search";
 import { MiniPlayer } from "./ui/Links";
 import { playFx, playCustom, Fx, playTone, vibrate } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
@@ -65,7 +66,7 @@ export default function App() {
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button></aside>
     <main className="main">
-      <div className="top"><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow" /><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div></div>
+      <div className="top"><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<SearchTop go={go} openConv={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} /><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">

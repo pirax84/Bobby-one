@@ -856,3 +856,7 @@
 855|Seyahat
 856|Nesneler
 857|Semboller
+858|Yeni kişiler
+859|Gönderiler
+860|Sonuç yok.
+861|En az 2 harf yazın.

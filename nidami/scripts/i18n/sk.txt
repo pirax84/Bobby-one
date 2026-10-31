@@ -856,3 +856,7 @@
 855|Cestovanie
 856|Predmety
 857|Symboly
+858|Noví ľudia
+859|Príspevky
+860|Žiadne výsledky.
+861|Napíšte aspoň 2 písmená.

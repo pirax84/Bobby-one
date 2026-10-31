@@ -856,3 +856,7 @@
 855|Reizen
 856|Voorwerpen
 857|Symbolen
+858|Nieuwe mensen
+859|Berichten op je tijdlijn
+860|Geen resultaten.
+861|Typ minstens 2 letters.

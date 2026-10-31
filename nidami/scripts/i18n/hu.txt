@@ -856,3 +856,7 @@
 855|Utazás
 856|Tárgyak
 857|Szimbólumok
+858|Új emberek
+859|Bejegyzések
+860|Nincs találat.
+861|Írj be legalább 2 betűt.

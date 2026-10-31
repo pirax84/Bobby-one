@@ -856,3 +856,7 @@
 855|Taisteal
 856|Rudaí
 857|Siombailí
+858|Daoine nua
+859|Poist
+860|Gan torthaí.
+861|Scríobh 2 litir ar a laghad.

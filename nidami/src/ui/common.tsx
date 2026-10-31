@@ -28,6 +28,7 @@ const P: Record<string, string> = {
   more: "M5 12h.01M12 12h.01M19 12h.01",
   apps: "M4 4h6.5v6.5H4zM13.5 4H20v6.5h-6.5zM4 13.5h6.5V20H4zM13.5 13.5H20V20h-6.5z",
   back: "M15 5l-7 7 7 7",
+  search: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.3-4.3",
 };
 export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
   <svg className={n === "back" ? "ico-flip" : undefined} width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={P[n] || P.more} /></svg>

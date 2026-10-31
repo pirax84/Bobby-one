@@ -856,3 +856,7 @@
 855|Viajes
 856|Objetos
 857|Símbolos
+858|Personas nuevas
+859|Publicaciones
+860|Sin resultados.
+861|Escribe al menos 2 letras.
