@@ -908,3 +908,9 @@
 907|Vuċi
 908|Żomm biex titkellem · ħalli biex tispiċċa
 909|Konverżazzjonijiet
+910|🎂 L-għeluq snini tiegħi (mhux obbligatorju)
+911|Jum
+912|Xahar
+913|Ħbiebek jaraw kuruna fuq ir-ritratt tiegħek f'dak in-nhar. is-sena ma tintalabx.
+914|Illum huwa l-għeluq snin ta' {name}!
+915|Għada huwa l-għeluq snin ta' {name}!

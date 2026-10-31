@@ -908,3 +908,9 @@
 907|Voz
 908|Segure para falar · solte para terminar
 909|Conversas
+910|🎂 Meu aniversário (opcional)
+911|Dia
+912|Mês
+913|Seus amigos veem uma coroa na sua foto nesse dia. O ano não é pedido.
+914|Hoje é o aniversário de {name}!
+915|Amanhã é o aniversário de {name}!

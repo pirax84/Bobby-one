@@ -908,3 +908,9 @@
 907|Ääni
 908|Pidä puhuaksesi · päätä päästämällä irti
 909|Keskustelut
+910|🎂 Syntymäpäiväni (valinnainen)
+911|Päivä
+912|Kuukausi
+913|Ystäväsi näkevät kruunun kuvassasi sinä päivänä. Vuotta ei kysytä.
+914|{name} täyttää tänään vuosia!
+915|{name} täyttää huomenna vuosia!

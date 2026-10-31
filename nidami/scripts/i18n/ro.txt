@@ -908,3 +908,9 @@
 907|Voce
 908|Ține apăsat pentru a vorbi · eliberează pentru a termina
 909|Conversații
+910|🎂 Ziua mea de naștere (opțional)
+911|Ziua
+912|Luna
+913|Prietenii tăi văd o coroană pe poza ta în acea zi. Anul nu se cere.
+914|Azi este ziua lui {name}!
+915|Mâine este ziua lui {name}!

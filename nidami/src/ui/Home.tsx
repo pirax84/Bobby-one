@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
-import { Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps } from "./common";
+import { Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps, isBirthday } from "./common";
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder, Camera } from "./Recorder";
@@ -195,6 +195,12 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
 }
 function audLabel(p: Post, s: State["social"]) { const m = p.audience.mode; return m === "all" ? t("Tous les amis") : m === "me" ? t("Moi seul") : m === "group" ? s.groups.find((g) => g.id === (p.audience as any).groupId)?.name || t("Groupe") : m === "only" ? t("Amis choisis") : m === "except" ? t("Amis sauf…") : t("Liste"); }
 
+function BirthdayBanner() {
+  const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []);
+  const l = Object.values(users).filter((u) => u.id !== me && fr.includes(u.id) && u.birthday).map((u) => ({ u, d: isBirthday(u.birthday, 0) ? 0 : isBirthday(u.birthday, 1) ? 1 : -1 })).filter((x) => x.d >= 0);
+  if (!l.length) return null;
+  return <div className="col" style={{ gap: 6, margin: "4px 0" }}>{l.map(({ u, d }) => <div key={u.id} className="card row" style={{ gap: 10, alignItems: "center", padding: "8px 12px" }}><Avatar u={u} s={36} /><span>🎂 {d === 0 ? t("Anniversaire de {name} aujourd'hui !", { name: u.name }) : t("Anniversaire de {name} demain !", { name: u.name })}</span></div>)}</div>;
+}
 export function Home({ groupId }: { groupId?: string }) {
   const me = useStore((s) => s.me); const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const now = useNow(2000); const [compose, setCompose] = useState(false); const [filter, setFilter] = useState("all");
   const user = useStore((s) => userOf(s, s.me)); const groups = social.groups.filter((g) => g.memberIds.includes(me));
@@ -202,6 +208,7 @@ export function Home({ groupId }: { groupId?: string }) {
   let feed = feedFor(posts, me, now, social); if (groupId) feed = feed.filter((p) => p.audience.mode === "group" && (p.audience as any).groupId === groupId); else if (filter === "mine") feed = feed.filter((p) => p.authorId === me); else if (filter !== "all") feed = feed.filter((p) => p.audience.mode === "group" && (p.audience as any).groupId === filter);
   return (<div className="col">
     {!groupId && <Stories me={me} />}
+    {!groupId && <BirthdayBanner />}
     <div className="card row"><Avatar u={user} /><button className="inp grow" style={{ textAlign: "left", color: "var(--mute)" }} onClick={() => setCompose(true)}>{t("Quoi de neuf avec vos proches ?")}</button><button className="btn sm" onClick={() => setCompose(true)}><Ico n="img" s={18} /></button></div>
     {!groupId && <div className="tabs"><button className={"chip" + (filter === "all" ? " on" : "")} onClick={() => setFilter("all")}>{t("Tout")}</button><button className={"chip" + (filter === "mine" ? " on" : "")} onClick={() => setFilter("mine")}>{t("Mes publications")}</button>{groups.map((g) => <button key={g.id} className={"chip" + (filter === g.id ? " on" : "")} onClick={() => setFilter(g.id)}>{g.emoji} {g.name}</button>)}</div>}
     {!feed.length && <div className="card center muted">{t("Rien ici pour l'instant. Publiez votre premier moment ✨")}</div>}

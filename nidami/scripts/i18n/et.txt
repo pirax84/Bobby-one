@@ -908,3 +908,9 @@
 907|Hääl
 908|Hoia rääkimiseks · lõpetamiseks lase lahti
 909|Vestlused
+910|🎂 Minu sünnipäev (valikuline)
+911|Päev
+912|Kuu
+913|Sinu sõbrad näevad sel päeval sinu fotol krooni. Aastat ei küsita.
+914|{name} sünnipäev on täna!
+915|{name} sünnipäev on homme!

@@ -908,3 +908,9 @@
 907|Hang
 908|Tartsd a beszédhez · engedd el a befejezéshez
 909|Beszélgetések
+910|🎂 Születésnapom (nem kötelező)
+911|Nap
+912|Hónap
+913|A barátaid ezen a napon koronát látnak a fotódon. Az évet nem kérjük.
+914|{name} ma ünnepli a születésnapját!
+915|{name} holnap ünnepli a születésnapját!

@@ -908,3 +908,9 @@
 907|Voz
 908|Mantén para hablar · suelta para terminar
 909|Chats
+910|🎂 Mi cumpleaños (opcional)
+911|Día
+912|Mes
+913|Tus amigos ven una corona en tu foto ese día. No se pide el año.
+914|¡Hoy es el cumpleaños de {name}!
+915|¡Mañana es el cumpleaños de {name}!

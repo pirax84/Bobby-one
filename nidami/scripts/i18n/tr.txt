@@ -908,3 +908,9 @@
 907|Ses
 908|Konuşmak için basılı tut · bitirmek için bırak
 909|Sohbetler
+910|🎂 Doğum günüm (isteğe bağlı)
+911|Gün
+912|Ay
+913|Arkadaşların o gün fotoğrafında bir taç görür. Yıl istenmez.
+914|{name} bugün doğum günü!
+915|{name} yarın doğum günü!

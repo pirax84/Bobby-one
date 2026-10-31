@@ -908,3 +908,9 @@
 907|Sprache
 908|Halten zum Sprechen · loslassen zum Beenden
 909|Chats
+910|🎂 Mein Geburtstag (optional)
+911|Tag
+912|Monat
+913|Deine Freunde sehen an diesem Tag eine Krone auf deinem Foto. Das Jahr wird nicht abgefragt.
+914|{name} hat heute Geburtstag!
+915|{name} hat morgen Geburtstag!

@@ -908,3 +908,9 @@
 907|Balsas
 908|Laikyk ir kalbėk · paleisk, kad baigtum
 909|Pokalbiai
+910|🎂 Mano gimtadienis (nebūtina)
+911|Diena
+912|Mėnuo
+913|Tavo draugai tą dieną mato karūną ant tavo nuotraukos. Metų neprašoma.
+914|Šiandien {name} gimtadienis!
+915|Rytoj {name} gimtadienis!

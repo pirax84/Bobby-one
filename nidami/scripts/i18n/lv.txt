@@ -908,3 +908,9 @@
 907|Balss
 908|Turi, lai runātu · atlaid, lai beigtu
 909|Sarunas
+910|🎂 Mana dzimšanas diena (neobligāti)
+911|Diena
+912|Mēnesis
+913|Tavi draugi šajā dienā redz kroni uz tava foto. Gadu neprasa.
+914|Šodien ir {name} dzimšanas diena!
+915|Rīt ir {name} dzimšanas diena!

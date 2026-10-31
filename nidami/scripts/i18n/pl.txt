@@ -908,3 +908,9 @@
 907|Głos
 908|Przytrzymaj, by mówić · puść, by zakończyć
 909|Rozmowy
+910|🎂 Moje urodziny (opcjonalnie)
+911|Dzień
+912|Miesiąc
+913|Twoi znajomi widzą w ten dzień koronę na Twoim zdjęciu. Rok nie jest wymagany.
+914|{name} ma dziś urodziny!
+915|{name} ma jutro urodziny!

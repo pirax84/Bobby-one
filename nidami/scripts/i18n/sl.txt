@@ -908,3 +908,9 @@
 907|Glas
 908|Drži za govor · spusti za konec
 909|Pogovori
+910|🎂 Moj rojstni dan (neobvezno)
+911|Dan
+912|Mesec
+913|Tvoji prijatelji ta dan vidijo krono na tvoji fotografiji. Leto ni zahtevano.
+914|{name} ima danes rojstni dan!
+915|{name} ima jutri rojstni dan!

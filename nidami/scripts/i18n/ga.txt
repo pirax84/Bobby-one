@@ -908,3 +908,9 @@
 907|Guth
 908|Coinnigh chun labhairt · scaoil chun críochnú
 909|Comhráite
+910|🎂 Mo bhreithlá (roghnach)
+911|Lá
+912|Mí
+913|Feiceann do chairde coróin ar do ghrianghraf an lá sin. Ní iarrtar an bhliain.
+914|Is é lá breithe {name} inniu!
+915|Is é lá breithe {name} amárach!

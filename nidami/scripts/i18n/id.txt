@@ -908,3 +908,9 @@
 907|Suara
 908|Tahan untuk bicara · lepas untuk selesai
 909|Obrolan
+910|🎂 Ulang tahunku (opsional)
+911|Hari
+912|Bulan
+913|Teman-temanmu melihat mahkota di fotomu pada hari itu. Tahun tidak diminta.
+914|Hari ini ulang tahun {name}!
+915|Besok ulang tahun {name}!

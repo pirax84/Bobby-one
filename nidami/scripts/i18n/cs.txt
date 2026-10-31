@@ -908,3 +908,9 @@
 907|Hlas
 908|Drž a mluv · pusť pro dokončení
 909|Konverzace
+910|🎂 Moje narozeniny (nepovinné)
+911|Den
+912|Měsíc
+913|Tvoji přátelé v ten den uvidí na tvé fotce korunu. Rok se nezjišťuje.
+914|{name} má dnes narozeniny!
+915|{name} má zítra narozeniny!

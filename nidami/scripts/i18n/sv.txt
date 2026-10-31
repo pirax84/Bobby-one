@@ -908,3 +908,9 @@
 907|Röst
 908|Håll för att tala · släpp för att avsluta
 909|Samtal
+910|🎂 Min födelsedag (valfritt)
+911|Dag
+912|Månad
+913|Dina vänner ser en krona på ditt foto den dagen. Året efterfrågas inte.
+914|{name} fyller år idag!
+915|{name} fyller år i morgon!
