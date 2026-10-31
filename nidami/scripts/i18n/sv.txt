@@ -915,3 +915,6 @@
 914|{name} fyller år idag!
 915|{name} fyller år i morgon!
 916|Ny chatt
+917|Profilbilden ändrades.
+918|👤 Använd som profilbild
+919|Din röst som story, 24 h

@@ -33,7 +33,7 @@ export default function App() {
   const parseHash = () => { const m = location.hash.match(/add=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
-  const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
+  const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "saudio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
   useEffect(() => { applyTheme({ light: !!light }); }, [light]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
@@ -93,6 +93,7 @@ export default function App() {
       <b className="small muted">{t("Dans la bulle du haut (24 h)")}</b>
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("selfie"); }}><span className="grow"><b>{t("🤳 Selfie")}</b><small>{t("Photo ou vidéo, plein écran")}</small></span></button>
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("photo"); }}><span className="grow"><b>{"🖼️ "}{t("Photo de la galerie")}</b><small>{t("Visible dans la bulle de vos amis")}</small></span></button>
+      <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("saudio"); }}><span className="grow"><b>{t("🎤 Vocal")}</b><small>{t("Ta voix en story, 24 h")}</small></span></button>
       <label className="row small" style={{ gap: 8 }}><Switch on={wall} onChange={setWall} label={t("Garder aussi sur mon mur")} /><span>{t("Garder aussi sur mon mur")}</span></label>
       <b className="small muted">{t("Sur le mur (reste affiché)")}</b>
       <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("text"); }}><span className="grow"><b>{t("✏️ Écrire un texte")}</b></span></button>
@@ -100,7 +101,7 @@ export default function App() {
       <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("link"); }}><span className="grow"><b>{"🔗 "}{t("Lien")}</b></span></button>
       <p className="muted small center" style={{ margin: 0 }}>{t("Astuce : restez appuyé sur le bouton pour ouvrir directement la caméra.")}</p></div></Modal>}
     {storyC && <QuickCompose story onClose={() => setStoryC(false)} />}
-    {compose && <QuickCompose key={compose} long={compose === "long" || compose === "selfie"} story={compose === "selfie" || compose === "photo"} alsoWall={wall} kind={compose === "text" || compose === "photo" || compose === "audio" || compose === "link" ? compose : undefined} onClose={() => setCompose(false)} />}
+    {compose && <QuickCompose key={compose} long={compose === "long" || compose === "selfie"} story={compose === "selfie" || compose === "photo" || compose === "saudio"} alsoWall={wall} kind={compose === "saudio" ? "audio" : compose === "text" || compose === "photo" || compose === "audio" || compose === "link" ? compose : undefined} onClose={() => setCompose(false)} />}
     {!hand && <Modal title={t("Quelle main ?")} onClose={() => actions.setSetting("hand", "right")}><div className="col" style={{ gap: 10 }}><p style={{ margin: 0 }}>{t("Tu tiens ton téléphone avec quelle main ? Les gros boutons se placeront du côté de ton pouce. Tu peux changer plus tard dans les réglages.")}</p><div className="row" style={{ gap: 10 }}><button type="button" className="btn bigbtn grow" onClick={() => actions.setSetting("hand", "left")}>{t("✋ Main gauche")}</button><button type="button" className="btn bigbtn grow" onClick={() => actions.setSetting("hand", "right")}>{t("🤚 Main droite")}</button></div></div></Modal>}
     <MiniPlayer /><ToastHost /></div>);
 }

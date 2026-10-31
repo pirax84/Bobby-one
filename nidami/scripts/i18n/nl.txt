@@ -915,3 +915,6 @@
 914|{name} is vandaag jarig!
 915|{name} is morgen jarig!
 916|Nieuw gesprek
+917|Profielfoto gewijzigd.
+918|👤 Gebruiken als profielfoto
+919|Jouw stem als story, 24 u

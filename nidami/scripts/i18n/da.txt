@@ -915,3 +915,6 @@
 914|{name} har fødselsdag i dag!
 915|{name} har fødselsdag i morgen!
 916|Ny samtale
+917|Profilbillede ændret.
+918|👤 Brug som profilbillede
+919|Din stemme som story, 24 t

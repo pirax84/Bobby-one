@@ -915,3 +915,6 @@
 914|{name} ima danes rojstni dan!
 915|{name} ima jutri rojstni dan!
 916|Nov pogovor
+917|Profilna fotografija spremenjena.
+918|👤 Uporabi kot profilno fotografijo
+919|Tvoj glas kot zgodba, 24 ur

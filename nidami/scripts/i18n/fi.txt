@@ -915,3 +915,6 @@
 914|{name} täyttää tänään vuosia!
 915|{name} täyttää huomenna vuosia!
 916|Uusi keskustelu
+917|Profiilikuva vaihdettu.
+918|👤 Käytä profiilikuvana
+919|Äänesi tarinana, 24 h

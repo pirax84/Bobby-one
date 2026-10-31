@@ -915,3 +915,6 @@
 914|Šodien ir {name} dzimšanas diena!
 915|Rīt ir {name} dzimšanas diena!
 916|Jauna saruna
+917|Profila foto nomainīts.
+918|👤 Izmantot kā profila foto
+919|Tava balss kā stāsts, 24 h

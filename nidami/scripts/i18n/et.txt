@@ -915,3 +915,6 @@
 914|{name} sünnipäev on täna!
 915|{name} sünnipäev on homme!
 916|Uus vestlus
+917|Profiilipilt muudetud.
+918|👤 Kasuta profiilipildina
+919|Sinu hääl story'na, 24 h

@@ -915,3 +915,6 @@
 914|Is é lá breithe {name} inniu!
 915|Is é lá breithe {name} amárach!
 916|Comhrá nua
+917|Athraíodh grianghraf an phróifíl.
+918|👤 Úsáid mar ghrianghraf próifíle
+919|Do ghuth mar scéal, 24 uair

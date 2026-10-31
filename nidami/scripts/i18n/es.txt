@@ -915,3 +915,6 @@
 914|¡Hoy es el cumpleaños de {name}!
 915|¡Mañana es el cumpleaños de {name}!
 916|Nueva conversación
+917|Foto de perfil cambiada.
+918|👤 Usar como foto de perfil
+919|Tu voz en una historia, 24 h

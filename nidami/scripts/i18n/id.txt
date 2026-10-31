@@ -915,3 +915,6 @@
 914|Hari ini ulang tahun {name}!
 915|Besok ulang tahun {name}!
 916|Percakapan baru
+917|Foto profil diganti.
+918|👤 Pakai sebagai foto profil
+919|Suaramu sebagai story, 24 jam

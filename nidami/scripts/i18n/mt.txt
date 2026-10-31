@@ -915,3 +915,6 @@
 914|Illum huwa l-għeluq snin ta' {name}!
 915|Għada huwa l-għeluq snin ta' {name}!
 916|Konverżazzjoni ġdida
+917|Ir-ritratt tal-profil inbidel.
+918|👤 Uża bħala ritratt tal-profil
+919|Leħnek bħala story, 24 siegħa

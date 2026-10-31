@@ -915,3 +915,6 @@
 914|{name} hat heute Geburtstag!
 915|{name} hat morgen Geburtstag!
 916|Neuer Chat
+917|Profilfoto geändert.
+918|👤 Als Profilfoto verwenden
+919|Deine Stimme als Story, 24 Std.

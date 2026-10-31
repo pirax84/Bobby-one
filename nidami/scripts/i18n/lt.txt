@@ -915,3 +915,6 @@
 914|Šiandien {name} gimtadienis!
 915|Rytoj {name} gimtadienis!
 916|Naujas pokalbis
+917|Profilio nuotrauka pakeista.
+918|👤 Naudoti kaip profilio nuotrauką
+919|Tavo balsas kaip istorija, 24 val.

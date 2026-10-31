@@ -915,3 +915,6 @@
 914|{name} ma dziś urodziny!
 915|{name} ma jutro urodziny!
 916|Nowa rozmowa
+917|Zmieniono zdjęcie profilowe.
+918|👤 Użyj jako zdjęcia profilowego
+919|Twój głos w relacji, 24 h

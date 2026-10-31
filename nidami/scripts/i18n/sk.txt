@@ -915,3 +915,6 @@
 914|{name} má dnes narodeniny!
 915|{name} má zajtra narodeniny!
 916|Nová konverzácia
+917|Profilová fotka zmenená.
+918|👤 Použiť ako profilovú fotku
+919|Tvoj hlas ako story, 24 h

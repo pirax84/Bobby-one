@@ -915,3 +915,6 @@
 914|{name} bugün doğum günü!
 915|{name} yarın doğum günü!
 916|Yeni sohbet
+917|Profil fotoğrafı değiştirildi.
+918|👤 Profil fotoğrafı olarak kullan
+919|Sesin hikâye olarak, 24 saat

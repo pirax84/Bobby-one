@@ -915,3 +915,6 @@
 914|{name} ma ünnepli a születésnapját!
 915|{name} holnap ünnepli a születésnapját!
 916|Új beszélgetés
+917|Profilkép megváltoztatva.
+918|👤 Használat profilképként
+919|A hangod történetként, 24 óra
