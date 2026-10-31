@@ -928,3 +928,4 @@
 927|Voz e imagen · disponible
 928|✓ Foto de perfil cambiada
 929|✅ ¡Foto de perfil actualizada!
+930|Foto de perfil

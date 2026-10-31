@@ -928,3 +928,4 @@
 927|Voce și imagine · disponibil
 928|✓ Poza de profil a fost schimbată
 929|✅ Poza de profil a fost actualizată!
+930|Poză de profil

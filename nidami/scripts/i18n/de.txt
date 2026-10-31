@@ -928,3 +928,4 @@
 927|Sprache und Bild · verfügbar
 928|✓ Profilfoto geändert
 929|✅ Profilfoto aktualisiert!
+930|Profilfoto

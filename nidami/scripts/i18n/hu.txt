@@ -928,3 +928,4 @@
 927|Hang és kép · elérhető
 928|✓ Profilkép megváltoztatva
 929|✅ A profilkép frissítve!
+930|Profilkép

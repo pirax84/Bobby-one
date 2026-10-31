@@ -928,3 +928,4 @@
 927|Guth agus pictiúr · ar fáil
 928|✓ Athraíodh grianghraf an phróifíl
 929|✅ Nuashonraíodh grianghraf an phróifíl!
+930|Grianghraf próifíle

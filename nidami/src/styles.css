@@ -436,3 +436,6 @@ html[data-hand=left] .bottom{flex-direction:row-reverse}
 
 .reactpop{position:fixed;left:50%;top:45%;transform:translate(-50%,-50%);font-size:6rem;z-index:300;pointer-events:none;animation:rpop .9s ease-out forwards}
 @keyframes rpop{0%{opacity:0;transform:translate(-50%,-30%) scale(.4)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}100%{opacity:0;transform:translate(-50%,-90%) scale(1)}}
+
+/* Pastille « changer la photo » : rond turquoise avec appareil photo, posé sur la photo de profil. */
+.camdot{position:absolute;top:58px;left:calc(50% + 20px);width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#34d6c6,#0a838b);border:3px solid #fff;box-shadow:0 4px 12px #0b2c3366;display:grid;place-items:center;padding:0;z-index:2}

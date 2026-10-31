@@ -170,12 +170,18 @@ function PostChoices() {
     <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Commentaires")}</b><div className="muted small">{t("Si c'est coupé, personne ne peut commenter vos publications.")}</div></div><Switch on={cfg.comm !== false} onChange={(v) => actions.setSetting("comm", v)} label={t("Commentaires")} /></label></div>);
 }
 export function Profile() {
-  const s = useStore((x) => x); const u = userOf(s, s.me)!; const [edit, setEdit] = useState(false);
+  const s = useStore((x) => x); const u = userOf(s, s.me)!; const [edit, setEdit] = useState(false); const [photoM, setPhotoM] = useState(false); const [camP, setCamP] = useState(false); const galP = useRef<HTMLInputElement>(null);
   const mine = s.posts.filter((p) => p.authorId === s.me && !p.story).length; const friends = (s.social.friends[s.me] || []).length;
-  return (<div className="col"><h1>{t("Mon profil")}</h1><div className="card col center" style={{ alignItems: "center" }}><button style={{ background: "none", border: 0, padding: 0, color: "inherit", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }} onClick={() => setEdit(true)} aria-label={t("Modifier mon profil")}><span style={{ position: "relative" }}><Avatar u={u} s={96} /><span className="pbadge" style={{ right: -2, bottom: -2 }}>✎</span></span><h2>{u.name}</h2></button><div className="muted">{u.status}</div><div className="row muted small"><span>{t("{n, plural, one{# publication} other{# publications}}", { n: mine })}</span><span>·</span><span>{t("{n, plural, one{# ami} other{# amis}}", { n: friends })}</span><span>·</span><span>{t("Membre depuis {toLocaleDateString}", { toLocaleDateString: new Date(u.joinedAt).toLocaleDateString(locale(), { month: "long", year: "numeric" }) })}</span></div>
+  return (<div className="col"><h1>{t("Mon profil")}</h1><div className="card col center" style={{ alignItems: "center" }}><div style={{ position: "relative" }}><button style={{ background: "none", border: 0, padding: 0, color: "inherit", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }} onClick={() => setEdit(true)} aria-label={t("Modifier mon profil")}><span style={{ position: "relative", display: "inline-block" }}><Avatar u={u} s={96} /></span><h2>{u.name}</h2></button><button type="button" className="camdot" onClick={() => setPhotoM(true)} aria-label={t("Changer la photo")}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg></button></div><div className="muted">{u.status}</div><div className="row muted small"><span>{t("{n, plural, one{# publication} other{# publications}}", { n: mine })}</span><span>·</span><span>{t("{n, plural, one{# ami} other{# amis}}", { n: friends })}</span><span>·</span><span>{t("Membre depuis {toLocaleDateString}", { toLocaleDateString: new Date(u.joinedAt).toLocaleDateString(locale(), { month: "long", year: "numeric" }) })}</span></div>
       <button className="btn sm" onClick={() => setEdit(true)}>{t("Modifier mon profil (photo, nom, bio)")}</button></div>
     <PostChoices />
-    <MyQr u={u} />{edit && <EditProfile u={u} onClose={() => setEdit(false)} />}</div>);
+    <MyQr u={u} />{edit && <EditProfile u={u} onClose={() => setEdit(false)} />}
+    {photoM && <Modal title={t("Photo de profil")} onClose={() => setPhotoM(false)}><div className="col" style={{ gap: 10 }}>
+      <button className="btn bigbtn" onClick={() => { setPhotoM(false); setCamP(true); }}><span className="grow"><b>{t("📷 Prendre une photo")}</b></span></button>
+      <button className="btn bigbtn" onClick={() => galP.current?.click()}><span className="grow"><b>{"🖼️ "}{t("Photo de la galerie")}</b></span></button>
+      {u.avatar && <button className="btn bigbtn alt" onClick={() => { actions.updateProfile({ avatar: null }); setPhotoM(false); toast(t("✅ Photo de profil modifiée !")); }}><span className="grow"><b>{t("Supprimer la photo")}</b></span></button>}</div></Modal>}
+    <input ref={galP} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; e.target.value = ""; if (x) { try { actions.updateProfile({ avatar: await fileToDataUrl(x) }); setPhotoM(false); toast(t("✅ Photo de profil modifiée !")); } catch { toast(t("Impossible de lire cette image.")); } } }} />
+    {camP && <Camera withPhoto startMode="photo" onClose={() => setCamP(false)} onPhoto={(img) => { actions.updateProfile({ avatar: img }); setCamP(false); toast(t("✅ Photo de profil modifiée !")); }} onVideo={() => { toast(t("Choisis « Photo » en bas pour prendre ta photo de profil.")); }} />}</div>);
 }
 
 const GO_VIEW: Record<string, string> = { home: "home", friends: "friends", media: "media", shares: "shares", groups: "groups", messages: "messages", events: "events", games: "games" };
@@ -211,7 +217,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v60</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v61</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "install" && <>

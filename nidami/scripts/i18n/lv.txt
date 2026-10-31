@@ -928,3 +928,4 @@
 927|Balss un attēls · pieejams
 928|✓ Profila foto nomainīts
 929|✅ Profila foto atjaunināts!
+930|Profila foto

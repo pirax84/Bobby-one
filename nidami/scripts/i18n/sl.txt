@@ -928,3 +928,4 @@
 927|Glas in slika · na voljo
 928|✓ Profilna fotografija spremenjena
 929|✅ Profilna fotografija posodobljena!
+930|Profilna fotografija
