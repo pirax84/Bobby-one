@@ -439,3 +439,4 @@ html[data-hand=left] .bottom{flex-direction:row-reverse}
 
 /* Pastille « changer la photo » : rond turquoise avec appareil photo, posé sur la photo de profil. */
 .camdot{position:absolute;top:58px;left:calc(50% + 20px);width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#34d6c6,#0a838b);border:3px solid #fff;box-shadow:0 4px 12px #0b2c3366;display:grid;place-items:center;padding:0;z-index:2}
+.wreath .wmedia .wfg{left:5%;top:5%;width:90%;height:72%;border-radius:0}

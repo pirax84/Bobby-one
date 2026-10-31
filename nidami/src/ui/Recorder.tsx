@@ -58,7 +58,7 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
   useEffect(() => { let dead = false; setReady(false); stop(); if (res) return; (async () => {
     try { const st = await navigator.mediaDevices.getUserMedia({ video: { facingMode: face, width: { ideal: 960 }, height: { ideal: 1280 } }, audio: true }); if (dead) { st.getTracks().forEach((tx) => tx.stop()); return; } stream.current = st; if (vid.current) { vid.current.srcObject = st; void vid.current.play().catch(() => {}); } setReady(true); }
     catch { toast(t("Caméra ou micro indisponible ou refusé.")); onClose(); } })(); return () => { dead = true; stop(); }; }, [face, res]);
-  const shoot = () => { const c = cv.current; if (!c || !c.width) return; const o = document.createElement("canvas"); o.width = c.width; o.height = c.height; const x = o.getContext("2d")!; if (face === "user") { x.translate(o.width, 0); x.scale(-1, 1); } x.drawImage(c, 0, 0); stop(); setRes({ photo: o.toDataURL("image/jpeg", 0.82) }); };
+  const shoot = () => { const c = cv.current; if (!c || !c.width) return; const o = document.createElement("canvas"); o.width = c.width; o.height = c.height; const x = o.getContext("2d")!; if (face === "user") { x.translate(o.width, 0); x.scale(-1, 1); } x.drawImage(c, 0, 0); stop(); setRes({ photo: trimBars(o).toDataURL("image/jpeg", 0.85) }); };
   const toggleRec = () => {
     if (rec.current?.state === "recording") { rec.current.stop(); return; }
     const st = stream.current; const c = cv.current; if (!st || !c) return; const cs = c.captureStream(30); st.getAudioTracks().forEach((tx) => cs.addTrack(tx)); const r = new MediaRecorder(cs, { videoBitsPerSecond: 600000, audioBitsPerSecond: 40000 }); const ch: Blob[] = []; r.ondataavailable = (e) => e.data.size && ch.push(e.data); let n = max; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
@@ -96,6 +96,20 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
 
 /** Bouton micro + bouton d'envoi : identiques partout (conversation en grand et bulle). */
 export function MicBtn({ onDone }: { onDone: (url: string) => void }) { return <HoldMic className="btn micbtn" onDone={onDone}><Ico n="mic" s={20} /></HoldMic>; }
+
+/** Enlève les bandes pleines (mode « Large ») autour d'une photo : la photo finit sans contour, prête à être recadrée dans sa forme. */
+function trimBars(src: HTMLCanvasElement): HTMLCanvasElement {
+  try {
+    const w = src.width, h = src.height; const d = src.getContext("2d")!.getImageData(0, 0, w, h).data;
+    const bar = (i: number) => Math.abs(d[i] - 11) < 9 && Math.abs(d[i + 1] - 44) < 9 && Math.abs(d[i + 2] - 51) < 9;
+    const rowBar = (y: number) => { for (let xx = 0; xx < w; xx += 6) if (!bar((y * w + xx) * 4)) return false; return true; };
+    let t = 0, b = h - 1; while (t < h - 40 && rowBar(t)) t++; while (b > t + 40 && rowBar(b)) b--;
+    const colBar = (xx: number) => { for (let y = t; y <= b; y += 6) if (!bar((y * w + xx) * 4)) return false; return true; };
+    let l = 0, r = w - 1; while (l < w - 40 && colBar(l)) l++; while (r > l + 40 && colBar(r)) r--;
+    if (t === 0 && l === 0 && b === h - 1 && r === w - 1) return src;
+    const o = document.createElement("canvas"); o.width = r - l + 1; o.height = b - t + 1; o.getContext("2d")!.drawImage(src, l, t, o.width, o.height, 0, 0, o.width, o.height); return o;
+  } catch { return src; }
+}
 
 /** Grand micro rond : on reste appuyé pour parler, on lâche pour terminer. */
 export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; max?: number }) {

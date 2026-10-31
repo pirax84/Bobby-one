@@ -217,7 +217,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v62</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v63</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "install" && <>
