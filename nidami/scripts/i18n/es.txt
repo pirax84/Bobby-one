@@ -927,3 +927,4 @@
 926|Solo voz · próximamente
 927|Voz e imagen · disponible
 928|✓ Foto de perfil cambiada
+929|✅ ¡Foto de perfil actualizada!

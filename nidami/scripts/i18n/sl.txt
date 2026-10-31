@@ -927,3 +927,4 @@
 926|Samo glas · kmalu
 927|Glas in slika · na voljo
 928|✓ Profilna fotografija spremenjena
+929|✅ Profilna fotografija posodobljena!

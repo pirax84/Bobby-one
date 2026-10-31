@@ -927,3 +927,4 @@
 926|Kun stemme · snart
 927|Stemme og billede · tilgængeligt
 928|✓ Profilbillede ændret
+929|✅ Profilbillede opdateret!
