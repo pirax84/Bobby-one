@@ -318,3 +318,6 @@ html[dir=rtl] .setch{transform:scaleX(-1)}
 .vbar input[type=range]{flex:1;min-width:0;accent-color:#2FCDBE}
 .bottom,.bfab{transition:opacity .15s,transform .15s}
 @media (max-width:760px){.bottom .plus{width:60px!important;height:54px!important;margin-top:0!important;align-self:center}}
+.legalrow{padding:10px 14px}
+.legalrow.on{background:linear-gradient(135deg,#0A838B,#0E7FA6);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+.legalrow.on .setch{color:#fff}
