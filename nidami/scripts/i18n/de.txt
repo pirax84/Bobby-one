@@ -918,3 +918,6 @@
 917|Profilfoto geändert.
 918|👤 Als Profilfoto verwenden
 919|Deine Stimme als Story, 24 Std.
+920|Sprache gerade nicht verfügbar: Prüfe deine Verbindung und versuche es erneut.
+921|📷 Foto aufnehmen
+922|Wähle unten „Foto“, um dein Profilfoto aufzunehmen.

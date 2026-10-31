@@ -918,3 +918,6 @@
 917|Athraíodh grianghraf an phróifíl.
 918|👤 Úsáid mar ghrianghraf próifíle
 919|Do ghuth mar scéal, 24 uair
+920|Níl an teanga ar fáil faoi láthair: seiceáil do cheangal agus bain triail eile as.
+921|📷 Tóg grianghraf
+922|Roghnaigh “Grianghraf” thíos chun grianghraf próifíle a thógáil.

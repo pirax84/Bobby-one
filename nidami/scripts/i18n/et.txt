@@ -918,3 +918,6 @@
 917|Profiilipilt muudetud.
 918|👤 Kasuta profiilipildina
 919|Sinu hääl story'na, 24 h
+920|Keel pole praegu saadaval: kontrolli ühendust ja proovi uuesti.
+921|📷 Tee foto
+922|Vali all „Foto“, et teha profiilipilt.

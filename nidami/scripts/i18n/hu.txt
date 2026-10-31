@@ -918,3 +918,6 @@
 917|Profilkép megváltoztatva.
 918|👤 Használat profilképként
 919|A hangod történetként, 24 óra
+920|A nyelv most nem érhető el: ellenőrizd a kapcsolatot, és próbáld újra.
+921|📷 Fénykép készítése
+922|Válaszd alul a „Fotó” lehetőséget a profilkép elkészítéséhez.

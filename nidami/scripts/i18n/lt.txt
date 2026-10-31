@@ -918,3 +918,6 @@
 917|Profilio nuotrauka pakeista.
 918|👤 Naudoti kaip profilio nuotrauką
 919|Tavo balsas kaip istorija, 24 val.
+920|Kalba šiuo metu nepasiekiama: patikrink ryšį ir bandyk dar kartą.
+921|📷 Nufotografuoti
+922|Apačioje pasirink „Nuotrauka“, kad nufotografuotum profilio nuotrauką.

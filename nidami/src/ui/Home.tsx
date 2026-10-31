@@ -56,7 +56,7 @@ function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; 
     {live.img && live.text && <p>{live.text}</p>}
     {authorId === me ? <div className="card small" style={{ width: "min(560px,100%)" }}><Ico n="eye" s={16} />{" "}{t("Vu par :")}{" "}{Object.keys(live.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || t("personne pour l'instant")}</div>
       : <div className="row" style={{ width: "min(560px,100%)" }}><input className="inp" placeholder={t("Répondre en privé…")} value={reply} onChange={(e) => setReply(e.target.value)} /><button className="btn" onClick={() => { const c = actions.startDm(authorId); actions.send(c, t("↩️ Réponse à votre story : {reply}", { reply })); setReply(""); toast(t("Réponse envoyée en privé.")); }} disabled={!reply.trim()}><Ico n="send" s={18} /></button>
-        {likesOn && EMOJIS.slice(0, 3).map((e) => <button key={e} className="react" onClick={() => { actions.react(live.id, e); toast(t("Réaction envoyée {e}", { e })); }}>{e}</button>)}</div>}
+        {likesOn && EMOJIS.slice(0, 3).map((e) => <button key={e} className="react" onClick={() => { actions.react(live.id, e); }}>{e}</button>)}</div>}
   </div>);
 }
 

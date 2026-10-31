@@ -23,18 +23,18 @@ export function detectLang(): string {
   return "fr";
 }
 
-async function load(code: string): Promise<Record<string, string>> { if (code === "fr") return {}; try { return (await LOADERS[code]()).default; } catch { return {}; } }
+async function load(code: string): Promise<Record<string, string> | null> { if (code === "fr") return {}; for (let i = 0; i < 3; i++) { try { return (await LOADERS[code]()).default; } catch { await new Promise((r) => setTimeout(r, 400)); } } return null; }
 function apply(code: string) {
   const l = find(code)!; const r = document.documentElement; r.lang = l.code; r.dir = l.dir;
   try { document.title = t("NOTIIF — Votre cercle. Vos moments."); } catch { /* ignoré */ }
 }
 
 /** Active une langue tout de suite. manual = choix de l'utilisateur : il est mémorisé et reste prioritaire. */
-export async function setLang(code: string, manual = true) {
-  const l = find(code); if (!l) return;
-  const d = await load(l.code); dict = d; cur = l.code; missing.clear();
+export async function setLang(code: string, manual = true): Promise<boolean> {
+  const l = find(code); if (!l) return false;
+  const d = await load(l.code); if (!d) return false; dict = d; cur = l.code; missing.clear();
   if (manual) { try { localStorage.setItem(KEY, l.code); } catch { /* ignoré */ } }
-  apply(l.code); subs.forEach((f) => f());
+  apply(l.code); subs.forEach((f) => f()); return true;
 }
 export const initLang = () => setLang(detectLang(), false);
 export const currentLang = () => cur;

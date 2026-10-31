@@ -918,3 +918,6 @@
 917|Profielfoto gewijzigd.
 918|👤 Gebruiken als profielfoto
 919|Jouw stem als story, 24 u
+920|Taal nu niet beschikbaar: controleer je verbinding en probeer opnieuw.
+921|📷 Foto maken
+922|Kies onderaan “Foto” om je profielfoto te maken.

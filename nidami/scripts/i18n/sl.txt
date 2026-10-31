@@ -918,3 +918,6 @@
 917|Profilna fotografija spremenjena.
 918|👤 Uporabi kot profilno fotografijo
 919|Tvoj glas kot zgodba, 24 ur
+920|Jezik trenutno ni na voljo: preveri povezavo in poskusi znova.
+921|📷 Posnemi fotografijo
+922|Spodaj izberi »Foto« za profilno fotografijo.

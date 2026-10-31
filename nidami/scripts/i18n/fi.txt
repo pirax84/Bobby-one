@@ -918,3 +918,6 @@
 917|Profiilikuva vaihdettu.
 918|👤 Käytä profiilikuvana
 919|Äänesi tarinana, 24 h
+920|Kieli ei ole nyt saatavilla: tarkista yhteys ja yritä uudelleen.
+921|📷 Ota kuva
+922|Valitse alhaalta ”Kuva” ottaaksesi profiilikuvan.

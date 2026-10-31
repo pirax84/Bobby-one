@@ -918,3 +918,6 @@
 917|Profila foto nomainīts.
 918|👤 Izmantot kā profila foto
 919|Tava balss kā stāsts, 24 h
+920|Valoda pašlaik nav pieejama: pārbaudi savienojumu un mēģini vēlreiz.
+921|📷 Uzņemt foto
+922|Apakšā izvēlies “Foto”, lai uzņemtu profila foto.

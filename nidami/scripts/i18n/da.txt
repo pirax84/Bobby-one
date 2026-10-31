@@ -918,3 +918,6 @@
 917|Profilbillede ændret.
 918|👤 Brug som profilbillede
 919|Din stemme som story, 24 t
+920|Sproget er ikke tilgængeligt lige nu: tjek din forbindelse og prøv igen.
+921|📷 Tag et foto
+922|Vælg »Foto« nederst for at tage dit profilbillede.

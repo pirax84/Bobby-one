@@ -17,7 +17,7 @@ export function LangPicker() {
     <input className="inp" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t("Rechercher une langue")} aria-label={t("Rechercher une langue")} />
     <div className="langlist" role="listbox" aria-label={t("Langue")}>
       {list.map((l) => <button key={l.code} type="button" role="option" aria-selected={l.code === cur} data-lang={l.code} className={"langitem" + (l.code === cur ? " on" : "")}
-        onClick={async () => { await setLang(l.code); toast(t("Langue changée.")); }}>
+        onClick={async () => { const ok = await setLang(l.code); if (ok) { window.scrollTo({ top: 0 }); toast(t("Langue changée.")); } else toast(t("Langue indisponible pour l'instant : vérifie ta connexion et réessaie.")); }}>
         <span lang={l.code} dir={l.dir} className="langnat">{l.native}</span><span className="muted small langen">{l.en}</span>{l.code === cur && <span className="langck" aria-hidden="true">✓</span>}</button>)}
       {!list.length && <p className="muted small" style={{ margin: "8px 4px" }}>{t("Aucune langue trouvée.")}</p>}
     </div></div>);

@@ -918,3 +918,6 @@
 917|Profilová fotka změněna.
 918|👤 Použít jako profilovou fotku
 919|Tvůj hlas jako story, 24 h
+920|Jazyk teď není dostupný: zkontroluj připojení a zkus to znovu.
+921|📷 Vyfotit
+922|Dole vyber „Foto“ a vyfoť si profilovou fotku.

@@ -918,3 +918,6 @@
 917|Zmieniono zdjęcie profilowe.
 918|👤 Użyj jako zdjęcia profilowego
 919|Twój głos w relacji, 24 h
+920|Język jest teraz niedostępny: sprawdź połączenie i spróbuj ponownie.
+921|📷 Zrób zdjęcie
+922|Wybierz na dole „Zdjęcie”, aby zrobić zdjęcie profilowe.

@@ -918,3 +918,6 @@
 917|Ir-ritratt tal-profil inbidel.
 918|👤 Uża bħala ritratt tal-profil
 919|Leħnek bħala story, 24 siegħa
+920|Il-lingwa mhix disponibbli issa: iċċekkja l-konnessjoni u erġa' pprova.
+921|📷 Ħu ritratt
+922|Agħżel “Ritratt” hawn taħt biex tieħu r-ritratt tal-profil.

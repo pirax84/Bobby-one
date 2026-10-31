@@ -7,6 +7,7 @@ import { FX, FX_KEYS, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate } from "../
 import { favOf, DEFAULT_FAV } from "./FxBar";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from "./common";
 import { Home } from "./Home";
+import { Camera } from "./Recorder";
 import { t, T, locale } from "../i18n";
 import { LangPicker } from "./LangPicker";
 import { LegalView } from "./Legal";
@@ -145,11 +146,12 @@ export function Events() {
 }
 
 function EditProfile({ u, onClose }: { u: User; onClose: () => void }) {
-  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const f = useRef<HTMLInputElement>(null);
+  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const f = useRef<HTMLInputElement>(null); const [cam, setCam] = useState(false);
   const V: [User["avatarVis"], string][] = [["friends", t("Mes amis")], ["all", t("Tout le monde")], ["none", t("Personne")]];
   return <Modal title={t("Modifier mon profil")} onClose={onClose}><div className="col">
     <div className="col center" style={{ alignItems: "center", gap: 10 }}><Avatar u={{ ...u, avatar: av, avatarVis: "all" }} s={104} />
-      <div className="row wrap" style={{ justifyContent: "center" }}><button className="btn sm" onClick={() => f.current?.click()}>{av ? t("Changer la photo") : t("Ajouter une photo")}</button>{av && <button className="btn danger sm" onClick={() => setAv(null)}>{t("Supprimer la photo")}</button>}</div>
+      <div className="row wrap" style={{ justifyContent: "center" }}><button className="btn sm" onClick={() => f.current?.click()}>{av ? t("Changer la photo") : t("Ajouter une photo")}</button><button className="btn sm" onClick={() => setCam(true)}>{t("📷 Prendre une photo")}</button>{av && <button className="btn danger sm" onClick={() => setAv(null)}>{t("Supprimer la photo")}</button>}</div>
+      {cam && <Camera withPhoto startMode="photo" onClose={() => setCam(false)} onPhoto={(u) => { setAv(u); setCam(false); }} onVideo={() => { toast(t("Choisis « Photo » en bas pour prendre ta photo de profil.")); }} />}
       <input ref={f} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; if (x) { try { setAv(await fileToDataUrl(x)); } catch { toast(t("Impossible de lire cette image.")); } } }} /></div>
     <div className="card col" style={{ gap: 4, padding: 12 }}><b className="small">{t("Pseudo : @{handle}", { handle: u.handle })}</b><span className="muted small">{u.handleChanged ? t("Déjà changé une fois : définitif.") : t("Modifiable une seule fois, et c'est payant (pour limiter les faux profils).")}</span>{!u.handleChanged && <div className="row" style={{ gap: 6 }}><input className="inp sm" placeholder="nouveau pseudo" value={hh} onChange={(e) => setHh(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 20))} aria-label={t("Nouveau pseudo")} /><button className="btn sm" disabled={hh.length < 3} onClick={() => { const r = actions.changeHandle(hh); toast(r.msg); if (r.ok) setHh(""); }}>{t("Changer")}</button></div>}</div>
     <div className="col" style={{ gap: 6 }}><b className="small">{t("🎂 Mon anniversaire (facultatif)")}</b><div className="row" style={{ gap: 8 }}>

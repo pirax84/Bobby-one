@@ -918,3 +918,6 @@
 917|Profil fotoğrafı değiştirildi.
 918|👤 Profil fotoğrafı olarak kullan
 919|Sesin hikâye olarak, 24 saat
+920|Dil şu anda kullanılamıyor: bağlantını kontrol et ve tekrar dene.
+921|📷 Fotoğraf çek
+922|Profil fotoğrafı çekmek için altta “Fotoğraf”ı seç.

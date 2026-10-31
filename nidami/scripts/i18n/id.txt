@@ -918,3 +918,6 @@
 917|Foto profil diganti.
 918|👤 Pakai sebagai foto profil
 919|Suaramu sebagai story, 24 jam
+920|Bahasa belum tersedia: periksa koneksimu dan coba lagi.
+921|📷 Ambil foto
+922|Pilih “Foto” di bawah untuk mengambil foto profilmu.

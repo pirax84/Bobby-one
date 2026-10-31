@@ -918,3 +918,6 @@
 917|Poza de profil a fost schimbată.
 918|👤 Folosește ca poză de profil
 919|Vocea ta ca story, 24 h
+920|Limba nu este disponibilă acum: verifică conexiunea și încearcă din nou.
+921|📷 Fă o poză
+922|Alege „Poză” jos pentru a face poza de profil.
