@@ -86,6 +86,10 @@ export const EMOJI_GROUPS: [string, string[]][] = [
   [T("Objets"), ["📱", "💻", "📷", "🎥", "💡", "🔑", "🎁", "💰", "💎", "⏰", "🔔", "📌", "✏️", "📖", "🧸", "🛒", "💊", "🔧", "🧭", "🕯️", "📞", "☎️", "📺", "📻", "🎙️", "📡", "🔋", "🔌", "💳", "🧾", "✉️", "📦", "📅", "📎", "✂️", "🔒", "🔓", "🛏️", "🛋️", "🚿", "🧼", "🧺", "🧹", "🪑", "👓", "🕶️", "👜", "🎒", "👟", "👠", "🧢", "🧣", "🧤", "👗", "👕"]],
   [T("Symboles"), ["✅", "❌", "❗", "❓", "💤", "💥", "💫", "🔥", "⭐", "🌟", "⚡", "☀️", "🌙", "☁️", "❄️", "🌈", "♻️", "➕", "➖", "🔴", "🟢", "🔵", "⚠️", "🚫", "💬", "💭", "🗯️", "➡️", "⬅️", "⬆️", "⬇️", "🔄", "🔁", "🔔", "🔕", "📣", "🆗", "🆕", "🆒", "🔝", "🔜", "©️", "™️", "✔️", "☑️", "🟡", "🟠", "🟣", "⚫", "⚪", "🔶", "🔷", "▶️", "⏸️", "🎵"]],
 ];
+/** Les emojis que la personne utilise le plus (gardés sur l'appareil) : toujours les 5 premiers proposés. */
+const useKey = (me: string) => "notiif-emoji-use-" + me;
+export function topEmojis(me: string, n = 5): string[] { let c: Record<string, number> = {}; try { c = JSON.parse(localStorage.getItem(useKey(me)) || "{}"); } catch { /* ignoré */ } const base = EMOJIS.slice(0, n); const used = Object.entries(c).sort((a, b) => b[1] - a[1]).map(([e]) => e).slice(0, n); return [...used, ...base.filter((e) => !used.includes(e))].slice(0, n); }
+export function bumpEmoji(me: string, e: string) { try { const c = JSON.parse(localStorage.getItem(useKey(me)) || "{}"); c[e] = (c[e] || 0) + 1; localStorage.setItem(useKey(me), JSON.stringify(c)); } catch { /* ignoré */ } }
 export function EmojiGrid({ onPick, onClose }: { onPick: (e: string) => void; onClose?: () => void }) {
   return <div className="egrid">{onClose && <div style={{ position: "sticky", top: 0, display: "flex", justifyContent: "flex-end", zIndex: 1 }}><button type="button" className="btn ghost sm" onClick={onClose} aria-label={t("Fermer les emojis")} style={{ background: "var(--card)" }}>✕</button></div>}{EMOJI_GROUPS.map(([tx, l]) => <div key={tx}><div className="muted small" style={{ margin: "6px 2px" }}>{t(tx)}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
 }

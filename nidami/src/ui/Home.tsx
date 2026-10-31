@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
-import { Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps, isBirthday } from "./common";
+import { Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps, isBirthday, topEmojis, bumpEmoji } from "./common";
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder, Camera } from "./Recorder";
@@ -59,8 +59,8 @@ function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; 
         <form className="row" style={{ gap: 8 }} onSubmit={(e) => { e.preventDefault(); if (!reply.trim()) return; const c = actions.startDm(authorId); actions.send(c, t("↩️ Réponse à votre story : {reply}", { reply })); setReply(""); toast(t("Réponse envoyée en privé.")); }}>
           <input className="inp grow" style={{ minHeight: 52, fontSize: "1.05rem", borderRadius: 18 }} placeholder={t("Répondre en privé…")} value={reply} onChange={(e) => setReply(e.target.value)} aria-label={t("Répondre en privé…")} />
           <button className="btn micbtn" style={{ width: 52, height: 52 }} disabled={!reply.trim()} aria-label={t("Envoyer")}><Ico n="send" s={20} /></button></form>
-        {likesOn && <div className="row" style={{ gap: 6, overflowX: "auto", paddingBottom: 2 }}>{EMOJIS.map((e) => <button key={e} className={"react big" + (live.reactions[me] === e ? " on" : "")} onClick={() => { actions.react(live.id, e); setPop(e); setTimeout(() => setPop(null), 900); }} aria-label={t("Réagir {e}", { e })}>{e}</button>)}<button className="react big" onClick={() => setMore(!more)} aria-label={t("Plus d'émoticônes")}>＋</button></div>}
-        {likesOn && more && <div className="empanel" style={{ maxHeight: 190 }}><EmojiGrid onPick={(e) => { actions.react(live.id, e); setPop(e); setMore(false); setTimeout(() => setPop(null), 900); }} onClose={() => setMore(false)} /></div>}
+        {likesOn && <div className="row" style={{ gap: 6, overflowX: "auto", paddingBottom: 2 }}>{topEmojis(me).map((e) => <button key={e} className={"react big" + (live.reactions[me] === e ? " on" : "")} onClick={() => { actions.react(live.id, e); bumpEmoji(me, e); setPop(e); setTimeout(() => setPop(null), 900); }} aria-label={t("Réagir {e}", { e })}>{e}</button>)}<button className="react big" onClick={() => setMore(!more)} aria-label={t("Plus d'émoticônes")}>＋</button></div>}
+        {likesOn && more && <div className="empanel" style={{ maxHeight: 190 }}><EmojiGrid onPick={(e) => { actions.react(live.id, e); bumpEmoji(me, e); setPop(e); setMore(false); setTimeout(() => setPop(null), 900); }} onClose={() => setMore(false)} /></div>}
       </div>}
     {pop && <div className="reactpop" aria-hidden="true">{pop}</div>}
   </div>);
