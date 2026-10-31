@@ -2,7 +2,7 @@ import { BRAND } from "./lib/brand";
 import { applyTheme } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
-import { Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps } from "./ui/common";
+import { Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
 import { Messages, Games, Soon } from "./ui/Chat";
@@ -33,7 +33,7 @@ export default function App() {
   const parseHash = () => { const m = location.hash.match(/add=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
-  const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long">(false); const [more, setMore] = useState(false);
+  const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
   useEffect(() => { applyTheme({ light: !!light }); }, [light]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
@@ -80,7 +80,7 @@ export default function App() {
     </aside>
     <nav className="bottom" aria-label={t("Navigation")}>
       {bar.slice(0, half).map(tab)}
-      <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("long"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
+      <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("selfie"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
       {bar.slice(half).map(tab)}</nav>
     {more && <Modal title={t("Plus")} onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([[t("Mon cercle"), [["groups", t("Groupes"), "group"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"]]], [t("Médias et jeux"), [["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["calls", t("Appels"), "phone"]]], [t("Mon compte"), [["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
@@ -89,11 +89,18 @@ export default function App() {
     {pendCode && (() => { const tx = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
       return <Modal title={t("Invitation NOTIIF")} onClose={done}><div className="col center" style={{ alignItems: "center" }}>{tx ? <><Avatar u={tx} s={72} /><h3>{t("Ajouter {name} ?", { name: tx.name })}</h3><p className="muted small">@{tx.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>{t("Envoyer la demande")}</button></> : <p className="muted">{t("Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.")}</p>}<button className="btn ghost" onClick={done}>{t("Plus tard")}</button></div></Modal>; })()}
     {v !== "messages" && bubbleOn && <ChatBubble openFull={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} />}
-    {ask && <Modal title={t("Que voulez-vous partager ?")} onClose={() => setAsk(false)}><div className="col" style={{ gap: 10 }}>
-      <button className="btn" onClick={() => { setAsk(false); setStoryC(true); }}>{t("✨ Une story (disparaît toute seule)")}</button>
-      <button className="btn" onClick={() => { setAsk(false); setCompose("short"); }}>{t("📝 Une publication")}</button></div></Modal>}
+    {ask && <Modal title={t("Créer")} onClose={() => setAsk(false)}><div className="col" style={{ gap: 10 }}>
+      <b className="small muted">{t("Dans la bulle du haut (24 h)")}</b>
+      <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("selfie"); }}><span className="grow"><b>{t("🤳 Selfie")}</b><small>{t("Photo ou vidéo, plein écran")}</small></span></button>
+      <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("photo"); }}><span className="grow"><b>{"🖼️ "}{t("Photo de la galerie")}</b><small>{t("Visible dans la bulle de vos amis")}</small></span></button>
+      <label className="row small" style={{ gap: 8 }}><Switch on={wall} onChange={setWall} label={t("Garder aussi sur mon mur")} /><span>{t("Garder aussi sur mon mur")}</span></label>
+      <b className="small muted">{t("Sur le mur (reste affiché)")}</b>
+      <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("text"); }}><span className="grow"><b>{t("✏️ Écrire un texte")}</b></span></button>
+      <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("audio"); }}><span className="grow"><b>{t("🎤 Message vocal")}</b></span></button>
+      <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("link"); }}><span className="grow"><b>{"🔗 "}{t("Lien")}</b></span></button>
+      <p className="muted small center" style={{ margin: 0 }}>{t("Astuce : restez appuyé sur le bouton pour ouvrir directement la caméra.")}</p></div></Modal>}
     {storyC && <QuickCompose story onClose={() => setStoryC(false)} />}
-    {compose && <QuickCompose long={compose === "long"} onClose={() => setCompose(false)} />}
+    {compose && <QuickCompose key={compose} long={compose === "long" || compose === "selfie"} story={compose === "selfie" || compose === "photo"} alsoWall={wall} kind={compose === "text" || compose === "photo" || compose === "audio" || compose === "link" ? compose : undefined} onClose={() => setCompose(false)} />}
     <MiniPlayer /><ToastHost /></div>);
 }
 function RightPanel({ go }: { go: (v: string) => void }) {

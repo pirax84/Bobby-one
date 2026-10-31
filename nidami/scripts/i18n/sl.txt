@@ -877,3 +877,10 @@
 876|Račun in podatki
 877|Demo način, izvoz, odjava
 878|Poišči nastavitev
+879|V oblačku zgoraj (24 ur)
+880|Priljubljeni
+881|Obdrži tudi na moji steni
+882|Fotografija iz galerije
+883|Fotografija ali video čez cel zaslon
+884|Na steni (ostane vidno)
+885|Vidno v oblačku tvojih prijateljev

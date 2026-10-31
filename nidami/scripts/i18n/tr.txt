@@ -877,3 +877,10 @@
 876|Hesap ve veriler
 877|Demo modu, dışa aktar, çıkış yap
 878|Ayar ara
+879|Üstteki baloncukta (24 saat)
+880|Favoriler
+881|Duvarımda da tut
+882|Galeriden fotoğraf
+883|Tam ekran fotoğraf veya video
+884|Duvarda (görünür kalır)
+885|Arkadaşlarının baloncuğunda görünür

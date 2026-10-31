@@ -877,3 +877,10 @@
 876|Konto ja andmed
 877|Demorežiim, eksport, väljalogimine
 878|Otsi seadet
+879|Ülemises mullis (24 h)
+880|Lemmikud
+881|Jäta ka minu seinale
+882|Foto galeriist
+883|Foto või video täisekraanil
+884|Seinal (jääb nähtavale)
+885|Nähtav sõprade mullis

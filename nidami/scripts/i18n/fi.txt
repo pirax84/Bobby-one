@@ -877,3 +877,10 @@
 876|Tili ja tiedot
 877|Demotila, vienti, kirjaudu ulos
 878|Hae asetusta
+879|Ylhäällä kuplassa (24 t)
+880|Suosikit
+881|Säilytä myös seinälläni
+882|Kuva galleriasta
+883|Kuva tai video koko näytöllä
+884|Seinällä (pysyy näkyvissä)
+885|Näkyy ystävien kuplassa

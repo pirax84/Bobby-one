@@ -877,3 +877,10 @@
 876|Account and data
 877|Demo mode, export, log out
 878|Search settings
+879|In the top bubble (24 h)
+880|Favorites
+881|Also keep on my wall
+882|Photo from the gallery
+883|Photo or video, full screen
+884|On the wall (stays visible)
+885|Visible in your friends' bubble

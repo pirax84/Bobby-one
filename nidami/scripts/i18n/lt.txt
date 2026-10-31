@@ -877,3 +877,10 @@
 876|Paskyra ir duomenys
 877|Demonstracinis režimas, eksportas, atsijungimas
 878|Ieškoti nustatymo
+879|Viršutiniame debesėlyje (24 val.)
+880|Mėgstamiausi
+881|Palikti ir mano sienoje
+882|Nuotrauka iš galerijos
+883|Nuotrauka ar vaizdo įrašas visu ekranu
+884|Sienoje (lieka matoma)
+885|Matoma draugų debesėlyje

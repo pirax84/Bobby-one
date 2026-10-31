@@ -877,3 +877,10 @@
 876|Account e dati
 877|Modalità demo, esporta, esci
 878|Cerca un'impostazione
+879|Nella bolla in alto (24 ore)
+880|Preferiti
+881|Tieni anche sulla mia bacheca
+882|Foto dalla galleria
+883|Foto o video a schermo intero
+884|Sulla bacheca (resta visibile)
+885|Visibile nella bolla dei tuoi amici

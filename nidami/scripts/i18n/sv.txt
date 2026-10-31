@@ -877,3 +877,10 @@
 876|Konto och data
 877|Demoläge, exportera, logga ut
 878|Sök inställning
+879|I bubblan högst upp (24 tim)
+880|Favoriter
+881|Behåll även på min vägg
+882|Foto från galleriet
+883|Foto eller video i helskärm
+884|På väggen (blir kvar)
+885|Syns i dina vänners bubbla

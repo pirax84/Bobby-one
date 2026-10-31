@@ -326,3 +326,13 @@ html[dir=rtl] .setch{transform:scaleX(-1)}
 .vbar input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:rgba(255,255,255,.35);outline:0}
 .vbar input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#2FCDBE;border:2px solid var(--ink)}
 .vbar input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#2FCDBE;border:2px solid var(--ink)}
+/* Page Amis : lignes en bulles */
+.frow{display:flex;align-items:center;gap:10px;background:var(--bg2);border:2.5px solid var(--ink);border-radius:22px 14px 24px 12px / 14px 24px 12px 22px;box-shadow:4px 4px 0 var(--shade);padding:10px 12px}
+.frowmain{display:flex;align-items:center;gap:12px;flex:1;min-width:0;background:none;border:0;padding:0;color:var(--fg);text-align:start}
+.frowmain b,.frowmain small{display:block}.frowmain small{font-weight:500;color:var(--mute);font-size:.78rem}
+.fmsg{width:42px;height:38px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#0A838B,#0E7FA6);border:2.5px solid var(--ink);border-radius:14px 14px 14px 3px;box-shadow:2px 2px 0 var(--ink);flex:none}
+.fsec{font-weight:800;margin-top:6px}
+.bigbtn{display:flex!important;align-items:center;gap:12px;text-align:start;justify-content:flex-start!important;padding:12px 14px!important;font-size:1rem}
+.bigbtn small{display:block;font-weight:500;opacity:.92;font-size:.75rem}
+.bigbtn.alt{background:rgba(var(--brand-rgb),.18)!important;color:var(--fg)!important;box-shadow:3px 3px 0 var(--shade)!important}
+.btn.bigbtn.alt:not(.ghost):not(.danger){background:rgba(var(--brand-rgb),.18)!important;color:var(--fg)!important;box-shadow:3px 3px 0 var(--shade)!important}

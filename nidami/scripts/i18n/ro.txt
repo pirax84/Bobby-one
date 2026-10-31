@@ -877,3 +877,10 @@
 876|Cont și date
 877|Mod demo, export, deconectare
 878|Caută o setare
+879|În bula de sus (24 h)
+880|Favorite
+881|Păstrează și pe peretele meu
+882|Fotografie din galerie
+883|Fotografie sau video pe tot ecranul
+884|Pe perete (rămâne vizibil)
+885|Vizibil în bula prietenilor tăi

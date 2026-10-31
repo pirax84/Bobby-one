@@ -877,3 +877,10 @@
 876|Račun i podaci
 877|Demo način, izvoz, odjava
 878|Traži postavku
+879|U oblačiću gore (24 h)
+880|Favoriti
+881|Zadrži i na mom zidu
+882|Fotografija iz galerije
+883|Fotografija ili video preko cijelog zaslona
+884|Na zidu (ostaje vidljivo)
+885|Vidljivo u oblačiću tvojih prijatelja

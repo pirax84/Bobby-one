@@ -877,3 +877,10 @@
 876|Konto und Daten
 877|Demo-Modus, Export, Abmelden
 878|Einstellung suchen
+879|In der Blase oben (24 Std.)
+880|Favoriten
+881|Auch auf meiner Pinnwand behalten
+882|Foto aus der Galerie
+883|Foto oder Video im Vollbild
+884|Auf der Pinnwand (bleibt sichtbar)
+885|Sichtbar in der Blase deiner Freunde

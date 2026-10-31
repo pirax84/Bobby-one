@@ -877,3 +877,10 @@
 876|Kont u dejta
 877|Modalità demo, esporta, oħroġ
 878|Fittex issettjar
+879|Fil-bużżieqa ta' fuq (24 siegħa)
+880|Favoriti
+881|Żomm ukoll fuq il-ħajt tiegħi
+882|Ritratt mill-gallerija
+883|Ritratt jew vidjo, skrin sħiħ
+884|Fuq il-ħajt (jibqa' jidher)
+885|Jidher fil-bużżieqa tal-ħbieb tiegħek

@@ -877,3 +877,10 @@
 876|Účet a údaje
 877|Demo režim, export, odhlásenie
 878|Hľadať nastavenie
+879|V bubline hore (24 h)
+880|Obľúbení
+881|Ponechať aj na mojej nástenke
+882|Fotka z galérie
+883|Fotka alebo video na celú obrazovku
+884|Na nástenke (zostane viditeľné)
+885|Uvidia to priatelia v bubline

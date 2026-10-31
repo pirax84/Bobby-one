@@ -877,3 +877,10 @@
 876|Akun dan data
 877|Mode demo, ekspor, keluar
 878|Cari pengaturan
+879|Di gelembung atas (24 jam)
+880|Favorit
+881|Simpan juga di dinding saya
+882|Foto dari galeri
+883|Foto atau video layar penuh
+884|Di dinding (tetap terlihat)
+885|Terlihat di gelembung teman Anda

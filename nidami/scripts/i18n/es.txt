@@ -877,3 +877,10 @@
 876|Cuenta y datos
 877|Modo demo, exportar, cerrar sesión
 878|Buscar un ajuste
+879|En la burbuja de arriba (24 h)
+880|Favoritos
+881|Conservar también en mi muro
+882|Foto de la galería
+883|Foto o vídeo a pantalla completa
+884|En el muro (se queda visible)
+885|Visible en la burbuja de tus amigos

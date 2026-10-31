@@ -877,3 +877,10 @@
 876|Account en gegevens
 877|Demomodus, exporteren, uitloggen
 878|Instelling zoeken
+879|In de bel bovenaan (24 uur)
+880|Favorieten
+881|Ook op mijn muur bewaren
+882|Foto uit de galerij
+883|Foto of video op volledig scherm
+884|Op de muur (blijft zichtbaar)
+885|Zichtbaar in de bel van je vrienden

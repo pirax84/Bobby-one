@@ -877,3 +877,10 @@
 876|Konts un dati
 877|Demo režīms, eksports, izrakstīšanās
 878|Meklēt iestatījumu
+879|Augšējā burbulī (24 h)
+880|Izlase
+881|Saglabāt arī manā sienā
+882|Foto no galerijas
+883|Foto vai video pilnekrāna režīmā
+884|Sienā (paliek redzams)
+885|Redzams draugu burbulī

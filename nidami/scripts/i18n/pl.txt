@@ -877,3 +877,10 @@
 876|Konto i dane
 877|Tryb demo, eksport, wylogowanie
 878|Szukaj ustawienia
+879|W dymku u góry (24 godz.)
+880|Ulubione
+881|Zachowaj też na mojej tablicy
+882|Zdjęcie z galerii
+883|Zdjęcie lub wideo na cały ekran
+884|Na tablicy (zostaje widoczne)
+885|Widoczne w dymku Twoich znajomych

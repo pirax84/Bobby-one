@@ -877,3 +877,10 @@
 876|Fiók és adatok
 877|Demó mód, exportálás, kijelentkezés
 878|Beállítás keresése
+879|A felső buborékban (24 óra)
+880|Kedvencek
+881|Tartsa meg a falamon is
+882|Fotó a galériából
+883|Fotó vagy videó, teljes képernyőn
+884|A falon (látható marad)
+885|Látható a barátaid buborékjában

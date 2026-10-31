@@ -877,3 +877,10 @@
 876|Cuntas agus sonraí
 877|Mód taispeána, easpórtáil, logáil amach
 878|Cuardaigh socrú
+879|Sa mbolgán ag an mbarr (24 uair)
+880|Ceanna is fearr leat
+881|Coinnigh ar mo bhalla freisin
+882|Grianghraf ón ngailearaí
+883|Grianghraf nó físeán, lánscáileán
+884|Ar an mballa (fanann sé le feiceáil)
+885|Le feiceáil i mbolgán do chairde

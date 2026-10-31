@@ -877,3 +877,10 @@
 876|Konto og data
 877|Demotilstand, eksport, log ud
 878|Søg i indstillinger
+879|I boblen øverst (24 t)
+880|Favoritter
+881|Behold også på min væg
+882|Foto fra galleriet
+883|Foto eller video i fuld skærm
+884|På væggen (bliver stående)
+885|Synligt i dine venners boble

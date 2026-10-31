@@ -877,3 +877,10 @@
 876|Conta e dados
 877|Modo demo, exportar, terminar sessão
 878|Procurar uma definição
+879|Na bolha de cima (24 h)
+880|Favoritos
+881|Manter também no meu mural
+882|Foto da galeria
+883|Foto ou vídeo em ecrã inteiro
+884|No mural (fica visível)
+885|Visível na bolha dos teus amigos

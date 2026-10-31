@@ -877,3 +877,10 @@
 876|Účet a data
 877|Demo režim, export, odhlášení
 878|Hledat nastavení
+879|V bublině nahoře (24 h)
+880|Oblíbení
+881|Ponechat i na mé zdi
+882|Fotka z galerie
+883|Fotka nebo video na celou obrazovku
+884|Na zdi (zůstává vidět)
+885|Uvidí ji přátelé v bublině
