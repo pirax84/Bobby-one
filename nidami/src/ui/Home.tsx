@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
-import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps } from "./common";
+import { Wreath, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps } from "./common";
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder, Camera, VoicePad } from "./Recorder";
@@ -10,13 +10,21 @@ import { LinkCard, safeUrl } from "./Links";
 import { t } from "../i18n";
 
 // ───────── Barre des stories
+/** Aperçu d'une story dans la bulle : la photo ou la vidéo ; jamais pour une story éphémère (elle reste cachée). */
+function preview(posts: Post[], u?: { avatar?: string | null }): { img?: string | null; video?: string | null; bg?: string; icon?: string } {
+  const p = [...posts].sort((x, y) => y.createdAt - x.createdAt)[0]; if (!p) return {};
+  if (p.viewSecs > 0) return { icon: "⏱" };
+  if (p.img) return { img: p.img }; if (p.video) return { video: p.video }; if (p.audio) return { icon: "🎤" };
+  if (p.bg !== undefined) return { bg: BG[p.bg % BG.length] };
+  return u?.avatar ? { img: u.avatar } : {};
+}
 export function Stories({ me }: { me: string }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(5000);
   const [open, setOpen] = useState<string | null>(null); 
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
   return (<><div className="stories">
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = list.filter((p) => p.authorId === a).every((p) => p.authorId === me || p.views[me] !== undefined);
-      return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"ring" + (seen ? " seen" : "")}><Avatar u={u} s={58} /></span><div className="ell">{a === me ? t("Moi") : u?.name}</div></button>; })}
+      return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"wreath" + (seen ? " seen" : "")}><Wreath {...preview(list.filter((p) => p.authorId === a), u)} /></span><div className="ell">{a === me ? t("Moi") : (u?.name || "").split(" ")[0]}</div></button>; })}
   </div>
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}
 </>);
