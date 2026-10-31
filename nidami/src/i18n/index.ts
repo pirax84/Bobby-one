@@ -15,6 +15,11 @@ let cur = "fr"; let dict: Record<string, string> = {}; const subs = new Set<() =
 const find = (c: string) => LANGS.find((l) => l.code.toLowerCase() === c.toLowerCase());
 const saved = (): string | null => { try { const v = localStorage.getItem(KEY); return v && find(v) ? find(v)!.code : null; } catch { return null; } };
 
+/** Langue de l'appareil ou du navigateur (sans tenir compte du choix manuel). */
+export function deviceLang(): string { try { const k = localStorage.getItem(KEY); localStorage.removeItem(KEY); const d = detectLang(); if (k) localStorage.setItem(KEY, k); return d; } catch { return "fr"; } }
+/** Remet la langue d'origine (celle de l'appareil) et oublie le choix manuel. */
+export async function resetLang(): Promise<boolean> { const d = deviceLang(); try { localStorage.removeItem(KEY); } catch { /* ignoré */ } return setLang(d, false); }
+
 /** Langue choisie à la main > langue de l'appareil ou du navigateur > français. */
 export function detectLang(): string {
   const s = saved(); if (s) return s;
