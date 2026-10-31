@@ -416,3 +416,6 @@ html[data-hand=left] .toast{left:auto}
 .btabs button b{font-size:1.25rem;line-height:1.2}
 .btabs button.on{background:var(--brand);color:#fff;font-weight:700}
 .btabs button{position:relative}.btabs .badge{position:absolute;top:1px;right:12%;margin:0!important;min-width:20px;height:20px;font-size:.7rem}
+.btabs{position:relative}
+.bmore{position:absolute;right:0;top:calc(100% + 6px);z-index:5;min-width:180px;background:var(--bg2);border:2px solid var(--ink);border-radius:16px;box-shadow:3px 3px 0 var(--shade);padding:6px;display:flex;flex-direction:column}
+.bmore button{flex:none;flex-direction:row!important;justify-content:flex-start;padding:12px!important;font-size:1rem!important;border-radius:12px!important}
