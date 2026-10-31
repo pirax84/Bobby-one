@@ -926,3 +926,4 @@
 925|📞 Basit arama
 926|Sadece ses · yakında
 927|Ses ve görüntü · mevcut
+928|✓ Profil fotoğrafı değiştirildi

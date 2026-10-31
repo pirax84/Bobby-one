@@ -926,3 +926,4 @@
 925|📞 Egyszerű hívás
 926|Csak hang · hamarosan
 927|Hang és kép · elérhető
+928|✓ Profilkép megváltoztatva

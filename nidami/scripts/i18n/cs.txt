@@ -926,3 +926,4 @@
 925|📞 Běžný hovor
 926|Jen hlas · brzy
 927|Hlas a obraz · dostupné
+928|✓ Profilová fotka změněna

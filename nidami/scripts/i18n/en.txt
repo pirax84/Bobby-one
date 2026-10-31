@@ -926,3 +926,4 @@
 925|📞 Voice call
 926|Voice only · coming soon
 927|Voice and video · available
+928|✓ Profile photo changed

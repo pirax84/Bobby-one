@@ -926,3 +926,4 @@
 925|📞 Almindeligt opkald
 926|Kun stemme · snart
 927|Stemme og billede · tilgængeligt
+928|✓ Profilbillede ændret

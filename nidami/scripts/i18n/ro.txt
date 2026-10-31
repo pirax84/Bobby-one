@@ -926,3 +926,4 @@
 925|📞 Apel simplu
 926|Doar voce · în curând
 927|Voce și imagine · disponibil
+928|✓ Poza de profil a fost schimbată

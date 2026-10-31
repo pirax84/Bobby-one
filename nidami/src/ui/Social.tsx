@@ -146,7 +146,7 @@ export function Events() {
 }
 
 function EditProfile({ u, onClose }: { u: User; onClose: () => void }) {
-  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const f = useRef<HTMLInputElement>(null); const [cam, setCam] = useState(false);
+  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const f = useRef<HTMLInputElement>(null); const [cam, setCam] = useState(false); useEffect(() => { setAv(u.avatar || null); }, [u.avatar]);
   const V: [User["avatarVis"], string][] = [["friends", t("Mes amis")], ["all", t("Tout le monde")], ["none", t("Personne")]];
   return <Modal title={t("Modifier mon profil")} onClose={onClose}><div className="col">
     <div className="col center" style={{ alignItems: "center", gap: 10 }}><Avatar u={{ ...u, avatar: av, avatarVis: "all" }} s={104} />

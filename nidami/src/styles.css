@@ -393,7 +393,6 @@ html[dir=rtl] .setch{transform:scaleX(-1)}
 /* Gaucher : gros boutons du côté du pouce */
 html[data-hand=left] .bfab{right:auto!important;left:14px}
 html[data-hand=left] .bottom{flex-direction:row-reverse}
-html[data-hand=left] .toast{left:auto}
 .composer.voice .tool{display:none}
 
 /* Caméra : mode Vocal */
@@ -431,3 +430,6 @@ html[data-hand=left] .toast{left:auto}
 
 .micbtn{width:44px;height:44px;min-width:44px;padding:0;border-radius:14px;display:grid;place-items:center;flex:none}
 .bhead .bi2{background:transparent;border:0;color:#fff;width:34px;height:34px}
+
+/* Messages d'information : toujours au milieu de l'écran, au-dessus de tout (caméra comprise). */
+.toast,html[data-hand=left] .toast{position:fixed;left:50%!important;right:auto!important;top:50%!important;bottom:auto!important;transform:translate(-50%,-50%)!important;z-index:300;width:max-content;max-width:86vw;text-align:center;font-weight:600;background:#0b2c33;border:1.5px solid var(--brand);padding:14px 20px;pointer-events:none}

@@ -926,3 +926,4 @@
 925|📞 Običan poziv
 926|Samo glas · uskoro
 927|Glas i slika · dostupno
+928|✓ Profilna fotografija promijenjena

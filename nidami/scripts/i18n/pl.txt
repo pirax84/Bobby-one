@@ -926,3 +926,4 @@
 925|📞 Zwykłe połączenie
 926|Tylko głos · wkrótce
 927|Głos i obraz · dostępne
+928|✓ Zmieniono zdjęcie profilowe

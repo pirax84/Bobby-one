@@ -926,3 +926,4 @@
 925|📞 Tavallinen puhelu
 926|Vain ääni · pian
 927|Ääni ja kuva · käytettävissä
+928|✓ Profiilikuva vaihdettu

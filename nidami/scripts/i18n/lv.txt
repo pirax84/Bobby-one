@@ -926,3 +926,4 @@
 925|📞 Parasts zvans
 926|Tikai balss · drīz
 927|Balss un attēls · pieejams
+928|✓ Profila foto nomainīts

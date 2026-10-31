@@ -926,3 +926,4 @@
 925|📞 Chiamata semplice
 926|Solo voce · presto
 927|Voce e video · disponibile
+928|✓ Foto del profilo cambiata

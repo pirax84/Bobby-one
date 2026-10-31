@@ -926,3 +926,4 @@
 925|📞 Einfacher Anruf
 926|Nur Sprache · bald
 927|Sprache und Bild · verfügbar
+928|✓ Profilfoto geändert

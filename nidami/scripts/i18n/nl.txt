@@ -926,3 +926,4 @@
 925|📞 Gewoon bellen
 926|Alleen stem · binnenkort
 927|Stem en beeld · beschikbaar
+928|✓ Profielfoto gewijzigd
