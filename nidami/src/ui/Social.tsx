@@ -11,6 +11,7 @@ import { Home } from "./Home";
 import { Camera } from "./Recorder";
 import { AvatarCrop } from "./Photo";
 import { t, T, locale } from "../i18n";
+import { KidCard } from "./Kid";
 import { LangPicker } from "./LangPicker";
 import { LegalView } from "./Legal";
 
