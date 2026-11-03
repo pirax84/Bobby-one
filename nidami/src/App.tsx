@@ -17,6 +17,8 @@ import { playFx, playCustom, Fx, playTone, vibrate, popNotes } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
 import { t, locale, useLang } from "./i18n";
 import { ArrivedModal } from "./ui/Extras";
+import { Guide } from "./ui/Guide";
+import { kidOn, PinGate } from "./ui/Kid";
 
 type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
 export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["calls", t("Appels"), "phone"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]];
@@ -26,9 +28,14 @@ export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "ho
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 function BrandWm({ id, light, sound, big }: { id: string; light: boolean; sound: boolean; big?: boolean }) {
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
-  const hop = () => { let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound) popNotes(6); try { navigator.vibrate?.(12); } catch { /* rien */ } };
+  const tapped = () => { try { const now = Date.now(); const last = +(localStorage.getItem("notiif-tap-t") || 0); const streak = now - last < 2500 ? +(localStorage.getItem("notiif-tap-s") || 0) + 1 : 1; localStorage.setItem("notiif-tap-t", String(now)); localStorage.setItem("notiif-tap-s", String(streak));
+    const total = +(localStorage.getItem("notiif-tap-n") || 0) + 1; localStorage.setItem("notiif-tap-n", String(total));
+    if (total >= 40 && !localStorage.getItem("notiif-treasure")) { localStorage.setItem("notiif-treasure", "1"); actions.addScore(10); window.dispatchEvent(new Event("notiif-treasure")); }
+    else if (streak === 7) { const P = [t("Tu es précieux pour tes proches 💜"), t("Merci d'être là, ça fait plaisir !"), t("Un petit coup de fil à quelqu'un que tu aimes ? 💌"), t("Tu fais du bien autour de toi 🌸")]; toast(P[Math.floor(Math.random() * P.length)]); } } catch { /* rien */ } };
+  const hop = () => { tapped(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound) popNotes(6); try { navigator.vibrate?.(12); } catch { /* rien */ } };
   return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
+
     {WM_CUTS.slice(0, 6).map((c, i) => <img key={i + "-" + go} className="wml" draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
   </span>;
 }
@@ -45,7 +52,7 @@ export default function App() {
   const parseHash = () => { const m = (location.hash + location.search).match(/(?:add|invite)=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
-  const [arrived, setArrived] = useState(false); const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "saudio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
+  const [arrived, setArrived] = useState(false); const [kidOk, setKidOk] = useState(false); const [treasure, setTreasure] = useState(false); useEffect(() => { const f = () => setTreasure(true); window.addEventListener("notiif-treasure", f); return () => window.removeEventListener("notiif-treasure", f); }, []); const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "saudio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
   useEffect(() => { applyTheme({ light: !!light, accent }); document.documentElement.style.setProperty("--fs", String(({ petit: 0.92, grand: 1.15, tgrand: 1.3 } as Record<string, number>)[fsCfg || ""] || 1)); }, [light, accent, fsCfg]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
@@ -86,8 +93,9 @@ export default function App() {
   const topKeys = (topCfg ? topCfg.split(",") : ["search", "settings"]).filter((k) => k === "search" || navItems().some((n) => n[0] === k)).slice(0, 4);
   const openConvFull = (id: string) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); };
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
-  const page = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs go={go} openConv={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings go={go} />
+  const page0 = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs go={go} openConv={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings go={go} />
     : <Soon title={t("Appels audio et vidéo")} icon="📞" why={t("Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur NOTIIF sera en place.")} />;
+  const page = kidOn() && !kidOk && (v === "settings" || v === "profile" || v === "friends") ? <PinGate onOk={() => setKidOk(true)} /> : page0;
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className="shell">
@@ -112,6 +120,8 @@ export default function App() {
       {([[t("Mon cercle"), [["groups", t("Groupes"), "group"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["arrived", t("Bien arrivé"), "pin"]]], [t("Médias et jeux"), [["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["calls", t("Appels"), "phone"]]], [t("Mon compte"), [["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
         <div key={tx} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{tx}</b>
           <div className="tiles">{items.map(([k, l, i]) => <button key={k} className="tile" onClick={() => go(k)}><span className="tic"><Ico n={i} s={24} /></span><span>{l}</span>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 6, right: 6 }}>{badge(k)}</span>}</button>)}</div></div>)}</div></Modal>}
+    {started && <Guide />}
+    {treasure && <Modal title={t("🏆 Tu as trouvé le trésor !")} onClose={() => setTreasure(false)}><div className="col center" style={{ alignItems: "center", gap: 10 }}><div style={{ fontSize: 64 }}>💎</div><b>{t("Bravo, chercheur de trésor !")}</b><p className="muted">{t("Tu as touché le logo plein de fois. Voici 10 points bonus, rien que pour toi.")}</p><button className="btn" onClick={() => setTreasure(false)}>{t("Merci !")}</button></div></Modal>}
     {arrived && <ArrivedModal onClose={() => setArrived(false)} />}
     {pendCode && (() => { const tx = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
       return <Modal title={t("Invitation NOTIIF")} onClose={done}><div className="col center" style={{ alignItems: "center" }}>{tx ? <><Avatar u={tx} s={72} /><h3>{t("Ajouter {name} ?", { name: tx.name })}</h3><p className="muted small">@{tx.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>{t("Envoyer la demande")}</button></> : <p className="muted">{t("Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.")}</p>}<button className="btn ghost" onClick={done}>{t("Plus tard")}</button></div></Modal>; })()}

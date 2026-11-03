@@ -999,3 +999,51 @@
 998|Vor einem Jahr, mit {name}
 999|Ansehen
 1000|Ausblenden
+1001|You (✕) vs the computer (◯)
+1002|🏆 Well done, you won! (+3 points)
+1003|The computer won. Try again!
+1004|Find the pairs
+1005|Moves: {n}
+1006|Hidden card
+1007|🏆 Well done, finished in {n} moves! (+3 points)
+1008|Welcome to NOTIIF
+1009|A small private network for your family and friends. No ads, no strangers.
+1010|Only your loved ones
+1011|Add friends with their code or QR code. You choose who can find you.
+1012|Share your moments
+1013|The + button at the bottom creates a photo, selfie, voice note or text. For each post, you choose who sees it.
+1014|Talk to each other
+1015|Messages, calls, groups, events. Everything stays between you.
+1016|Make it yours
+1017|In Settings: color, light or dark theme, text size, and a backup of your data.
+1018|And for peace of mind
+1019|In “More”, “Arrived safe” notifies your loved ones in one tap, without ever sending your location.
+1020|Guide
+1021|Skip
+1022|Next
+1023|Let's go!
+1024|Parents only
+1025|Enter the 4-digit parent code.
+1026|Parent code
+1027|Wrong code.
+1028|👨‍👩‍👧 Parental control
+1029|A 4-digit code protects Settings, Profile and Friends on this phone. A child can no longer add contacts or change settings. This control works on this device only.
+1030|Parental control turned off.
+1031|Turn off parental control
+1032|Choose 4 digits
+1033|New parent code
+1034|Parental control on. Remember the code well.
+1035|Could not save the code.
+1036|Turn on
+1037|You are precious to your loved ones 💜
+1038|Thanks for being here, it's a pleasure!
+1039|A quick call to someone you love? 💌
+1040|You do good around you 🌸
+1041|🏆 You found the treasure!
+1042|Well done, treasure hunter!
+1043|You tapped the logo many times. Here are 10 bonus points, just for you.
+1044|Thanks!
+1045|📖 Guide
+1046|View the guide again
+1047|🤖 Solo tic-tac-toe
+1048|🃏 Memory

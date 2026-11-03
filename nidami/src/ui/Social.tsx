@@ -222,7 +222,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v79</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v80</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "install" && <>
@@ -280,6 +280,8 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <div className="card col"><h3>{t("🔒 Confidentialité")}</h3><ul className="muted" style={{ margin: 0, paddingLeft: 18 }}><li>{t("Aucune publicité. Aucune vente de données.")}</li><li>{t("Aucun bouton de partage vers l'extérieur, aucun profil public.")}</li><li>{t("Personne ne peut vous trouver sans votre code d'invitation.")}</li><li>{t("Aucune application ne peut empêcher une personne autorisée de photographier son écran avec un autre appareil.")}</li></ul></div>
     </>}
     {sec === "acct" && <>
+    <KidCard />
+    <div className="card col"><h3>{t("📖 Guide")}</h3><button className="btn ghost" onClick={() => window.dispatchEvent(new Event("notiif-guide"))}>{t("Revoir le guide")}</button></div>
     <div className="card col"><h3>{t("💾 Sauvegarde")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Tout est gardé sur ce téléphone. Sauvegardez dans un fichier pour changer de téléphone sans rien perdre. Gardez ce fichier en lieu sûr.")}</p>
       <p className="muted small" style={{ margin: 0 }}>{(() => { let d = ""; try { d = localStorage.getItem("notiif-last-backup") || ""; } catch { /* rien */ } return d ? t("Dernière sauvegarde : {date}", { date: new Date(+d).toLocaleString() }) : t("Aucune sauvegarde pour l'instant."); })()}</p>
       <button className="btn" onClick={() => { const b = new Blob([actions.backupAll()], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "notiif-sauvegarde.json"; a.click(); try { localStorage.setItem("notiif-last-backup", String(Date.now())); } catch { /* rien */ } toast(t("Sauvegarde enregistrée.")); }}>{t("Sauvegarder")}</button>
