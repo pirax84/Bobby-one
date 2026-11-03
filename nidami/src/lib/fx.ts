@@ -180,3 +180,12 @@ export function playCustom(c: { img?: string; audio?: string; name?: string }, s
   for (let i = 0; i < 22; i++) { const s = document.createElement(c.img ? "img" : "span"); if (c.img) { (s as HTMLImageElement).src = c.img; s.style.width = 30 + Math.random() * 30 + "px"; s.style.height = s.style.width; s.style.objectFit = "cover"; s.style.borderRadius = "50%"; } else s.textContent = "🎙"; s.style.position = "absolute"; s.style.left = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * 0.8 + "s"; s.style.animationDuration = 2 + Math.random() * 1.4 + "s"; box.appendChild(s); }
   document.body.appendChild(box); setTimeout(() => box.remove(), 4200);
 }
+
+// Petits « pop » qui montent, un par lettre, quand on touche le nom NOTIIF.
+export function popNotes(n = 6) {
+  try {
+    const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext; const c = new AC();
+    for (let i = 0; i < n; i++) { const t0 = c.currentTime + i * 0.07; const o = c.createOscillator(); const g = c.createGain(); o.type = "sine"; o.frequency.setValueAtTime(520 * Math.pow(1.122, i * 2), t0); o.frequency.exponentialRampToValueAtTime(900 * Math.pow(1.122, i * 2), t0 + 0.08); g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.16, t0 + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12); o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0 + 0.14); }
+    setTimeout(() => { try { c.close(); } catch { /* rien */ } }, 1200);
+  } catch { /* pas de son : tant pis */ }
+}

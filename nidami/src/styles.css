@@ -492,3 +492,13 @@ html[data-accent=orchidee][data-theme=light]{--bg:#F9EEFC;--bg2:#EED6F5;--card:#
 /* Thème sombre : icônes dans la couleur choisie */
 [data-theme=dark] .bottom button svg,[data-theme=dark] .topr svg,[data-theme=dark] .topb svg{color:var(--brand);stroke-width:2.2}
 [data-theme=dark] .bottom button{color:var(--brand2)}
+/* Nom NOTIIF animé */
+.tw{height:auto}
+.wm{position:relative;display:inline-block;line-height:0;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.wmb{height:34px;width:auto;display:block;pointer-events:none}.wm.big .wmb{height:56px}
+.wml{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.wm.go .wml{animation:wmhop .75s cubic-bezier(.3,1.6,.5,1) both,wmrb 1.2s linear both;animation-delay:calc(var(--i)*70ms),calc(var(--i)*70ms)}
+@keyframes wmhop{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-10px) scale(1.18)}70%{transform:translateY(1px) scale(.97)}100%{transform:none}}
+@keyframes wmrb{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.wm.go .wml{animation:none}}
+.brandbar img.wmb{height:56px}.brandbar img.wml{height:100%;width:100%}

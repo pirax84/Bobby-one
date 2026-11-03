@@ -13,13 +13,24 @@ import { Onboarding, needInstall } from "./ui/Auth";
 import { ChatBubble } from "./ui/Bubble";
 import { SearchTop } from "./ui/Search";
 import { MiniPlayer } from "./ui/Links";
-import { playFx, playCustom, Fx, playTone, vibrate } from "./lib/fx";
+import { playFx, playCustom, Fx, playTone, vibrate, popNotes } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
 import { t, locale, useLang } from "./i18n";
 
 type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
 export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["calls", t("Appels"), "phone"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]];
 
+
+// Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
+const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
+function BrandWm({ id, light, sound, big }: { id: string; light: boolean; sound: boolean; big?: boolean }) {
+  const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
+  const hop = () => { let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound) popNotes(6); try { navigator.vibrate?.(12); } catch { /* rien */ } };
+  return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
+    <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
+    {WM_CUTS.slice(0, 6).map((c, i) => <img key={i + "-" + go} className="wml" draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
+  </span>;
+}
 
 export default function App() {
   useLang();
@@ -83,9 +94,9 @@ export default function App() {
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button></aside>
     <main className="main">
-      <div className="brandbar"><img src={`./wordmark-${accentOf(accent).id}${light ? "-light" : ""}.png`} alt="NOTIIF" /></div>
+      <div className="brandbar"><BrandWm id={accentOf(accent).id} light={light} sound={fxOn} big /></div>
       {topKeys.includes("search") && <div className="dsearch"><SearchTop go={go} openConv={openConvFull} /></div>}
-      <div className="top"><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow tcenter"><img className="tw" src={`./wordmark-${accentOf(accent).id}${light ? "-light" : ""}.png`} alt="NOTIIF" /></span><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => k === "search" ? <span key="search" className="topsearch"><SearchTop variant="icon" go={go} openConv={openConvFull} /></span> : (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div></div>
+      <div className="top"><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow tcenter"><span className="tw"><BrandWm id={accentOf(accent).id} light={light} sound={fxOn} /></span></span><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => k === "search" ? <span key="search" className="topsearch"><SearchTop variant="icon" go={go} openConv={openConvFull} /></span> : (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">
