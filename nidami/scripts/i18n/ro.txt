@@ -965,3 +965,8 @@
 964|Azur
 965|Albastru ocean
 966|Orhidee
+967|🌗 Temă
+968|☀️ Deschis
+969|🌙 Întunecat
+970|📱 Automat
+971|Automat: urmează setarea deschisă sau întunecată a telefonului.

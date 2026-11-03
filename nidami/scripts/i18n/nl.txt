@@ -965,3 +965,8 @@
 964|Azuur
 965|Oceaanblauw
 966|Orchidee
+967|🌗 Thema
+968|☀️ Licht
+969|🌙 Donker
+970|📱 Automatisch
+971|Automatisch: volgt de lichte of donkere instelling van je telefoon.

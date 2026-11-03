@@ -965,3 +965,8 @@
 964|Asuur
 965|Ookeanisinine
 966|Orhidee
+967|🌗 Teema
+968|☀️ Hele
+969|🌙 Tume
+970|📱 Automaatne
+971|Automaatne: järgib telefoni heleda või tumeda režiimi seadet.

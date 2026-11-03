@@ -965,3 +965,8 @@
 964|Azur
 965|Ozeanblau
 966|Orchidee
+967|🌗 Design
+968|☀️ Hell
+969|🌙 Dunkel
+970|📱 Automatisch
+971|Automatisch: folgt der Hell- oder Dunkel-Einstellung des Telefons.

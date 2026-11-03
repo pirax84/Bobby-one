@@ -965,3 +965,8 @@
 964|Azurová
 965|Oceánská modrá
 966|Orchidej
+967|🌗 Motiv
+968|☀️ Světlý
+969|🌙 Tmavý
+970|📱 Automaticky
+971|Automaticky: řídí se světlým nebo tmavým nastavením telefonu.

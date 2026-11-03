@@ -965,3 +965,8 @@
 964|Alúr
 965|Gorm aigéin
 966|Magairlín
+967|🌗 Téama
+968|☀️ Éadrom
+969|🌙 Dorcha
+970|📱 Uathoibríoch
+971|Uathoibríoch: leanann sé socrú éadrom nó dorcha an ghutháin.

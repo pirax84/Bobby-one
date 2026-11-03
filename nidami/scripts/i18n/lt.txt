@@ -965,3 +965,8 @@
 964|Žydra
 965|Vandenyno mėlyna
 966|Orchidėjų
+967|🌗 Tema
+968|☀️ Šviesi
+969|🌙 Tamsi
+970|📱 Automatinė
+971|Automatinė: seka telefono šviesų arba tamsų nustatymą.

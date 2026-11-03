@@ -965,3 +965,8 @@
 964|Azur
 965|Azul océano
 966|Orquídea
+967|🌗 Tema
+968|☀️ Claro
+969|🌙 Oscuro
+970|📱 Automático
+971|Automático: sigue el ajuste claro u oscuro del teléfono.

@@ -965,3 +965,8 @@
 964|Gök mavisi
 965|Okyanus mavisi
 966|Orkide
+967|🌗 Tema
+968|☀️ Açık
+969|🌙 Koyu
+970|📱 Otomatik
+971|Otomatik: telefonun açık veya koyu ayarını izler.

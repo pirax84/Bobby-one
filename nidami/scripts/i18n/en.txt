@@ -965,3 +965,8 @@
 964|Azure
 965|Ocean blue
 966|Orchid
+967|🌗 Theme
+968|☀️ Light
+969|🌙 Dark
+970|📱 Automatic
+971|Automatic: follows your phone's light or dark setting.

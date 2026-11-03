@@ -965,3 +965,8 @@
 964|Azurna
 965|Oceansko modra
 966|Orhideja
+967|🌗 Tema
+968|☀️ Svetla
+969|🌙 Temna
+970|📱 Samodejno
+971|Samodejno: sledi svetli ali temni nastavitvi telefona.

@@ -965,3 +965,8 @@
 964|Taivaansininen
 965|Meren sininen
 966|Orkidea
+967|🌗 Teema
+968|☀️ Vaalea
+969|🌙 Tumma
+970|📱 Automaattinen
+971|Automaattinen: noudattaa puhelimen vaaleaa tai tummaa asetusta.

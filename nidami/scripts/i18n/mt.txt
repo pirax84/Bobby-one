@@ -965,3 +965,8 @@
 964|Azzur
 965|Blu tal-oċean
 966|Orkida
+967|🌗 Tema
+968|☀️ Ċar
+969|🌙 Skur
+970|📱 Awtomatiku
+971|Awtomatiku: isegwi s-setting ċar jew skur tat-telefon.

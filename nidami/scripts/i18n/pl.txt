@@ -965,3 +965,8 @@
 964|Lazur
 965|Błękit oceanu
 966|Orchidea
+967|🌗 Motyw
+968|☀️ Jasny
+969|🌙 Ciemny
+970|📱 Automatyczny
+971|Automatyczny: podąża za jasnym lub ciemnym ustawieniem telefonu.

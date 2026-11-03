@@ -965,3 +965,8 @@
 964|Debeszils
 965|Okeāna zils
 966|Orhideja
+967|🌗 Motīvs
+968|☀️ Gaišs
+969|🌙 Tumšs
+970|📱 Automātisks
+971|Automātisks: seko tālruņa gaišajam vai tumšajam iestatījumam.

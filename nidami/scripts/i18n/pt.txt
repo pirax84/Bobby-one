@@ -965,3 +965,8 @@
 964|Azul-celeste
 965|Azul oceano
 966|Orquídea
+967|🌗 Tema
+968|☀️ Claro
+969|🌙 Escuro
+970|📱 Automático
+971|Automático: segue a definição clara ou escura do telemóvel.

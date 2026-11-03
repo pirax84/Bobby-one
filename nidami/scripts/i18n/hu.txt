@@ -965,3 +965,8 @@
 964|Azúr
 965|Óceánkék
 966|Orchidea
+967|🌗 Téma
+968|☀️ Világos
+969|🌙 Sötét
+970|📱 Automatikus
+971|Automatikus: a telefon világos vagy sötét beállítását követi.

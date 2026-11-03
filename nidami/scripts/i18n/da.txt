@@ -965,3 +965,8 @@
 964|Azur
 965|Havblå
 966|Orkidé
+967|🌗 Tema
+968|☀️ Lyst
+969|🌙 Mørkt
+970|📱 Automatisk
+971|Automatisk: følger telefonens lyse eller mørke indstilling.
