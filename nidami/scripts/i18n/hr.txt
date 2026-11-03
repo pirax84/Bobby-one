@@ -951,3 +951,17 @@
 950|Pomakni fotografiju prstom da ti lice bude u zvijezdi. Dva prsta ili traka za zumiranje.
 951|✅ Potvrdi fotografiju
 952|Namjesti profilnu fotografiju
+953|🎨 Boja aplikacije
+954|Svatko bira svoju. Naziv NOTIIF prilagođava se sam.
+955|Boja: {name}
+956|Svijetla i sjajna pozadina.
+957|Tamna pozadina, blaža navečer.
+958|Lavanda
+959|Tirkizna
+960|Koraljna
+961|Malina
+962|Limeta
+963|Med
+964|Azurna
+965|Oceansko plava
+966|Orhideja

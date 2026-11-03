@@ -951,3 +951,17 @@
 950|Pastumk nuotrauką pirštu, kad tavo veidas būtų žvaigždėje. Du pirštai arba juosta artinimui.
 951|✅ Patvirtinti nuotrauką
 952|Sukadruoti profilio nuotrauką
+953|🎨 Programos spalva
+954|Kiekvienas pasirenka savąją. Pavadinimas NOTIIF prisitaiko pats.
+955|Spalva: {name}
+956|Šviesus ir ryškus fonas.
+957|Tamsus fonas, vakare švelnesnis.
+958|Levanda
+959|Turkio
+960|Koralų
+961|Avietinė
+962|Žaliosios citrinos
+963|Medaus
+964|Žydra
+965|Vandenyno mėlyna
+966|Orchidėjų

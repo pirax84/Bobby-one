@@ -951,3 +951,17 @@
 950|Pārvieto foto ar pirkstu, lai tava seja būtu zvaigznē. Divi pirksti vai josla tuvināšanai.
 951|✅ Apstiprināt foto
 952|Pielāgot profila foto
+953|🎨 Lietotnes krāsa
+954|Katrs izvēlas savu. Nosaukums NOTIIF pielāgojas pats.
+955|Krāsa: {name}
+956|Gaišs un spilgts fons.
+957|Tumšs fons, vakarā maigāks.
+958|Lavanda
+959|Tirkīzs
+960|Koraļļu
+961|Avene
+962|Laims
+963|Medus
+964|Debeszils
+965|Okeāna zils
+966|Orhideja

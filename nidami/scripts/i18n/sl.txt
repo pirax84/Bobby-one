@@ -951,3 +951,17 @@
 950|Premakni fotografijo s prstom, da bo tvoj obraz v zvezdi. Dva prsta ali drsnik za povečavo.
 951|✅ Potrdi fotografijo
 952|Umesti profilno fotografijo
+953|🎨 Barva aplikacije
+954|Vsak izbere svojo. Ime NOTIIF se prilagodi samo.
+955|Barva: {name}
+956|Svetlo in sijoče ozadje.
+957|Temno ozadje, zvečer blažje.
+958|Sivka
+959|Turkizna
+960|Koralna
+961|Malina
+962|Limeta
+963|Med
+964|Azurna
+965|Oceansko modra
+966|Orhideja

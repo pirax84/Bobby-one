@@ -951,3 +951,17 @@
 950|Mută poza cu degetul ca să-ți pui fața în stea. Două degete sau bara pentru zoom.
 951|✅ Confirmă poza
 952|Încadrează poza de profil
+953|🎨 Culoarea aplicației
+954|Fiecare o alege pe a lui. Numele NOTIIF se adaptează singur.
+955|Culoare: {name}
+956|Fundal deschis și luminos.
+957|Fundal închis, mai blând seara.
+958|Lavandă
+959|Turcoaz
+960|Coral
+961|Zmeură
+962|Lime
+963|Miere
+964|Azur
+965|Albastru ocean
+966|Orhidee

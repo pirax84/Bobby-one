@@ -951,3 +951,17 @@
 950|Move the photo with your finger to put your face in the star. Two fingers or the bar to zoom.
 951|✅ Confirm photo
 952|Frame the profile photo
+953|🎨 App colour
+954|Everyone picks their own. The NOTIIF name adapts by itself.
+955|Colour: {name}
+956|Light and bright background.
+957|Dark background, gentler in the evening.
+958|Lavender
+959|Turquoise
+960|Coral
+961|Raspberry
+962|Lime
+963|Honey
+964|Azure
+965|Ocean blue
+966|Orchid

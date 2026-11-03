@@ -1,5 +1,5 @@
 import { BRAND } from "./lib/brand";
-import { applyTheme } from "./lib/theme";
+import { applyTheme, accentOf } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
 import { Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch } from "./ui/common";
@@ -25,7 +25,7 @@ export default function App() {
   useLang();
   const pushOn = useStore((x) => !!x.settings[x.me]?.push); const lastNotif = useStore((x) => x.notifs.filter((n) => n.to === x.me && !n.read).sort((a, b) => b.at - a.at)[0]); const seenN = useRef<string | undefined>(undefined);
   const fxOn = useStore((x) => x.settings[x.me]?.fx ?? true); const lastFxMsg = useStore((x) => { let b: { id: string; fx?: string; at: number } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me && (!b || m.at > b.at)) b = m; return b ? b.id + "|" + b.fx : ""; }); const lastCfx = useStore((x) => { let b: { at: number; cfx?: { name: string; img?: string; audio?: string } } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me && (!b || m.at > b.at)) b = m; return b?.cfx; }); const seenFx = useRef<string | undefined>(undefined); const th0 = useStore((x) => x.settings[x.me]); const lastCall = useStore((x) => { let b: { id: string; at: number } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.from !== x.me && m.text.startsWith("📹") && (!b || m.at > b.at)) b = m; return b?.id || ""; }); const seenCall = useRef<string | undefined>(undefined);
-  const bubbleOn = useStore((x) => x.settings[x.me]?.bubble ?? true); const startCfg = useStore((x) => x.settings[x.me]?.start); const navCfg = useStore((x) => x.settings[x.me]?.nav); const topCfg = useStore((x) => x.settings[x.me]?.top); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true);
+  const bubbleOn = useStore((x) => x.settings[x.me]?.bubble ?? true); const startCfg = useStore((x) => x.settings[x.me]?.start); const navCfg = useStore((x) => x.settings[x.me]?.nav); const topCfg = useStore((x) => x.settings[x.me]?.top); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const light = useStore((s) => s.settings[s.me]?.light ?? true); const accent = useStore((s) => s.settings[s.me]?.accent);
   const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
   const pendShares = useStore((s) => s.shares.filter((h) => h.authorId === s.me && h.status === "pending").length);
@@ -34,7 +34,7 @@ export default function App() {
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
   const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "saudio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
-  useEffect(() => { applyTheme({ light: !!light }); }, [light]);
+  useEffect(() => { applyTheme({ light: !!light, accent }); }, [light, accent]);
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   const fxList = useStore((x) => { const a: { id: string; fx: string; at: number }[] = []; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me) a.push({ id: m.id, fx: m.fx, at: m.at }); a.sort((p, q) => p.at - q.at); return a.map((m) => m.at + "|" + m.fx).join(";"); });
@@ -83,7 +83,7 @@ export default function App() {
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
       <button className="btn" style={{ marginTop: 10 }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button></aside>
     <main className="main">
-      <div className="brandbar"><img src="./wordmark.png" alt="NOTIIF" /></div>
+      <div className="brandbar"><img src={`./wordmark-${accentOf(accent).id}.png`} alt="NOTIIF" /></div>
       {topKeys.includes("search") && <div className="dsearch"><SearchTop go={go} openConv={openConvFull} /></div>}
       <div className="top"><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow tcenter"><img className="tw" src="./wordmark.png" alt="NOTIIF" /></span><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => k === "search" ? <span key="search" className="topsearch"><SearchTop variant="icon" go={go} openConv={openConvFull} /></span> : (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div></div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}

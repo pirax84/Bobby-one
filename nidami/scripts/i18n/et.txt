@@ -951,3 +951,17 @@
 950|Liiguta pilti sõrmega, et su nägu oleks tähes. Kaks sõrme või liugur suumimiseks.
 951|✅ Kinnita pilt
 952|Kohanda profiilipilti
+953|🎨 Rakenduse värv
+954|Igaüks valib enda oma. Nimi NOTIIF kohandub ise.
+955|Värv: {name}
+956|Hele ja särav taust.
+957|Tume taust, õhtul pehmem.
+958|Lavendel
+959|Türkiis
+960|Korall
+961|Vaarikas
+962|Laim
+963|Mesi
+964|Asuur
+965|Ookeanisinine
+966|Orhidee

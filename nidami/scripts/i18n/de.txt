@@ -951,3 +951,17 @@
 950|Verschiebe das Foto mit dem Finger, damit dein Gesicht im Stern ist. Zwei Finger oder der Regler zum Zoomen.
 951|✅ Foto bestätigen
 952|Profilfoto ausrichten
+953|🎨 App-Farbe
+954|Jeder wählt seine eigene. Der Name NOTIIF passt sich von selbst an.
+955|Farbe: {name}
+956|Heller, leuchtender Hintergrund.
+957|Dunkler Hintergrund, abends sanfter.
+958|Lavendel
+959|Türkis
+960|Koralle
+961|Himbeere
+962|Limette
+963|Honig
+964|Azur
+965|Ozeanblau
+966|Orchidee

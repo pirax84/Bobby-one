@@ -951,3 +951,17 @@
 950|Geser foto dengan jari agar wajahmu masuk ke bintang. Dua jari atau bilah untuk zoom.
 951|✅ Konfirmasi foto
 952|Atur foto profil
+953|🎨 Warna aplikasi
+954|Setiap orang memilih warnanya sendiri. Nama NOTIIF menyesuaikan sendiri.
+955|Warna: {name}
+956|Latar terang dan cerah.
+957|Latar gelap, lebih lembut di malam hari.
+958|Lavender
+959|Pirus
+960|Koral
+961|Raspberi
+962|Limau
+963|Madu
+964|Biru langit
+965|Biru samudra
+966|Anggrek

@@ -951,3 +951,17 @@
 950|Flyt fotoet med fingeren, så dit ansigt er i stjernen. To fingre eller bjælken for at zoome.
 951|✅ Bekræft foto
 952|Beskær profilbilledet
+953|🎨 Appens farve
+954|Alle vælger deres egen. Navnet NOTIIF tilpasser sig selv.
+955|Farve: {name}
+956|Lys og strålende baggrund.
+957|Mørk baggrund, mildere om aftenen.
+958|Lavendel
+959|Turkis
+960|Koral
+961|Hindbær
+962|Lime
+963|Honning
+964|Azur
+965|Havblå
+966|Orkidé

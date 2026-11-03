@@ -951,3 +951,17 @@
 950|Bog an grianghraf le do mhéar chun d'aghaidh a chur sa réalta. Dhá mhéar nó an barra chun zúmáil.
 951|✅ Deimhnigh an grianghraf
 952|Frámáil grianghraf próifíle
+953|🎨 Dath na haipe
+954|Roghnaíonn gach duine a dhath féin. Oiriúnaíonn an t-ainm NOTIIF é féin.
+955|Dath: {name}
+956|Cúlra éadrom geal.
+957|Cúlra dorcha, níos séimhe um thráthnóna.
+958|Labhandar
+959|Turcaid
+960|Corail
+961|Sútha craobh
+962|Teile
+963|Mil
+964|Alúr
+965|Gorm aigéin
+966|Magairlín

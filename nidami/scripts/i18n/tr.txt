@@ -951,3 +951,17 @@
 950|Yüzünü yıldızın içine almak için fotoğrafı parmağınla kaydır. Yakınlaştırmak için iki parmak veya çubuk.
 951|✅ Fotoğrafı onayla
 952|Profil fotoğrafını ayarla
+953|🎨 Uygulama rengi
+954|Herkes kendi rengini seçer. NOTIIF adı kendiliğinden uyum sağlar.
+955|Renk: {name}
+956|Açık ve parlak arka plan.
+957|Koyu arka plan, akşamları daha yumuşak.
+958|Lavanta
+959|Turkuaz
+960|Mercan
+961|Ahududu
+962|Misket limonu
+963|Bal
+964|Gök mavisi
+965|Okyanus mavisi
+966|Orkide

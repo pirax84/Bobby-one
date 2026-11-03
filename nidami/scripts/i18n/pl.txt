@@ -951,3 +951,17 @@
 950|Przesuń zdjęcie palcem, aby twarz znalazła się w gwiazdce. Dwa palce lub suwak, aby powiększyć.
 951|✅ Zatwierdź zdjęcie
 952|Wykadruj zdjęcie profilowe
+953|🎨 Kolor aplikacji
+954|Każdy wybiera swój. Nazwa NOTIIF dopasowuje się sama.
+955|Kolor: {name}
+956|Jasne, świetliste tło.
+957|Ciemne tło, łagodniejsze wieczorem.
+958|Lawenda
+959|Turkus
+960|Koral
+961|Malina
+962|Limonka
+963|Miód
+964|Lazur
+965|Błękit oceanu
+966|Orchidea

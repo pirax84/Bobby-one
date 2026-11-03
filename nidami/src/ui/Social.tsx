@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { InstallCard } from "./Auth";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
+import { ACCENTS, accentOf } from "../lib/theme";
 import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
 import { FX, FX_KEYS, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate } from "../lib/fx";
@@ -221,7 +222,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v70</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v71</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "install" && <>
@@ -253,7 +254,9 @@ export function Settings({ go }: { go?: (v: any) => void }) {
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("fxfav", DEFAULT_FAV.join(","))}>{t("Remettre par défaut")}</button></div>
     </>}
     {sec === "look" && <>
-    <div className="card"><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème clair")}</b><div className="muted small">{t("Fond clair, blanc et turquoise.")}</div></div><Switch on={cfg.light} onChange={(v) => actions.setSetting("light", v)} label={t("Thème clair")} /></label><hr /><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème sombre")}</b><div className="muted small">{t("Fond bleu nuit et turquoise, plus doux le soir.")}</div></div><Switch on={!cfg.light} onChange={(v) => actions.setSetting("light", !v)} label={t("Thème sombre")} /></label><hr /><Tg k="fx" label={t("Effets dans les conversations")} desc={t("Secousse d'écran avec son, cœurs, anniversaire : quand un ami en envoie un, vous le voyez et l'entendez. Activé au départ.")} /><hr /><Tg k="quiet" label={t("Plage silencieuse")} desc={t("Coupe les alertes la nuit (en mode serveur).")} /><hr /><Tg k="autoplay" label={t("Lecture automatique des vidéos")} desc={t("Pour les vidéos courtes (bientôt).")} /></div>
+    <div className="card col" style={{ gap: 8 }}><h3>{t("🎨 Couleur de l'appli")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Chacun choisit la sienne. Le nom NOTIIF s'adapte tout seul.")}</p>
+      <div className="accgrid">{ACCENTS.map((a) => { const on = accentOf(cfg.accent).id === a.id; return <button key={a.id} type="button" className={"accbtn" + (on ? " on" : "")} aria-pressed={on} aria-label={t("Couleur : {name}", { name: t(a.name) })} onClick={() => actions.setSetting("accent", a.id)} style={{ background: a.bg, color: a.dot }}><i style={{ background: a.dot }} />{t(a.name)}</button>; })}</div></div>
+    <div className="card"><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème clair")}</b><div className="muted small">{t("Fond clair et lumineux.")}</div></div><Switch on={cfg.light} onChange={(v) => actions.setSetting("light", v)} label={t("Thème clair")} /></label><hr /><label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{t("Thème sombre")}</b><div className="muted small">{t("Fond sombre, plus doux le soir.")}</div></div><Switch on={!cfg.light} onChange={(v) => actions.setSetting("light", !v)} label={t("Thème sombre")} /></label><hr /><Tg k="fx" label={t("Effets dans les conversations")} desc={t("Secousse d'écran avec son, cœurs, anniversaire : quand un ami en envoie un, vous le voyez et l'entendez. Activé au départ.")} /><hr /><Tg k="quiet" label={t("Plage silencieuse")} desc={t("Coupe les alertes la nuit (en mode serveur).")} /><hr /><Tg k="autoplay" label={t("Lecture automatique des vidéos")} desc={t("Pour les vidéos courtes (bientôt).")} /></div>
     </>}
     {sec === "look" && <>
     <div className="card col" style={{ gap: 8 }}><h3>{t("Main qui tient le téléphone")}</h3><div className="row" style={{ gap: 8 }}>{(["left", "right"] as const).map((h) => <button key={h} type="button" className={"chip grow" + ((cfg.hand || "right") === h ? " on" : "")} onClick={() => actions.setSetting("hand", h)}>{h === "left" ? t("✋ Main gauche") : t("🤚 Main droite")}</button>)}</div><p className="muted small" style={{ margin: 0 }}>{t("Les gros boutons se placent du côté de ton pouce.")}</p></div>

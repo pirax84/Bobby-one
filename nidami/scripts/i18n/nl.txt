@@ -951,3 +951,17 @@
 950|Verplaats de foto met je vinger om je gezicht in de ster te krijgen. Twee vingers of de balk om te zoomen.
 951|✅ Foto bevestigen
 952|Profielfoto uitlijnen
+953|🎨 Kleur van de app
+954|Iedereen kiest zijn eigen. De naam NOTIIF past zich vanzelf aan.
+955|Kleur: {name}
+956|Lichte, heldere achtergrond.
+957|Donkere achtergrond, zachter 's avonds.
+958|Lavendel
+959|Turkoois
+960|Koraal
+961|Framboos
+962|Limoen
+963|Honing
+964|Azuur
+965|Oceaanblauw
+966|Orchidee

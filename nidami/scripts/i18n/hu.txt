@@ -951,3 +951,17 @@
 950|Told el a fotót ujjal, hogy az arcod a csillagba kerüljön. Két ujj vagy a csúszka a nagyításhoz.
 951|✅ Fotó jóváhagyása
 952|Profilkép igazítása
+953|🎨 Az alkalmazás színe
+954|Mindenki a sajátját választja. A NOTIIF név magától alkalmazkodik.
+955|Szín: {name}
+956|Világos, fényes háttér.
+957|Sötét háttér, esténként kellemesebb.
+958|Levendula
+959|Türkiz
+960|Korall
+961|Málna
+962|Lime
+963|Méz
+964|Azúr
+965|Óceánkék
+966|Orchidea

@@ -951,3 +951,17 @@
 950|Mueve la foto con el dedo para poner tu cara en la estrella. Dos dedos o la barra para hacer zoom.
 951|✅ Confirmar foto
 952|Encuadrar la foto de perfil
+953|🎨 Color de la app
+954|Cada uno elige el suyo. El nombre NOTIIF se adapta solo.
+955|Color: {name}
+956|Fondo claro y luminoso.
+957|Fondo oscuro, más suave por la noche.
+958|Lavanda
+959|Turquesa
+960|Coral
+961|Frambuesa
+962|Lima
+963|Miel
+964|Azur
+965|Azul océano
+966|Orquídea

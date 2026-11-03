@@ -951,3 +951,17 @@
 950|Siirrä kuvaa sormella, jotta kasvosi ovat tähden sisällä. Kaksi sormea tai palkki zoomaukseen.
 951|✅ Vahvista kuva
 952|Rajaa profiilikuva
+953|🎨 Sovelluksen väri
+954|Jokainen valitsee omansa. NOTIIF-nimi mukautuu itsestään.
+955|Väri: {name}
+956|Vaalea ja kirkas tausta.
+957|Tumma tausta, pehmeämpi illalla.
+958|Laventeli
+959|Turkoosi
+960|Koralli
+961|Vadelma
+962|Lime
+963|Hunaja
+964|Taivaansininen
+965|Meren sininen
+966|Orkidea

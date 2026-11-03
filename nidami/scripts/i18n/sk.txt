@@ -951,3 +951,17 @@
 950|Posuň fotku prstom, aby bola tvoja tvár v hviezde. Dva prsty alebo posuvník na priblíženie.
 951|✅ Potvrdiť fotku
 952|Orezať profilovú fotku
+953|🎨 Farba aplikácie
+954|Každý si vyberie svoju. Názov NOTIIF sa prispôsobí sám.
+955|Farba: {name}
+956|Svetlé a žiarivé pozadie.
+957|Tmavé pozadie, večer príjemnejšie.
+958|Levanduľa
+959|Tyrkysová
+960|Koralová
+961|Malinová
+962|Limetková
+963|Medová
+964|Azúrová
+965|Oceánska modrá
+966|Orchidea

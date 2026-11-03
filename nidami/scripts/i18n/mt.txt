@@ -951,3 +951,17 @@
 950|Ċaqlaq ir-ritratt b'subgħajk biex wiċċek ikun fil-kewkba. Żewġ swaba' jew il-bar biex tiżżumja.
 951|✅ Ikkonferma r-ritratt
 952|Ikkadra r-ritratt tal-profil
+953|🎨 Kulur tal-app
+954|Kulħadd jagħżel tiegħu. L-isem NOTIIF jadatta waħdu.
+955|Kulur: {name}
+956|Sfond ċar u jleqq.
+957|Sfond skur, eħfef filgħaxija.
+958|Lavanda
+959|Turkważ
+960|Koralli
+961|Lampun
+962|Lajm
+963|Għasel
+964|Azzur
+965|Blu tal-oċean
+966|Orkida
