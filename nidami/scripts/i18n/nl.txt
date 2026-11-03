@@ -989,3 +989,13 @@
 988|QR-link openen
 989|Tik op de QR-code om de link te openen.
 990|Vergroten
+991|Veilig aangekomen
+992|🏠 Ik ben veilig aangekomen
+993|Ik ben veilig aangekomen 💜
+994|Bericht verstuurd naar {n} persoon/personen.
+995|Kies wie je wilt waarschuwen. Het bericht is “Ik ben veilig aangekomen 💜”. Je locatie wordt nooit verstuurd.
+996|Voeg eerst vrienden toe.
+997|Herinnering van de dag
+998|Een jaar geleden, met {name}
+999|Bekijken
+1000|Verbergen

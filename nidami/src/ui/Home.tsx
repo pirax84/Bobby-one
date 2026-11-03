@@ -10,6 +10,7 @@ import { Framer, FRAME0, bakeFrame, FaceHide, AvatarCrop, type Frame } from "./P
 import { AudioWave } from "./AudioWave";
 import { LinkCard, safeUrl } from "./Links";
 import { t } from "../i18n";
+import { MemoryCard } from "./Extras";
 
 // ───────── Barre des stories
 /** Aperçu d'une story dans la bulle : la photo ou la vidéo ; jamais pour une story éphémère (elle reste cachée). */
@@ -221,6 +222,7 @@ export function Home({ groupId }: { groupId?: string }) {
   return (<div className="col">
     {!groupId && <Stories me={me} />}
     {!groupId && <BirthdayBanner />}
+    {!groupId && <MemoryCard />}
     <div className="card row"><Avatar u={user} /><button className="inp grow" style={{ textAlign: "left", color: "var(--mute)" }} onClick={() => setCompose(true)}>{t("Quoi de neuf avec vos proches ?")}</button><button className="btn sm" onClick={() => setCompose(true)}><Ico n="img" s={18} /></button></div>
     {!groupId && <div className="tabs"><button className={"chip" + (filter === "all" ? " on" : "")} onClick={() => setFilter("all")}>{t("Tout")}</button><button className={"chip" + (filter === "mine" ? " on" : "")} onClick={() => setFilter("mine")}>{t("Mes publications")}</button>{groups.map((g) => <button key={g.id} className={"chip" + (filter === g.id ? " on" : "")} onClick={() => setFilter(g.id)}>{g.emoji} {g.name}</button>)}</div>}
     {!feed.length && <div className="card center muted">{t("Rien ici pour l'instant. Publiez votre premier moment ✨")}</div>}

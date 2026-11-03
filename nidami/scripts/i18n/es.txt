@@ -989,3 +989,13 @@
 988|Abrir el enlace del QR
 989|Toca el QR para abrir el enlace.
 990|Ampliar
+991|Llegué bien
+992|🏠 He llegado bien
+993|He llegado bien 💜
+994|Mensaje enviado a {n} persona(s).
+995|Elige a quién avisar. El mensaje es «He llegado bien 💜». Tu ubicación nunca se envía.
+996|Primero añade amigos.
+997|Recuerdo del día
+998|Hace un año, con {name}
+999|Ver
+1000|Ocultar

@@ -989,3 +989,13 @@
 988|Open the QR code link
 989|Tap the QR code to open the link.
 990|Enlarge
+991|Arrived safe
+992|🏠 I arrived safely
+993|I arrived safely 💜
+994|Message sent to {n} person(s).
+995|Choose who to tell. The message is “I arrived safely 💜”. Your location is never sent.
+996|Add friends first.
+997|Memory of the day
+998|A year ago, with {name}
+999|View
+1000|Hide

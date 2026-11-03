@@ -989,3 +989,13 @@
 988|QR-Code-Link öffnen
 989|Tippe auf den QR-Code, um den Link zu öffnen.
 990|Vergrößern
+991|Gut angekommen
+992|🏠 Ich bin gut angekommen
+993|Ich bin gut angekommen 💜
+994|Nachricht an {n} Person(en) gesendet.
+995|Wähle, wen du benachrichtigen willst. Die Nachricht lautet „Ich bin gut angekommen 💜“. Dein Standort wird nie gesendet.
+996|Füge zuerst Freunde hinzu.
+997|Erinnerung des Tages
+998|Vor einem Jahr, mit {name}
+999|Ansehen
+1000|Ausblenden
