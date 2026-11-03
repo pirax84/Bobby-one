@@ -1,5 +1,5 @@
 :root{--bg:#120F1F;--bg2:#1D1833;--card:rgba(255,255,255,.06);--card2:rgba(255,255,255,.1);--bd:rgba(255,255,255,.13);--fg:#ECEAF5;--mute:#A09BB5;--brand:#9B87F5;--brand2:#C9B8FF;--brand-rgb:155,135,245;--brand2-rgb:201,184,255;--on:#150C3A;--warm:#F59E0B;--ok:#34D399;--bad:#FB7185;--grad:linear-gradient(135deg,var(--brand),var(--brand2));--warmgrad:linear-gradient(135deg,#FBBF24,#F97316);--r:22px;--nav:68px;color-scheme:dark}
-[data-theme=light]{--bg:#F0EEFC;--bg2:#DCD6F5;--card:#E6E2F8;--card2:#F8F6FD;--bd:rgba(77,48,207,.28);--fg:#16112C;--mute:#4D4766;--on:#fff;--brand:#4D30CF;--brand-rgb:77,48,207;--brand2:#843DD1;--brand2-rgb:132,61,209;color-scheme:light}
+[data-theme=light]{--bg:#F5F2FF;--bg2:#E6E0FF;--card:#ECE7FF;--card2:#FBFAFF;--bd:rgba(122,99,228,.28);--fg:#241D45;--mute:#645C8A;--on:#fff;--brand:#7A63E4;--brand-rgb:122,99,228;--brand2:#A46BDB;--brand2-rgb:164,107,219;color-scheme:light}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body,#root{height:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
@@ -145,7 +145,7 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 .treebg{display:none}
 .card,.btn,.chip{transition:none}
 
-[data-theme=light] body{background:linear-gradient(rgba(var(--brand-rgb),.18),var(--bg) 320px) no-repeat,var(--bg)}
+[data-theme=light] body{background:linear-gradient(rgba(var(--brand-rgb),.14),var(--bg) 320px) no-repeat,var(--bg)}
 [data-theme=light] .card,[data-theme=light] .modal{border-width:1.5px;box-shadow:0 6px 18px -10px rgba(var(--brand-rgb),.45)}
 [data-theme=light] .bottom,[data-theme=light] .topr{border:1.5px solid rgba(var(--brand-rgb),.5);box-shadow:0 10px 26px -12px rgba(var(--brand-rgb),.5)}
 [data-theme=light] .overlay{background:rgba(15,40,30,.55)}
@@ -272,7 +272,7 @@ html.moving .bfab{opacity:0;pointer-events:none}
 
 /* ===== Style bulles de BD ===== */
 :root{--ink:#04141a;--shade:var(--brand);--accb:#9B87F5;--accb-rgb:155,135,245}
-[data-theme=light]{--ink:#16112C}
+[data-theme=light]{--ink:#2A2150}
 .avs{display:inline-block;flex:none;line-height:0;filter:drop-shadow(2px 2px 0 var(--shade))}
 .avs svg{display:block;overflow:visible}
 .topme{box-shadow:none!important;border-radius:0!important;background:none;padding:0}
@@ -468,7 +468,7 @@ html[data-accent=turquoise][data-theme=light]{--bg:#EEF9F7;--bg2:#D3EFEA;--card:
 html[data-accent=corail]{--bg:#1A1216;--bg2:#2A1B22;--brand:#FF8A6B;--brand2:#FFB59A;--brand-rgb:255,138,107;--brand2-rgb:255,181,154;--on:#2B0F08;--fg:#F5EDEA;--mute:#B5A19B;--accb:#FF8A6B;--accb-rgb:255,138,107}
 html[data-accent=corail][data-theme=light]{--bg:#FCF1EE;--bg2:#F5DDD6;--card:#F8E7E2;--card2:#FDF8F6;--bd:rgba(190,75,45,.28);--fg:#2C1711;--mute:#664E47;--on:#fff;--brand:#BE4B2D;--brand-rgb:190,75,45;--brand2:#CA7E2F;--brand2-rgb:202,126,47;--ink:#2C1711}
 html[data-accent=lavande]{--bg:#120F1F;--bg2:#1D1833;--brand:#9B87F5;--brand2:#C9B8FF;--brand-rgb:155,135,245;--brand2-rgb:201,184,255;--on:#150C3A;--fg:#ECEAF5;--mute:#A09BB5;--accb:#9B87F5;--accb-rgb:155,135,245}
-html[data-accent=lavande][data-theme=light]{--bg:#F0EEFC;--bg2:#DCD6F5;--card:#E6E2F8;--card2:#F8F6FD;--bd:rgba(77,48,207,.28);--fg:#16112C;--mute:#4D4766;--on:#fff;--brand:#4D30CF;--brand-rgb:77,48,207;--brand2:#843DD1;--brand2-rgb:132,61,209;--ink:#16112C}
+html[data-accent=lavande][data-theme=light]{--bg:#F5F2FF;--bg2:#E6E0FF;--card:#ECE7FF;--card2:#FBFAFF;--bd:rgba(122,99,228,.28);--fg:#241D45;--mute:#645C8A;--on:#fff;--brand:#7A63E4;--brand-rgb:122,99,228;--brand2:#A46BDB;--brand2-rgb:164,107,219;--ink:#2A2150}
 html[data-accent=framboise]{--bg:#171018;--bg2:#26172A;--brand:#E5679C;--brand2:#F5A3C7;--brand-rgb:229,103,156;--brand2-rgb:245,163,199;--on:#3A0A1F;--fg:#F5EAEF;--mute:#B59BA6;--accb:#E5679C;--accb-rgb:229,103,156}
 html[data-accent=framboise][data-theme=light]{--bg:#FCEEF4;--bg2:#F5D6E3;--card:#F8E2EB;--card2:#FDF6F9;--bd:rgba(194,46,108,.28);--fg:#2C111C;--mute:#664754;--on:#fff;--brand:#C22E6C;--brand-rgb:194,46,108;--brand2:#CF3044;--brand2-rgb:207,48,68;--ink:#2C111C}
 html[data-accent=citron]{--bg:#0F1608;--bg2:#1A260F;--brand:#A8E05F;--brand2:#D2F5A0;--brand-rgb:168,224,95;--brand2-rgb:210,245,160;--on:#142203;--fg:#F0F5EA;--mute:#AAB59B;--accb:#A8E05F;--accb-rgb:168,224,95}
