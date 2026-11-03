@@ -986,3 +986,6 @@
 985|Alle Daten auf diesem Telefon durch diese Sicherung ersetzen?
 986|Daten wiederhergestellt.
 987|Diese Datei ist keine NOTIIF-Sicherung.
+988|QR-Code-Link öffnen
+989|Tippe auf den QR-Code, um den Link zu öffnen.
+990|Vergrößern

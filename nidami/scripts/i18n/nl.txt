@@ -986,3 +986,6 @@
 985|Alle gegevens op deze telefoon vervangen door deze back-up?
 986|Gegevens hersteld.
 987|Dit bestand is geen NOTIIF-back-up.
+988|QR-link openen
+989|Tik op de QR-code om de link te openen.
+990|Vergroten

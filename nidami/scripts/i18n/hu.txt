@@ -986,3 +986,6 @@
 985|Replace all data on this phone with this backup?
 986|Data restored.
 987|This file is not a NOTIIF backup.
+988|Open the QR code link
+989|Tap the QR code to open the link.
+990|Enlarge

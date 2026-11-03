@@ -986,3 +986,6 @@
 985|¿Reemplazar todos los datos de este teléfono por esta copia?
 986|Datos recuperados.
 987|Este archivo no es una copia de NOTIIF.
+988|Abrir el enlace del QR
+989|Toca el QR para abrir el enlace.
+990|Ampliar

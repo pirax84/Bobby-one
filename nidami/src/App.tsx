@@ -41,7 +41,7 @@ export default function App() {
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));
   const pendShares = useStore((s) => s.shares.filter((h) => h.authorId === s.me && h.status === "pending").length);
   const users = useStore((s) => s.users); const hand = useStore((s) => s.settings[s.me]?.hand); useEffect(() => { document.documentElement.dataset.hand = hand === "left" ? "left" : "right"; }, [hand]);
-  const parseHash = () => { const m = location.hash.match(/add=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
+  const parseHash = () => { const m = (location.hash + location.search).match(/(?:add|invite)=(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : ""; };
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
   const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "saudio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
