@@ -970,3 +970,19 @@
 969|🌙 Scuro
 970|📱 Automatico
 971|Automatico: segue l'impostazione chiara o scura del telefono.
+972|🔠 Dimensione del testo
+973|Piccolo
+974|Normale
+975|Grande
+976|Molto grande
+977|Esempio: Domani compleanno! Ci vediamo alle 19?
+978|💾 Backup
+979|Tutto è salvato su questo telefono. Salva in un file per cambiare telefono senza perdere nulla. Tieni il file al sicuro.
+980|Ultimo backup: {date}
+981|Nessun backup per ora.
+982|Salva
+983|Backup salvato.
+984|Ripristina
+985|Sostituire tutti i dati di questo telefono con questo backup?
+986|Dati ripristinati.
+987|Questo file non è un backup NOTIIF.

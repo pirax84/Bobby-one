@@ -970,3 +970,19 @@
 969|🌙 Dunkel
 970|📱 Automatisch
 971|Automatisch: folgt der Hell- oder Dunkel-Einstellung des Telefons.
+972|🔠 Textgröße
+973|Klein
+974|Normal
+975|Groß
+976|Sehr groß
+977|Beispiel: Morgen Geburtstag! Treffen wir uns um 19 Uhr?
+978|💾 Sicherung
+979|Alles wird auf diesem Telefon gespeichert. Sichere in einer Datei, um das Telefon zu wechseln, ohne etwas zu verlieren. Bewahre die Datei sicher auf.
+980|Letzte Sicherung: {date}
+981|Noch keine Sicherung.
+982|Sichern
+983|Sicherung gespeichert.
+984|Wiederherstellen
+985|Alle Daten auf diesem Telefon durch diese Sicherung ersetzen?
+986|Daten wiederhergestellt.
+987|Diese Datei ist keine NOTIIF-Sicherung.

@@ -970,3 +970,19 @@
 969|🌙 Mørkt
 970|📱 Automatisk
 971|Automatisk: følger telefonens lyse eller mørke indstilling.
+972|🔠 Text size
+973|Small
+974|Normal
+975|Large
+976|Very large
+977|Example: Birthday tomorrow! See you at 7pm?
+978|💾 Backup
+979|Everything is kept on this phone. Save to a file to change phones without losing anything. Keep this file safe.
+980|Last backup: {date}
+981|No backup yet.
+982|Save
+983|Backup saved.
+984|Restore
+985|Replace all data on this phone with this backup?
+986|Data restored.
+987|This file is not a NOTIIF backup.

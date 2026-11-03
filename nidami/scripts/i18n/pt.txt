@@ -970,3 +970,19 @@
 969|🌙 Escuro
 970|📱 Automático
 971|Automático: segue a definição clara ou escura do telemóvel.
+972|🔠 Tamanho do texto
+973|Pequeno
+974|Normal
+975|Grande
+976|Muito grande
+977|Exemplo: Aniversário amanhã! Nos vemos às 19h?
+978|💾 Cópia de segurança
+979|Tudo fica guardado neste telemóvel. Guarde num ficheiro para mudar de telemóvel sem perder nada. Guarde o ficheiro em lugar seguro.
+980|Última cópia: {date}
+981|Ainda sem cópia.
+982|Guardar
+983|Cópia guardada.
+984|Recuperar
+985|Substituir todos os dados deste telemóvel por esta cópia?
+986|Dados recuperados.
+987|Este ficheiro não é uma cópia NOTIIF.

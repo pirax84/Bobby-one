@@ -970,3 +970,19 @@
 969|🌙 Donker
 970|📱 Automatisch
 971|Automatisch: volgt de lichte of donkere instelling van je telefoon.
+972|🔠 Tekstgrootte
+973|Klein
+974|Normaal
+975|Groot
+976|Zeer groot
+977|Voorbeeld: Morgen verjaardag! Zien we elkaar om 19u?
+978|💾 Back-up
+979|Alles staat op deze telefoon. Bewaar in een bestand om van telefoon te wisselen zonder iets te verliezen. Bewaar het bestand veilig.
+980|Laatste back-up: {date}
+981|Nog geen back-up.
+982|Opslaan
+983|Back-up opgeslagen.
+984|Herstellen
+985|Alle gegevens op deze telefoon vervangen door deze back-up?
+986|Gegevens hersteld.
+987|Dit bestand is geen NOTIIF-back-up.
