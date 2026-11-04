@@ -1113,3 +1113,5 @@
 1112|This voice message will disappear after it is heard
 1113|Hold to talk · ↑ lock · ← ↓ cancel
 1114|↑ lock · ← ↓ cancel
+1115|▲ Up: lock · ▼ Down: cancel
+1116|Hold to talk. Slide up to lock, down to cancel.

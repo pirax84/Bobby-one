@@ -46,7 +46,7 @@ function VoiceChat({ item, back }: { item: Item; back: () => void }) {
       {!msgs.length && <p className="muted center">{t("Aucun vocal pour l'instant : dis bonjour avec ta voix !")}</p>}<div ref={end} /></div>
     {del && cid && <ConfirmDel what={t("ce vocal")} onYes={() => actions.deleteMsg(cid, del)} onClose={() => setDel(null)} />}
     <div className="col" style={{ alignItems: "center", gap: 6 }}>
-      <span className="muted small center">{dur === "o" ? t("Ce vocal disparaîtra après écoute") : t("Maintiens pour parler · ↑ verrouiller · ← ↓ annuler")}</span>
+      <span className="muted center" style={{ fontSize: ".95rem", padding: "0 12px" }}>{dur === "o" ? t("Ce vocal disparaîtra après écoute") : t("Maintiens pour parler. Glisse vers le haut pour verrouiller, vers le bas pour annuler.")}</span>
       <div className="row voicedur" style={{ gap: 14, justifyContent: "center", alignItems: "center" }} role="radiogroup" aria-label={t("Durée du vocal")}>
         <button type="button" role="radio" aria-checked={dur === "p"} className={"vchoice" + (dur === "p" ? " on" : "")} onClick={() => setDur("p")}>{t("Normal")}</button>
         <HoldMic className="bigmic" max={600} onDone={send}><MicIcon size={54} /></HoldMic>
