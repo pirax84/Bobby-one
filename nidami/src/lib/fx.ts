@@ -11,7 +11,7 @@ export const FX: Record<Fx, Def> = {
   ghost: { get label() { return t("👻 Fantôme"); }, get text() { return t("👻 Bouh !"); }, em: ["👻", "🎃", "🦇", "💀"], file: "./sounds/ghost.mp3" },
   fire: { get label() { return t("🔥 Flammes"); }, get text() { return t("🔥 Ça chauffe !"); }, em: ["🔥", "🔥", "🧨", "☄️"], file: "./sounds/fire.mp3" },
   bubbles: { get label() { return t("🫧 Bulles"); }, get text() { return t("🫧 Des bulles !"); }, em: ["🫧", "💧", "🐠", "🐳"], file: "./sounds/bubbles.mp3" },
-  party: { get label() { return t("🎂 Fête"); }, get text() { return t("🎂 C'est la fête !"); }, em: ["🎂", "🎈", "🎁", "🥳"], file: "./sounds/party.mp3" },
+  party: { get label() { return t("🎉 Fête"); }, get text() { return t("🎉 C'est la fête !"); }, em: ["🎉", "🎊", "🥳", "🎈", "✨", "🪩"], file: "./sounds/party.mp3" },
   rain: { get label() { return t("🌧️ Pluie"); }, get text() { return t("🌧️ Il pleut !"); }, em: ["💧", "🌧️", "💦", "☔"], file: "./sounds/rain.mp3" },
   thunder: { get label() { return t("⛈️ Orage"); }, get text() { return t("⛈️ Coup de tonnerre !"); }, em: ["⚡", "⛈️", "🌩️", "⚡"], file: "./sounds/thunder.mp3" },
   rocket: { get label() { return t("🚀 Fusée"); }, get text() { return t("🚀 Décollage !"); }, em: ["🚀", "🌟", "💫", "🛸"], file: "./sounds/fusee.mp3" },

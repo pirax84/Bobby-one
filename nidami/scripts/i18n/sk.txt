@@ -1087,3 +1087,5 @@
 1086|Reactions and comments
 1087|Reactions
 1088|React: long press to choose an emoji
+1089|🎉 Party
+1090|🎉 It's party time!
