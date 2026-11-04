@@ -1057,3 +1057,7 @@
 1056|Switch to dark theme
 1057|Switch to light theme
 1058|Light / dark
+1059|🎬 Start-up intro
+1060|Automatic
+1061|Always full
+1062|Automatic: full on first open, short on the first open of the day, then none. A tap skips the intro.

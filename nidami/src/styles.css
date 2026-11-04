@@ -533,3 +533,25 @@ html:not([data-style=bold]) .home-gap{gap:18px}
 .row>.chip.grow{flex:1 1 0;min-width:0;white-space:normal;padding:7px 4px;text-align:center;line-height:1.15}
 html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(--brand-rgb),.75)}
 @media (max-width:760px){.top.sub .tw{display:none}}
+
+/* ===== Intro de démarrage ===== */
+.intro{position:fixed;inset:0;z-index:100000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:radial-gradient(circle at 50% 38%,var(--nuit),var(--nuit2) 72%);color:#F2EEFF;transition:opacity .3s}
+.intro.light{background:radial-gradient(circle at 50% 38%,#fff,var(--bg) 72%);color:var(--nuit)}
+.intro.out{opacity:0;pointer-events:none}
+.introwm{position:relative;width:min(78vw,340px);aspect-ratio:524/184;opacity:0;transform:scale(.88);transition:opacity .35s,transform .45s cubic-bezier(.2,1.4,.4,1),filter .5s}
+.introwm.s1,.introwm.s2,.introwm.s3,.introwm.s4,.introwm.s5,.introwm.s6{opacity:1;transform:scale(1)}
+.introwm.s5,.introwm.s6{filter:drop-shadow(0 0 16px rgba(var(--accb-rgb),.75))}
+.introwm.s6{transform:translateY(-6vh) scale(.82)}
+.introwm img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none}
+.introwm .wml.hop{animation:wmhop .6s calc(var(--i)*.06s) both}
+.ring{position:absolute;width:15%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%) scale(.4);opacity:0;border:3px solid var(--accb);box-shadow:0 0 16px var(--accb);pointer-events:none}
+.ring.on{animation:introping .5s ease-out}
+@keyframes introping{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)}}
+.fly{position:absolute;width:4%;aspect-ratio:1;border-radius:50%;background:var(--accb);transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+.fly.f1{background:#E8639B}.fly.f2{background:#FFB896}
+.fly.go{animation:introfly .4s ease-in forwards}
+@keyframes introfly{0%{opacity:1}85%{opacity:1}100%{opacity:0;left:40.9%;top:53.5%;transform:translate(-50%,-50%) scale(.3)}}
+.introtag{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:1.7rem;opacity:0;transform:translateY(12px);transition:opacity .45s,transform .45s;margin-top:-6vh}
+.introtag.on{opacity:1;transform:none}
+.introtag .b2{background:linear-gradient(90deg,var(--accb),var(--brand2));-webkit-background-clip:text;color:transparent}
+@media (prefers-reduced-motion:reduce){.introwm,.introtag{transition:none}}
