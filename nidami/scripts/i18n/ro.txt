@@ -1100,3 +1100,11 @@
 1099|Voice message duration
 1100|♾️ Normal
 1101|Automatic: the full intro at every launch. Tap a choice to preview it.
+1102|🔓 Permanent
+1103|🔥 Once
+1104|Attachments
+1105|🎧 Voice message to hear once · tap to open
+1106|🎧 Voice message heard and gone
+1107|🎧 Heard once
+1108|🔓 Normal
+1109|🔥 Ephemeral

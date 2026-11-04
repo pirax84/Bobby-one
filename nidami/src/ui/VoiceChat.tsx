@@ -32,11 +32,11 @@ export function VoiceHome() {
 
 function VoiceChat({ item, back }: { item: Item; back: () => void }) {
   const s = useStore((x) => x); const me = s.me; const now = useNow(1000);
-  const [cid, setCid] = useState<string | undefined>(item.conv); const [dur, setDur] = useState<"p" | "o" | "10" | "60">("p"); const [del, setDel] = useState<string | null>(null); const c = s.convs.find((x) => x.id === cid); const end = useRef<HTMLDivElement>(null);
+  const [cid, setCid] = useState<string | undefined>(item.conv); const [dur, setDur] = useState<"p" | "o">("p"); const [del, setDel] = useState<string | null>(null); const c = s.convs.find((x) => x.id === cid); const end = useRef<HTMLDivElement>(null);
   useEffect(() => { if (c) actions.markRead(c.id); }, [c?.msgs.length]);
   useEffect(() => { end.current?.scrollIntoView({ block: "end" }); }, [c?.msgs.length]);
   const msgs = (c?.msgs || []).filter((m) => m.audio);
-  const send = (u: string) => { const id = cid || (item.userId ? actions.startDm(item.userId) : undefined); if (!id) return; actions.send(id, "", dur === "10" ? 10 : dur === "60" ? 60 : 0, null, undefined, u, dur === "o"); setCid(id); };
+  const send = (u: string) => { const id = cid || (item.userId ? actions.startDm(item.userId) : undefined); if (!id) return; actions.send(id, "", 0, null, undefined, u, dur === "o"); setCid(id); };
   return (<div className="col chatfull">
     <div className="row"><button type="button" className="topb" onClick={back} aria-label={t("Retour")}><Ico n="back" s={20} /></button><b className="grow ell" style={{ fontSize: "1.2rem" }}>{item.label}</b></div>
     <div className="card msgs" role="log" aria-live="polite">{msgs.map((m) => { const mine = m.from === me; const hidden = !mine && (m.once || m.secs > 0);
@@ -45,7 +45,7 @@ function VoiceChat({ item, back }: { item: Item; back: () => void }) {
         <div className="muted small row" style={{ gap: 8 }}>{ago(m.at, now)}{mine && m.once ? " · 🔥" : mine && m.secs > 0 ? " · ⏱ " + (m.secs >= 60 ? m.secs / 60 + " min" : m.secs + " s") : ""}{mine && <button type="button" className="btn ghost sm" onClick={() => setDel(m.id)} aria-label={t("Supprimer ce vocal")}><Ico n="trash" s={16} /></button>}</div></div>; })}
       {!msgs.length && <p className="muted center">{t("Aucun vocal pour l'instant : dis bonjour avec ta voix !")}</p>}<div ref={end} /></div>
     {del && cid && <ConfirmDel what={t("ce vocal")} onYes={() => actions.deleteMsg(cid, del)} onClose={() => setDel(null)} />}
-    <div className="row voicedur" style={{ gap: 5, justifyContent: "center" }} role="radiogroup" aria-label={t("Durée du vocal")}>{([["p", t("♾️ Normal")], ["o", t("🔥 Vu une fois")], ["10", t("⏱ 10 s")], ["60", t("⏱ 1 min")]] as const).map(([v, l]) => <button key={v} type="button" role="radio" aria-checked={dur === v} className={"chip" + (dur === v ? " on" : "")} onClick={() => setDur(v)}>{l}</button>)}</div>
-    <div className="col" style={{ alignItems: "center", gap: 6 }}><HoldMic className="bigmic" onDone={send}><MicIcon size={54} /></HoldMic><span className="muted small">{t("Maintiens pour parler · relâche pour envoyer")}</span></div>
+    <div className="row voicedur" style={{ gap: 5, justifyContent: "center" }} role="radiogroup" aria-label={t("Durée du vocal")}>{([["p", t("🔓 Normal")], ["o", t("🔥 Éphémère")]] as const).map(([v, l]) => <button key={v} type="button" role="radio" aria-checked={dur === v} className={"chip" + (dur === v ? " on" : "")} onClick={() => setDur(v)}>{l}</button>)}</div>
+    <div className="col" style={{ alignItems: "center", gap: 6 }}><HoldMic className="bigmic" max={600} onDone={send}><MicIcon size={54} /></HoldMic><span className="muted small">{t("Maintiens pour parler · relâche pour envoyer")}</span></div>
   </div>);
 }

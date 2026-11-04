@@ -105,7 +105,7 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
 }
 
 /** Bouton micro + bouton d'envoi : identiques partout (conversation en grand et bulle). */
-export function MicBtn({ onDone }: { onDone: (url: string) => void }) { return <HoldMic className="btn micbtn" onDone={onDone}><Ico n="mic" s={20} /></HoldMic>; }
+export function MicBtn({ onDone, max }: { onDone: (url: string) => void; max?: number }) { return <HoldMic className="btn micbtn" max={max} onDone={onDone}><Ico n="mic" s={20} /></HoldMic>; }
 
 /** Enlève les bandes pleines (mode « Large ») autour d'une photo : la photo finit sans contour, prête à être recadrée dans sa forme. */
 function trimBars(src: HTMLCanvasElement): HTMLCanvasElement {
