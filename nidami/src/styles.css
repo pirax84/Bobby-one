@@ -724,3 +724,34 @@ html[data-theme=light][data-accent=azur] .wreath:not(.seen) .wl{stroke:#0E3A5C}
 html[data-theme=light][data-accent=ocean] .wreath:not(.seen) .wl{stroke:#16296B}
 html[data-theme=light][data-accent=orchidee] .wreath:not(.seen) .wl{stroke:#44165C}
 html[data-theme=light] .bfab{background:#0E3A5C!important;color:#38B6FF!important;box-shadow:0 10px 24px -8px rgba(14,58,92,.6)!important}
+
+/* v114 : réglages en pastilles nuit, bouton message et contour des stories suivent l'apparence */
+.seti{display:grid;place-items:center}
+.seti[data-s=look]{background:#2A1F5C!important;color:#9B87F5;border-color:transparent!important}
+.seti[data-s=notifs]{background:#5A1B38!important;color:#E5679C;border-color:transparent!important}
+.seti[data-s=priv]{background:#16296B!important;color:#4F7BFF;border-color:transparent!important}
+.seti[data-s=profile]{background:#5A2619!important;color:#FF8A6B;border-color:transparent!important}
+.seti[data-s=lang]{background:#0E4A4A!important;color:#2FCDBE;border-color:transparent!important}
+.seti[data-s=install]{background:#0E3A5C!important;color:#38B6FF;border-color:transparent!important}
+.seti[data-s=legal]{background:#4F3A0A!important;color:#F2C45A;border-color:transparent!important}
+.seti[data-s=acct]{background:#44165C!important;color:#C85BE8;border-color:transparent!important}
+html[data-theme=light][data-accent=lavande] .bfab{background:#2A1F5C!important;color:#9B87F5!important;box-shadow:0 10px 24px -8px #2A1F5C99!important}
+html[data-theme=light][data-accent=lavande] .wreath.seen .wl{stroke:#2A1F5C;opacity:.5}
+html[data-theme=light][data-accent=turquoise] .bfab{background:#0E4A4A!important;color:#2FCDBE!important;box-shadow:0 10px 24px -8px #0E4A4A99!important}
+html[data-theme=light][data-accent=turquoise] .wreath.seen .wl{stroke:#0E4A4A;opacity:.5}
+html[data-theme=light][data-accent=corail] .bfab{background:#5A2619!important;color:#FF8A6B!important;box-shadow:0 10px 24px -8px #5A261999!important}
+html[data-theme=light][data-accent=corail] .wreath.seen .wl{stroke:#5A2619;opacity:.5}
+html[data-theme=light][data-accent=framboise] .bfab{background:#5A1B38!important;color:#E5679C!important;box-shadow:0 10px 24px -8px #5A1B3899!important}
+html[data-theme=light][data-accent=framboise] .wreath.seen .wl{stroke:#5A1B38;opacity:.5}
+html[data-theme=light][data-accent=citron] .bfab{background:#2F4A0E!important;color:#A8E05F!important;box-shadow:0 10px 24px -8px #2F4A0E99!important}
+html[data-theme=light][data-accent=citron] .wreath.seen .wl{stroke:#2F4A0E;opacity:.5}
+html[data-theme=light][data-accent=miel] .bfab{background:#4F3A0A!important;color:#F2C45A!important;box-shadow:0 10px 24px -8px #4F3A0A99!important}
+html[data-theme=light][data-accent=miel] .wreath.seen .wl{stroke:#4F3A0A;opacity:.5}
+html[data-theme=light][data-accent=azur] .bfab{background:#0E3A5C!important;color:#38B6FF!important;box-shadow:0 10px 24px -8px #0E3A5C99!important}
+html[data-theme=light][data-accent=azur] .wreath.seen .wl{stroke:#0E3A5C;opacity:.5}
+html[data-theme=light][data-accent=ocean] .bfab{background:#16296B!important;color:#4F7BFF!important;box-shadow:0 10px 24px -8px #16296B99!important}
+html[data-theme=light][data-accent=ocean] .wreath.seen .wl{stroke:#16296B;opacity:.5}
+html[data-theme=light][data-accent=orchidee] .bfab{background:#44165C!important;color:#C85BE8!important;box-shadow:0 10px 24px -8px #44165C99!important}
+html[data-theme=light][data-accent=orchidee] .wreath.seen .wl{stroke:#44165C;opacity:.5}
+html[data-theme=light] .wreath.seen .wmedia{filter:none}
+html:not([data-theme=light]) .wreath.seen .wl{stroke:var(--accb);opacity:.55}
