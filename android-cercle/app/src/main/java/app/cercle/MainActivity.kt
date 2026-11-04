@@ -29,8 +29,8 @@ import android.webkit.WebViewClient
 
 class MainActivity : Activity() {
     companion object {
-        const val HOME = "https://notiif.vercel.app/"
-        const val HOST = "notiif.vercel.app"
+        const val HOME = "https://pirax84.github.io/Bobby-one/"
+        const val HOST = "pirax84.github.io"
         const val RC_FILE = 1
         const val RC_PERM = 2
         const val RC_NOTIF = 3
@@ -62,7 +62,7 @@ class MainActivity : Activity() {
         web.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val u = request.url
-                if (u.scheme == "https" && u.host == HOST) return false
+                if (u.scheme == "https" && u.host == HOST && (u.path ?: "").startsWith("/Bobby-one")) return false
                 if (u.scheme == "https" || u.scheme == "http") { try { startActivity(Intent(this@MainActivity, LinkActivity::class.java).putExtra("url", u.toString())) } catch (e: Exception) { } }
                 return true
             }
