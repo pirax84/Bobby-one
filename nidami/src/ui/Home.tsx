@@ -217,21 +217,27 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
 }
 function audLabel(p: Post, s: State["social"]) { const m = p.audience.mode; return m === "all" ? t("Tous les amis") : m === "me" ? t("Moi seul") : m === "group" ? s.groups.find((g) => g.id === (p.audience as any).groupId)?.name || t("Groupe") : m === "only" ? t("Amis choisis") : m === "except" ? t("Amis sauf…") : t("Liste"); }
 
-function BirthdayBanner() {
-  const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []);
-  const l = Object.values(users).filter((u) => u.id !== me && fr.includes(u.id) && u.birthday).map((u) => ({ u, d: isBirthday(u.birthday, 0) ? 0 : isBirthday(u.birthday, 1) ? 1 : -1 })).filter((x) => x.d >= 0);
+function BirthdayBanner({ go }: { go?: (v: string, conv?: string) => void }) {
+  const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []); const [open, setOpen] = useState(false);
+  const l = Object.values(users).filter((u) => u.id !== me && fr.includes(u.id) && isBirthday(u.birthday, 0));
   if (!l.length) return null;
-  return <div className="col" style={{ gap: 6, margin: "4px 0" }}>{l.map(({ u, d }) => <div key={u.id} className="card row" style={{ gap: 10, alignItems: "center", padding: "8px 12px" }}><Avatar u={u} s={36} /><span>🎂 {d === 0 ? t("Anniversaire de {name} aujourd'hui !", { name: u.name }) : t("Anniversaire de {name} demain !", { name: u.name })}</span></div>)}</div>;
+  const many = l.length > 1; const first = l[0];
+  return <div className="bdaywrap"><div className="bdaybub" role={many ? "button" : undefined} tabIndex={many ? 0 : undefined} onClick={() => many && setOpen(!open)} aria-expanded={many ? open : undefined}>
+    <span className="bdayavs">{l.slice(0, 3).map((u) => <Avatar key={u.id} u={u} s={34} />)}</span>
+    <span className="bdaytxt">{many ? t("C'est l'anniversaire de {name} et {n} autre(s)", { name: first.name, n: l.length - 1 }) : t("C'est l'anniversaire de {name}", { name: first.name })}</span>
+    {many && <span className="bdaydots" aria-hidden="true">•••</span>}</div>
+    {many && open && <div className="bdaylist card">{l.map((u) => <div key={u.id} className="row" style={{ gap: 10, alignItems: "center" }}><Avatar u={u} s={36} /><b className="grow ell">{u.name}</b>{go && <button type="button" className="btn sm" onClick={() => { const cid = actions.startDm(u.id); go("messages", cid); }}>{t("Écrire")}</button>}</div>)}</div>}
+    {!many && go && <button type="button" className="bdaywrite" onClick={() => { const cid = actions.startDm(first.id); go("messages", cid); }}>{t("Écrire à {name}", { name: first.name })}</button>}</div>;
 }
-export function Home({ groupId }: { groupId?: string }) {
+export function Home({ groupId, go }: { groupId?: string; go?: (v: string, conv?: string) => void }) {
   const me = useStore((s) => s.me); const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const now = useNow(2000); const [compose, setCompose] = useState(false); const [filter, setFilter] = useState("all");
   const user = useStore((s) => userOf(s, s.me)); const groups = social.groups.filter((g) => g.memberIds.includes(me));
   useEffect(() => { actions.tick(); }, [now]);
   let feed = feedFor(posts, me, now, social); if (groupId) feed = feed.filter((p) => p.audience.mode === "group" && (p.audience as any).groupId === groupId); else if (filter === "mine") feed = feed.filter((p) => p.authorId === me); else if (filter !== "all") feed = feed.filter((p) => p.audience.mode === "group" && (p.audience as any).groupId === filter);
   const [arr, setArr] = useState(false);
   return (<div className="col home-gap">
+    {!groupId && <BirthdayBanner go={go} />}
     {!groupId && <Stories me={me} />}
-    {!groupId && <BirthdayBanner />}
     {!groupId && <MemoryCard />}
     {arr && <ArrivedModal onClose={() => setArr(false)} />}
     <div className="card row composebox"><Avatar u={user} /><button className="inp grow" style={{ textAlign: "left", color: "var(--mute)" }} onClick={() => setCompose(true)}>{t("Quoi de neuf avec vos proches ?")}</button><button className="btn sm" onClick={() => setCompose(true)}><Ico n="img" s={18} /></button></div>

@@ -1115,3 +1115,7 @@
 1114|↑ lock · ← ↓ cancel
 1115|▲ Up: lock · ▼ Down: cancel
 1116|Hold to talk. Slide up to lock, down to cancel.
+1117|It's {name}'s birthday and {n} other(s)
+1118|It's {name}'s birthday
+1119|Write to {name}
+1120|Write

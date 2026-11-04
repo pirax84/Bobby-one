@@ -660,3 +660,13 @@ html.moving .bfab{opacity:0!important;pointer-events:none;transform:scale(.8)}
 .reclock small{font-size:1.1rem;font-weight:800;color:var(--fg)}
 /* v106 : message d'enregistrement visible au-dessus du pouce */
 .recbar:not(.locked){bottom:calc(215px + env(safe-area-inset-bottom));padding-right:18px}
+
+/* v109 : bulle d'anniversaire */
+.bdaywrap{display:flex;flex-direction:column;gap:8px}
+.bdaybub{display:flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border-radius:30px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:var(--on);box-shadow:0 10px 24px -10px rgba(var(--brand-rgb),.8);cursor:default;text-align:left}
+.bdaybub[role=button]{cursor:pointer}
+.bdayavs{display:flex;flex:none}.bdayavs>*{margin-left:-12px;border:2px solid var(--brand);border-radius:50%}.bdayavs>*:first-child{margin-left:0}
+.bdaytxt{flex:1;font-weight:700;font-size:.9rem;line-height:1.25}
+.bdaydots{font-size:1.2rem;letter-spacing:2px;font-weight:800}
+.bdaylist{display:flex;flex-direction:column;gap:10px}
+.bdaywrite{align-self:flex-start;background:none;border:0;color:var(--accb);font-weight:700;padding:2px 10px}
