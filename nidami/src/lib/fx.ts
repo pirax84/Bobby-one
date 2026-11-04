@@ -205,4 +205,4 @@ function fxOn(): boolean { try { const x = JSON.parse(localStorage.getItem("nida
 /** Début de la notification : quelqu'un entre en contact (écrit, enregistre…). */
 export function soundStart() { if (fxOn()) popNotes(6, 0.3); }
 /** Fin de la notification : le message est parti. */
-export function soundEnd() { if (!fxOn()) return; popNotes(1, 0.3); setTimeout(() => popNotes(1, 0.3), 300); setTimeout(() => popNotes(3, 0.3), 700); }
+export function soundEnd() { if (fxOn()) popNotes(3, 0.3); }
