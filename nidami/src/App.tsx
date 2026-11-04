@@ -20,8 +20,8 @@ import { ArrivedModal } from "./ui/Extras";
 import { Guide } from "./ui/Guide";
 import { kidOn, PinGate } from "./ui/Kid";
 
-type V = "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
-export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["calls", t("Appels"), "phone"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]];
+type V = "voice" | "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
+export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["calls", t("Appels"), "phone"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"], ["voice", t("Vocal"), "voice"]];
 
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
@@ -87,7 +87,7 @@ export default function App() {
   useEffect(() => { let tm = 0; const root = document.documentElement; const show = () => { clearTimeout(tm); root.classList.remove("moving"); }; const on = () => { root.classList.add("moving"); clearTimeout(tm); tm = window.setTimeout(show, 90); }; window.addEventListener("scroll", on, { passive: true }); window.addEventListener("scrollend", show); return () => { window.removeEventListener("scroll", on); window.removeEventListener("scrollend", show); clearTimeout(tm); root.classList.remove("moving"); }; }, []);
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
-  const go = (x: string, conv?: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (conv) { history.pushState({ v: x, conv }, ""); setV(x as V); setMore(false); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
+  const go = (x: string, conv?: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (x === "voice") { setMore(false); setCompose("saudio"); return; } if (conv) { history.pushState({ v: x, conv }, ""); setV(x as V); setMore(false); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
   let keys = navCfg ? navCfg.split(",") : ["home", "friends", "messages", "notifs"];
   if (bubbleOn && keys.includes("messages")) { const alt = ["groups", "events", "media", "games"].find((x) => !keys.includes(x)) || "groups"; keys = keys.map((k) => (k === "messages" ? alt : k)); }
   const bar = keys.map((k) => navItems().find((n) => n[0] === k)).filter(Boolean).slice(0, 4) as [V, string, string][]; const half = Math.ceil(bar.length / 2);
@@ -118,7 +118,7 @@ export default function App() {
       <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("selfie"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
       {bar.slice(half).map(tab)}</nav>
     {more && <Modal title={t("Plus")} onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
-      {([[t("Les plus utiles"), [["media", t("Photos"), "img"], ["groups", t("Groupes"), "group"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"]]], [t("Le reste"), [["calls", t("Appels"), "phone"], ["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
+      {([[t("Les plus utiles"), [["media", t("Photos"), "img"], ["groups", t("Groupes"), "group"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"]]], [t("Le reste"), [["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
         <div key={tx} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{tx}</b>
           <div className="tiles two">{items.map(([k, l, i]) => <button key={k} className="tile" onClick={() => go(k)}><span className="tic"><Ico n={i} s={24} /></span><span>{l}</span>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 6, right: 6 }}>{badge(k)}</span>}</button>)}</div></div>)}</div></Modal>}
     {started && <Guide />}

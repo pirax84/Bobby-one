@@ -30,7 +30,7 @@ const P: Record<string, string> = {
   back: "M15 5l-7 7 7 7",
   search: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.3-4.3",
 };
-export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => (
+export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => n === "voice" ? <MicIcon size={Math.round(s * 0.9)} /> : (
   <svg className={n === "back" ? "ico-flip" : undefined} width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={P[n] || P.more} /></svg>
 );
 /** Bulle de BD dessinée à la main : l'aperçu de la story remplit toute la forme, avec un contour aux couleurs de l'application. */

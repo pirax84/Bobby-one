@@ -629,3 +629,4 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
 /* Haut, bas et bulle : même vitesse, ils partent et reviennent ensemble */
 html .top,html .bottom,html .bfab{transition:opacity .15s ease,transform .15s ease!important}
 html.moving .bfab{opacity:0!important;pointer-events:none;transform:scale(.8)}
+.viewer{overflow-y:auto;justify-content:safe center;padding-bottom:calc(28px + env(safe-area-inset-bottom))!important;padding-top:calc(14px + env(safe-area-inset-top))}
