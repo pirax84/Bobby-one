@@ -1077,3 +1077,4 @@
 1076|Emojis and effects
 1077|Go to pinned message
 1078|View
+1079|Arrived

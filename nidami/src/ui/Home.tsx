@@ -229,10 +229,9 @@ export function Home({ groupId }: { groupId?: string }) {
     {!groupId && <Stories me={me} />}
     {!groupId && <BirthdayBanner />}
     {!groupId && <MemoryCard />}
-    {!groupId && <button className="arrivedbtn" onClick={() => setArr(true)}><span style={{ fontSize: 28 }}>🏠</span><span className="grow">{t("Je suis bien arrivé")}<small>{t("Prévenir mes proches en un geste")}</small></span></button>}
     {arr && <ArrivedModal onClose={() => setArr(false)} />}
-    <div className="card row"><Avatar u={user} /><button className="inp grow" style={{ textAlign: "left", color: "var(--mute)" }} onClick={() => setCompose(true)}>{t("Quoi de neuf avec vos proches ?")}</button><button className="btn sm" onClick={() => setCompose(true)}><Ico n="img" s={18} /></button></div>
-    {!groupId && <div className="tabs"><button className={"chip" + (filter === "all" ? " on" : "")} onClick={() => setFilter("all")}>{t("Tout")}</button><button className={"chip" + (filter === "mine" ? " on" : "")} onClick={() => setFilter("mine")}>{t("Mes publications")}</button>{groups.map((g) => <button key={g.id} className={"chip" + (filter === g.id ? " on" : "")} onClick={() => setFilter(g.id)}>{g.emoji} {g.name}</button>)}</div>}
+    <div className="card row composebox"><Avatar u={user} /><button className="inp grow" style={{ textAlign: "left", color: "var(--mute)" }} onClick={() => setCompose(true)}>{t("Quoi de neuf avec vos proches ?")}</button><button className="btn sm" onClick={() => setCompose(true)}><Ico n="img" s={18} /></button></div>
+    {!groupId && <div className="tabs"><button type="button" className="chip arrchip" onClick={() => setArr(true)}>👋 {t("Arrivé")}</button><button className={"chip" + (filter === "all" ? " on" : "")} onClick={() => setFilter("all")}>{t("Tout")}</button><button className={"chip" + (filter === "mine" ? " on" : "")} onClick={() => setFilter("mine")}>{t("Mes publications")}</button>{groups.map((g) => <button key={g.id} className={"chip" + (filter === g.id ? " on" : "")} onClick={() => setFilter(g.id)}>{g.emoji} {g.name}</button>)}</div>}
     {!feed.length && <div className="card center muted">{t("Rien ici pour l'instant. Publiez votre premier moment ✨")}</div>}
     {feed.map((p) => <PostCard key={p.id} post={p} me={me} />)}
     {compose && <Composer groupId={groupId} onClose={() => setCompose(false)} />}

@@ -591,3 +591,24 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
 @keyframes flashpin{0%,100%{background:transparent}30%,70%{background:rgba(var(--brand-rgb),.28)}}
 .msgs .flash{animation:flashpin 1.6s ease}
 .bubble.rel{position:relative}
+
+/* ===== v91 : nouveau haut d'écran (téléphone) ===== */
+.mpill,.subgear{display:none}
+@media (max-width:760px){
+ .ishome>.brandbar{display:flex!important;padding:2px 0 10px}
+ .ishome>.brandbar .wm{display:block;position:relative;width:100%}
+ .ishome>.brandbar img.wmb{width:100%;height:auto;max-height:none}
+ .ishome>.brandbar img.wml{position:absolute;left:0;top:0;width:100%;height:100%}
+ .ishome .top .tw{display:none}
+ .ishome .mpill{display:block;flex:1;min-width:0}
+ .ishome .mpill .srch{max-width:none;width:100%;margin:0}
+ .ishome .topsearch{display:none}
+ .scrolled .ishome .top .tw{display:block}.scrolled .ishome .mpill{display:none}.scrolled .ishome .topsearch{display:inline-block}
+ .ishome .topr .topb:has(.ico-search){display:none}
+ .composebox{display:none!important}
+ .top.sub .tw{display:block!important}
+ .top.sub .tw .wmb{height:36px}
+ .top.sub .subgear{display:grid}
+ .top.sub .tcenter{flex:1}
+ .arrchip{border:1.5px solid var(--brand);color:var(--brand);background:transparent;font-weight:700}
+}
