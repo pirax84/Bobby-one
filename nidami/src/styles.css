@@ -712,3 +712,15 @@ html[data-theme=light][data-accent=miel] .chip.on{background:#4F3A0A!important;c
 html[data-theme=light][data-accent=azur] .chip.on{background:#0E3A5C!important;color:#38B6FF!important;border-color:#0E3A5C!important}
 html[data-theme=light][data-accent=ocean] .chip.on{background:#16296B!important;color:#4F7BFF!important;border-color:#16296B!important}
 html[data-theme=light][data-accent=orchidee] .chip.on{background:#44165C!important;color:#C85BE8!important;border-color:#44165C!important}
+
+/* v113 : mode clair — contour des stories et bouton message en nuit */
+html[data-theme=light][data-accent=lavande] .wreath:not(.seen) .wl{stroke:#2A1F5C}
+html[data-theme=light][data-accent=turquoise] .wreath:not(.seen) .wl{stroke:#0E4A4A}
+html[data-theme=light][data-accent=corail] .wreath:not(.seen) .wl{stroke:#5A2619}
+html[data-theme=light][data-accent=framboise] .wreath:not(.seen) .wl{stroke:#5A1B38}
+html[data-theme=light][data-accent=citron] .wreath:not(.seen) .wl{stroke:#2F4A0E}
+html[data-theme=light][data-accent=miel] .wreath:not(.seen) .wl{stroke:#4F3A0A}
+html[data-theme=light][data-accent=azur] .wreath:not(.seen) .wl{stroke:#0E3A5C}
+html[data-theme=light][data-accent=ocean] .wreath:not(.seen) .wl{stroke:#16296B}
+html[data-theme=light][data-accent=orchidee] .wreath:not(.seen) .wl{stroke:#44165C}
+html[data-theme=light] .bfab{background:#0E3A5C!important;color:#38B6FF!important;box-shadow:0 10px 24px -8px rgba(14,58,92,.6)!important}
