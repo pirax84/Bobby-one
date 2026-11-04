@@ -658,3 +658,5 @@ html.moving .bfab{opacity:0!important;pointer-events:none;transform:scale(.8)}
 .recbar.locked .lkbtns .btn{flex:1;min-height:52px;font-size:1.05rem;justify-content:center}
 .recbar .rectxt{font-size:.95rem;font-weight:700}
 .reclock small{font-size:1.1rem;font-weight:800;color:var(--fg)}
+/* v106 : message d'enregistrement visible au-dessus du pouce */
+.recbar:not(.locked){bottom:calc(215px + env(safe-area-inset-bottom));padding-right:18px}
