@@ -1054,3 +1054,6 @@
 1053|🖼️ Frame style
 1054|Soft
 1055|Bold outlines
+1056|Switch to dark theme
+1057|Switch to light theme
+1058|Light / dark
