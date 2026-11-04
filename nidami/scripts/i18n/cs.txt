@@ -1072,3 +1072,8 @@
 1071|You are editing this message
 1072|Reply to
 1073|Pinned
+1074|😀 Emojis
+1075|✨ Effects
+1076|Emojis and effects
+1077|Go to pinned message
+1078|View

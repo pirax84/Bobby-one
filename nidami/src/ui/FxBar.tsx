@@ -55,3 +55,12 @@ export function CustomMaker({ onDone }: { onDone: () => void }) {
     {audio && <AudioWave src={audio} />}
     <div className="row" style={{ gap: 8 }}><button type="button" className="btn ghost grow" onClick={() => playCustom({ img, audio, name })}>{t("▶ Essayer")}</button><button type="button" className="btn grow" onClick={save}>{t("Ajouter")}</button></div></div>;
 }
+
+/** Tous les effets rangés en grille (onglet « Effets » du panneau emoji). */
+export function FxGrid({ convId, onSent }: { convId: string; onSent: () => void }) {
+  const fxOn = useStore((x) => x.settings[x.me]?.fx ?? true); const customs = useStore((x) => cfxOf(x.settings[x.me]?.cfx));
+  const send = (k: Fx) => { if (!actions.sendFx(convId, k)) return toast(t("Doucement : un effet par seconde.")); playFx(k, fxOn); onSent(); };
+  const sendC = (c: CFx) => { if (!actions.sendCustomFx(convId, c)) return toast(t("Doucement : un effet par seconde.")); playCustom(c, fxOn); onSent(); };
+  return <div className="fxgrid">{FX_KEYS.map((k) => { const [em, ...rest] = FX[k].label.split(" "); return <button key={k} type="button" className="fxcell" onClick={() => send(k)}><span className="fxem">{em}</span><span className="fxtx">{rest.join(" ")}</span></button>; })}
+    {customs.map((c) => <button key={c.id} type="button" className="fxcell" onClick={() => sendC(c)}><span className="fxem">{c.img ? <img src={c.img} alt="" style={{ width: 30, height: 30, borderRadius: "50%", objectFit: "cover" }} /> : "🎙"}</span><span className="fxtx">{c.name}</span></button>)}</div>;
+}

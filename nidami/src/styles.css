@@ -577,3 +577,16 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
 .actmain:not(.on){background:var(--card2);border-color:rgba(var(--brand-rgb),.55);color:var(--brand);box-shadow:none}
 @media (max-width:760px){.top.sub .topme,.top.sub .topr{display:none}.top.sub>.topb{margin-left:0!important}}
 .actrow{gap:6px}.actmain,.actbtn{flex:1 1 auto;padding:10px 10px;font-size:.84rem;text-overflow:clip}
+
+/* ===== Bas de conversation : champ en pilule, panneau emojis/effets ===== */
+.pillin{display:flex;align-items:center;gap:4px;background:var(--card2);border:1.5px solid rgba(var(--brand-rgb),.35);border-radius:999px;padding:0 6px 0 4px;min-height:46px;min-width:0}
+.pilleft{flex:none;width:38px;height:38px;border-radius:50%;background:transparent;color:var(--brand);display:flex;align-items:center;justify-content:center;border:0}
+.pilleft.on{background:rgba(var(--brand-rgb),.2)}
+.pillfield{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--fg);font-size:1rem;padding:8px 4px}
+.pilltag{flex:none;font-size:.75rem;font-weight:700;color:var(--brand);background:rgba(var(--brand-rgb),.15);border-radius:999px;padding:3px 8px}
+.fxgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.fxcell{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;border-radius:16px;background:var(--card2);border:1px solid rgba(var(--brand-rgb),.3);color:var(--fg);min-height:76px}
+.fxem{font-size:1.7rem;line-height:1}.fxtx{font-size:.78rem;font-weight:600;text-align:center}
+.empanel{max-height:280px}
+@keyframes flashpin{0%,100%{background:transparent}30%,70%{background:rgba(var(--brand-rgb),.28)}}
+.msgs .flash{animation:flashpin 1.6s ease}
