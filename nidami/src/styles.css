@@ -614,3 +614,11 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
 }
 .sumrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.sumrow .sumbub{padding:4px 10px;min-height:30px;font-size:.88rem}
 .wreath .wmedia video.wfg{left:0;top:0;width:100%;height:100%;object-fit:cover;border-radius:0}
+.sumbub{cursor:default}
+.actmain{flex:0 0 64px!important;position:relative;display:grid;place-items:center;padding:0!important}
+.heartsym{font-size:1.4rem;line-height:1}
+.heartdots{position:absolute;right:7px;bottom:3px;font-size:.8rem;font-weight:900;line-height:1;opacity:.8}
+.actmain.on .heartdots{color:var(--on)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.reactlist{max-height:240px;overflow:auto;border-radius:16px;background:var(--card);padding:10px 12px}
+.reactrow{gap:12px;padding:5px 0;align-items:center}.reactem{font-size:1.6rem;width:38px;text-align:center;flex:none}

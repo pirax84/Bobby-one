@@ -1084,3 +1084,6 @@
 1083|Normal story (24 h).
 1084|Delete this story
 1085|this story
+1086|Reactions and comments
+1087|Reactions
+1088|React: long press to choose an emoji
