@@ -223,7 +223,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v80</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v81</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "install" && <>
@@ -255,6 +255,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("fxfav", DEFAULT_FAV.join(","))}>{t("Remettre par défaut")}</button></div>
     </>}
     {sec === "look" && <>
+    <div className="card col" style={{ gap: 8 }}><h3>{t("🖼️ Style des cadres")}</h3><div className="row" style={{ gap: 6 }}>{([["soft", t("Doux")], ["bold", t("Contours marqués")]] as const).map(([k, l]) => <button key={k} type="button" className={"chip grow" + ((cfg.style || "soft") === k ? " on" : "")} aria-pressed={(cfg.style || "soft") === k} onClick={() => actions.setSetting("style", k)}>{l}</button>)}</div></div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🔠 Taille du texte")}</h3><div className="row" style={{ gap: 6 }}>{([["petit", t("Petit")], ["normal", t("Normal")], ["grand", t("Grand")], ["tgrand", t("Très grand")]] as const).map(([k, l]) => <button key={k} type="button" className={"chip grow" + ((cfg.fs || "normal") === k ? " on" : "")} aria-pressed={(cfg.fs || "normal") === k} onClick={() => actions.setSetting("fs", k)}>{l}</button>)}</div><p style={{ margin: 0 }}>{t("Exemple : Anniversaire demain ! On se retrouve à 19h ?")}</p></div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🎨 Couleur de l'appli")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Chacun choisit la sienne. Le nom NOTIIF s'adapte tout seul.")}</p>
       <div className="accgrid">{ACCENTS.map((a) => { const on = accentOf(cfg.accent).id === a.id; return <button key={a.id} type="button" className={"accbtn" + (on ? " on" : "")} aria-pressed={on} aria-label={t("Couleur : {name}", { name: t(a.name) })} onClick={() => actions.setSetting("accent", a.id)} style={{ background: a.bg, color: a.dot }}><i style={{ background: a.dot }} />{t(a.name)}</button>; })}</div></div>

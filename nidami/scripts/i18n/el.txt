@@ -1047,3 +1047,10 @@
 1046|View the guide again
 1047|🤖 Solo tic-tac-toe
 1048|🃏 Memory
+1049|I arrived safely
+1050|Tell my loved ones in one tap
+1051|Most useful
+1052|The rest
+1053|🖼️ Frame style
+1054|Soft
+1055|Bold outlines
