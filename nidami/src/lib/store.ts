@@ -17,7 +17,7 @@ export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
 export interface Album { id: ID; ownerId: ID; name: string; audience: Audience; recipients: ID[]; createdAt: number; auto?: boolean }
 export interface State {
   v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[]; albums: Album[];
-  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; hand?: string; nav?: string; top?: string; bubble?: boolean; start?: string; likes?: boolean; comm?: boolean; push?: boolean; fx?: boolean; fxfav?: string; cfx?: string; ntone?: string; ctone?: string; vibm?: string; vibc?: string; nt?: Record<string, boolean>; bg?: string; fg?: string; accent?: string; mode?: string; fs?: string; style?: string }>;
+  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; discret?: boolean; sndlike?: boolean; sndcomm?: boolean; vibtap?: boolean; hand?: string; nav?: string; top?: string; bubble?: boolean; start?: string; likes?: boolean; comm?: boolean; push?: boolean; fx?: boolean; fxfav?: string; cfx?: string; ntone?: string; ctone?: string; vibm?: string; vibc?: string; nt?: Record<string, boolean>; bg?: string; fg?: string; accent?: string; mode?: string; fs?: string; style?: string }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
