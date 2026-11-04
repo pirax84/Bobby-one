@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
 import { Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
+import { VoiceHome } from "./ui/VoiceChat";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
 import { Messages, Games, Soon } from "./ui/Chat";
 import { Media } from "./ui/Albums";
@@ -87,14 +88,14 @@ export default function App() {
   useEffect(() => { let tm = 0; const root = document.documentElement; const show = () => { clearTimeout(tm); root.classList.remove("moving"); }; const on = () => { root.classList.add("moving"); clearTimeout(tm); tm = window.setTimeout(show, 90); }; window.addEventListener("scroll", on, { passive: true }); window.addEventListener("scrollend", show); return () => { window.removeEventListener("scroll", on); window.removeEventListener("scrollend", show); clearTimeout(tm); root.classList.remove("moving"); }; }, []);
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
-  const go = (x: string, conv?: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (x === "voice") { setMore(false); setCompose("saudio"); return; } if (conv) { history.pushState({ v: x, conv }, ""); setV(x as V); setMore(false); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
+  const go = (x: string, conv?: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (conv) { history.pushState({ v: x, conv }, ""); setV(x as V); setMore(false); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
   let keys = navCfg ? navCfg.split(",") : ["home", "friends", "messages", "notifs"];
   if (bubbleOn && keys.includes("messages")) { const alt = ["groups", "events", "media", "games"].find((x) => !keys.includes(x)) || "groups"; keys = keys.map((k) => (k === "messages" ? alt : k)); }
   const bar = keys.map((k) => navItems().find((n) => n[0] === k)).filter(Boolean).slice(0, 4) as [V, string, string][]; const half = Math.ceil(bar.length / 2);
   const topKeys = (topCfg ? topCfg.split(",") : ["search", "settings"]).filter((k) => k === "search" || k === "theme" || navItems().some((n) => n[0] === k)).slice(0, 4);
   const openConvFull = (id: string) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); };
   const badge = (k: V) => (k === "shares" ? pendShares : k === "notifs" ? unreadN : k === "messages" ? unreadM : k === "friends" ? reqs : 0);
-  const page0 = v === "home" ? <Home /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs go={go} openConv={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings go={go} />
+  const page0 = v === "home" ? <Home /> : v === "voice" ? <VoiceHome /> : v === "friends" ? <Friends go={go} /> : v === "groups" ? <Groups /> : v === "messages" ? <Messages /> : v === "games" ? <Games /> : v === "events" ? <Events /> : v === "media" ? <Media /> : v === "profile" ? <Profile /> : v === "notifs" ? <Notifs go={go} openConv={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} /> : v === "shares" ? <Shares /> : v === "legal" ? <LegalView /> : v === "settings" ? <Settings go={go} />
     : <Soon title={t("Appels audio et vidéo")} icon="📞" why={t("Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur NOTIIF sera en place.")} />;
   const page = kidOn() && !kidOk && (v === "settings" || v === "profile" || v === "friends") ? <PinGate onOk={() => setKidOk(true)} /> : page0;
   const warn = getSaveWarn();

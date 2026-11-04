@@ -1089,3 +1089,9 @@
 1088|React: long press to choose an emoji
 1089|🎉 Party
 1090|🎉 It's party time!
+1091|Voice message received {ago}
+1092|Choose who to talk to, with your voice only.
+1093|No contacts yet: add friends to send them a voice message.
+1094|🔒 Temporary voice message · open it in the text conversation
+1095|No voice messages yet: say hello with your voice!
+1096|Hold to talk · release to send
