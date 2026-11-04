@@ -1147,3 +1147,4 @@
 1146|In Settings, “Account and data”: export and restore your data.
 1147|How does it work?
 1148|One card per feature
+1149|🤳 Selfie
