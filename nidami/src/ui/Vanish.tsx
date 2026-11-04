@@ -1,3 +1,4 @@
+import type React from "react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 /** Effets « éphémères » : la photo se fissure puis tombe en morceaux ; le texte et le son s'effacent de gauche à droite. */
@@ -55,7 +56,16 @@ function Mask({ k, children }: { k: number; children: ReactNode }) {
   return <div style={{ WebkitMaskImage: g, maskImage: g }}>{children}</div>;
 }
 
-export function Eph({ kind, id, src, start, total, clear, children }: { kind: "photo" | "mask"; id: string; src?: string; start: number; total: number; clear: number; children: ReactNode }) {
+/** Vidéo qui se consume : une ligne de feu avance (de bas en haut, de haut en bas, de gauche à droite ou de droite à gauche) et efface l'image. */
+function Burn({ id, k, children }: { id: string; k: number; children: ReactNode }) {
+  if (k >= 1) return null; if (k <= 0) return <>{children}</>;
+  const d = hash(id) % 4; const g = [0, 180, 90, 270][d]; const p = k * 108 - 4; const edge = ["bottom", "top", "left", "right"][d];
+  const mask = "linear-gradient(" + g + "deg,transparent 0%,transparent " + p + "%,#000 " + (p + 3) + "%)";
+  const vert = d < 2; const fire: React.CSSProperties = { position: "absolute", pointerEvents: "none", [edge]: "calc(" + p + "% - 20px)", ...(vert ? { left: 0, right: 0, height: 40 } : { top: 0, bottom: 0, width: 40 }), background: "linear-gradient(" + g + "deg,transparent,#ff7a18 40%,#ffd166 55%,transparent)", filter: "blur(2px)", opacity: .95 };
+  return <div style={{ position: "relative", overflow: "hidden", borderRadius: 14 }}><div style={{ WebkitMaskImage: mask, maskImage: mask }}>{children}</div><div style={fire} aria-hidden="true" /></div>;
+}
+
+export function Eph({ kind, id, src, start, total, clear, children }: { kind: "photo" | "mask" | "burn"; id: string; src?: string; start: number; total: number; clear: number; children: ReactNode }) {
   const k = useEffectK(start, total, clear);
-  return kind === "photo" && src ? <Crack id={id} src={src} k={k}>{children}</Crack> : <Mask k={k}>{children}</Mask>;
+  return kind === "photo" && src ? <Crack id={id} src={src} k={k}>{children}</Crack> : kind === "burn" ? <Burn id={id} k={k}>{children}</Burn> : <Mask k={k}>{children}</Mask>;
 }

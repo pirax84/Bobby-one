@@ -612,3 +612,5 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
  .top.sub .tcenter{flex:1}
  .arrchip{border:1.5px solid var(--brand);color:var(--brand);background:transparent;font-weight:700}
 }
+.sumrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.sumrow .sumbub{padding:4px 10px;min-height:30px;font-size:.88rem}
+.wreath .wmedia video.wfg{left:0;top:0;width:100%;height:100%;object-fit:cover;border-radius:0}

@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { Eph } from "./Vanish";
 import { createPortal } from "react-dom";
 import { useStore, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
@@ -45,19 +46,23 @@ function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; 
   useScrollLock();
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users);
   const items = useMemo(() => storiesFor(posts, me, Date.now(), social).filter((p) => p.authorId === authorId), [authorId]);
-  const [i, setI] = useState(0); const [reply, setReply] = useState(""); const [pop, setPop] = useState<string | null>(null); const [more, setMore] = useState(false); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : p.video || p.audio ? 90000 : 6000; const [prog, setProg] = useState(0); const media = !!(p && (p.video || p.audio)); const myName = users.find((x) => x.id === me)?.name || "";
+  const [delStory, setDelStory] = useState(false); const tS = useMemo(() => Date.now(), [i]); const [i, setI] = useState(0); const [reply, setReply] = useState(""); const [pop, setPop] = useState<string | null>(null); const [more, setMore] = useState(false); const p = items[i]; const dur = p && p.viewSecs > 0 && p.authorId !== me ? p.viewSecs * 1000 : p.video || p.audio ? 90000 : 6000; const [prog, setProg] = useState(0); const media = !!(p && (p.video || p.audio)); const myName = users.find((x) => x.id === me)?.name || "";
   const hidden = useCaptureGuard(() => { if (p) actions.suspectCapture(p.id); toast(t("Capture bloquée : l'auteur sera prévenu.")); }, true);
   const next = () => (i + 1 < items.length ? setI(i + 1) : onClose());
-  useEffect(() => { if (!p) return onClose(); setProg(0); actions.open(p.id); const tx = setTimeout(next, dur); return () => clearTimeout(tx); }, [i]);
+  useEffect(() => { if (!p) return onClose(); setProg(0); actions.open(p.id); const tx = authorId === me && !(p.video || p.audio) ? 0 : window.setTimeout(next, dur); return () => clearTimeout(tx); }, [i]);
   const likesOn = useStore((s) => s.settings[authorId]?.likes !== false);
   const live = posts.find((x) => x.id === p?.id); if (!p || !live) return null; const u = users.find((x) => x.id === authorId);
   return (<div className={"viewer protected" + (hidden ? " blur" : "")} role="dialog" aria-label={t("Story")} onClick={(e) => { if ((e.target as HTMLElement).closest("button,input,textarea,form,a")) return; if (e.clientX > window.innerWidth / 2) next(); else if (i > 0) setI(i - 1); }}>
     <div className="bar">{media ? <i style={{ width: "100%", transform: `scaleX(${prog})`, transformOrigin: "left", animation: "none" }} key={i} /> : <i style={{ width: "100%", animation: `sg ${dur / 1000}s linear`, transformOrigin: "left" }} key={i} />}</div>
     <style>{"@keyframes sg{from{transform:scaleX(0)}to{transform:scaleX(1)}}"}</style>
     <div className="row" style={{ width: "min(560px,100%)" }}><Avatar u={u} s={36} /><b className="grow">{u?.name}</b><span className="muted small">{ago(live.createdAt)}</span><button className="btn ghost sm" onClick={onClose} aria-label={t("Fermer")}><Ico n="x" s={18} /></button></div>
-    {live.video || live.audio ? <MediaBox key={live.id} p={live} label={myName} story onEnd={next} onTime={(c, d) => setProg(Math.min(1, c / (isFinite(d) && d > 0 ? d : 10)))} /> : live.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={live.img} plain={!!live.nowm} label={myName} alt={t("Story")} style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(live.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 320 }}>{live.text}</div>}
+    {(() => { const Es = (kind: "photo" | "mask" | "burn", src: string | undefined, n: ReactNode) => authorId !== me && live.viewSecs > 0 ? <Eph key={live.id} kind={kind} id={live.id} src={src} start={tS} total={live.viewSecs * 1000} clear={live.viewSecs * 550}>{n}</Eph> : n;
+      return live.video ? Es("burn", undefined, <MediaBox key={live.id} p={live} label={myName} story onEnd={next} onTime={(c, d) => setProg(Math.min(1, c / (isFinite(d) && d > 0 ? d : 10)))} />) : live.audio ? Es("mask", undefined, <MediaBox key={live.id} p={live} label={myName} story onEnd={next} onTime={(c, d) => setProg(Math.min(1, c / (isFinite(d) && d > 0 ? d : 10)))} />) : live.img ? Es("photo", live.img, <div style={{ width: "min(560px,100%)" }}><WmImage src={live.img} plain={!!live.nowm} label={myName} alt={t("Story")} style={{ borderRadius: 18 }} /></div>) : Es("mask", undefined, <div className="tbg" style={{ background: BG[(live.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 320 }}>{live.text}</div>); })()}
     {live.img && live.text && <p>{live.text}</p>}
-    {authorId === me ? <div className="card small" style={{ width: "min(560px,100%)" }}><Ico n="eye" s={16} />{" "}{t("Vu par :")}{" "}{Object.keys(live.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || t("personne pour l'instant")}</div>
+    {authorId === me ? <div className="col" style={{ width: "min(560px,100%)", gap: 10 }}><div className="card small"><Ico n="eye" s={16} />{" "}{t("Vu par :")}{" "}{Object.keys(live.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || t("personne pour l'instant")}</div>
+        <div className="card col" style={{ gap: 8 }}><b className="small">{t("⏱ Durée pour chaque ami qui la regarde")}</b><div className="row wrap" style={{ gap: 6 }}>{[[0, t("Normale")], [5, "5 s"], [10, "10 s"], [30, "30 s"]].map(([n, l]) => <button key={n} type="button" className={"chip" + (live.viewSecs === n ? " on" : "")} onClick={() => { actions.setViewSecs(live.id, n as number); toast(n ? t("Cette story disparaîtra {l} après l'ouverture.", { l: String(l) }) : t("Story normale (24 h).")); }}>{l}</button>)}</div>
+          <button type="button" className="btn danger" onClick={() => setDelStory(true)}><Ico n="trash" s={16} />{" "}{t("Supprimer cette story")}</button></div>
+        {delStory && <ConfirmDel what={t("cette story")} onYes={() => { actions.deletePost(live.id); onClose(); }} onClose={() => setDelStory(false)} />}</div>
       : <div className="col" style={{ width: "min(560px,100%)", gap: 10 }}>
         <form className="row" style={{ gap: 8 }} onSubmit={(e) => { e.preventDefault(); if (!reply.trim()) return; const c = actions.startDm(authorId); actions.send(c, t("↩️ Réponse à votre story : {reply}", { reply })); setReply(""); toast(t("Réponse envoyée en privé.")); }}>
           <input className="inp grow" style={{ minHeight: 52, fontSize: "1.05rem", borderRadius: 18 }} placeholder={t("Répondre en privé…")} value={reply} onChange={(e) => setReply(e.target.value)} aria-label={t("Répondre en privé…")} />
@@ -134,13 +139,13 @@ function Viewer({ postId, me, onClose }: { postId: string; me: string; onClose: 
   const orig = rp ? originalOf(rp, all) : undefined; const post = rp && orig ? { ...orig, id: rp.id, views: rp.views } : rp;
   const now = useNow(100); const myName = users.find((x) => x.id === me)?.name || "";
   const hidden = useCaptureGuard(() => { actions.suspectCapture(postId); toast(t("Capture bloquée : l'auteur sera prévenu.")); }, true);
-  const a = accessFor(rp, all, me, now, social);
+  const a = accessFor(rp, all, me, now, social); const t0 = useRef(0);
   useEffect(() => { if (!a.ok) onClose(); }, [a.ok]);
-  if (!post || !a.ok) return null; const u = users.find((x) => x.id === post.authorId); const total = post.viewSecs * 1000; const left = a.remainingMs;
+  if (!post || !a.ok) return null; const u = users.find((x) => x.id === post.authorId); const total = post.viewSecs * 1000; const left = a.remainingMs; if (!t0.current && left !== null) t0.current = Date.now() - (total - left); const E = (kind: "photo" | "mask" | "burn", src: string | undefined, n: ReactNode) => left !== null && t0.current ? <Eph kind={kind} id={post.id} src={src} start={t0.current} total={total} clear={total * 0.55}>{n}</Eph> : n;
   return (<div className={"viewer protected" + (hidden ? " blur" : "")} role="dialog" aria-label={t("Publication éphémère")}>
     {left !== null && <div className="bar" aria-label={t("Temps restant")}><i style={{ width: `${Math.max(0, (left / total) * 100)}%` }} /></div>}
     <div className="row" style={{ width: "min(560px,100%)" }}><Avatar u={u} s={36} /><b className="grow">{u?.name}</b>{left !== null && <b style={{ color: "var(--warm)" }}>{t("{ceil} s", { ceil: Math.ceil(left / 1000) })}</b>}<button className="btn ghost sm" onClick={onClose} aria-label={t("Fermer")}><Ico n="x" s={18} /></button></div>
-    {post.video || post.audio ? <MediaBox p={post} label={myName} auto /> : post.img ? <div style={{ width: "min(560px,100%)" }}><WmImage src={post.img} plain={!!post.nowm} label={myName} alt={t("Photo éphémère")} style={{ borderRadius: 18 }} /></div> : <div className="tbg" style={{ background: BG[(post.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 280 }}>{post.text}</div>}
+    {post.video ? E("burn", undefined, <MediaBox p={post} label={myName} auto />) : post.audio ? E("mask", undefined, <MediaBox p={post} label={myName} auto />) : post.img ? E("photo", post.img, <div style={{ width: "min(560px,100%)" }}><WmImage src={post.img} plain={!!post.nowm} label={myName} alt={t("Photo éphémère")} style={{ borderRadius: 18 }} /></div>) : E("mask", undefined, <div className="tbg" style={{ background: BG[(post.bg || 0) % BG.length], width: "min(560px,100%)", minHeight: 280 }}>{post.text}</div>)}
     {post.img && post.text && <p style={{ maxWidth: 560 }}>{post.text}</p>}
     {left !== null && <p className="muted small center" style={{ maxWidth: 520 }}>{t("Si vous fermez, le temps continue de s'écouler. Une photo peut toujours être photographiée avec un autre appareil.")}</p>}
   </div>);
@@ -167,7 +172,8 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
   const myReact = rp.reactions[me]; const counts = Object.values(rp.reactions).reduce<Record<string, number>>((m, e) => ((m[e] = (m[e] || 0) + 1), m), {});
   return (<article className="card col" style={{ gap: 10 }}>
     <div className="row"><Avatar u={u} /><div className="grow"><b>{u?.name}</b> {post.mood}<div className="muted small">{ago(post.createdAt, now)} · {audLabel(post, social)}{eph ? ` · ⏱ ${fmtSecs(post.viewSecs)}` : ""}</div></div>
-      {(mine || rp.authorId === me) && <button className="btn ghost sm" onClick={() => setMore(!more)} aria-label={t("Options")}><Ico n="more" s={18} /></button>}</div>
+      <div className="sumrow">{likesOn && Object.keys(rp.reactions).length > 0 && <button type="button" className="sumbub" onClick={() => setWho(true)} aria-label={t("Qui a réagi ?")}>{Object.entries(counts).map(([e, n]) => e + " " + n).join("  ")}</button>}
+          {commOn && rp.comments.length > 0 && <button type="button" className="sumbub" onClick={() => openCm()} aria-label={t("Commenter")}>💬 {rp.comments.length}</button>}</div>{(mine || rp.authorId === me) && <button className="btn ghost sm" onClick={() => setMore(!more)} aria-label={t("Options")}><Ico n="more" s={18} /></button>}</div>
     {sharer && <div className="small" style={{ color: "var(--warm)" }}>{t("↪ Partagé par")}{" "}<b>{sharer.name}</b>{" "}{t("avec l'accord de {name}", { name: u?.name })}</div>}
     {more && (mine || rp.authorId === me) && <div className="row wrap">{!orig && <button className="btn danger sm" onClick={() => { if (confirm(t("Supprimer cette publication ? Les partages autorisés disparaissent aussi."))) actions.deletePost(rp.id); }}><Ico n="trash" s={16} />{" "}{t("Supprimer partout")}</button>}{orig && mine && <button className="btn danger sm" onClick={() => { if (confirm(t("Retirer ce partage ? Il disparaît chez {name} et ses amis.", { name: sharer?.name }))) actions.revokeShare(rp.shareId!); }}>{t("Retirer ce partage")}</button>}{orig && rp.authorId === me && <button className="btn danger sm" onClick={() => { if (confirm(t("Arrêter de partager ?"))) actions.revokeShare(rp.shareId!); }}>{t("Arrêter mon partage")}</button>}</div>}
     {(expired || lock) ? body : <div className="mediaw" onClick={openDetail} role="button" tabIndex={0} aria-label={t("Agrandir la publication")} onKeyDown={(e) => e.key === "Enter" && openDetail()}>{body}
@@ -177,9 +183,6 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
     {orig && mine && <div className="muted small">{t("Vu par")}{" "}{Object.keys(rp.views).map((v) => users.find((x) => x.id === v)?.name).join(", ") || t("personne pour l'instant")}{" "}{t("· Public du partage :")}{" "}{rp.recipients.map((v) => users.find((x) => x.id === v)?.name).join(", ")}</div>}
     {!expired && !lock && <>
       {(likesOn || commOn || canAsk) && <>
-        {((likesOn && Object.keys(rp.reactions).length > 0) || (commOn && rp.comments.length > 0)) && <div className="row wrap" style={{ gap: 8 }}>
-          {likesOn && Object.keys(rp.reactions).length > 0 && <button type="button" className="sumbub" onClick={() => setWho(true)} aria-label={t("Qui a réagi ?")}>{Object.entries(counts).map(([e, n]) => e + " " + n).join("  ")}</button>}
-          {commOn && rp.comments.length > 0 && <button type="button" className="sumbub" onClick={() => openCm()} aria-label={t("Commenter")}>💬 {rp.comments.length}</button>}</div>}
         <div className="actrow">
           {likesOn && <button type="button" className={"actmain" + (myReact ? " on" : "")} {...heart} onClick={(e) => { e.stopPropagation(); heart.onClick(); }} onContextMenu={(e) => e.preventDefault()}>{myReact ? <>{myReact} {t("Vous avez réagi")}</> : <>♡ {t("Réagir")}</>}</button>}
           {commOn && <button type="button" className="actbtn" onClick={() => openCm()}>💬 {t("Commenter")}</button>}

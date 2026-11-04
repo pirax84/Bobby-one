@@ -1078,3 +1078,9 @@
 1077|Go to pinned message
 1078|View
 1079|Arrived
+1080|⏱ How long each friend can watch it
+1081|Normal
+1082|This story will disappear {l} after opening.
+1083|Normal story (24 h).
+1084|Delete this story
+1085|this story
