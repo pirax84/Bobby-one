@@ -81,7 +81,7 @@ export function Messages() {
       <button type="button" className={"btn ghost sm" + (opt ? " on" : "")} onClick={() => setOpt(!opt)} aria-label={t("Options : durée, photo, effets")} aria-expanded={opt}>＋{(once || secs > 0) && <span className="small"> ⏱</span>}</button>
       <div className="pillin grow"><button type="button" className={"pilleft" + (emo ? " on" : "")} onClick={() => setEmo(!emo)} aria-label={t("Emojis et effets")} aria-expanded={emo}><Ico n="smile" s={20} /></button>
         <input className="pillfield" placeholder={edit ? t("Modifier le message…") : t("Votre message…")} value={txt} onFocus={() => { setEmo(false); setOpt(false); }} onChange={(e) => setTxt(e.target.value)} aria-label={t("Message")} />
-        {(once || secs > 0) && <span className="pilltag">{once ? "🔥" : "⏱ " + (secs >= 60 ? secs / 60 + " min" : secs + " s")}</span>}</div>
+        <button type="button" className="pilltag" onClick={() => { setOpt(true); setEmo(false); }} aria-label={t("Durée du message")}>{once ? "🔥" : secs > 0 ? "⏱ " + (secs >= 60 ? secs / 60 + " min" : secs + " s") : "♾️"}</button></div>
       {txt.trim() ? <button className="btn micbtn" aria-label={t("Envoyer")}><Ico n="send" s={20} /></button> : <MicBtn onDone={(u) => actions.send(c.id, "", secs, null, undefined, u, once)} />}</form></div>);
 }
 

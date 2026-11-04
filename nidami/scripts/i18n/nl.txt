@@ -1095,3 +1095,7 @@
 1094|🔒 Temporary voice message · open it in the text conversation
 1095|No voice messages yet: say hello with your voice!
 1096|Hold to talk · release to send
+1097|Delete this voice message
+1098|this voice message
+1099|Voice message duration
+1100|♾️ Normal
