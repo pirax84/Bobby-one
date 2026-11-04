@@ -15,6 +15,7 @@ function env() {
 /** « auto » : toujours complète à chaque ouverture. */
 function plan(): "full" | "short" | "none" {
   const m = get(INTRO_KEY) || "auto"; if (m === "off") return "none";
+  try { if (sessionStorage.getItem("notiif-upd-reload")) { sessionStorage.removeItem("notiif-upd-reload"); return "none"; } } catch { /* rien */ }
   set("notiif-intro-seen", "1"); set("notiif-intro-day", new Date().toDateString());
   return "full";
 }
