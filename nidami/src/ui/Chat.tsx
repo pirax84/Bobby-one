@@ -71,7 +71,7 @@ export function Messages() {
     {rep && <div className="card small row" style={{ borderColor: "var(--brand)" }}><span className="grow ell">↩︎ {t("Réponse à")} {userOf(s, rep.from)?.name} : {rep.text ? rep.text.slice(0, 50) : t("Message")}</span><button className="btn ghost sm" onClick={() => setRep(null)}><Ico n="x" s={14} /></button></div>}
     {dur && <div className="card col" style={{ gap: 10 }}>
       <div className="row"><b className="grow">{t("Durée du message")}</b><button type="button" className="btn ghost sm" onClick={() => setDur(false)} aria-label={t("Fermer les options")}>✕</button></div>
-      <div className="row wrap" style={{ gap: 6 }}>{[["p", t("🔓 Permanent")], ["o", t("🔥 Une seule fois")], ["10", t("⏱ 10 s")], ["60", t("⏱ 1 min")]].map(([v, l]) => { const on = v === "p" ? !once && secs === 0 : v === "o" ? once : !once && secs === Number(v); return <button type="button" key={v} className={"chip" + (on ? " on" : "")} onClick={() => { setOnce(v === "o"); setSecs(v === "p" || v === "o" ? 0 : Number(v)); setDur(false); }}>{l}</button>; })}</div>
+      <div className="row wrap" style={{ gap: 6 }}>{[["p", t("Normal")], ["o", t("Éphémère")], ["10", t("⏱ 10 s")], ["60", t("⏱ 1 min")]].map(([v, l]) => { const on = v === "p" ? !once && secs === 0 : v === "o" ? once : !once && secs === Number(v); return <button type="button" key={v} className={"chip" + (on ? " on" : "")} onClick={() => { setOnce(v === "o"); setSecs(v === "p" || v === "o" ? 0 : Number(v)); setDur(false); }}>{l}</button>; })}</div>
     </div>}
     {opt && <div className="card col" style={{ gap: 10 }}>
       <div className="row"><b className="grow">{t("Pièces jointes")}</b><button type="button" className="btn ghost sm" onClick={() => setOpt(false)} aria-label={t("Fermer les options")}>✕</button></div>
@@ -84,7 +84,7 @@ export function Messages() {
       <button type="button" className={"btn ghost sm" + (opt ? " on" : "")} onClick={() => { setOpt(!opt); setDur(false); setEmo(false); }} aria-label={t("Pièces jointes")} aria-expanded={opt}>＋</button>
       <div className="pillin grow"><button type="button" className={"pilleft" + (emo ? " on" : "")} onClick={() => { setEmo(!emo); setOpt(false); setDur(false); }} aria-label={t("Emojis et effets")} aria-expanded={emo}><Ico n="smile" s={20} /></button>
         <input className="pillfield" placeholder={edit ? t("Modifier le message…") : t("Votre message…")} value={txt} onFocus={() => { setEmo(false); setOpt(false); setDur(false); }} onChange={(e) => setTxt(e.target.value)} aria-label={t("Message")} />
-        <button type="button" className="pilltag" onClick={() => { setDur(!dur); setOpt(false); setEmo(false); }} aria-label={t("Durée du message")} aria-expanded={dur}>{once ? "🔥" : secs > 0 ? "⏱ " + (secs >= 60 ? secs / 60 + " min" : secs + " s") : "🔓"}</button></div>
+        <button type="button" className="pilltag" onClick={() => { setDur(!dur); setOpt(false); setEmo(false); }} aria-label={t("Durée du message")} aria-expanded={dur}>{once ? t("Éphémère") : secs > 0 ? "⏱ " + (secs >= 60 ? secs / 60 + " min" : secs + " s") : t("Normal")}</button></div>
       {txt.trim() ? <button className="btn micbtn" aria-label={t("Envoyer")}><Ico n="send" s={20} /></button> : <MicBtn max={600} onDone={(u) => actions.send(c.id, "", secs, null, undefined, u, once)} />}</form></div>);
 }
 

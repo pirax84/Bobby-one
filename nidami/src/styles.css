@@ -643,3 +643,10 @@ html.moving .bfab{opacity:0!important;pointer-events:none;transform:scale(.8)}
 .recbar.locked{pointer-events:auto;padding:0 10px 0 16px}
 .recbar.locked .btn{background:#fff;color:var(--brand);border:0;font-weight:700}
 .recbar.locked .btn.ghost{background:rgba(255,255,255,.22);color:var(--on)}
+
+/* v103 : page vocale compacte */
+.vhead{min-height:0;gap:8px}.vhead .topb{width:36px;height:36px}
+.voicemsgs .bubble{padding:5px 12px;min-width:0}
+.vchoice{min-width:86px;padding:10px 12px;border-radius:18px;border:1.5px solid transparent;background:var(--card2);color:var(--fg);font-weight:600;font-size:.85rem}
+.vchoice.on{border-color:var(--accb);background:rgba(var(--brand-rgb),.22)}
+.pilltag{white-space:nowrap;font-size:.75rem}

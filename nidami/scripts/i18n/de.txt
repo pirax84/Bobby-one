@@ -1110,3 +1110,6 @@
 1109|🔥 Ephemeral
 1110|🗑 Cancel
 1111|➤ Send
+1112|This voice message will disappear after it is heard
+1113|Hold to talk · ↑ lock · ← ↓ cancel
+1114|↑ lock · ← ↓ cancel

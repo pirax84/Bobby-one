@@ -38,14 +38,18 @@ function VoiceChat({ item, back }: { item: Item; back: () => void }) {
   const msgs = (c?.msgs || []).filter((m) => m.audio);
   const send = (u: string) => { const id = cid || (item.userId ? actions.startDm(item.userId) : undefined); if (!id) return; actions.send(id, "", 0, null, undefined, u, dur === "o"); setCid(id); };
   return (<div className="col chatfull">
-    <div className="row"><button type="button" className="topb" onClick={back} aria-label={t("Retour")}><Ico n="back" s={20} /></button><b className="grow ell" style={{ fontSize: "1.2rem" }}>{item.label}</b></div>
-    <div className="card msgs" role="log" aria-live="polite">{msgs.map((m) => { const mine = m.from === me; const hidden = !mine && (m.once || m.secs > 0);
+    <div className="row vhead"><button type="button" className="topb" onClick={back} aria-label={t("Retour")}><Ico n="back" s={20} /></button><b className="grow ell" style={{ fontSize: "1.05rem" }}>{item.label}</b></div>
+    <div className="card msgs voicemsgs" role="log" aria-live="polite">{msgs.map((m) => { const mine = m.from === me; const hidden = !mine && (m.once || m.secs > 0);
       return <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start" }}>
         {hidden ? <div className="bubble muted">{t("🔒 Vocal éphémère · à ouvrir dans la conversation écrite")}</div> : <div className={"bubble" + (mine ? " me" : "")}><AudioWave src={m.audio!} mine={mine} /></div>}
         <div className="muted small row" style={{ gap: 8 }}>{ago(m.at, now)}{mine && m.once ? " · 🔥" : mine && m.secs > 0 ? " · ⏱ " + (m.secs >= 60 ? m.secs / 60 + " min" : m.secs + " s") : ""}{mine && <button type="button" className="btn ghost sm" onClick={() => setDel(m.id)} aria-label={t("Supprimer ce vocal")}><Ico n="trash" s={16} /></button>}</div></div>; })}
       {!msgs.length && <p className="muted center">{t("Aucun vocal pour l'instant : dis bonjour avec ta voix !")}</p>}<div ref={end} /></div>
     {del && cid && <ConfirmDel what={t("ce vocal")} onYes={() => actions.deleteMsg(cid, del)} onClose={() => setDel(null)} />}
-    <div className="row voicedur" style={{ gap: 5, justifyContent: "center" }} role="radiogroup" aria-label={t("Durée du vocal")}>{([["p", t("🔓 Normal")], ["o", t("🔥 Éphémère")]] as const).map(([v, l]) => <button key={v} type="button" role="radio" aria-checked={dur === v} className={"chip" + (dur === v ? " on" : "")} onClick={() => setDur(v)}>{l}</button>)}</div>
-    <div className="col" style={{ alignItems: "center", gap: 6 }}><HoldMic className="bigmic" max={600} onDone={send}><MicIcon size={54} /></HoldMic><span className="muted small">{t("Maintiens pour parler · relâche pour envoyer")}</span></div>
+    <div className="col" style={{ alignItems: "center", gap: 6 }}>
+      <span className="muted small center">{dur === "o" ? t("Ce vocal disparaîtra après écoute") : t("Maintiens pour parler · ↑ verrouiller · ← ↓ annuler")}</span>
+      <div className="row voicedur" style={{ gap: 14, justifyContent: "center", alignItems: "center" }} role="radiogroup" aria-label={t("Durée du vocal")}>
+        <button type="button" role="radio" aria-checked={dur === "p"} className={"vchoice" + (dur === "p" ? " on" : "")} onClick={() => setDur("p")}>{t("Normal")}</button>
+        <HoldMic className="bigmic" max={600} onDone={send}><MicIcon size={54} /></HoldMic>
+        <button type="button" role="radio" aria-checked={dur === "o"} className={"vchoice" + (dur === "o" ? " on" : "")} onClick={() => setDur("o")}>{t("Éphémère")}</button></div></div>
   </div>);
 }
