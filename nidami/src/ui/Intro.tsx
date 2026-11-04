@@ -21,14 +21,15 @@ function plan(): "full" | "short" | "none" {
 }
 const W = 524, H = 184, CUTS = [0, 354, 502, 616, 678, 751, 1048];
 export function Intro() {
-  const [mode] = useState(plan); const [out, setOut] = useState(false); const [gone, setGone] = useState(mode === "none"); const [step, setStep] = useState(0); const e = useRef(env()).current;
+  const [mode, setMode] = useState(plan); const [out, setOut] = useState(false); const [gone, setGone] = useState(mode === "none"); const [step, setStep] = useState(0); const [run, setRun] = useState(0); const then = useRef<"short" | "">(""); const e = useRef(env()).current;
+  useEffect(() => { const f = (ev: Event) => { const d = (ev as CustomEvent<{ m: "full" | "short"; then?: "short" }>).detail; then.current = d.then || ""; setMode(d.m); setOut(false); setStep(0); setGone(false); setRun((r) => r + 1); }; window.addEventListener("notiif-intro-preview", f); return () => window.removeEventListener("notiif-intro-preview", f); }, []);
   let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ }
   const full = mode === "full" && !reduce;
   useEffect(() => { if (gone) return; const ids: number[] = []; const at = (ms: number, f: () => void) => ids.push(window.setTimeout(f, ms)); const snd = (n: number) => { if (e.sound) popNotes(n); };
     if (reduce) { at(900, () => setOut(true)); at(1250, () => setGone(true)); }
-    else if (full) { at(150, () => { setStep(1); snd(6); }); at(900, () => setStep(2)); at(1250, () => { setStep(3); snd(1); }); at(1550, () => { setStep(4); snd(1); }); at(1950, () => { setStep(5); snd(3); }); at(2300, () => setStep(6)); at(3300, () => setOut(true)); at(3650, () => setGone(true)); }
+    else if (full) { at(150, () => { setStep(1); snd(6); }); at(900, () => setStep(2)); at(1250, () => { setStep(3); snd(1); }); at(1550, () => { setStep(4); snd(1); }); at(1950, () => { setStep(5); snd(3); }); at(2300, () => setStep(6)); at(3300, () => setOut(true)); at(3650, () => { setGone(true); if (then.current) { const m = then.current; then.current = ""; window.setTimeout(() => window.dispatchEvent(new CustomEvent("notiif-intro-preview", { detail: { m } })), 500); } }); }
     else { at(100, () => { setStep(1); snd(4); }); at(450, () => setStep(5)); at(1000, () => setOut(true)); at(1300, () => setGone(true)); }
-    return () => ids.forEach(clearTimeout); }, [gone]);
+    return () => ids.forEach(clearTimeout); }, [gone, run]);
   if (gone) return null;
   const suf = e.accent + (e.light ? "-light" : "");
   const skip = () => { setOut(true); setTimeout(() => setGone(true), 250); };
