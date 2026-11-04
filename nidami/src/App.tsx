@@ -2,7 +2,7 @@ import { BRAND } from "./lib/brand";
 import { applyTheme, accentOf } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
-import { Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch } from "./ui/common";
+import { micText, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { VoiceHome } from "./ui/VoiceChat";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
@@ -14,7 +14,7 @@ import { Onboarding, needInstall } from "./ui/Auth";
 import { ChatBubble } from "./ui/Bubble";
 import { SearchTop } from "./ui/Search";
 import { MiniPlayer } from "./ui/Links";
-import { playFx, playCustom, Fx, playTone, vibrate, popNotes } from "./lib/fx";
+import { playFx, playCustom, Fx, playTone, vibrate, popNotes, soundEnd } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
 import { t, locale, useLang } from "./i18n";
 import { ArrivedModal } from "./ui/Extras";
@@ -77,7 +77,7 @@ export default function App() {
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
-    if (!th0?.quiet) { playTone(th0?.ntone || "n1"); vibrate(th0?.vibm, 1); }
+    if (!th0?.quiet) { if (!th0?.ntone || th0.ntone === "n1") soundEnd(); else playTone(th0.ntone); vibrate(th0?.vibm, 1); }
     const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
     const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
@@ -133,11 +133,11 @@ export default function App() {
       <b className="small muted">{t("Dans la bulle du haut (24 h)")}</b>
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("selfie"); }}><span className="grow"><b>{t("🤳 Selfie")}</b><small>{t("Photo ou vidéo, plein écran")}</small></span></button>
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("photo"); }}><span className="grow"><b>{"🖼️ "}{t("Photo de la galerie")}</b><small>{t("Visible dans la bulle de vos amis")}</small></span></button>
-      <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("saudio"); }}><span className="grow"><b>{t("🎤 Vocal")}</b><small>{t("Ta voix en story, 24 h")}</small></span></button>
+      <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("saudio"); }}><span className="grow"><b>{micText(t("🎤 Vocal"))}</b><small>{t("Ta voix en story, 24 h")}</small></span></button>
       <label className="row small" style={{ gap: 8 }}><Switch on={wall} onChange={setWall} label={t("Garder aussi sur mon mur")} /><span>{t("Garder aussi sur mon mur")}</span></label>
       <b className="small muted">{t("Sur le mur (reste affiché)")}</b>
       <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("text"); }}><span className="grow"><b>{t("✏️ Écrire un texte")}</b></span></button>
-      <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("audio"); }}><span className="grow"><b>{t("🎤 Message vocal")}</b></span></button>
+      <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("audio"); }}><span className="grow"><b>{micText(t("🎤 Message vocal"))}</b></span></button>
       <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("link"); }}><span className="grow"><b>{"🔗 "}{t("Lien")}</b></span></button>
       <p className="muted small center" style={{ margin: 0 }}>{t("Astuce : restez appuyé sur le bouton pour ouvrir directement la caméra.")}</p></div></Modal>}
     {storyC && <QuickCompose story onClose={() => setStoryC(false)} />}

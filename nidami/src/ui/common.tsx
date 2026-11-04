@@ -147,3 +147,6 @@ export function MicIcon({ size = 120, level = 0 }: { size?: number; level?: numb
     <g stroke="var(--accb)" strokeWidth="3" strokeLinecap="round"><path d="M12 36 L22 40" /><path d="M8 58 L20 58" /><path d="M12 80 L22 76" /><path d="M108 36 L98 40" /><path d="M112 58 L100 58" /><path d="M108 80 L98 76" /><path d="M40 8 L44 18" /><path d="M60 3 L60 14" /><path d="M80 8 L76 18" /></g>
     <g stroke="var(--nuit2)" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round"><rect x="38" y="20" width="44" height="72" rx="22" fill={`url(#${gid})`} /><path d="M38 40 H82 M38 52 H82 M38 64 H82 M38 76 H82 M60 20 V92" fill="none" strokeWidth="3" /><path d="M28 62 V74 A32 32 0 0 0 92 74 V62" fill="none" /><path d="M60 106 V122" /><path d="M42 128 H78" strokeWidth="6" /></g></svg>);
 }
+
+/** Remplace le vieux micro 🎤 d'un texte par le micro NOTIIF. */
+export function micText(s: string): ReactNode { const i = s.indexOf("🎤"); if (i < 0) return s; return <>{s.slice(0, i)}<span style={{ display: "inline-block", verticalAlign: "-4px" }}><MicIcon size={20} /></span>{s.slice(i + 2)}</>; }

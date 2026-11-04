@@ -785,3 +785,9 @@ html[data-theme=light] .tile{background:rgba(var(--brand-rgb),.1)}
 @media (max-width:760px){.dsearch{display:none!important}}
 html:not([data-theme=light]) .wreath.seen .wl{opacity:.8}
 html,body{overflow-x:hidden;max-width:100%}
+
+/* v119 : notifications lues / non lues bien distinguées */
+.notifrow.unread{border-left:5px solid var(--accb);background:rgba(var(--brand-rgb),.16);font-weight:700}
+.notifrow.unread .dot{width:12px;height:12px;box-shadow:0 0 0 4px rgba(var(--brand-rgb),.25)}
+.notifrow.isread{opacity:.6;font-weight:400}
+.notifrow.unread .dot{background:var(--accb)}

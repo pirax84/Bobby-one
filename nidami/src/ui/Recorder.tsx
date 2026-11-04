@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { toast, MicIcon, Ico, useScrollLock } from "./common";
+import { micText, toast, MicIcon, Ico, useScrollLock } from "./common";
 import { actions } from "../lib/store";
 import { soundStart, soundEnd } from "../lib/fx";
 import { FaceHide, AvatarCrop } from "./Photo";
@@ -22,7 +22,7 @@ export function Recorder({ kind, max = 10, onDone, onCancel, onPhoto }: { kind: 
   return <div className="card col" style={{ alignItems: "center", gap: 8 }}>
     {kind === "video" ? <video ref={vid} muted playsInline style={{ width: "100%", maxHeight: 260, borderRadius: 14, background: "#000", transform: "scaleX(-1)", objectFit: "cover" }} /> : <div style={{ fontSize: "3rem" }}>{left !== null ? "🔴" : "🎤"}</div>}
     <div className="row" style={{ gap: 8 }}>
-      {left === null ? <button type="button" className="btn" disabled={!ready} onClick={start}>{kind === "video" ? t("🎥 Commencer") : t("🎤 Commencer")}{" "}{t("({max} s max)", { max })}</button> : <button type="button" className="btn" style={{ background: "var(--bad)", color: "#fff" }} onClick={() => rec.current?.stop()}>{t("⏹ Terminer · {left} s", { left })}</button>}
+      {left === null ? <button type="button" className="btn" disabled={!ready} onClick={start}>{kind === "video" ? t("🎥 Commencer") : micText(t("🎤 Commencer"))}{" "}{t("({max} s max)", { max })}</button> : <button type="button" className="btn" style={{ background: "var(--bad)", color: "#fff" }} onClick={() => rec.current?.stop()}>{t("⏹ Terminer · {left} s", { left })}</button>}
       {onPhoto && left === null && <button type="button" className="btn ghost" disabled={!ready} onClick={() => { const v = vid.current; if (!v || !v.videoWidth) return; const cv = document.createElement("canvas"); const k = Math.min(1, 800 / Math.max(v.videoWidth, v.videoHeight)); cv.width = v.videoWidth * k; cv.height = v.videoHeight * k; const x = cv.getContext("2d")!; x.translate(cv.width, 0); x.scale(-1, 1); x.drawImage(v, 0, 0, cv.width, cv.height); stop(); onPhoto(cv.toDataURL("image/jpeg", 0.8)); }}>{t("📸 Photo")}</button>}
       <button type="button" className="btn ghost" onClick={() => { rec.current?.state === "recording" && (rec.current.onstop = null, rec.current.stop()); stop(); onCancel(); }}>{t("Annuler")}</button></div></div>;
 }

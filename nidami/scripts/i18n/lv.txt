@@ -1123,3 +1123,5 @@
 1122|Short press: create a story or a post. Long press: record a video selfie right away.
 1123|Story, post or selfie
 1124|Tap the screen to start the sound
+1125|{n} unread
+1126|Unread
