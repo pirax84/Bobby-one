@@ -590,3 +590,4 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
 .empanel{max-height:280px}
 @keyframes flashpin{0%,100%{background:transparent}30%,70%{background:rgba(var(--brand-rgb),.28)}}
 .msgs .flash{animation:flashpin 1.6s ease}
+.bubble.rel{position:relative}
