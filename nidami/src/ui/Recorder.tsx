@@ -28,16 +28,20 @@ export function Recorder({ kind, max = 10, onDone, onCancel, onPhoto }: { kind: 
 
 /** Micro « maintenir pour parler » : on reste appuyé, on lâche, le vocal part. */
 export function HoldMic({ onDone, className = "btn", max = 60, children }: { onDone: (url: string) => void; className?: string; max?: number; children: React.ReactNode }) {
-  const [on, setOn] = useState(false); const st = useRef<MediaStream | null>(null); const r = useRef<MediaRecorder | null>(null); const held = useRef(false); const t0 = useRef(0);
+  const [on, setOn] = useState(false); const [sec, setSec] = useState(0); const [cancelUi, setCancelUi] = useState(false); const st = useRef<MediaStream | null>(null); const r = useRef<MediaRecorder | null>(null); const held = useRef(false); const t0 = useRef(0); const x0 = useRef(0); const cancel = useRef(false); const iv = useRef<number | undefined>(undefined);
+  const stopTick = () => { if (iv.current) { clearInterval(iv.current); iv.current = undefined; } };
   const begin = async () => {
-    stopPlayer(); held.current = true; setOn(true); t0.current = Date.now();
-    try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((tx) => tx.stop()); setOn(false); return; } st.current = s; const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => ch.push(e.data);
-      rec.onstop = () => { s.getTracks().forEach((tx) => tx.stop()); setOn(false); if (Date.now() - t0.current < 600) return toast(t("Maintenez le bouton enfoncé pour parler.")); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: ((rec.mimeType || "audio/webm").split(";")[0]) })); };
-      rec.start(); r.current = rec; setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000); } catch { held.current = false; setOn(false); toast(t("Micro indisponible ou refusé.")); }
+    stopPlayer(); held.current = true; cancel.current = false; setCancelUi(false); setOn(true); setSec(0); t0.current = Date.now(); stopTick(); iv.current = window.setInterval(() => setSec(Math.floor((Date.now() - t0.current) / 1000)), 250);
+    try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((tx) => tx.stop()); stopTick(); setOn(false); return; } st.current = s; const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => ch.push(e.data);
+      rec.onstop = () => { stopTick(); s.getTracks().forEach((tx) => tx.stop()); setOn(false); if (cancel.current) return toast(t("Vocal annulé.")); if (Date.now() - t0.current < 600) return toast(t("Maintenez le bouton enfoncé pour parler.")); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: ((rec.mimeType || "audio/webm").split(";")[0]) })); };
+      rec.start(); r.current = rec; setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000); } catch { held.current = false; stopTick(); setOn(false); toast(t("Micro indisponible ou refusé.")); }
   };
-  const end = () => { if (!held.current) return; held.current = false; if (r.current?.state === "recording") r.current.stop(); else if (!st.current) setOn(false); r.current = null; st.current = null; };
-  return <button type="button" className={className} aria-label={t("Maintenir pour enregistrer un vocal")} onPointerDown={(e) => { e.preventDefault(); (e.target as Element).setPointerCapture?.(e.pointerId); void begin(); }} onPointerUp={end} onPointerCancel={end} onContextMenu={(e) => e.preventDefault()}
-    style={{ touchAction: "none", userSelect: "none", WebkitTouchCallout: "none", ...(on ? { background: "var(--bad)", color: "#fff", transform: "scale(1.12)" } : {}) }}>{on ? <span className="small">{t("🔴 Relâchez pour envoyer")}</span> : children}</button>;
+  const end = () => { if (!held.current) return; held.current = false; if (r.current?.state === "recording") r.current.stop(); else if (!st.current) { stopTick(); setOn(false); } r.current = null; st.current = null; };
+  const mm = (n: number) => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
+  return <><button type="button" className={className} aria-label={t("Maintenir pour enregistrer un vocal")} onPointerDown={(e) => { e.preventDefault(); x0.current = e.clientX; (e.target as Element).setPointerCapture?.(e.pointerId); void begin(); }}
+    onPointerMove={(e) => { if (!held.current) return; const c = e.clientX - x0.current < -70; cancel.current = c; setCancelUi(c); }} onPointerUp={end} onPointerCancel={end} onContextMenu={(e) => e.preventDefault()}
+    style={{ touchAction: "none", userSelect: "none", WebkitTouchCallout: "none", ...(on ? { transform: "scale(1.15)" } : {}) }}>{children}</button>
+    {on && createPortal(<div className={"recbar" + (cancelUi ? " cancel" : "")} role="status" aria-live="polite"><b className="recdot">● {mm(sec)}</b><span className="recwave" aria-hidden="true">{Array.from({ length: 14 }, (_, i) => <i key={i} style={{ animationDelay: i * 70 + "ms" }} />)}</span><span className="rectxt">{cancelUi ? t("Relâchez pour annuler") : t("← Glisser pour annuler")}</span></div>, document.body)}</>;
 }
 
 /** Caméra plein écran : vidéo (appui pour démarrer / arrêter) ou photo, puis aperçu avec Envoyer / Recommencer / Supprimer. */

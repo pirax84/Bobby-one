@@ -12,12 +12,12 @@ function env() {
     const mode = c.mode || (c.light === false ? "dark" : "auto"); light = mode === "light" ? true : mode === "dark" ? false : !window.matchMedia("(prefers-color-scheme: dark)").matches; } catch { /* défauts */ }
   return { accent, light, sound };
 }
-/** « auto » : complète à la 1re ouverture, courte à la 1re du jour, sinon rien. */
+/** « auto » : complète à la 1re ouverture et à la 1re du jour, courte aux autres ouvertures. */
 function plan(): "full" | "short" | "none" {
   const m = get(INTRO_KEY) || "auto"; if (m === "off") return "none";
   const today = new Date().toDateString(); const first = !get("notiif-intro-seen"); const newDay = get("notiif-intro-day") !== today;
   set("notiif-intro-seen", "1"); set("notiif-intro-day", today);
-  if (m === "full") return "full"; return first ? "full" : newDay ? "short" : "none";
+  if (m === "full") return "full"; return first || newDay ? "full" : "short";
 }
 const W = 524, H = 184, CUTS = [0, 354, 502, 616, 678, 751, 1048];
 export function Intro() {

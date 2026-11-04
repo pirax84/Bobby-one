@@ -1061,3 +1061,8 @@
 1060|Automatic
 1061|Always full
 1062|Automatic: full on first open, short on the first open of the day, then none. A tap skips the intro.
+1063|Voice message cancelled.
+1064|Release to cancel
+1065|← Slide to cancel · release to send
+1066|Automatic: full on the first open of the day, short on the others. A tap skips the intro.
+1067|← Slide to cancel
