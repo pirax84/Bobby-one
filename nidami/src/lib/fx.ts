@@ -215,3 +215,10 @@ export const notifSound = {
   appel: () => { if (!fxOn()) return; const k = (d: number, n: number) => setTimeout(() => popNotes(n, 0.3, 0.5, 0.07), d); k(0, 6); k(900, 3); k(1500, 6); k(2400, 3); },
   reserve: () => { if (fxOn()) popNotes(3, 0.3, 0.7, 0.07); },
 };
+
+/** Le navigateur autorise-t-il déjà le son ? (sinon il faut un premier toucher de l'utilisateur) */
+export function audioReady(): Promise<boolean> {
+  const c = ctxShared(); if (!c) return Promise.resolve(false); if (c.state === "running") return Promise.resolve(true);
+  return new Promise((ok) => { const to = setTimeout(() => ok(c.state === "running"), 250); try { c.resume().then(() => { clearTimeout(to); ok(c.state === "running"); }).catch(() => { clearTimeout(to); ok(false); }); } catch { clearTimeout(to); ok(false); } });
+}
+export function wakeAudio() { try { void ctxShared()?.resume(); } catch { /* rien */ } }

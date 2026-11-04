@@ -28,7 +28,7 @@ export function Stories({ me }: { me: string }) {
   const [open, setOpen] = useState<string | null>(null); 
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
   return (<><div className="stories">
-    {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = list.filter((p) => p.authorId === a).every((p) => p.authorId === me || p.views[me] !== undefined);
+    {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = a !== me && list.filter((p) => p.authorId === a).every((p) => p.views[me] !== undefined);
       return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"wreath" + (seen ? " seen" : "")}><Wreath {...preview(list.filter((p) => p.authorId === a), u)} /></span><div className="ell">{a === me ? t("Moi") : (u?.name || "").split(" ")[0]}</div></button>; })}
   </div>
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}

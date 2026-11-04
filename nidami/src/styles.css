@@ -780,3 +780,8 @@ html[data-theme=light] .navbtn[data-k=search] svg{background:#2A1F5C;color:#9B87
 html[data-theme=light] .navbtn[data-k=voice] svg{background:#fff;box-shadow:inset 0 0 0 2px #2A1F5C}
 html[data-theme=light] .navbtn{opacity:1;color:var(--fg)}
 html[data-theme=light] .tile{background:rgba(var(--brand-rgb),.1)}
+
+/* v116 : le bandeau « ordinateur » ne doit jamais apparaître sur téléphone ; contour des stories vues plus net */
+@media (max-width:760px){.dsearch{display:none!important}}
+html:not([data-theme=light]) .wreath.seen .wl{opacity:.8}
+html,body{overflow-x:hidden;max-width:100%}
