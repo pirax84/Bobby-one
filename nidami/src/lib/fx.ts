@@ -203,9 +203,12 @@ if (typeof window !== "undefined") { const wake = () => { const c = ctxShared();
 
 function fxOn(): boolean { try { const x = JSON.parse(localStorage.getItem("nidami-v1") || "null"); return x?.settings?.[x?.me]?.fx ?? true; } catch { return true; } }
 /** Début de la notification : quelqu'un entre en contact (écrit, enregistre…). */
-export function soundStart() { if (fxOn()) popNotes(6, 0.3); }
+const cfgNow = (): any => { try { const x = JSON.parse(localStorage.getItem("nidami-v1") || "null"); return x?.settings?.[x?.me] || {}; } catch { return {}; } };
+/** Petits sons de l'application (likes, commentaires) : réglables, coupés par « Application discrète ». */
+export function uiSound(k: "like" | "comm") { const c = cfgNow(); if (c.discret) return; if (k === "like" ? c.sndlike === false : c.sndcomm === false) return; try { const a = new Audio(k === "like" ? "./sounds/reserve/S3-rebond.mp3" : "./sounds/reserve/S2-vibrato.mp3"); a.volume = 0.5; a.play().catch(() => {}); } catch { /* ignoré */ } if (c.vibtap) buzz([18]); }
+export function soundStart() { if (fxOn() && !cfgNow().discret) popNotes(6, 0.3); }
 /** Fin de la notification : le message est parti. */
-export function soundEnd() { if (fxOn()) popNotes(3, 0.3); }
+export function soundEnd() { if (fxOn() && !cfgNow().discret) popNotes(3, 0.3); }
 
 /** Sons de notification de la famille NOTIIF (prêts pour quand le serveur enverra les évènements). */
 export const notifSound = {

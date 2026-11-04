@@ -1154,3 +1154,9 @@
 1153|{n} notification(s)
 1154|{n} conversation(s)
 1155|🗑 Delete for me
+1156|🔈 Sounds in the app
+1157|Quiet app
+1158|No sound while the app is open. Phone notifications are unchanged.
+1159|Like sound
+1160|Comment sound
+1161|Light vibration on tap

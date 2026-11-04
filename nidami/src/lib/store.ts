@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from "react";
 import { ID, Post, Social, Audience, Group, FriendList, Comment, resolveRecipients, openAny, purgeExpired, uid, validViewSecs, DEFAULT_GLOBAL_MS, areFriends, isBlocked, Access, cascadeDelete, revokeShare as revokeShareEngine } from "./engine";
 import { seed, demoPosts } from "./seed";
-import { FX, Fx } from "./fx";
+import { FX, Fx, uiSound } from "./fx";
 import { t } from "../i18n";
 
 export type Discover = "public" | "limited" | "hidden";
@@ -61,7 +61,7 @@ export const actions = {
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
   updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis" | "birthday">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
-  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "fxfav" | "cfx" | "ntone" | "ctone" | "vibm" | "vibc" | "nav" | "hand" | "top" | "bubble" | "start" | "likes" | "comm" | "bg" | "fg" | "accent" | "mode" | "fs" | "style", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
+  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "fxfav" | "cfx" | "ntone" | "ctone" | "vibm" | "vibc" | "nav" | "hand" | "top" | "bubble" | "start" | "likes" | "comm" | "bg" | "fg" | "accent" | "mode" | "fs" | "style" | "discret" | "sndlike" | "sndcomm" | "vibtap", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   backupAll(): string { try { return localStorage.getItem(KEY) || JSON.stringify(state); } catch { return JSON.stringify(state); } },
   restoreAll(text: string): boolean { try { const o = JSON.parse(text); if (o?.v !== 1 || !Array.isArray(o.users) || !Array.isArray(o.convs) || !Array.isArray(o.posts)) return false; localStorage.setItem(KEY, text); return true; } catch { return false; } },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
@@ -89,10 +89,10 @@ export const actions = {
   getAutoAlbum(): ID | undefined { return state.albums.find((a) => a.ownerId === state.me && a.auto)?.id; },
   setViewSecs(id: ID, secs: number) { if (!validViewSecs(secs)) return; mut((s) => { const p = s.posts.find((x) => x.id === id); if (p && p.authorId === s.me) p.viewSecs = secs; }); },
   deletePost(id: ID) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || p.authorId !== s.me) return; s.posts = cascadeDelete(s.posts.filter((x) => x.id !== id), id); s.shares.forEach((h) => { if (h.postId === id && h.status === "approved") h.status = "revoked"; }); }); },
-  react(id: ID, emoji: string) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.authorId !== s.me && s.settings[p.authorId]?.likes === false) return; if (p.reactions[s.me] === emoji) delete p.reactions[s.me]; else { p.reactions[s.me] = emoji; if (p.authorId !== s.me) notify(s, p.authorId, t("{name} a réagi {emoji} à votre publication.", { name: userOf(s, s.me)!.name, emoji }), "home", { by: s.me, v: "home", ref: id, pv: emoji }); } }); },
+  react(id: ID, emoji: string) { mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.authorId !== s.me && s.settings[p.authorId]?.likes === false) return; if (p.reactions[s.me] === emoji) delete p.reactions[s.me]; else { p.reactions[s.me] = emoji; uiSound("like"); if (p.authorId !== s.me) notify(s, p.authorId, t("{name} a réagi {emoji} à votre publication.", { name: userOf(s, s.me)!.name, emoji }), "home", { by: s.me, v: "home", ref: id, pv: emoji }); } }); },
   deleteComment(postId: ID, cid: ID) { mut((s) => { const p = s.posts.find((x) => x.id === postId); if (!p) return; const c = p.comments.find((x) => x.id === cid); if (!c || !(c.authorId === s.me || p.authorId === s.me)) return; p.comments = p.comments.filter((x) => x.id !== cid && x.replyTo !== cid); }); },
   reactComment(postId: ID, cid: ID, emoji: string) { mut((s) => { const p = s.posts.find((x) => x.id === postId); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; const c = p.comments.find((x) => x.id === cid); if (!c) return; c.reacts = c.reacts || {}; if (c.reacts[s.me] === emoji) delete c.reacts[s.me]; else c.reacts[s.me] = emoji; }); },
-  comment(id: ID, text: string, replyTo?: ID) { const tx = text.trim(); if (!tx) return; mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.authorId !== s.me && s.settings[p.authorId]?.comm === false) return; const c: Comment = { id: uid(), authorId: s.me, text: tx.slice(0, 500), at: now(), replyTo }; p.comments.push(c); if (p.authorId !== s.me) notify(s, p.authorId, t("{name} a commenté votre publication.", { name: userOf(s, s.me)!.name }), "home", { by: s.me, v: "home", ref: id, pv: p.viewSecs > 0 || p.story ? undefined : c.text.slice(0, 160) }); }); },
+  comment(id: ID, text: string, replyTo?: ID) { const tx = text.trim(); if (!tx) return; mut((s) => { const p = s.posts.find((x) => x.id === id); if (!p || !(p.authorId === s.me || p.recipients.includes(s.me))) return; if (p.authorId !== s.me && s.settings[p.authorId]?.comm === false) return; const c: Comment = { id: uid(), authorId: s.me, text: tx.slice(0, 500), at: now(), replyTo }; p.comments.push(c); uiSound("comm"); if (p.authorId !== s.me) notify(s, p.authorId, t("{name} a commenté votre publication.", { name: userOf(s, s.me)!.name }), "home", { by: s.me, v: "home", ref: id, pv: p.viewSecs > 0 || p.story ? undefined : c.text.slice(0, 160) }); }); },
 
   requestFriend(userId: ID): { ok: boolean; msg: string } { let r = { ok: false, msg: t("Personne introuvable.") }; mut((s) => { const u = s.users.find((x) => x.id === userId); if (!u) return; if (u.id === s.me) { r = { ok: false, msg: t("C'est vous !") }; return; }
       if (isRestricted(s, s.me)) { r = { ok: false, msg: t("Votre compte est en cours de vérification suite à des signalements : vous ne pouvez pas envoyer de demandes pour le moment.") }; return; }
