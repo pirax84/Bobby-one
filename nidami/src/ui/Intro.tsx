@@ -7,7 +7,7 @@ export const INTRO_KEY = "notiif-intro"; // auto | full | off
 const get = (k: string) => { try { return localStorage.getItem(k); } catch { return null; } };
 const set = (k: string, v: string) => { try { localStorage.setItem(k, v); } catch { /* rien */ } };
 function env() {
-  let accent = ACCENTS[0].id, light = false, sound = true;
+  let accent: string = ACCENTS[0].id, light = false, sound = true;
   try { const s = JSON.parse(get("nidami-v1") || "null"); const c = s?.settings?.[s?.me] || {}; accent = accentOf(c.accent).id; sound = c.fx ?? true;
     const mode = c.mode || (c.light === false ? "dark" : "auto"); light = mode === "light" ? true : mode === "dark" ? false : !window.matchMedia("(prefers-color-scheme: dark)").matches; } catch { /* défauts */ }
   return { accent, light, sound };
