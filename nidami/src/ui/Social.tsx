@@ -7,7 +7,7 @@ import { areFriends } from "../lib/engine";
 import { FX, FX_KEYS, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate } from "../lib/fx";
 import { favOf, DEFAULT_FAV } from "./FxBar";
 import { HowTo } from "./HowTo";
-import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch } from "./common";
+import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch, ConfirmDel } from "./common";
 import { Home } from "./Home";
 import { Camera } from "./Recorder";
 import { AvatarCrop } from "./Photo";
@@ -194,15 +194,15 @@ export function Profile() {
 
 const GO_VIEW: Record<string, string> = { home: "home", friends: "friends", media: "media", shares: "shares", groups: "groups", messages: "messages", events: "events", games: "games" };
 export function Notifs({ go, openConv }: { go?: (v: string) => void; openConv?: (id: string) => void }) {
-  const s = useStore((x) => x); const mine = s.notifs.filter((n) => n.to === s.me); const quiet = s.settings[s.me]?.quiet; const [selId, setSelId] = useState<string | null>(null);
+  const s = useStore((x) => x); const mine = s.notifs.filter((n) => n.to === s.me); const quiet = s.settings[s.me]?.quiet; const [selId, setSelId] = useState<string | null>(null); const [pick, setPick] = useState<string[] | null>(null); const [dn, setDn] = useState(false);
   const n = mine.find((x) => x.id === selId); const who = n?.by ? userOf(s, n.by) : null;
   // Aperçu de la publication concernée : jamais pour une publication éphémère ou une story.
   const post = n?.ref ? s.posts.find((x) => x.id === n.ref && (x.authorId === s.me || x.recipients.includes(s.me)) && !(x.viewSecs > 0 || x.story)) : undefined;
   const target = n ? (n.v || (n.go ? GO_VIEW[n.go] : "") || "home") : "home";
   const open = () => { if (!n) return; setSelId(null); if (target === "messages" && n.ref && openConv) openConv(n.ref); else go?.(target); };
-  return (<div className="col"><h1>{t("Notifications")}</h1>{mine.some((x) => !x.read) && <p style={{ margin: 0, fontWeight: 700, color: "var(--accb)" }}>{t("{n} non lue(s)", { n: mine.filter((x) => !x.read).length })}</p>}<div className="row wrap" style={{ gap: 8 }}><button className="btn ghost sm" onClick={() => go?.("settings")} aria-label={t("Réglages des notifications")}><Ico n="cog" s={16} />{" "}{t("Réglages")}</button><button className="btn ghost sm" onClick={() => actions.readNotifs()}>{t("Tout marquer lu")}</button></div>
+  return (<div className="col"><h1>{t("Notifications")}</h1>{mine.some((x) => !x.read) && <p style={{ margin: 0, fontWeight: 700, color: "var(--accb)" }}>{t("{n} non lue(s)", { n: mine.filter((x) => !x.read).length })}</p>}<div className="row wrap" style={{ gap: 8 }}><button className="btn ghost sm" onClick={() => go?.("settings")} aria-label={t("Réglages des notifications")}><Ico n="cog" s={16} />{" "}{t("Réglages")}</button><button className="btn ghost sm" onClick={() => actions.readNotifs()}>{t("Tout marquer lu")}</button>{mine.length > 0 && !pick && <button className="btn ghost sm" onClick={() => setPick([])}>{t("Sélectionner")}</button>}</div>{pick && <div className="row wrap selbar" style={{ gap: 8 }}><button className="btn ghost sm" onClick={() => setPick(pick.length === mine.length ? [] : mine.map((x) => x.id))}>{pick.length === mine.length ? t("Tout décocher") : t("Tout cocher")}</button><button className="btn sm" disabled={!pick.length} style={{ background: "var(--bad)", color: "#fff" }} onClick={() => setDn(true)}>{t("🗑 Supprimer")} ({pick.length})</button><button className="btn ghost sm" onClick={() => setPick(null)}>{t("Annuler")}</button></div>}{dn && pick && <ConfirmDel what={t("{n} notification(s)", { n: pick.length })} onYes={() => { actions.deleteNotifs(pick); setPick(null); }} onClose={() => setDn(false)} />}
     {quiet && <p className="muted small">{t("🌙 Mode silencieux activé : pas d'alerte, mais la liste reste ici.")}</p>}
-    {mine.map((x) => { const by = x.by ? userOf(s, x.by) : null; return <button key={x.id} type="button" className={"card row notifrow " + (x.read ? "isread" : "unread")} style={{ textAlign: "start", width: "100%", alignItems: "center", gap: 10 }} onClick={() => { actions.readNotif(x.id); setSelId(x.id); }}><span className="dot" style={{ opacity: x.read ? 0 : 1 }} aria-label={x.read ? undefined : t("Non lue")} />{by && <Avatar u={by} s={36} />}<div className="grow">{x.text}<div className="muted small">{ago(x.at)}{x.pv && x.pv.length < 40 ? " · " + x.pv : ""}</div></div></button>; })}{!mine.length && <p className="muted">{t("Rien de nouveau.")}</p>}
+    {mine.map((x) => { const by = x.by ? userOf(s, x.by) : null; return <button key={x.id} type="button" className={"card row notifrow " + (x.read ? "isread" : "unread")} style={{ textAlign: "start", width: "100%", alignItems: "center", gap: 10 }} onClick={() => { if (pick) { setPick(pick.includes(x.id) ? pick.filter((i) => i !== x.id) : [...pick, x.id]); return; } actions.readNotif(x.id); setSelId(x.id); }}>{pick && <input type="checkbox" className="selck" readOnly checked={pick.includes(x.id)} aria-label={x.text} />}<span className="dot" style={{ opacity: x.read ? 0 : 1 }} aria-label={x.read ? undefined : t("Non lue")} />{by && <Avatar u={by} s={36} />}<div className="grow">{x.text}<div className="muted small">{ago(x.at)}{x.pv && x.pv.length < 40 ? " · " + x.pv : ""}</div></div></button>; })}{!mine.length && <p className="muted">{t("Rien de nouveau.")}</p>}
     <p className="muted small">{t("Les notifications ne contiennent jamais le contenu d'une publication éphémère.")}</p>
     {n && <Modal title={t("Notifications")} onClose={() => setSelId(null)}><div className="col" style={{ gap: 12 }}>
       <div className="row" style={{ gap: 10, alignItems: "center" }}>{who && <Avatar u={who} s={48} />}<div className="grow"><b>{n.text}</b><div className="muted small">{ago(n.at)}</div></div></div>
@@ -225,7 +225,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti" data-s={k}><Ico n={({ look: "palette", notifs: "bell", priv: "lock", profile: "user", lang: "globe", install: "download", legal: "info", howto: "chat", acct: "flask" } as Record<string, string>)[k] || "cog"} s={24} /></span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v122</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v123</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "howto" && <HowTo />}

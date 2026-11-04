@@ -1148,3 +1148,9 @@
 1147|How does it work?
 1148|One card per feature
 1149|🤳 Selfie
+1150|Select all
+1151|Select none
+1152|Select
+1153|{n} notification(s)
+1154|{n} conversation(s)
+1155|🗑 Delete for me

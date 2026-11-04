@@ -7,7 +7,7 @@ import { t } from "../i18n";
 export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
 export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none"; birthday?: string; handleChanged?: boolean; reqAt?: number[] }
-export interface Msg { id: ID; from: ID; video?: string | null; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx | "custom"; cfx?: { name: string; img?: string; audio?: string } }
+export interface Msg { id: ID; from: ID; video?: string | null; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx | "custom"; cfx?: { name: string; img?: string; audio?: string }; hid?: ID[] }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string; by?: ID; v?: string; ref?: ID; pv?: string }
 export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: number; place: string; inviteIds: ID[]; rsvp: Record<ID, "yes" | "no" | "maybe"> }
@@ -153,6 +153,9 @@ export const actions = {
   addScore(n: number) { mut((s) => { s.scores[s.me] = (s.scores[s.me] || 0) + n; }); },
 
   readNotif(id: ID) { mut((s) => { const n = s.notifs.find((x) => x.id === id && x.to === s.me); if (n) n.read = true; }); },
+  deleteNotifs(ids: ID[]) { mut((s) => { s.notifs = s.notifs.filter((n) => !(n.to === s.me && ids.includes(n.id))); }); },
+  hideMsg(convId: ID, id: ID) { mut((s) => { const m = s.convs.find((x) => x.id === convId)?.msgs.find((x) => x.id === id); if (m) m.hid = [...(m.hid || []), s.me]; }); },
+  hideConvs(ids: ID[]) { mut((s) => { s.convs.filter((c) => ids.includes(c.id)).forEach((c) => c.msgs.forEach((m) => { if (!m.hid?.includes(s.me)) m.hid = [...(m.hid || []), s.me]; })); }); },
   readNotifs() { mut((s) => { s.notifs.forEach((n) => { if (n.to === s.me) n.read = true; }); }); },
   deleteAccountData() { actions.reset(); },
   exportData(): string { const s = state; const me = s.me; return JSON.stringify({ profil: userOf(s, me), publications: s.posts.filter((p) => p.authorId === me), messages: s.convs.filter((c) => c.memberIds.includes(me)).map((c) => ({ ...c, msgs: c.msgs.filter((m) => m.from === me) })), evenements: s.events.filter((e) => e.hostId === me) }, null, 2); },
