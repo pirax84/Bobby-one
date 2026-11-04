@@ -102,7 +102,7 @@ export default function App() {
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button data-k={k} className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className="shell">
     <aside className="side"><div className="brand" style={{ justifyContent: "center" }}><Logo s={60} /></div>
-      <button className="btn" style={{ margin: "2px 0 8px" }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Story, publication ou selfie")}</button>
+      <button className="btn" style={{ margin: "2px 0 8px" }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button>
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
 </aside>
     <main className={"main" + (v === "home" ? " ishome" : "") + (v === "settings" ? " issettings" : "")}>
