@@ -792,3 +792,6 @@ html,body{overflow-x:hidden;max-width:100%}
 .notifrow.isread{opacity:.6;font-weight:400}
 .notifrow.unread .dot{background:var(--accb)}
 .seti[data-s=howto]{background:#2A1F5C!important;color:#9B87F5}
+
+/* v122 : Ma story — compteur de vues en haut, menu ⋯ */
+.storychip{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 14px;border-radius:19px;border:1.5px solid var(--bd);background:var(--card2);color:var(--fg);font-weight:700}
