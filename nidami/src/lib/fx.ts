@@ -190,10 +190,10 @@ function ctxShared(): AudioContext | null {
     return sharedCtx;
   } catch { return null; }
 }
-export function popNotes(n = 6, vol = 0.16) {
+export function popNotes(n = 6, vol = 0.16, shift = 1, gap = 0.07) {
   const c = ctxShared(); if (!c) return;
   const play = () => { try {
-    for (let i = 0; i < n; i++) { const t0 = c.currentTime + 0.02 + i * 0.07; const o = c.createOscillator(); const g = c.createGain(); o.type = "sine"; o.frequency.setValueAtTime(520 * Math.pow(1.122, i * 2), t0); o.frequency.exponentialRampToValueAtTime(900 * Math.pow(1.122, i * 2), t0 + 0.08); g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12); o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0 + 0.14); }
+    for (let i = 0; i < n; i++) { const t0 = c.currentTime + 0.02 + i * gap; const o = c.createOscillator(); const g = c.createGain(); o.type = "sine"; o.frequency.setValueAtTime(520 * shift * Math.pow(1.122, i * 2), t0); o.frequency.exponentialRampToValueAtTime(900 * shift * Math.pow(1.122, i * 2), t0 + 0.08); g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12); o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0 + 0.14); }
   } catch { /* pas de son : tant pis */ } };
   if (c.state === "running") play(); else { try { c.resume().then(() => { if (c.state === "running") play(); }).catch(() => { /* bloqué */ }); } catch { /* rien */ } }
 }
@@ -206,3 +206,12 @@ function fxOn(): boolean { try { const x = JSON.parse(localStorage.getItem("nida
 export function soundStart() { if (fxOn()) popNotes(6, 0.3); }
 /** Fin de la notification : le message est parti. */
 export function soundEnd() { if (fxOn()) popNotes(3, 0.3); }
+
+/** Sons de notification de la famille NOTIIF (prêts pour quand le serveur enverra les évènements). */
+export const notifSound = {
+  vocal: () => { if (fxOn()) popNotes(4, 0.3, 0.6, 0.13); },
+  story: () => { if (fxOn()) popNotes(6, 0.3, 0.7, 0.07); },
+  reaction: () => { if (fxOn()) popNotes(2, 0.3, 0.5, 0.16); },
+  appel: () => { if (!fxOn()) return; const k = (d: number, n: number) => setTimeout(() => popNotes(n, 0.3, 0.5, 0.07), d); k(0, 6); k(900, 3); k(1500, 6); k(2400, 3); },
+  reserve: () => { if (fxOn()) popNotes(3, 0.3, 0.7, 0.07); },
+};
