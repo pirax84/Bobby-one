@@ -555,3 +555,8 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
 .introtag.on{opacity:1;transform:none}
 .introtag .b2{background:linear-gradient(90deg,var(--accb),var(--brand2));-webkit-background-clip:text;color:transparent}
 @media (prefers-reduced-motion:reduce){.introwm,.introtag{transition:none}}
+
+/* ===== Conversation en page entière ===== */
+.chatfull{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 12px calc(10px + env(safe-area-inset-bottom))}
+.chatfull>*{width:min(760px,100%);margin-inline:auto;flex:none}
+.chatfull>.msgs{flex:1 1 auto;max-height:none;min-height:0}

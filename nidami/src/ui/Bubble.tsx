@@ -10,7 +10,7 @@ import { t } from "../i18n";
 /** Bulle de messages flottante (comme Messenger) : touchez-la pour lire et répondre sans quitter la page. */
 /** Onglets supplémentaires de la bulle : les 3 principaux restent visibles, les autres vont dans « Plus ». Vide pour l'instant. */
 const EXTRA_TABS: [string, string, string][] = [];
-export function ChatBubble({ openFull }: { openFull: (convId: string) => void }) {
+export function ChatBubble({ openFull, openList }: { openFull: (convId: string) => void; openList: () => void }) {
   const s = useStore((x) => x); const me = s.me; const now = useNow(1000);
   const convs = s.convs.filter((c) => c.memberIds.includes(me)).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
   const unread = (c: Conv) => c.msgs.filter((m) => m.from !== me && m.reads[me] === undefined).length;
@@ -37,7 +37,7 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
   if (!convs.length && !friends.length) return null;
   const vis = (m: Conv["msgs"][number]) => m.from === me || (!m.once && (m.secs === 0 || (m.reads[me] !== undefined && now < m.reads[me] + m.secs * 1000)));
   return (<>
-    {pop && !open && <button className="bpop" onClick={() => { setSel(pop.id); setOpen(true); setPop(null); }}><b>{pop.who}</b><span className="ell">{pop.text}</span></button>}
+    {pop && !open && <button className="bpop" onClick={() => { openFull(pop.id); setPop(null); }}><b>{pop.who}</b><span className="ell">{pop.text}</span></button>}
     {open && <div className="bpanel" role="dialog" aria-label={t("Messages rapides")} onTouchStart={(e) => { swipe.current = e.touches[0].clientX; }} onTouchEnd={(e) => { const x0 = swipe.current; swipe.current = null; if (x0 === null || c) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) < 60) return; const order = ["conv", "amis", "groupes"] as const; const i = order.indexOf(tab); const j = dx < 0 ? Math.min(2, i + 1) : Math.max(0, i - 1); setTab(order[j]); }}>
       <div className="bhead">{c && <button className="bi" onClick={() => setSel(null)} aria-label={t("Retour à la liste")}><Ico n="back" s={18} /></button>}<b className="grow ell">{c ? title(c) : t("Messages")}</b>{c && <CallButton convId={c.id} />}{c && <button className="bi" onClick={() => { setOpen(false); openFull(c.id); }} aria-label={t("Ouvrir en grand")}>⤢</button>}<button className="bi" onClick={() => setOpen(false)} aria-label={t("Fermer")}><Ico n="x" s={18} /></button></div>
       {!c && <div className="btabs" role="tablist">{([["conv", "💬", t("Discussions")], ["amis", "👤", t("Amis")], ["groupes", "👥", t("Groupes")]] as const).map(([k, ic, l]) => <button key={k} type="button" role="tab" aria-selected={tab === k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}><b>{ic}</b>{l}{k === "groupes" && groupUnread > 0 && <span className="badge" style={{ marginLeft: 6 }}>{groupUnread}</span>}</button>)}{EXTRA_TABS.length > 0 && <button type="button" className={moreOpen ? "on" : ""} aria-expanded={moreOpen} onClick={() => setMoreOpen(!moreOpen)}><b>⋯</b>{t("Plus")}</button>}{moreOpen && <div className="bmore" role="menu">{EXTRA_TABS.map(([k, ic, l]) => <button key={k} type="button" role="menuitem" onClick={() => { setMoreOpen(false); /* onglet supplémentaire : à brancher ici */ void k; }}>{ic} {l}</button>)}</div>}</div>}
@@ -53,8 +53,8 @@ export function ChatBubble({ openFull }: { openFull: (convId: string) => void })
     {!open && <button className="bfab" style={pos ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto", touchAction: "none" } : { touchAction: "none" }}
       onPointerDown={(e) => { const r = e.currentTarget.getBoundingClientRect(); drag.current = { dx: e.clientX - r.left, dy: e.clientY - r.top, sx: e.clientX, sy: e.clientY, moved: false }; try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* ignoré */ } }}
       onPointerMove={(e) => { const d = drag.current; if (!d) return; if (!d.moved && Math.hypot(e.clientX - d.sx, e.clientY - d.sy) < 8) return; d.moved = true; const p = { x: Math.min(Math.max(4, e.clientX - d.dx), window.innerWidth - 56), y: Math.min(Math.max(4, e.clientY - d.dy), window.innerHeight - 56) }; posRef.current = p; setPos(p); }}
-      onPointerUp={() => { const d = drag.current; drag.current = null; if (d?.moved) { try { localStorage.setItem("notiif-bubble", JSON.stringify(posRef.current)); } catch { /* ignoré */ } } else { setOpen(true); setPop(null); } }}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(true); setPop(null); } }}
+      onPointerUp={() => { const d = drag.current; drag.current = null; if (d?.moved) { try { localStorage.setItem("notiif-bubble", JSON.stringify(posRef.current)); } catch { /* ignoré */ } } else { openList(); setPop(null); } }}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openList(); setPop(null); } }}
       aria-label={t("Messages") + (total ? ` (${total} non lus)` : "")}><Ico n="chat" s={26} />{total > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{total}</span>}</button>}
   </>);
 }

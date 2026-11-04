@@ -86,7 +86,7 @@ export default function App() {
   useEffect(() => { let tm = 0; const root = document.documentElement; const show = () => { clearTimeout(tm); root.classList.remove("moving"); }; const on = () => { root.classList.add("moving"); clearTimeout(tm); tm = window.setTimeout(show, 90); }; window.addEventListener("scroll", on, { passive: true }); window.addEventListener("scrollend", show); return () => { window.removeEventListener("scroll", on); window.removeEventListener("scrollend", show); clearTimeout(tm); root.classList.remove("moving"); }; }, []);
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} className={v === k ? "on" : ""} onClick={() => go(k)} style={{ position: "relative" }}><Ico n={i} /><i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
-  const go = (x: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
+  const go = (x: string, conv?: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (conv) { history.pushState({ v: x, conv }, ""); setV(x as V); setMore(false); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
   let keys = navCfg ? navCfg.split(",") : ["home", "friends", "messages", "notifs"];
   if (bubbleOn && keys.includes("messages")) { const alt = ["groups", "events", "media", "games"].find((x) => !keys.includes(x)) || "groups"; keys = keys.map((k) => (k === "messages" ? alt : k)); }
   const bar = keys.map((k) => navItems().find((n) => n[0] === k)).filter(Boolean).slice(0, 4) as [V, string, string][]; const half = Math.ceil(bar.length / 2);
@@ -125,7 +125,7 @@ export default function App() {
     {arrived && <ArrivedModal onClose={() => setArrived(false)} />}
     {pendCode && (() => { const tx = users.find((x) => x.code === pendCode); const done = () => { setPendCode(""); history.replaceState(null, "", location.pathname + location.search); };
       return <Modal title={t("Invitation NOTIIF")} onClose={done}><div className="col center" style={{ alignItems: "center" }}>{tx ? <><Avatar u={tx} s={72} /><h3>{t("Ajouter {name} ?", { name: tx.name })}</h3><p className="muted small">@{tx.handle}</p><button className="btn" onClick={() => { toast(actions.addByCode(pendCode).msg); done(); }}>{t("Envoyer la demande")}</button></> : <p className="muted">{t("Ce code n'existe pas sur cet appareil. En mode démo, les comptes ne sont pas encore partagés entre appareils : cela viendra avec le serveur.")}</p>}<button className="btn ghost" onClick={done}>{t("Plus tard")}</button></div></Modal>; })()}
-    {v !== "messages" && bubbleOn && <ChatBubble openFull={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} />}
+    {v !== "messages" && bubbleOn && <ChatBubble openList={() => go("messages")} openFull={(id) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); }} />}
     {ask && <Modal title={t("Créer")} onClose={() => setAsk(false)}><div className="col" style={{ gap: 10 }}>
       <b className="small muted">{t("Dans la bulle du haut (24 h)")}</b>
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("selfie"); }}><span className="grow"><b>{t("🤳 Selfie")}</b><small>{t("Photo ou vidéo, plein écran")}</small></span></button>

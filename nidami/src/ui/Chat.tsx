@@ -48,7 +48,7 @@ export function Messages() {
   const onceMsg = c.msgs.find((m) => m.id === openOnce);
   const fxOn = (s.settings[me]?.fx ?? true);
   const pinned = c.msgs.filter((m) => m.pinned && visible(m, me, now));
-  return (<div className="col"><div className="row"><button className="btn ghost sm" onClick={closeConv} aria-label={t("Retour")}><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><CallButton convId={c.id} /></div>
+  return (<div className="col chatfull"><div className="row"><button className="btn ghost sm" onClick={closeConv} aria-label={t("Retour")}><Ico n="back" s={16} /></button><h2 className="grow ell">{title(c)}</h2><CallButton convId={c.id} /></div>
     {pinned.length > 0 && <div className="card small">📌 {pinned.map((m) => m.text || t("Message")).join(" · ")}</div>}
     <div className="card msgs" role="log" aria-live="polite">{c.msgs.filter((m) => !q || m.text.toLowerCase().includes(q.toLowerCase())).map((m) => { const mine = m.from === me; const ok = visible(m, me, now); const left = m.secs && m.reads[me] !== undefined ? Math.max(0, Math.ceil((m.reads[me] + m.secs * 1000 - now) / 1000)) : 0; const from = userOf(s, m.from); const rp = m.replyTo ? c.msgs.find((x) => x.id === m.replyTo) : null;
       return <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start" }}>{!mine && c.groupId && <span className="muted small">{from?.name}</span>}

@@ -71,7 +71,7 @@ function Acc({ id, acc, setAcc, icon, title, children, start = false }: { id: st
   const [first, setFirst] = useState(start); const open = start && first && acc === null ? true : acc === id;
   return (<div className="acc"><button type="button" className="setrow" aria-expanded={open} onClick={() => { setFirst(false); setAcc(open ? "" : id); }}><span className="seti">{icon}</span><span className="grow"><b>{title}</b></span><span className="setch">{open ? "▾" : "›"}</span></button>{open && <div className="accbody col" style={{ gap: 10 }}>{children}</div>}</div>);
 }
-export function Friends({ go }: { go: (v: string) => void }) {
+export function Friends({ go }: { go: (v: string, conv?: string) => void }) {
   const s = useStore((x) => x); const me = s.me; const user = userOf(s, me)!; const [code, setCode] = useState(""); const [list, setList] = useState(false); const [name, setName] = useState(""); const [sel, setSel] = useState<string[]>([]); const [menu, setMenu] = useState<string | null>(null); const [ct, setCt] = useState(false); const [rep, setRep] = useState<string | null>(null); const [acc, setAcc] = useState<string | null>(null);
   const allFriends = (s.social.friends[me] || []).map((i) => userOf(s, i)!).filter(Boolean); const ties = s.social.ties || {}; const friends = allFriends; const reqs = s.reqs.filter((r) => r.to === me); const blocked = (s.social.blocks[me] || []).map((i) => userOf(s, i)!).filter(Boolean);
   const mylists = s.social.lists.filter((l) => l.ownerId === me);
@@ -90,7 +90,7 @@ export function Friends({ go }: { go: (v: string) => void }) {
     {ct && <InviteContacts onClose={() => setCt(false)} />}
     {menu && (() => { const f = userOf(s, menu); if (!f) return null; return <Modal title={f.name} onClose={() => setMenu(null)}><div className="col" style={{ gap: 8 }}><div className="row"><Avatar u={f} s={48} /><div className="muted small">@{f.handle}</div></div>
       <div><b className="small">{t("Lien avec {name}", { name: f.name })}</b><div className="chiprow" style={{ marginTop: 6 }}>{([[undefined, T("Aucun")], ["family", T("Famille")], ["fav", T("Favori")]] as const).map(([k, l]) => <button key={l} className={"chip" + ((s.social.ties?.[f.id] || undefined) === k ? " on" : "")} onClick={() => actions.setTie(f.id, k || null)}>{k === "family" ? "❤ " : k === "fav" ? "★ " : ""}{t(l)}</button>)}</div></div>
-      <button className="btn" onClick={() => { actions.startDm(f.id); setMenu(null); go("messages"); }}>{t("💬 Écrire")}</button>
+      <button className="btn" onClick={() => { const cid = actions.startDm(f.id); setMenu(null); go("messages", cid); }}>{t("💬 Écrire")}</button>
       <button className="btn ghost" onClick={() => { if (confirm(t("Retirer {name} de vos amis ?", { name: f.name }))) { actions.unfriend(f.id); setMenu(null); } }}>{t("Retirer des amis")}</button>
       <button className="btn ghost" onClick={() => { setRep(f.id); setMenu(null); }}>{t("Signaler")}</button>
       <button className="btn danger" onClick={() => { if (confirm(t("Bloquer {name} ? Il ne verra plus vos contenus.", { name: f.name }))) { actions.block(f.id, true); toast(t("Bloqué.")); setMenu(null); } }}>{t("Bloquer")}</button></div></Modal>; })()}
@@ -224,7 +224,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti">{ic}</span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v84</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v85</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "install" && <>
