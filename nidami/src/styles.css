@@ -670,3 +670,45 @@ html.moving .bfab{opacity:0!important;pointer-events:none;transform:scale(.8)}
 .bdaydots{font-size:1.2rem;letter-spacing:2px;font-weight:800}
 .bdaylist{display:flex;flex-direction:column;gap:10px}
 .bdaywrite{align-self:flex-start;background:none;border:0;color:var(--accb);font-weight:700;padding:2px 10px}
+
+/* v112 : mode clair — pastilles « nuit » par rubrique, couleurs de la palette */
+html[data-theme=light] .bottom button:not(.plus) svg{padding:7px;box-sizing:content-box;border-radius:14px;width:22px;height:22px}
+html[data-theme=light] .bottom button.on{background:none!important;color:var(--fg)!important}
+html[data-theme=light] .bottom button[data-k=home] svg{background:#2A1F5C;color:#9B87F5!important}
+html[data-theme=light] .tile[data-k=home] .tic{background:#2A1F5C!important;color:#9B87F5!important}
+html[data-theme=light] .bottom button[data-k=messages] svg{background:#0E3A5C;color:#38B6FF!important}
+html[data-theme=light] .tile[data-k=messages] .tic{background:#0E3A5C!important;color:#38B6FF!important}
+html[data-theme=light] .bottom button[data-k=friends] svg{background:#0E4A4A;color:#2FCDBE!important}
+html[data-theme=light] .tile[data-k=friends] .tic{background:#0E4A4A!important;color:#2FCDBE!important}
+html[data-theme=light] .bottom button[data-k=groups] svg{background:#5A2619;color:#FF8A6B!important}
+html[data-theme=light] .tile[data-k=groups] .tic{background:#5A2619!important;color:#FF8A6B!important}
+html[data-theme=light] .bottom button[data-k=notifs] svg{background:#5A1B38;color:#E5679C!important}
+html[data-theme=light] .tile[data-k=notifs] .tic{background:#5A1B38!important;color:#E5679C!important}
+html[data-theme=light] .bottom button[data-k=media] svg{background:#16296B;color:#4F7BFF!important}
+html[data-theme=light] .tile[data-k=media] .tic{background:#16296B!important;color:#4F7BFF!important}
+html[data-theme=light] .bottom button[data-k=games] svg{background:#44165C;color:#C85BE8!important}
+html[data-theme=light] .tile[data-k=games] .tic{background:#44165C!important;color:#C85BE8!important}
+html[data-theme=light] .bottom button[data-k=events] svg{background:#2F4A0E;color:#A8E05F!important}
+html[data-theme=light] .tile[data-k=events] .tic{background:#2F4A0E!important;color:#A8E05F!important}
+html[data-theme=light] .bottom button[data-k=calls] svg{background:#4F3A0A;color:#F2C45A!important}
+html[data-theme=light] .tile[data-k=calls] .tic{background:#4F3A0A!important;color:#F2C45A!important}
+html[data-theme=light] .bottom button[data-k=shares] svg{background:#0E3A5C;color:#38B6FF!important}
+html[data-theme=light] .tile[data-k=shares] .tic{background:#0E3A5C!important;color:#38B6FF!important}
+html[data-theme=light] .bottom button[data-k=profile] svg{background:#5A2619;color:#FF8A6B!important}
+html[data-theme=light] .tile[data-k=profile] .tic{background:#5A2619!important;color:#FF8A6B!important}
+html[data-theme=light] .bottom button[data-k=settings] svg{background:#0E4A4A;color:#2FCDBE!important}
+html[data-theme=light] .tile[data-k=settings] .tic{background:#0E4A4A!important;color:#2FCDBE!important}
+html[data-theme=light] .bottom button[data-k=legal] svg{background:#2A1F5C;color:#9B87F5!important}
+html[data-theme=light] .tile[data-k=legal] .tic{background:#2A1F5C!important;color:#9B87F5!important}
+html[data-theme=light] .bottom button[data-k=search] svg{background:#2A1F5C;color:#9B87F5!important}
+html[data-theme=light] .tile[data-k=search] .tic{background:#2A1F5C!important;color:#9B87F5!important}
+html[data-theme=light] .tile[data-k=voice] .tic,html[data-theme=light] .bottom button[data-k=voice] svg{background:#fff!important;box-shadow:inset 0 0 0 2px #2A1F5C}
+html[data-theme=light][data-accent=lavande] .chip.on{background:#2A1F5C!important;color:#9B87F5!important;border-color:#2A1F5C!important}
+html[data-theme=light][data-accent=turquoise] .chip.on{background:#0E4A4A!important;color:#2FCDBE!important;border-color:#0E4A4A!important}
+html[data-theme=light][data-accent=corail] .chip.on{background:#5A2619!important;color:#FF8A6B!important;border-color:#5A2619!important}
+html[data-theme=light][data-accent=framboise] .chip.on{background:#5A1B38!important;color:#E5679C!important;border-color:#5A1B38!important}
+html[data-theme=light][data-accent=citron] .chip.on{background:#2F4A0E!important;color:#A8E05F!important;border-color:#2F4A0E!important}
+html[data-theme=light][data-accent=miel] .chip.on{background:#4F3A0A!important;color:#F2C45A!important;border-color:#4F3A0A!important}
+html[data-theme=light][data-accent=azur] .chip.on{background:#0E3A5C!important;color:#38B6FF!important;border-color:#0E3A5C!important}
+html[data-theme=light][data-accent=ocean] .chip.on{background:#16296B!important;color:#4F7BFF!important;border-color:#16296B!important}
+html[data-theme=light][data-accent=orchidee] .chip.on{background:#44165C!important;color:#C85BE8!important;border-color:#44165C!important}
