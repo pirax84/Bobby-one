@@ -190,13 +190,19 @@ function ctxShared(): AudioContext | null {
     return sharedCtx;
   } catch { return null; }
 }
-export function popNotes(n = 6) {
+export function popNotes(n = 6, vol = 0.16) {
   const c = ctxShared(); if (!c) return;
   const play = () => { try {
-    for (let i = 0; i < n; i++) { const t0 = c.currentTime + 0.02 + i * 0.07; const o = c.createOscillator(); const g = c.createGain(); o.type = "sine"; o.frequency.setValueAtTime(520 * Math.pow(1.122, i * 2), t0); o.frequency.exponentialRampToValueAtTime(900 * Math.pow(1.122, i * 2), t0 + 0.08); g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.16, t0 + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12); o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0 + 0.14); }
+    for (let i = 0; i < n; i++) { const t0 = c.currentTime + 0.02 + i * 0.07; const o = c.createOscillator(); const g = c.createGain(); o.type = "sine"; o.frequency.setValueAtTime(520 * Math.pow(1.122, i * 2), t0); o.frequency.exponentialRampToValueAtTime(900 * Math.pow(1.122, i * 2), t0 + 0.08); g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12); o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0 + 0.14); }
   } catch { /* pas de son : tant pis */ } };
   if (c.state === "running") play(); else { try { c.resume().then(() => { if (c.state === "running") play(); }).catch(() => { /* bloqué */ }); } catch { /* rien */ } }
 }
 
 /** Réveille le son dès le tout premier toucher (les navigateurs l'exigent). */
 if (typeof window !== "undefined") { const wake = () => { const c = ctxShared(); try { c?.resume(); } catch { /* rien */ } window.removeEventListener("pointerdown", wake); window.removeEventListener("keydown", wake); }; window.addEventListener("pointerdown", wake); window.addEventListener("keydown", wake); }
+
+function fxOn(): boolean { try { const x = JSON.parse(localStorage.getItem("nidami-v1") || "null"); return x?.settings?.[x?.me]?.fx ?? true; } catch { return true; } }
+/** Début de la notification : quelqu'un entre en contact (écrit, enregistre…). */
+export function soundStart() { if (fxOn()) popNotes(6, 0.3); }
+/** Fin de la notification : le message est parti. */
+export function soundEnd() { if (!fxOn()) return; popNotes(1, 0.3); setTimeout(() => popNotes(1, 0.3), 300); setTimeout(() => popNotes(3, 0.3), 700); }
