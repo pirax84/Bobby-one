@@ -1099,3 +1099,4 @@
 1098|this voice message
 1099|Voice message duration
 1100|♾️ Normal
+1101|Automatic: the full intro at every launch. Tap a choice to preview it.
