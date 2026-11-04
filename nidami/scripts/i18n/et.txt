@@ -1160,3 +1160,10 @@
 1159|Like sound
 1160|Comment sound
 1161|Light vibration on tap
+1162|Shake sound
+1163|Long zigzag
+1164|Soft zigzag
+1165|Fast zigzag
+1166|Deep zigzag
+1167|Wide zigzag
+1168|Bouncing zigzag

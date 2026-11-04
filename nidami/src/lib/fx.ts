@@ -120,8 +120,9 @@ SFX.birthday = (c, o, tx) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], 
 SFX.birthday2 = SFX.birthday;
 let ctx: AudioContext | null = null;
 /** Joue le bruitage de l'effet (volume modéré). */
+export const SHAKE_SNDS: [string, string, string][] = [["zl", "Zigzag long", "./sounds/secousse/zigzag-long.mp3"], ["z1", "Zigzag doux", "./sounds/secousse/Z1-zigzag-doux.mp3"], ["z2", "Zigzag rapide", "./sounds/secousse/Z2-zigzag-rapide.mp3"], ["z3", "Zigzag grave", "./sounds/secousse/Z3-zigzag-grave.mp3"], ["z4", "Zigzag large", "./sounds/secousse/Z4-zigzag-large.mp3"], ["z5", "Zigzag rebond", "./sounds/secousse/Z5-zigzag-rebond.mp3"]];
 export function sfx(k: Fx, target?: BaseAudioContext, noFile = false) {
-  const file = FX[k]?.file; if (file && !target && !noFile) { try { const a = new Audio(file); a.volume = 1; a.play().catch(() => sfx(k, undefined, true)); return; } catch { /* repli sur le son synthétisé */ } }
+  const file = k === "shake" ? (SHAKE_SNDS.find((x) => x[0] === cfgNow().shakesnd)?.[2] || FX[k]?.file) : FX[k]?.file; if (file && !target && !noFile) { try { const a = new Audio(file); a.volume = 1; a.play().catch(() => sfx(k, undefined, true)); return; } catch { /* repli sur le son synthétisé */ } }
   try {
     const c = target || (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if ((c as AudioContext).state === "suspended") void (c as AudioContext).resume();
     const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); SFX[k](c, master, c.currentTime + 0.02);
