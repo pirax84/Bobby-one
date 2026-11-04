@@ -1125,3 +1125,25 @@
 1124|Tap the screen to start the sound
 1125|{n} unread
 1126|Unread
+1127|Stories
+1128|A story lasts 24 hours. Tap your circle at the top of the home page to view or delete it.
+1129|The N+ button
+1130|Photo, selfie, text or link. For each post, you choose who sees it.
+1131|Ephemeral messages
+1132|In a conversation, tap the small Normal or Ephemeral button. An ephemeral message disappears completely once seen.
+1133|Voice messages
+1134|Hold the microphone to talk. Slide up to lock, down to cancel. Up to 10 minutes in private.
+1135|The smile button in the text box opens emojis and full-screen effects.
+1136|Reply, pin, edit
+1137|Press and hold a message to reply, pin, edit or delete it.
+1138|Tap the heart to react. The three small dots show who reacted and with which emoji.
+1139|The phone button at the top of a conversation starts a call.
+1140|Create a group: its posts are only seen by its members.
+1141|Birthdays
+1142|On a friend's birthday, a bubble appears at the top of the home page.
+1143|In Settings: color, light or dark theme, text size and bars.
+1144|In “More”, “Arrived safely” lets your loved ones know in one tap, without ever sending your location.
+1145|Backup
+1146|In Settings, “Account and data”: export and restore your data.
+1147|How does it work?
+1148|One card per feature

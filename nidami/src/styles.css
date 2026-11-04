@@ -791,3 +791,4 @@ html,body{overflow-x:hidden;max-width:100%}
 .notifrow.unread .dot{width:12px;height:12px;box-shadow:0 0 0 4px rgba(var(--brand-rgb),.25)}
 .notifrow.isread{opacity:.6;font-weight:400}
 .notifrow.unread .dot{background:var(--accb)}
+.seti[data-s=howto]{background:#2A1F5C!important;color:#9B87F5}
