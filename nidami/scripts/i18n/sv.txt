@@ -1067,3 +1067,8 @@
 1066|Automatic: full on the first open of the day, short on the others. A tap skips the intro.
 1067|← Slide to cancel
 1068|Automatic: full on the first open of the day, short on the others. Tap a choice to see it.
+1069|React
+1070|You reacted
+1071|You are editing this message
+1072|Reply to
+1073|Pinned
