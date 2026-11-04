@@ -1119,3 +1119,6 @@
 1118|It's {name}'s birthday
 1119|Write to {name}
 1120|Write
+1121|The N+ button: short press, long press
+1122|Short press: create a story or a post. Long press: record a video selfie right away.
+1123|Story, post or selfie
