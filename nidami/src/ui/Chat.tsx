@@ -41,7 +41,7 @@ export function Messages() {
   useEffect(() => { end.current?.scrollIntoView({ block: "end" }); }, [c?.msgs.length, sel]);
   const title = (x: Conv) => x.title || x.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
   const unread = (x: Conv) => x.msgs.filter((m) => m.from !== me && m.reads[me] === undefined).length;
-  const sendTxt = () => { if (!c) return; if (edit) { actions.editMsg(c.id, edit, txt); setEdit(null); } else actions.send(c.id, txt, secs, null, rep?.id, null, once); setTxt(""); setRep(null); };
+  const sendTxt = () => { if (!c) return; if (edit) { actions.editMsg(c.id, edit, txt); setEdit(null); } else actions.send(c.id, txt, secs, null, rep?.id, null, once); setTxt(""); setRep(null); setEmo(false); setOpt(false); };
   const list = (
     <div className="col" style={{ gap: 8 }}><input className="inp" placeholder={t("🔎 Rechercher dans mes conversations")} value={q} onChange={(e) => setQ(e.target.value)} />
       {convs.filter((x) => !q || title(x).toLowerCase().includes(q.toLowerCase()) || x.msgs.some((m) => visible(m, me, now) && m.text.toLowerCase().includes(q.toLowerCase()))).map((x) => { const last = x.msgs.at(-1); const u = unread(x); return <button key={x.id} className={"card row" + (unread(x) > 0 ? " unread" : "")} style={{ color: "inherit", textAlign: "left" }} onClick={() => setSel(x.id)}>
@@ -80,7 +80,7 @@ export function Messages() {
       <input ref={img} type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files?.[0]; if (f && c) { try { actions.send(c.id, "", secs, await fileToDataUrl(f, 800), undefined, null, once, !wm); } catch { toast(t("Image illisible.")); } } e.target.value = ""; }} />
       <button type="button" className={"btn ghost sm" + (opt ? " on" : "")} onClick={() => setOpt(!opt)} aria-label={t("Options : durée, photo, effets")} aria-expanded={opt}>＋{(once || secs > 0) && <span className="small"> ⏱</span>}</button>
       <div className="pillin grow"><button type="button" className={"pilleft" + (emo ? " on" : "")} onClick={() => setEmo(!emo)} aria-label={t("Emojis et effets")} aria-expanded={emo}><Ico n="smile" s={20} /></button>
-        <input className="pillfield" placeholder={edit ? t("Modifier le message…") : t("Votre message…")} value={txt} onChange={(e) => setTxt(e.target.value)} aria-label={t("Message")} />
+        <input className="pillfield" placeholder={edit ? t("Modifier le message…") : t("Votre message…")} value={txt} onFocus={() => { setEmo(false); setOpt(false); }} onChange={(e) => setTxt(e.target.value)} aria-label={t("Message")} />
         {(once || secs > 0) && <span className="pilltag">{once ? "🔥" : "⏱ " + (secs >= 60 ? secs / 60 + " min" : secs + " s")}</span>}</div>
       {txt.trim() ? <button className="btn micbtn" aria-label={t("Envoyer")}><Ico n="send" s={20} /></button> : <MicBtn onDone={(u) => actions.send(c.id, "", secs, null, undefined, u, once)} />}</form></div>);
 }
