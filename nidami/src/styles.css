@@ -622,3 +622,4 @@ html:not([data-style=bold]) .avs path[fill=none]{stroke-width:3;stroke:rgba(var(
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .reactlist{max-height:240px;overflow:auto;border-radius:16px;background:var(--card);padding:10px 12px}
 .reactrow{gap:12px;padding:5px 0;align-items:center}.reactem{font-size:1.6rem;width:38px;text-align:center;flex:none}
+@media (max-width:760px){.top.sub .tw .wmb{height:46px}.top.sub .topb{width:44px;height:44px}}
