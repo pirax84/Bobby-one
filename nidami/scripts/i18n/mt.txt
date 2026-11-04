@@ -1108,3 +1108,5 @@
 1107|🎧 Heard once
 1108|🔓 Normal
 1109|🔥 Ephemeral
+1110|🗑 Cancel
+1111|➤ Send
