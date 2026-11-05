@@ -1,12 +1,13 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "noel2" | "easter";
+export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "noel2" | "easter" | "noelauto" | "noelv1" | "noelv2" | "noelv3" | "noelv4";
 import { sceneShow, holidayShow, SCENES, type Scene } from "./scenes";
+import { noelVideoShow, noelVideoStop, pickNoelVideo, NOEL_VIDEOS } from "./noelvideo";
 import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
 const playing: HTMLAudioElement[] = [];
 const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("ended", () => { const i = playing.indexOf(a); if (i >= 0) playing.splice(i, 1); }); return a; };
 /** Arrête l'effet en cours (son et décor) : un seul effet à la fois, sauf « Tout en même temps ». */
-export function stopFx() { playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
+export function stopFx() { playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
 type Def = { label: string; sub?: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { get label() { return t("📳 Secousse"); }, get text() { return t("📳 Secousse !"); }, em: [], file: "./sounds/secousse.mp3" },
@@ -38,12 +39,18 @@ export const FX: Record<Fx, Def> = {
   vomit: { get label() { return t("🤮 Vomi"); }, get text() { return t("🤮 Beurk !"); }, em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
   noel1: { get label() { return t("🎄 Noël · Père Noël dans le ciel"); }, get sub() { return t("musique 1 · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"], file: "./sounds/noel/noel1.mp3" },
   noel2: { get label() { return t("🎄 Noël · Le Père Noël au salon"); }, get sub() { return t("boîte à musique · 30 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"], file: "./sounds/noel/noel2.mp3" },
+  noelauto: { get label() { return t("🎅 Noël · Père Noël en traîneau (automatique)"); }, get sub() { return t("vidéo réaliste · cloches · voix"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv1: { get label() { return t("🎅 Noël · Forêt enneigée"); }, get sub() { return t("vidéo PC · 21 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv2: { get label() { return t("🎅 Noël · Au-dessus des nuages"); }, get sub() { return t("vidéo PC · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv3: { get label() { return t("🎅 Noël · Pleine lune"); }, get sub() { return t("vidéo téléphone · 20 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv4: { get label() { return t("🎅 Noël · Pont illuminé"); }, get sub() { return t("vidéo téléphone · 16 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
   easter: { get label() { return t("🐣 Pâques"); }, get text() { return t("🐣 Joyeuses Pâques !"); }, em: ["🐣"] },
 };
 /** Les effets anniversaire ont leur propre catégorie ; « Tous les effets » ne les contient pas. */
 export const BDAY_KEYS: Fx[] = ["birthday", "bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"];
 export const FX_ALL = Object.keys(FX) as Fx[];
-export const FX_KEYS = FX_ALL.filter((k) => !BDAY_KEYS.includes(k));
+export const NOEL_KEYS: Fx[] = ["noelauto", "noelv1", "noelv2", "noelv3", "noelv4", "noel1", "noel2"];
+export const FX_KEYS = FX_ALL.filter((k) => !BDAY_KEYS.includes(k) && !NOEL_KEYS.includes(k));
 // ───────── Sons : synthèse « instrumentale » (cloches, harpe, voix, souffles…) — aucun fichier, aucun son d'une marque
 type AC = BaseAudioContext; type Out = AudioNode;
 const hz = (n: number) => 440 * Math.pow(2, (n - 69) / 12); // numéro de note MIDI → fréquence
@@ -136,7 +143,7 @@ const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1
 SFX.birthday = (c, o, tx) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], i) => { piano(c, o, n, tx + x * B, d * B * 2.2, 0.16); if (i % 3 === 0) note(c, o, hz(n - 24), tx + x * B, 0.9, { vol: 0.07, type: "triangle", partials: [1, 2] }); x += d; });
   [72, 76, 79, 84].forEach((n, i) => bell(c, o, n, tx + x * B + i * 0.07, 1.4, 0.09)); air(c, o, tx + x * B, 0.12, { type: "highpass", f0: 2500, vol: 0.3 }); };
 SFX.easter = (c, o, tx) => SFX.hearts(c, o, tx);
-for (const k of ["noel1", "noel2"]) SFX[k] = () => { /* fichier */ };
+for (const k of ["noel1", "noel2", "noelauto", "noelv1", "noelv2", "noelv3", "noelv4"]) SFX[k] = () => { /* fichier */ };
 for (const k of ["bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"]) SFX[k] = () => { /* ces effets jouent un fichier */ };
 let ctx: AudioContext | null = null;
 /** Joue le bruitage de l'effet (volume modéré). */
@@ -251,6 +258,7 @@ export function playFx(k: Fx, sound = true) {
     return;
   }
   if (k in BD_DUR) { bdayShow(k); return; }
+  if ((k === "noelauto" || k in NOEL_VIDEOS) && !reduced()) { noelVideoShow(k === "noelauto" ? pickNoelVideo() : k, sound); return; }
   if (!reduced() && (k === "noel1" || k === "noel2" || k === "easter")) { holidayShow(k); return; }
   if (!reduced() && (SCENES as string[]).includes(k)) { sceneShow(k as Scene); if (k !== "rocket") return; }
   if (k === "hearts" && !reduced()) heartsExtra();

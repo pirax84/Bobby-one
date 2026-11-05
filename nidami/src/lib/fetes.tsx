@@ -51,6 +51,7 @@ export function FeteUnder({ fete, suf, light }: { fete: Fete; suf: string; light
 // Petit message de vœux, juste sous le logo, le jour de la fête
 export function FeteBar() {
   const f = useFete(); const [, bump] = useState(0);
+  useEffect(() => { const h = () => bump((x) => x + 1); window.addEventListener("notiif-dev", h); return () => window.removeEventListener("notiif-dev", h); }, []);
   if (!f) return null;
   const key = "notiif-fete-" + f + "-" + new Date().toDateString();
   let off = false; try { off = !devFete() && !!localStorage.getItem(key); } catch { /* ignoré */ }

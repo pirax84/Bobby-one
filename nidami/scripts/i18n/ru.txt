@@ -1328,3 +1328,17 @@
 1327|Holiday messages and daily effects reset.
 1328|off
 1329|There is no holiday in the app on that day.
+1330|🎅 Christmas · Santa's sleigh (automatic)
+1331|realistic video · bells · voice
+1332|🎅 Christmas · Snowy forest
+1333|PC video · 21 s
+1334|🎅 Christmas · Above the clouds
+1335|PC video · 25 s
+1336|🎅 Christmas · Full moon
+1337|phone video · 20 s
+1338|🎅 Christmas · Lit-up bridge
+1339|phone video · 16 s
+1340|Ho ho ho! Merry Christmas!
+1341|Christmas
+1342|▶ Watch the intro now
+1343|▶ Watch the guide now
