@@ -1189,3 +1189,8 @@
 1188|On the Android app: Phone settings > Apps > NOTIIF > Permissions > Microphone.
 1189|Reload the page
 1190|Click the microphone to talk, then Send.
+1191|Upcoming birthdays
+1192|🎂 Birthdays
+1193|Today
+1194|Tomorrow
+1195|in {n} d

@@ -2,7 +2,7 @@ import { BRAND } from "./lib/brand";
 import { applyTheme, accentOf } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
-import { micText, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch } from "./ui/common";
+import { micText, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { VoiceHome } from "./ui/VoiceChat";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
@@ -24,6 +24,13 @@ import { kidOn, PinGate } from "./ui/Kid";
 type V = "voice" | "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
 export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"], ["notifs", t("Notifications"), "bell"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]];
 
+
+function SideBdays({ go }: { go: (k: V) => void }) {
+  const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []);
+  const l = Object.values(users).filter((u) => u.id !== me && fr.includes(u.id) && u.birthday).map((u) => { let d = -1; for (let i = 0; i < 31; i++) if (isBirthday(u.birthday, i)) { d = i; break; } return { u, d }; }).filter((x) => x.d >= 0).sort((a, b) => a.d - b.d).slice(0, 4);
+  if (!l.length) return null;
+  return <div className="sidebd" aria-label={t("Prochains anniversaires")}><b className="small">{t("🎂 Anniversaires")}</b>{l.map(({ u, d }) => <button key={u.id} type="button" className="sidebdr" onClick={() => go("friends")}><Avatar u={u} s={28} /><span className="grow ell">{u.name}</span><small>{d === 0 ? t("Aujourd'hui") : d === 1 ? t("Demain") : t("dans {n} j", { n: d })}</small></button>)}</div>;
+}
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
@@ -60,6 +67,7 @@ export default function App() {
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   const fxList = useStore((x) => { const a: { id: string; fx: string; at: number }[] = []; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me) a.push({ id: m.id, fx: m.fx, at: m.at }); a.sort((p, q) => p.at - q.at); return a.map((m) => m.at + "|" + m.fx).join(";"); });
   const meId = useStore((x) => x.me); const fxBusy = useRef(false);
+  useEffect(() => { if (!(typeof matchMedia !== "undefined" && matchMedia("(hover: hover) and (pointer: fine)").matches)) return; const k = (e: KeyboardEvent) => { const el = e.target as HTMLElement; const typing = !!el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable); if (e.key === "/" && !typing) { const i = document.querySelector<HTMLInputElement>(".dsearch input"); if (i) { e.preventDefault(); i.focus(); } } else if (e.key === "Escape" && !document.querySelector(".overlay,.modal,.detail,.viewer") && v !== "home" && !(typing && (el as HTMLInputElement).value)) { if (typing) el.blur(); history.back(); } }; window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [v]);
   useEffect(() => {
     const run = () => {
       if (fxBusy.current || document.visibilityState !== "visible" || !meId) return;
@@ -105,6 +113,7 @@ export default function App() {
       <button type="button" className="sideme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={40} /><span className="grow ell"><b>{user.name}</b></span></button>
       <button className="btn" style={{ margin: "2px 0 8px" }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button>
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
+      <SideBdays go={go} />
 </aside>
     <main className={"main" + (v === "home" ? " ishome" : "") + (v === "settings" ? " issettings" : "")}>
       <div className="brandbar"><BrandWm onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} big /></div>

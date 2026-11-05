@@ -806,3 +806,15 @@ html,body{overflow-x:hidden;max-width:100%}
 /* v131 profil dans la colonne de gauche (PC) */
 .sideme{display:flex;align-items:center;gap:10px;margin:0 0 6px;padding:6px 8px;border-radius:16px;background:none;border:1.5px solid var(--line,rgba(120,100,200,.3));color:inherit;text-align:left;cursor:pointer}
 .sideme:hover{background:rgba(123,92,230,.1)}
+
+/* v132 PC : deux colonnes dans Messages (liste à gauche, conversation à droite) */
+.dlist{display:none}
+@media (hover:hover) and (pointer:fine) and (min-width:900px){
+  .dlist{display:flex;width:340px}
+  .chatfull.dual{left:var(--dl-right,720px)}
+  .chatfull.dual .row:first-child>button:first-child{display:none}
+  .card.cursel{outline:3px solid var(--accb,#7B5CE6)}
+}
+.sidebd{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding:8px;border-radius:16px;border:1.5px solid rgba(120,100,200,.3)}
+.sidebdr{display:flex;align-items:center;gap:8px;background:none;border:0;color:inherit;padding:3px;border-radius:10px;cursor:pointer;text-align:left}
+.sidebdr:hover{background:rgba(123,92,230,.1)}
