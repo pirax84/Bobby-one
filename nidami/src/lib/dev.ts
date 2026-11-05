@@ -8,7 +8,7 @@ export const devClient = () => get("notiif-dev-client") === "1";
 /** Mode développeur actif = débloqué et pas en train de « voir comme un client ». */
 export const devActive = () => devUnlocked() && !devClient();
 export const devFete = (): Fete | null => (devActive() ? ((get("notiif-dev-fete") as Fete) || null) : null);
-export const APP_VERSION = "v152";
+export const APP_VERSION = "v153";
 export const devBday = () => devActive() && get("notiif-dev-bday") === "1";
 export const devDate = (): Date | null => { if (!devActive()) return null; const v = get("notiif-dev-date"); if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return null; const [y, m, j] = v.split("-").map(Number); return new Date(y, m - 1, j, 12); };
 export const setDevBday = (v: boolean) => set("notiif-dev-bday", v ? "1" : "");

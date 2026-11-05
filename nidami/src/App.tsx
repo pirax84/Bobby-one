@@ -41,7 +41,7 @@ function useBdays() {
 }
 const BDAY_DECO = true;
 function useBdText() {
-  const l = useBdays(); const me = useStore((x) => x.me); const meU = useStore((x) => x.users[x.me]); useLang(); const dv = useDev();
+  const l = useBdays(); const me = useStore((x) => x.me); const meU = useStore((x) => Object.values(x.users).find((u) => u.id === x.me)); useLang(); const dv = useDev();
   const mine = (dv.bday ? meU : undefined) || l.find((x) => x.id === me); if (!BDAY_DECO || !mine) return { mine: undefined, text: undefined };
   const raw = t("Joyeux anniversaire"); const text = locale().startsWith("fr") ? raw : raw.replace(/\b\w/g, (c) => c.toUpperCase());
   return { mine, text };
