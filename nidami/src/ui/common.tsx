@@ -155,3 +155,12 @@ export function MicIcon({ size = 120, level = 0 }: { size?: number; level?: numb
 
 /** Remplace le vieux micro 🎤 d'un texte par le micro NOTIIF. */
 export function micText(s: string): ReactNode { const i = s.indexOf("🎤"); if (i < 0) return s; return <>{s.slice(0, i)}<span style={{ display: "inline-block", verticalAlign: "-4px" }}><MicIcon size={20} /></span>{s.slice(i + 2)}</>; }
+
+/** Date de naissance : jour, mois, année. Âge calculé à partir de la date saisie (déclaratif, non vérifié). */
+export const ageFrom = (d: string, m: string, y: string): number | null => { const D = +d, M = +m, Y = +y; if (!D || !M || !/^(19|20)\d\d$/.test(y)) return null; const n = new Date(); let a = n.getFullYear() - Y; if (n.getMonth() + 1 < M || (n.getMonth() + 1 === M && n.getDate() < D)) a--; return a >= 0 && a < 120 ? a : null; };
+export function DobFields({ d, m, y, onChange }: { d: string; m: string; y: string; onChange: (d: string, m: string, y: string) => void }) {
+  return <div className="row" style={{ gap: 8 }} role="group" aria-label={t("Date de naissance")}>
+    <select className="inp" value={d} onChange={(e) => onChange(e.target.value, m, y)} aria-label={t("Jour")}><option value="">{t("Jour")}</option>{Array.from({ length: 31 }, (_, i) => <option key={i} value={i + 1}>{i + 1}</option>)}</select>
+    <select className="inp" value={m} onChange={(e) => onChange(d, e.target.value, y)} aria-label={t("Mois")}><option value="">{t("Mois")}</option>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i + 1}>{new Intl.DateTimeFormat(locale(), { month: "long" }).format(new Date(2024, i, 1))}</option>)}</select>
+    <input className="inp" inputMode="numeric" maxLength={4} style={{ maxWidth: 100 }} placeholder={t("Année")} value={y} onChange={(e) => onChange(d, m, e.target.value.replace(/\D/g, "").slice(0, 4))} aria-label={t("Année")} /></div>;
+}

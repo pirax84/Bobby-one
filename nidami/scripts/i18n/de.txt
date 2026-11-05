@@ -1194,3 +1194,14 @@
 1193|Today
 1194|Tomorrow
 1195|in {n} d
+1196|Happy birthday
+1197|{n} years old
+1198|Year
+1199|Year of birth (optional)
+1200|On that day, your friends' NOTIIF logo is decorated in your name. The year is only used to show your age: leave it empty to hide it.
+1201|Please enter your full date of birth (day, month, year): it is required.
+1202|NOTIIF is for people aged 15 or over. You can join us later.
+1203|Date of birth (required)
+1204|Date of birth
+1205|🎂 My date of birth (required)
+1206|Required: NOTIIF is for ages 15 and over. On that day, your friends' NOTIIF logo is decorated in your name, with your age.

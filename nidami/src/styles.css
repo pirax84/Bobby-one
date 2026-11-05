@@ -818,3 +818,12 @@ html,body{overflow-x:hidden;max-width:100%}
 .sidebd{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding:8px;border-radius:16px;border:1.5px solid rgba(120,100,200,.3)}
 .sidebdr{display:flex;align-items:center;gap:8px;background:none;border:0;color:inherit;padding:3px;border-radius:10px;cursor:pointer;text-align:left}
 .sidebdr:hover{background:rgba(123,92,230,.1)}
+
+/* v135 logo d'anniversaire : le logo reste intact, on ajoute ballons et ligne de vœux */
+.bdlogo{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:2px;color:var(--nuit)}
+html[data-theme=dark] .bdlogo{color:#C9BDF5}
+.bdlogo .bdb{width:44px;height:48px;flex:none;overflow:visible}
+.bdlogo .bdb.l{margin-right:-6px}.bdlogo .bdb.r{margin-left:-6px}
+.bdlogo .bdline{position:absolute;top:100%;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:.8rem;margin-top:2px;color:inherit}
+html[data-theme=dark] .bdball{stroke-width:2}
+@media (max-width:760px){.bdlogo .bdb{width:30px;height:34px}.bdlogo .bdline{font-size:.72rem}}

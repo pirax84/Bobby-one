@@ -7,7 +7,7 @@ import { areFriends } from "../lib/engine";
 import { FX, FX_KEYS, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate, SHAKE_SNDS } from "../lib/fx";
 import { favOf, DEFAULT_FAV } from "./FxBar";
 import { HowTo } from "./HowTo";
-import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch, ConfirmDel } from "./common";
+import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch, ConfirmDel, DobFields, ageFrom } from "./common";
 import { Home } from "./Home";
 import { Camera } from "./Recorder";
 import { AvatarCrop } from "./Photo";
@@ -151,7 +151,7 @@ export function Events() {
 }
 
 function EditProfile({ u, onClose }: { u: User; onClose: () => void }) {
-  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const f = useRef<HTMLInputElement>(null); const [cam, setCam] = useState(false); const [cropE, setCropE] = useState<string | null>(null); useEffect(() => { setAv(u.avatar || null); }, [u.avatar]);
+  const [name, setName] = useState(u.name); const [bio, setBio] = useState(u.bio); const [st, setSt] = useState(u.status); const [av, setAv] = useState<string | null>(u.avatar || null); const [vis, setVis] = useState(u.avatarVis || "friends"); const [hh, setHh] = useState(""); const [bd, setBd] = useState(u.birthday || ""); const [by, setBy] = useState(u.byear ? String(u.byear) : ""); const f = useRef<HTMLInputElement>(null); const [cam, setCam] = useState(false); const [cropE, setCropE] = useState<string | null>(null); useEffect(() => { setAv(u.avatar || null); }, [u.avatar]);
   const V: [User["avatarVis"], string][] = [["friends", t("Mes amis")], ["all", t("Tout le monde")], ["none", t("Personne")]];
   return <Modal title={t("Modifier mon profil")} onClose={onClose}><div className="col">
     <div className="col center" style={{ alignItems: "center", gap: 10 }}><Avatar u={{ ...u, avatar: av, avatarVis: "all" }} s={104} />
@@ -160,14 +160,12 @@ function EditProfile({ u, onClose }: { u: User; onClose: () => void }) {
       {cropE && <AvatarCrop src={cropE} onClose={() => setCropE(null)} onDone={(u) => { setAv(u); setCropE(null); }} />}
       <input ref={f} type="file" accept="image/*" hidden onChange={async (e) => { const x = e.target.files?.[0]; if (x) { try { setCropE(await fileToDataUrl(x)); } catch { toast(t("Impossible de lire cette image.")); } } }} /></div>
     <div className="card col" style={{ gap: 4, padding: 12 }}><b className="small">{t("Pseudo : @{handle}", { handle: u.handle })}</b><span className="muted small">{u.handleChanged ? t("Déjà changé une fois : définitif.") : t("Modifiable une seule fois, et c'est payant (pour limiter les faux profils).")}</span>{!u.handleChanged && <div className="row" style={{ gap: 6 }}><input className="inp sm" placeholder="nouveau pseudo" value={hh} onChange={(e) => setHh(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 20))} aria-label={t("Nouveau pseudo")} /><button className="btn sm" disabled={hh.length < 3} onClick={() => { const r = actions.changeHandle(hh); toast(r.msg); if (r.ok) setHh(""); }}>{t("Changer")}</button></div>}</div>
-    <div className="col" style={{ gap: 6 }}><b className="small">{t("🎂 Mon anniversaire (facultatif)")}</b><div className="row" style={{ gap: 8 }}>
-      <select className="inp" value={bd ? Number(bd.slice(3)) : ""} onChange={(e) => { const d = e.target.value; const m = bd ? bd.slice(0, 2) : "01"; setBd(d ? m + "-" + String(d).padStart(2, "0") : ""); }} aria-label={t("Jour")}><option value="">{t("Jour")}</option>{Array.from({ length: 31 }, (_, i) => <option key={i} value={i + 1}>{i + 1}</option>)}</select>
-      <select className="inp" value={bd ? Number(bd.slice(0, 2)) : ""} onChange={(e) => { const m = e.target.value; const d = bd ? bd.slice(3) : "01"; setBd(m ? String(m).padStart(2, "0") + "-" + d : ""); }} aria-label={t("Mois")}><option value="">{t("Mois")}</option>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i + 1}>{new Intl.DateTimeFormat(locale(), { month: "long" }).format(new Date(2024, i, 1))}</option>)}</select></div>
-      <span className="muted small">{t("Tes amis voient une couronne sur ta photo ce jour-là. L'année n'est pas demandée.")}</span></div>
+    <div className="col" style={{ gap: 6 }}><b className="small">{t("🎂 Ma date de naissance (obligatoire)")}</b><DobFields d={bd ? String(Number(bd.slice(3))) : ""} m={bd ? String(Number(bd.slice(0, 2))) : ""} y={by} onChange={(d, m, y) => { setBd(d && m ? String(m).padStart(2, "0") + "-" + String(d).padStart(2, "0") : ""); setBy(y); }} />
+      <span className="muted small">{t("Obligatoire : NOTIIF est réservé aux 15 ans et plus. Ce jour-là, le logo NOTIIF de tes amis se décore à ton nom, avec ton âge.")}</span></div>
     <b className="small">{t("Qui peut voir ma photo ?")}</b><div className="tabs wrap">{V.map(([k, l]) => <button key={k} className={"chip" + (vis === k ? " on" : "")} onClick={() => setVis(k!)}>{l}</button>)}</div>
     <p className="muted small" style={{ margin: 0 }}>{t("Les autres voient alors votre initiale à la place de la photo.")}</p>
     <input className="inp" value={name} onChange={(e) => setName(e.target.value)} aria-label={t("Prénom ou pseudo")} maxLength={30} /><input className="inp" value={st} onChange={(e) => setSt(e.target.value)} aria-label={t("Statut")} maxLength={60} placeholder={t("Votre statut")} /><textarea className="inp" value={bio} onChange={(e) => setBio(e.target.value)} placeholder={t("Votre courte bio")} maxLength={200} />
-    <button className="btn" onClick={() => { actions.updateProfile({ name: name.trim() || u.name, bio, status: st, avatar: av, avatarVis: vis, birthday: bd || undefined }); toast(t("Profil mis à jour.")); onClose(); }}>{t("Enregistrer")}</button></div></Modal>;
+    <button className="btn" onClick={() => { const a = ageFrom(bd ? String(Number(bd.slice(3))) : "", bd ? String(Number(bd.slice(0, 2))) : "", by); if (a === null) return toast(t("Indiquez votre date de naissance complète (jour, mois, année) : c'est obligatoire.")); if (a < 15) return toast(t("NOTIIF est réservé aux personnes de 15 ans ou plus. Vous pourrez nous rejoindre plus tard.")); actions.updateProfile({ name: name.trim() || u.name, bio, status: st, avatar: av, avatarVis: vis, birthday: bd, byear: Number(by) }); toast(t("Profil mis à jour.")); onClose(); }}>{t("Enregistrer")}</button></div></Modal>;
 }
 function PostChoices() {
   const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
@@ -225,7 +223,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti" data-s={k}><Ico n={({ look: "palette", notifs: "bell", priv: "lock", profile: "user", lang: "globe", install: "download", legal: "info", howto: "chat", acct: "flask" } as Record<string, string>)[k] || "cog"} s={24} /></span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v134</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v135</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col"><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "howto" && <HowTo />}

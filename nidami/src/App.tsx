@@ -14,7 +14,7 @@ import { Onboarding, needInstall } from "./ui/Auth";
 import { ChatBubble } from "./ui/Bubble";
 import { SearchTop } from "./ui/Search";
 import { MiniPlayer } from "./ui/Links";
-import { playFx, playCustom, Fx, playTone, vibrate, popNotes, soundEnd } from "./lib/fx";
+import { playFx, playCustom, Fx, playTone, vibrate, popNotes, soundEnd, sfx } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
 import { t, locale, useLang } from "./i18n";
 import { ArrivedModal } from "./ui/Extras";
@@ -32,15 +32,31 @@ function SideBdays({ go }: { go: (k: V) => void }) {
   return <div className="sidebd" aria-label={t("Prochains anniversaires")}><b className="small">{t("🎂 Anniversaires")}</b>{l.map(({ u, d }) => <button key={u.id} type="button" className="sidebdr" onClick={() => go("friends")}><Avatar u={u} s={28} /><span className="grow ell">{u.name}</span><small>{d === 0 ? t("Aujourd'hui") : d === 1 ? t("Demain") : t("dans {n} j", { n: d })}</small></button>)}</div>;
 }
 
+const BALLS: [string, string][] = [["#2A1F5C", "#9B87F5"], ["#0E4A4A", "#2FCDBE"], ["#5A1B38", "#E5679C"], ["#16296B", "#4F7BFF"]];
+function Balloon({ i, x }: { i: number; x: number }) { const [c, h] = BALLS[i % 4]; return <g transform={`translate(${x} 0)`}><path d="M0 40 q-5 16 1 32" stroke="currentColor" strokeWidth="1.2" fill="none" opacity=".7" /><ellipse cx="0" cy="22" rx="13" ry="17" fill={c} stroke={h} strokeWidth="1.5" className="bdball" /><path d="M-6 12 q3-6 8-7" stroke={h} strokeWidth="2.2" fill="none" strokeLinecap="round" /><path d="M-2 39 l2 4 2-4z" fill={c} /></g>; }
+/** Le jour d'un anniversaire : le logo (intact) reçoit des ballons, un « Joyeux anniversaire » avec photo, prénom et âge. */
+function useBdays() {
+  const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []);
+  return Object.values(users).filter((u) => (u.id === me || fr.includes(u.id)) && isBirthday(u.birthday, 0)).sort((a, b) => (a.id === me ? -1 : b.id === me ? 1 : 0));
+}
+const BDAY_DECO = false; // à passer à true après l'accord sur l'aperçu
+function BdayDeco({ children }: { children: React.ReactNode }) {
+  const l = useBdays(); useLang();
+  if (!BDAY_DECO || !l.length) return <>{children}</>;
+  const u = l[0]; const age = u.byear ? new Date().getFullYear() - u.byear : 0; const nm = u.name.trim().split(/\s+/)[0];
+  return <span className="bdlogo"><svg className="bdb l" viewBox="-20 0 70 76" aria-hidden="true"><Balloon i={0} x={10} /><Balloon i={1} x={34} /></svg>{children}<svg className="bdb r" viewBox="-20 0 70 76" aria-hidden="true"><Balloon i={2} x={10} /><Balloon i={3} x={34} /></svg>
+    <span className="bdline"><Avatar u={u} s={22} /><b>{t("Joyeux anniversaire")} {nm}{age > 0 ? " · " + t("{n} ans", { n: age }) : ""}{l.length > 1 ? " +" + (l.length - 1) : ""}</b></span></span>;
+}
+
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
-function BrandWm({ id, light, sound, big, onHome }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void }) {
+function BrandWm({ id, light, sound, big, onHome, bday }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bday?: boolean }) {
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
   const tapped = () => { try { const now = Date.now(); const last = +(localStorage.getItem("notiif-tap-t") || 0); const streak = now - last < 2500 ? +(localStorage.getItem("notiif-tap-s") || 0) + 1 : 1; localStorage.setItem("notiif-tap-t", String(now)); localStorage.setItem("notiif-tap-s", String(streak));
     const total = +(localStorage.getItem("notiif-tap-n") || 0) + 1; localStorage.setItem("notiif-tap-n", String(total));
     if (total >= 40 && !localStorage.getItem("notiif-treasure")) { localStorage.setItem("notiif-treasure", "1"); actions.addScore(10); window.dispatchEvent(new Event("notiif-treasure")); }
     else if (streak === 7) { const P = [t("Tu es précieux pour tes proches 💜"), t("Merci d'être là, ça fait plaisir !"), t("Un petit coup de fil à quelqu'un que tu aimes ? 💌"), t("Tu fais du bien autour de toi 🌸")]; toast(P[Math.floor(Math.random() * P.length)]); } } catch { /* rien */ } };
-  const hop = () => { tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound) popNotes(6); try { navigator.vibrate?.(12); } catch { /* rien */ } };
+  const hop = () => { tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound) { if (bday) sfx("birthday"); else popNotes(6); } try { navigator.vibrate?.(12); } catch { /* rien */ } };
   return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
@@ -66,7 +82,7 @@ export default function App() {
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   const fxList = useStore((x) => { const a: { id: string; fx: string; at: number }[] = []; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me) a.push({ id: m.id, fx: m.fx, at: m.at }); a.sort((p, q) => p.at - q.at); return a.map((m) => m.at + "|" + m.fx).join(";"); });
-  const meId = useStore((x) => x.me); const fxBusy = useRef(false);
+  const meId = useStore((x) => x.me); const fxBusy = useRef(false); const bdl = useBdays(); const bdOn = BDAY_DECO && bdl.length > 0;
   useEffect(() => { if (!(typeof matchMedia !== "undefined" && matchMedia("(hover: hover) and (pointer: fine)").matches)) return; const k = (e: KeyboardEvent) => { const el = e.target as HTMLElement; const typing = !!el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable); if (e.key === "/" && !typing) { const i = document.querySelector<HTMLInputElement>(".dsearch input"); if (i) { e.preventDefault(); i.focus(); } } else if (e.key === "Escape" && !document.querySelector(".overlay,.modal,.detail,.viewer") && v !== "home" && !(typing && (el as HTMLInputElement).value)) { if (typing) el.blur(); history.back(); } }; window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [v]);
   useEffect(() => {
     const run = () => {
@@ -116,9 +132,9 @@ export default function App() {
       <SideBdays go={go} />
 </aside>
     <main className={"main" + (v === "home" ? " ishome" : "") + (v === "settings" ? " issettings" : "")}>
-      <div className="brandbar"><BrandWm onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} big /></div>
+      <div className="brandbar"><BdayDeco><BrandWm bday={bdOn} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} big /></BdayDeco></div>
       {topKeys.includes("search") && <div className="dsearch"><SearchTop go={go} openConv={openConvFull} /><button type="button" className="dtheme" onClick={() => actions.setSetting("mode", light ? "dark" : "light")} aria-label={light ? t("Passer en thème sombre") : t("Passer en thème clair")}><Ico n={light ? "moon" : "sun"} s={22} /></button></div>}
-      <div className={"top" + (v !== "home" ? " sub" : "")}><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow tcenter"><span className="tw"><BrandWm onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} /></span>{v === "home" && topKeys.includes("search") && <span className="mpill"><SearchTop go={go} openConv={openConvFull} /></span>}</span><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => k === "theme" ? <button key="theme" className="topb" onClick={() => actions.setSetting("mode", light ? "dark" : "light")} aria-label={light ? t("Passer en thème sombre") : t("Passer en thème clair")}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{light ? <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /> : <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></>}</svg></button> : k === "search" ? <span key="search" className="topsearch"><SearchTop variant="icon" go={go} openConv={openConvFull} /></span> : (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div>{v !== "home" && v !== "settings" && <button type="button" className="topb subgear" onClick={() => go("settings")} aria-label={t("Paramètres")}><Ico n={(navItems().find((n) => n[0] === "settings") || ["", "", "settings"])[2]} s={20} /></button>}</div>
+      <div className={"top" + (v !== "home" ? " sub" : "")}><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow tcenter"><span className="tw"><BdayDeco><BrandWm bday={bdOn} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} /></BdayDeco></span>{v === "home" && topKeys.includes("search") && <span className="mpill"><SearchTop go={go} openConv={openConvFull} /></span>}</span><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => k === "theme" ? <button key="theme" className="topb" onClick={() => actions.setSetting("mode", light ? "dark" : "light")} aria-label={light ? t("Passer en thème sombre") : t("Passer en thème clair")}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{light ? <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /> : <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></>}</svg></button> : k === "search" ? <span key="search" className="topsearch"><SearchTop variant="icon" go={go} openConv={openConvFull} /></span> : (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div>{v !== "home" && v !== "settings" && <button type="button" className="topb subgear" onClick={() => go("settings")} aria-label={t("Paramètres")}><Ico n={(navItems().find((n) => n[0] === "settings") || ["", "", "settings"])[2]} s={20} /></button>}</div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">
