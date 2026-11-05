@@ -39,18 +39,26 @@ function useBdays() {
   const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []);
   return Object.values(users).filter((u) => (u.id === me || fr.includes(u.id)) && isBirthday(u.birthday, 0)).sort((a, b) => (a.id === me ? -1 : b.id === me ? 1 : 0));
 }
-const BDAY_DECO = false; // à passer à true après l'accord sur l'aperçu
+const BDAY_DECO = true;
+function useBdText() {
+  const l = useBdays(); const me = useStore((x) => x.me); useLang();
+  const mine = l.find((x) => x.id === me); if (!BDAY_DECO || !mine) return { mine: undefined, text: undefined };
+  const raw = t("Joyeux anniversaire"); const text = locale().startsWith("fr") ? raw : raw.replace(/\b\w/g, (c) => c.toUpperCase());
+  return { mine, text };
+}
 function BdayDeco({ children }: { children: React.ReactNode }) {
-  const l = useBdays(); useLang();
-  if (!BDAY_DECO || !l.length) return <>{children}</>;
-  const u = l[0]; const age = u.byear ? new Date().getFullYear() - u.byear : 0; const nm = u.name.trim().split(/\s+/)[0];
-  return <span className="bdlogo"><svg className="bdb l" viewBox="-20 0 70 76" aria-hidden="true"><Balloon i={0} x={10} /><Balloon i={1} x={34} /></svg>{children}<svg className="bdb r" viewBox="-20 0 70 76" aria-hidden="true"><Balloon i={2} x={10} /><Balloon i={3} x={34} /></svg>
-    <span className="bdline"><Avatar u={u} s={22} /><b>{t("Joyeux anniversaire")} {nm}{age > 0 ? " · " + t("{n} ans", { n: age }) : ""}{l.length > 1 ? " +" + (l.length - 1) : ""}</b></span></span>;
+  const { mine } = useBdText();
+  if (!mine) return <>{children}</>;
+  const age = mine.byear ? new Date().getFullYear() - mine.byear : 0; const nm = mine.name.trim().split(/\s+/)[0];
+  return <span className="bdlogo bdself"><span className="bdcake" aria-hidden="true">🎂</span><svg className="bdb l" viewBox="-20 0 70 76" aria-hidden="true"><Balloon i={0} x={10} /><Balloon i={1} x={34} /></svg>{children}<svg className="bdb r" viewBox="-20 0 70 76" aria-hidden="true"><Balloon i={2} x={10} /><Balloon i={3} x={34} /></svg>
+    <span className="bdline"><Avatar u={mine} s={22} /><b>{nm}{age > 0 ? " · " + t("{n} ans", { n: age }) : ""}</b></span></span>;
 }
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
-function BrandWm({ id, light, sound, big, onHome, bday }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bday?: boolean }) {
+const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
+function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bdText?: string }) {
+  const bday = !!bdText;
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
   const tapped = () => { try { const now = Date.now(); const last = +(localStorage.getItem("notiif-tap-t") || 0); const streak = now - last < 2500 ? +(localStorage.getItem("notiif-tap-s") || 0) + 1 : 1; localStorage.setItem("notiif-tap-t", String(now)); localStorage.setItem("notiif-tap-s", String(streak));
     const total = +(localStorage.getItem("notiif-tap-n") || 0) + 1; localStorage.setItem("notiif-tap-n", String(total));
@@ -60,7 +68,8 @@ function BrandWm({ id, light, sound, big, onHome, bday }: { id: string; light: b
   return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
-    {WM_CUTS.slice(0, 6).map((c, i) => <img key={i + "-" + go} className="wml" draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
+    {bdText && <svg className="wmbd" viewBox="0 0 524 184" aria-label={bdText}><text x="262" y="116" textAnchor="middle" fontSize={bdText.length > 15 ? 54 : 64} fontWeight="900" fontFamily="'Arial Black',Arial,sans-serif" textLength={bdText.length > 15 ? 450 : 420} lengthAdjust="spacingAndGlyphs">{[...bdText].map((c, i) => <tspan key={i} fill={BD_COL[i % BD_COL.length]}>{c}</tspan>)}</text></svg>}
+    {!bdText && WM_CUTS.slice(0, 6).map((c, i) => <img key={i + "-" + go} className="wml" draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
   </span>;
 }
 
@@ -82,7 +91,7 @@ export default function App() {
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   const fxList = useStore((x) => { const a: { id: string; fx: string; at: number }[] = []; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me) a.push({ id: m.id, fx: m.fx, at: m.at }); a.sort((p, q) => p.at - q.at); return a.map((m) => m.at + "|" + m.fx).join(";"); });
-  const meId = useStore((x) => x.me); const fxBusy = useRef(false); const bdl = useBdays(); const bdOn = BDAY_DECO && bdl.length > 0;
+  const meId = useStore((x) => x.me); const fxBusy = useRef(false); const bdt = useBdText();
   useEffect(() => { if (!(typeof matchMedia !== "undefined" && matchMedia("(hover: hover) and (pointer: fine)").matches)) return; const k = (e: KeyboardEvent) => { const el = e.target as HTMLElement; const typing = !!el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable); if (e.key === "/" && !typing) { const i = document.querySelector<HTMLInputElement>(".dsearch input"); if (i) { e.preventDefault(); i.focus(); } } else if (e.key === "Escape" && !document.querySelector(".overlay,.modal,.detail,.viewer") && v !== "home" && !(typing && (el as HTMLInputElement).value)) { if (typing) el.blur(); history.back(); } }; window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [v]);
   useEffect(() => {
     const run = () => {
@@ -132,9 +141,9 @@ export default function App() {
       <SideBdays go={go} />
 </aside>
     <main className={"main" + (v === "home" ? " ishome" : "") + (v === "settings" ? " issettings" : "")}>
-      <div className="brandbar"><BdayDeco><BrandWm bday={bdOn} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} big /></BdayDeco></div>
+      <div className="brandbar"><BdayDeco><BrandWm bdText={bdt.text} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} big /></BdayDeco></div>
       {topKeys.includes("search") && <div className="dsearch"><SearchTop go={go} openConv={openConvFull} /><button type="button" className="dtheme" onClick={() => actions.setSetting("mode", light ? "dark" : "light")} aria-label={light ? t("Passer en thème sombre") : t("Passer en thème clair")}><Ico n={light ? "moon" : "sun"} s={22} /></button></div>}
-      <div className={"top" + (v !== "home" ? " sub" : "")}><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow tcenter"><span className="tw"><BdayDeco><BrandWm bday={bdOn} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} /></BdayDeco></span>{v === "home" && topKeys.includes("search") && <span className="mpill"><SearchTop go={go} openConv={openConvFull} /></span>}</span><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => k === "theme" ? <button key="theme" className="topb" onClick={() => actions.setSetting("mode", light ? "dark" : "light")} aria-label={light ? t("Passer en thème sombre") : t("Passer en thème clair")}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{light ? <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /> : <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></>}</svg></button> : k === "search" ? <span key="search" className="topsearch"><SearchTop variant="icon" go={go} openConv={openConvFull} /></span> : (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div>{v !== "home" && v !== "settings" && <button type="button" className="topb subgear" onClick={() => go("settings")} aria-label={t("Paramètres")}><Ico n={(navItems().find((n) => n[0] === "settings") || ["", "", "settings"])[2]} s={20} /></button>}</div>
+      <div className={"top" + (v !== "home" ? " sub" : "")}><button className="topme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={46} /></button>{v !== "home" && <button className="topb" style={{ marginLeft: 8 }} onClick={() => history.back()} aria-label={t("Retour")}><Ico n="back" s={20} /></button>}<span className="grow tcenter"><span className="tw"><BdayDeco><BrandWm bdText={bdt.text} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} /></BdayDeco></span>{v === "home" && topKeys.includes("search") && <span className="mpill"><SearchTop go={go} openConv={openConvFull} /></span>}</span><div className="topr">{topKeys.filter((k) => k !== "profile").map((k) => k === "theme" ? <button key="theme" className="topb" onClick={() => actions.setSetting("mode", light ? "dark" : "light")} aria-label={light ? t("Passer en thème sombre") : t("Passer en thème clair")}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{light ? <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /> : <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></>}</svg></button> : k === "search" ? <span key="search" className="topsearch"><SearchTop variant="icon" go={go} openConv={openConvFull} /></span> : (() => { const it = navItems().find((n) => n[0] === k); if (!it) return null; return <button key={k} className="topb" onClick={() => go(k)} aria-label={it[1]} style={{ position: "relative" }}><Ico n={it[2]} s={20} />{badge(it[0] as V) > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{badge(it[0] as V)}</span>}</button>; })())}<button className={"topb" + (more ? " on" : "")} onClick={() => { history.pushState({ v, more: 1 }, ""); setMore(true); }} aria-label={t("Tous les menus")}><Ico n="apps" s={20} /></button></div>{v !== "home" && v !== "settings" && <button type="button" className="topb subgear" onClick={() => go("settings")} aria-label={t("Paramètres")}><Ico n={(navItems().find((n) => n[0] === "settings") || ["", "", "settings"])[2]} s={20} /></button>}</div>
       {warn && <div className="card small" style={{ borderColor: "var(--warm)", marginBottom: 10 }}>⚠️ {warn}</div>}
       {page}</main>
     <aside className="right">

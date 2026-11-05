@@ -63,7 +63,7 @@ export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
     <path d={d} fill={`url(#${g})`} />
     {show ? <image href={u.avatar!} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${shape})`} /> : <text x="50" y={shape === "star" ? 62 : 58} textAnchor="middle" fontSize="36" fontWeight="800" fill="#fff" fontFamily="system-ui,sans-serif">{u.name.slice(0, 1).toUpperCase()}</text>}
     <path d={d} fill="none" stroke="var(--ink)" strokeWidth={s < 40 ? 7 : 6} strokeLinejoin="round" />
-    {bday && (u.id === me || isFriend) && <g transform="rotate(-12 50 0)"><path d="M26 2L32 -22L42 -8L50 -26L58 -8L68 -22L74 2Z" fill="#D3EFEA" stroke="var(--ink)" strokeWidth="5" strokeLinejoin="round" /><circle cx="32" cy="-30" r="3" fill="var(--ink)" /><circle cx="50" cy="-34" r="3" fill="var(--ink)" /><circle cx="68" cy="-30" r="3" fill="var(--ink)" /></g>}</svg></span>;
+    {bday && (u.id === me || isFriend) && <text x="50" y="-4" fontSize="46" textAnchor="middle" transform="rotate(-16 50 0)">🎂</text>}</svg></span>;
 }
 /** Bloque le défilement de la page derrière une fenêtre ouverte (compteur : plusieurs fenêtres possibles). */
 let lockN = 0;

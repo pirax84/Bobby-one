@@ -827,3 +827,11 @@ html[data-theme=dark] .bdlogo{color:#C9BDF5}
 .bdlogo .bdline{position:absolute;top:100%;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:.8rem;margin-top:2px;color:inherit}
 html[data-theme=dark] .bdball{stroke-width:2}
 @media (max-width:760px){.bdlogo .bdb{width:30px;height:34px}.bdlogo .bdline{font-size:.72rem}}
+.bdlogo.bdself{margin-bottom:30px}
+.bdlogo.friend{position:relative;display:inline-flex}
+.bdlogo .bdcake{position:absolute;left:50%;top:-34px;font-size:34px;line-height:1;transform:translateX(-50%) rotate(-16deg);pointer-events:none;z-index:2}
+@media (max-width:760px){.bdlogo.bdself{margin-bottom:26px}.bdlogo .bdcake{top:-28px;font-size:28px}.bdlogo .bdb{width:24px;height:28px}}
+
+.wmbd{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.bdlogo.friend{display:none}
+.bdlogo.bdself{margin-top:30px}
