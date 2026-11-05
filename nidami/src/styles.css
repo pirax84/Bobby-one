@@ -919,3 +919,7 @@ html[data-theme=dark] .bdball{stroke-width:2}
 
 .bdem{top:-100px;line-height:1}
 .bdfx.night{background:none}
+
+.fxcw{display:flex;flex-direction:column;gap:4px}
+.fxcw .fxcell{flex:1}
+.fxtest{border:1px solid rgba(var(--brand-rgb),.35);background:transparent;color:var(--fg);border-radius:12px;padding:5px 4px;font-size:.78rem;font-weight:700;cursor:pointer}

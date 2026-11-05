@@ -1251,3 +1251,5 @@
 1250|🎉 Mega party
 1251|🧁 Happy birthday!
 1252|🎉 Happy birthday!
+1253|▶ Try it
+1254|Tick the 4 effects to keep up front ({length}/4). “Try it” plays it on your device only; “Send” sends it to your friend.
