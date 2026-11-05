@@ -1304,3 +1304,27 @@
 1303|music box · 30 s
 1304|🎄 Merry Christmas!
 1305|🐣 Happy Easter!
+1306|👁 Customer view
+1307|Close customer preview
+1308|👁 View as a customer
+1309|A frame on the right shows the app as a customer sees it, with the chosen holiday. Change a setting here and the frame updates by itself.
+1310|Close the customer frame
+1311|Open the customer frame on the right
+1312|Switch to customer view (full screen)
+1313|🎄 Holidays and dates
+1314|Pick a holiday or a date: the logo, the greeting and the effect change right away. The holiday's effect plays immediately.
+1315|📆 Or pick a date
+1316|🚫 Turn holidays off
+1317|See the normal logo, without decoration or greeting.
+1318|🎵 Effect and music for each holiday
+1319|For each holiday, choose the effect (and its music) played when the logo is tapped. “On opening” also plays it by itself, once a day, when the app starts that day.
+1320|Effect for {fete}
+1321|On opening
+1322|Choices copied: paste them into the conversation to make them permanent.
+1323|📋 Copy my choices (to make them permanent)
+1324|Your choices only change your device. Send them to me so they become everyone's.
+1325|🛠 Tools
+1326|Show closed holiday messages again
+1327|Holiday messages and daily effects reset.
+1328|off
+1329|There is no holiday in the app on that day.

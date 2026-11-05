@@ -55,11 +55,10 @@ function BdayDeco({ children }: { children: React.ReactNode }) {
 }
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
-import { useDev } from "./lib/dev";
+import { useDev, feteFx, feteAuto } from "./lib/dev";
 import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
-const FETE_FX: Record<string, Fx> = { hal: "ghost", noel: "noel1", val: "hearts", pq: "easter", ny: "fireworks" };
 function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bdText?: string }) {
   const bday = !!bdText; const fete = useFete(); const fx = !bdText ? fete : null;
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
@@ -67,7 +66,7 @@ function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light:
     const total = +(localStorage.getItem("notiif-tap-n") || 0) + 1; localStorage.setItem("notiif-tap-n", String(total));
     if (total >= 40 && !localStorage.getItem("notiif-treasure")) { localStorage.setItem("notiif-treasure", "1"); actions.addScore(10); window.dispatchEvent(new Event("notiif-treasure")); }
     else if (streak === 7) { const P = [t("Tu es précieux pour tes proches 💜"), t("Merci d'être là, ça fait plaisir !"), t("Un petit coup de fil à quelqu'un que tu aimes ? 💌"), t("Tu fais du bien autour de toi 🌸")]; toast(P[Math.floor(Math.random() * P.length)]); } } catch { /* rien */ } };
-  const hop = () => { tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound || fx) { if (bday) sfx("birthday"); else if (fx) playFx(FETE_FX[fx], sound); else popNotes(6); } try { navigator.vibrate?.(12); } catch { /* rien */ } };
+  const hop = () => { tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound || fx) { if (bday) sfx("birthday"); else if (fx) playFx(feteFx(fx) as Fx, sound); else popNotes(6); } try { navigator.vibrate?.(12); } catch { /* rien */ } };
   return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "") + (fx ? " fete" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
@@ -82,6 +81,13 @@ export default function App() {
   useLang();
   const pushOn = useStore((x) => !!x.settings[x.me]?.push); const lastNotif = useStore((x) => x.notifs.filter((n) => n.to === x.me && !n.read).sort((a, b) => b.at - a.at)[0]); const seenN = useRef<string | undefined>(undefined);
   const fxOn = useStore((x) => x.settings[x.me]?.fx ?? true); const lastFxMsg = useStore((x) => { let b: { id: string; fx?: string; at: number } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me && (!b || m.at > b.at)) b = m; return b ? b.id + "|" + b.fx : ""; }); const lastCfx = useStore((x) => { let b: { at: number; cfx?: { name: string; img?: string; audio?: string } } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me && (!b || m.at > b.at)) b = m; return b?.cfx; }); const seenFx = useRef<string | undefined>(undefined); const th0 = useStore((x) => x.settings[x.me]); const lastCall = useStore((x) => { let b: { id: string; at: number } | undefined; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.from !== x.me && m.text.startsWith("📹") && (!b || m.at > b.at)) b = m; return b?.id || ""; }); const seenCall = useRef<string | undefined>(undefined);
+  const fNow = useFete(); const dvA = useDev();
+  useEffect(() => { // jour de fête : l'effet de la fête se joue tout seul à l'ouverture (si c'est activé pour cette fête)
+    if (!fNow || !feteAuto(fNow)) return;
+    const key = "notiif-auto-" + fNow + "-" + new Date().toDateString();
+    try { if (!dvA.active && localStorage.getItem(key)) return; localStorage.setItem(key, "1"); } catch { /* ignoré */ }
+    const id = setTimeout(() => playFx(feteFx(fNow) as Fx, fxOn), 900); return () => clearTimeout(id);
+  }, [fNow]); // eslint-disable-line react-hooks/exhaustive-deps
   const bubbleOn = useStore((x) => x.settings[x.me]?.bubble ?? true); const startCfg = useStore((x) => x.settings[x.me]?.start); const navCfg = useStore((x) => x.settings[x.me]?.nav); const topCfg = useStore((x) => x.settings[x.me]?.top); const started = useStore((s) => s.started); const me = useStore((s) => s.me); const lightCfg = useStore((s) => s.settings[s.me]?.light); const modeCfg = useStore((s) => s.settings[s.me]?.mode); const accent = useStore((s) => s.settings[s.me]?.accent); const [sysDark, setSysDark] = useState(() => { try { return window.matchMedia("(prefers-color-scheme: dark)").matches; } catch { return false; } }); useEffect(() => { try { const q = window.matchMedia("(prefers-color-scheme: dark)"); const f = () => setSysDark(q.matches); q.addEventListener("change", f); return () => q.removeEventListener("change", f); } catch { return undefined; } }, []); const styleCfg = useStore((s) => s.settings[s.me]?.style); const fsCfg = useStore((s) => s.settings[s.me]?.fs); const mode = modeCfg || (lightCfg === false ? "dark" : "auto"); const light = mode === "light" ? true : mode === "dark" ? false : !sysDark;
   const unreadN = useStore((s) => s.notifs.filter((n) => n.to === s.me && !n.read).length); const unreadM = useStore((s) => s.convs.filter((c) => c.memberIds.includes(s.me)).reduce((a, c) => a + c.msgs.filter((m) => m.from !== s.me && m.reads[s.me] === undefined).length, 0));
   const reqs = useStore((s) => s.reqs.filter((r) => r.to === s.me).length); const user = useStore((s) => userOf(s, s.me));

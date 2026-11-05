@@ -12,7 +12,7 @@ import { Home } from "./Home";
 import { Camera } from "./Recorder";
 import { AvatarCrop } from "./Photo";
 import { t, T, locale } from "../i18n";
-import { DevPanel } from "./Dev";
+import { DevPanel, ClientPreview } from "./Dev";
 import { useDev, setDevUnlocked, setDevClient, APP_VERSION } from "../lib/dev";
 import { KidCard } from "./Kid";
 import { IntroChoice } from "./IntroChoice";
@@ -237,7 +237,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <p className="muted small center" style={{ margin: "8px 0" }} onClick={verTap}>NOTIIF · {APP_VERSION}</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col setsub" ref={pageRef}><h1>{titles[sec] || t("Paramètres")}</h1>
-    {sec === "dev" && dev.active && <DevPanel />}
+    {sec === "dev" && dev.active && <><DevPanel /><ClientPreview /></>}
     {sec === "howto" && <HowTo />}
     {sec === "install" && <>
     <InstallCard />
