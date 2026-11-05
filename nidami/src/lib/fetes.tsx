@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { feteUnder, feteOver } from "./fetemotifs";
 
 // Décorations du logo ovale selon la fête (même jour pour tout le monde, d'après la date de l'appareil).
 export type Fete = "hal" | "noel" | "val" | "pq" | "ny";
@@ -37,6 +38,9 @@ export function FeteOrnaments({ fete, suf, light }: { fete: Fete; suf: string; l
   else if (fete === "noel") body = <>{santa("translate(646 122) scale(.5)", 8)}{santa("translate(712 122) scale(.5)", 8)}{santa("translate(428 210) scale(1.3)", 5)}</>;
   else if (fete === "val") body = <>{heart("translate(646 120) scale(1.8) rotate(8)", 4)}{heart("translate(712 120) scale(1.53) rotate(8)", 4)}{heart("translate(428 200) scale(3.4)", 3)}</>;
   else if (fete === "pq") body = <>{egg("translate(646 122) rotate(-10) scale(.9)", 5)}{chick("translate(712 126) scale(.8)")}{egg("translate(428 200) scale(2.3)", 4)}</>;
-  else body = <>{rocket(646, -18)}{rocket(712, 22)}{burst(60, 40, 60, P(0))}{burst(980, 36, 64, P(4))}{burst(160, 330, 50, P(3))}{burst(900, 330, 56, P(2))}{burst(524, 10, 46, P(1))}{burst(30, 200, 40, P(4))}{burst(1020, 200, 44, P(0))}{Array.from({ length: 16 }, (_, i) => { const a = i * Math.PI / 8, r = i % 2 ? 52 : 68; return <line key={i} x1={428 + Math.cos(a) * 24} y1={202 + Math.sin(a) * 24} x2={428 + Math.cos(a) * r} y2={202 + Math.sin(a) * r} stroke={P(i)} strokeWidth="9" strokeLinecap="round" />; })}<circle cx="428" cy="202" r="12" fill={P(1)} /></>;
-  return <svg className="wmfx" viewBox="0 0 1048 368" aria-hidden="true">{body}</svg>;
+  else body = <>{rocket(646, -18)}{rocket(712, 22)}{Array.from({ length: 16 }, (_, i) => { const a = i * Math.PI / 8, r = i % 2 ? 52 : 68; return <line key={i} x1={428 + Math.cos(a) * 24} y1={202 + Math.sin(a) * 24} x2={428 + Math.cos(a) * r} y2={202 + Math.sin(a) * r} stroke={P(i)} strokeWidth="9" strokeLinecap="round" />; })}<circle cx="428" cy="202" r="12" fill={P(1)} /></>;
+  return <svg className="wmfx" viewBox="0 0 1048 368" aria-hidden="true"><g dangerouslySetInnerHTML={{ __html: feteOver(fete, suf, light) }} />{body}</svg>;
+}
+export function FeteUnder({ fete, suf, light }: { fete: Fete; suf: string; light: boolean }) {
+  return <svg className="wmfx" viewBox="0 0 1048 368" aria-hidden="true" dangerouslySetInnerHTML={{ __html: feteUnder(fete, suf, light) }} />;
 }
