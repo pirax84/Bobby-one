@@ -947,3 +947,14 @@ html[data-theme=dark] .bdball{stroke-width:2}
 .chr .bigkiss{position:absolute;left:50%;top:50%;font-size:70px;opacity:0;animation:bkiss 1.3s ease-out .5s both}
 @keyframes bkiss{0%{opacity:0;transform:translate(60px,-20px) scale(.3)}30%{opacity:1}100%{opacity:0;transform:translate(200px,-120px) scale(1.6) rotate(20deg)}}
 .chr .kfall{position:absolute;top:-40px;animation:fxfall linear both}
+
+.fxbox.sc canvas{display:block}
+.hx .hbig{position:absolute;top:-120px;animation:hfall linear both;filter:drop-shadow(0 4px 8px rgba(200,30,80,.3))}
+@keyframes hfall{0%{transform:translateX(0) rotate(-8deg) scale(.7)}50%{transform:translateX(24px) rotate(8deg) scale(1)}100%{transform:translateX(-10px) translateY(120vh) rotate(-8deg) scale(1)}}
+.hx .petal{position:absolute;top:-40px;background:linear-gradient(135deg,var(--pc),#7a0c2e);border-radius:100% 0 100% 0;opacity:.92;animation:pfall ease-in-out both;box-shadow:inset -2px -2px 4px rgba(0,0,0,.2)}
+@keyframes pfall{0%{transform:translate(0,0) rotate(0) rotateY(0)}100%{transform:translate(var(--sw),115vh) rotate(540deg) rotateY(720deg)}}
+.crumble{transition:none;animation:crm 1.1s cubic-bezier(.5,0,.9,.5) var(--cd) forwards;will-change:transform}
+@keyframes crm{0%{transform:none}12%{transform:translate(3px,-2px) rotate(1deg)}24%{transform:translate(-3px,2px) rotate(-1deg)}100%{transform:translate(var(--dx),var(--dy)) rotate(var(--rt))}}
+.crumble.rebuild{animation:rbd .9s cubic-bezier(.2,1.3,.4,1) var(--cd) forwards}
+@keyframes rbd{from{transform:translate(var(--dx),var(--dy)) rotate(var(--rt))}to{transform:none}}
+.fxbox.crack svg{position:absolute;inset:0}

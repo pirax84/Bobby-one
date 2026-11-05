@@ -1,6 +1,7 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
 export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit";
+import { sceneShow, SCENES, type Scene } from "./scenes";
 import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
 const playing: HTMLAudioElement[] = [];
 const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("ended", () => { const i = playing.indexOf(a); if (i >= 0) playing.splice(i, 1); }); return a; };
@@ -193,6 +194,32 @@ function charShow(k: "burp" | "kiss") {
   }
   document.body.appendChild(box); setTimeout(() => box.remove(), 6800);
 }
+
+/** Cœurs en plus : grands cœurs, roses et pétales qui tombent. */
+function heartsExtra() {
+  const box = document.createElement("div"); box.className = "fxbox hx"; box.setAttribute("aria-hidden", "true");
+  const add = (cls: string, txt: string, size: number, delay: number, dur: number) => { const s = document.createElement("span"); s.className = cls; s.textContent = txt; s.style.left = Math.random() * 94 + "%"; s.style.fontSize = size + "px"; s.style.animationDelay = delay + "s"; s.style.animationDuration = dur + "s"; box.appendChild(s); return s; };
+  for (let i = 0; i < 16; i++) add("hbig", pick(["❤️", "💖", "💗", "💝", "🩷", "❤️"]), 60 + Math.random() * 90, Math.random() * 2.2, 4 + Math.random() * 2.5);
+  for (let i = 0; i < 12; i++) add("hbig", "🌹", 36 + Math.random() * 40, Math.random() * 2.5, 4 + Math.random() * 2.5);
+  for (let i = 0; i < 70; i++) { const p = add("petal", "", 0, Math.random() * 3, 3.5 + Math.random() * 3); const z = 12 + Math.random() * 14; p.style.width = z + "px"; p.style.height = z * 1.3 + "px"; p.style.setProperty("--pc", pick(["#e63462", "#ff5c8a", "#c2185b", "#ff8fb1", "#d81b60"])); p.style.setProperty("--sw", (Math.random() < 0.5 ? -1 : 1) * (40 + Math.random() * 80) + "px"); }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 8000);
+}
+const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
+
+/** « Tout s'écroule » : l'écran se fissure, les éléments tombent en désordre, puis tout se remet en place. */
+function crumble() {
+  const root = document.documentElement; if (root.classList.contains("crumbling")) return;
+  const els = Array.from(document.querySelectorAll<HTMLElement>(".card, .navbtn, .bubble, .brandbar, .btn, .chip, .avatar, .msg, h1, h2, nav button")).filter((e) => { const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 12 && r.bottom > 0 && r.top < innerHeight; }).slice(0, 90);
+  root.classList.add("crumbling");
+  els.forEach((e) => { const r = e.getBoundingClientRect(); e.style.setProperty("--dx", (Math.random() - 0.5) * 120 + "px"); e.style.setProperty("--dy", innerHeight - r.top + 20 + Math.random() * 140 + "px"); e.style.setProperty("--rt", (Math.random() - 0.5) * 70 + "deg"); e.style.setProperty("--cd", Math.random() * 0.5 + "s"); e.classList.add("crumble"); });
+  const box = document.createElement("div"); box.className = "fxbox crack"; box.setAttribute("aria-hidden", "true");
+  let d = ""; const cx = innerWidth * (0.3 + Math.random() * 0.4), cy = innerHeight * (0.3 + Math.random() * 0.3);
+  for (let i = 0; i < 11; i++) { const a = (i / 11) * 6.283 + Math.random() * 0.4; let x = cx, y = cy; d += `M${x},${y}`; for (let j = 0; j < 6; j++) { const l = 40 + Math.random() * 120; x += Math.cos(a + (Math.random() - 0.5) * 0.7) * l; y += Math.sin(a + (Math.random() - 0.5) * 0.7) * l; d += ` L${x},${y}`; } }
+  box.innerHTML = `<svg width="100%" height="100%"><path d="${d}" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2"/><path d="${d}" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="4" transform="translate(2,2)" opacity=".5"/></svg>`;
+  document.body.appendChild(box);
+  setTimeout(() => { els.forEach((e) => e.classList.add("rebuild")); box.remove(); }, 2300);
+  setTimeout(() => { els.forEach((e) => { e.classList.remove("crumble", "rebuild"); ["--dx", "--dy", "--rt", "--cd"].forEach((p) => e.style.removeProperty(p)); }); root.classList.remove("crumbling"); }, 3300);
+}
 function weatherShow(storm: boolean) {
   const box = document.createElement("div"); box.className = "fxbox wx" + (storm ? " storm" : ""); box.setAttribute("aria-hidden", "true");
   const sky = document.createElement("div"); sky.className = "wxsky"; box.appendChild(sky);
@@ -213,11 +240,14 @@ export function playFx(k: Fx, sound = true) {
   stopFx();
   if (sound) sfx(k);
   if (k === "shake") {
+    crumble();
     buzz([500, 40, 500, 40, 500, 40, 500, 40, 500], 255);
     if (!reduced()) { const r = document.documentElement; r.classList.remove("shake"); void r.offsetWidth; r.classList.add("shake"); setTimeout(() => r.classList.remove("shake"), 2400); }
     return;
   }
   if (k in BD_DUR) { bdayShow(k); return; }
+  if (!reduced() && (SCENES as string[]).includes(k)) { sceneShow(k as Scene); if (k !== "rocket") return; }
+  if (k === "hearts" && !reduced()) heartsExtra();
   if ((k === "burp" || k === "kiss") && !reduced()) { charShow(k); return; }
   if ((k === "rain" || k === "thunder") && !reduced()) { weatherShow(k === "thunder"); return; }
   if (k === "birthday") { buzz([200, 100, 200, 100, 400, 200, 200, 100, 200, 100, 400, 200, 200, 100, 400, 100, 400], 255); }
