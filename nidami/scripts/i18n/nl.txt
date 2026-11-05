@@ -1342,3 +1342,43 @@
 1341|Christmas
 1342|▶ Watch the intro now
 1343|▶ Watch the guide now
+1344|This sound can't be played.
+1345|🧩 App sections
+1346|Untick a section to make it disappear right away (menu, bottom bar, “More”). Tick it again to bring it back. Only your device changes.
+1347|🖼 Logos and images
+1348|Tap a logo to see its effect. The “At the top” button puts it on the app right away.
+1349|⬆ At the top
+1350|Logo colours
+1351|App icons
+1352|✨ Effects (show, hide, sound)
+1353|▶ to test. “Visible”: the effect appears in the effect lists. “Sound”: muted or played. You can also replace its sound with one of yours.
+1354|Visible
+1355|Sound
+1356|Replacement sound
+1357|Original sound
+1358|File too big (1.5 MB maximum).
+1359|Sound added.
+1360|No more room for this sound.
+1361|🔊 My sounds
+1362|Add your own sounds (1.5 MB maximum each), listen to them, delete them. Then pick them in “Effects”.
+1363|➕ Add a sound
+1364|App sounds
+1365|🔔 Notifications and ringtones
+1366|Listen to each notification sound. “Sound” off = it no longer rings on this device.
+1367|Message sent (start)
+1368|Message gone (end)
+1369|Voice message
+1370|Reaction
+1371|Call
+1372|Vibrations
+1373|On-screen messages
+1374|🔔 This is a test notification.
+1375|Show a test notification
+1376|Customer view
+1377|Everything is back to the start (sections, effects, sounds).
+1378|Put everything back to the start
+1379|🎅 Christmas · Santa above the city
+1380|music box · 31 s
+1381|🔥 Christmas · By the fireplace
+1382|Christmas song · 14 s
+1383|Normal logo

@@ -1,8 +1,9 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "noel2" | "easter" | "noelauto" | "noelv1" | "noelv2" | "noelv3" | "noelv4";
+export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "easter" | "noelv1" | "noelv2";
 import { sceneShow, holidayShow, SCENES, type Scene } from "./scenes";
-import { noelVideoShow, noelVideoStop, pickNoelVideo, NOEL_VIDEOS } from "./noelvideo";
+import { devHidden, soundFor } from "./dev";
+import { noelVideoShow, noelVideoStop, NOEL_VIDEOS } from "./noelvideo";
 import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
 const playing: HTMLAudioElement[] = [];
 const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("ended", () => { const i = playing.indexOf(a); if (i >= 0) playing.splice(i, 1); }); return a; };
@@ -38,18 +39,14 @@ export const FX: Record<Fx, Def> = {
   fart: { get label() { return t("💨 Pet"); }, get text() { return t("💨 Prout !"); }, em: [] },
   vomit: { get label() { return t("🤮 Vomi"); }, get text() { return t("🤮 Beurk !"); }, em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
   noel1: { get label() { return t("🎄 Noël · Père Noël dans le ciel"); }, get sub() { return t("musique 1 · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"], file: "./sounds/noel/noel1.mp3" },
-  noel2: { get label() { return t("🎄 Noël · Le Père Noël au salon"); }, get sub() { return t("boîte à musique · 30 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"], file: "./sounds/noel/noel2.mp3" },
-  noelauto: { get label() { return t("🎅 Noël · Père Noël en traîneau (automatique)"); }, get sub() { return t("vidéo réaliste · cloches · voix"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
-  noelv1: { get label() { return t("🎅 Noël · Forêt enneigée"); }, get sub() { return t("vidéo PC · 21 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
-  noelv2: { get label() { return t("🎅 Noël · Au-dessus des nuages"); }, get sub() { return t("vidéo PC · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
-  noelv3: { get label() { return t("🎅 Noël · Pleine lune"); }, get sub() { return t("vidéo téléphone · 20 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
-  noelv4: { get label() { return t("🎅 Noël · Pont illuminé"); }, get sub() { return t("vidéo téléphone · 16 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("boîte à musique · 31 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv2: { get label() { return t("🔥 Noël · Coin du feu"); }, get sub() { return t("chanson de Noël · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
   easter: { get label() { return t("🐣 Pâques"); }, get text() { return t("🐣 Joyeuses Pâques !"); }, em: ["🐣"] },
 };
 /** Les effets anniversaire ont leur propre catégorie ; « Tous les effets » ne les contient pas. */
 export const BDAY_KEYS: Fx[] = ["birthday", "bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"];
 export const FX_ALL = Object.keys(FX) as Fx[];
-export const NOEL_KEYS: Fx[] = ["noelauto", "noelv1", "noelv2", "noelv3", "noelv4", "noel1", "noel2"];
+export const NOEL_KEYS: Fx[] = ["noel1", "noelv1", "noelv2"];
 export const FX_KEYS = FX_ALL.filter((k) => !BDAY_KEYS.includes(k) && !NOEL_KEYS.includes(k));
 // ───────── Sons : synthèse « instrumentale » (cloches, harpe, voix, souffles…) — aucun fichier, aucun son d'une marque
 type AC = BaseAudioContext; type Out = AudioNode;
@@ -143,12 +140,14 @@ const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1
 SFX.birthday = (c, o, tx) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], i) => { piano(c, o, n, tx + x * B, d * B * 2.2, 0.16); if (i % 3 === 0) note(c, o, hz(n - 24), tx + x * B, 0.9, { vol: 0.07, type: "triangle", partials: [1, 2] }); x += d; });
   [72, 76, 79, 84].forEach((n, i) => bell(c, o, n, tx + x * B + i * 0.07, 1.4, 0.09)); air(c, o, tx + x * B, 0.12, { type: "highpass", f0: 2500, vol: 0.3 }); };
 SFX.easter = (c, o, tx) => SFX.hearts(c, o, tx);
-for (const k of ["noel1", "noel2", "noelauto", "noelv1", "noelv2", "noelv3", "noelv4"]) SFX[k] = () => { /* fichier */ };
+for (const k of ["noel1", "noelv1", "noelv2"]) SFX[k] = () => { /* fichier */ };
 for (const k of ["bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"]) SFX[k] = () => { /* ces effets jouent un fichier */ };
 let ctx: AudioContext | null = null;
 /** Joue le bruitage de l'effet (volume modéré). */
 export const SHAKE_SNDS: [string, string, string][] = [["zl", "Zigzag long", "./sounds/secousse/zigzag-long.mp3"], ["z1", "Zigzag doux", "./sounds/secousse/Z1-zigzag-doux.mp3"], ["z2", "Zigzag rapide", "./sounds/secousse/Z2-zigzag-rapide.mp3"], ["z3", "Zigzag grave", "./sounds/secousse/Z3-zigzag-grave.mp3"], ["z4", "Zigzag large", "./sounds/secousse/Z4-zigzag-large.mp3"], ["z5", "Zigzag rebond", "./sounds/secousse/Z5-zigzag-rebond.mp3"], ["y1", "Zigzag triangle", "./sounds/secousse/Y01-zigzag-triangle.mp3"], ["y2", "Zigzag cloche", "./sounds/secousse/Y02-zigzag-cloche.mp3"], ["y3", "Zigzag descendant", "./sounds/secousse/Y03-zigzag-descendant.mp3"], ["y4", "Zigzag montant", "./sounds/secousse/Y04-zigzag-montant.mp3"], ["y5", "Zigzag double", "./sounds/secousse/Y05-zigzag-double.mp3"], ["y6", "Zigzag aigu", "./sounds/secousse/Y06-zigzag-aigu.mp3"], ["y7", "Zigzag lent", "./sounds/secousse/Y07-zigzag-lent.mp3"], ["y8", "Zigzag ressort", "./sounds/secousse/Y08-zigzag-ressort.mp3"], ["y9", "Zigzag bulle", "./sounds/secousse/Y09-zigzag-bulle-long.mp3"], ["y10", "Zigzag écho", "./sounds/secousse/Y10-zigzag-echo.mp3"]];
 export function sfx(k: Fx, target?: BaseAudioContext, noFile = false) {
+  if (!target && devHidden("mute", k)) return;
+  const cs = !target ? soundFor(k) : null; if (cs) { try { const a = track(new Audio(cs.data)); a.volume = 1; void a.play().catch(() => {}); } catch { /* ignoré */ } return; }
   if (k === "bdall" && !target) { (["bd1", "bd2", "bd3", "bd4", "bd5", "bd6"] as Fx[]).forEach((x) => sfx(x)); return; }
   const file = k === "shake" ? (SHAKE_SNDS.find((x) => x[0] === cfgNow().shakesnd)?.[2] || FX[k]?.file) : FX[k]?.file; if (file && !target && !noFile) { try { const a = track(new Audio(file)); a.volume = 1; a.play().catch(() => sfx(k, undefined, true)); if (k === "shake") a.addEventListener("ended", () => { try { const b = track(new Audio(file)); b.volume = 1; void b.play(); } catch { /* ignoré */ } }, { once: true }); return; } catch { /* repli sur le son synthétisé */ } }
   try {
@@ -172,7 +171,7 @@ export const TONES: Record<string, Tone> = {
 export const TONE_IDS = { n: Object.keys(TONES).filter((k) => TONES[k].kind === "n"), c: Object.keys(TONES).filter((k) => TONES[k].kind === "c") };
 /** Joue une sonnerie ; `times` répétitions (appels). */
 export function playTone(id: string, times = 1) {
-  const d = TONES[id]; if (!d) return;
+  const d = TONES[id]; if (!d || devHidden("mute", "tone-" + id)) return;
   try { const c = (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if (c.state === "suspended") void c.resume(); const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); for (let i = 0; i < times; i++) d.play(c, master, c.currentTime + 0.03 + i * (d.len + 0.5)); } catch { /* son indisponible */ }
 }
 /** Dans l'application Android : vibre vraiment au maximum (force 255) ; sinon, motif standard du navigateur. */
@@ -258,8 +257,8 @@ export function playFx(k: Fx, sound = true) {
     return;
   }
   if (k in BD_DUR) { bdayShow(k); return; }
-  if ((k === "noelauto" || k in NOEL_VIDEOS) && !reduced()) { noelVideoShow(k === "noelauto" ? pickNoelVideo() : k, sound); return; }
-  if (!reduced() && (k === "noel1" || k === "noel2" || k === "easter")) { holidayShow(k); return; }
+  if (k in NOEL_VIDEOS && !reduced()) { noelVideoShow(k, sound && !devHidden("mute", k)); return; }
+  if (!reduced() && (k === "noel1" || k === "easter")) { holidayShow(k); return; }
   if (!reduced() && (SCENES as string[]).includes(k)) { sceneShow(k as Scene); if (k !== "rocket") return; }
   if (k === "hearts" && !reduced()) heartsExtra();
   if ((k === "burp" || k === "kiss") && !reduced()) { charShow(k); return; }

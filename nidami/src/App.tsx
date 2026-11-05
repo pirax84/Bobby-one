@@ -22,7 +22,7 @@ import { Guide } from "./ui/Guide";
 import { kidOn, PinGate } from "./ui/Kid";
 
 type V = "voice" | "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
-export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"], ["notifs", t("Notifications"), "bell"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]];
+export const navItems = (all = false): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"], ["notifs", t("Notifications"), "bell"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]].filter(([k]) => all || !devHidden("nav", k));
 
 
 function SideBdays({ go }: { go: (k: V) => void }) {
@@ -55,12 +55,13 @@ function BdayDeco({ children }: { children: React.ReactNode }) {
 }
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
-import { useDev, feteFx, feteAuto } from "./lib/dev";
+import { useDev, feteFx, feteAuto, devHidden } from "./lib/dev";
+import type { Fete } from "./lib/fetes";
 import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
-function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bdText?: string }) {
-  const bday = !!bdText; const fete = useFete(); const fx = !bdText ? fete : null;
+export function BrandWm({ id, light, sound, big, onHome, bdText, force }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bdText?: string; force?: Fete | "none" }) {
+  const bday = !!bdText; const fete0 = useFete(); const fete = force ? (force === "none" ? null : force) : fete0; const fx = !bdText ? fete : null;
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
   const tapped = () => { try { const now = Date.now(); const last = +(localStorage.getItem("notiif-tap-t") || 0); const streak = now - last < 2500 ? +(localStorage.getItem("notiif-tap-s") || 0) + 1 : 1; localStorage.setItem("notiif-tap-t", String(now)); localStorage.setItem("notiif-tap-s", String(streak));
     const total = +(localStorage.getItem("notiif-tap-n") || 0) + 1; localStorage.setItem("notiif-tap-n", String(total));
@@ -168,7 +169,7 @@ export default function App() {
     {more && <Modal title={t("Plus")} onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([[t("Les plus utiles"), [["media", t("Photos"), "img"], ["groups", t("Groupes"), "group"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"]]], [t("Le reste"), [["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
         <div key={tx} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{tx}</b>
-          <div className="tiles two">{items.map(([k, l, i]) => <button key={k} data-k={k} className="tile" onClick={() => go(k)}><span className="tic"><Ico n={i} s={24} /></span><span>{l}</span>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 6, right: 6 }}>{badge(k)}</span>}</button>)}</div></div>)}</div></Modal>}
+          <div className="tiles two">{items.filter(([k]) => !devHidden("nav", k)).map(([k, l, i]) => <button key={k} data-k={k} className="tile" onClick={() => go(k)}><span className="tic"><Ico n={i} s={24} /></span><span>{l}</span>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 6, right: 6 }}>{badge(k)}</span>}</button>)}</div></div>)}</div></Modal>}
     {started && <Guide />}
     {treasure && <Modal title={t("🏆 Tu as trouvé le trésor !")} onClose={() => setTreasure(false)}><div className="col center" style={{ alignItems: "center", gap: 10 }}><div style={{ fontSize: 64 }}>💎</div><b>{t("Bravo, chercheur de trésor !")}</b><p className="muted">{t("Tu as touché le logo plein de fois. Voici 10 points bonus, rien que pour toi.")}</p><button className="btn" onClick={() => setTreasure(false)}>{t("Merci !")}</button></div></Modal>}
     {arrived && <ArrivedModal onClose={() => setArrived(false)} />}

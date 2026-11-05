@@ -1,11 +1,86 @@
-import { FX, FX_ALL, playFx, stopFx, type Fx } from "../lib/fx";
-import { useDev, setDevClient, setDevFete, setDevUnlocked, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION } from "../lib/dev";
+import { FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, soundStart, soundEnd, type Fx } from "../lib/fx";
+import { BrandWm, navItems } from "../App";
+import { ACCENTS } from "../lib/theme";
+import { useStore } from "../lib/store";
+import { useRef } from "react";
+import { useDev, setDevClient, setDevFete, setDevUnlocked, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION, devIsOff, devToggleHidden, customSounds, addCustomSound, removeCustomSound, sndMapOf, setSndMap, devResetAll } from "../lib/dev";
 import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
 import { t } from "../i18n";
 
 const FETES: [Fete, string][] = [["hal", "🎃 Halloween"], ["noel", "🎄 Noël"], ["val", "💕 Saint-Valentin"], ["pq", "🐣 Pâques"], ["ny", "🎆 Nouvel An"]];
 const play = (f: string) => playFx(feteFx(f) as Fx, true);
+
+
+const Sw = ({ on, set, label }: { on: boolean; set: (v: boolean) => void; label: string }) => <input type="checkbox" checked={on} style={{ width: 22, height: 22 }} onChange={(e) => set(e.target.checked)} aria-label={label} />;
+const playUrl = (u: string) => { try { const a = new Audio(u); void a.play().catch(() => toast(t("Ce son ne peut pas être joué."))); } catch { /* ignoré */ } };
+
+/** Sections de l'appli : cacher ou remettre. */
+function DevNav() {
+  useDev(); const list = navItems(true).filter(([k]) => k !== "home" && k !== "settings");
+  return <div className="card col" style={{ gap: 6 }}><h3>{t("🧩 Sections de l'application")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("Décochez une section pour la faire disparaître tout de suite (menu, barre du bas, « Plus »). Recochez-la pour la remettre. Seul votre appareil change.")}</p>
+    {list.map(([k, l]) => <label key={k} className="row" style={{ gap: 8, padding: "4px 0" }}><span className="grow">{l}</span><Sw on={!devIsOff("nav", k)} set={() => devToggleHidden("nav", k)} label={l} /></label>)}</div>;
+}
+
+/** Galerie : tous les logos et images de l'appli, tels qu'ils s'affichent. */
+function DevLogos() {
+  const acc = useStore((x) => x.settings[x.me]?.accent) || ACCENTS[0].id; const light = document.documentElement.dataset.theme === "light";
+  const L: [Fete | "none", string][] = [["none", "Logo normal"], ["hal", "🎃 Halloween"], ["noel", "🎄 Noël"], ["val", "💕 Saint-Valentin"], ["pq", "🐣 Pâques"], ["ny", "🎆 Nouvel An"]];
+  return <div className="card col" style={{ gap: 10 }}><h3>{t("🖼 Logos et images")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("Touchez un logo pour voir son effet. Le bouton « En haut » le met sur l'appli tout de suite.")}</p>
+    {L.map(([f, l]) => <div key={f} className="col" style={{ gap: 6, alignItems: "center", padding: "6px 0", borderTop: "1px solid var(--line, #ddd)" }}><b>{t(l)}</b><BrandWm id={acc} light={light} sound big force={f} />
+      <button type="button" className="chip" onClick={() => { setDevNoFete(f === "none"); setDevDate(""); setDevFete(f === "none" ? "" : f); }}>{t("⬆ En haut")}</button></div>)}
+    <div className="col" style={{ gap: 6, alignItems: "center", padding: "6px 0", borderTop: "1px solid var(--line, #ddd)" }}><b>{t("🎂 Anniversaire")}</b><BrandWm id={acc} light={light} sound big bdText={t("Joyeux anniversaire")} /></div>
+    <b>{t("Couleurs du logo")}</b>
+    <div className="col" style={{ gap: 8, alignItems: "center" }}>{ACCENTS.map((a) => <BrandWm key={a.id} id={a.id} light={light} sound={false} force="none" />)}</div>
+    <b>{t("Icônes de l'application")}</b>
+    <div className="row wrap" style={{ gap: 10 }}>{["icon-192.png", "icon-512.png", "icon-maskable.png", "logo-192.png", "badge-96.png", "favicon-48.png"].map((n) => <img key={n} src={"./" + n} alt={n} width={72} height={72} style={{ borderRadius: 14, background: "#8884" }} />)}</div></div>;
+}
+
+/** Effets : montrer / cacher, couper le son, remplacer le son. */
+function DevEffects() {
+  useDev(); const cs = customSounds();
+  return <div className="card col" style={{ gap: 6 }}><h3>{t("✨ Effets (voir, cacher, son)")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("▶ pour tester. « Visible » : l'effet apparaît dans les listes d'effets. « Son » : coupé ou joué. Vous pouvez aussi remplacer son son par un des vôtres.")}</p>
+    {FX_ALL.map((k) => <div key={k} className="col" style={{ gap: 4, padding: "6px 0", borderTop: "1px solid var(--line, #ddd)" }}>
+      <div className="row" style={{ gap: 8 }}><span className="grow">{FX[k].label}</span><button type="button" className="chip" onClick={() => playFx(k, true)} aria-label={t("▶ Tester")}>▶</button></div>
+      <div className="row wrap" style={{ gap: 12 }}><label className="row" style={{ gap: 6 }}><span className="small">{t("Visible")}</span><Sw on={!devIsOff("fx", k)} set={() => devToggleHidden("fx", k)} label={t("Visible")} /></label>
+        <label className="row" style={{ gap: 6 }}><span className="small">{t("Son")}</span><Sw on={!devIsOff("mute", k)} set={() => devToggleHidden("mute", k)} label={t("Son")} /></label>
+        {cs.length > 0 && <select className="inp" style={{ maxWidth: 180 }} value={sndMapOf(k)} onChange={(e) => setSndMap(k, e.target.value)} aria-label={t("Son de remplacement")}><option value="">{t("Son d'origine")}</option>{cs.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select>}</div></div>)}</div>;
+}
+
+/** Sons : ceux de l'appli, et les vôtres (ajouter, écouter, supprimer). */
+function DevSounds() {
+  useDev(); const pick = useRef<HTMLInputElement>(null); const cs = customSounds();
+  const files = Array.from(new Set([...FX_ALL.map((k) => FX[k].file).filter(Boolean) as string[], ...SHAKE_SNDS.map((x) => x[2])]));
+  const add = (fl?: File) => { if (!fl) return; if (fl.size > 1_500_000) { toast(t("Fichier trop gros (1,5 Mo maximum).")); return; } const r = new FileReader(); r.onload = () => { const ok = addCustomSound(fl.name.replace(/\.[^.]+$/, ""), String(r.result)); toast(ok ? t("Son ajouté.") : t("Plus de place pour ce son.")); }; r.readAsDataURL(fl); };
+  return <div className="card col" style={{ gap: 8 }}><h3>{t("🔊 Mes sons")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("Ajoutez vos propres sons (1,5 Mo maximum chacun), écoutez-les, supprimez-les. Ensuite, choisissez-les dans « Effets ».")}</p>
+    <input ref={pick} type="file" accept="audio/*" hidden onChange={(e) => { add(e.target.files?.[0]); e.target.value = ""; }} />
+    <button className="btn" onClick={() => pick.current?.click()}>{t("➕ Ajouter un son")}</button>
+    {cs.map((c) => <div key={c.id} className="row" style={{ gap: 8 }}><span className="grow ell">{c.name}</span><button type="button" className="chip" onClick={() => playUrl(c.data)} aria-label={t("▶ Tester")}>▶</button><button type="button" className="chip" onClick={() => removeCustomSound(c.id)} aria-label={t("Supprimer {name}", { name: c.name })}>🗑</button></div>)}
+    <b className="small">{t("Sons de l'application")}</b>
+    {files.map((u) => <div key={u} className="row" style={{ gap: 8 }}><span className="grow ell small">{u.replace("./sounds/", "")}</span><button type="button" className="chip" onClick={() => playUrl(u)} aria-label={t("▶ Tester")}>▶</button></div>)}</div>;
+}
+
+/** Notifications et sonneries. */
+function DevNotifs() {
+  useDev();
+  const T = (id: string, l: string, fn: () => void) => <div key={id} className="row" style={{ gap: 8 }}><span className="grow">{l}</span><button type="button" className="chip" onClick={fn} aria-label={t("▶ Tester")}>▶</button></div>;
+  return <div className="card col" style={{ gap: 6 }}><h3>{t("🔔 Notifications et sonneries")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("Écoutez chaque son de notification. « Son » coupé = il ne sonne plus sur cet appareil.")}</p>
+    {T("n1", t("Message envoyé (début)"), () => soundStart())}{T("n2", t("Message parti (fin)"), () => soundEnd())}
+    {T("n3", t("Message vocal"), () => notifSound.vocal())}{T("n4", t("Story"), () => notifSound.story())}{T("n5", t("Réaction"), () => notifSound.reaction())}{T("n6", t("Appel"), () => notifSound.appel())}
+    <b className="small">{t("Sonnerie des notifications")}</b>
+    {TONE_IDS.n.map((id) => <div key={id} className="row" style={{ gap: 8 }}><span className="grow">{TONES[id].label}</span><button type="button" className="chip" onClick={() => playTone(id)} aria-label={t("▶ Tester")}>▶</button><label className="row" style={{ gap: 4 }}><span className="small">{t("Son")}</span><Sw on={!devIsOff("mute", "tone-" + id)} set={() => devToggleHidden("mute", "tone-" + id)} label={t("Son")} /></label></div>)}
+    <b className="small">{t("Sonnerie des appels")}</b>
+    {TONE_IDS.c.map((id) => <div key={id} className="row" style={{ gap: 8 }}><span className="grow">{TONES[id].label}</span><button type="button" className="chip" onClick={() => playTone(id)} aria-label={t("▶ Tester")}>▶</button><label className="row" style={{ gap: 4 }}><span className="small">{t("Son")}</span><Sw on={!devIsOff("mute", "tone-" + id)} set={() => devToggleHidden("mute", "tone-" + id)} label={t("Son")} /></label></div>)}
+    <b className="small">{t("Vibrations")}</b>
+    <div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} type="button" className="chip" onClick={() => vibrate(v.id)}>{v.label}</button>)}</div>
+    <b className="small">{t("Messages à l'écran")}</b>
+    <button className="btn ghost" onClick={() => toast(t("🔔 Ceci est une notification de test."))}>{t("Afficher une notification de test")}</button></div>;
+}
 
 /** Aperçu client à côté (PC) : l'appli telle que la voit un client, à la date simulée. */
 export function ClientPreview() {
@@ -43,6 +118,7 @@ export function DevPanel() {
         <div className="row" style={{ gap: 8 }}><button type="button" className="chip" onClick={() => play(k)}>{t("▶ Tester")}</button><label className="row grow" style={{ gap: 8, justifyContent: "flex-end" }}><span className="small">{t("À l'ouverture")}</span><input type="checkbox" checked={feteAuto(k)} style={{ width: 22, height: 22 }} onChange={(e) => setFeteAuto(k, e.target.checked)} aria-label={t("À l'ouverture")} /></label></div></div>)}
       <button className="btn ghost" onClick={async () => { try { await navigator.clipboard.writeText(devChoices()); toast(t("Choix copiés : collez-les dans la conversation pour les rendre définitifs.")); } catch { toast(t("Copie impossible.")); } }}>{t("📋 Copier mes choix (pour les rendre définitifs)")}</button>
       <p className="muted small" style={{ margin: 0 }}>{t("Vos choix ne changent que votre appareil. Envoyez-les-moi pour qu'ils deviennent ceux de tous les clients.")}</p></div>
+    <DevNav /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
     <div className="card col" style={{ gap: 8 }}><h3>{t("✨ Tester les effets")}</h3>
       <p className="muted small" style={{ margin: 0 }}>{t("Touchez un effet pour le voir et l'entendre. Un nouvel effet arrête le précédent.")}</p>
       <div className="row wrap" style={{ gap: 6 }}>{FX_ALL.map((k) => <button key={k} type="button" className="chip" onClick={() => playFx(k, true)}>{FX[k].label}</button>)}</div>
@@ -56,6 +132,7 @@ export function DevPanel() {
       {info.map(([a, b]) => <div key={a} className="row"><span className="grow muted">{a}</span><b>{b}</b></div>)}</div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🔄 Remettre à zéro")}</h3>
       <button className="btn ghost" onClick={() => { setDevFete(""); setDevBday(false); setDevDate(""); setDevNoFete(false); toast(t("Date réelle rétablie.")); }}>{t("Revenir à la vraie date")}</button>
+      <button className="btn ghost" onClick={() => { devResetAll(); toast(t("Tout est remis comme au départ (sections, effets, sons).")); }}>{t("Tout remettre comme au départ")}</button>
       <button className="btn ghost" onClick={() => { setDevFete(""); setDevPreview(false); setDevUnlocked(false); toast(t("Mode développeur désactivé.")); history.back(); }}>{t("Désactiver le mode développeur")}</button></div>
   </>;
 }
