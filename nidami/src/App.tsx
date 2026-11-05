@@ -22,7 +22,7 @@ import { Guide } from "./ui/Guide";
 import { kidOn, PinGate } from "./ui/Kid";
 
 type V = "voice" | "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
-export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["calls", t("Appels"), "phone"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"], ["voice", t("Vocal"), "voice"]];
+export const navItems = (): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"], ["notifs", t("Notifications"), "bell"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]];
 
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
@@ -102,6 +102,7 @@ export default function App() {
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button data-k={k} className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className="shell">
     <aside className="side"><div className="brand" style={{ justifyContent: "center" }}><Logo s={60} /></div>
+      <button type="button" className="sideme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={40} /><span className="grow ell"><b>{user.name}</b></span></button>
       <button className="btn" style={{ margin: "2px 0 8px" }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button>
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
 </aside>

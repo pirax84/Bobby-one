@@ -802,3 +802,7 @@ html,body{overflow-x:hidden;max-width:100%}
 
 /* v130 vocal sur PC : barre plus étroite et centrée */
 @media (hover: hover) and (pointer: fine) and (min-width: 900px){.recbar.locked{left:50%;right:auto;width:min(720px,92vw);transform:translateX(-50%)}}
+
+/* v131 profil dans la colonne de gauche (PC) */
+.sideme{display:flex;align-items:center;gap:10px;margin:0 0 6px;padding:6px 8px;border-radius:16px;background:none;border:1.5px solid var(--line,rgba(120,100,200,.3));color:inherit;text-align:left;cursor:pointer}
+.sideme:hover{background:rgba(123,92,230,.1)}

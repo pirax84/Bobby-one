@@ -1182,3 +1182,10 @@
 1181|Too short: speak a little longer.
 1182|⏹ Stop and listen
 1183|Listen to the voice message
+1184|The microphone is blocked
+1185|Don't worry, it takes 3 steps to fix:
+1186|On a computer: click the small padlock (or settings icon) left of the address at the top.
+1187|Set “Microphone” to “Allow”.
+1188|On the Android app: Phone settings > Apps > NOTIIF > Permissions > Microphone.
+1189|Reload the page
+1190|Click the microphone to talk, then Send.
