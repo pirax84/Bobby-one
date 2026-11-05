@@ -39,6 +39,7 @@ export function Messages() {
   const convs = s.convs.filter((c) => c.memberIds.includes(me)).map((c) => ({ ...c, n0: c.msgs.length, msgs: c.msgs.filter((m) => !m.hid?.includes(me)) })).filter((c) => c.n0 === 0 || c.msgs.length > 0).sort((a, b) => (b.msgs.at(-1)?.at || 0) - (a.msgs.at(-1)?.at || 0));
   const c = convs.find((x) => x.id === sel); const img = useRef<HTMLInputElement>(null); const [wm, setWm] = useState(true); const [emo, setEmo] = useState(false); const end = useRef<HTMLDivElement>(null);
   useEffect(() => { if (c) actions.markRead(c.id); }, [sel, c?.msgs.length]);
+  useEffect(() => { if (!c) return; try { const k = "notiif-draft-" + c.id; const d = sessionStorage.getItem(k); if (d) { sessionStorage.removeItem(k); setTxt(d); } } catch { /* ignoré */ } }, [c?.id]);
   useEffect(() => { end.current?.scrollIntoView({ block: "end" }); }, [c?.msgs.length, sel]);
   const title = (x: Conv) => x.title || x.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
   const unread = (x: Conv) => x.msgs.filter((m) => m.from !== me && m.reads[me] === undefined).length;

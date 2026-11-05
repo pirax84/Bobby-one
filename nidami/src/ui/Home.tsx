@@ -217,16 +217,11 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
 function audLabel(p: Post, s: State["social"]) { const m = p.audience.mode; return m === "all" ? t("Tous les amis") : m === "me" ? t("Moi seul") : m === "group" ? s.groups.find((g) => g.id === (p.audience as any).groupId)?.name || t("Groupe") : m === "only" ? t("Amis choisis") : m === "except" ? t("Amis sauf…") : t("Liste"); }
 
 function BirthdayBanner({ go }: { go?: (v: string, conv?: string) => void }) {
-  const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []); const [open, setOpen] = useState(false);
+  const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []);
   const l = Object.values(users).filter((u) => u.id !== me && fr.includes(u.id) && isBirthday(u.birthday, 0));
   if (!l.length) return null;
-  const many = l.length > 1; const first = l[0];
-  return <div className="bdaywrap"><div className="bdaybub" role={many ? "button" : undefined} tabIndex={many ? 0 : undefined} onClick={() => many && setOpen(!open)} aria-expanded={many ? open : undefined}>
-    <span className="bdayavs">{l.slice(0, 3).map((u) => <Avatar key={u.id} u={u} s={34} />)}</span>
-    <span className="bdaytxt">{many ? t("C'est l'anniversaire de {name} et {n} autre(s)", { name: first.name, n: l.length - 1 }) : t("C'est l'anniversaire de {name}", { name: first.name })}</span>
-    {many && <span className="bdaydots" aria-hidden="true">•••</span>}</div>
-    {many && open && <div className="bdaylist card">{l.map((u) => <div key={u.id} className="row" style={{ gap: 10, alignItems: "center" }}><Avatar u={u} s={36} /><b className="grow ell">{u.name}</b>{go && <button type="button" className="btn sm" onClick={() => { const cid = actions.startDm(u.id); go("messages", cid); }}>{t("Écrire")}</button>}</div>)}</div>}
-    {!many && go && <button type="button" className="bdaywrite" onClick={() => { const cid = actions.startDm(first.id); go("messages", cid); }}>{t("Écrire à {name}", { name: first.name })}</button>}</div>;
+  const write = (u: { id: string; name: string }) => { if (!go) return; const nm = u.name.trim().split(/\s+/)[0]; const cid = actions.startDm(u.id); try { sessionStorage.setItem("notiif-draft-" + cid, t("Joyeux anniversaire {name} ! 🎂🎉 Je te souhaite une magnifique journée, pleine de belles choses. Bises !", { name: nm })); } catch { /* ignoré */ } go("messages", cid); };
+  return <div className="bdchips">{l.map((u) => <button key={u.id} type="button" className="bdchip" onClick={() => write(u)} aria-label={t("Souhaiter son anniversaire à {name}", { name: u.name })}><Avatar u={u} s={26} /><span>{t("Anniversaire de {name}", { name: u.name.trim().split(/\s+/)[0] })}</span></button>)}</div>;
 }
 export function Home({ groupId, go }: { groupId?: string; go?: (v: string, conv?: string) => void }) {
   const me = useStore((s) => s.me); const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const now = useNow(2000); const [compose, setCompose] = useState(false); const [filter, setFilter] = useState("all");

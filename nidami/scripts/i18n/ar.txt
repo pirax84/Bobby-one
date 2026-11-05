@@ -1205,3 +1205,6 @@
 1204|Date of birth
 1205|🎂 My date of birth (required)
 1206|Required: NOTIIF is for ages 15 and over. On that day, your friends' NOTIIF logo is decorated in your name, with your age.
+1207|Happy birthday {name}! 🎂🎉 Wishing you a wonderful day full of good things.
+1208|{name}'s birthday
+1209|Wish {name} a happy birthday

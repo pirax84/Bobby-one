@@ -835,3 +835,8 @@ html[data-theme=dark] .bdball{stroke-width:2}
 .wmbd{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 .bdlogo.friend{display:none}
 .bdlogo.bdself{margin-top:30px}
+
+/* v137 anniversaires des amis : petits boutons */
+.bdchips{display:flex;flex-wrap:wrap;gap:8px}
+.bdchip{display:inline-flex;align-items:center;gap:7px;padding:4px 14px 4px 5px;border-radius:999px;border:0;cursor:pointer;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:700;font-size:.88rem}
+.bdchip:hover{filter:brightness(1.08)}
