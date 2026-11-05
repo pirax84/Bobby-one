@@ -13,7 +13,7 @@ import { Camera } from "./Recorder";
 import { AvatarCrop } from "./Photo";
 import { t, T, locale } from "../i18n";
 import { DevPanel } from "./Dev";
-import { useDev, setDevUnlocked, setDevClient } from "../lib/dev";
+import { useDev, setDevUnlocked, setDevClient, APP_VERSION } from "../lib/dev";
 import { KidCard } from "./Kid";
 import { IntroChoice } from "./IntroChoice";
 import { LangPicker } from "./LangPicker";
@@ -234,7 +234,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti" data-s={k}><Ico n={({ look: "palette", notifs: "bell", priv: "lock", profile: "user", lang: "globe", install: "download", legal: "info", howto: "chat", acct: "flask" } as Record<string, string>)[k] || "cog"} s={24} /></span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }} onClick={verTap}>NOTIIF · v151</p>
+    <p className="muted small center" style={{ margin: "8px 0" }} onClick={verTap}>NOTIIF · {APP_VERSION}</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col setsub" ref={pageRef}><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "dev" && dev.active && <DevPanel />}

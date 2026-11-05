@@ -1289,3 +1289,18 @@
 1288|Developer mode restored.
 1289|Developer mode
 1290|For the creator: holidays, effects, customer view
+1291|🎂 It's my birthday
+1292|The logo gets its birthday decoration.
+1293|📆 Pick a date
+1294|The app behaves as on that day (holiday of the day). E.g. 25 December, 31 October, 14 February.
+1295|On next start, the intro and the guide will come back.
+1296|Replay the intro and the guide
+1297|Info copied: paste it into the conversation.
+1298|Copy failed.
+1299|📋 Copy info for support
+1300|🎄 Christmas · Santa in the sky
+1301|music 1 · 14 s
+1302|🎄 Christmas · Santa in the living room
+1303|music box · 30 s
+1304|🎄 Merry Christmas!
+1305|🐣 Happy Easter!

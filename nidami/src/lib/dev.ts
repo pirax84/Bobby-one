@@ -8,6 +8,11 @@ export const devClient = () => get("notiif-dev-client") === "1";
 /** Mode développeur actif = débloqué et pas en train de « voir comme un client ». */
 export const devActive = () => devUnlocked() && !devClient();
 export const devFete = (): Fete | null => (devActive() ? ((get("notiif-dev-fete") as Fete) || null) : null);
+export const APP_VERSION = "v152";
+export const devBday = () => devActive() && get("notiif-dev-bday") === "1";
+export const devDate = (): Date | null => { if (!devActive()) return null; const v = get("notiif-dev-date"); if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return null; const [y, m, j] = v.split("-").map(Number); return new Date(y, m - 1, j, 12); };
+export const setDevBday = (v: boolean) => set("notiif-dev-bday", v ? "1" : "");
+export const setDevDate = (v: string) => set("notiif-dev-date", v);
 export const setDevUnlocked = (v: boolean) => set("notiif-dev", v ? "1" : "");
 export const setDevClient = (v: boolean) => set("notiif-dev-client", v ? "1" : "");
 export const setDevFete = (f: Fete | "") => set("notiif-dev-fete", f);
@@ -15,5 +20,5 @@ export const setDevFete = (f: Fete | "") => set("notiif-dev-fete", f);
 export function useDev() {
   const [, bump] = useState(0);
   useEffect(() => { const h = () => bump((n) => n + 1); window.addEventListener("notiif-dev", h); return () => window.removeEventListener("notiif-dev", h); }, []);
-  return { unlocked: devUnlocked(), client: devClient(), active: devActive(), fete: devFete() };
+  return { unlocked: devUnlocked(), client: devClient(), active: devActive(), fete: devFete(), bday: devBday(), date: get("notiif-dev-date") };
 }

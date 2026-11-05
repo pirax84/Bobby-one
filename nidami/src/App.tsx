@@ -41,8 +41,8 @@ function useBdays() {
 }
 const BDAY_DECO = true;
 function useBdText() {
-  const l = useBdays(); const me = useStore((x) => x.me); useLang();
-  const mine = l.find((x) => x.id === me); if (!BDAY_DECO || !mine) return { mine: undefined, text: undefined };
+  const l = useBdays(); const me = useStore((x) => x.me); const meU = useStore((x) => x.users[x.me]); useLang(); const dv = useDev();
+  const mine = (dv.bday ? meU : undefined) || l.find((x) => x.id === me); if (!BDAY_DECO || !mine) return { mine: undefined, text: undefined };
   const raw = t("Joyeux anniversaire"); const text = locale().startsWith("fr") ? raw : raw.replace(/\b\w/g, (c) => c.toUpperCase());
   return { mine, text };
 }
@@ -55,10 +55,11 @@ function BdayDeco({ children }: { children: React.ReactNode }) {
 }
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
+import { useDev } from "./lib/dev";
 import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
-const FETE_FX: Record<string, Fx> = { hal: "ghost", noel: "snow", val: "hearts", pq: "party", ny: "fireworks" };
+const FETE_FX: Record<string, Fx> = { hal: "ghost", noel: "noel1", val: "hearts", pq: "easter", ny: "fireworks" };
 function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bdText?: string }) {
   const bday = !!bdText; const fete = useFete(); const fx = !bdText ? fete : null;
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
