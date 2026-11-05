@@ -923,3 +923,27 @@ html[data-theme=dark] .bdball{stroke-width:2}
 .fxcw{display:flex;flex-direction:column;gap:4px}
 .fxcw .fxcell{flex:1}
 .fxtest{border:1px solid rgba(var(--brand-rgb),.35);background:transparent;color:var(--fg);border-radius:12px;padding:5px 4px;font-size:.78rem;font-weight:700;cursor:pointer}
+
+.fxbox.wx{background:none;transition:opacity .7s}.fxbox.wx.out{opacity:0}
+.wx .wxsky{position:absolute;inset:0;background:linear-gradient(#0d1a2dcc,#1c2b4455 60%,#1c2b4400);animation:wxin .8s ease-out both}.storm .wxsky{background:linear-gradient(#050a14ee,#0f1a2ecc 55%,#0f1a2e66)}
+@keyframes wxin{from{opacity:0}to{opacity:1}}
+.wx i{position:absolute;top:-140px;width:var(--w,1.5px);background:linear-gradient(to bottom,rgba(200,225,255,0),rgba(210,230,255,.95));border-radius:2px;transform:rotate(12deg);animation:wxdrop .6s linear infinite}
+@keyframes wxdrop{to{transform:translate(-20vh,calc(100vh + 160px)) rotate(12deg)}}
+.wx b{position:absolute;width:16px;height:5px;border-radius:50%;border:1.5px solid rgba(210,230,255,.7);border-bottom:none;opacity:0;animation:wxspl .7s ease-out infinite}
+@keyframes wxspl{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.8) translateY(-6px);opacity:0}}
+.wxflash{position:absolute;inset:0;background:#eaf0ff;animation:wxfl .7s ease-out forwards}
+@keyframes wxfl{0%{opacity:0}8%{opacity:.85}18%{opacity:.15}30%{opacity:.6}100%{opacity:0}}
+.wxbolt{position:absolute;top:0;width:34vw;max-width:260px;height:88vh;margin-left:-10vw;filter:drop-shadow(0 0 10px #9fb4ff);animation:wxbo .65s ease-out forwards}.wxbolt svg{width:100%;height:100%}
+@keyframes wxbo{0%{opacity:0}6%{opacity:1}22%{opacity:.3}34%{opacity:1}100%{opacity:0}}
+
+.chr .chface{position:absolute;left:50%;top:50%;font-size:150px;line-height:1;transform:translate(-50%,-50%);animation:chin .4s ease-out both}
+@keyframes chin{from{transform:translate(-50%,-30%) scale(.2);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.chface.burp{animation:chin .4s ease-out both,chburp 1.2s ease-in-out .5s 3}
+@keyframes chburp{0%,100%{transform:translate(-50%,-50%) scale(1)}35%{transform:translate(-50%,-50%) scale(1.25,.85)}60%{transform:translate(-50%,-50%) scale(.9,1.15)}}
+.chr .gsmoke{position:absolute;left:calc(50% - 30px);top:calc(50% + 28px);border-radius:50%;background:radial-gradient(circle,rgba(150,210,40,.85),rgba(90,170,30,.5) 45%,rgba(60,140,20,0) 72%);filter:blur(6px);opacity:0;animation:gsm 2.2s ease-out both;margin:0}
+@keyframes gsm{0%{opacity:0;transform:translate(0,0) scale(.2)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(2.2)}}
+.chface.kiss{animation:chin .4s ease-out both,chkiss 1s ease-in-out .4s 2}
+@keyframes chkiss{0%,100%{transform:translate(-50%,-50%) scale(1) rotate(0)}40%{transform:translate(-50%,-50%) scale(1.2) rotate(-8deg)}}
+.chr .bigkiss{position:absolute;left:50%;top:50%;font-size:70px;opacity:0;animation:bkiss 1.3s ease-out .5s both}
+@keyframes bkiss{0%{opacity:0;transform:translate(60px,-20px) scale(.3)}30%{opacity:1}100%{opacity:0;transform:translate(200px,-120px) scale(1.6) rotate(20deg)}}
+.chr .kfall{position:absolute;top:-40px;animation:fxfall linear both}

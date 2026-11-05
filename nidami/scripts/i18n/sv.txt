@@ -1253,3 +1253,6 @@
 1252|🎉 Happy birthday!
 1253|▶ Try it
 1254|Tick the 4 effects to keep up front ({length}/4). “Try it” plays it on your device only; “Send” sends it to your friend.
+1255|🤪 Everything at once
+1256|drives them crazy!
+1257|🤪 Happy birthday, all out!

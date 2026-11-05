@@ -1,7 +1,11 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "burp" | "fart" | "vomit";
-import { bdayShow, BD_DUR } from "./bdfx";
+export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit";
+import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
+const playing: HTMLAudioElement[] = [];
+const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("ended", () => { const i = playing.indexOf(a); if (i >= 0) playing.splice(i, 1); }); return a; };
+/** Arrête l'effet en cours (son et décor) : un seul effet à la fois, sauf « Tout en même temps ». */
+export function stopFx() { playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
 type Def = { label: string; sub?: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { get label() { return t("📳 Secousse"); }, get text() { return t("📳 Secousse !"); }, em: [], file: "./sounds/secousse.mp3" },
@@ -27,12 +31,13 @@ export const FX: Record<Fx, Def> = {
   bd4: { get label() { return t("🕯️ Souffler les bougies"); }, get text() { return t("🕯️ Joyeux anniversaire !"); }, em: ["🎂"], file: "./sounds/anniv/bd4.mp3", get sub() { return t("boîte à musique · 22 s"); } },
   bd5: { get label() { return t("🧁 Gâteaux et étoiles"); }, get text() { return t("🧁 Joyeux anniversaire !"); }, em: ["🧁"], file: "./sounds/anniv/bd5.mp3", get sub() { return t("piano · 26 s"); } },
   bd6: { get label() { return t("🎉 Méga fête"); }, get text() { return t("🎉 Joyeux anniversaire !"); }, em: ["🎉"], file: "./sounds/anniv/bd6.mp3", get sub() { return t("1 min 05"); } },
+  bdall: { get label() { return t("🤪 Tout en même temps"); }, get sub() { return t("rend fou !"); }, get text() { return t("🤪 Joyeux anniversaire à fond !"); }, em: ["🎂"] },
   burp: { get label() { return t("🤭 Rot"); }, get text() { return t("🤭 Burp !"); }, em: ["🤭", "🥴", "💨", "🍺"], file: "./sounds/rot.mp3" },
   fart: { get label() { return t("💨 Pet"); }, get text() { return t("💨 Prout !"); }, em: [] },
   vomit: { get label() { return t("🤮 Vomi"); }, get text() { return t("🤮 Beurk !"); }, em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
 };
 /** Les effets anniversaire ont leur propre catégorie ; « Tous les effets » ne les contient pas. */
-export const BDAY_KEYS: Fx[] = ["birthday", "bd1", "bd2", "bd3", "bd4", "bd5", "bd6"];
+export const BDAY_KEYS: Fx[] = ["birthday", "bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"];
 export const FX_ALL = Object.keys(FX) as Fx[];
 export const FX_KEYS = FX_ALL.filter((k) => !BDAY_KEYS.includes(k));
 // ───────── Sons : synthèse « instrumentale » (cloches, harpe, voix, souffles…) — aucun fichier, aucun son d'une marque
@@ -126,12 +131,13 @@ const SFX: Record<string, (c: AC, o: Out, tx: number) => void> = {
 const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1], [71, 2], [67, .75], [67, .25], [69, 1], [67, 1], [74, 1], [72, 2], [67, .75], [67, .25], [79, 1], [76, 1], [72, 1], [71, 1], [69, 2], [77, .75], [77, .25], [76, 1], [72, 1], [74, 1], [72, 2]];
 SFX.birthday = (c, o, tx) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], i) => { piano(c, o, n, tx + x * B, d * B * 2.2, 0.16); if (i % 3 === 0) note(c, o, hz(n - 24), tx + x * B, 0.9, { vol: 0.07, type: "triangle", partials: [1, 2] }); x += d; });
   [72, 76, 79, 84].forEach((n, i) => bell(c, o, n, tx + x * B + i * 0.07, 1.4, 0.09)); air(c, o, tx + x * B, 0.12, { type: "highpass", f0: 2500, vol: 0.3 }); };
-for (const k of ["bd1", "bd2", "bd3", "bd4", "bd5", "bd6"]) SFX[k] = () => { /* ces effets jouent un fichier */ };
+for (const k of ["bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"]) SFX[k] = () => { /* ces effets jouent un fichier */ };
 let ctx: AudioContext | null = null;
 /** Joue le bruitage de l'effet (volume modéré). */
 export const SHAKE_SNDS: [string, string, string][] = [["zl", "Zigzag long", "./sounds/secousse/zigzag-long.mp3"], ["z1", "Zigzag doux", "./sounds/secousse/Z1-zigzag-doux.mp3"], ["z2", "Zigzag rapide", "./sounds/secousse/Z2-zigzag-rapide.mp3"], ["z3", "Zigzag grave", "./sounds/secousse/Z3-zigzag-grave.mp3"], ["z4", "Zigzag large", "./sounds/secousse/Z4-zigzag-large.mp3"], ["z5", "Zigzag rebond", "./sounds/secousse/Z5-zigzag-rebond.mp3"], ["y1", "Zigzag triangle", "./sounds/secousse/Y01-zigzag-triangle.mp3"], ["y2", "Zigzag cloche", "./sounds/secousse/Y02-zigzag-cloche.mp3"], ["y3", "Zigzag descendant", "./sounds/secousse/Y03-zigzag-descendant.mp3"], ["y4", "Zigzag montant", "./sounds/secousse/Y04-zigzag-montant.mp3"], ["y5", "Zigzag double", "./sounds/secousse/Y05-zigzag-double.mp3"], ["y6", "Zigzag aigu", "./sounds/secousse/Y06-zigzag-aigu.mp3"], ["y7", "Zigzag lent", "./sounds/secousse/Y07-zigzag-lent.mp3"], ["y8", "Zigzag ressort", "./sounds/secousse/Y08-zigzag-ressort.mp3"], ["y9", "Zigzag bulle", "./sounds/secousse/Y09-zigzag-bulle-long.mp3"], ["y10", "Zigzag écho", "./sounds/secousse/Y10-zigzag-echo.mp3"]];
 export function sfx(k: Fx, target?: BaseAudioContext, noFile = false) {
-  const file = k === "shake" ? (SHAKE_SNDS.find((x) => x[0] === cfgNow().shakesnd)?.[2] || FX[k]?.file) : FX[k]?.file; if (file && !target && !noFile) { try { const a = new Audio(file); a.volume = 1; a.play().catch(() => sfx(k, undefined, true)); if (k === "shake") a.addEventListener("ended", () => { try { const b = new Audio(file); b.volume = 1; void b.play(); } catch { /* ignoré */ } }, { once: true }); return; } catch { /* repli sur le son synthétisé */ } }
+  if (k === "bdall" && !target) { (["bd1", "bd2", "bd3", "bd4", "bd5", "bd6"] as Fx[]).forEach((x) => sfx(x)); return; }
+  const file = k === "shake" ? (SHAKE_SNDS.find((x) => x[0] === cfgNow().shakesnd)?.[2] || FX[k]?.file) : FX[k]?.file; if (file && !target && !noFile) { try { const a = track(new Audio(file)); a.volume = 1; a.play().catch(() => sfx(k, undefined, true)); if (k === "shake") a.addEventListener("ended", () => { try { const b = track(new Audio(file)); b.volume = 1; void b.play(); } catch { /* ignoré */ } }, { once: true }); return; } catch { /* repli sur le son synthétisé */ } }
   try {
     const c = target || (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if ((c as AudioContext).state === "suspended") void (c as AudioContext).resume();
     const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); SFX[k](c, master, c.currentTime + 0.02);
@@ -164,8 +170,47 @@ export const VIB_LEVELS: { id: string; label: string; pat: number[] }[] = [
 ];
 export const vibrate = (level?: string, repeat = 1) => { try { const l = VIB_LEVELS.find((x) => x.id === level) || VIB_LEVELS[2]; if (!l.pat.length) return; const pat: number[] = []; for (let i = 0; i < repeat; i++) pat.push(...l.pat, ...(i < repeat - 1 ? [600] : [])); buzz(pat, l.id === "1" ? 90 : l.id === "2" ? 170 : 255); } catch { /* ignoré */ } };
 const reduced = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/** Vraie pluie (traînées obliques, éclaboussures) et orage (ciel sombre, éclairs ramifiés, flashs). */
+function bolt(): string {
+  const W = 300, H = 600; let x = 150 + (Math.random() - 0.5) * 80, y = 0; const pts = [[x, y]]; const br: string[] = [];
+  while (y < H) { y += 30 + Math.random() * 40; x += (Math.random() - 0.5) * 70; pts.push([x, y]); if (Math.random() < 0.3 && y < H - 100) { let bx = x, by = y; const b = [[bx, by]]; for (let j = 0; j < 3; j++) { by += 25 + Math.random() * 30; bx += (Math.random() < 0.5 ? -1 : 1) * (15 + Math.random() * 30); b.push([bx, by]); } br.push(b.map((p) => p.join(",")).join(" ")); } }
+  const main = pts.map((p) => p.join(",")).join(" ");
+  const L = (p: string, w: number, c: string, o: number) => `<polyline points="${p}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round" opacity="${o}"/>`;
+  const all = [main, ...br];
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${all.map((p) => L(p, 14, "#9fb4ff", 0.35)).join("")}${all.map((p) => L(p, 5, "#dfe7ff", 0.8)).join("")}${all.map((p, i) => L(p, i ? 1.6 : 2.6, "#fff", 1)).join("")}</svg>`;
+}
+
+/** Un personnage (smiley) qui rote avec une fumée verte, ou qui envoie un bisou suivi d'une pluie de petits bisous. */
+function charShow(k: "burp" | "kiss") {
+  const box = document.createElement("div"); box.className = "fxbox chr"; box.setAttribute("aria-hidden", "true");
+  const face = document.createElement("div"); face.className = "chface " + k; face.textContent = k === "burp" ? "😮" : "😘"; box.appendChild(face);
+  if (k === "burp") {
+    for (let b = 0; b < 3; b++) for (let i = 0; i < 6; i++) { const p = document.createElement("span"); p.className = "gsmoke"; const z = 60 + Math.random() * 90; p.style.width = z + "px"; p.style.height = z + "px"; p.style.setProperty("--dx", (Math.random() - 0.5) * 240 + "px"); p.style.setProperty("--dy", -(160 + Math.random() * 200) + "px"); p.style.animationDelay = 0.5 + b * 1.2 + i * 0.08 + "s"; box.appendChild(p); }
+  } else {
+    const heart = document.createElement("span"); heart.className = "bigkiss"; heart.textContent = "💋"; box.appendChild(heart);
+    for (let i = 0; i < 38; i++) { const p = document.createElement("span"); p.className = "kfall"; p.textContent = i % 4 === 0 ? "💋" : i % 4 === 1 ? "💗" : i % 4 === 2 ? "😘" : "💋"; p.style.left = Math.random() * 96 + "%"; p.style.fontSize = 18 + Math.random() * 22 + "px"; p.style.animationDuration = 2.6 + Math.random() * 2 + "s"; p.style.animationDelay = 0.9 + Math.random() * 2.4 + "s"; box.appendChild(p); }
+  }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 6800);
+}
+function weatherShow(storm: boolean) {
+  const box = document.createElement("div"); box.className = "fxbox wx" + (storm ? " storm" : ""); box.setAttribute("aria-hidden", "true");
+  const sky = document.createElement("div"); sky.className = "wxsky"; box.appendChild(sky);
+  const n = storm ? 190 : 150;
+  for (let i = 0; i < n; i++) { const d = document.createElement("i"); const h = 50 + Math.random() * 80; d.style.left = Math.random() * 115 - 10 + "%"; d.style.height = h + "px"; d.style.opacity = String(0.35 + Math.random() * 0.5); d.style.animationDuration = 0.45 + Math.random() * 0.35 + "s"; d.style.animationDelay = -Math.random() * 1 + "s"; d.style.setProperty("--w", 1 + Math.random() * 1.4 + "px"); box.appendChild(d); }
+  for (let i = 0; i < 26; i++) { const sp = document.createElement("b"); sp.style.left = Math.random() * 100 + "%"; sp.style.animationDelay = Math.random() * 0.9 + "s"; sp.style.bottom = Math.random() * 14 + "%"; box.appendChild(sp); }
+  if (storm) {
+    for (const [at, left] of [[600, 18], [1900, 62], [3400, 35], [4700, 78]] as const) setTimeout(() => {
+      if (!box.isConnected) return;
+      const f = document.createElement("div"); f.className = "wxflash"; box.appendChild(f); setTimeout(() => f.remove(), 700);
+      const b = document.createElement("div"); b.className = "wxbolt"; b.style.left = left + "%"; b.innerHTML = bolt(); box.appendChild(b); setTimeout(() => b.remove(), 650);
+    }, at);
+  }
+  document.body.appendChild(box); setTimeout(() => { box.classList.add("out"); setTimeout(() => box.remove(), 700); }, 6200);
+}
 export function playFx(k: Fx, sound = true) {
   const d = FX[k]; if (!d) return;
+  stopFx();
   if (sound) sfx(k);
   if (k === "shake") {
     buzz([500, 40, 500, 40, 500, 40, 500, 40, 500], 255);
@@ -173,6 +218,8 @@ export function playFx(k: Fx, sound = true) {
     return;
   }
   if (k in BD_DUR) { bdayShow(k); return; }
+  if ((k === "burp" || k === "kiss") && !reduced()) { charShow(k); return; }
+  if ((k === "rain" || k === "thunder") && !reduced()) { weatherShow(k === "thunder"); return; }
   if (k === "birthday") { buzz([200, 100, 200, 100, 400, 200, 200, 100, 200, 100, 400, 200, 200, 100, 400, 100, 400], 255); }
   if (reduced()) return;
   const long = k === "birthday" || k === "vomit"; const smoke = k === "fart"; const rise = k === "bubbles" || k === "fire" || k === "ghost" || k === "rocket" || smoke; const box = document.createElement("div"); box.className = "fxbox" + (rise ? " rise" : ""); box.setAttribute("aria-hidden", "true");
@@ -185,6 +232,7 @@ export function playFx(k: Fx, sound = true) {
 
 /** Effet personnalisé : l'image de la personne tombe à l'écran et son enregistrement (3 s max) est joué. */
 export function playCustom(c: { img?: string; audio?: string; name?: string }, sound = true) {
+  stopFx();
   if (sound && c.audio) { try { const a = new Audio(c.audio); a.volume = 1; void a.play(); } catch { /* son indisponible */ } }
   if (reduced()) return;
   const box = document.createElement("div"); box.className = "fxbox"; box.setAttribute("aria-hidden", "true");
