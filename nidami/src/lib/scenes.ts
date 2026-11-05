@@ -6,6 +6,18 @@ const rnd = (a: number, b: number) => a + Math.random() * (b - a);
 const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
 const DUR: Record<Scene, number> = { snow: 7, fireworks: 7.5, ghost: 7, fire: 6.5, bubbles: 7.5, party: 6, rocket: 7, clap: 6, money: 6.5, bomb: 5.5 };
 
+import { bdLayers, type BdKind } from "./bdscenes";
+/** Effets d'anniversaire réalistes : une ou plusieurs couches sur le même canvas. */
+export function bdSceneShow(kinds: BdKind[], durs: Record<string, number>) {
+  const box = document.createElement("div"); box.className = "fxbox sc"; box.setAttribute("aria-hidden", "true");
+  const cv = document.createElement("canvas"); box.appendChild(cv); const dpr = Math.min(2, window.devicePixelRatio || 1); const W = window.innerWidth, H = window.innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr; cv.style.cssText = "position:absolute;inset:0;width:100%;height:100%"; const g = cv.getContext("2d"); if (!g) return; g.scale(dpr, dpr); document.body.appendChild(box);
+  const dur = Math.max(...kinds.map((k) => durs[k])); const layers = kinds.flatMap((k) => bdLayers(k, W, H, g, durs[k] || dur));
+  const t0 = performance.now(); let last = t0;
+  const frame = (now: number) => { if (!box.isConnected) return; const t = Math.max(0, (now - t0) / 1000); const dt = Math.max(0, Math.min(0.05, (now - last) / 1000)); last = now; g.clearRect(0, 0, W, H); g.globalAlpha = 1; g.globalCompositeOperation = "source-over";
+    const fade = t < 0.4 ? t / 0.4 : t > dur - 1 ? Math.max(0, dur - t) : 1; layers.forEach((l) => { g.globalAlpha = 1; l(t, dt, fade); }); if (t < dur) requestAnimationFrame(frame); else box.remove(); };
+  requestAnimationFrame(frame);
+}
 export function sceneShow(kind: Scene) {
   const box = document.createElement("div"); box.className = "fxbox sc"; box.setAttribute("aria-hidden", "true");
   const cv = document.createElement("canvas"); box.appendChild(cv);

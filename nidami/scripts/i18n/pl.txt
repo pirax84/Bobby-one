@@ -1256,3 +1256,4 @@
 1255|🤪 Everything at once
 1256|drives them crazy!
 1257|🤪 Happy birthday, all out!
+1258|Tap an effect to send just that one. “🤪 Everything at once” sends all 6 together.
