@@ -22,7 +22,7 @@ import { Guide } from "./ui/Guide";
 import { kidOn, PinGate } from "./ui/Kid";
 
 type V = "voice" | "home" | "friends" | "groups" | "messages" | "calls" | "media" | "games" | "events" | "notifs" | "profile" | "shares" | "legal" | "settings";
-export const navItems = (all = false): [V, string, string][] => [["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"], ["notifs", t("Notifications"), "bell"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]].filter(([k]) => all || !devHidden("nav", k));
+export const navItems = (all = false): [V, string, string][] => ([["home", t("Accueil"), "home"], ["friends", t("Amis"), "users"], ["groups", t("Groupes"), "group"], ["messages", t("Messages"), "chat"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"], ["notifs", t("Notifications"), "bell"], ["media", t("Photos"), "img"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["shares", t("Partages"), "send"], ["profile", t("Profil"), "user"], ["legal", t("Légal"), "lock"], ["settings", t("Paramètres"), "cog"]] as [V, string, string][]).filter(([k]) => all || !devHidden("nav", k));
 
 
 function SideBdays({ go }: { go: (k: V) => void }) {
