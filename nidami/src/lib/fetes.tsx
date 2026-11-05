@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { t } from "../i18n";
 import { feteUnder, feteOver } from "./fetemotifs";
 
 // Décorations du logo ovale selon la fête (même jour pour tout le monde, d'après la date de l'appareil).
@@ -43,4 +44,15 @@ export function FeteOrnaments({ fete, suf, light }: { fete: Fete; suf: string; l
 }
 export function FeteUnder({ fete, suf, light }: { fete: Fete; suf: string; light: boolean }) {
   return <svg className="wmfx" viewBox="0 0 1048 368" aria-hidden="true" dangerouslySetInnerHTML={{ __html: feteUnder(fete, suf, light) }} />;
+}
+
+// Petit message de vœux, juste sous le logo, le jour de la fête
+export function FeteBar() {
+  const f = useFete(); const [, bump] = useState(0);
+  if (!f) return null;
+  const key = "notiif-fete-" + f + "-" + new Date().toDateString();
+  let off = false; try { off = !!localStorage.getItem(key); } catch { /* ignoré */ }
+  if (off) return null;
+  const txt = f === "hal" ? t("Joyeux Halloween 🎃") : f === "noel" ? t("Joyeux Noël 🎄") : f === "val" ? t("Bonne Saint-Valentin 💕") : f === "pq" ? t("Joyeuses Pâques 🐣") : t("Bonne année ✨");
+  return <div className="fetewrap"><div className="fetebar" role="status"><span>{txt}</span><button type="button" aria-label={t("Fermer le message de fête")} onClick={() => { try { localStorage.setItem(key, "1"); } catch { /* ignoré */ } bump((x) => x + 1); }}>✕</button></div></div>;
 }

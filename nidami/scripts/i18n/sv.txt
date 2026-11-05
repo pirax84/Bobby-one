@@ -1208,3 +1208,9 @@
 1207|Happy birthday {name}! 🎂🎉 Wishing you a wonderful day full of good things.
 1208|{name}'s birthday
 1209|Wish {name} a happy birthday
+1210|Happy Halloween 🎃
+1211|Merry Christmas 🎄
+1212|Happy Valentine's Day 💕
+1213|Happy Easter 🐣
+1214|Happy New Year ✨
+1215|Close the holiday message
