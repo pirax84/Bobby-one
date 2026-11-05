@@ -230,7 +230,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti" data-s={k}><Ico n={({ look: "palette", notifs: "bell", priv: "lock", profile: "user", lang: "globe", install: "download", legal: "info", howto: "chat", acct: "flask" } as Record<string, string>)[k] || "cog"} s={24} /></span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v143</p>
+    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v144</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col setsub" ref={pageRef}><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "howto" && <HowTo />}
@@ -267,7 +267,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     </>}
     {sec === "notifs" && <>
     <div className="card col" style={{ gap: 4 }}><h3>{t("Mes 4 effets favoris")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Ils s'affichent en premier dans les conversations. Les autres restent sous le bouton « + ».")}</p>
-      {FX_ALL.map((k) => { const cur = favOf(cfg.fxfav); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "5px 0" }}><span className="grow">{FX[k].label}</span><Switch on={on} label={t("Favori : {label}", { label: FX[k].label })} onChange={(v) => { if (v && cur.length >= 4) return toast(t("4 favoris au maximum : désactivez-en un d'abord.")); if (!v && cur.length <= 1) return toast(t("Gardez au moins un favori.")); actions.setSetting("fxfav", FX_KEYS.filter((x) => (x === k ? v : cur.includes(x))).join(",")); }} /></label>; })}
+      {FX_ALL.map((k) => { const cur = favOf(cfg.fxfav); const on = cur.includes(k); return <label key={k} className="row" style={{ padding: "5px 0" }}><span className="grow">{FX[k].label}</span><Switch on={on} label={t("Favori : {label}", { label: FX[k].label })} onChange={(v) => { if (v && cur.length >= 4) return toast(t("4 favoris au maximum : désactivez-en un d'abord.")); if (!v && cur.length <= 1) return toast(t("Gardez au moins un favori.")); actions.setSetting("fxfav", FX_ALL.filter((x) => (x === k ? v : cur.includes(x))).join(",")); }} /></label>; })}
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("fxfav", DEFAULT_FAV.join(","))}>{t("Remettre par défaut")}</button></div>
     </>}
     {sec === "look" && <>
