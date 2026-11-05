@@ -799,3 +799,6 @@ html,body{overflow-x:hidden;max-width:100%}
 /* v123 sélection */
 .selck{width:22px;height:22px;flex:none;accent-color:var(--accb);pointer-events:none}
 .selbar{align-items:center}
+
+/* v130 vocal sur PC : barre plus étroite et centrée */
+@media (hover: hover) and (pointer: fine) and (min-width: 900px){.recbar.locked{left:50%;right:auto;width:min(720px,92vw);transform:translateX(-50%)}}

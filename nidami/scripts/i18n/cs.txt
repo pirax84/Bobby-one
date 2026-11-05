@@ -1179,3 +1179,6 @@
 1178|Zigzag écho
 1179| · ✓✓ listened
 1180| · ✓✓ seen
+1181|Too short: speak a little longer.
+1182|⏹ Stop and listen
+1183|Listen to the voice message
