@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { t } from "../i18n";
-import { toast } from "./common";
+import { toast, isPC } from "./common";
 
 const K = "notiif-kid-hash";
 export const kidOn = () => { try { return !!localStorage.getItem(K); } catch { return false; } };
@@ -19,7 +19,7 @@ export function PinGate({ onOk }: { onOk: () => void }) {
 export function KidCard() {
   const [on, setOn] = useState(kidOn()); const [pin, setPin] = useState(""); const [old, setOld] = useState("");
   return (<div className="card col"><h3>{t("👨‍👩‍👧 Contrôle parental")}</h3>
-    <p className="muted small" style={{ margin: 0 }}>{t("Un code à 4 chiffres protège Paramètres, Profil et Amis sur ce téléphone. Un enfant ne peut plus ajouter de contacts ni changer les réglages. Ce contrôle agit sur cet appareil seulement.")}</p>
+    <p className="muted small" style={{ margin: 0 }}>{(isPC() ? t("Un code à 4 chiffres protège Paramètres, Profil et Amis sur cet ordinateur. Un enfant ne peut plus ajouter de contacts ni changer les réglages. Ce contrôle agit sur cet appareil seulement.") : t("Un code à 4 chiffres protège Paramètres, Profil et Amis sur ce téléphone. Un enfant ne peut plus ajouter de contacts ni changer les réglages. Ce contrôle agit sur cet appareil seulement."))}</p>
     {on ? <><input className="inp" inputMode="numeric" type="password" maxLength={4} placeholder={t("Code parent")} value={old} onChange={(e) => setOld(e.target.value.replace(/\D/g, ""))} aria-label={t("Code parent")} />
       <button className="btn danger" onClick={async () => { if (await ok(old)) { try { localStorage.removeItem(K); } catch { /* rien */ } setOn(false); setOld(""); toast(t("Contrôle parental coupé.")); } else toast(t("Code incorrect.")); }}>{t("Couper le contrôle parental")}</button></>
       : <><input className="inp" inputMode="numeric" type="password" maxLength={4} placeholder={t("Choisissez 4 chiffres")} value={pin} onChange={(e) => setPin(e.target.value.replace(/\D/g, ""))} aria-label={t("Nouveau code parent")} />

@@ -1,7 +1,7 @@
 import { AudioWave } from "./AudioWave";
 import { useRef, useState } from "react";
 import { useStore, actions } from "../lib/store";
-import { FX, FX_KEYS, Fx, playFx, playCustom } from "../lib/fx";
+import { FX, BDAY_KEYS, FX_KEYS, Fx, playFx, playCustom } from "../lib/fx";
 import { Modal, toast, fileToDataUrl } from "./common";
 import { t } from "../i18n";
 
@@ -20,9 +20,9 @@ export function FxBar({ convId, compact = false }: { convId: string; compact?: b
     {compact ? <button type="button" className="bi2" onClick={() => setMore(true)} aria-label={t("Plus d'effets")}>＋</button> : <button className="chip" onClick={() => setMore(true)} aria-label={t("Plus d'effets")}>{t("＋ Plus")}</button>}</div>
     {more && <Modal title={t("Tous les effets")} onClose={() => setMore(false)}>
       <p className="muted small" style={{ marginTop: 0 }}>{t("Cochez les 4 effets à garder devant ({length}/4). Touchez « Envoyer » pour l'essayer.", { length: fav.length })}</p>
-      <div className="col" style={{ gap: 4 }}>{FX_KEYS.map((k) => { const on = fav.includes(k); return <div key={k} className="row" style={{ padding: "4px 0", gap: 10 }}>
+      <div className="col" style={{ gap: 4 }}>{[...FX_KEYS, ...BDAY_KEYS].map((k) => { const on = fav.includes(k); return <div key={k} className="row" style={{ padding: "4px 0", gap: 10 }}>
         <input type="checkbox" checked={on} aria-label={t("Garder devant : {label}", { label: FX[k].label })} style={{ width: 22, height: 22 }} onChange={() => { if (!on && fav.length >= 4) return toast(t("4 au maximum : décochez-en un d'abord.")); if (on && fav.length <= 1) return toast(t("Gardez au moins un effet devant.")); actions.setSetting("fxfav", FX_KEYS.filter((x) => (x === k ? !on : fav.includes(x))).join(",")); }} />
-        <span className="grow">{FX[k].label}</span><button className="chip" onClick={() => send(k)}>{t("Envoyer")}</button></div>; })}</div>
+        <span className="grow">{FX[k].label}{FX[k].sub ? <span className="muted small"> · {FX[k].sub}</span> : null}</span><button className="chip" onClick={() => send(k)}>{t("Envoyer")}</button></div>; })}</div>
       <b style={{ display: "block", marginTop: 14 }}>{t("Mes effets personnalisés")}</b>
       {customs.map((c) => <div key={c.id} className="row" style={{ padding: "4px 0", gap: 10 }}>{c.img ? <img src={c.img} alt="" style={{ width: 28, height: 28, borderRadius: "50%", objectFit: "cover" }} /> : <span>🎙</span>}<span className="grow ell">{c.name}</span><button className="chip" onClick={() => sendC(c)}>{t("Envoyer")}</button><button className="chip" aria-label={t("Supprimer {name}", { name: c.name })} onClick={() => actions.setSetting("cfx", JSON.stringify(customs.filter((x) => x.id !== c.id)))}>🗑</button></div>)}
       {mk ? <CustomMaker onDone={() => setMk(false)} /> : <button className="btn ghost" style={{ marginTop: 6 }} onClick={() => setMk(true)}>{t("＋ Créer mon effet (image + ma voix)")}</button>}
@@ -58,9 +58,10 @@ export function CustomMaker({ onDone }: { onDone: () => void }) {
 
 /** Tous les effets rangés en grille (onglet « Effets » du panneau emoji). */
 export function FxGrid({ convId, onSent }: { convId: string; onSent: () => void }) {
+  const [cat, setCat] = useState<"all" | "bday">("all");
   const fxOn = useStore((x) => x.settings[x.me]?.fx ?? true); const customs = useStore((x) => cfxOf(x.settings[x.me]?.cfx));
   const send = (k: Fx) => { if (!actions.sendFx(convId, k)) return toast(t("Doucement : un effet par seconde.")); playFx(k, fxOn); onSent(); };
   const sendC = (c: CFx) => { if (!actions.sendCustomFx(convId, c)) return toast(t("Doucement : un effet par seconde.")); playCustom(c, fxOn); onSent(); };
-  return <div className="fxgrid">{FX_KEYS.map((k) => { const [em, ...rest] = FX[k].label.split(" "); return <button key={k} type="button" className="fxcell" onClick={() => send(k)}><span className="fxem">{em}</span><span className="fxtx">{rest.join(" ")}</span></button>; })}
-    {customs.map((c) => <button key={c.id} type="button" className="fxcell" onClick={() => sendC(c)}><span className="fxem">{c.img ? <img src={c.img} alt="" style={{ width: 30, height: 30, borderRadius: "50%", objectFit: "cover" }} /> : "🎙"}</span><span className="fxtx">{c.name}</span></button>)}</div>;
+  return <><div className="fxcats"><button type="button" className={"chip" + (cat === "all" ? " on" : "")} onClick={() => setCat("all")}>{t("Tous les effets")}</button><button type="button" className={"chip" + (cat === "bday" ? " on" : "")} onClick={() => setCat("bday")}>{"🎂 " + t("Anniversaire")}</button></div><div className="fxgrid">{(cat === "bday" ? BDAY_KEYS : FX_KEYS).map((k) => { const [em, ...rest] = FX[k].label.split(" "); return <button key={k} type="button" className="fxcell" onClick={() => send(k)}><span className="fxem">{em}</span><span className="fxtx">{rest.join(" ")}</span>{FX[k].sub ? <span className="fxsub">{FX[k].sub}</span> : null}</button>; })}
+    {cat === "all" && customs.map((c) => <button key={c.id} type="button" className="fxcell" onClick={() => sendC(c)}><span className="fxem">{c.img ? <img src={c.img} alt="" style={{ width: 30, height: 30, borderRadius: "50%", objectFit: "cover" }} /> : "🎙"}</span><span className="fxtx">{c.name}</span></button>)}</div></>;
 }

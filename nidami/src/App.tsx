@@ -66,7 +66,7 @@ function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light:
     if (total >= 40 && !localStorage.getItem("notiif-treasure")) { localStorage.setItem("notiif-treasure", "1"); actions.addScore(10); window.dispatchEvent(new Event("notiif-treasure")); }
     else if (streak === 7) { const P = [t("Tu es précieux pour tes proches 💜"), t("Merci d'être là, ça fait plaisir !"), t("Un petit coup de fil à quelqu'un que tu aimes ? 💌"), t("Tu fais du bien autour de toi 🌸")]; toast(P[Math.floor(Math.random() * P.length)]); } } catch { /* rien */ } };
   const hop = () => { tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound) { if (bday) sfx("birthday"); else popNotes(6); } try { navigator.vibrate?.(12); } catch { /* rien */ } };
-  return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
+  return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "") + (fx ? " fete" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
     {fx && <FeteUnder fete={fx} suf={suf} light={light} />}

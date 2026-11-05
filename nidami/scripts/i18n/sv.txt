@@ -1214,3 +1214,40 @@
 1213|Happy Easter 🐣
 1214|Happy New Year ✨
 1215|Close the holiday message
+1216|Click a choice to try it.
+1217|🎵 Ringtones
+1218|🔔 Notifications on the computer
+1219|Notifications refused: allow them in your browser settings (the padlock next to the address), then try again.
+1220|Notifications refused: allow them in your browser settings, then try again.
+1221|No sound while the app is open. Computer notifications do not change.
+1222|Automatic: follows the computer's light or dark setting.
+1223|Everything is kept on this computer. Save to a file to switch computers without losing anything. Keep this file somewhere safe.
+1224|Replace all the data on this computer with this backup?
+1225|A 4-digit code protects Settings, Profile and Friends on this computer. A child can no longer add contacts or change settings. This control only applies to this device.
+1226|🎈 Birthday balloons
+1227|🎈 Happy birthday!
+1228|🎊 Confetti rain
+1229|🎊 Happy birthday!
+1230|🎁 Birthday presents
+1231|🎁 Happy birthday!
+1232|🕯️ Cake and candles
+1233|🕯️ Happy birthday!
+1234|⭐ Birthday stars
+1235|⭐ Happy birthday!
+1236|🎆 Birthday fireworks
+1237|🎆 Happy birthday!
+1238|Birthday
+1239|21 s
+1240|1 min 03
+1241|19 s
+1242|music box · 22 s
+1243|piano · 26 s
+1244|1 min 05
+1245|🌗 Theme and comfort
+1246|💬 Bubble and start screen
+1247|🎂 Cake and confetti
+1248|🕯️ Blow out the candles
+1249|🧁 Cakes and stars
+1250|🎉 Mega party
+1251|🧁 Happy birthday!
+1252|🎉 Happy birthday!

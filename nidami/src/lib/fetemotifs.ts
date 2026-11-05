@@ -31,13 +31,17 @@ if(k=='val'){t+=rose(100,190,1.15)+rose(950,190,1.15);const r=rnd(11);const cs=[
 if(k=='pq'){t+=grass(24,1024,314);const r=rnd(5);[[110,150,K.ma,K.tl,-12],[205,255,K.pk,K.wh,8],[900,160,K.ma,K.tl,10],[985,230,K.o2,K.wh,-8]].forEach(([x,y,c,c2,rot])=>{t+=egg2(x,y,.9,c,c2,rot)});[[70,285,K.pk],[250,300,K.o2],[820,298,K.pk],[960,290,K.ma]].forEach(([x,y,c])=>t+=flower(x,y,1,c))}
 if(k=='ny'){t+=confetti(46,3,40,1010,36,330)}
 return t+`</g>`}
+
+const em=(x,y,sz,c,r=0)=>`<text x="${x}" y="${y}" font-size="${sz}" text-anchor="middle" transform="rotate(${r} ${x} ${y})" style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${c}</text>`;
+const EXTRA={hal:()=>em(100,64,84,"🦇",-12)+em(950,60,76,"🦇",14)+em(480,40,112,"🎃"),noel:()=>em(95,52,118,"🎅",-8)+em(70,352,96,"🎄")+em(955,42,64,"❄️")+em(1010,330,56,"❄️"),val:()=>em(524,46,110,"💜")+em(80,350,64,"💜",-12)+em(990,345,64,"💜",12),pq:()=>em(250,46,104,"🐣")+em(45,342,86,"🥚",-14)+em(1005,340,86,"🌷"),ny:()=>em(930,44,100,"🥂",8)+em(1010,330,64,"✨")+em(330,40,92,"🎆")};
+
 function F(k){let t="";
 if(k=='hal'){t+=spider(210,210,190,1.1)+spider(860,190,170,.95)}
 if(k=='noel'){t+=snowcap()+flake(150,60,16,K.sn)}
 if(k=='val'){t+=hrt(120,-8,.8,K.pk,-15)+hrt(330,-18,.6,K.ma,10)+hrt(880,-12,.7,K.o2,12)+hrt(990,10,.5,K.pk,-10)}
 if(k=='pq'){t+=bunny(880,-6,1.15)}
 if(k=='ny'){t+=flute(150,60,-24)+flute(205,58,24)+star(160,2,1.3,K.o2)+burst2(60,40,60,K.ma)+burst2(986,34,64,K.o2)+burst2(860,350,56,K.tl)+burst2(180,350,46,K.pk)+burst2(524,6,46,K.o)+star(1020,300,1.6,K.pk)}
-return t}
+return t+(EXTRA[k]?EXTRA[k]():"")}
 
 export const feteUnder = (k, suf, light) => { setK(suf, light); return M(k); };
 export const feteOver = (k, suf, light) => { setK(suf, light); return F(k); };

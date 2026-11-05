@@ -164,3 +164,6 @@ export function DobFields({ d, m, y, onChange }: { d: string; m: string; y: stri
     <select className="inp" value={m} onChange={(e) => onChange(d, e.target.value, y)} aria-label={t("Mois")}><option value="">{t("Mois")}</option>{Array.from({ length: 12 }, (_, i) => <option key={i} value={i + 1}>{new Intl.DateTimeFormat(locale(), { month: "long" }).format(new Date(2024, i, 1))}</option>)}</select>
     <input className="inp" inputMode="numeric" maxLength={4} style={{ maxWidth: 100 }} placeholder={t("Année")} value={y} onChange={(e) => onChange(d, m, e.target.value.replace(/\D/g, "").slice(0, 4))} aria-label={t("Année")} /></div>;
 }
+
+/** Vrai sur un ordinateur (souris), faux sur téléphone ou tablette tactile. */
+export const isPC = () => { try { return matchMedia("(hover: hover) and (pointer: fine)").matches; } catch { return false; } };

@@ -849,3 +849,73 @@ html[data-theme=dark] .bdball{stroke-width:2}
 .fetebar button{border:0;background:rgba(255,255,255,.25);color:#fff;width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:.7rem;font-weight:700;padding:0}
 .brandbar{flex-direction:column;align-items:center}
 .tw .fetewrap{margin-top:4px}
+
+/* v143 effets anniversaire */
+.fxcats{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.fxsub{font-size:.68rem;opacity:.75;text-align:center;line-height:1.1}
+.bdfx{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden;animation:bdout 3s linear forwards;animation-delay:calc(var(--d) - 3s)}
+@keyframes bdout{to{opacity:0}}
+.bdballoon{position:absolute;bottom:-25vh;border-radius:50% 50% 50% 50%/58% 58% 42% 42%;box-shadow:inset -8px -10px 0 rgba(0,0,0,.14),inset 10px 10px 0 rgba(255,255,255,.28);animation:bdrise var(--t) ease-in-out forwards}
+.bdballoon::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:40px;background:rgba(120,120,140,.7)}
+@keyframes bdrise{0%{transform:translate(0,0)}25%{transform:translate(22px,-35vh)}50%{transform:translate(-22px,-70vh)}75%{transform:translate(22px,-105vh)}100%{transform:translate(0,-140vh)}}
+.bdconf{position:absolute;top:-30px;animation:bdfall var(--t) linear forwards}
+@keyframes bdfall{0%{transform:translate3d(0,0,0) rotateZ(0) rotateX(0)}100%{transform:translate3d(var(--sx),112vh,0) rotateZ(720deg) rotateX(720deg)}}
+.bdgift{position:absolute;top:0;animation:bdgiftk var(--t) ease-in forwards}
+@keyframes bdgiftk{0%{transform:translateY(-15vh) rotate(0)}58%{transform:translateY(calc(100vh - 90px)) rotate(200deg)}70%{transform:translateY(calc(100vh - 190px)) rotate(240deg)}82%{transform:translateY(calc(100vh - 90px)) rotate(300deg)}100%{transform:translateY(calc(100vh - 90px)) rotate(360deg);opacity:0}}
+.bdcake{position:absolute;left:50%;top:50%;font-size:min(46vmin,360px);line-height:1;transform:translate(-50%,-50%);animation:bdpulse 1.6s ease-in-out infinite,bdin 1.2s ease-out both;filter:drop-shadow(0 8px 20px rgba(0,0,0,.3))}
+@keyframes bdpulse{0%,100%{rotate:-4deg;scale:1}50%{rotate:4deg;scale:1.1}}
+@keyframes bdin{from{opacity:0;scale:.2}}
+.bdcandle{position:absolute;bottom:2vh;font-size:44px;animation:bdflick .5s ease-in-out infinite alternate}
+@keyframes bdflick{from{transform:scaleY(1) rotate(-3deg)}to{transform:scaleY(1.12) rotate(3deg)}}
+.bdtw{position:absolute;opacity:0;animation:bdtwk var(--t) ease-in-out infinite}
+@keyframes bdtwk{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.2)}}
+.bdshoot{position:absolute;font-size:34px;opacity:0;animation:bdshk 2.2s ease-in forwards}
+@keyframes bdshk{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(70vw,50vh)}}
+.bdspark{position:absolute;width:9px;height:9px;border-radius:50%;opacity:0;animation:bdspk 1.6s ease-out forwards}
+@keyframes bdspk{0%{opacity:1;transform:translate(0,0) scale(1)}70%{opacity:1}100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) + 60px)) scale(.3)}}
+@media (prefers-reduced-motion:reduce){.bdfx{display:none}}
+.wm.fete{margin-top:34px}
+
+/* v143b effets anniversaire : plus grands */
+.bdfx.night{background:rgba(12,9,44,.62)}
+.bdcannon{position:absolute;top:100%;opacity:0;animation:bdcan 3.6s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes bdcan{0%{opacity:1;transform:translate(0,0) rotate(0)}45%{opacity:1;transform:translate(var(--bx),var(--by)) rotate(360deg)}100%{opacity:1;transform:translate(calc(var(--bx)*1.15),calc(var(--by) + 105vh)) rotate(900deg)}}
+.bdcakew{position:absolute;left:50%;top:50%;width:min(80vmin,560px);transform:translate(-50%,-50%);animation:bdin 1s ease-out both;filter:drop-shadow(0 10px 22px rgba(0,0,0,.3))}
+.bdcakesvg{width:100%;height:auto;display:block;overflow:visible}
+.bdflame{animation:bdflick2 .3s ease-in-out infinite alternate}
+@keyframes bdflick2{from{transform:scale(1,1) rotate(-4deg)}to{transform:scale(.92,1.14) rotate(4deg)}}
+.bdblow{animation:bdblowk .5s ease-in var(--w) forwards}
+@keyframes bdblowk{0%{transform:scale(1) rotate(0)}40%{transform:scale(1,.8) rotate(24deg)}100%{transform:scale(0,0) rotate(40deg);opacity:0}}
+.bdsmk{opacity:0;animation:bdsmoke 2.2s ease-out forwards}
+@keyframes bdsmoke{0%{opacity:.85;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(16px,-90px) scale(2.6)}}
+.bdwind{position:absolute;top:28%;left:0;font-size:min(30vmin,240px);opacity:0;animation:bdwindk 1.5s ease-in forwards}
+@keyframes bdwindk{0%{opacity:0;transform:translateX(-30vw)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(105vw)}}
+.bdwline{position:absolute;left:0;width:60vw;height:10px;border-radius:9px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.9));opacity:0;animation:bdwlk 1.2s ease-in forwards}
+@keyframes bdwlk{0%{opacity:0;transform:translateX(-60vw)}20%{opacity:1}100%{opacity:0;transform:translateX(120vw)}}
+.bdbigstar{position:absolute;left:50%;top:50%;font-size:min(62vmin,520px);line-height:1;transform:translate(-50%,-50%);animation:bdstarp 3.2s ease-in-out infinite;filter:drop-shadow(0 0 40px #fff8)}
+@keyframes bdstarp{0%,100%{scale:.85;rotate:-6deg}50%{scale:1.1;rotate:6deg}}
+.bdstar{filter:drop-shadow(0 0 14px #fff9)}
+.bdshoot{font-size:90px}
+@keyframes bdshk{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(95vw,70vh)}}
+.bdrocket{position:absolute;bottom:0;width:6px;height:90px;margin-left:-3px;border-radius:6px;background:linear-gradient(transparent,#fff);opacity:0;animation:bdrk .7s ease-out forwards}
+@keyframes bdrk{0%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(calc(var(--h)*-1))}}
+.bdspark{width:15px;height:15px;box-shadow:0 0 14px 4px currentColor;animation-duration:2.1s}
+
+/* v143 réglages : catégories à ouvrir */
+.setsub .card.fold>*:not(.foldh){display:none}
+.setsub .card.fold.open>*{display:revert}
+.setsub .card.fold.open>.col,.setsub .card.fold.open>.row{display:flex}
+.setsub .card.fold{gap:8px}
+.foldh{cursor:pointer;display:flex!important;align-items:center;justify-content:space-between;margin:0!important;min-height:30px}
+.foldh::after{content:"";width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg);opacity:.6;transition:transform .2s;margin-right:4px}
+.setsub .card.fold.open .foldh::after{transform:rotate(45deg)}
+.fxcats{flex-wrap:nowrap}
+.fxcats .chip{flex:1;padding:7px 6px;font-size:.82rem;text-align:center;white-space:nowrap}
+
+.bdsh{clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.bdbigstar.bdsh{width:min(62vmin,520px);height:min(62vmin,520px);font-size:0}
+.bdshoot{width:140px;height:8px;border-radius:8px;background:linear-gradient(90deg,transparent,#fff);font-size:0;transform-origin:left center;rotate:35deg}
+.bdspark{width:22px!important;height:22px!important}
+
+.bdem{top:-100px;line-height:1}
+.bdfx.night{background:none}
