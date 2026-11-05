@@ -144,8 +144,13 @@ export function pressProps(onShort: () => void, onLong: () => void) {
 export function MicIcon({ size = 120, level = 0 }: { size?: number; level?: number }) {
   const gid = "micg" + useId().replace(/[^a-zA-Z0-9]/g, "");
   return (<svg width={size} height={size * 1.17} viewBox="0 0 120 140" aria-hidden="true" style={level > 0 ? { transform: `scale(${1 + level * 0.28})`, filter: `drop-shadow(0 0 ${Math.round(level * 22)}px var(--accb))`, transition: "transform .08s, filter .08s" } : undefined}><defs><linearGradient id={gid} x1="0" y1="0" x2="1" y2="1"><stop offset="0" style={{ stopColor: "var(--accb)" }} /><stop offset="1" style={{ stopColor: "var(--brand)" }} /></linearGradient></defs>
-    <g stroke="var(--accb)" strokeWidth="3" strokeLinecap="round"><path d="M12 36 L22 40" /><path d="M8 58 L20 58" /><path d="M12 80 L22 76" /><path d="M108 36 L98 40" /><path d="M112 58 L100 58" /><path d="M108 80 L98 76" /><path d="M40 8 L44 18" /><path d="M60 3 L60 14" /><path d="M80 8 L76 18" /></g>
-    <g stroke="var(--nuit2)" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round"><rect x="38" y="20" width="44" height="72" rx="22" fill={`url(#${gid})`} /><path d="M38 40 H82 M38 52 H82 M38 64 H82 M38 76 H82 M60 20 V92" fill="none" strokeWidth="3" /><path d="M28 62 V74 A32 32 0 0 0 92 74 V62" fill="none" /><path d="M60 106 V122" /><path d="M42 128 H78" strokeWidth="6" /></g></svg>);
+    <g stroke="var(--accb)" strokeWidth="3.5" strokeLinecap="round" opacity=".75"><path d="M60 3 L60 14" /><path d="M34 10 L39 20" /><path d="M86 10 L81 20" /><path d="M10 40 L22 46" /><path d="M110 40 L98 46" /><path d="M6 70 L20 70" /><path d="M114 70 L100 70" /></g>
+    <rect x="36" y="20" width="48" height="76" rx="24" fill="var(--nuit2)" stroke="var(--accb)" strokeWidth="3" />
+    <g stroke="var(--accb)" strokeWidth="4" strokeLinecap="round"><path d="M45 42 H75" /><path d="M43 56 H77" /><path d="M43 70 H77" /><path d="M45 84 H75" /></g>
+    <path d="M24 66 V80 A36 36 0 0 0 96 80 V66" fill="none" stroke="var(--accb)" strokeWidth="7" strokeLinecap="round" />
+    <path d="M60 116 V126" stroke="var(--accb)" strokeWidth="7" strokeLinecap="round" />
+    <rect x="38" y="126" width="44" height="10" rx="5" fill={`url(#${gid})`} stroke="var(--nuit2)" strokeWidth="2" />
+</svg>);
 }
 
 /** Remplace le vieux micro 🎤 d'un texte par le micro NOTIIF. */
