@@ -811,7 +811,7 @@ html,body{overflow-x:hidden;max-width:100%}
 .dlist{display:none}
 @media (hover:hover) and (pointer:fine) and (min-width:900px){
   .dlist{display:flex;width:340px}
-  .chatfull.dual{left:var(--dl-right,720px)}
+  .chatfull.dual{top:var(--dl-top,0);left:var(--dl-right,720px);right:var(--dl-redge,20px);bottom:12px;padding:0;background:transparent;z-index:20}.chatfull.dual>*{width:100%}
   .chatfull.dual .row:first-child>button:first-child{display:none}
   .card.cursel{outline:3px solid var(--accb,#7B5CE6)}
 }
