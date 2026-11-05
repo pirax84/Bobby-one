@@ -1257,3 +1257,35 @@
 1256|drives them crazy!
 1257|🤪 Happy birthday, all out!
 1258|Tap an effect to send just that one. “🤪 Everything at once” sends all 6 together.
+1259|Version
+1260|Device
+1261|Computer
+1262|Phone
+1263|Simulated holiday
+1264|none (real date)
+1265|👤 View as a customer
+1266|To show the app to someone: they will see neither this mode nor simulated holidays. To come back here, tap the version at the bottom of Settings 7 times.
+1267|Customer view on.
+1268|Switch to customer view
+1269|🎄 Simulate a holiday
+1270|Pick a holiday: the logo, the greeting and the effect when you tap the logo change right away. Go to Home to see them.
+1271|📅 Real date
+1272|🎃 Halloween
+1273|🎄 Christmas
+1274|💕 Valentine's Day
+1275|🐣 Easter
+1276|🎆 New Year
+1277|▶ See this holiday's effect
+1278|✨ Test the effects
+1279|Tap an effect to see and hear it. A new effect stops the previous one.
+1280|⏹ Stop everything
+1281|ℹ️ Information
+1282|🔄 Reset
+1283|Back to the real date
+1284|Real date restored.
+1285|Turn off developer mode
+1286|Developer mode turned off.
+1287|Developer mode on.
+1288|Developer mode restored.
+1289|Developer mode
+1290|For the creator: holidays, effects, customer view

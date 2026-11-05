@@ -12,6 +12,8 @@ import { Home } from "./Home";
 import { Camera } from "./Recorder";
 import { AvatarCrop } from "./Photo";
 import { t, T, locale } from "../i18n";
+import { DevPanel } from "./Dev";
+import { useDev, setDevUnlocked, setDevClient } from "../lib/dev";
 import { KidCard } from "./Kid";
 import { IntroChoice } from "./IntroChoice";
 import { LangPicker } from "./LangPicker";
@@ -211,7 +213,8 @@ export function Notifs({ go, openConv }: { go?: (v: string) => void; openConv?: 
 
 const navopts = (): [string, string][] => [["home", t("Accueil")], ["friends", t("Amis")], ["groups", t("Groupes")], ["messages", t("Messages")], ["calls", t("Appels")], ["media", t("Photos et vidéos")], ["games", t("Jeux")], ["events", t("Événements")], ["shares", t("Partages")], ["notifs", t("Notifications")], ["profile", t("Profil")], ["legal", t("Légal")], ["settings", t("Paramètres")]];
 export function Settings({ go }: { go?: (v: any) => void }) {
-  const pc = isPC();
+  const pc = isPC(); const dev = useDev(); const taps = useRef({ n: 0, t: 0 });
+  const verTap = () => { const now = Date.now(); const c = taps.current; c.n = now - c.t < 1500 ? c.n + 1 : 1; c.t = now; if (c.n >= 7) { c.n = 0; if (!dev.unlocked) { setDevUnlocked(true); toast(t("Mode développeur activé.")); } else if (dev.client) { setDevClient(false); toast(t("Mode développeur rétabli.")); } } };
   const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
   const [sec, setSec] = useState<string | null>(() => (history.state?.sec as string) || null); const [q, setQ] = useState(""); const [legal, setLegal] = useState(false); const pageRef = useRef<HTMLDivElement>(null);
   useEffect(() => { // dans chaque page de réglages, les cartes deviennent des catégories à ouvrir au toucher
@@ -224,15 +227,17 @@ export function Settings({ go }: { go?: (v: any) => void }) {
   const open = (k: string) => { history.pushState({ ...(history.state || {}), v: "settings", sec: k }, ""); setSec(k); window.scrollTo(0, 0); };
   const Tg = ({ k, label, desc }: { k: "quiet" | "light" | "autoplay" | "fx"; label: string; desc: string }) => <label className="row" style={{ padding: "8px 0" }}><div className="grow"><b>{label}</b><div className="muted small">{desc}</div></div><Switch on={cfg[k]} onChange={(v) => actions.setSetting(k, v)} label={label} /></label>;
   const rows: [string, string, string, string][] = [["look", "🎨", t("Apparence"), t("Thème, barres, écran de démarrage")], ["notifs", "🔔", t("Notifications et sons"), t("Sonneries, vibreur, effets favoris")], ["priv", "🔒", t("Confidentialité"), t("Qui voit quoi, bloqués")], ["profile", "👤", t("Mon profil"), t("Photo, nom, statut")], ["lang", "🌍", t("Langue"), ""], ["install", "📲", t("Installer l'application"), t("Téléphone, tablette, ordinateur")], ["howto", "❓", t("Comment ça marche ?"), t("Une carte par fonction")], ["legal", "ℹ️", t("Aide et mentions légales"), t("Questions, conditions")], ["acct", "🧪", t("Compte et données"), t("Mode démo, export, déconnexion")]];
+  if (dev.active) rows.push(["dev", "🛠", t("Mode développeur"), t("Pour le créateur : fêtes, effets, version client")]);
   const shown = rows.filter(([, , a, b]) => !q.trim() || (a + " " + b).toLowerCase().includes(q.trim().toLowerCase()));
   const titles: Record<string, string> = Object.fromEntries(rows.map((r) => [r[0], r[2]]));
   if (!sec) return (<div className="col"><h1>{t("Paramètres")}</h1>
     <input className="inp" placeholder={t("Chercher un réglage")} value={q} onChange={(e) => setQ(e.target.value)} aria-label={t("Chercher un réglage")} />
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti" data-s={k}><Ico n={({ look: "palette", notifs: "bell", priv: "lock", profile: "user", lang: "globe", install: "download", legal: "info", howto: "chat", acct: "flask" } as Record<string, string>)[k] || "cog"} s={24} /></span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
-    <p className="muted small center" style={{ margin: "8px 0" }}>NOTIIF · v150</p>
+    <p className="muted small center" style={{ margin: "8px 0" }} onClick={verTap}>NOTIIF · v151</p>
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col setsub" ref={pageRef}><h1>{titles[sec] || t("Paramètres")}</h1>
+    {sec === "dev" && dev.active && <DevPanel />}
     {sec === "howto" && <HowTo />}
     {sec === "install" && <>
     <InstallCard />

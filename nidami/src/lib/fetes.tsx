@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { t } from "../i18n";
 import { feteUnder, feteOver } from "./fetemotifs";
+import { devFete } from "./dev";
 
 // Décorations du logo ovale selon la fête (même jour pour tout le monde, d'après la date de l'appareil).
 export type Fete = "hal" | "noel" | "val" | "pq" | "ny";
@@ -17,8 +18,9 @@ export function feteOf(d: Date): Fete | null {
 }
 export function useFete(): Fete | null {
   const [f, setF] = useState<Fete | null>(() => feteOf(new Date()));
-  useEffect(() => { const id = setInterval(() => setF(feteOf(new Date())), 60000); return () => clearInterval(id); }, []);
-  return f;
+  const [, bump] = useState(0);
+  useEffect(() => { const id = setInterval(() => setF(feteOf(new Date())), 60000); const h = () => bump((n) => n + 1); window.addEventListener("notiif-dev", h); return () => { clearInterval(id); window.removeEventListener("notiif-dev", h); }; }, []);
+  return devFete() || f;
 }
 // Couleurs réelles des lettres du logo, pour chaque couleur choisie (N, O, T, i, i, F)
 const COLS: Record<string, string[]> = {"azur-light": ["#B03FD0", "#E8603B", "#12A596", "#D13F7F", "#E8845A", "#7A63E4"], "azur": ["#C85BE8", "#FF8A6B", "#2FCDBE", "#E5679C", "#FFB59A", "#B9A8FF"], "citron-light": ["#B03FD0", "#E8603B", "#12A596", "#D13F7F", "#E8845A", "#7A63E4"], "citron": ["#C85BE8", "#FF8A6B", "#2FCDBE", "#E5679C", "#FFB59A", "#B9A8FF"], "corail-light": ["#B03FD0", "#2C1711", "#12A596", "#D13F7F", "#E8845A", "#7A63E4"], "corail": ["#C85BE8", "#F3EEFF", "#2FCDBE", "#E5679C", "#FFB59A", "#B9A8FF"], "framboise-light": ["#B03FD0", "#E8603B", "#12A596", "#2C111C", "#E8845A", "#7A63E4"], "framboise": ["#C85BE8", "#FF8A6B", "#2FCDBE", "#F3EEFF", "#FFB59A", "#B9A8FF"], "lavande-light": ["#B03FD0", "#E8603B", "#12A596", "#D13F7F", "#E8845A", "#2A2150"], "lavande": ["#C85BE8", "#FF8A6B", "#2FCDBE", "#E5679C", "#FFB59A", "#F3EEFF"], "miel-light": ["#B03FD0", "#E8603B", "#12A596", "#D13F7F", "#E8845A", "#7A63E4"], "miel": ["#C85BE8", "#FF8A6B", "#2FCDBE", "#E5679C", "#FFB59A", "#B9A8FF"], "ocean-light": ["#B03FD0", "#E8603B", "#12A596", "#D13F7F", "#E8845A", "#7A63E4"], "ocean": ["#C85BE8", "#FF8A6B", "#2FCDBE", "#E5679C", "#FFB59A", "#B9A8FF"], "orchidee-light": ["#26112C", "#E8603B", "#12A596", "#D13F7F", "#E8845A", "#7A63E4"], "orchidee": ["#F3EEFF", "#FF8A6B", "#2FCDBE", "#E5679C", "#FFB59A", "#B9A8FF"], "turquoise-light": ["#B03FD0", "#E8603B", "#0B1F26", "#D13F7F", "#E8845A", "#7A63E4"], "turquoise": ["#C85BE8", "#FF8A6B", "#F3EEFF", "#E5679C", "#FFB59A", "#B9A8FF"]};
@@ -51,7 +53,7 @@ export function FeteBar() {
   const f = useFete(); const [, bump] = useState(0);
   if (!f) return null;
   const key = "notiif-fete-" + f + "-" + new Date().toDateString();
-  let off = false; try { off = !!localStorage.getItem(key); } catch { /* ignoré */ }
+  let off = false; try { off = !devFete() && !!localStorage.getItem(key); } catch { /* ignoré */ }
   if (off) return null;
   const txt = f === "hal" ? t("Joyeux Halloween 🎃") : f === "noel" ? t("Joyeux Noël 🎄") : f === "val" ? t("Bonne Saint-Valentin 💕") : f === "pq" ? t("Joyeuses Pâques 🐣") : t("Bonne année ✨");
   return <div className="fetewrap"><div className="fetebar" role="status"><span>{txt}</span><button type="button" aria-label={t("Fermer le message de fête")} onClick={() => { try { localStorage.setItem(key, "1"); } catch { /* ignoré */ } bump((x) => x + 1); }}>✕</button></div></div>;
