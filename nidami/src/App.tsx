@@ -55,10 +55,11 @@ function BdayDeco({ children }: { children: React.ReactNode }) {
 }
 
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
+import { useFete, FeteOrnaments } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
 function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bdText?: string }) {
-  const bday = !!bdText;
+  const bday = !!bdText; const fete = useFete(); const fx = !bdText ? fete : null;
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
   const tapped = () => { try { const now = Date.now(); const last = +(localStorage.getItem("notiif-tap-t") || 0); const streak = now - last < 2500 ? +(localStorage.getItem("notiif-tap-s") || 0) + 1 : 1; localStorage.setItem("notiif-tap-t", String(now)); localStorage.setItem("notiif-tap-s", String(streak));
     const total = +(localStorage.getItem("notiif-tap-n") || 0) + 1; localStorage.setItem("notiif-tap-n", String(total));
@@ -69,7 +70,8 @@ function BrandWm({ id, light, sound, big, onHome, bdText }: { id: string; light:
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
     {bdText && <svg className="wmbd" viewBox="0 0 524 184" aria-label={bdText}><text x="262" y="116" textAnchor="middle" fontSize={bdText.length > 15 ? 54 : 64} fontWeight="900" fontFamily="'Arial Black',Arial,sans-serif" textLength={bdText.length > 15 ? 450 : 420} lengthAdjust="spacingAndGlyphs">{[...bdText].map((c, i) => <tspan key={i} fill={BD_COL[i % BD_COL.length]}>{c}</tspan>)}</text></svg>}
-    {!bdText && WM_CUTS.slice(0, 6).map((c, i) => <img key={i + "-" + go} className="wml" draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
+    {!bdText && WM_CUTS.slice(0, 6).map((c, i) => (fx && i === 1) ? null : <img key={i + "-" + go} className="wml" draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(${fx ? (i === 3 || i === 4 ? "41%" : i === 5 ? "35%" : "0") : "0"} ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
+    {fx && <FeteOrnaments fete={fx} suf={suf} light={light} />}
   </span>;
 }
 
