@@ -55,8 +55,8 @@ export const FX: Record<Fx, Def> = {
   fart: { get label() { return t("💨 Pet"); }, get text() { return t("💨 Prout !"); }, em: [] },
   vomit: { get label() { return t("🤮 Vomi"); }, get text() { return t("🤮 Beurk !"); }, em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
   noel1: { get label() { return t("🎄 Noël · Père Noël dans le ciel"); }, get sub() { return t("boîte à musique · 21 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
-  noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("musique 1 · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
-  noelv2: { get label() { return t("🔥 Noël · Coin du feu"); }, get sub() { return t("chanson de Noël · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
+  noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("chanson de Noël · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv2: { get label() { return t("🔥 Noël · Coin du feu"); }, get sub() { return t("musique 1 · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
   easter: { get label() { return t("🐣 Pâques"); }, get text() { return t("🐣 Joyeuses Pâques !"); }, em: ["🐣"] },
 };
 /** Les effets anniversaire ont leur propre catégorie ; « Tous les effets » ne les contient pas. */
