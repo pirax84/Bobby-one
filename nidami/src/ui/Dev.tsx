@@ -3,6 +3,7 @@ import { BrandWm, navItems } from "../App";
 import { ACCENTS } from "../lib/theme";
 import { useStore } from "../lib/store";
 import { useRef } from "react";
+import { FxSwitch } from "./FxSwitch";
 import { useDev, setDevClient, setDevFete, setDevUnlocked, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION, devIsOff, devToggleHidden, customSounds, addCustomSound, removeCustomSound, sndMapOf, setSndMap, devResetAll } from "../lib/dev";
 import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
@@ -44,7 +45,7 @@ function DevEffects() {
   return <div className="card col" style={{ gap: 6 }}><h3>{t("✨ Effets (voir, cacher, son)")}</h3>
     <p className="muted small" style={{ margin: 0 }}>{t("▶ pour tester. « Visible » : l'effet apparaît dans les listes d'effets. « Son » : coupé ou joué. Vous pouvez aussi remplacer son son par un des vôtres.")}</p>
     {FX_ALL.map((k) => <div key={k} className="col" style={{ gap: 4, padding: "6px 0", borderTop: "1px solid var(--line, #ddd)" }}>
-      <div className="row" style={{ gap: 8 }}><span className="grow">{FX[k].label}</span><button type="button" className="chip" onClick={() => playFx(k, true)} aria-label={t("▶ Tester")}>▶</button><button type="button" className="chip" onClick={() => stopFx()} aria-label={t("⏹ Stop")}>⏹</button></div>
+      <div className="row" style={{ gap: 8 }}><span className="grow">{FX[k].label}</span><FxSwitch k={k} sound /></div>
       <div className="row wrap" style={{ gap: 12 }}><label className="row" style={{ gap: 6 }}><span className="small">{t("Visible")}</span><Sw on={!devIsOff("fx", k)} set={() => devToggleHidden("fx", k)} label={t("Visible")} /></label>
         <label className="row" style={{ gap: 6 }}><span className="small">{t("Son")}</span><Sw on={!devIsOff("mute", k)} set={() => devToggleHidden("mute", k)} label={t("Son")} /></label>
         {cs.length > 0 && <select className="inp" style={{ maxWidth: 180 }} value={sndMapOf(k)} onChange={(e) => setSndMap(k, e.target.value)} aria-label={t("Son de remplacement")}><option value="">{t("Son d'origine")}</option>{cs.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select>}</div></div>)}</div>;

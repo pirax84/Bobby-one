@@ -3,7 +3,7 @@ import type { Fete } from "./fetes";
 /** Mode développeur : caché, réservé au créateur. Rien de tout ça n'apparaît chez les clients. */
 const get = (k: string) => { try { return localStorage.getItem(k) || ""; } catch { return ""; } };
 const set = (k: string, v: string) => { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* ignoré */ } window.dispatchEvent(new Event("notiif-dev")); };
-export const APP_VERSION = "v160";
+export const APP_VERSION = "v162";
 /** Cadre « aperçu client » : l'appli reçoit la fête simulée dans l'adresse et ignore tout le reste du mode développeur. */
 const url = (() => { try { return new URLSearchParams(location.search); } catch { return new URLSearchParams(); } })();
 export const asClientFrame = url.get("client") === "1";
@@ -26,11 +26,12 @@ export const setDevPreview = (v: boolean) => set("notiif-dev-preview", v ? "1" :
 export const devPreview = () => get("notiif-dev-preview") === "1";
 
 /** Effet joué quand on touche le logo, pour chaque fête (modifiable en mode développeur). */
-export const FETE_FX_DEFAULT: Record<string, string> = { hal: "ghost", noel: "noel1", val: "hearts", pq: "easter", ny: "fireworks" };
+export const FETE_FX_DEFAULT: Record<string, string> = { hal: "ghost", noel: "noelv1", val: "hearts", pq: "easter", ny: "fireworks" };
 const readJson = (k: string): Record<string, unknown> => { try { const v = JSON.parse(get(k) || "{}"); return v && typeof v === "object" ? v : {}; } catch { return {}; } };
 export const feteFx = (f: string): string => { if (!asClientFrame && devUnlocked()) { const o = readJson("notiif-dev-fx")[f]; if (typeof o === "string" && o) return o; } return FETE_FX_DEFAULT[f]; };
 export const setFeteFx = (f: string, k: string) => { const o = readJson("notiif-dev-fx"); o[f] = k; set("notiif-dev-fx", JSON.stringify(o)); };
-export const feteAuto = (f: string): boolean => !asClientFrame && devUnlocked() && readJson("notiif-dev-auto")[f] === true;
+/** Le jour de la fête, l'effet se joue tout seul à la première ouverture de la journée (sauf si on l'a coupé en mode développeur). */
+export const feteAuto = (f: string): boolean => asClientFrame || !(devUnlocked() && readJson("notiif-dev-auto")[f] === false);
 export const setFeteAuto = (f: string, v: boolean) => { const o = readJson("notiif-dev-auto"); o[f] = v; set("notiif-dev-auto", JSON.stringify(o)); };
 export const devChoices = () => JSON.stringify({ effets: Object.fromEntries(Object.keys(FETE_FX_DEFAULT).map((f) => [f, feteFx(f)])), auto: Object.fromEntries(Object.keys(FETE_FX_DEFAULT).map((f) => [f, feteAuto(f)])) }, null, 1);
 

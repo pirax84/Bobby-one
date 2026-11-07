@@ -13,6 +13,7 @@ import { Camera } from "./Recorder";
 import { AvatarCrop } from "./Photo";
 import { t, T, locale } from "../i18n";
 import { DevPanel, ClientPreview } from "./Dev";
+import { PresenceBar } from "./Chat";
 import { useDev, setDevUnlocked, setDevClient, APP_VERSION } from "../lib/dev";
 import { KidCard } from "./Kid";
 import { IntroChoice } from "./IntroChoice";
@@ -281,6 +282,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <div className="card col" style={{ gap: 8 }}><h3>{t("🔠 Taille du texte")}</h3><div className="row" style={{ gap: 6 }}>{([["petit", t("Petit")], ["normal", t("Normal")], ["grand", t("Grand")], ["tgrand", t("Très grand")]] as const).map(([k, l]) => <button key={k} type="button" className={"chip grow" + ((cfg.fs || "normal") === k ? " on" : "")} aria-pressed={(cfg.fs || "normal") === k} onClick={() => actions.setSetting("fs", k)}>{l}</button>)}</div><p style={{ margin: 0 }}>{t("Exemple : Anniversaire demain ! On se retrouve à 19h ?")}</p></div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🎨 Couleur de l'appli")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Chacun choisit la sienne. Le nom NOTIIF s'adapte tout seul.")}</p>
       <div className="accgrid">{ACCENTS.map((a) => { const on = accentOf(cfg.accent).id === a.id; return <button key={a.id} type="button" className={"accbtn" + (on ? " on" : "")} aria-pressed={on} aria-label={t("Couleur : {name}", { name: t(a.name) })} onClick={() => actions.setSetting("accent", a.id)} style={{ background: a.bg, color: a.dot }}><i style={{ background: a.dot }} />{t(a.name)}</button>; })}</div></div>
+    <div className="card"><h3>{t("🟢 Ma disponibilité")}</h3><PresenceBar /></div>
     <div className="card"><h3>{t("🌗 Thème et confort")}</h3><div className="col" style={{ gap: 8, paddingBottom: 6 }}><b>{t("🌗 Thème")}</b><div className="row" style={{ gap: 8 }}>{([["light", t("☀️ Clair")], ["dark", t("🌙 Sombre")], ["auto", t("📱 Automatique")]] as const).map(([m, l]) => { const cur = cfg.mode || (cfg.light === false ? "dark" : "auto"); return <button key={m} type="button" className={"chip grow" + (cur === m ? " on" : "")} aria-pressed={cur === m} onClick={() => actions.setSetting("mode", m)}>{l}</button>; })}</div><div className="muted small">{(pc ? t("Automatique : suit le réglage clair ou sombre de l'ordinateur.") : t("Automatique : suit le réglage clair ou sombre du téléphone."))}</div></div><hr /><Tg k="fx" label={t("Effets dans les conversations")} desc={t("Secousse d'écran avec son, cœurs, anniversaire : quand un ami en envoie un, vous le voyez et l'entendez. Activé au départ.")} /><hr /><Tg k="quiet" label={t("Plage silencieuse")} desc={t("Coupe les alertes la nuit (en mode serveur).")} /><hr /><Tg k="autoplay" label={t("Lecture automatique des vidéos")} desc={t("Pour les vidéos courtes (bientôt).")} /></div>
     </>}
     {sec === "look" && <>

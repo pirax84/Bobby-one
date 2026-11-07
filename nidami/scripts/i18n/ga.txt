@@ -1388,3 +1388,23 @@
 1387|🌫 The fog is rolling in…
 1388|⏹ Stop the effect
 1389|⏹ Stop
+1390|🚪 Knock knock
+1391|🚪 Knock knock!
+1392|🔔 Doorbell
+1393|🔔 Ding dong!
+1394|music box · 21 s
+1395|music 1 · 25 s
+1396|🗣 Away message
+1397|voice: French / English
+1398|🗣 I'm not available
+1399|Test
+1400|My availability
+1401|Available
+1402|Busy
+1403|Away
+1404|Back later
+1405|Reply automatically
+1406|When someone sends me an effect, a voice replies that I'm not here.
+1407|Listen to the automatic reply
+1408|🟢 My availability
+1409|Tap the screen to stop

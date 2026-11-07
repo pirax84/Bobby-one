@@ -1,9 +1,11 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "tornado" | "fog" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "easter" | "noelv1" | "noelv2";
+export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "tornado" | "fog" | "knock" | "bell" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "easter" | "noelv1" | "noelv2" | "absent";
 import { sceneShow, holidayShow, SCENES, type Scene } from "./scenes";
 import { tornadoShow, tornadoStop } from "./tornado";
 import { fogShow, fogStop } from "./fog";
+import { doorShow } from "./door";
+import { absentShow } from "./absent";
 import { collapseStop } from "./collapse";
 import { devHidden, soundFor } from "./dev";
 import { noelVideoShow, noelVideoStop, NOEL_VIDEOS } from "./noelvideo";
@@ -14,7 +16,10 @@ const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("en
 /** Sortie commune des sons synthétisés d'effets : on la coupe d'un coup pour tout arrêter. */
 let bus: GainNode | null = null;
 const fxBus = (c: BaseAudioContext): AudioNode => { if (!bus || bus.context !== c) { bus = c.createGain(); bus.connect(c.destination); } return bus; };
-export function stopFx() { try { bus?.disconnect(); } catch { /* ignoré */ } bus = null; document.getElementById("fxstop")?.remove(); playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
+let curKey: Fx | null = null; let curAt = 0; let curIv = 0;
+export const playingFx = (): Fx | null => curKey;
+const setCur = (k: Fx | null) => { curKey = k; curAt = Date.now(); window.dispatchEvent(new Event("notiif-fxstate")); clearInterval(curIv); if (k) curIv = window.setInterval(() => { if (Date.now() - curAt > 1800 && !document.querySelector(".fxbox") && !document.documentElement.classList.contains("collapsing")) { curKey = null; clearInterval(curIv); window.dispatchEvent(new Event("notiif-fxstate")); } }, 400); };
+export function stopFx() { if (curKey) setCur(null); try { bus?.disconnect(); } catch { /* ignoré */ } bus = null; document.getElementById("fxstop")?.remove(); playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
 type Def = { label: string; sub?: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { get label() { return t("📳 Secousse"); }, get text() { return t("📳 Secousse !"); }, em: [], file: "./sounds/secousse.mp3" },
@@ -35,6 +40,9 @@ export const FX: Record<Fx, Def> = {
   bomb: { get label() { return t("💣 Boum"); }, get text() { return t("💣 Boum !"); }, em: ["💣", "💥", "🔥", "💨"], file: "./sounds/boum.mp3" },
   tornado: { get label() { return t("🌪 Tornade"); }, get text() { return t("🌪 Tornade !"); }, em: ["🌪", "💨", "🍂", "📄"] },
   fog: { get label() { return t("🌫 Brouillard"); }, get text() { return t("🌫 Le brouillard tombe…"); }, em: ["🌫", "☁️"] },
+  absent: { get label() { return t("🗣 Message d'absence"); }, get sub() { return t("voix : français / anglais"); }, get text() { return t("🗣 Je ne suis pas disponible"); }, em: ["🗣", "💤"] },
+  knock: { get label() { return t("🚪 Toc toc toc"); }, get text() { return t("🚪 Toc toc toc !"); }, em: ["🚪", "✊"] },
+  bell: { get label() { return t("🔔 Sonnette"); }, get text() { return t("🔔 Ding dong !"); }, em: ["🔔", "🏠"] },
   birthday: { get label() { return t("🎂 Anniversaire"); }, get text() { return t("🎂 Joyeux anniversaire !"); }, em: ["🎂", "🎈", "🎁", "🥳", "🎉", "🎈"] },
   bd1: { get label() { return t("🎈 Ballons d'anniversaire"); }, get text() { return t("🎈 Joyeux anniversaire !"); }, em: ["🎈"], file: "./sounds/anniv/bd1.mp3", get sub() { return t("21 s"); } },
   bd2: { get label() { return t("🎂 Gâteau et confettis"); }, get text() { return t("🎂 Joyeux anniversaire !"); }, em: ["🎂"], file: "./sounds/anniv/bd2.mp3", get sub() { return t("1 min 03"); } },
@@ -46,8 +54,8 @@ export const FX: Record<Fx, Def> = {
   burp: { get label() { return t("🤭 Rot"); }, get text() { return t("🤭 Burp !"); }, em: ["🤭", "🥴", "💨", "🍺"], file: "./sounds/rot.mp3" },
   fart: { get label() { return t("💨 Pet"); }, get text() { return t("💨 Prout !"); }, em: [] },
   vomit: { get label() { return t("🤮 Vomi"); }, get text() { return t("🤮 Beurk !"); }, em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
-  noel1: { get label() { return t("🎄 Noël · Père Noël dans le ciel"); }, get sub() { return t("musique 1 · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"], file: "./sounds/noel/noel1.mp3" },
-  noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("boîte à musique · 31 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noel1: { get label() { return t("🎄 Noël · Père Noël dans le ciel"); }, get sub() { return t("boîte à musique · 21 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
+  noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("musique 1 · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
   noelv2: { get label() { return t("🔥 Noël · Coin du feu"); }, get sub() { return t("chanson de Noël · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
   easter: { get label() { return t("🐣 Pâques"); }, get text() { return t("🐣 Joyeuses Pâques !"); }, em: ["🐣"] },
 };
@@ -136,6 +144,20 @@ const SFX: Record<string, (c: AC, o: Out, tx: number) => void> = {
   money: (c, o, tx) => { air(c, o, tx, 0.04, { f0: 3000, vol: 0.3 }); bell(c, o, 88, tx + 0.05, 1.6, 0.14); bell(c, o, 95, tx + 0.2, 1.8, 0.14); for (let i = 0; i < 6; i++) bell(c, o, 100 + (i % 3), tx + 0.45 + i * 0.05, 0.4, 0.05); },
   tornado: (c, o, tx) => { bed(c, o, tx, 9.5, { type: "bandpass", f0: 140, f1: 480, q: 0.7, vol: 0.7, atk: 2.5, rel: 1.8, lfo: 0.4, depth: 0.35 }); bed(c, o, tx, 9.5, { type: "lowpass", f0: 110, f1: 170, q: 0.5, vol: 0.9, atk: 1.8, rel: 1.8, lfo: 0.25, depth: 0.3 }); bed(c, o, tx + 0.8, 8.2, { type: "highpass", f0: 1300, f1: 2600, q: 0.4, vol: 0.14, atk: 3, rel: 2, lfo: 0.6, depth: 0.5 }); for (const at of [2.4, 4.9, 6.6]) air(c, o, tx + at, 1.4, { type: "lowpass", f0: 220, f1: 60, q: 0.6, vol: 0.55 }); },
   fog: (c, o, tx) => { bed(c, o, tx, 11, { type: "bandpass", f0: 260, f1: 520, q: 0.5, vol: 0.2, atk: 3.5, rel: 3, lfo: 0.18, depth: 0.4 }); bed(c, o, tx + 1, 9, { type: "highpass", f0: 3200, f1: 3200, q: 0.3, vol: 0.035, atk: 3, rel: 3, lfo: 0.12, depth: 0.5 }); bed(c, o, tx, 11, { type: "lowpass", f0: 130, f1: 130, q: 0.4, vol: 0.16, atk: 3, rel: 3, lfo: 0.1, depth: 0.3 }); },
+  knock: (c, o, tx) => {
+    const hit = (T: number, v: number) => {
+      const th = c.createOscillator(), tg = c.createGain(); th.frequency.setValueAtTime(150, T); th.frequency.exponentialRampToValueAtTime(52, T + 0.1); tg.gain.setValueAtTime(0.0001, T); tg.gain.linearRampToValueAtTime(0.95 * v, T + 0.004); tg.gain.exponentialRampToValueAtTime(0.0001, T + 0.17); th.connect(tg); tg.connect(o); th.start(T); th.stop(T + 0.2);
+      const pn = c.createOscillator(), pg = c.createGain(); pn.type = "triangle"; pn.frequency.setValueAtTime(310 + Math.random() * 40, T); pg.gain.setValueAtTime(0.0001, T); pg.gain.linearRampToValueAtTime(0.16 * v, T + 0.005); pg.gain.exponentialRampToValueAtTime(0.0001, T + 0.3); pn.connect(pg); pg.connect(o); pn.start(T); pn.stop(T + 0.32);
+      air(c, o, T, 0.09, { type: "bandpass", f0: 650, f1: 420, q: 1.3, vol: 0.55 * v, atk: 0.002 }); air(c, o, T, 0.035, { type: "bandpass", f0: 2200, f1: 1500, q: 0.9, vol: 0.3 * v, atk: 0.001 }); air(c, o, T + 0.01, 0.35, { type: "lowpass", f0: 260, f1: 120, q: 0.5, vol: 0.12 * v, atk: 0.01 });
+    };
+    [0.5, 0.95, 1.4].forEach((k, i) => hit(tx + k - 0.02, 0.85 + 0.1 * (i % 2)));
+    [3.0, 3.35, 3.7, 4.05].forEach((k, i) => hit(tx + k - 0.02, 1.0 - 0.05 * i));
+  },
+  bell: (c, o, tx) => {
+    const ring = (T: number, f: number, d: number, v: number) => { [[1, 1, 1], [2.02, 0.45, 1.6], [2.76, 0.3, 2.2], [4.1, 0.18, 3], [5.4, 0.1, 4]].forEach(([r, a, dc]) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.value = f * r; g.gain.setValueAtTime(0.0001, T); g.gain.linearRampToValueAtTime(0.2 * a * v, T + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, T + d / dc); w.connect(g); g.connect(o); w.start(T); w.stop(T + d / dc + 0.05); }); air(c, o, T, 0.04, { type: "highpass", f0: 3000, f1: 3000, q: 0.5, vol: 0.12 * v, atk: 0.001 }); };
+    const dd = (T: number, long = 1) => { ring(T - 0.02, 659.25, 2.2, 1); ring(T + 0.5 - 0.02, 523.25, 2.6 * long, 0.95); };
+    dd(tx + 0.5); dd(tx + 2.9, 1.2);
+  },
   bomb: (c, o, tx) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.setValueAtTime(2400, tx); w.frequency.exponentialRampToValueAtTime(220, tx + 0.9); g.gain.setValueAtTime(0.0001, tx); g.gain.linearRampToValueAtTime(0.06, tx + 0.05); g.gain.linearRampToValueAtTime(0.0001, tx + 0.92); w.connect(g); g.connect(o); w.start(tx); w.stop(tx + 0.95);
     const T = tx + 0.92; air(c, o, T, 0.12, { type: "highpass", f0: 800, vol: 1 }); air(c, o, T, 2.4, { type: "lowpass", f0: 1400, f1: 40, q: 0.6, vol: 1.1, atk: 0.005 }); note(c, o, 90, T, 1.6, { vol: 0.5, glide: 0.1 }); note(c, o, 45, T, 1.8, { vol: 0.5 });
     for (let i = 0; i < 18; i++) air(c, o, T + 0.3 + Math.random() * 1.4, 0.05, { type: "bandpass", f0: 600 + Math.random() * 2500, q: 1, vol: 0.2 }); },
@@ -158,7 +180,7 @@ const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1
 SFX.birthday = (c, o, tx) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], i) => { piano(c, o, n, tx + x * B, d * B * 2.2, 0.16); if (i % 3 === 0) note(c, o, hz(n - 24), tx + x * B, 0.9, { vol: 0.07, type: "triangle", partials: [1, 2] }); x += d; });
   [72, 76, 79, 84].forEach((n, i) => bell(c, o, n, tx + x * B + i * 0.07, 1.4, 0.09)); air(c, o, tx + x * B, 0.12, { type: "highpass", f0: 2500, vol: 0.3 }); };
 SFX.easter = (c, o, tx) => SFX.hearts(c, o, tx);
-for (const k of ["noel1", "noelv1", "noelv2"]) SFX[k] = () => { /* fichier */ };
+for (const k of ["noel1", "noelv1", "noelv2", "absent"]) SFX[k] = () => { /* fichier */ };
 for (const k of ["bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"]) SFX[k] = () => { /* ces effets jouent un fichier */ };
 let ctx: AudioContext | null = null;
 /** Joue le bruitage de l'effet (volume modéré). */
@@ -266,7 +288,7 @@ function weatherShow(storm: boolean) {
 }
 export function playFx(k: Fx, sound = true) {
   const d = FX[k]; if (!d) return;
-  stopFx();
+  stopFx(); setCur(k);
   if (sound) sfx(k);
   if (k === "shake") {
     crumble();
@@ -277,8 +299,10 @@ export function playFx(k: Fx, sound = true) {
   if (k in BD_DUR) { bdayShow(k); return; }
   if (k === "tornado" && !reduced()) { tornadoShow(); return; }
   if (k === "fog" && !reduced()) { fogShow(); return; }
+  if ((k === "knock" || k === "bell") && !reduced()) { doorShow(k); return; }
+  if (k === "absent") { absentShow(sound && !devHidden("mute", k)); return; }
   if (k in NOEL_VIDEOS && !reduced()) { noelVideoShow(k, sound && !devHidden("mute", k)); return; }
-  if (!reduced() && (k === "noel1" || k === "easter")) { holidayShow(k); return; }
+  if (!reduced() && (k === "easter")) { holidayShow(k); return; }
   if (!reduced() && (SCENES as string[]).includes(k)) { sceneShow(k as Scene); if (k !== "rocket") return; }
   if (k === "hearts" && !reduced()) heartsExtra();
   if ((k === "burp" || k === "kiss") && !reduced()) { charShow(k); return; }

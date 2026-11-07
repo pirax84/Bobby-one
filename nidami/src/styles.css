@@ -960,3 +960,8 @@ html[data-theme=dark] .bdball{stroke-width:2}
 .fxbox.crack svg{position:absolute;inset:0}
 
 html.collapsing,html.collapsing body{overflow:hidden!important}
+.fxsw{display:inline-flex;align-items:center;gap:8px;border:0;background:none;cursor:pointer;padding:3px 2px;font-size:.78rem;font-weight:700;color:var(--fg)}
+.fxsw i{position:relative;width:42px;height:24px;border-radius:999px;background:rgba(127,127,127,.42);transition:background .2s;flex:none}
+.fxsw i::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.45);transition:transform .2s}
+.fxsw.on i{background:rgb(var(--brand-rgb))}.fxsw.on i::after{transform:translateX(18px)}
+.fxcw .fxsw{justify-content:center}
