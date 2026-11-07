@@ -30,13 +30,14 @@ function gift(g: G, x: number, y: number, s: number, hue: number, a: number, rot
   g.fillStyle = "#c9951f"; g.beginPath(); g.arc(0, -hs * 0.82, s * 0.07, 0, 6.283); g.fill(); g.restore();
 }
 /** Cupcake avec glaçage en spirale. */
-function cupcake(g: G, x: number, y: number, s: number, hue: number, a: number, rot: number) {
+function cupcake(g: G, x: number, y: number, s: number, hue: number, a: number, rot: number, seed = 0) {
+  const sr = (i: number) => { const v = Math.sin((seed + 1) * 12.9898 + i * 78.233) * 43758.5453; return v - Math.floor(v); };
   g.save(); g.translate(x, y); g.rotate(rot); g.globalAlpha = a; const hs = s / 2;
   const cg = g.createLinearGradient(-hs, 0, hs, 0); cg.addColorStop(0, `hsl(${hue + 20},60%,60%)`); cg.addColorStop(0.5, `hsl(${hue + 20},65%,78%)`); cg.addColorStop(1, `hsl(${hue + 20},60%,45%)`); g.fillStyle = cg; g.beginPath(); g.moveTo(-hs * 0.85, -hs * 0.1); g.lineTo(-hs * 0.6, hs * 0.9); g.lineTo(hs * 0.6, hs * 0.9); g.lineTo(hs * 0.85, -hs * 0.1); g.closePath(); g.fill();
   g.strokeStyle = "rgba(0,0,0,.14)"; g.lineWidth = 1.2; for (let i = -3; i <= 3; i++) { g.beginPath(); g.moveTo(i * hs * 0.24, -hs * 0.1); g.lineTo(i * hs * 0.17, hs * 0.9); g.stroke(); }
   for (let i = 0; i < 3; i++) { const yy = -hs * 0.2 - i * hs * 0.42; const ww = hs * (1.05 - i * 0.3); const fg = g.createRadialGradient(-ww * 0.3, yy - hs * 0.15, 2, 0, yy, ww); fg.addColorStop(0, `hsl(${hue},85%,88%)`); fg.addColorStop(1, `hsl(${hue},70%,62%)`); g.fillStyle = fg; g.beginPath(); g.ellipse(0, yy, ww, hs * 0.3, 0, 0, 6.283); g.fill(); }
   g.fillStyle = "#c4122f"; g.beginPath(); g.arc(0, -hs * 1.35, hs * 0.2, 0, 6.283); g.fill(); g.fillStyle = "rgba(255,255,255,.8)"; g.beginPath(); g.arc(-hs * 0.06, -hs * 1.42, hs * 0.05, 0, 6.283); g.fill();
-  for (let i = 0; i < 7; i++) { g.fillStyle = pick(["#fff", "#ffd54a", "#4cc9f0", "#ff4d6d"]); g.fillRect(rnd(-hs * 0.6, hs * 0.6), rnd(-hs * 1.1, -hs * 0.2), 3, 6); } g.restore();
+  for (let i = 0; i < 9; i++) { g.fillStyle = ["#fff", "#ffd54a", "#4cc9f0", "#ff4d6d"][Math.floor(sr(i * 3) * 4)]; g.fillRect(-hs * 0.6 + sr(i * 3 + 1) * hs * 1.2, -hs * 1.1 + sr(i * 3 + 2) * hs * 0.9, 3, 6); } g.restore();
 }
 /** Étoile dorée brillante. */
 function star(g: G, x: number, y: number, r: number, a: number, rot: number, tw: number) {
@@ -73,7 +74,7 @@ function dropLayer(W: number, H: number, g: G, rate: number, s0: number, s1: num
 function risingStars(W: number, H: number, g: G, rate: number, s0: number, s1: number, until: number): Layer {
   const ps: P[] = []; let acc = 0;
   return (t, dt, f) => { if (t < until) { acc += dt * rate; while (acc > 1) { acc--; ps.push(mk({ x: rnd(0, W), y: -30, vy: rnd(70, 190), s: rnd(s0, s1), r: rnd(0, 6), vr: rnd(-3, 3) })); } }
-    for (let i = ps.length - 1; i >= 0; i--) { const p = ps[i]; p.y += p.vy * dt; p.x += Math.sin(t * 2 + p.ph) * 30 * dt; p.r += p.vr * dt; if (p.y > H + 40) { ps.splice(i, 1); continue; } star(g, p.x, p.y, p.s, f, p.r, t * 6 + p.ph); } };
+    for (let i = ps.length - 1; i >= 0; i--) { const p = ps[i]; p.y += p.vy * dt; p.x += Math.sin(t * 2 + p.ph) * 30 * dt; p.r += p.vr * dt; if (p.y > H + 40) { ps.splice(i, 1); continue; } star(g, p.x, p.y, p.s, f, p.r, t * 2.5 + p.ph); } };
 }
 function emojiLayer(W: number, H: number, g: G, list: string[], rate: number, s0: number, s1: number, from: number, until: number): Layer {
   const ps: P[] = []; let acc = 0;
@@ -103,7 +104,7 @@ export type BdKind = "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6";
 export function bdLayers(k: BdKind, W: number, H: number, g: G, dur: number): Layer[] {
   const L: Layer[] = []; const m = Math.min(W, H);
   const gifts = (rate: number, s0: number, s1: number, until: number) => dropLayer(W, H, g, rate, s0, s1, until, (gg, p) => gift(gg, p.x, p.y, p.s, p.h, 1, p.r));
-  const cups = (rate: number, s0: number, s1: number, until: number) => dropLayer(W, H, g, rate, s0, s1, until, (gg, p) => (p.k % 2 ? cupcake(gg, p.x, p.y, p.s, p.h, 1, p.r) : emo(gg, pick(["🍰", "🍩", "🎂", "🧁", "🥧", "🍪"]), p.x, p.y, p.s, 1, p.r)), 0.35);
+  const cups = (rate: number, s0: number, s1: number, until: number) => dropLayer(W, H, g, rate, s0, s1, until, (gg, p) => (p.k % 2 ? cupcake(gg, p.x, p.y, p.s, p.h, 1, p.r, p.ph) : emo(gg, ["🍰", "🍩", "🎂", "🧁", "🥧", "🍪"][Math.floor(p.ph) % 6], p.x, p.y, p.s, 1, p.r)), 0.35);
   if (k === "bd1") { L.push(balloonsLayer(W, H, g, 4.2, m * 0.1, m * 0.2, dur - 8)); L.push(confettiLayer(W, H, g, 10, dur - 6)); }
   else if (k === "bd2") {
     L.push((t, dt, f) => { const sc = Math.min(1, t / 0.8); const bob = 1 + 0.04 * Math.sin(t * 4); emo(g, "🎂", W / 2, H * 0.5, m * 0.55 * sc * bob, f, Math.sin(t * 2) * 0.05); });
@@ -124,7 +125,7 @@ export function bdLayers(k: BdKind, W: number, H: number, g: G, dur: number): La
     L.push(cannonLayer(W, H, g, [Wt + 1.2, Wt + 1.3, Wt + 6], 45)); L.push(confettiLayer(W, H, g, 0, 0)); L.push((() => { const b = balloonsLayer(W, H, g, 1.6, m * 0.1, m * 0.18, dur - 6); return (t: number, dt: number, f: number) => { if (t > Wt + 1) b(t, dt, f); }; })());
   } else if (k === "bd5") { L.push(cups(3.2, m * 0.1, m * 0.17, dur - 6)); L.push(risingStars(W, H, g, 4, 14, 32, dur - 6)); }
   else {
-    L.push(balloonsLayer(W, H, g, 2.2, m * 0.07, m * 0.12, dur - 8)); L.push(confettiLayer(W, H, g, 26, dur - 5)); L.push(gifts(1.4, m * 0.07, m * 0.12, dur - 6)); L.push(cups(1.8, m * 0.07, m * 0.12, dur - 6)); L.push(risingStars(W, H, g, 3, 10, 22, dur - 6)); L.push(cannonLayer(W, H, g, Array.from({ length: 8 }, (_, i) => 1.5 + i * 7), 22));
+    L.push(balloonsLayer(W, H, g, 2.2, m * 0.07, m * 0.12, dur - 8)); L.push(confettiLayer(W, H, g, 16, dur - 5)); L.push(gifts(1.4, m * 0.07, m * 0.12, dur - 6)); L.push(cups(1.8, m * 0.07, m * 0.12, dur - 6)); L.push(risingStars(W, H, g, 3, 10, 22, dur - 6)); L.push(cannonLayer(W, H, g, Array.from({ length: 8 }, (_, i) => 1.5 + i * 7), 22));
   }
   return L;
 }
