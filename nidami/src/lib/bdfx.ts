@@ -1,7 +1,7 @@
 import { bdSceneShow } from "./scenes";
 import type { BdKind } from "./bdscenes";
 // Effets « anniversaire » : chacun dure aussi longtemps que sa musique et a son propre décor.
-export const BD_DUR: Record<string, number> = { bdall: 65.1, bd1: 21.4, bd2: 63.1, bd3: 18.6, bd4: 22.4, bd5: 25.5, bd6: 65.1 };
+export const BD_DUR: Record<string, number> = { bdall: 13.7, bd1: 21.4, bd2: 63.1, bd3: 18.6, bd4: 22.4, bd5: 25.5, bd6: 65.1 };
 const COLS = ["#B03FD0", "#E8603B", "#12A596", "#D13F7F", "#E8845A", "#7A63E4", "#38B6FF"];
 const CAKES = ["🎂", "🧁", "🍰", "🍩", "🍪", "🥧", "🍮", "🎂"];
 const rnd = (a: number, b: number) => a + Math.random() * (b - a);
@@ -43,7 +43,7 @@ ${berries}${cand}${smoke}</svg>`;
 
 /** Lance le décor de l'effet k (bd1…bd6). */
 export function bdayShow(k: string) {
-  if (k === "bdall") { bdSceneShow(["bd1", "bd2", "bd3", "bd4", "bd5", "bd6"], BD_DUR); return; }
+  if (k === "bdall") { const ks = ["bd1", "bd2", "bd3", "bd4", "bd5", "bd6"] as BdKind[]; bdSceneShow(ks, Object.fromEntries(ks.map((x) => [x, BD_DUR.bdall]))); return; }
   const dur = BD_DUR[k]; if (!dur) return;
   if (k in BD_DUR) { bdSceneShow([k as BdKind], BD_DUR); return; }
   const box = document.createElement("div"); box.className = "bdfx"; box.setAttribute("aria-hidden", "true");

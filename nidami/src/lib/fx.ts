@@ -50,7 +50,7 @@ export const FX: Record<Fx, Def> = {
   bd4: { get label() { return t("🕯️ Souffler les bougies"); }, get text() { return t("🕯️ Joyeux anniversaire !"); }, em: ["🎂"], file: "./sounds/anniv/bd4.mp3", get sub() { return t("boîte à musique · 22 s"); } },
   bd5: { get label() { return t("🧁 Gâteaux et étoiles"); }, get text() { return t("🧁 Joyeux anniversaire !"); }, em: ["🧁"], file: "./sounds/anniv/bd5.mp3", get sub() { return t("piano · 26 s"); } },
   bd6: { get label() { return t("🎉 Méga fête"); }, get text() { return t("🎉 Joyeux anniversaire !"); }, em: ["🎉"], file: "./sounds/anniv/bd6.mp3", get sub() { return t("1 min 05"); } },
-  bdall: { get label() { return t("🤪 Tout en même temps"); }, get sub() { return t("rend fou !"); }, get text() { return t("🤪 Joyeux anniversaire à fond !"); }, em: ["🎂"] },
+  bdall: { get label() { return t("🤪 Tout en même temps"); }, get sub() { return t("rend fou !"); }, get text() { return t("🤪 Joyeux anniversaire à fond !"); }, em: ["🎂"], file: "./sounds/anniv/bdall.mp3" },
   burp: { get label() { return t("🤭 Rot"); }, get text() { return t("🤭 Burp !"); }, em: ["🤭", "🥴", "💨", "🍺"], file: "./sounds/rot.mp3" },
   fart: { get label() { return t("💨 Pet"); }, get text() { return t("💨 Prout !"); }, em: [] },
   vomit: { get label() { return t("🤮 Vomi"); }, get text() { return t("🤮 Beurk !"); }, em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
@@ -192,7 +192,6 @@ export const SHAKE_SNDS: [string, string, string][] = [["zl", "Zigzag long", "./
 export function sfx(k: Fx, target?: BaseAudioContext, noFile = false) {
   if (!target && devHidden("mute", k)) return;
   const cs = !target ? soundFor(k) : null; if (cs) { try { const a = track(new Audio(cs.data)); a.volume = 1; void a.play().catch(() => {}); } catch { /* ignoré */ } return; }
-  if (k === "bdall" && !target) { (["bd1", "bd2", "bd3", "bd4", "bd5", "bd6"] as Fx[]).forEach((x) => sfx(x)); return; }
   const file = k === "shake" ? (SHAKE_SNDS.find((x) => x[0] === cfgNow().shakesnd)?.[2] || FX[k]?.file) : FX[k]?.file; if (file && !target && !noFile) { try { const a = track(new Audio(file)); a.volume = 1; a.play().catch(() => sfx(k, undefined, true)); if (k === "shake") a.addEventListener("ended", () => { try { const b = track(new Audio(file)); b.volume = 1; void b.play(); } catch { /* ignoré */ } }, { once: true }); return; } catch { /* repli sur le son synthétisé */ } }
   try {
     const c = target || (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if ((c as AudioContext).state === "suspended") void (c as AudioContext).resume();
