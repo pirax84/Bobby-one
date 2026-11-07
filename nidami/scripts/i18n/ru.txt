@@ -1384,3 +1384,5 @@
 1383|Normal logo
 1384|🌪 Tornado
 1385|🌪 Tornado!
+1386|🌫 Fog
+1387|🌫 The fog is rolling in…
