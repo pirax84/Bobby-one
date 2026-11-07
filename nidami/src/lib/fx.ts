@@ -1,14 +1,16 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "easter" | "noelv1" | "noelv2";
+export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "tornado" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "easter" | "noelv1" | "noelv2";
 import { sceneShow, holidayShow, SCENES, type Scene } from "./scenes";
+import { tornadoShow, tornadoStop } from "./tornado";
+import { collapseStop } from "./collapse";
 import { devHidden, soundFor } from "./dev";
 import { noelVideoShow, noelVideoStop, NOEL_VIDEOS } from "./noelvideo";
 import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
 const playing: HTMLAudioElement[] = [];
 const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("ended", () => { const i = playing.indexOf(a); if (i >= 0) playing.splice(i, 1); }); return a; };
 /** Arrête l'effet en cours (son et décor) : un seul effet à la fois, sauf « Tout en même temps ». */
-export function stopFx() { playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
+export function stopFx() { playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); tornadoStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
 type Def = { label: string; sub?: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { get label() { return t("📳 Secousse"); }, get text() { return t("📳 Secousse !"); }, em: [], file: "./sounds/secousse.mp3" },
@@ -27,6 +29,7 @@ export const FX: Record<Fx, Def> = {
   laugh: { get label() { return t("😂 Fou rire"); }, get text() { return t("😂 Mort de rire !"); }, em: ["😂", "🤣", "😆", "😹"], file: "./sounds/fourire.mp3" },
   money: { get label() { return t("💰 Jackpot"); }, get text() { return t("💰 Jackpot !"); }, em: ["💰", "🪙", "💎", "🤑"], file: "./sounds/jackpot.mp3" },
   bomb: { get label() { return t("💣 Boum"); }, get text() { return t("💣 Boum !"); }, em: ["💣", "💥", "🔥", "💨"], file: "./sounds/boum.mp3" },
+  tornado: { get label() { return t("🌪 Tornade"); }, get text() { return t("🌪 Tornade !"); }, em: ["🌪", "💨", "🍂", "📄"] },
   birthday: { get label() { return t("🎂 Anniversaire"); }, get text() { return t("🎂 Joyeux anniversaire !"); }, em: ["🎂", "🎈", "🎁", "🥳", "🎉", "🎈"] },
   bd1: { get label() { return t("🎈 Ballons d'anniversaire"); }, get text() { return t("🎈 Joyeux anniversaire !"); }, em: ["🎈"], file: "./sounds/anniv/bd1.mp3", get sub() { return t("21 s"); } },
   bd2: { get label() { return t("🎂 Gâteau et confettis"); }, get text() { return t("🎂 Joyeux anniversaire !"); }, em: ["🎂"], file: "./sounds/anniv/bd2.mp3", get sub() { return t("1 min 03"); } },
@@ -118,6 +121,7 @@ const SFX: Record<string, (c: AC, o: Out, tx: number) => void> = {
       air(c, o, tx + d - 0.03, 0.05, { f0: 2200, q: 0.9, vol: 0.12 }); vox(c, o, tx + d, 0.13, { f0: (u) => base * (1.06 - 0.12 * u), form: (u) => [a[0] - 40 * u, a[1], a[2]] as [number, number, number], vol: 0.8 - i * 0.03, jit: 0.012, shim: 0.08, breath: 0.1, atk: 0.012, rel: 0.06 }); }
     vox(c, o, tx + 2.3, 0.7, { f0: (u) => 310 - 80 * u + 4 * Math.sin(u * 50), form: (u) => [820 - 100 * u, 1350 - 200 * u, 2800], vol: 0.6, jit: 0.012, shim: 0.08, breath: 0.15, atk: 0.04, rel: 0.35 }); },
   money: (c, o, tx) => { air(c, o, tx, 0.04, { f0: 3000, vol: 0.3 }); bell(c, o, 88, tx + 0.05, 1.6, 0.14); bell(c, o, 95, tx + 0.2, 1.8, 0.14); for (let i = 0; i < 6; i++) bell(c, o, 100 + (i % 3), tx + 0.45 + i * 0.05, 0.4, 0.05); },
+  tornado: (c, o, tx) => { air(c, o, tx, 9, { type: "bandpass", f0: 140, f1: 420, q: 0.7, vol: 0.55, atk: 2.5 }); air(c, o, tx, 9, { type: "lowpass", f0: 90, f1: 140, q: 0.5, vol: 0.7, atk: 1.5 }); air(c, o, tx + 1, 7.5, { type: "highpass", f0: 1400, f1: 2600, q: 0.4, vol: 0.18, atk: 3 }); air(c, o, tx + 2.4, 1.2, { type: "lowpass", f0: 200, f1: 60, q: 0.6, vol: 0.5 }); air(c, o, tx + 4.9, 1.2, { type: "lowpass", f0: 200, f1: 60, q: 0.6, vol: 0.5 }); },
   bomb: (c, o, tx) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.setValueAtTime(2400, tx); w.frequency.exponentialRampToValueAtTime(220, tx + 0.9); g.gain.setValueAtTime(0.0001, tx); g.gain.linearRampToValueAtTime(0.06, tx + 0.05); g.gain.linearRampToValueAtTime(0.0001, tx + 0.92); w.connect(g); g.connect(o); w.start(tx); w.stop(tx + 0.95);
     const T = tx + 0.92; air(c, o, T, 0.12, { type: "highpass", f0: 800, vol: 1 }); air(c, o, T, 2.4, { type: "lowpass", f0: 1400, f1: 40, q: 0.6, vol: 1.1, atk: 0.005 }); note(c, o, 90, T, 1.6, { vol: 0.5, glide: 0.1 }); note(c, o, 45, T, 1.8, { vol: 0.5 });
     for (let i = 0; i < 18; i++) air(c, o, T + 0.3 + Math.random() * 1.4, 0.05, { type: "bandpass", f0: 600 + Math.random() * 2500, q: 1, vol: 0.2 }); },
@@ -257,6 +261,7 @@ export function playFx(k: Fx, sound = true) {
     return;
   }
   if (k in BD_DUR) { bdayShow(k); return; }
+  if (k === "tornado" && !reduced()) { tornadoShow(); return; }
   if (k in NOEL_VIDEOS && !reduced()) { noelVideoShow(k, sound && !devHidden("mute", k)); return; }
   if (!reduced() && (k === "noel1" || k === "easter")) { holidayShow(k); return; }
   if (!reduced() && (SCENES as string[]).includes(k)) { sceneShow(k as Scene); if (k !== "rocket") return; }

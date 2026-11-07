@@ -958,3 +958,5 @@ html[data-theme=dark] .bdball{stroke-width:2}
 .crumble.rebuild{animation:rbd .9s cubic-bezier(.2,1.3,.4,1) var(--cd) forwards}
 @keyframes rbd{from{transform:translate(var(--dx),var(--dy)) rotate(var(--rt))}to{transform:none}}
 .fxbox.crack svg{position:absolute;inset:0}
+
+html.collapsing,html.collapsing body{overflow:hidden!important}
