@@ -1387,3 +1387,4 @@
 1386|🌫 Fog
 1387|🌫 The fog is rolling in…
 1388|⏹ Stop the effect
+1389|⏹ Stop
