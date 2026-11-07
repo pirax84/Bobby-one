@@ -23,9 +23,10 @@ export function noelVideoShow(key: string, sound: boolean) {
   v.style.cssText = "width:100%;height:100%;object-fit:" + fit; v.style.position = "relative";
   if (fit === "contain") { const bg = document.createElement("video"); bg.src = d.src; bg.muted = true; bg.loop = true; bg.playsInline = true; bg.setAttribute("playsinline", ""); bg.style.cssText = "position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;filter:blur(28px) brightness(.7)"; box.appendChild(bg); void bg.play().catch(() => {}); }
   box.appendChild(v); document.body.appendChild(box);
-  const end = () => { box.style.opacity = "0"; setTimeout(() => { if (box.isConnected) { noelVideoStop(); box.remove(); } }, 700); };
+  const kill = () => { box.querySelectorAll("video").forEach((x) => { try { x.pause(); x.removeAttribute("src"); x.load(); } catch { /* ignoré */ } }); };
+  const end = () => { if (!box.isConnected || box.dataset.ending) return; box.dataset.ending = "1"; box.style.opacity = "0"; setTimeout(() => { kill(); box.remove(); }, 700); };
   box.addEventListener("click", end); v.addEventListener("ended", end);
-  v.addEventListener("canplay", () => { box.style.opacity = "1"; }, { once: true });
-  v.play().catch(() => { v.muted = true; v.play().catch(end); }); // démarrage automatique : le son peut être refusé
+  v.addEventListener("canplay", () => { if (box.isConnected && !box.dataset.ending) box.style.opacity = "1"; }, { once: true });
+  v.play().catch(() => { if (!box.isConnected) return; v.muted = true; v.play().catch(end); }); // démarrage automatique : le son peut être refusé
   setTimeout(() => { if (box.isConnected) end(); }, d.dur * 1000 + 1500);
 }

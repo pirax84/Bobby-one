@@ -4,7 +4,7 @@ export const SCENES: Scene[] = ["snow", "fireworks", "ghost", "fire", "bubbles",
 type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; s: number; r: number; vr: number; c: string; k?: number; h?: number[][] };
 const rnd = (a: number, b: number) => a + Math.random() * (b - a);
 const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-const DUR: Record<Scene, number> = { snow: 7, fireworks: 7.5, ghost: 7, fire: 6.5, bubbles: 7.5, party: 6, rocket: 7, clap: 6, money: 6.5, bomb: 6.8 };
+const DUR: Record<Scene, number> = { snow: 7, fireworks: 7.5, ghost: 7, fire: 6.5, bubbles: 7.5, party: 6, rocket: 7, clap: 6, money: 6.5, bomb: 6.2 };
 
 import { blastCollapse } from "./collapse";
 import { bdLayers, type BdKind } from "./bdscenes";
@@ -208,12 +208,12 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
     case "bomb": {
       const ps: P[] = []; const deb: P[] = []; const cx = W / 2, cy = H * 0.55; let boom = false; let flash = 0; let ring = 0;
       return (t, dt, f) => {
-        if (t < 0.9) { dim(g, W, H, "#10080a", 0.3 * f); emo(g, "💣", cx, cy - 20, 130, 1, Math.sin(t * 20) * 0.08); const fx = cx + 36, fy = cy - 92; glow(g, fx + rnd(-3, 3), fy + rnd(-3, 3), 26, "rgba(255,200,60,1)", 0.9); return; }
+        if (t < 0.12) { dim(g, W, H, "#10080a", 0.3 * f); emo(g, "💣", cx, cy - 20, 130, 1, Math.sin(t * 20) * 0.08); const fx = cx + 36, fy = cy - 92; glow(g, fx + rnd(-3, 3), fy + rnd(-3, 3), 26, "rgba(255,200,60,1)", 0.9); return; }
         if (!boom) { boom = true; flash = 1; blastCollapse(cx, cy); document.documentElement.classList.remove("shake"); void document.documentElement.offsetWidth; document.documentElement.classList.add("shake"); setTimeout(() => document.documentElement.classList.remove("shake"), 1500);
           for (let i = 0; i < 260; i++) { const a = rnd(0, 6.283), sp = Math.pow(Math.random(), 0.6) * 900; ps.push({ x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 0, max: rnd(0.9, 2), s: rnd(90, 230), r: 0, vr: 0, c: "", k: 0 }); }
           for (let i = 0; i < 90; i++) { const a = rnd(0, 6.283), sp = rnd(250, 900); deb.push({ x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 250, life: 0, max: rnd(2.5, 4), s: rnd(5, 20), r: rnd(0, 6), vr: rnd(-12, 12), c: pick(["#5b534e", "#7a6f67", "#3d3835", "#8a7a6a", "#2c2826"]), k: Math.floor(rnd(0, 3)) }); }
           for (let i = 0; i < 60; i++) ps.push({ x: cx + rnd(-60, 60), y: cy + rnd(-40, 40), vx: rnd(-120, 120), vy: -rnd(30, 160), life: 0, max: rnd(2, 3.5), s: rnd(60, 140), r: 0, vr: 0, c: "", k: 1 }); }
-        const u0 = t - 0.9; dim(g, W, H, "#140a08", 0.45 * f);
+        const u0 = t - 0.12; dim(g, W, H, "#140a08", 0.45 * f);
         if (flash > 0) { dim(g, W, H, "#fff4d0", flash * 0.9 * f); flash -= dt * 2.5; }
         ring += dt * 2600; g.strokeStyle = `rgba(255,230,190,${Math.max(0, 0.7 - u0 * 1.3) * f})`; g.lineWidth = 10 - Math.min(8, u0 * 12); g.beginPath(); g.arc(cx, cy, ring, 0, 6.283); g.stroke();
         for (const p of ps) { p.life += dt; if (p.life > p.max) continue; const u = p.life / p.max; p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= Math.pow(0.25, dt); p.vy *= Math.pow(0.25, dt);

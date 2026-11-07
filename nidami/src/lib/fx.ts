@@ -11,7 +11,7 @@ import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
 const playing: HTMLAudioElement[] = [];
 const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("ended", () => { const i = playing.indexOf(a); if (i >= 0) playing.splice(i, 1); }); return a; };
 /** Arrête l'effet en cours (son et décor) : un seul effet à la fois, sauf « Tout en même temps ». */
-export function stopFx() { playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
+export function stopFx() { document.getElementById("fxstop")?.remove(); playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
 type Def = { label: string; sub?: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { get label() { return t("📳 Secousse"); }, get text() { return t("📳 Secousse !"); }, em: [], file: "./sounds/secousse.mp3" },
@@ -261,9 +261,19 @@ function weatherShow(storm: boolean) {
   }
   document.body.appendChild(box); setTimeout(() => { box.classList.add("out"); setTimeout(() => box.remove(), 700); }, 6200);
 }
+/** Bouton « Arrêter » visible tant qu'un effet est à l'écran : on peut le couper tout de suite. */
+function armStop() {
+  setTimeout(() => {
+    if (!document.querySelector(".fxbox") || document.getElementById("fxstop")) return;
+    const b = document.createElement("button"); b.id = "fxstop"; b.type = "button"; b.textContent = t("⏹ Arrêter l'effet");
+    b.style.cssText = "position:fixed;top:max(12px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:10001;padding:10px 18px;border-radius:999px;border:0;font:600 15px system-ui,sans-serif;background:rgba(20,16,36,.82);color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.4);cursor:pointer;backdrop-filter:blur(6px)";
+    b.onclick = (e) => { e.stopPropagation(); stopFx(); }; document.body.appendChild(b);
+    const iv = setInterval(() => { if (!b.isConnected) { clearInterval(iv); return; } if (!document.querySelector(".fxbox") && !document.documentElement.classList.contains("collapsing")) { b.remove(); clearInterval(iv); } }, 400);
+  }, 500);
+}
 export function playFx(k: Fx, sound = true) {
   const d = FX[k]; if (!d) return;
-  stopFx();
+  stopFx(); armStop();
   if (sound) sfx(k);
   if (k === "shake") {
     crumble();
