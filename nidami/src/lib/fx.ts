@@ -5,7 +5,7 @@ import { sceneShow, holidayShow, SCENES, type Scene } from "./scenes";
 import { tornadoShow, tornadoStop } from "./tornado";
 import { fogShow, fogStop } from "./fog";
 import { doorShow } from "./door";
-import { absentShow } from "./absent";
+import { absentShow, absentStop } from "./absent";
 import { collapseStop } from "./collapse";
 import { devHidden, soundFor } from "./dev";
 import { noelVideoShow, noelVideoStop, NOEL_VIDEOS } from "./noelvideo";
@@ -19,7 +19,7 @@ const fxBus = (c: BaseAudioContext): AudioNode => { if (!bus || bus.context !== 
 let curKey: Fx | null = null; let curAt = 0; let curIv = 0;
 export const playingFx = (): Fx | null => curKey;
 const setCur = (k: Fx | null) => { curKey = k; curAt = Date.now(); window.dispatchEvent(new Event("notiif-fxstate")); clearInterval(curIv); if (k) curIv = window.setInterval(() => { if (Date.now() - curAt > 1800 && !document.querySelector(".fxbox") && !document.documentElement.classList.contains("collapsing")) { curKey = null; clearInterval(curIv); window.dispatchEvent(new Event("notiif-fxstate")); } }, 400); };
-export function stopFx() { if (curKey) setCur(null); try { bus?.disconnect(); } catch { /* ignoré */ } bus = null; document.getElementById("fxstop")?.remove(); playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
+export function stopFx() { if (curKey) setCur(null); try { bus?.disconnect(); } catch { /* ignoré */ } bus = null; document.getElementById("fxstop")?.remove(); playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); absentStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
 type Def = { label: string; sub?: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { get label() { return t("📳 Secousse"); }, get text() { return t("📳 Secousse !"); }, em: [], file: "./sounds/secousse.mp3" },
@@ -55,8 +55,8 @@ export const FX: Record<Fx, Def> = {
   fart: { get label() { return t("💨 Pet"); }, get text() { return t("💨 Prout !"); }, em: [] },
   vomit: { get label() { return t("🤮 Vomi"); }, get text() { return t("🤮 Beurk !"); }, em: ["🤮", "🤢", "🤮", "🤢", "🟢", "🤮"], file: "./sounds/vomi.mp3" },
   noel1: { get label() { return t("🎄 Noël · Père Noël dans le ciel"); }, get sub() { return t("boîte à musique · 21 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
-  noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("chanson de Noël · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
-  noelv2: { get label() { return t("🔥 Noël · Coin du feu"); }, get sub() { return t("musique 1 · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
+  noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("musique 1 · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
+  noelv2: { get label() { return t("🔥 Noël · Coin du feu"); }, get sub() { return t("chanson de Noël · 14 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
   easter: { get label() { return t("🐣 Pâques"); }, get text() { return t("🐣 Joyeuses Pâques !"); }, em: ["🐣"] },
 };
 /** Les effets anniversaire ont leur propre catégorie ; « Tous les effets » ne les contient pas. */
@@ -145,16 +145,19 @@ const SFX: Record<string, (c: AC, o: Out, tx: number) => void> = {
   tornado: (c, o, tx) => { bed(c, o, tx, 9.5, { type: "bandpass", f0: 140, f1: 480, q: 0.7, vol: 0.7, atk: 2.5, rel: 1.8, lfo: 0.4, depth: 0.35 }); bed(c, o, tx, 9.5, { type: "lowpass", f0: 110, f1: 170, q: 0.5, vol: 0.9, atk: 1.8, rel: 1.8, lfo: 0.25, depth: 0.3 }); bed(c, o, tx + 0.8, 8.2, { type: "highpass", f0: 1300, f1: 2600, q: 0.4, vol: 0.14, atk: 3, rel: 2, lfo: 0.6, depth: 0.5 }); for (const at of [2.4, 4.9, 6.6]) air(c, o, tx + at, 1.4, { type: "lowpass", f0: 220, f1: 60, q: 0.6, vol: 0.55 }); },
   fog: (c, o, tx) => { bed(c, o, tx, 11, { type: "bandpass", f0: 260, f1: 520, q: 0.5, vol: 0.2, atk: 3.5, rel: 3, lfo: 0.18, depth: 0.4 }); bed(c, o, tx + 1, 9, { type: "highpass", f0: 3200, f1: 3200, q: 0.3, vol: 0.035, atk: 3, rel: 3, lfo: 0.12, depth: 0.5 }); bed(c, o, tx, 11, { type: "lowpass", f0: 130, f1: 130, q: 0.4, vol: 0.16, atk: 3, rel: 3, lfo: 0.1, depth: 0.3 }); },
   knock: (c, o, tx) => {
+    // Coup de jointure sur une vraie porte en bois : claquement sec + résonances du bois (modes qui s'éteignent vite) + « boum » creux de la porte
+    const nb = c.createBuffer(1, Math.floor(c.sampleRate * 0.04), c.sampleRate); const nd = nb.getChannelData(0); for (let i = 0; i < nd.length; i++) nd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / nd.length, 2);
     const hit = (T: number, v: number) => {
-      const th = c.createOscillator(), tg = c.createGain(); th.frequency.setValueAtTime(150, T); th.frequency.exponentialRampToValueAtTime(52, T + 0.1); tg.gain.setValueAtTime(0.0001, T); tg.gain.linearRampToValueAtTime(0.95 * v, T + 0.004); tg.gain.exponentialRampToValueAtTime(0.0001, T + 0.17); th.connect(tg); tg.connect(o); th.start(T); th.stop(T + 0.2);
-      const pn = c.createOscillator(), pg = c.createGain(); pn.type = "triangle"; pn.frequency.setValueAtTime(310 + Math.random() * 40, T); pg.gain.setValueAtTime(0.0001, T); pg.gain.linearRampToValueAtTime(0.16 * v, T + 0.005); pg.gain.exponentialRampToValueAtTime(0.0001, T + 0.3); pn.connect(pg); pg.connect(o); pn.start(T); pn.stop(T + 0.32);
-      air(c, o, T, 0.09, { type: "bandpass", f0: 650, f1: 420, q: 1.3, vol: 0.55 * v, atk: 0.002 }); air(c, o, T, 0.035, { type: "bandpass", f0: 2200, f1: 1500, q: 0.9, vol: 0.3 * v, atk: 0.001 }); air(c, o, T + 0.01, 0.35, { type: "lowpass", f0: 260, f1: 120, q: 0.5, vol: 0.12 * v, atk: 0.01 });
+      const j = 0.94 + Math.random() * 0.12;
+      [[185, 1, 45], [262, 0.8, 38], [388, 0.9, 34], [545, 0.55, 30], [790, 0.4, 26], [1180, 0.25, 22]].forEach(([f, a, q]) => { const s = c.createBufferSource(); s.buffer = nb; const bp = c.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = f * j; bp.Q.value = q; const g = c.createGain(); g.gain.value = 5.5 * a * v; s.connect(bp); bp.connect(g); g.connect(o); s.start(T); });
+      const th = c.createOscillator(), tg = c.createGain(); th.frequency.setValueAtTime(112 * j, T); th.frequency.exponentialRampToValueAtTime(74, T + 0.12); tg.gain.setValueAtTime(0.0001, T); tg.gain.linearRampToValueAtTime(0.7 * v, T + 0.003); tg.gain.exponentialRampToValueAtTime(0.0001, T + 0.22); th.connect(tg); tg.connect(o); th.start(T); th.stop(T + 0.25);
+      air(c, o, T, 0.012, { type: "highpass", f0: 1800, vol: 0.5 * v, atk: 0.0005 }); air(c, o, T + 0.02, 0.4, { type: "lowpass", f0: 220, f1: 90, q: 0.5, vol: 0.1 * v, atk: 0.02 });
     };
-    [0.5, 0.95, 1.4].forEach((k, i) => hit(tx + k - 0.02, 0.85 + 0.1 * (i % 2)));
+    [0.5, 0.95, 1.4].forEach((k, i) => hit(tx + k - 0.02, 0.85 + 0.12 * (i % 2)));
     [3.0, 3.35, 3.7, 4.05].forEach((k, i) => hit(tx + k - 0.02, 1.0 - 0.05 * i));
   },
   bell: (c, o, tx) => {
-    const ring = (T: number, f: number, d: number, v: number) => { [[1, 1, 1], [2.02, 0.45, 1.6], [2.76, 0.3, 2.2], [4.1, 0.18, 3], [5.4, 0.1, 4]].forEach(([r, a, dc]) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.value = f * r; g.gain.setValueAtTime(0.0001, T); g.gain.linearRampToValueAtTime(0.2 * a * v, T + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, T + d / dc); w.connect(g); g.connect(o); w.start(T); w.stop(T + d / dc + 0.05); }); air(c, o, T, 0.04, { type: "highpass", f0: 3000, f1: 3000, q: 0.5, vol: 0.12 * v, atk: 0.001 }); };
+    const ring = (T: number, f: number, d: number, v: number) => { [[1, 1, 1], [2.02, 0.45, 1.6], [2.76, 0.3, 2.2], [4.1, 0.18, 3], [5.4, 0.1, 4]].forEach(([r, a, dc]) => { const w = c.createOscillator(), g = c.createGain(); w.frequency.value = f * r; g.gain.setValueAtTime(0.0001, T); g.gain.linearRampToValueAtTime(0.42 * a * v, T + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, T + d / dc); w.connect(g); g.connect(o); w.start(T); w.stop(T + d / dc + 0.05); }); air(c, o, T, 0.04, { type: "highpass", f0: 3000, f1: 3000, q: 0.5, vol: 0.25 * v, atk: 0.001 }); };
     const dd = (T: number, long = 1) => { ring(T - 0.02, 659.25, 2.2, 1); ring(T + 0.5 - 0.02, 523.25, 2.6 * long, 0.95); };
     dd(tx + 0.5); dd(tx + 2.9, 1.2);
   },

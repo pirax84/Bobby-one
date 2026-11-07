@@ -4,6 +4,7 @@ import { ACCENTS } from "../lib/theme";
 import { useStore } from "../lib/store";
 import { useRef } from "react";
 import { FxSwitch } from "./FxSwitch";
+import { PresenceBar } from "./Chat";
 import { useDev, setDevClient, setDevFete, setDevUnlocked, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION, devIsOff, devToggleHidden, customSounds, addCustomSound, removeCustomSound, sndMapOf, setSndMap, devResetAll } from "../lib/dev";
 import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
@@ -69,7 +70,7 @@ function DevSounds() {
 function DevNotifs() {
   useDev();
   const T = (id: string, l: string, fn: () => void) => <div key={id} className="row" style={{ gap: 8 }}><span className="grow">{l}</span><button type="button" className="chip" onClick={fn} aria-label={t("▶ Tester")}>▶</button></div>;
-  return <div className="card col" style={{ gap: 6 }}><h3>{t("🔔 Notifications et sonneries")}</h3>
+  return <><div className="card col" style={{ gap: 6 }}><h3>{t("🟢 Ma disponibilité")}</h3><PresenceBar /></div><div className="card col" style={{ gap: 6 }}><h3>{t("🔔 Notifications et sonneries")}</h3>
     <p className="muted small" style={{ margin: 0 }}>{t("Écoutez chaque son de notification. « Son » coupé = il ne sonne plus sur cet appareil.")}</p>
     {T("n1", t("Message envoyé (début)"), () => soundStart())}{T("n2", t("Message parti (fin)"), () => soundEnd())}
     {T("n3", t("Message vocal"), () => notifSound.vocal())}{T("n4", t("Story"), () => notifSound.story())}{T("n5", t("Réaction"), () => notifSound.reaction())}{T("n6", t("Appel"), () => notifSound.appel())}
@@ -80,7 +81,7 @@ function DevNotifs() {
     <b className="small">{t("Vibrations")}</b>
     <div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} type="button" className="chip" onClick={() => vibrate(v.id)}>{v.label}</button>)}</div>
     <b className="small">{t("Messages à l'écran")}</b>
-    <button className="btn ghost" onClick={() => toast(t("🔔 Ceci est une notification de test."))}>{t("Afficher une notification de test")}</button></div>;
+    <button className="btn ghost" onClick={() => toast(t("🔔 Ceci est une notification de test."))}>{t("Afficher une notification de test")}</button></div></>;
 }
 
 /** Aperçu client à côté (PC) : l'appli telle que la voit un client, à la date simulée. */

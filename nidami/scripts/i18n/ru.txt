@@ -1409,3 +1409,15 @@
 1408|🟢 My availability
 1409|Tap the screen to stop
 1410|Christmas song · 25 s
+1411|Message recorded.
+1412|Microphone unavailable. Allow the microphone and try again.
+1413|🎙 My away message
+1414|Record your voice (5 seconds maximum). Otherwise a default voice is used.
+1415|⏹ Stop
+1416|🎙 Record again
+1417|🎙 Record (5 s max)
+1418|Listen
+1419|🚫 Never
+1420|🟡 When I'm not here
+1421|🔁 Always
+1422|When someone sends me an effect, my away message replies by itself.

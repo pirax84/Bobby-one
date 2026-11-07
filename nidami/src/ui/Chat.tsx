@@ -1,4 +1,5 @@
-import { usePresence, setPresence, setAutoReply, PRESENCES } from "../lib/presence";
+import { usePresence, setPresence, setAutoMode, setAbsentMsg, PRESENCES, type AutoMode } from "../lib/presence";
+import { recordAbsent } from "../lib/absent";
 import { FxSwitch } from "./FxSwitch";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { LinkifiedText } from "./Links";
@@ -35,13 +36,22 @@ export function CallButton({ convId }: { convId: string }) {
       <button className="btn bigbtn" onClick={() => { toast(t("L'appel simple arrive bientôt : il demande le serveur NOTIIF.")); setOpen(false); }}><span className="grow"><b>{t("📞 Appel simple")}</b><small>{t("Voix seulement · bientôt")}</small></span></button>
       <button className="btn bigbtn" onClick={visio}><span className="grow"><b>{t("📹 Visio")}</b><small>{t("Voix et image · disponible")}</small></span></button></div></Modal>, document.body)}</>;
 }
-/** Je suis présent, occupé, pas là, ou je reviens plus tard. */
+/** Je suis présent, occupé, pas là, ou je reviens plus tard. + mon message d'absence (5 s) et la réponse automatique. */
 export function PresenceBar() {
-  const { presence, auto } = usePresence();
-  return <div className="col" style={{ gap: 6 }}>
+  const { presence, mode, msg } = usePresence(); const [rec, setRec] = useState<{ stop: () => void } | null>(null); const [sec, setSec] = useState(0);
+  const start = async () => { try { setSec(0); const r = await recordAbsent(setSec); setRec(r); const d = await r.done; setRec(null); setAbsentMsg(d); toast(t("Message enregistré.")); } catch { setRec(null); toast(t("Micro impossible. Autorisez le micro puis réessayez.")); } };
+  const MODES: [AutoMode, string][] = [["off", "🚫 Jamais"], ["away", "🟡 Quand je ne suis pas là"], ["always", "🔁 Tout le temps"]];
+  return <div className="col" style={{ gap: 8 }}>
     <div className="row wrap" style={{ gap: 6 }} role="radiogroup" aria-label={t("Ma disponibilité")}>{PRESENCES.map(([k, e, l]) => <button key={k} type="button" role="radio" aria-checked={presence === k} className={"chip" + (presence === k ? " on" : "")} onClick={() => setPresence(k)}>{e} {t(l)}</button>)}</div>
-    {presence !== "here" && <label className="row" style={{ gap: 8 }}><span className="grow small"><b>{t("Répondre automatiquement")}</b><span className="muted" style={{ display: "block" }}>{t("Quand quelqu'un m'envoie un effet, une voix répond que je ne suis pas là.")}</span></span><input type="checkbox" checked={auto} style={{ width: 22, height: 22 }} onChange={(e) => setAutoReply(e.target.checked)} aria-label={t("Répondre automatiquement")} /></label>}
-    {presence !== "here" && auto && <div className="row" style={{ gap: 8 }}><span className="grow muted small">{t("Écouter la réponse automatique")}</span><FxSwitch k="absent" /></div>}</div>;
+    <b className="small">{t("🎙 Mon message d'absence")}</b>
+    <span className="muted small">{t("Enregistrez votre voix (5 secondes maximum). Sinon, une voix par défaut est utilisée.")}</span>
+    <div className="row wrap" style={{ gap: 8 }}>
+      {rec ? <button type="button" className="btn sm" style={{ background: "var(--bad)", color: "#fff" }} onClick={() => rec.stop()}>{t("⏹ Arrêter")} ({sec.toFixed(1)} / 5 s)</button> : <button type="button" className="btn ghost sm" onClick={start}>{msg ? t("🎙 Réenregistrer") : t("🎙 Enregistrer (5 s max)")}</button>}
+      {msg && !rec && <button type="button" className="btn ghost sm" onClick={() => setAbsentMsg("")}>{t("🗑 Supprimer")}</button>}
+      <span className="grow" /><span className="small muted">{t("Écouter")}</span><FxSwitch k="absent" /></div>
+    <b className="small">{t("Répondre automatiquement")}</b>
+    <div className="row wrap" style={{ gap: 6 }} role="radiogroup" aria-label={t("Répondre automatiquement")}>{MODES.map(([k, l]) => <button key={k} type="button" role="radio" aria-checked={mode === k} className={"chip" + (mode === k ? " on" : "")} onClick={() => setAutoMode(k)}>{t(l)}</button>)}</div>
+    <span className="muted small">{t("Quand quelqu'un m'envoie un effet, mon message d'absence répond tout seul.")}</span></div>;
 }
 export function Messages() {
   const s = useStore((x) => x); const me = s.me; const now = useNow(500); const [sel, setSelRaw] = useState<string | null>(() => (history.state?.conv as string) || null); const setSel = (id: string | null) => { if (id) history.pushState({ v: "messages", conv: id }, ""); setSelRaw(id); }; const closeConv = () => { if (history.state?.conv) history.back(); else setSelRaw(null); }; useEffect(() => { const f = (e: PopStateEvent) => { if (!(e.state && e.state.conv)) setSelRaw(null); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []); const [txt, setTxt] = useState(""); const [secs, setSecs] = useState(0); const [once, setOnce] = useState(false); const [openOnce, setOpenOnce] = useState<string | null>(null); const [q, setQ] = useState(""); const [edit, setEdit] = useState<string | null>(null); const [rep, setRep] = useState<Msg | null>(null); const [pinIdx, setPinIdx] = useState(0); const [emoTab, setEmoTab] = useState<"e" | "f">("e"); const [play, setPlay] = useState<Record<string, number>>({});

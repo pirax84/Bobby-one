@@ -5,11 +5,19 @@ export const PRESENCES: [Presence, string, string][] = [["here", "🟢", "Prése
 const get = (k: string) => { try { return localStorage.getItem(k) || ""; } catch { return ""; } };
 const put = (k: string, v: string) => { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* ignoré */ } window.dispatchEvent(new Event("notiif-presence")); };
 export const presenceNow = (): Presence => (["here", "busy", "away", "later"].includes(get("notiif-presence")) ? (get("notiif-presence") as Presence) : "here");
-export const autoReplyOn = () => get("notiif-autoreply") === "1";
+export type AutoMode = "off" | "away" | "always";
+export const autoMode = (): AutoMode => { const v = get("notiif-autoreply"); return v === "always" ? "always" : v === "1" || v === "away" ? "away" : "off"; };
+export const autoReplyOn = () => autoMode() !== "off";
+export const setAutoMode = (m: AutoMode) => put("notiif-autoreply", m === "off" ? "" : m);
+/** Faut-il répondre tout de suite à un effet reçu ? (« Tout le temps » ou « Quand je ne suis pas là ») */
+export const shouldAutoReply = () => { const m = autoMode(); return m === "always" || (m === "away" && presenceNow() !== "here"); };
+/** Mon propre message d'absence (5 s maximum), gardé sur cet appareil. */
+export const absentMsg = () => get("notiif-absent-msg");
+export const setAbsentMsg = (d: string) => put("notiif-absent-msg", d);
 export const setPresence = (p: Presence) => put("notiif-presence", p === "here" ? "" : p);
 export const setAutoReply = (v: boolean) => put("notiif-autoreply", v ? "1" : "");
 export function usePresence() {
   const [, bump] = useState(0);
   useEffect(() => { const h = () => bump((n) => n + 1); window.addEventListener("notiif-presence", h); return () => window.removeEventListener("notiif-presence", h); }, []);
-  return { presence: presenceNow(), auto: autoReplyOn() };
+  return { presence: presenceNow(), auto: autoReplyOn(), mode: autoMode(), msg: absentMsg() };
 }
