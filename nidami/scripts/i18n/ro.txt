@@ -1421,3 +1421,4 @@
 1420|🟡 When I'm not here
 1421|🔁 Always
 1422|When someone sends me an effect, my away message replies by itself.
+1423|Christmas song · 21 s
