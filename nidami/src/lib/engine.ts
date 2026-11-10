@@ -14,6 +14,7 @@ export type Audience =
   | { mode: "only"; ids: ID[] }           // amis sélectionnés
   | { mode: "except"; ids: ID[] }         // tous mes amis sauf…
   | { mode: "list"; listId: ID }          // liste personnalisée
+  | { mode: "cat"; catId: string }        // une catégorie de contacts (famille, collègues…)
   | { mode: "me" };                       // moi uniquement
 
 export interface Group { id: ID; name: string; emoji: string; description: string; rules: string; adminIds: ID[]; memberIds: ID[] }
@@ -32,7 +33,7 @@ export interface Post {
   purged?: boolean;                          // fichier supprimé du stockage
   sharedFrom?: ID; shareId?: ID;             // republication AUTORISÉE : simple référence vers l'original (aucune copie)
 }
-export interface Social { ties?: Record<ID, "family" | "fav">; friends: Record<ID, ID[]>; blocks: Record<ID, ID[]>; groups: Group[]; lists: FriendList[] }
+export interface Social { cats?: Record<ID, { id: string; e: string; n: string }[]>; catOf?: Record<ID, Record<ID, string[]>>; sees?: Record<ID, Record<string, string[]>>; ties?: Record<ID, "family" | "fav">; friends: Record<ID, ID[]>; blocks: Record<ID, ID[]>; groups: Group[]; lists: FriendList[] }
 
 export const VIEW_CHOICES = [3, 5, 10, 30, 60] as const;      // secondes proposées
 export const MAX_CUSTOM_SECS = 600;                          // durée personnalisée : 1 s à 10 min
@@ -41,6 +42,13 @@ export const DEFAULT_GLOBAL_MS = 24 * 3600 * 1000;           // 24 h
 export const validViewSecs = (n: number) => Number.isInteger(n) && n >= 0 && n <= MAX_CUSTOM_SECS;
 export const areFriends = (s: Social, a: ID, b: ID) => (s.friends[a] || []).includes(b) && (s.friends[b] || []).includes(a);
 export const isBlocked = (s: Social, a: ID, b: ID) => (s.blocks[a] || []).includes(b) || (s.blocks[b] || []).includes(a);
+
+/** Qui reçoit une publication destinée à la catégorie `catId` : ses membres, + les catégories qui ont coché « voit aussi » celle-ci. */
+export function catRecipients(s: Social, owner: ID, catId: string, friends: ID[]): ID[] {
+  const co = s.catOf?.[owner] || {}; const sees = s.sees?.[owner] || {};
+  const viewers = new Set<string>([catId]); for (const c of Object.keys(sees)) if ((sees[c] || []).includes(catId)) viewers.add(c);
+  return friends.filter((f) => (co[f] || []).some((c) => viewers.has(c)));
+}
 
 // Qui recevra la publication ? (calculé une seule fois, à la publication)
 export function resolveRecipients(s: Social, authorId: ID, aud: Audience): ID[] {
@@ -52,6 +60,7 @@ export function resolveRecipients(s: Social, authorId: ID, aud: Audience): ID[] 
     case "only": r = aud.ids.filter((i) => friends.includes(i)); break;
     case "except": r = friends.filter((f) => !aud.ids.includes(f)); break;
     case "list": { const l = s.lists.find((x) => x.id === aud.listId && x.ownerId === authorId); r = l ? l.memberIds.filter((i) => friends.includes(i)) : []; break; }
+    case "cat": r = catRecipients(s, authorId, aud.catId, friends); break;
     case "me": r = []; break;
   }
   return [...new Set(r)];

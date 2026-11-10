@@ -1429,3 +1429,28 @@
 1428|🌈 Change color every day
 1429|A new random color at the first opening each day. Picking a color yourself stops this mode.
 1430|Change color every day
+1431|➕ My category
+1432|My category: write any name you like
+1433|Category name
+1434|Category created.
+1435|Create category
+1436|‹ Back
+1437|{name} also see:
+1438|Tick the categories you want to show them. Nothing ticked: they see nothing from the others.
+1439|always
+1440|Delete this category?
+1441|🗑 Delete this category
+1442|🔀 Who sees what
+1443|Pick a category, then tick what it can also see. Useful when you post for a single category.
+1444|Which category?
+1445|Categories
+1446|A category
+1447|Category
+1448|Cousins
+1449|In-laws
+1450|Best friends
+1451|Colleagues
+1452|Neighbors
+1453|School and studies
+1454|Sports and clubs
+1455|Acquaintances

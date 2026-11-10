@@ -1,3 +1,4 @@
+import { catsOf } from "../lib/cats";
 import { soundEnd } from "../lib/fx";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Eph } from "./Vanish";
@@ -75,14 +76,14 @@ function StoryViewer({ authorId, me, onClose }: { authorId: string; me: string; 
 }
 
 // ───────── Publier
-const audOpts = (): [string, string][] => [["all", t("Tous mes amis")], ["group", t("Un groupe")], ["only", t("Amis sélectionnés")], ["except", t("Tous sauf…")], ["list", t("Une liste")], ["me", t("Moi uniquement")]];
+const audOpts = (): [string, string][] => [["all", t("Tous mes amis")], ["group", t("Un groupe")], ["only", t("Amis sélectionnés")], ["except", t("Tous sauf…")], ["list", t("Une liste")], ["cat", t("Une catégorie")], ["me", t("Moi uniquement")]];
 export function Composer({ onClose, story = false, groupId, init, alsoWall = false }: { onClose: () => void; story?: boolean; groupId?: string; alsoWall?: boolean; init?: { kind: "text" | "photo" | "video" | "audio" | "link"; vid?: string; img?: string; aud?: string } }) {
   const s = useStore((x) => x); const me = s.me; const friends = (s.social.friends[me] || []).map((id) => userOf(s, id)!).filter(Boolean);
   const groups = s.social.groups.filter((g) => g.memberIds.includes(me)); const lists = s.social.lists.filter((l) => l.ownerId === me);
   const [linkUrl, setLinkUrl] = useState(""); const [newL, setNewL] = useState(false); const [lname, setLname] = useState(""); const [lsel, setLsel] = useState<string[]>([]); const [kind, setKind] = useState<"text" | "photo" | "video" | "audio" | "link">(init?.kind || "text"); const [vid, setVid] = useState<string | null>(init?.vid || null); const [aud0, setAud0] = useState<string | null>(init?.aud || null); const [recK, setRecK] = useState<"video" | "audio" | null>(init?.kind === "audio" ? "audio" : init?.kind === "video" && !init.vid ? "video" : null); const [text, setText] = useState(""); const [img, setImg] = useState<string | null>(init?.img || null); const [bg, setBg] = useState(0); const [mood, setMood] = useState("");
-  const [mode, setMode] = useState<string>(groupId ? "group" : "all"); const [sel, setSel] = useState<string[]>([]); const [gid, setGid] = useState(groupId || groups[0]?.id || ""); const [lid, setLid] = useState(lists[0]?.id || "");
+  const [mode, setMode] = useState<string>(groupId ? "group" : "all"); const [sel, setSel] = useState<string[]>([]); const [gid, setGid] = useState(groupId || groups[0]?.id || ""); const [lid, setLid] = useState(lists[0]?.id || ""); const mycats = catsOf(s.social, me); const [cid, setCid] = useState("family");
   const [secs, setSecs] = useState(0); const [custom, setCustom] = useState(""); const [sdur, setSdur] = useState<"24h" | "inf" | "eph">("24h"); const [busy, setBusy] = useState(false); const [wm, setWm] = useState(true); const [frame, setFrame] = useState<Frame>(FRAME0); const [fh, setFh] = useState(false); const [crop, setCrop] = useState(false); const file = useRef<HTMLInputElement>(null);
-  const aud: Audience = mode === "group" ? { mode: "group", groupId: gid } : mode === "only" ? { mode: "only", ids: sel } : mode === "except" ? { mode: "except", ids: sel } : mode === "list" ? { mode: "list", listId: lid } : mode === "me" ? { mode: "me" } : { mode: "all" };
+  const aud: Audience = mode === "group" ? { mode: "group", groupId: gid } : mode === "only" ? { mode: "only", ids: sel } : mode === "except" ? { mode: "except", ids: sel } : mode === "list" ? { mode: "list", listId: lid } : mode === "cat" ? { mode: "cat", catId: cid } : mode === "me" ? { mode: "me" } : { mode: "all" };
   const count = resolveRecipients(s.social, me, aud).length; const eff = custom ? Number(custom) : secs;
   const validCustom = !custom || (Number.isInteger(Number(custom)) && Number(custom) >= 1 && Number(custom) <= MAX_CUSTOM_SECS);
   const pick = async (f?: File) => { if (!f) return; if (!f.type.startsWith("image/")) return toast(t("Choisissez une image.")); setBusy(true); try { setImg(await fileToDataUrl(f)); setKind("photo"); } catch { toast(t("Impossible de lire cette image.")); } setBusy(false); };
@@ -120,6 +121,7 @@ export function Composer({ onClose, story = false, groupId, init, alsoWall = fal
     </div>
     {custom !== "" && (!story || sdur === "eph") && <input className="inp" inputMode="numeric" placeholder={t("Secondes (1 à 999)")} value={custom} onChange={(e) => setCustom(e.target.value.replace(/\D/g, "").slice(0, 3))} aria-label={t("Durée personnalisée en secondes")} />}
     {mode === "group" && <select className="inp" value={gid} onChange={(e) => setGid(e.target.value)} aria-label={t("Groupe")}>{groups.map((g) => <option key={g.id} value={g.id}>{g.emoji} {g.name}</option>)}</select>}
+    {mode === "cat" && <select className="inp" value={cid} onChange={(e) => setCid(e.target.value)} aria-label={t("Catégorie")}>{mycats.map((c) => <option key={c.id} value={c.id}>{c.e} {c.n}</option>)}</select>}
     {mode === "list" && <div className="col" style={{ gap: 8 }}>
       {lists.length > 0 && <select className="inp" value={lid} onChange={(e) => setLid(e.target.value)} aria-label={t("Liste")}>{lists.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select>}
       {!newL ? <button type="button" className="btn ghost sm" style={{ alignSelf: "flex-start" }} onClick={() => setNewL(true)}>{t("＋ Créer une liste")}{lists.length ? " de plus" : ""}</button>
@@ -214,7 +216,7 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
     {ask && <ShareAsk post={rp} onClose={() => setAsk(false)} />}
   </article>);
 }
-function audLabel(p: Post, s: State["social"]) { const m = p.audience.mode; return m === "all" ? t("Tous les amis") : m === "me" ? t("Moi seul") : m === "group" ? s.groups.find((g) => g.id === (p.audience as any).groupId)?.name || t("Groupe") : m === "only" ? t("Amis choisis") : m === "except" ? t("Amis sauf…") : t("Liste"); }
+function audLabel(p: Post, s: State["social"]) { const m = p.audience.mode; return m === "all" ? t("Tous les amis") : m === "me" ? t("Moi seul") : m === "group" ? s.groups.find((g) => g.id === (p.audience as any).groupId)?.name || t("Groupe") : m === "only" ? t("Amis choisis") : m === "except" ? t("Amis sauf…") : m === "cat" ? (catsOf(s as any, p.authorId).find((c) => c.id === (p.audience as any).catId)?.n || t("Catégorie")) : t("Liste"); }
 
 function BirthdayBanner({ go }: { go?: (v: string, conv?: string) => void }) {
   const users = useStore((x) => x.users); const me = useStore((x) => x.me); const fr = useStore((x) => x.social.friends[x.me] || []);

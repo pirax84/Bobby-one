@@ -98,3 +98,11 @@ test("Seuls les amis de l'auteur voient : un membre de groupe qui n'est pas son 
   const r2 = resolveRecipients(s, "pierre", { mode: "all" });
   assert.ok(!r2.includes("intrus"));
 });
+
+test("catégories : seule la catégorie choisie reçoit, plus celles qui la voient aussi", () => {
+  const s = S(); s.catOf = { pierre: { celine: ["work"], thomas: ["friends"], emilie: ["family"] } };
+  assert.deepEqual(resolveRecipients(s, "pierre", { mode: "cat", catId: "friends" }), ["thomas"]);
+  s.sees = { pierre: { work: ["friends"] } };
+  assert.deepEqual(resolveRecipients(s, "pierre", { mode: "cat", catId: "friends" }).sort(), ["celine", "thomas"]);
+  assert.deepEqual(resolveRecipients(s, "pierre", { mode: "cat", catId: "work" }), ["celine"]);
+});
