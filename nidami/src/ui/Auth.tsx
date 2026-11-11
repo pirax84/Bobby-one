@@ -55,14 +55,14 @@ function SignUp() {
   const [mode, setMode] = useState<"new" | "old">("new"); const [name, setName] = useState(""); const [pseudo, setPseudo] = useState(""); const [email, setEmail] = useState(""); const [pw, setPw] = useState(""); const [ok, setOk] = useState(false); const [dob, setDob] = useState<[string, string, string]>(["", "", ""]); const age = ageFrom(dob[0], dob[1], dob[2]);
   const dobMsg = () => age === null ? t("Indiquez votre date de naissance complète (jour, mois, année) : c'est obligatoire.") : age < 15 ? t("NOTIIF est réservé aux personnes de 15 ans ou plus. Vous pourrez nous rejoindre plus tard.") : "";
   const saveDob = () => actions.updateProfile({ birthday: String(dob[1]).padStart(2, "0") + "-" + String(dob[0]).padStart(2, "0"), byear: +dob[2] });
-  const [legal, setLegal] = useState(false); const [info, setInfo] = useState(""); const [prov, setProv] = useState<Prov | null>(null); const [busy, setBusy] = useState(false); const on = serverOn();
+  const [legal, setLegal] = useState(false); const [info, setInfo] = useState(""); const [prov, setProv] = useState<Prov | null>(null); const [busy, setBusy] = useState(false); const on = serverOn(); void PROVIDERS; void ProvBtn;
   const legalBtn = <button type="button" style={{ background: "none", border: 0, padding: 0, color: "var(--brand2)", textDecoration: "underline" }} onClick={() => setLegal(true)}>{t("conditions d'utilisation et la politique de confidentialité")}</button>;
   const submit = async (e: React.FormEvent) => { e.preventDefault(); if (!ok) return; if (mode === "new" && dobMsg()) { setInfo(dobMsg()); return; } setBusy(true);
     const r = mode === "new" ? await emailSignUp(email.trim(), pw, name.trim() || email.split("@")[0]) : await emailLogin(email.trim(), pw); setBusy(false); setInfo(r.msg); if (r.who) { actions.start(r.who.name, "", pseudo); if (mode === "new") saveDob(); } };
   return (<div className="card col center" style={{ alignItems: "center", gap: 14, padding: 26 }}>
     <Logo s={110} /><h1 style={{ fontSize: "1.6rem", letterSpacing: "-.03em" }}>{mode === "new" ? t("Créer mon compte") : t("Me connecter")}</h1>
-    <div className="col" style={{ width: "100%", gap: 8 }}>{PROVIDERS.map((p) => <ProvBtn key={p.id} p={p} onSoon={(q) => setProv(q)} />)}</div>
-    <div className="muted small">{t("— ou —")}</div>
+    {(window as any).__NOTIIF_DEV__ === true && <><button type="button" className="btn" style={{ width: "100%" }} onClick={() => { actions.start("Créateur", "", ""); actions.updateProfile({ birthday: "01-01", byear: 1990 }); }}>{"🛠 Entrer en mode test (sans compte)"}</button>
+      <div className="muted small">{"— ou me connecter avec un vrai compte —"}</div></>}
     {on ? <form className="col" style={{ width: "100%" }} onSubmit={submit}>
       {mode === "new" && <input className="inp" placeholder={t("Votre prénom ou pseudo")} value={name} onChange={(e) => setName(e.target.value)} maxLength={30} aria-label={t("Prénom")} />}{mode === "new" && <input className="inp" placeholder={t("Pseudo @ (facultatif) : modifiable une seule fois, payant")} value={pseudo} onChange={(e) => setPseudo(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 20))} aria-label={t("Pseudo")} />}
       <input className="inp" type="email" placeholder={t("Votre e-mail")} value={email} onChange={(e) => setEmail(e.target.value)} aria-label="E-mail" required />
