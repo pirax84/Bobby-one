@@ -55,7 +55,8 @@ export async function listRequests(): Promise<Request[]> {
 }
 export const requestFriend = (code: string) => req("POST", "/rest/v1/rpc/request_friend", { p_code: code });
 export const acceptRequest = (id: string, cats: string[] = []) => req("POST", "/rest/v1/rpc/accept_request", { p_id: id, p_cats: cats });
-export const sendMessage = (to: string, body: string, fx?: string) => req("POST", "/rest/v1/messages", { sender: getSess()?.uid, recipient: to, body, fx: fx || null }, "return=minimal");
+export const sendMessage = (to: string, body: string, fx?: string, id?: string) => req("POST", "/rest/v1/messages", { ...(id ? { id } : {}), sender: getSess()?.uid, recipient: to, body, fx: fx || null }, "return=minimal");
+export async function allMessages(): Promise<Msg[]> { const r = await req("GET", "/rest/v1/messages?order=created_at.desc&limit=300&select=id,sender,recipient,body,fx,created_at"); return Array.isArray(r.data) ? (r.data as Msg[]).reverse() : []; }
 export async function thread(friend: string): Promise<Msg[]> {
   const me = getSess()?.uid; if (!me) return [];
   const f = `or=(and(sender.eq.${me},recipient.eq.${friend}),and(sender.eq.${friend},recipient.eq.${me}))`;

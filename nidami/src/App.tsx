@@ -57,6 +57,7 @@ function BdayDeco({ children }: { children: React.ReactNode }) {
 // Le nom NOTIIF en haut : on le touche, les lettres sautent l'une après l'autre en passant par toutes les couleurs.
 import { useDev, feteFx, feteAuto, devHidden } from "./lib/dev";
 import type { Fete } from "./lib/fetes";
+import { startSync } from "./lib/sync";
 import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
@@ -114,6 +115,7 @@ export default function App() {
     };
     run(); document.addEventListener("visibilitychange", run); return () => document.removeEventListener("visibilitychange", run);
   }, [fxList, fxOn, meId]);
+  useEffect(() => { startSync(); }, []);
   useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { playCallRing(); vibrate(th0?.vibc, 3); } }, [lastCall]);
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
