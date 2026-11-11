@@ -79,6 +79,12 @@ export function BrandWm({ id, light, sound, big, onHome, bdText, force }: { id: 
   </span>;
 }
 
+function TypingPill() {
+  const [tick, setTick] = useState(0); useEffect(() => { const i = setInterval(() => setTick((x) => x + 1), 1000); return () => clearInterval(i); }, []);
+  const who = useStore((x) => { const n: string[] = []; for (const c of x.convs) if (c.typing && c.memberIds.includes(x.me)) for (const [id, at] of Object.entries(c.typing)) if (id !== x.me && Date.now() - at < 4500) n.push(x.users.find((u) => u.id === id)?.name || "?"); return n.join(", "); }); void tick;
+  if (!who) return null;
+  return <div aria-live="polite" style={{ position: "fixed", top: 10, right: 12, zIndex: 9999, display: "flex", alignItems: "center", gap: 8, padding: "7px 12px", borderRadius: 999, background: "var(--card, #fff)", color: "var(--fg, #222)", border: "1px solid rgba(127,127,127,.35)", boxShadow: "0 4px 16px rgba(0,0,0,.25)", fontSize: 13, fontWeight: 700 }}><span style={{ fontWeight: 900, letterSpacing: 1, color: "var(--accb, #7c5cff)" }}>NOTIIF</span>✍️ {who} écrit<span className="tdots">…</span></div>;
+}
 export default function App() {
   useLang();
   const pushOn = useStore((x) => !!x.settings[x.me]?.push); const lastNotif = useStore((x) => x.notifs.filter((n) => n.to === x.me && !n.read).sort((a, b) => b.at - a.at)[0]); const seenN = useRef<string | undefined>(undefined);
@@ -188,7 +194,7 @@ export default function App() {
     {storyC && <QuickCompose story onClose={() => setStoryC(false)} />}
     {compose && <QuickCompose key={compose} long={compose === "long" || compose === "selfie"} story={compose === "selfie" || compose === "photo" || compose === "saudio"} alsoWall={wall} kind={compose === "saudio" ? "audio" : compose === "text" || compose === "photo" || compose === "audio" || compose === "link" ? compose : undefined} onClose={() => setCompose(false)} />}
     {!hand && !matchMedia("(hover: hover) and (pointer: fine)").matches && <Modal title={t("Quelle main ?")} onClose={() => actions.setSetting("hand", "right")}><div className="col" style={{ gap: 10 }}><p style={{ margin: 0 }}>{t("Tu tiens ton téléphone avec quelle main ? Les gros boutons se placeront du côté de ton pouce. Tu peux changer plus tard dans les réglages.")}</p><div className="row" style={{ gap: 10 }}><button type="button" className="btn bigbtn grow" onClick={() => actions.setSetting("hand", "left")}>{t("✋ Main gauche")}</button><button type="button" className="btn bigbtn grow" onClick={() => actions.setSetting("hand", "right")}>{t("🤚 Main droite")}</button></div></div></Modal>}
-    <MiniPlayer /><ToastHost /></div>);
+    <MiniPlayer /><TypingPill /><ToastHost /></div>);
 }
 function RightPanel({ go }: { go: (v: string) => void }) {
   const s = useStore((x) => x); const evs = s.events.filter((e) => (e.hostId === s.me || e.inviteIds.includes(s.me)) && e.at > Date.now()).sort((a, b) => a.at - b.at).slice(0, 3); const groups = s.social.groups.filter((g) => g.memberIds.includes(s.me));

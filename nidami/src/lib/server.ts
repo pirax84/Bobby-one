@@ -65,3 +65,12 @@ export async function thread(friend: string): Promise<Msg[]> {
   return Array.isArray(r.data) ? (r.data as Msg[]).reverse() : [];
 }
 void q;
+
+/** « Je suis en train d'écrire à cet ami » (le signal expire tout seul). */
+export const sendTyping = (to: string) => req("POST", "/rest/v1/typing?on_conflict=user_id,to_id", { user_id: getSess()?.uid, to_id: to, at: new Date().toISOString() }, "resolution=merge-duplicates,return=minimal");
+/** Qui m'écrit en ce moment (dernières secondes). */
+export async function typingNow(): Promise<string[]> {
+  const since = new Date(Date.now() - 5000).toISOString();
+  const r = await req("GET", `/rest/v1/typing?at=gt.${q(since)}&to_id=eq.${getSess()?.uid}&select=user_id`);
+  return Array.isArray(r.data) ? r.data.map((x: any) => x.user_id) : [];
+}
