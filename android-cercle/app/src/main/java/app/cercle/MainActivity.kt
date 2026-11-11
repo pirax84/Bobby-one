@@ -34,7 +34,7 @@ class MainActivity : Activity() {
         const val RC_FILE = 1
         const val RC_PERM = 2
         const val RC_NOTIF = 3
-        const val CHANNEL = "cercle_messages"
+        const val CHANNEL = "notiif_msg_pop"
     }
 
     private lateinit var web: WebView
@@ -125,7 +125,8 @@ class MainActivity : Activity() {
         @JavascriptInterface fun notify(title: String, body: String) {
             if (!hasNotifPermission()) return
             val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            if (Build.VERSION.SDK_INT >= 26 && nm.getNotificationChannel(CHANNEL) == null) {
+            NotiifService.channels(this@MainActivity)
+            if (false) {
                 val ch = NotificationChannel(CHANNEL, "Messages et activité", NotificationManager.IMPORTANCE_HIGH)
                 ch.enableVibration(true); ch.vibrationPattern = longArrayOf(0, 200, 100, 200); nm.createNotificationChannel(ch)
             }
@@ -148,6 +149,8 @@ class MainActivity : Activity() {
 
     private fun urlFor(i: Intent?): String {
         val d = i?.data
+        val conv = i?.getStringExtra("conv")
+        if (!conv.isNullOrEmpty()) return HOME + "#open=" + conv
         return if (i?.action == Intent.ACTION_VIEW && d != null && d.host == HOST) d.toString() else HOME
     }
 

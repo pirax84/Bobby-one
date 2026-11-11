@@ -1,7 +1,7 @@
 import { BRAND } from "./lib/brand";
 import { applyTheme, accentOf, ACCENTS } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
-import { useStore, actions, userOf, getSaveWarn } from "./lib/store";
+import { useStore, actions, userOf, getSaveWarn, getState } from "./lib/store";
 import { micText, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { VoiceHome } from "./ui/VoiceChat";
@@ -122,6 +122,9 @@ export default function App() {
     run(); document.addEventListener("visibilitychange", run); return () => document.removeEventListener("visibilitychange", run);
   }, [fxList, fxOn, meId]);
   useEffect(() => { startSync(); }, []);
+  const pendConv = useRef(""); const [hk, setHk] = useState(0); const nConvs = useStore((x) => x.convs.length + ":" + x.convs.reduce((a, c) => a + c.msgs.length, 0));
+  useEffect(() => { const rd = () => { const m = /open=(sbc_[0-9a-f-]+)/.exec(location.hash); if (m) { pendConv.current = m[1]; setHk((x) => x + 1); } }; rd(); window.addEventListener("hashchange", rd); return () => window.removeEventListener("hashchange", rd); }, []);
+  useEffect(() => { const id = pendConv.current; if (!id || !getState().convs.some((c) => c.id === id)) return; pendConv.current = ""; try { history.replaceState(history.state, "", location.pathname + location.search); } catch {} openConvFull(id); }, [nConvs, meId, hk]);
   useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { playCallRing(); vibrate(th0?.vibc, 3); } }, [lastCall]);
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }

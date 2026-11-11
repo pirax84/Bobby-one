@@ -24,11 +24,24 @@ import java.util.TimeZone
 class NotiifService : Service() {
     companion object {
         const val CH_SVC = "notiif_service"
-        const val CH_MSG = "cercle_messages"
+        const val CH_MSG = "notiif_msg_pop"
         @Volatile var visible = false
         fun start(ctx: Context) {
             val i = Intent(ctx, NotiifService::class.java)
             if (Build.VERSION.SDK_INT >= 26) ctx.startForegroundService(i) else ctx.startService(i)
+        }
+        fun channels(ctx: Context) {
+            val nm = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val packageName = ctx.packageName
+        if (Build.VERSION.SDK_INT >= 26) {
+            if (nm.getNotificationChannel(CH_SVC) == null) nm.createNotificationChannel(NotificationChannel(CH_SVC, "NOTIIF en veille", NotificationManager.IMPORTANCE_MIN))
+            if (nm.getNotificationChannel(CH_MSG) == null) {
+                val ch = NotificationChannel(CH_MSG, "Messages et activité", NotificationManager.IMPORTANCE_HIGH)
+                ch.enableVibration(true); ch.vibrationPattern = longArrayOf(0, 200, 100, 200)
+                ch.setSound(android.net.Uri.parse("android.resource://" + packageName + "/" + R.raw.notiif_pop), android.media.AudioAttributes.Builder().setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION).setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+                nm.createNotificationChannel(ch)
+            }
+        }
         }
         fun stop(ctx: Context) { ctx.stopService(Intent(ctx, NotiifService::class.java)) }
     }
@@ -41,13 +54,7 @@ class NotiifService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (Build.VERSION.SDK_INT >= 26) {
-            if (nm.getNotificationChannel(CH_SVC) == null) nm.createNotificationChannel(NotificationChannel(CH_SVC, "NOTIIF en veille", NotificationManager.IMPORTANCE_MIN))
-            if (nm.getNotificationChannel(CH_MSG) == null) {
-                val ch = NotificationChannel(CH_MSG, "Messages et activité", NotificationManager.IMPORTANCE_HIGH)
-                ch.enableVibration(true); ch.vibrationPattern = longArrayOf(0, 200, 100, 200); nm.createNotificationChannel(ch)
-            }
-        }
+        channels(this)
         val pi = PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, CH_SVC) else Notification.Builder(this)
         val n = b.setContentTitle("NOTIIF").setContentText("Je surveille tes messages").setSmallIcon(R.drawable.ic_notif).setContentIntent(pi).setOngoing(true).build()
@@ -110,7 +117,7 @@ class NotiifService : Service() {
             val who = nameOf(base, key, tk, m.getString("sender"))
             val fx = if (m.isNull("fx")) "" else m.getString("fx")
             val body = if (fx.isNotEmpty()) "✨ t'a envoyé un effet" else m.getString("body")
-            val pi = PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            val pi = PendingIntent.getActivity(this, m.getString("id").hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + m.getString("sender")), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, CH_MSG) else Notification.Builder(this)
             b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
             nm.notify(m.getString("id").hashCode(), b.build())
