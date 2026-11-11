@@ -1,4 +1,4 @@
-import { FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, soundStart, soundEnd, type Fx } from "../lib/fx";
+import { CALL_TONES, playCallRing, playNotifSound, FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, soundStart, soundEnd, type Fx } from "../lib/fx";
 import { BrandWm, navItems } from "../App";
 import { ACCENTS } from "../lib/theme";
 import { useStore } from "../lib/store";
@@ -75,6 +75,11 @@ function DevNotifs() {
     <p className="muted small" style={{ margin: 0 }}>{t("Écoutez chaque son de notification. « Son » coupé = il ne sonne plus sur cet appareil.")}</p>
     {T("n1", t("Message envoyé (début)"), () => soundStart())}{T("n2", t("Message parti (fin)"), () => soundEnd())}
     {T("n3", t("Message vocal"), () => notifSound.vocal())}{T("n4", t("Story"), () => notifSound.story())}{T("n5", t("Réaction"), () => notifSound.reaction())}{T("n6", t("Appel"), () => notifSound.appel())}
+    <b className="small">Sonnerie d'appel</b>
+    <div className="row" style={{ gap: 8 }}><select className="inp grow" aria-label="Sonnerie d'appel" value={sndMapOf("appel") || CALL_TONES[0][0]} onChange={(e) => { setSndMap("appel", e.target.value); }}>{CALL_TONES.map(([id, l]) => <option key={id} value={id}>{l}</option>)}{customSounds().map((c) => <option key={c.id} value={c.id}>{c.name} (le mien)</option>)}</select><button type="button" className="chip" onClick={() => playCallRing()} aria-label="Écouter">▶</button></div>
+    <b className="small">Son des notifications</b>
+    <div className="row" style={{ gap: 8 }}><select className="inp grow" aria-label="Son des notifications" value={sndMapOf("notif")} onChange={(e) => { setSndMap("notif", e.target.value); }}><option value="">Pop NOTIIF (d'origine)</option>{customSounds().map((c) => <option key={c.id} value={c.id}>{c.name} (le mien)</option>)}</select><button type="button" className="chip" onClick={() => playNotifSound()} aria-label="Écouter">▶</button></div>
+    <p className="muted small" style={{ margin: 0 }}>Pour ajouter ou supprimer tes propres sons, utilise la carte « 🔊 Mes sons » plus bas.</p>
     <b className="small">{t("Vibrations")}</b>
     <div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} type="button" className="chip" onClick={() => vibrate(v.id)}>{v.label}</button>)}</div>
     <b className="small">{t("Messages à l'écran")}</b>

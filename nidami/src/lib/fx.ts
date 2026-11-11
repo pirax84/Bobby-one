@@ -7,7 +7,7 @@ import { fogShow, fogStop } from "./fog";
 import { doorShow } from "./door";
 import { absentShow, absentStop } from "./absent";
 import { collapseStop } from "./collapse";
-import { devHidden, soundFor } from "./dev";
+import { devHidden, soundFor, sndMapOf } from "./dev";
 import { noelVideoShow, noelVideoStop, NOEL_VIDEOS } from "./noelvideo";
 import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
 const playing: HTMLAudioElement[] = [];
@@ -367,6 +367,20 @@ export const notifSound = {
   appel: () => { if (!fxOn()) return; const k = (d: number, n: number) => setTimeout(() => popNotes(n, 0.3, 0.5, 0.07), d); k(0, 6); k(900, 3); k(1500, 6); k(2400, 3); },
   reserve: () => { if (fxOn()) popNotes(3, 0.3, 0.7, 0.07); },
 };
+
+/** Sonneries d'appel de la famille NOTIIF (même timbre que le « pop »). Choix dans le mode développeur. */
+export const CALL_TONES: [string, string, string][] = [["montee", "Montée", "./sounds/tones/appel-montee.mp3"], ["rebond", "Rebond", "./sounds/tones/appel-rebond.mp3"], ["doux", "Doux", "./sounds/tones/appel-doux.mp3"]];
+function ringFile(url: string, times = 3) {
+  let n = 0; const fb = () => { if (n === 1) notifSound.appel(); };
+  const go = () => { if (n++ >= times) return; try { const a = track(new Audio(url)); a.volume = 1; a.addEventListener("ended", go, { once: true }); void a.play().catch(fb); } catch { fb(); } };
+  go();
+}
+export function playCallRing() { if (!fxOn() || cfgNow().discret) return; const cs = soundFor("appel"); ringFile(cs ? cs.data : (CALL_TONES.find((x) => x[0] === sndMapOf("appel")) || CALL_TONES[0])[2]); }
+export function playNotifSound() {
+  const cs = soundFor("notif");
+  if (cs) { if (fxOn() && !cfgNow().discret) { try { const a = track(new Audio(cs.data)); a.volume = 1; void a.play().catch(() => {}); } catch { /* ignoré */ } } return; }
+  soundEnd();
+}
 
 /** Le navigateur autorise-t-il déjà le son ? (sinon il faut un premier toucher de l'utilisateur) */
 export function audioReady(): Promise<boolean> {
