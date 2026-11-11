@@ -1,10 +1,11 @@
 import { t } from "../i18n";
+import { saveSession } from "./server";
 // Connexion / inscription. Tout passe par le serveur Supabase (adresse et clé publique dans .env.local).
 // Sans serveur relié, l'application reste en « mode démo » sur l'appareil. NON TESTÉ sur un vrai serveur.
 const env = ((import.meta as unknown as { env?: Record<string, string> }).env) || {};
 export const SB_URL: string = env.VITE_SUPABASE_URL || "";
-const SB_KEY: string = env.VITE_SUPABASE_ANON_KEY || "";
-export const serverOn = () => !!SB_URL && !!SB_KEY && !/VOTRE-PROJET/.test(SB_URL);
+export const SB_KEY: string = env.VITE_SUPABASE_ANON_KEY || "";
+export const serverOn = () => !!SB_URL && !!SB_KEY && !/VOTRE-PROJET/.test(SB_URL) && (window as any).__NOTIIF_DEV__ === true; // le serveur n'est actif que dans la version développeur, pour l'instant
 
 export interface Prov { id: string; label: string; badge: string; sb?: string; soon?: string }
 export const PROVIDERS: Prov[] = [
@@ -26,12 +27,14 @@ const msgOf = (d: any) => String(d?.msg || d?.error_description || d?.message ||
 export async function emailSignUp(email: string, password: string, name: string): Promise<{ ok: boolean; msg: string; who?: Who }> {
   const r = await call("/auth/v1/signup", { email, password, data: { name } });
   if (!r.ok) return { ok: false, msg: msgOf(r.data) };
+  if (r.data?.access_token) saveSession(r.data);
   if (r.data?.access_token) return { ok: true, msg: t("Compte créé."), who: { name: nameOf(r.data.user, name), email } };
   return { ok: true, msg: t("Compte créé. Ouvrez l'e-mail de confirmation que nous venons de vous envoyer, puis revenez vous connecter.") };
 }
 export async function emailLogin(email: string, password: string): Promise<{ ok: boolean; msg: string; who?: Who }> {
   const r = await call("/auth/v1/token?grant_type=password", { email, password });
   if (!r.ok) return { ok: false, msg: msgOf(r.data) };
+  saveSession(r.data);
   return { ok: true, msg: t("Connecté."), who: { name: nameOf(r.data.user, email.split("@")[0]), email } };
 }
 /** Au retour de Google/Apple/Facebook, le serveur ajoute « #access_token=… » à l'adresse. */

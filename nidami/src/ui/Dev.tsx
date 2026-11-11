@@ -5,6 +5,7 @@ import { useStore } from "../lib/store";
 import { useRef } from "react";
 import { FxSwitch } from "./FxSwitch";
 import { PresenceBar } from "./Chat";
+import { ServerCard } from "./ServerCard";
 import { useDev, setDevClient, setDevFete, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION, devIsOff, devToggleHidden, customSounds, addCustomSound, removeCustomSound, sndMapOf, setSndMap, devResetAll, exportConfig, importConfig } from "../lib/dev";
 import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
@@ -132,6 +133,7 @@ export function DevPanel() {
       <button className="btn ghost" onClick={async () => { const txt = ["NOTIIF " + APP_VERSION, pc ? "PC" : "Téléphone", navigator.userAgent, innerWidth + "x" + innerHeight, document.documentElement.dataset.theme || ""].join("\n"); try { await navigator.clipboard.writeText(txt); toast(t("Infos copiées : collez-les dans la conversation.")); } catch { toast(t("Copie impossible.")); } }}>{t("📋 Copier les infos pour le support")}</button></div>
     <div className="card col" style={{ gap: 6 }}><h3>{t("ℹ️ Informations")}</h3>
       {info.map(([a, b]) => <div key={a} className="row"><span className="grow muted">{a}</span><b>{b}</b></div>)}</div>
+    <ServerCard />
     <div className="card col" style={{ gap: 8 }}><h3>{t("📤 Publier mes choix pour tout le monde")}</h3>
       <p className="muted small" style={{ margin: 0 }}>{t("Tes choix (effets cachés, sons coupés ou remplacés, sections cachées, effet des fêtes) restent sur cet appareil. Pour que l'appli officielle, y compris sur Android, les utilise : enregistre le fichier et envoie-le moi.")}</p>
       <button className="btn" onClick={() => { const b = new Blob([exportConfig()], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "config.json"; a.click(); toast(t("Fichier config.json enregistré.")); }}>{t("📤 Enregistrer config.json")}</button>

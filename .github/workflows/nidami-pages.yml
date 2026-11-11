@@ -19,6 +19,9 @@ jobs:
         with: { node-version: 22 }
       - run: npm install --no-audit --no-fund && npm run build
         working-directory: nidami
+        env:
+          VITE_SUPABASE_URL: https://jtymrohpjhiukjreqewb.supabase.co
+          VITE_SUPABASE_ANON_KEY: sb_publishable_2jGaV3B9eU2ITaI_9TgAvQ_fVOewCZA
       - uses: actions/upload-pages-artifact@v3
         with: { path: nidami/dist }
   deploy:
