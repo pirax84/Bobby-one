@@ -10,7 +10,7 @@ import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
 import { t } from "../i18n";
 
-const FETES: [Fete, string][] = [["hal", "🎃 Halloween"], ["noel", "🎄 Noël"], ["val", "💕 Saint-Valentin"], ["pq", "🐣 Pâques"], ["ny", "🎆 Nouvel An"]];
+const FETES: [Fete, string][] = [["hal", "🎃 Halloween"], ["noel", "🎄 Noël"], ["val", "💕 Saint-Valentin"], ["pq", "🐣 Pâques"]];
 const play = (f: string) => playFx(feteFx(f) as Fx, true);
 
 
@@ -28,7 +28,7 @@ function DevNav() {
 /** Galerie : tous les logos et images de l'appli, tels qu'ils s'affichent. */
 function DevLogos() {
   const acc = useStore((x) => x.settings[x.me]?.accent) || ACCENTS[0].id; const light = document.documentElement.dataset.theme === "light";
-  const L: [Fete | "none", string][] = [["none", "Logo normal"], ["hal", "🎃 Halloween"], ["noel", "🎄 Noël"], ["val", "💕 Saint-Valentin"], ["pq", "🐣 Pâques"], ["ny", "🎆 Nouvel An"]];
+  const L: [Fete | "none", string][] = [["none", "Logo normal"], ["hal", "🎃 Halloween"], ["noel", "🎄 Noël"], ["val", "💕 Saint-Valentin"], ["pq", "🐣 Pâques"]];
   return <div className="card col" style={{ gap: 10 }}><h3>{t("🖼 Logos et images")}</h3>
     <p className="muted small" style={{ margin: 0 }}>{t("Touchez un logo pour voir son effet. Le bouton « En haut » le met sur l'appli tout de suite.")}</p>
     {L.map(([f, l]) => <div key={f} className="col" style={{ gap: 6, alignItems: "center", padding: "6px 0", borderTop: "1px solid var(--line, #ddd)" }}><b>{t(l)}</b><BrandWm id={acc} light={light} sound big force={f} />

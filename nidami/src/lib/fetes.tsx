@@ -12,7 +12,6 @@ export function feteOf(d: Date): Fete | null {
   if (m === 10 && j === 31) return "hal";
   if (m === 12 && (j === 24 || j === 25)) return "noel";
   if (m === 2 && j === 14) return "val";
-  if ((m === 12 && j === 31) || (m === 1 && j === 1)) return "ny";
   const [em, ej] = easter(d.getFullYear()); if (m === em && j === ej) return "pq";
   return null;
 }
