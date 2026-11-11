@@ -7,7 +7,7 @@ let PUB: Record<string, string> = {};
 export const setPublicConfig = (o: Record<string, unknown>) => { PUB = {}; for (const k of CONFIG_KEYS) { const v = o[k]; if (typeof v === "string") PUB[k] = v; } };
 const get = (k: string) => { if (!devUnlocked() && CONFIG_KEYS.includes(k)) return PUB[k] || ""; try { return localStorage.getItem(k) || ""; } catch { return ""; } };
 const set = (k: string, v: string) => { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* ignoré */ } window.dispatchEvent(new Event("notiif-dev")); };
-export const APP_VERSION = "v182";
+export const APP_VERSION = "v183";
 /** Cadre « aperçu client » : l'appli reçoit la fête simulée dans l'adresse et ignore tout le reste du mode développeur. */
 const url = (() => { try { return new URLSearchParams(location.search); } catch { return new URLSearchParams(); } })();
 export const asClientFrame = url.get("client") === "1";
@@ -30,7 +30,7 @@ export const setDevPreview = (v: boolean) => set("notiif-dev-preview", v ? "1" :
 export const devPreview = () => get("notiif-dev-preview") === "1";
 
 /** Effet joué quand on touche le logo, pour chaque fête (modifiable en mode développeur). */
-export const FETE_FX_DEFAULT: Record<string, string> = { hal: "ghost", noel: "noelv1", val: "hearts", pq: "bubbles", ny: "fireworks" };
+export const FETE_FX_DEFAULT: Record<string, string> = { hal: "ghost", noel: "noel1", val: "hearts", ny: "fireworks" };
 const readJson = (k: string): Record<string, unknown> => { try { const v = JSON.parse(get(k) || "{}"); return v && typeof v === "object" ? v : {}; } catch { return {}; } };
 export const feteFx = (f: string): string => { const o = readJson("notiif-dev-fx")[f]; if (typeof o === "string" && o) return o; return FETE_FX_DEFAULT[f]; };
 export const setFeteFx = (f: string, k: string) => { const o = readJson("notiif-dev-fx"); o[f] = k; set("notiif-dev-fx", JSON.stringify(o)); };

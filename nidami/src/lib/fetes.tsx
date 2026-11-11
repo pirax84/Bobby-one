@@ -12,7 +12,6 @@ export function feteOf(d: Date): Fete | null {
   if (m === 10 && j === 31) return "hal";
   if (m === 12 && (j === 24 || j === 25)) return "noel";
   if (m === 2 && j === 14) return "val";
-  const [em, ej] = easter(d.getFullYear()); if (m === em && j === ej) return "pq";
   return null;
 }
 export function useFete(): Fete | null {
@@ -48,13 +47,5 @@ export function FeteUnder({ fete, suf, light }: { fete: Fete; suf: string; light
 }
 
 // Petit message de vœux, juste sous le logo, le jour de la fête
-export function FeteBar() {
-  const f = useFete(); const [, bump] = useState(0);
-  useEffect(() => { const h = () => bump((x) => x + 1); window.addEventListener("notiif-dev", h); return () => window.removeEventListener("notiif-dev", h); }, []);
-  if (!f) return null;
-  const key = "notiif-fete-" + f + "-" + new Date().toDateString();
-  let off = false; try { off = !devFete() && !!localStorage.getItem(key); } catch { /* ignoré */ }
-  if (off) return null;
-  const txt = f === "hal" ? t("Joyeux Halloween 🎃") : f === "noel" ? t("Joyeux Noël 🎄") : f === "val" ? t("Bonne Saint-Valentin 💕") : f === "pq" ? t("Joyeuses Pâques 🐣") : t("Bonne année ✨");
-  return <div className="fetewrap"><div className="fetebar" role="status"><span>{txt}</span><button type="button" aria-label={t("Fermer le message de fête")} onClick={() => { try { localStorage.setItem(key, "1"); } catch { /* ignoré */ } bump((x) => x + 1); }}>✕</button></div></div>;
-}
+export function FeteBar() { return null; } // plus de message écrit : le logo décoré suffit
+
