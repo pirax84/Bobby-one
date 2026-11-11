@@ -4,9 +4,10 @@ import { getSess, signOut, myProfile, listFriends, listRequests, requestFriend, 
 import { toast } from "./common";
 
 /** Carte « Serveur » du panneau développeur : compte réel, amis par code, messages entre deux appareils. */
+const mail = (n: string) => (n.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "") || "x") + "@notiif.fr";
 export function ServerCard() {
   const [sess, setSess] = useState(getSess());
-  const [email, setEmail] = useState(""); const [pw, setPw] = useState(""); const [name, setName] = useState(""); const [busy, setBusy] = useState(false); const [info, setInfo] = useState("");
+  const [pw, setPw] = useState(""); const [name, setName] = useState(""); const [busy, setBusy] = useState(false); const [info, setInfo] = useState("");
   const [me, setMe] = useState<{ name: string; code: string } | null>(null);
   const [friends, setFriends] = useState<Friend[]>([]); const [reqs, setReqs] = useState<Request[]>([]);
   const [code, setCode] = useState(""); const [open, setOpen] = useState<Friend | null>(null); const [msgs, setMsgs] = useState<Msg[]>([]); const [text, setText] = useState("");
@@ -17,13 +18,12 @@ export function ServerCard() {
   const box = (c: React.ReactNode) => <div className="card col" style={{ gap: 8 }}><h3>☁️ Serveur (comptes, amis, messages)</h3>{c}</div>;
   if (!serverOn()) return box(<p className="muted small" style={{ margin: 0 }}>Le serveur n'est pas relié à cette version.</p>);
   if (!sess) return box(<>
-    <p className="muted small" style={{ margin: 0 }}>Crée un compte (tu recevras un e-mail de confirmation) ou connecte-toi.</p>
-    <input className="inp" placeholder="Prénom (pour un nouveau compte)" value={name} onChange={(e) => setName(e.target.value)} />
-    <input className="inp" type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-    <input className="inp" type="password" placeholder="Mot de passe (6 caractères minimum)" value={pw} onChange={(e) => setPw(e.target.value)} />
+    <p className="muted small" style={{ margin: 0 }}>Choisis un pseudo et un mot de passe. Pas d'e-mail à donner.</p>
+    <input className="inp" placeholder="Ton pseudo (ex : Pierre)" value={name} onChange={(e) => setName(e.target.value)} autoCapitalize="none" />
+    <input className="inp" type="password" placeholder="Mot de passe (6 lettres ou chiffres minimum)" value={pw} onChange={(e) => setPw(e.target.value)} />
     <div className="row" style={{ gap: 8 }}>
-      <button className="btn grow" disabled={busy} onClick={async () => { setBusy(true); const r = await emailLogin(email.trim(), pw); setBusy(false); setInfo(r.msg); setSess(getSess()); }}>Se connecter</button>
-      <button className="btn ghost grow" disabled={busy} onClick={async () => { setBusy(true); const r = await emailSignUp(email.trim(), pw, name.trim() || email.split("@")[0]); setBusy(false); setInfo(r.msg); setSess(getSess()); }}>Créer un compte</button></div>
+      <button className="btn grow" disabled={busy} onClick={async () => { setBusy(true); const r = await emailLogin(mail(name), pw); setBusy(false); setInfo(r.msg); setSess(getSess()); }}>Se connecter</button>
+      <button className="btn ghost grow" disabled={busy} onClick={async () => { setBusy(true); const r = await emailSignUp(mail(name), pw, name.trim()); setBusy(false); setInfo(r.msg); setSess(getSess()); }}>Créer un compte</button></div>
     {info && <p className="small" style={{ margin: 0 }}>{info}</p>}</>);
   const send = async () => { if (!open || !text.trim()) return; const r = await sendMessage(open.id, text.trim()); if (!r.ok) toast(errText(r)); else { setText(""); setMsgs(await thread(open.id)); } };
   return box(<>
