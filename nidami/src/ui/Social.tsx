@@ -4,7 +4,7 @@ import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
 import { ACCENTS, accentOf } from "../lib/theme";
 import { make as qrMake } from "../lib/qrvendor.js";
 import { areFriends } from "../lib/engine";
-import { FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate, SHAKE_SNDS } from "../lib/fx";
+import { FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate, SHAKE_SNDS, CALL_TONES, playOne } from "../lib/fx";
 import { favOf, DEFAULT_FAV } from "./FxBar";
 import { HowTo } from "./HowTo";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch, ConfirmDel, DobFields, ageFrom, isPC } from "./common";
@@ -266,6 +266,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     {sec === "notifs" && <>
     <div className="card col" style={{ gap: 8 }}><h3>{pc ? t("🎵 Sonneries") : t("🎵 Sonneries et vibreur")}</h3>
       <b className="small">{t("Son de la secousse")}</b><div className="row wrap" style={{ gap: 6 }}>{SHAKE_SNDS.map(([id, label, f]) => <button key={id} className={"chip" + ((cfg.shakesnd || "zl") === id ? " on" : "")} onClick={() => { actions.setSetting("shakesnd", id); try { const a = new Audio(f); a.play().catch(() => {}); } catch { /* ignoré */ } }}>{t(label)}</button>)}</div>
+      <b className="small">{t("Sonnerie des appels")}</b><div className="row wrap" style={{ gap: 6 }}>{CALL_TONES.map(([id, l, f]) => <button key={id} className={"chip" + ((CALL_TONES.some((x) => x[0] === cfg.ctone) ? cfg.ctone : CALL_TONES[0][0]) === id ? " on" : "")} onClick={() => { actions.setSetting("ctone", id); playOne(f); }}>{t(l)}</button>)}</div>
       {!pc && <><b className="small">{t("Vibreur des messages")}</b><div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} className={"chip" + ((cfg.vibm || "2") === v.id ? " on" : "")} onClick={() => { actions.setSetting("vibm", v.id); vibrate(v.id); }}>{v.label}</button>)}</div></>}
       {!pc && <><b className="small">{t("Vibreur des appels")}</b><div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} className={"chip" + ((cfg.vibc || "3") === v.id ? " on" : "")} onClick={() => { actions.setSetting("vibc", v.id); vibrate(v.id, 2); }}>{v.label}</button>)}</div></>}
       <p className="muted small" style={{ margin: 0 }}>{pc ? t("Cliquez sur un choix pour l'essayer.") : t("La secousse fait toujours vibrer au maximum. Touchez un choix pour l'essayer.")}</p></div>

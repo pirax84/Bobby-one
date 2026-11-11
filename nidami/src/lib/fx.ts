@@ -376,7 +376,7 @@ function ringFile(url: string, times = 3) {
   const go = () => { if (n++ >= times) return; try { const a = track(new Audio(url)); a.volume = 1; a.addEventListener("ended", go, { once: true }); void a.play().catch(fb); } catch { fb(); } };
   go();
 }
-export function playCallRing() { if (!fxOn() || cfgNow().discret) return; stopSounds(); const cs = soundFor("appel"); ringFile(cs ? cs.data : (CALL_TONES.find((x) => x[0] === sndMapOf("appel")) || CALL_TONES[0])[2]); }
+export function playCallRing() { if (!fxOn() || cfgNow().discret) return; stopSounds(); const cs = soundFor("appel"); const mine = CALL_TONES.find((x) => x[0] === cfgNow().ctone); ringFile(mine ? mine[2] : cs ? cs.data : (CALL_TONES.find((x) => x[0] === sndMapOf("appel")) || CALL_TONES[0])[2]); }
 export function playNotifSound() {
   const cs = soundFor("notif");
   if (cs) { stopSounds(); if (fxOn() && !cfgNow().discret) { try { const a = track(new Audio(cs.data)); a.volume = 1; void a.play().catch(() => {}); } catch { /* ignoré */ } } return; }
