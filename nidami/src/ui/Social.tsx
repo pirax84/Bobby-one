@@ -18,7 +18,6 @@ import { CatPicker, SeesCard } from "./Cats";
 import { catsOf, friendCats } from "../lib/cats";
 import { useDev, setDevClient, APP_VERSION } from "../lib/dev";
 import { KidCard } from "./Kid";
-import { IntroChoice } from "./IntroChoice";
 import { LangPicker } from "./LangPicker";
 import { LegalView } from "./Legal";
 
@@ -288,7 +287,6 @@ export function Settings({ go }: { go?: (v: any) => void }) {
       <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => actions.setSetting("fxfav", DEFAULT_FAV.join(","))}>{t("Remettre par défaut")}</button></div>
     </>}
     {sec === "look" && <>
-    <div className="card col" style={{ gap: 8 }}><h3>{t("🎬 Intro au démarrage")}</h3><IntroChoice /></div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🖼️ Style des cadres")}</h3><div className="row" style={{ gap: 6 }}>{([["soft", t("Doux")], ["bold", t("Contours marqués")]] as const).map(([k, l]) => <button key={k} type="button" className={"chip grow" + ((cfg.style || "soft") === k ? " on" : "")} aria-pressed={(cfg.style || "soft") === k} onClick={() => actions.setSetting("style", k)}>{l}</button>)}</div></div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🔠 Taille du texte")}</h3><div className="row" style={{ gap: 6 }}>{([["petit", t("Petit")], ["normal", t("Normal")], ["grand", t("Grand")], ["tgrand", t("Très grand")]] as const).map(([k, l]) => <button key={k} type="button" className={"chip grow" + ((cfg.fs || "normal") === k ? " on" : "")} aria-pressed={(cfg.fs || "normal") === k} onClick={() => actions.setSetting("fs", k)}>{l}</button>)}</div><p style={{ margin: 0 }}>{t("Exemple : Anniversaire demain ! On se retrouve à 19h ?")}</p></div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🎨 Couleur de l'appli")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Chacun choisit la sienne. Le nom NOTIIF s'adapte tout seul.")}</p>

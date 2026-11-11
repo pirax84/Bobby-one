@@ -1468,3 +1468,4 @@
 1467|Jingle Bells · 25 s
 1468|Magic Christmas · 16 s
 1469|O Christmas Tree · 12 s
+1470|For each holiday, choose the effect (and its music) played when you tap the logo.
