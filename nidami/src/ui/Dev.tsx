@@ -1,4 +1,4 @@
-import { CALL_TONES, playCallRing, playNotifSound, FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, soundStart, soundEnd, type Fx } from "../lib/fx";
+import { CALL_TONES, playOne, stopSounds, playCallRing, playNotifSound, FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, soundStart, soundEnd, type Fx } from "../lib/fx";
 import { BrandWm, navItems } from "../App";
 import { ACCENTS } from "../lib/theme";
 import { useStore } from "../lib/store";
@@ -16,7 +16,7 @@ const play = (f: string) => playFx(feteFx(f) as Fx, true);
 
 
 const Sw = ({ on, set, label }: { on: boolean; set: (v: boolean) => void; label: string }) => <input type="checkbox" checked={on} style={{ width: 22, height: 22 }} onChange={(e) => set(e.target.checked)} aria-label={label} />;
-const playUrl = (u: string) => { try { const a = new Audio(u); void a.play().catch(() => toast(t("Ce son ne peut pas être joué."))); } catch { /* ignoré */ } };
+const playUrl = (u: string) => playOne(u, () => toast(t("Ce son ne peut pas être joué.")));
 
 /** Sections de l'appli : cacher ou remettre. */
 function DevNav() {
@@ -62,6 +62,7 @@ function DevSounds() {
     <p className="muted small" style={{ margin: 0 }}>{t("Ajoutez vos propres sons (1,5 Mo maximum chacun), écoutez-les, supprimez-les. Ensuite, choisissez-les dans « Effets ».")}</p>
     <input ref={pick} type="file" accept="audio/*" hidden onChange={(e) => { add(e.target.files?.[0]); e.target.value = ""; }} />
     <button className="btn" onClick={() => pick.current?.click()}>{t("➕ Ajouter un son")}</button>
+    <button type="button" className="btn ghost" onClick={() => stopSounds()}>⏹ Arrêter le son</button>
     {cs.map((c) => <div key={c.id} className="row" style={{ gap: 8 }}><span className="grow ell">{c.name}</span><button type="button" className="chip" onClick={() => playUrl(c.data)} aria-label={t("▶ Tester")}>▶</button><button type="button" className="chip" onClick={() => removeCustomSound(c.id)} aria-label={t("Supprimer {name}", { name: c.name })}>🗑</button></div>)}
     <b className="small">{t("Sons de l'application")}</b>
     {files.map((u) => <div key={u} className="row" style={{ gap: 8 }}><span className="grow ell small">{u.replace("./sounds/", "")}</span><button type="button" className="chip" onClick={() => playUrl(u)} aria-label={t("▶ Tester")}>▶</button></div>)}</div>;
@@ -79,6 +80,7 @@ function DevNotifs() {
     <div className="row" style={{ gap: 8 }}><select className="inp grow" aria-label="Sonnerie d'appel" value={sndMapOf("appel") || CALL_TONES[0][0]} onChange={(e) => { setSndMap("appel", e.target.value); }}>{CALL_TONES.map(([id, l]) => <option key={id} value={id}>{l}</option>)}{customSounds().map((c) => <option key={c.id} value={c.id}>{c.name} (le mien)</option>)}</select><button type="button" className="chip" onClick={() => playCallRing()} aria-label="Écouter">▶</button></div>
     <b className="small">Son des notifications</b>
     <div className="row" style={{ gap: 8 }}><select className="inp grow" aria-label="Son des notifications" value={sndMapOf("notif")} onChange={(e) => { setSndMap("notif", e.target.value); }}><option value="">Pop NOTIIF (d'origine)</option>{customSounds().map((c) => <option key={c.id} value={c.id}>{c.name} (le mien)</option>)}</select><button type="button" className="chip" onClick={() => playNotifSound()} aria-label="Écouter">▶</button></div>
+    <button type="button" className="btn ghost" onClick={() => { stopSounds(); stopFx(); }}>⏹ Arrêter les sons</button>
     <p className="muted small" style={{ margin: 0 }}>Pour ajouter ou supprimer tes propres sons, utilise la carte « 🔊 Mes sons » plus bas.</p>
     <b className="small">{t("Vibrations")}</b>
     <div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} type="button" className="chip" onClick={() => vibrate(v.id)}>{v.label}</button>)}</div>

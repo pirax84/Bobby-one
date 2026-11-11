@@ -11,6 +11,10 @@ import { devHidden, soundFor, sndMapOf } from "./dev";
 import { noelVideoShow, noelVideoStop, NOEL_VIDEOS } from "./noelvideo";
 import { bdayShow, bdayStop, BD_DUR } from "./bdfx";
 const playing: HTMLAudioElement[] = [];
+/** Arrête les sons de fichier en cours (sonneries, essais) sans toucher au reste. */
+export function stopSounds() { playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); }
+/** Joue un fichier son en coupant celui d'avant (essais du mode développeur). */
+export function playOne(url: string, onFail?: () => void) { stopSounds(); try { const a = track(new Audio(url)); a.volume = 1; void a.play().catch(() => onFail?.()); } catch { onFail?.(); } }
 const track = (a: HTMLAudioElement) => { playing.push(a); a.addEventListener("ended", () => { const i = playing.indexOf(a); if (i >= 0) playing.splice(i, 1); }); return a; };
 /** Arrête l'effet en cours (son et décor) : un seul effet à la fois, sauf « Tout en même temps ». */
 /** Sortie commune des sons synthétisés d'effets : on la coupe d'un coup pour tout arrêter. */
@@ -375,10 +379,10 @@ function ringFile(url: string, times = 3) {
   const go = () => { if (n++ >= times) return; try { const a = track(new Audio(url)); a.volume = 1; a.addEventListener("ended", go, { once: true }); void a.play().catch(fb); } catch { fb(); } };
   go();
 }
-export function playCallRing() { if (!fxOn() || cfgNow().discret) return; const cs = soundFor("appel"); ringFile(cs ? cs.data : (CALL_TONES.find((x) => x[0] === sndMapOf("appel")) || CALL_TONES[0])[2]); }
+export function playCallRing() { if (!fxOn() || cfgNow().discret) return; stopSounds(); const cs = soundFor("appel"); ringFile(cs ? cs.data : (CALL_TONES.find((x) => x[0] === sndMapOf("appel")) || CALL_TONES[0])[2]); }
 export function playNotifSound() {
   const cs = soundFor("notif");
-  if (cs) { if (fxOn() && !cfgNow().discret) { try { const a = track(new Audio(cs.data)); a.volume = 1; void a.play().catch(() => {}); } catch { /* ignoré */ } } return; }
+  if (cs) { stopSounds(); if (fxOn() && !cfgNow().discret) { try { const a = track(new Audio(cs.data)); a.volume = 1; void a.play().catch(() => {}); } catch { /* ignoré */ } } return; }
   soundEnd();
 }
 
