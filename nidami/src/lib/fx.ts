@@ -1,6 +1,6 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
-export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "tornado" | "fog" | "knock" | "bell" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "easter" | "noelv1" | "noelv2" | "noelv3" | "absent";
+export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "tornado" | "fog" | "knock" | "bell" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "noelv1" | "noelv2" | "noelv3" | "absent";
 import { sceneShow, holidayShow, SCENES, type Scene } from "./scenes";
 import { tornadoShow, tornadoStop } from "./tornado";
 import { fogShow, fogStop } from "./fog";
@@ -62,7 +62,6 @@ export const FX: Record<Fx, Def> = {
   noelv1: { get label() { return t("🎅 Noël · Père Noël au-dessus de la ville"); }, get sub() { return t("Jingle Bells · 25 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎅"] },
   noelv3: { get label() { return t("🌌 Noël · Traîneau et aurores"); }, get sub() { return t("Noël magic · 16 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
   noelv2: { get label() { return t("🔥 Noël · Coin du feu"); }, get sub() { return t("Mon beau sapin · 12 s"); }, get text() { return t("🎄 Joyeux Noël !"); }, em: ["🎄"] },
-  easter: { get label() { return t("🐣 Pâques"); }, get text() { return t("🐣 Joyeuses Pâques !"); }, em: ["🐣"] },
 };
 /** Les effets anniversaire ont leur propre catégorie ; « Tous les effets » ne les contient pas. */
 export const BDAY_KEYS: Fx[] = ["birthday", "bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"];
@@ -187,7 +186,6 @@ const SFX: Record<string, (c: AC, o: Out, tx: number) => void> = {
 const BDAY: [number, number][] = [[67, .75], [67, .25], [69, 1], [67, 1], [72, 1], [71, 2], [67, .75], [67, .25], [69, 1], [67, 1], [74, 1], [72, 2], [67, .75], [67, .25], [79, 1], [76, 1], [72, 1], [71, 1], [69, 2], [77, .75], [77, .25], [76, 1], [72, 1], [74, 1], [72, 2]];
 SFX.birthday = (c, o, tx) => { const B = 0.28; let x = 0; BDAY.forEach(([n, d], i) => { piano(c, o, n, tx + x * B, d * B * 2.2, 0.16); if (i % 3 === 0) note(c, o, hz(n - 24), tx + x * B, 0.9, { vol: 0.07, type: "triangle", partials: [1, 2] }); x += d; });
   [72, 76, 79, 84].forEach((n, i) => bell(c, o, n, tx + x * B + i * 0.07, 1.4, 0.09)); air(c, o, tx + x * B, 0.12, { type: "highpass", f0: 2500, vol: 0.3 }); };
-SFX.easter = (c, o, tx) => SFX.hearts(c, o, tx);
 for (const k of ["noel1", "noelv1", "noelv2", "noelv3", "absent"]) SFX[k] = () => { /* fichier */ };
 for (const k of ["bd1", "bd2", "bd3", "bd4", "bd5", "bd6", "bdall"]) SFX[k] = () => { /* ces effets jouent un fichier */ };
 let ctx: AudioContext | null = null;
@@ -309,7 +307,6 @@ export function playFx(k: Fx, sound = true) {
   if ((k === "knock" || k === "bell") && !reduced()) { doorShow(k); return; }
   if (k === "absent") { absentShow(sound && !devHidden("mute", k)); return; }
   if (k in NOEL_VIDEOS && !reduced()) { noelVideoShow(k, sound && !devHidden("mute", k)); return; }
-  if (!reduced() && (k === "easter")) { holidayShow(k); return; }
   if (!reduced() && (SCENES as string[]).includes(k)) { sceneShow(k as Scene); if (k !== "rocket") return; }
   if (k === "hearts" && !reduced()) heartsExtra();
   if ((k === "burp" || k === "kiss") && !reduced()) { charShow(k); return; }
