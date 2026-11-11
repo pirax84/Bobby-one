@@ -1456,3 +1456,11 @@
 1455|Acquaintances
 1456|Categories, who sees what, blocked
 1457|Backup, export, sign out
+1458|📤 Publish my choices for everyone
+1459|Your choices (hidden effects, muted or replaced sounds, hidden sections, holiday effects) stay on this device. For the official app, including on Android, to use them: save the file and send it to me.
+1460|config.json file saved.
+1461|📤 Save config.json
+1462|📥 Load a config.json
+1463|Choices loaded.
+1464|Invalid file.
+1465|↩ Open the official app

@@ -5,7 +5,7 @@ import { useStore } from "../lib/store";
 import { useRef } from "react";
 import { FxSwitch } from "./FxSwitch";
 import { PresenceBar } from "./Chat";
-import { useDev, setDevClient, setDevFete, setDevUnlocked, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION, devIsOff, devToggleHidden, customSounds, addCustomSound, removeCustomSound, sndMapOf, setSndMap, devResetAll } from "../lib/dev";
+import { useDev, setDevClient, setDevFete, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION, devIsOff, devToggleHidden, customSounds, addCustomSound, removeCustomSound, sndMapOf, setSndMap, devResetAll, exportConfig, importConfig } from "../lib/dev";
 import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
 import { t } from "../i18n";
@@ -128,13 +128,17 @@ export function DevPanel() {
     <div className="card col" style={{ gap: 8 }}><h3>{t("🛠 Outils")}</h3>
       <button className="btn ghost" onClick={() => window.dispatchEvent(new CustomEvent("notiif-intro-preview", { detail: { m: "full" } }))}>{t("▶ Voir l'introduction maintenant")}</button>
       <button className="btn ghost" onClick={() => window.dispatchEvent(new Event("notiif-guide"))}>{t("▶ Voir le guide maintenant")}</button>
-      <button className="btn ghost" onClick={() => { try { Object.keys(localStorage).filter((k) => k.startsWith("notiif-auto-") || k.startsWith("notiif-fete-")).forEach((k) => localStorage.removeItem(k)); } catch { /* ignoré */ } window.dispatchEvent(new Event("notiif-dev")); toast(t("Messages de fête et effets du jour remis à zéro.")); }}>{t("Remontrer les messages de fête fermés")}</button>
+      <button className="btn ghost" onClick={() => { try { Object.keys(localStorage).filter((k) => /^(dev:)?notiif-(auto|fete)-/.test(k)).forEach((k) => localStorage.removeItem(k)); } catch { /* ignoré */ } window.dispatchEvent(new Event("notiif-dev")); toast(t("Messages de fête et effets du jour remis à zéro.")); }}>{t("Remontrer les messages de fête fermés")}</button>
       <button className="btn ghost" onClick={async () => { const txt = ["NOTIIF " + APP_VERSION, pc ? "PC" : "Téléphone", navigator.userAgent, innerWidth + "x" + innerHeight, document.documentElement.dataset.theme || ""].join("\n"); try { await navigator.clipboard.writeText(txt); toast(t("Infos copiées : collez-les dans la conversation.")); } catch { toast(t("Copie impossible.")); } }}>{t("📋 Copier les infos pour le support")}</button></div>
     <div className="card col" style={{ gap: 6 }}><h3>{t("ℹ️ Informations")}</h3>
       {info.map(([a, b]) => <div key={a} className="row"><span className="grow muted">{a}</span><b>{b}</b></div>)}</div>
+    <div className="card col" style={{ gap: 8 }}><h3>{t("📤 Publier mes choix pour tout le monde")}</h3>
+      <p className="muted small" style={{ margin: 0 }}>{t("Tes choix (effets cachés, sons coupés ou remplacés, sections cachées, effet des fêtes) restent sur cet appareil. Pour que l'appli officielle, y compris sur Android, les utilise : enregistre le fichier et envoie-le moi.")}</p>
+      <button className="btn" onClick={() => { const b = new Blob([exportConfig()], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "config.json"; a.click(); toast(t("Fichier config.json enregistré.")); }}>{t("📤 Enregistrer config.json")}</button>
+      <label className="btn ghost" style={{ textAlign: "center" }}>{t("📥 Reprendre un config.json")}<input type="file" accept="application/json,.json" style={{ display: "none" }} onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (!f) return; f.text().then((tx) => toast(importConfig(tx) ? t("Choix repris.") : t("Fichier non valable."))).catch(() => toast(t("Fichier non valable."))); }} /></label></div>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🔄 Remettre à zéro")}</h3>
       <button className="btn ghost" onClick={() => { setDevFete(""); setDevBday(false); setDevDate(""); setDevNoFete(false); toast(t("Date réelle rétablie.")); }}>{t("Revenir à la vraie date")}</button>
       <button className="btn ghost" onClick={() => { devResetAll(); toast(t("Tout est remis comme au départ (sections, effets, sons).")); }}>{t("Tout remettre comme au départ")}</button>
-      <button className="btn ghost" onClick={() => { setDevFete(""); setDevPreview(false); setDevUnlocked(false); toast(t("Mode développeur désactivé.")); history.back(); }}>{t("Désactiver le mode développeur")}</button></div>
+      <button className="btn ghost" onClick={() => { location.href = "./"; }}>{t("↩ Ouvrir l'appli officielle")}</button></div>
   </>;
 }

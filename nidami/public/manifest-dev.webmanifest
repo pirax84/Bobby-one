@@ -1,0 +1,16 @@
+{
+  "name": "NOTIIF Dev",
+  "short_name": "NOTIIF Dev",
+  "id": "./dev.html",
+  "description": "Version développeur de NOTIIF (réservée au créateur).",
+  "start_url": "./dev.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#2A1F5C",
+  "theme_color": "#2A1F5C",
+  "lang": "fr",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

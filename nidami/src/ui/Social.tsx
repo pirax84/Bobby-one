@@ -16,7 +16,7 @@ import { DevPanel, ClientPreview } from "./Dev";
 import { PresenceBar } from "./Chat";
 import { CatPicker, SeesCard } from "./Cats";
 import { catsOf, friendCats } from "../lib/cats";
-import { useDev, setDevUnlocked, setDevClient, APP_VERSION } from "../lib/dev";
+import { useDev, setDevClient, APP_VERSION } from "../lib/dev";
 import { KidCard } from "./Kid";
 import { IntroChoice } from "./IntroChoice";
 import { LangPicker } from "./LangPicker";
@@ -226,7 +226,7 @@ export function Notifs({ go, openConv }: { go?: (v: string) => void; openConv?: 
 const navopts = (): [string, string][] => [["home", t("Accueil")], ["friends", t("Amis")], ["groups", t("Groupes")], ["messages", t("Messages")], ["calls", t("Appels")], ["media", t("Photos et vidéos")], ["games", t("Jeux")], ["events", t("Événements")], ["shares", t("Partages")], ["notifs", t("Notifications")], ["profile", t("Profil")], ["legal", t("Légal")], ["settings", t("Paramètres")]];
 export function Settings({ go }: { go?: (v: any) => void }) {
   const pc = isPC(); const dev = useDev(); const taps = useRef({ n: 0, t: 0 });
-  const verTap = () => { const now = Date.now(); const c = taps.current; c.n = now - c.t < 1500 ? c.n + 1 : 1; c.t = now; if (c.n >= 7) { c.n = 0; if (!dev.unlocked) { setDevUnlocked(true); toast(t("Mode développeur activé.")); } else if (dev.client) { setDevClient(false); toast(t("Mode développeur rétabli.")); } } };
+  const verTap = () => { const now = Date.now(); const c = taps.current; c.n = now - c.t < 1500 ? c.n + 1 : 1; c.t = now; if (c.n >= 7) { c.n = 0; if (dev.unlocked && dev.client) { setDevClient(false); toast(t("Mode développeur rétabli.")); } } };
   const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
   const [sec, setSec] = useState<string | null>(() => (history.state?.sec as string) || null); const [q, setQ] = useState(""); const [legal, setLegal] = useState(false); const pageRef = useRef<HTMLDivElement>(null);
   useEffect(() => { // dans chaque page de réglages, les cartes deviennent des catégories à ouvrir au toucher
