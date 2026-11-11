@@ -75,10 +75,6 @@ function DevNotifs() {
     <p className="muted small" style={{ margin: 0 }}>{t("Écoutez chaque son de notification. « Son » coupé = il ne sonne plus sur cet appareil.")}</p>
     {T("n1", t("Message envoyé (début)"), () => soundStart())}{T("n2", t("Message parti (fin)"), () => soundEnd())}
     {T("n3", t("Message vocal"), () => notifSound.vocal())}{T("n4", t("Story"), () => notifSound.story())}{T("n5", t("Réaction"), () => notifSound.reaction())}{T("n6", t("Appel"), () => notifSound.appel())}
-    <b className="small">{t("Sonnerie des notifications")}</b>
-    {TONE_IDS.n.map((id) => <div key={id} className="row" style={{ gap: 8 }}><span className="grow">{TONES[id].label}</span><button type="button" className="chip" onClick={() => playTone(id)} aria-label={t("▶ Tester")}>▶</button><label className="row" style={{ gap: 4 }}><span className="small">{t("Son")}</span><Sw on={!devIsOff("mute", "tone-" + id)} set={() => devToggleHidden("mute", "tone-" + id)} label={t("Son")} /></label></div>)}
-    <b className="small">{t("Sonnerie des appels")}</b>
-    {TONE_IDS.c.map((id) => <div key={id} className="row" style={{ gap: 8 }}><span className="grow">{TONES[id].label}</span><button type="button" className="chip" onClick={() => playTone(id)} aria-label={t("▶ Tester")}>▶</button><label className="row" style={{ gap: 4 }}><span className="small">{t("Son")}</span><Sw on={!devIsOff("mute", "tone-" + id)} set={() => devToggleHidden("mute", "tone-" + id)} label={t("Son")} /></label></div>)}
     <b className="small">{t("Vibrations")}</b>
     <div className="row wrap" style={{ gap: 6 }}>{VIB_LEVELS.map((v) => <button key={v.id} type="button" className="chip" onClick={() => vibrate(v.id)}>{v.label}</button>)}</div>
     <b className="small">{t("Messages à l'écran")}</b>

@@ -14,7 +14,7 @@ import { Onboarding, needInstall } from "./ui/Auth";
 import { ChatBubble } from "./ui/Bubble";
 import { SearchTop } from "./ui/Search";
 import { MiniPlayer } from "./ui/Links";
-import { playFx, playCustom, Fx, playTone, vibrate, popNotes, soundEnd, sfx } from "./lib/fx";
+import { playFx, playCustom, Fx, playTone, vibrate, popNotes, soundEnd, sfx, notifSound } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
 import { t, locale, useLang } from "./i18n";
 import { ArrivedModal } from "./ui/Extras";
@@ -114,11 +114,11 @@ export default function App() {
     };
     run(); document.addEventListener("visibilitychange", run); return () => document.removeEventListener("visibilitychange", run);
   }, [fxList, fxOn, meId]);
-  useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { playTone(th0?.ctone || "c1", 3); vibrate(th0?.vibc, 3); } }, [lastCall]);
+  useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { notifSound.appel(); vibrate(th0?.vibc, 3); } }, [lastCall]);
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
-    if (!th0?.quiet) { if (!th0?.ntone || th0.ntone === "n1") soundEnd(); else playTone(th0.ntone); vibrate(th0?.vibm, 1); }
+    if (!th0?.quiet) { soundEnd(); vibrate(th0?.vibm, 1); }
     const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
     const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
