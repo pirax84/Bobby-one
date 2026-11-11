@@ -104,6 +104,22 @@ class MainActivity : Activity() {
             if (!(url.startsWith("https://") || url.startsWith("http://"))) return
             runOnUiThread { try { startActivity(Intent(this@MainActivity, LinkActivity::class.java).putExtra("url", url)) } catch (e: Exception) { } }
         }
+        /** Donne au service de veille la session du compte (adresse du serveur, clé publique, jetons) pour qu'il surveille les nouveaux messages. */
+        @JavascriptInterface fun setSession(url: String, key: String, access: String, refresh: String, uid: String) {
+            getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().putString("url", url).putString("key", key).putString("access", access).putString("refresh", refresh).putString("uid", uid).apply()
+            runOnUiThread { try { NotiifService.start(this@MainActivity) } catch (e: Exception) { } }
+        }
+        @JavascriptInterface fun clearSession() {
+            getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().clear().apply()
+            runOnUiThread { try { NotiifService.stop(this@MainActivity) } catch (e: Exception) { } }
+        }
+        /** Demande à Android de ne pas endormir l'application (sinon les messages arrivent en retard écran éteint). */
+        @JavascriptInterface fun askBattery() {
+            runOnUiThread { try {
+                val pm = getSystemService(Context.POWER_SERVICE) as android.os.PowerManager
+                if (!pm.isIgnoringBatteryOptimizations(packageName)) startActivity(Intent(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:$packageName")))
+            } catch (e: Exception) { } }
+        }
         @JavascriptInterface fun hasNotifPermission(): Boolean = Build.VERSION.SDK_INT < 33 || checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
         @JavascriptInterface fun askNotif() { runOnUiThread { if (Build.VERSION.SDK_INT >= 33 && !hasNotifPermission()) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), RC_NOTIF) } }
         @JavascriptInterface fun notify(title: String, body: String) {
@@ -155,6 +171,9 @@ class MainActivity : Activity() {
             fileCb?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data)); fileCb = null
         }
     }
+
+    override fun onResume() { super.onResume(); NotiifService.visible = true }
+    override fun onPause() { NotiifService.visible = false; super.onPause() }
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {

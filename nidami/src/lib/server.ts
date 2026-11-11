@@ -7,7 +7,7 @@ export const saveSession = (d: any) => {
   if (!d?.access_token) return;
   try { localStorage.setItem(K, JSON.stringify({ access: d.access_token, refresh: d.refresh_token, exp: Date.now() / 1000 + (Number(d.expires_in) || 3600) - 60, uid: d.user?.id || getSess()?.uid || "", email: d.user?.email || getSess()?.email || "" })); } catch { /* ignoré */ }
 };
-export const signOut = () => { try { localStorage.removeItem(K); } catch { /* ignoré */ } };
+export const signOut = () => { try { localStorage.removeItem(K); } catch { /* ignoré */ } try { (window as any).CercleNative?.clearSession?.(); } catch { /* ignoré */ } };
 async function token(): Promise<string | null> {
   const s = getSess(); if (!s) return null;
   if (Date.now() / 1000 < s.exp) return s.access;
