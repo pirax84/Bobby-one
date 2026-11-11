@@ -5,6 +5,7 @@ import { saveSession } from "./server";
 const env = ((import.meta as unknown as { env?: Record<string, string> }).env) || {};
 export const SB_URL: string = env.VITE_SUPABASE_URL || "";
 export const SB_KEY: string = env.VITE_SUPABASE_ANON_KEY || "";
+export const serverLive = () => !!SB_URL && !!SB_KEY && !/VOTRE-PROJET/.test(SB_URL);
 export const serverOn = () => !!SB_URL && !!SB_KEY && !/VOTRE-PROJET/.test(SB_URL) && (window as any).__NOTIIF_DEV__ === true; // le serveur n'est actif que dans la version développeur, pour l'instant
 
 export interface Prov { id: string; label: string; badge: string; sb?: string; soon?: string }

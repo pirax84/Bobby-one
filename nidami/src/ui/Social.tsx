@@ -1,3 +1,4 @@
+import { ServerCard } from "./ServerCard";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { InstallCard } from "./Auth";
 import { useStore, actions, userOf, cfgOf, User } from "../lib/store";
@@ -86,7 +87,7 @@ export function Friends({ go }: { go: (v: string, conv?: string) => void }) {
   const s = useStore((x) => x); const me = s.me; const user = userOf(s, me)!; const [code, setCode] = useState(""); const [list, setList] = useState(false); const [name, setName] = useState(""); const [sel, setSel] = useState<string[]>([]); const [menu, setMenu] = useState<string | null>(null); const [ct, setCt] = useState(false); const [rep, setRep] = useState<string | null>(null); const [acc, setAcc] = useState<string | null>(null); const [fc, setFc] = useState("");
   const allFriends = (s.social.friends[me] || []).map((i) => userOf(s, i)!).filter(Boolean); const ties = s.social.ties || {}; const friends = allFriends; const reqs = s.reqs.filter((r) => r.to === me); const blocked = (s.social.blocks[me] || []).map((i) => userOf(s, i)!).filter(Boolean);
   const mylists = s.social.lists.filter((l) => l.ownerId === me); const mycats = catsOf(s.social, me); const usedCats = mycats.filter((c) => c.custom || friends.some((f) => friendCats(s.social, me, f.id).includes(c.id)));
-  return (<div className="col"><h1>{t("Amis")}</h1>
+  return (<div className="col"><h1>{t("Amis")}</h1><ServerCard />
     {friends.length > 0 && <div className="row" style={{ gap: 6, overflowX: "auto", paddingBottom: 4 }}><button type="button" className={"chip" + (!fc ? " on" : "")} aria-pressed={!fc} onClick={() => setFc("")}>{t("Tout")}</button>{usedCats.map((c) => <button key={c.id} type="button" className={"chip" + (fc === c.id ? " on" : "")} aria-pressed={fc === c.id} onClick={() => setFc(c.id)}>{c.e} {c.n}</button>)}</div>}
     {reqs.length > 0 && <Acc id="reqs" acc={acc} setAcc={setAcc} icon="📩" title={t("Demandes reçues ({length})", { length: reqs.length })} start>{reqs.map((r) => <ReqRow key={r.id} r={r} />)}</Acc>}
     <FindPeople />

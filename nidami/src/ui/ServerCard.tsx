@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { serverOn, emailLogin, emailSignUp } from "../lib/auth";
+import { serverLive, emailLogin, emailSignUp } from "../lib/auth";
 import { getSess, signOut, myProfile, listFriends, listRequests, requestFriend, acceptRequest, sendMessage, thread, errText, type Friend, type Request, type Msg } from "../lib/server";
 import { toast } from "./common";
 
@@ -16,7 +16,7 @@ export function ServerCard() {
   useEffect(() => { if (!sess) return; const id = setInterval(() => { void refresh(); if (open) void thread(open.id).then(setMsgs); }, 3000); return () => clearInterval(id); }, [sess, open]);
   useEffect(() => { if (open) void thread(open.id).then(setMsgs); }, [open]);
   const box = (c: React.ReactNode) => <div className="card col" style={{ gap: 8 }}><h3>☁️ Serveur (comptes, amis, messages)</h3>{c}</div>;
-  if (!serverOn()) return box(<p className="muted small" style={{ margin: 0 }}>Le serveur n'est pas relié à cette version.</p>);
+  if (!serverLive()) return box(<p className="muted small" style={{ margin: 0 }}>Le serveur n'est pas relié à cette version.</p>);
   if (!sess) return box(<>
     <p className="muted small" style={{ margin: 0 }}>Choisis un pseudo et un mot de passe. Pas d'e-mail à donner.</p>
     <input className="inp" placeholder="Ton pseudo (ex : Pierre)" value={name} onChange={(e) => setName(e.target.value)} autoCapitalize="none" />

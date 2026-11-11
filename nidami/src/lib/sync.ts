@@ -1,4 +1,4 @@
-import { serverOn } from "./auth";
+import { serverLive } from "./auth";
 import { getSess, listFriends, allMessages, sendMessage } from "./server";
 import { actions, setSbOut } from "./store";
 
@@ -9,7 +9,7 @@ const pull = async () => {
   try { const [fr, msgs] = await Promise.all([listFriends(), allMessages()]); actions.sbMerge({ uid: s.uid, fr: fr.map((f) => ({ id: f.id, name: f.name })), msgs }); } finally { busy = false; }
 };
 export function startSync() {
-  if (!serverOn() || timer) return;
+  if (!serverLive() || timer) return;
   setSbOut((convId, body, fx, id) => { const to = convId.replace(/^sbc_/, ""); void sendMessage(to, body, fx, id); });
   void pull(); timer = setInterval(() => void pull(), 3000);
 }
