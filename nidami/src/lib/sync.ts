@@ -1,4 +1,4 @@
-import { serverLive } from "./auth";
+import { serverLive, SB_URL, SB_KEY } from "./auth";
 import { getSess, listFriends, allMessages, sendMessage } from "./server";
 import { actions, setSbOut } from "./store";
 
