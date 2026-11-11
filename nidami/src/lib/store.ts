@@ -17,7 +17,7 @@ export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
 export interface Album { id: ID; ownerId: ID; name: string; audience: Audience; recipients: ID[]; createdAt: number; auto?: boolean }
 export interface State {
   v: 1; started: boolean; me: ID; users: User[]; social: Social; posts: Post[]; notifs: Notif[]; convs: Conv[]; events: EventT[]; games: Game[]; reqs: Req[]; reports: Report[]; shares: Share[]; albums: Album[];
-  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; discret?: boolean; sndlike?: boolean; sndcomm?: boolean; vibtap?: boolean; shakesnd?: string; hand?: string; nav?: string; top?: string; bubble?: boolean; start?: string; likes?: boolean; comm?: boolean; push?: boolean; fx?: boolean; fxfav?: string; cfx?: string; ntone?: string; ctone?: string; vibm?: string; vibc?: string; nt?: Record<string, boolean>; bg?: string; fg?: string; accent?: string; mode?: string; fs?: string; style?: string; accauto?: boolean; accday?: string }>;
+  scores: Record<ID, number>; settings: Record<ID, { quiet: boolean; light: boolean; autoplay: boolean; premium?: boolean; discret?: boolean; sndlike?: boolean; sndsend?: boolean; sndcomm?: boolean; vibtap?: boolean; shakesnd?: string; hand?: string; nav?: string; top?: string; bubble?: boolean; start?: string; likes?: boolean; comm?: boolean; push?: boolean; fx?: boolean; fxfav?: string; cfx?: string; ntone?: string; ctone?: string; vibm?: string; vibc?: string; nt?: Record<string, boolean>; bg?: string; fg?: string; accent?: string; mode?: string; fs?: string; style?: string; accauto?: boolean; accday?: string }>;
 }
 const KEY = "nidami-v1";
 let state: State = load();
@@ -40,7 +40,7 @@ const notify = (s: State, to: ID, text: string, go?: string, x?: { by?: ID; v?: 
 
 let lastFx = 0;
 /** Pont serveur : appelé quand un message est envoyé dans une conversation « sbc_ » (vrai compte). */
-let sbOut: ((convId: string, body: string, fx: string | undefined, id: string) => void) | null = null;
+let sbOut: ((convId: string, body: string, fx: string | undefined, id: string, media?: { kind: string; data: string }) => void) | null = null;
 export const setSbOut = (f: typeof sbOut) => { sbOut = f; };
 export const HANDLE_RE = /^[a-z0-9_.]{3,20}$/;
 /** Compte mis en examen automatiquement : au moins 3 personnes différentes l'ont signalé. */
@@ -48,7 +48,7 @@ export const isRestricted = (s: State, id: ID) => new Set(s.reports.filter((r) =
 const MAX_REQ_DAY = 15;
 function setCats(s: State, friend: ID, ids: string[]) { const o = { ...(s.social.catOf || {}) }; o[s.me] = { ...(o[s.me] || {}) }; if (ids.length) o[s.me][friend] = [...new Set(ids)]; else delete o[s.me][friend]; s.social.catOf = o; }
 export const actions = {
-  sbMerge(d: { prime?: boolean; uid: string; fr: { id: string; name: string }[]; msgs: { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string }[] }) {
+  sbMerge(d: { prime?: boolean; uid: string; fr: { id: string; name: string }[]; msgs: { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string; media_kind?: string | null; media?: string | null }[] }) {
     if (!state.started || !state.me) return;
     const need = d.fr.some((f) => !state.users.some((u) => u.id === "sb_" + f.id) || !state.convs.some((c) => c.id === "sbc_" + f.id)) || d.msgs.some((m) => { const o = m.sender === d.uid ? m.recipient : m.sender; const c = state.convs.find((x) => x.id === "sbc_" + o); return !c || !c.msgs.some((x) => x.id === m.id); });
     if (!need) return;
@@ -64,8 +64,8 @@ export const actions = {
         const o = m.sender === d.uid ? m.recipient : m.sender; const c = s.convs.find((x) => x.id === "sbc_" + o); if (!c || c.msgs.some((x) => x.id === m.id)) continue;
         const fx = m.fx && (m.fx in FX) ? (m.fx as Fx) : undefined;
         const mine = m.sender === d.uid; const fresh = !mine && !d.prime;
-        c.msgs.push({ id: m.id, from: mine ? s.me : "sb_" + o, text: m.body, at: fresh ? Math.max(Date.parse(m.created_at) || 0, now()) : Date.parse(m.created_at) || now(), secs: 0, reads: {}, gone: {}, ...(fx ? { fx } : {}) } as Msg);
-        if (fresh) notify(s, s.me, t("{name} : nouveau message.", { name: s.users.find((x) => x.id === "sb_" + o)?.name || "?" }), "messages", { by: "sb_" + o, v: "messages", ref: c.id, pv: fx ? FX[fx].text : m.body.slice(0, 160) });
+        c.msgs.push({ id: m.id, from: mine ? s.me : "sb_" + o, text: m.body, at: fresh ? Math.max(Date.parse(m.created_at) || 0, now()) : Date.parse(m.created_at) || now(), secs: 0, reads: {}, gone: {}, ...(fx ? { fx } : {}), ...(m.media ? (m.media_kind === "audio" ? { audio: m.media } : m.media_kind === "video" ? { video: m.media } : { img: m.media }) : {}) } as Msg);
+        if (fresh) notify(s, s.me, t("{name} : nouveau message.", { name: s.users.find((x) => x.id === "sb_" + o)?.name || "?" }), "messages", { by: "sb_" + o, v: "messages", ref: c.id, pv: fx ? FX[fx].text : m.media_kind === "audio" ? "🎤" : m.media_kind ? "📷" : m.body.slice(0, 160) });
       }
       for (const c of s.convs) if (c.id.startsWith("sbc_")) c.msgs.sort((a, b) => a.at - b.at);
     });
@@ -162,7 +162,7 @@ export const actions = {
   createList(name: string, memberIds: ID[]): ID { const id = "l_" + uid(); mut((s) => { s.social.lists.push({ id, ownerId: s.me, name: name.slice(0, 30), memberIds } as FriendList); }); return id; },
 
   startDm(other: ID): ID { let id = ""; mut((s) => { const c = s.convs.find((x) => !x.groupId && x.memberIds.length === 2 && x.memberIds.includes(s.me) && x.memberIds.includes(other)); if (c) { id = c.id; return; } id = "c_" + uid(); s.convs.push({ id, memberIds: [s.me, other], msgs: [] }); }); return id; },
-  send(convId: ID, text: string, secs = 0, img: string | null = null, replyTo?: ID, audio: string | null = null, once = false, nowm = false, video: string | null = null) { const tx = text.trim(); if (!tx && !img && !audio && !video) return; mut((s) => { const c = s.convs.find((x) => x.id === convId && x.memberIds.includes(s.me)); if (!c) return; const mid = convId.startsWith("sbc_") ? crypto.randomUUID() : uid(); if (!img && !audio && !video) sbOut?.(convId, tx.slice(0, 2000), undefined, mid); c.msgs.push({ id: mid, from: s.me, text: tx.slice(0, 2000), img, audio, video, at: now(), secs, once, gone: {}, reads: {}, replyTo, nowm: nowm && !!img ? true : undefined });
+  send(convId: ID, text: string, secs = 0, img: string | null = null, replyTo?: ID, audio: string | null = null, once = false, nowm = false, video: string | null = null) { const tx = text.trim(); if (!tx && !img && !audio && !video) return; mut((s) => { const c = s.convs.find((x) => x.id === convId && x.memberIds.includes(s.me)); if (!c) return; const mid = convId.startsWith("sbc_") ? crypto.randomUUID() : uid(); sbOut?.(convId, tx.slice(0, 2000), undefined, mid, audio ? { kind: "audio", data: audio } : img ? { kind: "image", data: img } : video ? { kind: "video", data: video } : undefined); c.msgs.push({ id: mid, from: s.me, text: tx.slice(0, 2000), img, audio, video, at: now(), secs, once, gone: {}, reads: {}, replyTo, nowm: nowm && !!img ? true : undefined });
     for (const m of c.memberIds.filter((x) => x !== s.me)) notify(s, m, t(secs || once ? "{name} : nouveau message éphémère." : "{name} : nouveau message.", { name: userOf(s, s.me)!.name }), "messages", { by: s.me, v: "messages", ref: c.id, pv: secs || once ? undefined : tx ? tx.slice(0, 160) : img ? "📷" : audio ? "🎤" : undefined }); }); },
   markRead(convId: ID) { mut((s) => { const c = s.convs.find((x) => x.id === convId && x.memberIds.includes(s.me)); if (!c) return; let ch = false; for (const m of c.msgs) if (m.from !== s.me && m.secs === 0 && !m.once && m.reads[s.me] === undefined) { m.reads[s.me] = now(); ch = true; } if (!ch) { s.notifs.forEach((n) => { if (n.to === s.me && n.go === "messages" && !n.read) n.read = true; }); } }); },
   openMsg(convId: ID, id: ID) { mut((s) => { const m = s.convs.find((c) => c.id === convId && c.memberIds.includes(s.me))?.msgs.find((x) => x.id === id); if (m && m.from !== s.me && m.reads[s.me] === undefined) m.reads[s.me] = now(); }); },

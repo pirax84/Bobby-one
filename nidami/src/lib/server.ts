@@ -30,7 +30,7 @@ const q = encodeURIComponent;
 export interface Person { id: string; name: string }
 export interface Friend extends Person { cats: string[] }
 export interface Request extends Person { reqId: string; incoming: boolean }
-export interface Msg { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string }
+export interface Msg { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string; media_kind?: string | null; media?: string | null }
 export const errText = (r: Res) => r.status === 0 ? "Pas de connexion au serveur." : String(r.data?.message || r.data?.msg || r.data?.hint || "Erreur " + r.status);
 
 export async function myProfile(): Promise<{ name: string; code: string } | null> {
@@ -55,8 +55,9 @@ export async function listRequests(): Promise<Request[]> {
 }
 export const requestFriend = (code: string) => req("POST", "/rest/v1/rpc/request_friend", { p_code: code });
 export const acceptRequest = (id: string, cats: string[] = []) => req("POST", "/rest/v1/rpc/accept_request", { p_id: id, p_cats: cats });
-export const sendMessage = (to: string, body: string, fx?: string, id?: string) => req("POST", "/rest/v1/messages", { ...(id ? { id } : {}), sender: getSess()?.uid, recipient: to, body, fx: fx || null }, "return=minimal");
-export async function allMessages(): Promise<Msg[]> { const r = await req("GET", "/rest/v1/messages?order=created_at.desc&limit=300&select=id,sender,recipient,body,fx,created_at"); return Array.isArray(r.data) ? (r.data as Msg[]).reverse() : []; }
+export const sendMessage = (to: string, body: string, fx?: string, id?: string, media?: { kind: string; data: string }) => req("POST", "/rest/v1/messages", { ...(id ? { id } : {}), sender: getSess()?.uid, recipient: to, body, fx: fx || null, ...(media ? { media_kind: media.kind, media: media.data } : {}) }, "return=minimal");
+export async function getMedia(id: string): Promise<string | null> { const r = await req("GET", `/rest/v1/messages?id=eq.${id}&select=media`); return Array.isArray(r.data) && r.data[0]?.media ? String(r.data[0].media) : null; }
+export async function allMessages(): Promise<Msg[]> { let r = await req("GET", "/rest/v1/messages?order=created_at.desc&limit=300&select=id,sender,recipient,body,fx,created_at,media_kind"); if (!r.ok) r = await req("GET", "/rest/v1/messages?order=created_at.desc&limit=300&select=id,sender,recipient,body,fx,created_at"); return Array.isArray(r.data) ? (r.data as Msg[]).reverse() : []; }
 export async function thread(friend: string): Promise<Msg[]> {
   const me = getSess()?.uid; if (!me) return [];
   const f = `or=(and(sender.eq.${me},recipient.eq.${friend}),and(sender.eq.${friend},recipient.eq.${me}))`;

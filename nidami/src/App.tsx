@@ -108,7 +108,7 @@ export default function App() {
       const key = "notiif-fxseen-" + meId; const items = fxList ? fxList.split(";").map((v) => { const [at, fx] = v.split("|"); return { at: +at, fx }; }) : [];
       let seen = 0; try { seen = +(localStorage.getItem(key) || 0); } catch {}
       if (!seen) { try { localStorage.setItem(key, String(items.length ? items[items.length - 1].at : Date.now())); } catch {} return; }
-      const todo = items.filter((m) => m.at > seen).slice(-8); if (!todo.length) return;
+      const todo = items.filter((m) => m.at > seen && Date.now() - m.at < 60000).slice(-2); try { if (!todo.length && items.length) localStorage.setItem(key, String(items[items.length - 1].at)); } catch {} if (!todo.length) return;
       try { localStorage.setItem(key, String(todo[todo.length - 1].at)); } catch {}
       if (!fxOn) return; fxBusy.current = true;
       todo.forEach((m, n) => setTimeout(() => { if (m.fx === "custom") { if (lastCfx) playCustom(lastCfx); } else playFx(m.fx as Fx); if (n === todo.length - 1) fxBusy.current = false; }, n * 3200));

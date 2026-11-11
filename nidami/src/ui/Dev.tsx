@@ -1,4 +1,4 @@
-import { CALL_TONES, playOne, stopSounds, playCallRing, playNotifSound, FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, soundStart, soundEnd, type Fx } from "../lib/fx";
+import { CALL_TONES, playOne, stopSounds, playCallRing, playNotifSound, FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, popNotes, type Fx } from "../lib/fx";
 import { BrandWm, navItems } from "../App";
 import { ACCENTS } from "../lib/theme";
 import { useStore } from "../lib/store";
@@ -74,7 +74,7 @@ function DevNotifs() {
   const T = (id: string, l: string, fn: () => void) => <div key={id} className="row" style={{ gap: 8 }}><span className="grow">{l}</span><button type="button" className="chip" onClick={fn} aria-label={t("▶ Tester")}>▶</button></div>;
   return <><div className="card col" style={{ gap: 6 }}><h3>{t("🟢 Ma disponibilité")}</h3><PresenceBar /></div><div className="card col" style={{ gap: 6 }}><h3>{t("🔔 Notifications et sonneries")}</h3>
     <p className="muted small" style={{ margin: 0 }}>{t("Écoutez chaque son de notification. « Son » coupé = il ne sonne plus sur cet appareil.")}</p>
-    {T("n1", t("Message envoyé (début)"), () => soundStart())}{T("n2", t("Message parti (fin)"), () => soundEnd())}
+    {T("n1", t("Message envoyé (début)"), () => popNotes(6, 0.3))}{T("n2", t("Message parti (fin)"), () => popNotes(3, 0.3))}
     {T("n3", t("Message vocal"), () => notifSound.vocal())}{T("n4", t("Story"), () => notifSound.story())}{T("n5", t("Réaction"), () => notifSound.reaction())}{T("n6", t("Appel"), () => notifSound.appel())}
     <b className="small">Sonnerie d'appel</b>
     <div className="row" style={{ gap: 8 }}><select className="inp grow" aria-label="Sonnerie d'appel" value={sndMapOf("appel") || CALL_TONES[0][0]} onChange={(e) => { setSndMap("appel", e.target.value); }}>{CALL_TONES.map(([id, l]) => <option key={id} value={id}>{l}</option>)}{customSounds().map((c) => <option key={c.id} value={c.id}>{c.name} (le mien)</option>)}</select><button type="button" className="chip" onClick={() => playCallRing()} aria-label="Écouter">▶</button></div>
