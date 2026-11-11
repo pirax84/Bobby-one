@@ -55,6 +55,7 @@ export function sceneShow(kind: Scene) {
 type Step = (t: number, dt: number, fade: number) => void;
 /** Remet à leur place les éléments « brûlés » (fin de l'effet flammes, ou arrêt anticipé). */
 export function fireRestore() {
+  document.querySelectorAll<HTMLElement>("[data-fire-target]").forEach((e) => { e.style.maskImage = ""; (e.style as any).webkitMaskImage = ""; });
   document.querySelectorAll<HTMLElement>("[data-burnt]").forEach((e) => { delete e.dataset.burnt; e.style.transition = "opacity .8s"; e.style.opacity = ""; setTimeout(() => { e.style.transition = ""; }, 900); });
 }
 
@@ -125,11 +126,22 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
       // Vrai incendie : le feu part du bas, gagne l'écran ; chaque élément noircit et se consume depuis un point d'allumage (bord incandescent),
       // des flammes montent du bord, de la fumée s'élève, puis des cendres et des braises retombent.
       const SEL = ".msg, .bubble, h1, h2, h3, p, .btn, .chip, .navbtn, .avatar, button, input, li";
-      type B = { el: HTMLElement; x: number; y: number; w: number; h: number; t0: number; D: number; px: number; py: number; sd: number; maxR: number; done: boolean };
+      type B = { el: HTMLElement | null; m?: { g: CanvasRenderingContext2D; ox: number; oy: number }; x: number; y: number; w: number; h: number; t0: number; D: number; px: number; py: number; sd: number; maxR: number; done: boolean };
       const items: B[] = Array.from(document.querySelectorAll<HTMLElement>(SEL)).map((el) => ({ el, r: el.getBoundingClientRect() })).filter(({ r }) => r.width > 24 && r.height > 12 && r.height < 120 && r.width * r.height < W * H * 0.09 && r.bottom > 0 && r.top < H && r.right > 0 && r.left < W).slice(0, 90)
         .map(({ el, r }) => { const cy = r.top + r.height / 2; return { el, x: r.left, y: r.top, w: r.width, h: r.height, t0: (1 - Math.min(1, Math.max(0, cy / H))) * 3.6 + rnd(0, 0.5), D: Math.min(2.1, Math.max(0.8, r.width / 300 + r.height / 380)), px: r.left + rnd(0.15, 0.85) * r.width, py: r.top + r.height * rnd(0.65, 1), sd: rnd(0, 100), maxR: Math.hypot(r.width, r.height) * 1.0, done: false }; });
+      const targets: { el: HTMLElement; c: HTMLCanvasElement }[] = [];
+      document.querySelectorAll<HTMLElement>("[data-fire-target]").forEach((el) => {
+        const r = el.getBoundingClientRect(); if (r.width < 20 || r.height < 20) return;
+        const c = document.createElement("canvas"); c.width = Math.ceil(r.width); c.height = Math.ceil(r.height); const mg = c.getContext("2d"); if (!mg) return;
+        mg.fillStyle = "#000"; mg.fillRect(0, 0, c.width, c.height); targets.push({ el, c });
+        const cs = 56; for (let y = 0; y < r.height; y += cs) for (let x = 0; x < r.width; x += cs) {
+          const w = Math.min(cs, r.width - x), h = Math.min(cs, r.height - y); const cy = y + h / 2;
+          items.push({ el: null, m: { g: mg, ox: r.left, oy: r.top }, x: r.left + x, y: r.top + y, w, h, t0: 0.3 + (1 - cy / r.height) * 3.4 + rnd(0, 0.5), D: rnd(0.9, 1.4), px: r.left + x + rnd(0.2, 0.8) * w, py: r.top + y + h * rnd(0.5, 1), sd: rnd(0, 100), maxR: Math.hypot(w, h) * 1.05, done: false });
+        }
+      });
+      let fr = 0;
       const fl: P[] = []; const sm: P[] = []; const ash: P[] = [];
-      const blob = (cx: number, cy: number, R: number, sd: number, t: number) => { g.beginPath(); const n = 28; for (let i = 0; i <= n; i++) { const a = (i / n) * 6.2832; const k = 0.78 + 0.2 * Math.sin(a * 3 + sd) + 0.12 * Math.sin(a * 7 + sd * 2 + t * 3); const rr = R * Math.max(0.45, k); const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr * 0.9; if (i) g.lineTo(x, y); else g.moveTo(x, y); } g.closePath(); };
+      const blob = (cx: number, cy: number, R: number, sd: number, t: number, G: CanvasRenderingContext2D = g) => { G.beginPath(); const n = 28; for (let i = 0; i <= n; i++) { const a = (i / n) * 6.2832; const k = 0.78 + 0.2 * Math.sin(a * 3 + sd) + 0.12 * Math.sin(a * 7 + sd * 2 + t * 3); const rr = R * Math.max(0.45, k); const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr * 0.9; if (i) G.lineTo(x, y); else G.moveTo(x, y); } G.closePath(); };
       const N = Math.max(8, Math.round(W / 110));
       const tg = Array.from({ length: N }, (_, i) => ({ x: ((i + 0.5) / N) * W + rnd(-25, 25), w: rnd(0.95, 1.6) * (W / N) * 1.25, h: rnd(0.5, 1) * H * 0.2, ph: rnd(0, 6.28), sp: rnd(1.4, 2.8) }));
       const noise = (t: number, ph: number) => Math.sin(t + ph) * 0.5 + Math.sin(t * 2.31 + ph * 1.7) * 0.3 + Math.sin(t * 4.13 + ph * 0.6) * 0.2;
@@ -146,9 +158,10 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
         // 1) élément noirci avec bord incandescent
         for (const b of items) {
           if (t < b.t0) continue; const p = Math.min(1, (t - b.t0) / b.D); const R = Math.pow(p, 0.85) * b.maxR;
-          if (!b.done && p >= 1) { b.done = true; b.el.dataset.burnt = "1"; b.el.style.transition = "none"; b.el.style.opacity = "0";
+          if (!b.done && p >= 1) { b.done = true; if (b.el) { b.el.dataset.burnt = "1"; b.el.style.transition = "none"; b.el.style.opacity = "0"; } if (b.m) { b.m.g.save(); b.m.g.globalCompositeOperation = "destination-out"; b.m.g.fillStyle = "#000"; b.m.g.fillRect(b.x - b.m.ox - 1, b.y - b.m.oy - 1, b.w + 2, b.h + 2); b.m.g.restore(); }
             const n = Math.min(46, Math.round((b.w * b.h) / 900) + 6); for (let i = 0; i < n; i++) ash.push({ x: rnd(b.x, b.x + b.w), y: rnd(b.y, b.y + b.h), vx: rnd(-22, 22), vy: rnd(15, 90), life: 0, max: rnd(1.4, 3), s: rnd(1.5, 5.5), r: rnd(0, 6), vr: rnd(-4, 4), c: "", k: Math.random() < 0.35 ? 1 : 0 });
             for (let i = 0; i < 6; i++) sm.push({ x: rnd(b.x, b.x + b.w), y: b.y + b.h * rnd(0.2, 0.8), vx: rnd(-10, 25), vy: -rnd(30, 70), life: 0, max: rnd(1.6, 2.8), s: rnd(14, 34), r: 0, vr: 0, c: "" }); }
+          if (b.m && !b.done) { const G = b.m.g; G.save(); G.globalCompositeOperation = "destination-out"; G.translate(-b.m.ox, -b.m.oy); G.beginPath(); G.rect(b.x, b.y, b.w, b.h); G.clip(); blob(b.px, b.py, R * 0.92, b.sd, t, G); G.fillStyle = "#000"; G.fill(); G.restore(); }
           const alive = b.done ? 1 - (t - b.t0 - b.D) / 0.5 : 1; if (alive <= 0) continue;
           g.save(); g.beginPath(); g.rect(b.x, b.y, b.w, b.h); g.clip();
           blob(b.px, b.py, R, b.sd, t); g.globalAlpha = 0.94 * alive * f; g.fillStyle = "#120a07"; g.fill();
@@ -156,6 +169,7 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
           g.restore();
           if (!b.done) { const n = Math.ceil(dt * 70 * Math.min(3.5, b.w / 110 + 0.8)); for (let i = 0; i < n; i++) { const a = rnd(3.3, 6.1); const x = b.px + Math.cos(a) * R * 0.82, y = b.py + Math.sin(a) * R * 0.74; if (x < b.x || x > b.x + b.w || y < b.y || y > b.y + b.h) continue; fl.push({ x, y, vx: rnd(-18, 18), vy: -rnd(70, 190), life: 0, max: rnd(0.45, 0.95), s: rnd(9, 22), r: 0, vr: 0, c: "" }); if (Math.random() < 0.35) sm.push({ x, y: y - 6, vx: rnd(-8, 22), vy: -rnd(35, 80), life: 0, max: rnd(1.4, 2.4), s: rnd(10, 22), r: 0, vr: 0, c: "" }); } }
         }
+        if (++fr % 3 === 0) for (const T of targets) { const u = "url(" + T.c.toDataURL() + ")"; const st = T.el.style as CSSStyleDeclaration & { webkitMaskImage: string }; st.webkitMaskImage = u; st.maskImage = u; st.maskSize = "100% 100%"; (st as any).webkitMaskSize = "100% 100%"; }
         // 2) fumée
         g.globalCompositeOperation = "source-over";
         for (let i = sm.length - 1; i >= 0; i--) { const p = sm[i]; p.life += dt; if (p.life > p.max) { sm.splice(i, 1); continue; } p.x += (p.vx + Math.sin(t * 1.6 + i) * 14) * dt; p.y += p.vy * dt; const u = p.life / p.max; const r = p.s * (1 + u * 2.3);
