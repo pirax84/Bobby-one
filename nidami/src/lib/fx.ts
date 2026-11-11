@@ -1,7 +1,7 @@
 import { t } from "../i18n";
 // Effets de conversation : idée classique des messageries, réalisée ici avec nos propres animations et des sons synthétisés (aucun fichier ni nom d'une marque existante).
 export type Fx = "shake" | "hearts" | "kiss" | "snow" | "fireworks" | "ghost" | "fire" | "bubbles" | "party" | "rain" | "thunder" | "rocket" | "clap" | "laugh" | "money" | "bomb" | "tornado" | "fog" | "knock" | "bell" | "birthday" | "bd1" | "bd2" | "bd3" | "bd4" | "bd5" | "bd6" | "bdall" | "burp" | "fart" | "vomit" | "noel1" | "noelv1" | "noelv2" | "noelv3" | "absent";
-import { sceneShow, holidayShow, SCENES, type Scene } from "./scenes";
+import { sceneShow, holidayShow, SCENES, fireRestore, type Scene } from "./scenes";
 import { tornadoShow, tornadoStop } from "./tornado";
 import { fogShow, fogStop } from "./fog";
 import { doorShow } from "./door";
@@ -23,7 +23,7 @@ const fxBus = (c: BaseAudioContext): AudioNode => { if (!bus || bus.context !== 
 let curKey: Fx | null = null; let curAt = 0; let curIv = 0;
 export const playingFx = (): Fx | null => curKey;
 const setCur = (k: Fx | null) => { curKey = k; curAt = Date.now(); window.dispatchEvent(new Event("notiif-fxstate")); clearInterval(curIv); if (k) curIv = window.setInterval(() => { if (Date.now() - curAt > 1800 && !document.querySelector(".fxbox") && !document.documentElement.classList.contains("collapsing")) { curKey = null; clearInterval(curIv); window.dispatchEvent(new Event("notiif-fxstate")); } }, 400); };
-export function stopFx() { if (curKey) setCur(null); try { bus?.disconnect(); } catch { /* ignoré */ } bus = null; document.getElementById("fxstop")?.remove(); playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); absentStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
+export function stopFx() { fireRestore(); if (curKey) setCur(null); try { bus?.disconnect(); } catch { /* ignoré */ } bus = null; document.getElementById("fxstop")?.remove(); playing.splice(0).forEach((a) => { try { a.pause(); } catch { /* ignoré */ } }); noelVideoStop(); absentStop(); tornadoStop(); fogStop(); collapseStop(); document.querySelectorAll(".fxbox").forEach((e) => e.remove()); bdayStop(); try { document.documentElement.classList.remove("shake"); } catch { /* ignoré */ } }
 type Def = { label: string; sub?: string; text: string; em: string[]; file?: string };
 export const FX: Record<Fx, Def> = {
   shake: { get label() { return t("📳 Secousse"); }, get text() { return t("📳 Secousse !"); }, em: [], file: "./sounds/secousse.mp3" },

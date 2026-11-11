@@ -4,7 +4,7 @@ export const SCENES: Scene[] = ["snow", "fireworks", "ghost", "fire", "bubbles",
 type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; s: number; r: number; vr: number; c: string; k?: number; h?: number[][] };
 const rnd = (a: number, b: number) => a + Math.random() * (b - a);
 const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-const DUR: Record<Scene, number> = { snow: 7, fireworks: 7.5, ghost: 7, fire: 6.5, bubbles: 7.5, party: 6, rocket: 7, clap: 6, money: 6.5, bomb: 6.2 };
+const DUR: Record<Scene, number> = { snow: 7, fireworks: 7.5, ghost: 7, fire: 8.5, bubbles: 7.5, party: 6, rocket: 7, clap: 6, money: 6.5, bomb: 6.2 };
 
 import { blastCollapse } from "./collapse";
 import { bdLayers, type BdKind } from "./bdscenes";
@@ -53,6 +53,11 @@ export function sceneShow(kind: Scene) {
 }
 
 type Step = (t: number, dt: number, fade: number) => void;
+/** Remet à leur place les éléments « brûlés » (fin de l'effet flammes, ou arrêt anticipé). */
+export function fireRestore() {
+  document.querySelectorAll<HTMLElement>("[data-burnt]").forEach((e) => { delete e.dataset.burnt; e.style.transition = "opacity .8s"; e.style.opacity = ""; setTimeout(() => { e.style.transition = ""; }, 900); });
+}
+
 function dim(g: CanvasRenderingContext2D, W: number, H: number, c: string, a: number) { g.globalAlpha = a; g.fillStyle = c; g.fillRect(0, 0, W, H); g.globalAlpha = 1; }
 function glow(g: CanvasRenderingContext2D, x: number, y: number, r: number, c: string, a: number) { const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, c); gr.addColorStop(1, "rgba(0,0,0,0)"); g.globalAlpha = a; g.fillStyle = gr; g.beginPath(); g.arc(x, y, r, 0, 6.283); g.fill(); g.globalAlpha = 1; }
 function emo(g: CanvasRenderingContext2D, ch: string, x: number, y: number, s: number, a = 1, rot = 0, sx = 1) { g.save(); g.globalAlpha = a; g.translate(x, y); g.rotate(rot); g.scale(sx, 1); g.font = `${s}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(ch, 0, 0); g.restore(); }
@@ -117,19 +122,57 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
       };
     }
     case "fire": {
-      const ps: P[] = []; const em: P[] = [];
+      // Vrai incendie : le feu part du bas, gagne l'écran ; chaque élément noircit et se consume depuis un point d'allumage (bord incandescent),
+      // des flammes montent du bord, de la fumée s'élève, puis des cendres et des braises retombent.
+      const SEL = ".msg, .bubble, h1, h2, h3, p, .btn, .chip, .navbtn, .avatar, button, input, li";
+      type B = { el: HTMLElement; x: number; y: number; w: number; h: number; t0: number; D: number; px: number; py: number; sd: number; maxR: number; done: boolean };
+      const items: B[] = Array.from(document.querySelectorAll<HTMLElement>(SEL)).map((el) => ({ el, r: el.getBoundingClientRect() })).filter(({ r }) => r.width > 24 && r.height > 12 && r.height < 120 && r.width * r.height < W * H * 0.09 && r.bottom > 0 && r.top < H && r.right > 0 && r.left < W).slice(0, 90)
+        .map(({ el, r }) => { const cy = r.top + r.height / 2; return { el, x: r.left, y: r.top, w: r.width, h: r.height, t0: (1 - Math.min(1, Math.max(0, cy / H))) * 3.6 + rnd(0, 0.5), D: Math.min(2.1, Math.max(0.8, r.width / 300 + r.height / 380)), px: r.left + rnd(0.15, 0.85) * r.width, py: r.top + r.height * rnd(0.65, 1), sd: rnd(0, 100), maxR: Math.hypot(r.width, r.height) * 1.0, done: false }; });
+      const fl: P[] = []; const sm: P[] = []; const ash: P[] = [];
+      const blob = (cx: number, cy: number, R: number, sd: number, t: number) => { g.beginPath(); const n = 28; for (let i = 0; i <= n; i++) { const a = (i / n) * 6.2832; const k = 0.78 + 0.2 * Math.sin(a * 3 + sd) + 0.12 * Math.sin(a * 7 + sd * 2 + t * 3); const rr = R * Math.max(0.45, k); const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr * 0.9; if (i) g.lineTo(x, y); else g.moveTo(x, y); } g.closePath(); };
+      const N = Math.max(8, Math.round(W / 110));
+      const tg = Array.from({ length: N }, (_, i) => ({ x: ((i + 0.5) / N) * W + rnd(-25, 25), w: rnd(0.95, 1.6) * (W / N) * 1.25, h: rnd(0.5, 1) * H * 0.2, ph: rnd(0, 6.28), sp: rnd(1.4, 2.8) }));
+      const noise = (t: number, ph: number) => Math.sin(t + ph) * 0.5 + Math.sin(t * 2.31 + ph * 1.7) * 0.3 + Math.sin(t * 4.13 + ph * 0.6) * 0.2;
+      const LAY = [{ w: 1, h: 1, st: [[0, "rgba(255,95,10,.8)"], [0.5, "rgba(215,40,5,.5)"], [1, "rgba(120,10,0,0)"]] }, { w: 0.66, h: 0.72, st: [[0, "rgba(255,175,45,.9)"], [0.55, "rgba(255,115,12,.5)"], [1, "rgba(255,60,0,0)"]] }, { w: 0.36, h: 0.44, st: [[0, "rgba(255,250,215,.95)"], [0.55, "rgba(255,215,100,.5)"], [1, "rgba(255,160,40,0)"]] }] as const;
+      const tongue = (x: number, w: number, h: number, sway: number, st: readonly (readonly [number, string])[]) => {
+        const base = H + 14, top = base - h; g.beginPath(); g.moveTo(x - w / 2, base);
+        g.bezierCurveTo(x - w * 0.6 + sway * 0.15, base - h * 0.32, x - w * 0.22 + sway * 0.7, base - h * 0.7, x + sway, top);
+        g.bezierCurveTo(x + w * 0.22 + sway * 0.7, base - h * 0.7, x + w * 0.6 + sway * 0.15, base - h * 0.32, x + w / 2, base); g.closePath();
+        const gr = g.createLinearGradient(0, base, 0, top); for (const [o, c] of st) gr.addColorStop(o, c); g.fillStyle = gr; g.fill();
+      };
+      setTimeout(fireRestore, (DUR.fire + 0.2) * 1000);
       return (t, dt, f) => {
-        dim(g, W, H, "#1a0500", 0.65 * f);
-        const grow = Math.min(1, t / 3.2); const n = Math.floor(14 + grow * 40);
-        for (let i = 0; i < n; i++) { const x = rnd(-0.05, 1.05) * W; const hmax = H * (0.25 + grow * 0.85) * (0.55 + 0.45 * Math.sin(x / W * 5 + t * 2) ** 2 + rnd(0, 0.3)); ps.push({ x, y: H + 20, vx: rnd(-25, 25), vy: -rnd(0.6, 1.1) * hmax / 1.4, life: 0, max: rnd(0.9, 1.6), s: rnd(40, 100) * (0.6 + grow * 0.7), r: 0, vr: 0, c: "" }); }
-        if (Math.random() < 0.8) em.push({ x: rnd(0, W), y: H, vx: rnd(-40, 60), vy: -rnd(150, 420), life: 0, max: rnd(1.2, 2.4), s: rnd(1, 3), r: 0, vr: 0, c: "" });
-        g.globalCompositeOperation = "lighter";
-        for (let i = ps.length - 1; i >= 0; i--) { const p = ps[i]; p.life += dt; if (p.life > p.max) { ps.splice(i, 1); continue; } p.x += (p.vx + Math.sin(t * 3 + p.x * 0.02) * 40) * dt; p.y += p.vy * dt; const u = p.life / p.max;
-          const col = u < 0.25 ? "255,240,170" : u < 0.55 ? "255,170,40" : "230,60,10"; const gr = g.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.s * (1 - u * 0.5)); gr.addColorStop(0, `rgba(${col},${0.55 * (1 - u)})`); gr.addColorStop(1, `rgba(${col},0)`); g.globalAlpha = f; g.fillStyle = gr; g.beginPath(); g.arc(p.x, p.y, p.s, 0, 6.283); g.fill(); }
-        g.globalAlpha = 1;
-        for (let i = em.length - 1; i >= 0; i--) { const p = em[i]; p.life += dt; if (p.life > p.max) { em.splice(i, 1); continue; } p.x += (p.vx + Math.sin(t * 4 + i) * 40) * dt; p.y += p.vy * dt; glow(g, p.x, p.y, p.s * 4, "#ffb347", (1 - p.life / p.max) * f); }
+        dim(g, W, H, "#140300", 0.38 * f);
+        // 1) élément noirci avec bord incandescent
+        for (const b of items) {
+          if (t < b.t0) continue; const p = Math.min(1, (t - b.t0) / b.D); const R = Math.pow(p, 0.85) * b.maxR;
+          if (!b.done && p >= 1) { b.done = true; b.el.dataset.burnt = "1"; b.el.style.transition = "none"; b.el.style.opacity = "0";
+            const n = Math.min(46, Math.round((b.w * b.h) / 900) + 6); for (let i = 0; i < n; i++) ash.push({ x: rnd(b.x, b.x + b.w), y: rnd(b.y, b.y + b.h), vx: rnd(-22, 22), vy: rnd(15, 90), life: 0, max: rnd(1.4, 3), s: rnd(1.5, 5.5), r: rnd(0, 6), vr: rnd(-4, 4), c: "", k: Math.random() < 0.35 ? 1 : 0 });
+            for (let i = 0; i < 6; i++) sm.push({ x: rnd(b.x, b.x + b.w), y: b.y + b.h * rnd(0.2, 0.8), vx: rnd(-10, 25), vy: -rnd(30, 70), life: 0, max: rnd(1.6, 2.8), s: rnd(14, 34), r: 0, vr: 0, c: "" }); }
+          const alive = b.done ? 1 - (t - b.t0 - b.D) / 0.5 : 1; if (alive <= 0) continue;
+          g.save(); g.beginPath(); g.rect(b.x, b.y, b.w, b.h); g.clip();
+          blob(b.px, b.py, R, b.sd, t); g.globalAlpha = 0.94 * alive * f; g.fillStyle = "#120a07"; g.fill();
+          g.globalCompositeOperation = "lighter"; g.globalAlpha = f * alive; g.strokeStyle = "rgba(255,110,15,.32)"; g.lineWidth = 18; g.stroke(); g.strokeStyle = "rgba(255,170,40,.75)"; g.lineWidth = 7; g.stroke(); g.strokeStyle = "rgba(255,235,150,.95)"; g.lineWidth = 2.2; g.stroke();
+          g.restore();
+          if (!b.done) { const n = Math.ceil(dt * 70 * Math.min(3.5, b.w / 110 + 0.8)); for (let i = 0; i < n; i++) { const a = rnd(3.3, 6.1); const x = b.px + Math.cos(a) * R * 0.82, y = b.py + Math.sin(a) * R * 0.74; if (x < b.x || x > b.x + b.w || y < b.y || y > b.y + b.h) continue; fl.push({ x, y, vx: rnd(-18, 18), vy: -rnd(70, 190), life: 0, max: rnd(0.45, 0.95), s: rnd(9, 22), r: 0, vr: 0, c: "" }); if (Math.random() < 0.35) sm.push({ x, y: y - 6, vx: rnd(-8, 22), vy: -rnd(35, 80), life: 0, max: rnd(1.4, 2.4), s: rnd(10, 22), r: 0, vr: 0, c: "" }); } }
+        }
+        // 2) fumée
         g.globalCompositeOperation = "source-over";
-        const hg = g.createLinearGradient(0, H * 0.6, 0, H); hg.addColorStop(0, "rgba(255,80,0,0)"); hg.addColorStop(1, `rgba(255,120,20,${0.35 * grow})`); g.globalAlpha = f; g.fillStyle = hg; g.fillRect(0, H * 0.6, W, H * 0.4); g.globalAlpha = 1;
+        for (let i = sm.length - 1; i >= 0; i--) { const p = sm[i]; p.life += dt; if (p.life > p.max) { sm.splice(i, 1); continue; } p.x += (p.vx + Math.sin(t * 1.6 + i) * 14) * dt; p.y += p.vy * dt; const u = p.life / p.max; const r = p.s * (1 + u * 2.3);
+          const gr = g.createRadialGradient(p.x, p.y, 0, p.x, p.y, r); gr.addColorStop(0, `rgba(78,72,68,${0.22 * (1 - u) * Math.min(1, u * 6 + 0.3)})`); gr.addColorStop(1, "rgba(78,72,68,0)"); g.globalAlpha = f; g.fillStyle = gr; g.beginPath(); g.arc(p.x, p.y, r, 0, 6.283); g.fill(); }
+        // 3) flammes du bord
+        g.globalCompositeOperation = "lighter";
+        for (let i = fl.length - 1; i >= 0; i--) { const p = fl[i]; p.life += dt; if (p.life > p.max) { fl.splice(i, 1); continue; } p.x += (p.vx + Math.sin(t * 9 + i) * 22) * dt; p.y += p.vy * dt; const u = p.life / p.max; const r = p.s * (1 - u * 0.65);
+          const col = u < 0.25 ? "255,215,110" : u < 0.65 ? "255,150,30" : "220,50,8"; const gr = g.createRadialGradient(p.x, p.y, 0, p.x, p.y, r); gr.addColorStop(0, `rgba(${col},${0.7 * (1 - u * 0.7)})`); gr.addColorStop(1, `rgba(${col},0)`); g.globalAlpha = f; g.fillStyle = gr; g.save(); g.translate(p.x, p.y); g.scale(0.55, 1.7); g.translate(-p.x, -p.y - r * 0.5); g.beginPath(); g.arc(p.x, p.y, r, 0, 6.283); g.fill(); g.restore(); }
+        // 4) braise de fond (le foyer en bas de l'écran)
+        const grow = Math.min(1, t / 2.2);
+        g.globalAlpha = f; const hg = g.createLinearGradient(0, H * 0.7, 0, H); hg.addColorStop(0, "rgba(255,90,0,0)"); hg.addColorStop(1, `rgba(255,130,25,${0.4 * grow})`); g.fillStyle = hg; g.fillRect(0, H * 0.7, W, H * 0.3);
+        for (const L of LAY) for (const q of tg) { const flk = 0.78 + 0.22 * noise(t * q.sp * 2.2, q.ph + 3); tongue(q.x + noise(t * 0.8, q.ph) * 14, q.w * L.w, q.h * grow * flk * L.h, noise(t * q.sp, q.ph) * q.w * 0.5, L.st as readonly (readonly [number, string])[]); }
+        // 5) cendres et braises qui retombent
+        for (let i = ash.length - 1; i >= 0; i--) { const p = ash[i]; p.life += dt; if (p.life > p.max) { ash.splice(i, 1); continue; } p.x += (p.vx + Math.sin(t * 2 + i) * 18) * dt; p.y += p.vy * dt; p.vy += 25 * dt; p.r += p.vr * dt; const u = p.life / p.max;
+          g.globalCompositeOperation = "source-over"; g.globalAlpha = f * (1 - u * u); g.save(); g.translate(p.x, p.y); g.rotate(p.r); g.fillStyle = "#1c1612"; g.fillRect(-p.s, -p.s * 0.5, p.s * 2, p.s); g.restore();
+          if (p.k && u < 0.45) { g.globalCompositeOperation = "lighter"; glow(g, p.x, p.y, p.s * 3.2, "#ff9a2e", f * (1 - u / 0.45) * 0.9); } }
+        g.globalCompositeOperation = "source-over"; g.globalAlpha = 1;
       };
     }
     case "bubbles": {
