@@ -87,7 +87,7 @@ export const actions = {
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
   updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis" | "birthday" | "byear">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
-  setSetting(k: "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "fxfav" | "cfx" | "ntone" | "ctone" | "vibm" | "vibc" | "nav" | "hand" | "top" | "bubble" | "start" | "likes" | "comm" | "bg" | "fg" | "accent" | "mode" | "fs" | "style" | "accauto" | "accday" | "discret" | "sndlike" | "sndcomm" | "vibtap" | "shakesnd", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
+  setSetting(k: "sndsend" | "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "fxfav" | "cfx" | "ntone" | "ctone" | "vibm" | "vibc" | "nav" | "hand" | "top" | "bubble" | "start" | "likes" | "comm" | "bg" | "fg" | "accent" | "mode" | "fs" | "style" | "accauto" | "accday" | "discret" | "sndlike" | "sndcomm" | "vibtap" | "shakesnd", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   backupAll(): string { try { return localStorage.getItem(KEY) || JSON.stringify(state); } catch { return JSON.stringify(state); } },
   restoreAll(text: string): boolean { try { const o = JSON.parse(text); if (o?.v !== 1 || !Array.isArray(o.users) || !Array.isArray(o.convs) || !Array.isArray(o.posts)) return false; localStorage.setItem(KEY, text); return true; } catch { return false; } },
   reset() { try { localStorage.removeItem(KEY); } catch {} state = seed(); emit(); },
