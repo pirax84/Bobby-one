@@ -2,10 +2,10 @@ import { t } from "../i18n";
 
 /** Durées (s) des vidéos de Noël, et leur forme : h = horizontale (PC), v = verticale (téléphone). */
 export const NOEL_VIDEOS: Record<string, { src: string; dur: number; o: "h" | "v" }> = {
-  noel1: { src: "./videos/noel/noel1.mp4", dur: 20.8, o: "h" },
-  noelv1: { src: "./videos/noel/noelv1.mp4", dur: 30.6, o: "h" },
-  noelv2: { src: "./videos/noel/noelv2.mp4", dur: 58.8, o: "v" },
-  noelv3: { src: "./videos/noel/noelv3.mp4", dur: 40.2, o: "v" },
+  noel1: { src: "./videos/noel/noel1.mp4", dur: 14.3, o: "h" },
+  noelv1: { src: "./videos/noel/noelv1.mp4", dur: 25, o: "h" },
+  noelv2: { src: "./videos/noel/noelv2.mp4", dur: 12, o: "v" },
+  noelv3: { src: "./videos/noel/noelv3.mp4", dur: 16.3, o: "v" },
 };
 const isPortrait = () => innerHeight > innerWidth;
 let voiceTimer: ReturnType<typeof setTimeout> | undefined;
