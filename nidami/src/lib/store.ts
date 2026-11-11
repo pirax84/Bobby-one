@@ -48,7 +48,7 @@ export const isRestricted = (s: State, id: ID) => new Set(s.reports.filter((r) =
 const MAX_REQ_DAY = 15;
 function setCats(s: State, friend: ID, ids: string[]) { const o = { ...(s.social.catOf || {}) }; o[s.me] = { ...(o[s.me] || {}) }; if (ids.length) o[s.me][friend] = [...new Set(ids)]; else delete o[s.me][friend]; s.social.catOf = o; }
 export const actions = {
-  sbMerge(d: { uid: string; fr: { id: string; name: string }[]; msgs: { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string }[] }) {
+  sbMerge(d: { prime?: boolean; uid: string; fr: { id: string; name: string }[]; msgs: { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string }[] }) {
     if (!state.started || !state.me) return;
     const need = d.fr.some((f) => !state.users.some((u) => u.id === "sb_" + f.id) || !state.convs.some((c) => c.id === "sbc_" + f.id)) || d.msgs.some((m) => { const o = m.sender === d.uid ? m.recipient : m.sender; const c = state.convs.find((x) => x.id === "sbc_" + o); return !c || !c.msgs.some((x) => x.id === m.id); });
     if (!need) return;
@@ -63,7 +63,9 @@ export const actions = {
       for (const m of d.msgs) {
         const o = m.sender === d.uid ? m.recipient : m.sender; const c = s.convs.find((x) => x.id === "sbc_" + o); if (!c || c.msgs.some((x) => x.id === m.id)) continue;
         const fx = m.fx && (m.fx in FX) ? (m.fx as Fx) : undefined;
-        c.msgs.push({ id: m.id, from: m.sender === d.uid ? s.me : "sb_" + o, text: m.body, at: Date.parse(m.created_at) || now(), secs: 0, reads: {}, gone: {}, ...(fx ? { fx } : {}) } as Msg);
+        const mine = m.sender === d.uid; const fresh = !mine && !d.prime;
+        c.msgs.push({ id: m.id, from: mine ? s.me : "sb_" + o, text: m.body, at: fresh ? Math.max(Date.parse(m.created_at) || 0, now()) : Date.parse(m.created_at) || now(), secs: 0, reads: {}, gone: {}, ...(fx ? { fx } : {}) } as Msg);
+        if (fresh) notify(s, s.me, t("{name} : nouveau message.", { name: s.users.find((x) => x.id === "sb_" + o)?.name || "?" }), "messages", { by: "sb_" + o, v: "messages", ref: c.id, pv: fx ? FX[fx].text : m.body.slice(0, 160) });
       }
       for (const c of s.convs) if (c.id.startsWith("sbc_")) c.msgs.sort((a, b) => a.at - b.at);
     });
