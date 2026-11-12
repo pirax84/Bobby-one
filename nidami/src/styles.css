@@ -1043,3 +1043,6 @@ html[data-chatbg=points] .msgs{background:radial-gradient(rgba(var(--brand-rgb),
 .viewer.sfull>.bar,.viewer.sfull>.row,.viewer.sfull>.col,.viewer.sfull>.card{width:min(calc(100% - 24px),calc(100vh*9/16 - 24px))!important;align-self:center}
 .viewer.sfull>p{align-self:center;width:min(100%,calc(100vh*9/16))}
 }
+/* Écran d'envoi court : le bouton Publier reste visible en bas */
+.composer .pubbtn{position:sticky;bottom:0;z-index:2;box-shadow:0 -10px 14px -8px var(--bg)}
+.composer .opts{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
