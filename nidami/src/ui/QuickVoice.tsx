@@ -24,10 +24,10 @@ export function QuickVoice({ onClose }: { onClose: () => void }) {
 export function VoiceFab({ onOpen, kind = "voice" }: { onOpen: () => void; kind?: "voice" | "media" }) {
   const [pos, setPos] = useState<{ x: number; y: number }>(() => { try { const p = JSON.parse(localStorage.getItem("notiif-fab-" + kind) || "null"); if (p) return p; } catch { /* rien */ } return { x: Math.max(8, innerWidth - 74), y: Math.max(80, innerHeight - 220) }; });
   const d = useRef<{ dx: number; dy: number; moved: boolean } | null>(null);
-  return <button type="button" aria-label={kind === "media" ? "Photo ou vidéo" : "Envoyer un vocal"} className="voicefab" style={{ left: pos.x, top: pos.y }}
+  return <button type="button" aria-label={kind === "media" ? "Photo ou vidéo" : "Envoyer un vocal"} className={"voicefab" + (kind === "media" ? " mediafab" : "")} style={{ left: pos.x, top: pos.y }}
     onPointerDown={(e) => { (e.target as HTMLElement).setPointerCapture?.(e.pointerId); d.current = { dx: e.clientX - pos.x, dy: e.clientY - pos.y, moved: false }; }}
     onPointerMove={(e) => { const k = d.current; if (!k) return; const nx = Math.min(innerWidth - 64, Math.max(4, e.clientX - k.dx)), ny = Math.min(innerHeight - 64, Math.max(4, e.clientY - k.dy)); if (Math.abs(nx - pos.x) + Math.abs(ny - pos.y) > 4) k.moved = true; setPos({ x: nx, y: ny }); }}
-    onPointerUp={() => { const k = d.current; d.current = null; if (!k) return; if (k.moved) { try { localStorage.setItem("notiif-fab-" + kind, JSON.stringify(pos)); } catch { /* rien */ } } else onOpen(); }}>{kind === "media" ? <span style={{ fontSize: 28 }}>🎥</span> : <MicIcon size={30} />}</button>;
+    onPointerUp={() => { const k = d.current; d.current = null; if (!k) return; if (k.moved) { try { localStorage.setItem("notiif-fab-" + kind, JSON.stringify(pos)); } catch { /* rien */ } } else onOpen(); }}>{kind === "media" ? <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8h3l1.6-2.2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" /><circle cx="12" cy="13.4" r="3.6" /><circle cx="17.6" cy="10.6" r=".6" fill="currentColor" /></svg> : <MicIcon size={30} />}</button>;
 }
 
 /** Petites bulles du haut (avec les stories) : le N+ ou le micro, selon le réglage. */

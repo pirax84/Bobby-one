@@ -1007,3 +1007,5 @@ html[data-accent=lavande][data-theme=light]{--bg:#F4F4F7;--bg2:#E8E8EE;--card:#E
 .qvpick{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:var(--mute);font-size:.72rem;flex:none;padding:2px}
 .qvpick.sel{color:var(--fg);font-weight:700}.qvpick.sel .avs{filter:drop-shadow(0 0 0 var(--brand)) drop-shadow(0 0 5px var(--brand))}
 .bigmic{width:120px;height:120px;border-radius:50%;border:3px solid var(--accb,var(--brand));background:var(--nuit2,var(--bg2));display:grid;place-items:center;padding:0;box-shadow:0 0 0 12px rgba(var(--brand-rgb),.15)}
+.voicefab.mediafab{border:0;background:var(--grad);color:var(--on);box-shadow:0 12px 28px -8px rgba(var(--brand-rgb),.7)}
+html[data-theme=light] .voicefab.mediafab{background:var(--nuit2,#2A1F5C);color:var(--accb,#9B87F5)}
