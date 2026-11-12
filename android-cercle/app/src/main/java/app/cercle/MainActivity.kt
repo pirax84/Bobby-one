@@ -109,6 +109,10 @@ class MainActivity : Activity() {
             getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().putString("url", url).putString("key", key).putString("access", access).putString("refresh", refresh).putString("uid", uid).apply()
             runOnUiThread { try { NotiifService.start(this@MainActivity) } catch (e: Exception) { } }
         }
+        /** Amis silencieux (aucune notification) et prioritaires, choisis dans l'application. */
+        @JavascriptInterface fun setPrefs(mute: String, prio: String) {
+            getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().putString("mute", mute).putString("prio", prio).apply()
+        }
         @JavascriptInterface fun clearSession() {
             getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().clear().apply()
             runOnUiThread { try { NotiifService.stop(this@MainActivity) } catch (e: Exception) { } }

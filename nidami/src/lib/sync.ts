@@ -1,6 +1,7 @@
 import { serverLive, SB_URL, SB_KEY } from "./auth";
 import { dbg, tKinds, getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, heartbeatAway, peersNow, setReaction, allReactions } from "./server";
 import { setPeers } from "./peers";
+import { pushNative } from "./catnotif";
 import { presenceNow } from "./presence";
 import { soundTyping } from "./fx";
 import { actions, setSbOut, setSbReact, getState } from "./store";
@@ -11,7 +12,7 @@ let lastTok = "";
 /** Dans l'application Android : donne la session au service de veille (notifications écran éteint). */
 function toNative(s: { access: string; refresh: string; uid: string }) {
   const nat = (window as any).CercleNative; if (!nat?.setSession || s.access === lastTok) return; lastTok = s.access;
-  try { nat.setSession(SB_URL, SB_KEY, s.access, s.refresh, s.uid);
+  try { nat.setSession(SB_URL, SB_KEY, s.access, s.refresh, s.uid); pushNative();
     if (!localStorage.getItem("notiif-nat-ask")) { localStorage.setItem("notiif-nat-ask", "1"); nat.askNotif?.(); setTimeout(() => nat.askBattery?.(), 2500); } } catch { /* ignoré */ }
 }
 const pull = async () => {
@@ -36,6 +37,6 @@ export function startSync() {
   if (!serverLive() || timer) return;
   setSbOut((convId, body, fx, id, media) => { const to = convId.replace(/^sbc_/, ""); void sendMessage(to, body, fx, id, media); });
   setSbReact((id, e) => { void setReaction(id, e); });
-  void pull(); timer = setInterval(() => void pull(), 1000); setInterval(() => void watchTyping(), 1000); const hb = () => { if (!getSess()) return; if (document.visibilityState === "hidden") heartbeatAway(); else void heartbeat(presenceNow()); }; hb(); setInterval(hb, 8000); document.addEventListener("visibilitychange", hb); window.addEventListener("pagehide", () => heartbeatAway());
+  void pull(); timer = setInterval(() => void pull(), 1000); setInterval(() => void watchTyping(), 1000); const hb = () => { if (!getSess()) return; pushNative(); if (document.visibilityState === "hidden") heartbeatAway(); else void heartbeat(presenceNow()); }; hb(); setInterval(hb, 8000); document.addEventListener("visibilitychange", hb); window.addEventListener("pagehide", () => heartbeatAway());
 }
 export function stopSync() { if (timer) clearInterval(timer); timer = null; setSbOut(null); }

@@ -59,6 +59,7 @@ import { useDev, feteFx, feteAuto, devHidden } from "./lib/dev";
 import type { Fete } from "./lib/fetes";
 import { startSync } from "./lib/sync";
 import { usePref } from "./lib/uipref";
+import { friendMode } from "./lib/catnotif";
 import { QuickVoice, VoiceFab } from "./ui/QuickVoice";
 import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
@@ -135,7 +136,8 @@ export default function App() {
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
-    if (!th0?.quiet) { if (lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_")) playMsgSound(lastNotif.pv === "🎤" ? "audio" : lastNotif.pv === "📷" ? "media" : "text"); else playNotifSound(); vibrate(th0?.vibm, 1); }
+    const fm = lastNotif.by ? friendMode(lastNotif.by) : "normal"; if (fm === "silent") return;
+    if (!th0?.quiet) { if (fm === "priority") setTimeout(() => playMsgSound("text"), 450); if (lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_")) playMsgSound(lastNotif.pv === "🎤" ? "audio" : lastNotif.pv === "📷" ? "media" : "text"); else playNotifSound(); vibrate(th0?.vibm, 1); }
     const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
     const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;

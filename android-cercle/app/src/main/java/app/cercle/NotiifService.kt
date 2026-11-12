@@ -125,6 +125,7 @@ class NotiifService : Service() {
         for (i in 0 until arr.length()) {
             val m = arr.getJSONObject(i); last = m.getString("created_at")
             if (visible) continue
+            if ((p.getString("mute", "") ?: "").split(",").contains(m.getString("sender"))) continue
             val who = nameOf(base, key, tk, m.getString("sender"))
             val fx = if (m.isNull("fx")) "" else m.getString("fx")
             val mk = if (m.has("media_kind") && !m.isNull("media_kind")) m.getString("media_kind") else ""
