@@ -132,17 +132,17 @@ export default function App() {
   }, [fxList, fxOn, meId]);
   useEffect(() => { startSync(); }, []);
   const pendConv = useRef(""); const [hk, setHk] = useState(0); const nConvs = useStore((x) => x.convs.length + ":" + x.convs.reduce((a, c) => a + c.msgs.length, 0));
-  useEffect(() => { const rd = () => { const m = /open=(sbc_[0-9a-f-]+)/.exec(location.hash); if (m) { pendConv.current = m[1]; setHk((x) => x + 1); } }; rd(); window.addEventListener("hashchange", rd); return () => window.removeEventListener("hashchange", rd); }, []);
+  useEffect(() => { const rd = () => { const m = /open=(sbc_[0-9a-f-]+)(~a)?/.exec(location.hash); if (m) { pendConv.current = m[1] + (m[2] ? "~a" : ""); setHk((x) => x + 1); } }; rd(); window.addEventListener("hashchange", rd); return () => window.removeEventListener("hashchange", rd); }, []);
   const [qrOpen, setQrOpen] = useState(false); useEffect(() => { const h = () => setQrOpen(true); window.addEventListener("notiif-qr", h); return () => window.removeEventListener("notiif-qr", h); }, []);
   useEffect(() => { const h = (e: Event) => openConvFull(String((e as CustomEvent).detail)); window.addEventListener("notiif-open-conv", h); return () => window.removeEventListener("notiif-open-conv", h); }, []);
-  useEffect(() => { const id = pendConv.current; if (!id || !getState().convs.some((c) => c.id === id)) return; pendConv.current = ""; try { history.replaceState(history.state, "", location.pathname + location.search); } catch {} openConvFull(id); }, [nConvs, meId, hk]);
+  useEffect(() => { const raw = pendConv.current; const voice = raw.endsWith("~a"); const id = voice ? raw.slice(0, -2) : raw; if (!id || !getState().convs.some((c) => c.id === id)) return; pendConv.current = ""; try { history.replaceState(history.state, "", location.pathname + location.search); } catch {} if (voice) { history.pushState({ v: "voice", voice: "u:sb_" + id.slice(4) }, ""); setV("voice"); } else openConvFull(id); }, [nConvs, meId, hk]);
   useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { playCallRing(); vibrate(th0?.vibc, 3); } }, [lastCall]);
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
     const fm = lastNotif.by ? friendMode(lastNotif.by) : "normal"; if (fm === "silent") return;
     if (!th0?.quiet) { if (fm === "priority") setTimeout(() => playMsgSound("text"), 450); if (lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_")) playMsgSound(lastNotif.pv === "🎤" ? "audio" : lastNotif.pv === "📷" ? "media" : "text"); else playNotifSound(); vibrate(th0?.vibm, 1); }
-    const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { const cv = lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_") ? "sbc_" + lastNotif.by.slice(3) : ""; if (cv && nat.notifyConv) nat.notifyConv(BRAND, lastNotif.text, cv); else nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
+    const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { const cv = lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_") ? "sbc_" + lastNotif.by.slice(3) : ""; if (cv && nat.notifyConv) nat.notifyConv(BRAND, lastNotif.text, cv + (lastNotif.pv === "🎤" ? "~a" : "")); else nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
     const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
     navigator.serviceWorker?.ready.then((r) => r.showNotification(BRAND, opt)).catch(() => { try { new Notification(BRAND, opt); } catch { /* ignoré */ } });
