@@ -24,7 +24,19 @@ let state: State = load();
 const subs = new Set<() => void>();
 let saveWarn = "";
 function load(): State { try { const s = localStorage.getItem(KEY); if (s) { const o = JSON.parse(s); if (o?.v === 1) { o.shares ||= []; o.albums ||= []; o.users.forEach((u: User) => { u.handle ||= u.id.replace(/^u_/, "").slice(0, 10) + "_"; u.discover ||= "hidden"; }); if (!o.demoV3 && o.started && o.me && Array.isArray(o.posts)) { o.demoV3 = 1; o.users.forEach((u: User) => { if (u.demo) { const k = ["celine", "thomas", "emilie", "max", "lea"].indexOf(u.id); if (k >= 0) u.avatar = "./demo/av-" + k + ".jpg"; } }); const dem = new Set(o.users.filter((u: User) => u.demo).map((u: User) => u.id)); if (o.posts.some((p: { authorId: string }) => dem.has(p.authorId))) o.posts = [...demoPosts(o.me), ...o.posts.filter((p: { authorId: string }) => !dem.has(p.authorId))]; } return o; } } } catch {} return seed(); }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); saveWarn = ""; } catch { saveWarn = t("Mémoire de l'appareil pleine : supprimez d'anciennes photos."); } }
+/** Mémoire pleine : on retire d'abord les plus anciens médias reçus (photos, vocaux, vidéos) des conversations ; le texte reste. */
+function pruneOld(): boolean {
+  const refs: { m: Msg; k: "img" | "audio" | "video"; at: number }[] = [];
+  for (const c of state.convs) if (c.id.startsWith("sbc_") || c.id.startsWith("sbg_")) for (const m of c.msgs) for (const k of ["img", "audio", "video"] as const) { const v = (m as Msg)[k]; if (typeof v === "string" && v.startsWith("data:")) refs.push({ m, k, at: m.at }); }
+  if (!refs.length) return false;
+  refs.sort((a, b) => a.at - b.at);
+  for (const r of refs.slice(0, Math.max(1, Math.ceil(refs.length / 3)))) { (r.m as any)[r.k] = null; if (!r.m.text) r.m.text = t("🗑 Ancien média retiré de cet appareil (mémoire pleine)."); }
+  return true;
+}
+function save() {
+  for (let i = 0; i < 8; i++) { try { localStorage.setItem(KEY, JSON.stringify(state)); saveWarn = ""; return; } catch { if (!pruneOld()) break; } }
+  saveWarn = t("Mémoire de l'appareil pleine : supprimez d'anciennes photos.");
+}
 function emit() { save(); subs.forEach((f) => f()); }
 export const getState = () => state;
 export const getSaveWarn = () => saveWarn;
