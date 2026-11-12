@@ -5,7 +5,7 @@ import { useStore, actions, userOf, getSaveWarn, getState } from "./lib/store";
 import { micText, MicIcon, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { VoiceHome } from "./ui/VoiceChat";
-import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
+import { Friends, Groups, Events, Profile, Notifs, Settings, MyQr } from "./ui/Social";
 import { Messages, Games, Soon } from "./ui/Chat";
 import { Media } from "./ui/Albums";
 import { LegalView } from "./ui/Legal";
@@ -71,8 +71,9 @@ export function BrandWm({ id, light, sound, big, onHome, bdText, force }: { id: 
     const total = +(localStorage.getItem("notiif-tap-n") || 0) + 1; localStorage.setItem("notiif-tap-n", String(total));
     if (total >= 40 && !localStorage.getItem("notiif-treasure")) { localStorage.setItem("notiif-treasure", "1"); actions.addScore(10); window.dispatchEvent(new Event("notiif-treasure")); }
     else if (streak === 7) { const P = [t("Tu es précieux pour tes proches 💜"), t("Merci d'être là, ça fait plaisir !"), t("Un petit coup de fil à quelqu'un que tu aimes ? 💌"), t("Tu fais du bien autour de toi 🌸")]; toast(P[Math.floor(Math.random() * P.length)]); } } catch { /* rien */ } };
-  const hop = () => { tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound || fx) { if (bday) sfx("birthday"); else if (fx) playFx(feteFx(fx) as Fx, sound); else popNotes(6); } try { navigator.vibrate?.(12); } catch { /* rien */ } };
-  return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "") + (fx ? " fete" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
+  const lp = useRef<{ t: number; done: boolean }>({ t: 0, done: false });
+  const hop = () => { if (lp.current.done) { lp.current.done = false; return; } tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound || fx) { if (bday) sfx("birthday"); else if (fx) playFx(feteFx(fx) as Fx, sound); else popNotes(6); } try { navigator.vibrate?.(12); } catch { /* rien */ } };
+  return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "") + (fx ? " fete" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onPointerDown={() => { lp.current.done = false; clearTimeout(lp.current.t); lp.current.t = window.setTimeout(() => { if (!onHome) return; lp.current.done = true; try { navigator.vibrate?.(20); } catch { /* rien */ } window.dispatchEvent(new Event("notiif-qr")); }, 600); }} onPointerUp={() => clearTimeout(lp.current.t)} onPointerLeave={() => clearTimeout(lp.current.t)} onPointerCancel={() => clearTimeout(lp.current.t)} onContextMenu={(e) => { if (onHome) e.preventDefault(); }} onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
     {fx && <FeteUnder fete={fx} suf={suf} light={light} />}
@@ -130,6 +131,7 @@ export default function App() {
   useEffect(() => { startSync(); }, []);
   const pendConv = useRef(""); const [hk, setHk] = useState(0); const nConvs = useStore((x) => x.convs.length + ":" + x.convs.reduce((a, c) => a + c.msgs.length, 0));
   useEffect(() => { const rd = () => { const m = /open=(sbc_[0-9a-f-]+)/.exec(location.hash); if (m) { pendConv.current = m[1]; setHk((x) => x + 1); } }; rd(); window.addEventListener("hashchange", rd); return () => window.removeEventListener("hashchange", rd); }, []);
+  const [qrOpen, setQrOpen] = useState(false); useEffect(() => { const h = () => setQrOpen(true); window.addEventListener("notiif-qr", h); return () => window.removeEventListener("notiif-qr", h); }, []);
   useEffect(() => { const h = (e: Event) => openConvFull(String((e as CustomEvent).detail)); window.addEventListener("notiif-open-conv", h); return () => window.removeEventListener("notiif-open-conv", h); }, []);
   useEffect(() => { const id = pendConv.current; if (!id || !getState().convs.some((c) => c.id === id)) return; pendConv.current = ""; try { history.replaceState(history.state, "", location.pathname + location.search); } catch {} openConvFull(id); }, [nConvs, meId, hk]);
   useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { playCallRing(); vibrate(th0?.vibc, 3); } }, [lastCall]);
@@ -183,6 +185,7 @@ export default function App() {
       {bar.slice(half).map(tab)}</nav>
     {voice && <QuickVoice onClose={() => setVoice(false)} />}
     {mid === "plus" && micpos === "bubble" && <VoiceFab onOpen={() => setVoice(true)} />}
+    {qrOpen && user && <Modal title={t("Mon QR code")} onClose={() => setQrOpen(false)}><MyQr u={user} /></Modal>}
     {more && <Modal title={t("Plus")} onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([[t("Les plus utiles"), [["media", t("Photos"), "img"], ["groups", t("Groupes"), "group"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"]]], [t("Le reste"), [["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
         <div key={tx} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{tx}</b>
