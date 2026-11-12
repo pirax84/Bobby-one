@@ -8,7 +8,7 @@ export function QuickVoice({ onClose }: { onClose: () => void }) {
   const s = useStore((x) => x); const me = s.me;
   const convs = s.convs.filter((c) => c.memberIds.includes(me) && !c.groupId);
   const [pick, setPick] = useState<string>(() => { let l = ""; try { l = localStorage.getItem("notiif-qv-last") || ""; } catch { /* rien */ } return convs.some((c) => c.id === l) ? l : (convs[0]?.id || ""); });
-  const [verify, setVerify] = useState<boolean>(() => { try { return localStorage.getItem("notiif-qv-verify") === "1"; } catch { return false; } });
+  const verify = (() => { try { return localStorage.getItem("notiif-qv-verify") === "1"; } catch { return false; } })();
   const other = (id: string) => userOf(s, convs.find((c) => c.id === id)?.memberIds.find((m) => m !== me) || "");
   const choose = (id: string) => { setPick(id); try { localStorage.setItem("notiif-qv-last", id); } catch { /* rien */ } };
   return <div className="qvback" onClick={onClose}><div className="qvdock" role="dialog" aria-label="Vocal" onClick={(e) => e.stopPropagation()}>
@@ -16,18 +16,18 @@ export function QuickVoice({ onClose }: { onClose: () => void }) {
       <div className="qvstrip">{convs.map((c) => { const o = other(c.id); return <button key={c.id} type="button" className={"qvpick" + (c.id === pick ? " sel" : "")} onClick={() => choose(c.id)}><Avatar u={o} s={42} /><span>{o?.name?.split(" ")[0]}</span></button>; })}</div>
       <p className="muted small center" style={{ margin: "8px 0 4px" }}>Pour <b>{other(pick)?.name}</b> · maintiens le micro</p>
       <div style={{ display: "flex", justifyContent: "center" }}><HoldMic className="btn" max={60} verify={verify} onDone={(u) => { actions.send(pick, "", 0, null, undefined, u, false); toast("Vocal envoyé."); onClose(); }}><span style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "6px 14px" }}><MicIcon size={34} />Maintiens pour parler</span></HoldMic></div>
-      <label className="row small muted" style={{ justifyContent: "center", marginTop: 8, gap: 8 }}><input type="checkbox" checked={verify} onChange={(e) => { setVerify(e.target.checked); try { localStorage.setItem("notiif-qv-verify", e.target.checked ? "1" : "0"); } catch { /* rien */ } }} />Vérifier avant d'envoyer</label></>}
+</>}
   </div></div>;
 }
 
 /** Bulle flottante du micro : on la déplace où on veut, on la touche pour envoyer un vocal. */
-export function VoiceFab({ onOpen }: { onOpen: () => void }) {
-  const [pos, setPos] = useState<{ x: number; y: number }>(() => { try { const p = JSON.parse(localStorage.getItem("notiif-voicefab") || "null"); if (p) return p; } catch { /* rien */ } return { x: Math.max(8, innerWidth - 74), y: Math.max(80, innerHeight - 220) }; });
+export function VoiceFab({ onOpen, kind = "voice" }: { onOpen: () => void; kind?: "voice" | "media" }) {
+  const [pos, setPos] = useState<{ x: number; y: number }>(() => { try { const p = JSON.parse(localStorage.getItem("notiif-fab-" + kind) || "null"); if (p) return p; } catch { /* rien */ } return { x: Math.max(8, innerWidth - 74), y: Math.max(80, innerHeight - 220) }; });
   const d = useRef<{ dx: number; dy: number; moved: boolean } | null>(null);
-  return <button type="button" aria-label="Envoyer un vocal" className="voicefab" style={{ left: pos.x, top: pos.y }}
+  return <button type="button" aria-label={kind === "media" ? "Photo ou vidéo" : "Envoyer un vocal"} className="voicefab" style={{ left: pos.x, top: pos.y }}
     onPointerDown={(e) => { (e.target as HTMLElement).setPointerCapture?.(e.pointerId); d.current = { dx: e.clientX - pos.x, dy: e.clientY - pos.y, moved: false }; }}
     onPointerMove={(e) => { const k = d.current; if (!k) return; const nx = Math.min(innerWidth - 64, Math.max(4, e.clientX - k.dx)), ny = Math.min(innerHeight - 64, Math.max(4, e.clientY - k.dy)); if (Math.abs(nx - pos.x) + Math.abs(ny - pos.y) > 4) k.moved = true; setPos({ x: nx, y: ny }); }}
-    onPointerUp={() => { const k = d.current; d.current = null; if (!k) return; if (k.moved) { try { localStorage.setItem("notiif-voicefab", JSON.stringify(pos)); } catch { /* rien */ } } else onOpen(); }}><MicIcon size={30} /></button>;
+    onPointerUp={() => { const k = d.current; d.current = null; if (!k) return; if (k.moved) { try { localStorage.setItem("notiif-fab-" + kind, JSON.stringify(pos)); } catch { /* rien */ } } else onOpen(); }}>{kind === "media" ? <span style={{ fontSize: 28 }}>🎥</span> : <MicIcon size={30} />}</button>;
 }
 
 /** Petites bulles du haut (avec les stories) : le N+ ou le micro, selon le réglage. */

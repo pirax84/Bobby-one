@@ -1006,3 +1006,4 @@ html[data-accent=lavande][data-theme=light]{--bg:#F4F4F7;--bg2:#E8E8EE;--card:#E
 .qvstrip{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 2px;justify-content:flex-start}
 .qvpick{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:var(--mute);font-size:.72rem;flex:none;padding:2px}
 .qvpick.sel{color:var(--fg);font-weight:700}.qvpick.sel .avs{filter:drop-shadow(0 0 0 var(--brand)) drop-shadow(0 0 5px var(--brand))}
+.bigmic{width:120px;height:120px;border-radius:50%;border:3px solid var(--accb,var(--brand));background:var(--nuit2,var(--bg2));display:grid;place-items:center;padding:0;box-shadow:0 0 0 12px rgba(var(--brand-rgb),.15)}

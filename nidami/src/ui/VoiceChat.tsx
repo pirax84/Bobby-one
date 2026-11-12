@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, Msg } from "../lib/store";
-import { MicIcon, Ico, ago, useNow, ConfirmDel } from "./common";
+import { MicIcon, Ico, ago, useNow, ConfirmDel, Avatar, toast } from "./common";
 import { HoldMic } from "./Recorder";
 import { AudioWave } from "./AudioWave";
 import { t } from "../i18n";
@@ -23,9 +23,17 @@ export function VoiceHome() {
   const items: Item[] = people.map((u, i) => { const c = s.convs.find((x) => !x.groupId && x.memberIds.length === 2 && x.memberIds.includes(me) && x.memberIds.includes(u.id)); return { key: "u:" + u.id, label: cnt2[lab1[i].toLowerCase()] > 1 ? lab1[i] + " (@" + u.handle + ")" : lab1[i], userId: u.id, conv: c?.id, last: lastAudio(c) }; });
   s.convs.filter((c) => c.groupId && c.memberIds.includes(me)).forEach((c) => items.push({ key: "g:" + c.id, label: c.title || s.social.groups.find((g) => g.id === c.groupId)?.name || t("Groupe"), conv: c.id, last: lastAudio(c) }));
   items.sort((a, b) => (b.last?.at || 0) - (a.last?.at || 0) || a.label.localeCompare(b.label));
+  const who = items.filter((i) => i.userId); const [pk, setPk] = useState<string>(() => { try { return localStorage.getItem("notiif-vp-last") || ""; } catch { return ""; } }); const pick = who.find((i) => i.userId === pk) || who[0];
   const item = items.find((i) => i.key === sel);
   if (item) return <VoiceChat item={item} back={back} />;
-  return (<div className="col" style={{ gap: 8 }}><h1>{t("Vocal")}</h1><p className="muted small" style={{ margin: 0 }}>{t("Choisis avec qui parler, rien que avec ta voix.")}</p>
+  const verify = (() => { try { return localStorage.getItem("notiif-qv-verify") === "1"; } catch { return false; } })();
+  return (<div className="col" style={{ gap: 8 }}><h1>{t("Vocal")}</h1>
+    {pick && <div className="col" style={{ alignItems: "center", gap: 14, padding: "6px 0 14px" }}>
+      <span className="muted small">À qui ?</span>
+      <div className="qvstrip" style={{ maxWidth: "100%" }}>{who.map((i) => <button key={i.key} type="button" className={"qvpick" + (i.userId === pick.userId ? " sel" : "")} onClick={() => { setPk(i.userId!); try { localStorage.setItem("notiif-vp-last", i.userId!); } catch { /* rien */ } }}><Avatar u={s.users.find((u) => u.id === i.userId)} s={48} /><span>{i.label}</span></button>)}</div>
+      <HoldMic className="bigmic" max={60} verify={verify} onDone={(u) => { const cid = pick.conv || actions.startDm(pick.userId!); actions.send(cid, "", 0, null, undefined, u, false); toast("Vocal envoyé à " + pick.label + "."); }}><MicIcon size={64} /></HoldMic>
+      <span className="muted small center"><b>Maintiens</b> pour parler · relâche = envoyé<br />← glisse pour annuler · ↑ pour verrouiller</span></div>}
+    <p className="muted small" style={{ margin: 0 }}>{t("Choisis avec qui parler, rien que avec ta voix.")}</p>
     {items.map((i) => <button key={i.key} type="button" className="card row voiceitem" onClick={() => setSel(i.key)}><MicIcon size={28} /><span className="grow"><b>{i.label}</b>{i.last && <span className="muted small" style={{ display: "block" }}>{t("Vocal reçu {ago}", { ago: ago(i.last.at, now) })}</span>}</span></button>)}
     {!items.length && <p className="muted center">{t("Aucun proche pour l'instant : ajoutez des amis pour leur envoyer un vocal.")}</p>}</div>);
 }
