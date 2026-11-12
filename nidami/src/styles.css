@@ -118,7 +118,7 @@ hr{border:0;border-top:1px solid var(--bd);width:100%;margin:2px 0}
 .mact.flow{position:static;justify-content:flex-end;margin-top:8px}
 .tool{width:42px;height:42px;border-radius:14px;border:1px solid var(--bd);background:var(--card2,var(--bg));font-size:1.35rem;display:grid;place-items:center;color:var(--fg)}.tool.on{border-color:var(--brand)}
 .empanel{max-height:210px;overflow:auto;border:1px solid var(--bd);border-radius:16px;padding:6px 8px;background:var(--bg)}
-.opts{display:flex;flex-wrap:wrap;gap:8px}.opt{display:flex;align-items:center;gap:6px;border:1px solid var(--bd);border-radius:14px;padding:0 10px;background:var(--card2,var(--bg));flex:1 1 130px;min-width:0}.opt select{background:none;border:0;color:var(--fg);font:inherit;font-size:.9rem;padding:10px 0;width:100%;min-width:0;outline:0}.opt select option{color:#000}
+.opts{display:flex;flex-wrap:wrap;gap:8px}.opt{display:flex;align-items:center;gap:6px;border:1px solid var(--bd);border-radius:14px;padding:0 10px;background:var(--card2,var(--bg));flex:1 1 130px;min-width:0}.opt select{background:none;border:0;color:var(--fg);font:inherit;font-size:.9rem;padding:10px 0;width:100%;min-width:0;outline:0}.opt select option{background:var(--bg2);color:var(--fg)}.opt select{color-scheme:inherit}
 .pubbtn{position:sticky;bottom:-8px}
 .rsvp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.rv{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:16px;border:1px solid var(--bd);background:var(--card2,var(--bg));color:var(--fg)}.rv b{font-size:1.3rem}.rv span{font-size:.75rem;opacity:.85}.rv.on{border-color:var(--brand);box-shadow:0 0 0 2px rgba(var(--brand-rgb),.35)}
 /* ---- fond arbre + barres modernes ---- */
