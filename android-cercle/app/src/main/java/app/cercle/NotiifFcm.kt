@@ -23,6 +23,16 @@ class NotiifFcm : FirebaseMessagingService() {
         val sender = d["sender"] ?: ""
         val who = d["name"] ?: "Un ami"
         val kind = d["kind"] ?: "text"
+        if (kind == "call") {
+            NotiifService.channels(this)
+            val nmc = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val pic = PendingIntent.getActivity(this, ("c" + sender).hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + sender), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            val bc = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, NotiifService.CH_CALL) else Notification.Builder(this)
+            bc.setContentTitle("📞 " + who).setContentText("Appel NOTIIF : touche pour répondre").setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setCategory(Notification.CATEGORY_CALL).setContentIntent(pic).setAutoCancel(true)
+            if (Build.VERSION.SDK_INT >= 26) bc.setTimeoutAfter(45000)
+            nmc.notify(("c" + sender).hashCode(), bc.build())
+            return
+        }
         val body = when (kind) { "fx" -> "✨ Nouvel effet"; "audio" -> "🎤 Nouveau vocal"; "video" -> "🎬 Nouvelle vidéo"; "image" -> "📷 Nouvelle photo"; else -> "💬 Nouveau message" }
         val chId = when (kind) { "audio" -> NotiifService.CH_VOC; "video", "image" -> NotiifService.CH_MED; else -> NotiifService.CH_TXT }
         NotiifService.channels(this)

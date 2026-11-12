@@ -1,4 +1,5 @@
 import { req, getSess } from "./server";
+import { actions } from "./store";
 // Appel vocal NOTIIF (WebRTC) : les deux téléphones s'échangent des « signaux » par le serveur, puis la voix passe en direct.
 export type CallState = { phase: "idle" | "ringing-out" | "ringing-in" | "connecting" | "live"; peer: string; callId: string; muted: boolean; since: number };
 const ICE: RTCConfiguration = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }, { urls: "stun:stun1.l.google.com:19302" }] };
@@ -37,12 +38,12 @@ async function poll() {
   const r = await req("GET", `/rest/v1/call_signals?to_id=eq.${me}&created_at=gt.${encodeURIComponent(lastSeen)}&order=created_at.asc&limit=50&select=id,from_id,call_id,kind,payload,created_at`); if (!r.ok || !Array.isArray(r.data)) return;
   for (const m of r.data as { id: string; from_id: string; call_id: string; kind: string; payload: string | null; created_at: string }[]) {
     lastSeen = m.created_at; if (seen.has(m.id)) continue; seen.add(m.id); void req("DELETE", `/rest/v1/call_signals?id=eq.${m.id}`);
-    if (Date.now() - Date.parse(m.created_at) > 60000) continue;
+    if (Date.now() - Date.parse(m.created_at) > 60000) { if (m.kind === "offer") actions.missedCall(m.from_id, m.call_id, Date.parse(m.created_at)); continue; }
     if (m.kind === "offer") { if (st.phase !== "idle") { void send(m.from_id, m.call_id, "hangup"); continue; } offerSdp = m.payload || ""; set({ phase: "ringing-in", peer: m.from_id, callId: m.call_id, muted: false, since: 0 }); startRing("in"); }
     else if (m.call_id !== st.callId) continue;
     else if (m.kind === "answer" && pc && st.phase === "ringing-out") { try { await pc.setRemoteDescription(JSON.parse(m.payload || "{}")); remoteSet = true; for (const c of pendingIce) await pc.addIceCandidate(JSON.parse(c)).catch(() => {}); pendingIce = []; stopRing(); set({ phase: "connecting" }); } catch { end(true); } }
     else if (m.kind === "ice") { if (pc && remoteSet) await pc.addIceCandidate(JSON.parse(m.payload || "{}")).catch(() => {}); else pendingIce.push(m.payload || "{}"); }
-    else if (m.kind === "hangup") { end(false); }
+    else if (m.kind === "hangup") { if (st.phase === "ringing-in") actions.missedCall(st.peer, st.callId); end(false); }
   }
 }
 export function startCallWatch() { if (timer) return; timer = window.setInterval(() => { if (document.visibilityState === "visible" || st.phase !== "idle") void poll(); }, 1200); }

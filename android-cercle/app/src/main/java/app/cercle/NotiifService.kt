@@ -29,6 +29,7 @@ class NotiifService : Service() {
         const val CH_VOC = "notiif_voc4"
         const val CH_MED = "notiif_med3"
         const val CH_TYP = "notiif_typ3"
+        const val CH_CALL = "notiif_call1"
         @Volatile var visible = false
         private val notified = LinkedHashSet<String>()
         /** Un même message ne doit déclencher qu'une seule notification (Firebase ou veille, le premier arrivé). */
@@ -41,6 +42,12 @@ class NotiifService : Service() {
             val nm = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val packageName = ctx.packageName
         if (Build.VERSION.SDK_INT >= 26) {
+            if (nm.getNotificationChannel(CH_CALL) == null) {
+                val cc = NotificationChannel(CH_CALL, "Appels", NotificationManager.IMPORTANCE_HIGH)
+                cc.enableVibration(true); cc.vibrationPattern = longArrayOf(0, 600, 300, 600, 300, 600)
+                cc.setSound(android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_RINGTONE), android.media.AudioAttributes.Builder().setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION_RINGTONE).setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+                nm.createNotificationChannel(cc)
+            }
             if (nm.getNotificationChannel(CH_SVC) == null) nm.createNotificationChannel(NotificationChannel(CH_SVC, "NOTIIF en veille", NotificationManager.IMPORTANCE_MIN))
             if (nm.getNotificationChannel(CH_MSG) == null) {
                 val ch = NotificationChannel(CH_MSG, "Messages et activité", NotificationManager.IMPORTANCE_HIGH)
