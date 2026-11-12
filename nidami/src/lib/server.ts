@@ -67,12 +67,13 @@ export async function thread(friend: string): Promise<Msg[]> {
 void q;
 
 /** « Je suis en train d'écrire à cet ami » (le signal expire tout seul). */
-export const sendTyping = (to: string) => req("POST", "/rest/v1/typing?on_conflict=user_id,to_id", { user_id: getSess()?.uid, to_id: to, at: new Date().toISOString() }, "resolution=merge-duplicates,return=minimal");
+export const dbg = { tPost: "–", tGet: "–", pull: "–" };
+export const sendTyping = async (to: string) => { const r = await req("POST", "/rest/v1/typing?on_conflict=user_id,to_id", { user_id: getSess()?.uid, to_id: to, at: new Date().toISOString() }, "resolution=merge-duplicates,return=minimal"); dbg.tPost = r.status + " " + new Date().toLocaleTimeString(); return r; };
 /** Qui m'écrit en ce moment (dernières secondes). */
 const tSeen = new Map<string, { at: string; local: number }>(); let tFirst = true;
 export async function typingNow(): Promise<string[]> {
   const me = getSess()?.uid; if (!me) return [];
-  const r = await req("GET", `/rest/v1/typing?to_id=eq.${me}&select=user_id,at`); if (!Array.isArray(r.data)) return [];
+  const r = await req("GET", `/rest/v1/typing?to_id=eq.${me}&select=user_id,at`); dbg.tGet = r.status + " (" + (Array.isArray(r.data) ? r.data.length : "?") + " signal) " + new Date().toLocaleTimeString(); if (!Array.isArray(r.data)) return [];
   const out: string[] = []; const t0 = Date.now();
   for (const x of r.data as { user_id: string; at: string }[]) {
     const old = tSeen.get(x.user_id);

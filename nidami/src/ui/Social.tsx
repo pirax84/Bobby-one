@@ -18,6 +18,7 @@ import { PresenceBar } from "./Chat";
 import { CatPicker, SeesCard } from "./Cats";
 import { catsOf, friendCats } from "../lib/cats";
 import { useDev, setDevClient, APP_VERSION } from "../lib/dev";
+import { dbg } from "../lib/server";
 import { KidCard } from "./Kid";
 import { LangPicker } from "./LangPicker";
 import { LegalView } from "./Legal";
@@ -83,6 +84,7 @@ function ReqRow({ r }: { r: { id: string; from: string } }) {
     <div style={{ flexBasis: "100%" }} className="col"><span className="muted small">{t("Dans quelle catégorie ?")}</span><CatPicker value={cats} onChange={setCats} /></div>
     <button className="btn sm grow" onClick={() => { actions.answerReq(r.id, true, cats); toast(t("{name} est maintenant votre ami.", { name: u?.name })); }}>{t("Accepter")}</button><button className="btn ghost sm grow" onClick={() => actions.answerReq(r.id, false)}>{t("Refuser")}</button></div>;
 }
+function DiagLine() { const [, b] = useState(0); useEffect(() => { const i = setInterval(() => b((x) => x + 1), 1000); return () => clearInterval(i); }, []); return <p className="muted small center" style={{ margin: "0 0 8px", opacity: .7 }}>chargement {dbg.pull} · écrit envoyé {dbg.tPost} · écrit reçu {dbg.tGet}</p>; }
 export function Friends({ go }: { go: (v: string, conv?: string) => void }) {
   const s = useStore((x) => x); const me = s.me; const user = userOf(s, me)!; const [code, setCode] = useState(""); const [list, setList] = useState(false); const [name, setName] = useState(""); const [sel, setSel] = useState<string[]>([]); const [menu, setMenu] = useState<string | null>(null); const [ct, setCt] = useState(false); const [rep, setRep] = useState<string | null>(null); const [acc, setAcc] = useState<string | null>(null); const [fc, setFc] = useState("");
   const allFriends = (s.social.friends[me] || []).map((i) => userOf(s, i)!).filter(Boolean); const ties = s.social.ties || {}; const friends = allFriends; const reqs = s.reqs.filter((r) => r.to === me); const blocked = (s.social.blocks[me] || []).map((i) => userOf(s, i)!).filter(Boolean);
@@ -247,6 +249,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     {shown.map(([k, ic, a, b]) => <button key={k} type="button" className="setrow" onClick={() => (k === "profile" ? go?.("profile") : k === "legal" ? setLegal(true) : open(k))}><span className="seti" data-s={k}><Ico n={({ look: "palette", notifs: "bell", priv: "lock", profile: "user", lang: "globe", install: "download", legal: "info", howto: "chat", acct: "flask" } as Record<string, string>)[k] || "cog"} s={24} /></span><span className="grow"><b>{a}</b>{b ? <small>{b}</small> : null}</span><span className="setch">›</span></button>)}
     {!shown.length && <p className="muted">{t("Aucun résultat.")}</p>}
     <p className="muted small center" style={{ margin: "8px 0" }} onClick={verTap}>NOTIIF · {APP_VERSION}</p>
+    <DiagLine />
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView bare /></div></Modal>}</div>);
   return (<div className="col setsub" ref={pageRef}><h1>{titles[sec] || t("Paramètres")}</h1>
     {sec === "dev" && dev.active && <><DevPanel /><ClientPreview /></>}

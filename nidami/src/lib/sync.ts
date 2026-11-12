@@ -1,5 +1,5 @@
 import { serverLive, SB_URL, SB_KEY } from "./auth";
-import { getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, heartbeatAway, peersNow } from "./server";
+import { dbg, getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, heartbeatAway, peersNow } from "./server";
 import { setPeers } from "./peers";
 import { presenceNow } from "./presence";
 import { soundTyping } from "./fx";
@@ -15,10 +15,10 @@ function toNative(s: { access: string; refresh: string; uid: string }) {
     if (!localStorage.getItem("notiif-nat-ask")) { localStorage.setItem("notiif-nat-ask", "1"); nat.askNotif?.(); setTimeout(() => nat.askBattery?.(), 2500); } } catch { /* ignoré */ }
 }
 const pull = async () => {
-  const s = getSess(); if (s) toNative(s); if (!s || busy || document.visibilityState === "hidden") return; busy = true;
+  const t00 = Date.now(); const s = getSess(); if (s) toNative(s); if (!s || busy || document.visibilityState === "hidden") return; busy = true;
   try { const [fr, msgs] = await Promise.all([listFriends(), allMessages()]);
     const have = new Set<string>(); for (const c of getState().convs) for (const m of c.msgs) have.add(m.id);
-    for (const m of msgs) if (m.media_kind && !have.has(m.id)) { if (m.sender === s.uid) { m.media_kind = null; continue; } const d = await getMedia(m.id); if (d) m.media = d; else m.media_kind = null; } actions.sbMerge({ prime: !primed, uid: s.uid, fr: fr.map((f) => ({ id: f.id, name: f.name })), msgs }); primed = true; if (Date.now() - lastPeers > 2500) { lastPeers = Date.now(); void peersNow().then(setPeers); } } finally { busy = false; }
+    for (const m of msgs) if (m.media_kind && !have.has(m.id)) { if (m.sender === s.uid) { m.media_kind = null; continue; } const d = await getMedia(m.id); if (d) m.media = d; else m.media_kind = null; } actions.sbMerge({ prime: !primed, uid: s.uid, fr: fr.map((f) => ({ id: f.id, name: f.name })), msgs }); primed = true; dbg.pull = Math.round(Date.now() - t00) + " ms"; if (Date.now() - lastPeers > 2500) { lastPeers = Date.now(); void peersNow().then(setPeers); } } finally { busy = false; }
 };
 let lastPeers = 0; let lastPing = 0; const heard = new Map<string, number>();
 /** Appelé quand j'écris dans une conversation du serveur : prévient l'ami (au plus toutes les 2,5 s). */
