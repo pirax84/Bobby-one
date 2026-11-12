@@ -5,7 +5,7 @@ import { useStore, actions, userOf, getSaveWarn, getState } from "./lib/store";
 import { micText, MicIcon, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { VoiceHome } from "./ui/VoiceChat";
-import { Friends, Groups, Events, Profile, Notifs, Settings, MyQr } from "./ui/Social";
+import { Friends, Groups, Events, Profile, Notifs, Settings, QrScreen } from "./ui/Social";
 import { Messages, Games, Soon } from "./ui/Chat";
 import { Media } from "./ui/Albums";
 import { LegalView } from "./ui/Legal";
@@ -185,7 +185,7 @@ export default function App() {
       {bar.slice(half).map(tab)}</nav>
     {voice && <QuickVoice onClose={() => setVoice(false)} />}
     {mid === "plus" && micpos === "bubble" && <VoiceFab onOpen={() => setVoice(true)} />}
-    {qrOpen && user && <Modal title={t("Mon QR code")} onClose={() => setQrOpen(false)}><MyQr u={user} /></Modal>}
+    {qrOpen && user && <Modal title={t("Mon QR code")} onClose={() => setQrOpen(false)}><QrScreen u={user} /></Modal>}
     {more && <Modal title={t("Plus")} onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([[t("Les plus utiles"), [["media", t("Photos"), "img"], ["groups", t("Groupes"), "group"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"]]], [t("Le reste"), [["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
         <div key={tx} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{tx}</b>

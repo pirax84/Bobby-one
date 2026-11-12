@@ -994,3 +994,4 @@ html.collapsing,html.collapsing body{overflow:hidden!important}
 .card.unread b{font-weight:800}.card.unread .grow>.muted{color:var(--fg);font-weight:600}.card.row:not(.unread) .grow>.muted{opacity:.8}
 .bubble.nw{box-shadow:0 0 0 2px var(--brand);position:relative}.bubble.nw::after{content:"";position:absolute;top:-4px;left:-4px;width:12px;height:12px;border-radius:50%;background:var(--brand);border:2px solid var(--bg)}
 .nwsep{display:flex;align-items:center;gap:8px;color:var(--brand);font-size:.8rem;font-weight:800;margin:10px 0 6px}.nwsep::before,.nwsep::after{content:"";flex:1;height:2px;background:var(--brand);opacity:.6}
+.card.row.dn1{padding:6px 10px;gap:8px}.card.row.dn2{padding:3px 8px;gap:8px;min-height:0}.card.row.dn2 .grow>.muted{display:none}.card.row.dn1 .grow>.muted{font-size:.75rem}

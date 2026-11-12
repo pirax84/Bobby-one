@@ -52,7 +52,7 @@ export function bdayShow(k: string) {
   if (k === "bd1") { // ballons qui montent
     balloons(box, Math.round(dur * 1.6), 46, 92, spread);
   } else if (k === "bd2") { // grand gâteau + confettis + ballons
-    el(box, "bdcake", {}, "🎂");
+    document.querySelectorAll(".bdcakew,.bdcake").forEach((e) => e.remove()); el(box, "bdcake", {}, "🎂");
     confetti(box, Math.round(dur * 4), 16, 28, dur - 6);
     cannons(box, 5, 34, 1, dur - 4);
     balloons(box, Math.round(dur * 0.5), 40, 70, spread);
@@ -61,7 +61,7 @@ export function bdayShow(k: string) {
     gifts(box, Math.round(dur * 1.3), 60, 110, dur - 5);
   } else if (k === "bd4") { // coup de vent qui souffle les bougies
     const W = dur * 0.5; box.style.setProperty("--w", W + "s");
-    const wrap = el(box, "bdcakew", {}); wrap.innerHTML = cakeSvg();
+    document.querySelectorAll(".bdcakew,.bdcake").forEach((e) => e.remove()); const wrap = el(box, "bdcakew", {}); wrap.innerHTML = cakeSvg();
     el(box, "bdwind", { "animation-delay": W + "s" }, "💨");
     for (let i = 0; i < 3; i++) el(box, "bdwline", { top: 36 + i * 7 + "%", "animation-delay": W + i * 0.12 + "s" });
     cannons(box, 100, 70, W + 2.2, W + 2.3);
