@@ -3,7 +3,7 @@ import { soundEnd } from "../lib/fx";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Eph } from "./Vanish";
 import { createPortal } from "react-dom";
-import { useStore, actions, userOf, State } from "../lib/store";
+import { useStore, getState as useStoreGet, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
 import { micText, Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps, isBirthday, topEmojis, bumpEmoji, Switch, useScrollLock } from "./common";
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
@@ -14,6 +14,7 @@ import { AudioWave } from "./AudioWave";
 import { LinkCard, safeUrl } from "./Links";
 import { t } from "../i18n";
 import { MemoryCard, ArrivedModal } from "./Extras";
+import { usePeer, peerColor, PEER } from "../lib/peers";
 
 // ───────── Barre des stories
 /** Aperçu d'une story dans la bulle : la photo ou la vidéo ; jamais pour une story éphémère (elle reste cachée). */
@@ -154,8 +155,27 @@ function Viewer({ postId, me, onClose }: { postId: string; me: string; onClose: 
 }
 
 // ───────── Une publication
+
+/** Écrire à quelqu'un : ouvre sa conversation (si elle existe). */
+function writeTo(uid: string, me: string): boolean {
+  const c = useStoreGet().convs.find((x) => x.memberIds.length === 2 && x.memberIds.includes(uid) && x.memberIds.includes(me));
+  if (!c) { toast("Pas encore de conversation avec cette personne."); return false; }
+  window.dispatchEvent(new CustomEvent("notiif-open-conv", { detail: c.id })); return true;
+}
+function UserSheet({ uid, me, onClose }: { uid: string; me: string; onClose: () => void }) {
+  const users = useStore((s) => s.users); const all = useStore((s) => s.posts); const social = useStore((s) => s.social); const u = users.find((x) => x.id === uid);
+  const pr = usePeer(uid.startsWith("sb_") ? uid.slice(3) : undefined); const pc = pr ? peerColor(pr) : undefined; const [pubs, setPubs] = useState(false); const now = Date.now();
+  const mine = all.filter((p) => p.authorId === uid && !p.story && accessFor(p, all, me, now, social).ok).sort((a, b) => b.createdAt - a.createdAt).slice(0, 5);
+  return <Modal title={u?.name || ""} onClose={onClose}><div className="col" style={{ alignItems: "center", gap: 8, textAlign: "center" }}>
+    <Avatar u={u} s={92} /><h2 style={{ margin: "6px 0 0" }}>{u?.name}</h2>
+    {pr && <b style={{ color: pc }}>● {PEER[pr].label}</b>}
+    {uid !== me && <button className="btn" style={{ minWidth: 200 }} onClick={() => { if (writeTo(uid, me)) onClose(); }}>✉ Écrire</button>}
+    <button className="btn ghost" style={{ minWidth: 200 }} onClick={() => setPubs(!pubs)}>{pubs ? "Masquer ses publications" : "Voir ses publications"}</button>
+    {pubs && <div className="col" style={{ width: "100%", gap: 8, textAlign: "left" }}>{mine.length ? mine.map((p) => <div key={p.id} className="card" style={{ padding: 10 }}><div className="muted small">{ago(p.createdAt, now)}</div><div>{p.text || (p.img ? "📷 Photo" : p.video ? "🎬 Vidéo" : p.audio ? "🎤 Message vocal" : "")}</div></div>) : <span className="muted">Rien à voir pour l'instant.</span>}</div>}
+  </div></Modal>;
+}
 function PostCard({ post: rp, me }: { post: Post; me: string }) {
-  const social = useStore((s) => s.social); const users = useStore((s) => s.users); const all = useStore((s) => s.posts); const shares = useStore((s) => s.shares); const now = useNow(1000); const [view, setView] = useState(false); const [cm, setCm] = useState(""); const [cPick, setCPick] = useState<string | null>(null); const cmRef = useRef<HTMLInputElement>(null); const [delC, setDelC] = useState<string | null>(null); const [more, setMore] = useState(false); const [replyTo, setReplyTo] = useState<string | undefined>(); const [ask, setAsk] = useState(false); const [detail, setDetail] = useState(false); const [pick, setPick] = useState(false); const [cmEmoji, setCmEmoji] = useState(false); const [who, setWho] = useState(false); const [emoSheet, setEmoSheet] = useState(false); const [cmOpen, setCmOpen] = useState(false);
+  const social = useStore((s) => s.social); const users = useStore((s) => s.users); const all = useStore((s) => s.posts); const shares = useStore((s) => s.shares); const now = useNow(1000); const [prof, setProf] = useState(false); const [view, setView] = useState(false); const [cm, setCm] = useState(""); const [cPick, setCPick] = useState<string | null>(null); const cmRef = useRef<HTMLInputElement>(null); const [delC, setDelC] = useState<string | null>(null); const [more, setMore] = useState(false); const [replyTo, setReplyTo] = useState<string | undefined>(); const [ask, setAsk] = useState(false); const [detail, setDetail] = useState(false); const [pick, setPick] = useState(false); const [cmEmoji, setCmEmoji] = useState(false); const [who, setWho] = useState(false); const [emoSheet, setEmoSheet] = useState(false); const [cmOpen, setCmOpen] = useState(false);
   const openCm = () => { history.pushState({ ...(history.state || {}), cm: 1 }, ""); setCmOpen(true); }; const closeCm = () => { if (history.state?.cm) history.back(); else setCmOpen(false); };
   useEffect(() => { if (!cmOpen) return; const f = () => setCmOpen(false); window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, [cmOpen]);
   const openDetail = () => { history.pushState({ ...(history.state || {}), detail: 1 }, ""); setDetail(true); }; const closeDetail = () => { if (history.state?.detail) history.back(); else setDetail(false); };
@@ -173,7 +193,8 @@ function PostCard({ post: rp, me }: { post: Post; me: string }) {
   const canAsk = !mine && !orig && rp.authorId !== me && !post.story; const heart = pressProps(() => actions.react(rp.id, rp.reactions[me] ? rp.reactions[me] : "❤️"), () => setEmoSheet(true));
   const myReact = rp.reactions[me]; const counts = Object.values(rp.reactions).reduce<Record<string, number>>((m, e) => ((m[e] = (m[e] || 0) + 1), m), {});
   return (<article className="card col" style={{ gap: 10 }}>
-    <div className="row"><Avatar u={u} /><div className="grow"><b>{u?.name}</b> {post.mood}<div className="muted small">{ago(post.createdAt, now)} · {audLabel(post, social)}{eph ? ` · ⏱ ${fmtSecs(post.viewSecs)}` : ""}</div></div>
+    {prof && <UserSheet uid={rp.authorId} me={me} onClose={() => setProf(false)} />}
+    <div className="row"><button type="button" className="avbtn" onClick={() => { if (rp.authorId !== me) writeTo(rp.authorId, me); else setProf(true); }} aria-label={"Écrire à " + (u?.name || "")}><Avatar u={u} /></button><div className="grow"><button type="button" className="namebtn" onClick={() => setProf(true)}><b>{u?.name}</b></button> {post.mood}<div className="muted small">{ago(post.createdAt, now)} · {audLabel(post, social)}{eph ? ` · ⏱ ${fmtSecs(post.viewSecs)}` : ""}</div></div>
       <div className="sumrow" aria-label={t("Réactions et commentaires")}>{likesOn && Object.keys(rp.reactions).length > 0 && <span className="sumbub" aria-label={t("Réactions")}>❤ {Object.keys(rp.reactions).length}</span>}{commOn && rp.comments.length > 0 && <span className="sumbub" aria-label={t("Commentaires")}>💬 {rp.comments.length}</span>}</div>{(mine || rp.authorId === me) && <button className="btn ghost sm" onClick={() => setMore(!more)} aria-label={t("Options")}><Ico n="more" s={18} /></button>}</div>
     {sharer && <div className="small" style={{ color: "var(--warm)" }}>{t("↪ Partagé par")}{" "}<b>{sharer.name}</b>{" "}{t("avec l'accord de {name}", { name: u?.name })}</div>}
     {more && (mine || rp.authorId === me) && <div className="row wrap">{!orig && <button className="btn danger sm" onClick={() => { if (confirm(t("Supprimer cette publication ? Les partages autorisés disparaissent aussi."))) actions.deletePost(rp.id); }}><Ico n="trash" s={16} />{" "}{t("Supprimer partout")}</button>}{orig && mine && <button className="btn danger sm" onClick={() => { if (confirm(t("Retirer ce partage ? Il disparaît chez {name} et ses amis.", { name: sharer?.name }))) actions.revokeShare(rp.shareId!); }}>{t("Retirer ce partage")}</button>}{orig && rp.authorId === me && <button className="btn danger sm" onClick={() => { if (confirm(t("Arrêter de partager ?"))) actions.revokeShare(rp.shareId!); }}>{t("Arrêter mon partage")}</button>}</div>}

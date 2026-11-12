@@ -125,6 +125,7 @@ export default function App() {
   useEffect(() => { startSync(); }, []);
   const pendConv = useRef(""); const [hk, setHk] = useState(0); const nConvs = useStore((x) => x.convs.length + ":" + x.convs.reduce((a, c) => a + c.msgs.length, 0));
   useEffect(() => { const rd = () => { const m = /open=(sbc_[0-9a-f-]+)/.exec(location.hash); if (m) { pendConv.current = m[1]; setHk((x) => x + 1); } }; rd(); window.addEventListener("hashchange", rd); return () => window.removeEventListener("hashchange", rd); }, []);
+  useEffect(() => { const h = (e: Event) => openConvFull(String((e as CustomEvent).detail)); window.addEventListener("notiif-open-conv", h); return () => window.removeEventListener("notiif-open-conv", h); }, []);
   useEffect(() => { const id = pendConv.current; if (!id || !getState().convs.some((c) => c.id === id)) return; pendConv.current = ""; try { history.replaceState(history.state, "", location.pathname + location.search); } catch {} openConvFull(id); }, [nConvs, meId, hk]);
   useEffect(() => { if (seenCall.current === undefined) { seenCall.current = lastCall; return; } if (!lastCall || lastCall === seenCall.current) return; seenCall.current = lastCall; if (!th0?.quiet) { playCallRing(); vibrate(th0?.vibc, 3); } }, [lastCall]);
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)

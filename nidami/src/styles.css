@@ -981,3 +981,5 @@ html.collapsing,html.collapsing body{overflow:hidden!important}
 @keyframes wmglow{0%,100%{opacity:.45}50%{opacity:.9}}
 @media (prefers-reduced-motion:reduce){.wmglow{animation:none}}
 @keyframes wmhopi{0%{transform:translateY(-5%) scale(1.2)}35%{transform:translateY(-14%) scale(1.38)}70%{transform:translateY(-4%) scale(1.17)}100%{transform:translateY(-5%) scale(1.2)}}
+
+.avbtn,.namebtn{background:none;border:0;padding:0;margin:0;color:inherit;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}.avbtn{line-height:0;border-radius:50%}.namebtn:hover b{text-decoration:underline}
