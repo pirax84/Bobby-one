@@ -991,3 +991,4 @@ html.collapsing,html.collapsing body{overflow:hidden!important}
 .bottom .plus.micmid{display:grid;place-items:center;background:var(--nuit2)!important;border:4px solid var(--bg)!important;border-radius:50%!important;width:64px!important;height:64px!important;margin-top:-30px;padding:0;box-shadow:0 10px 24px -8px rgba(var(--brand-rgb),.75)!important}
 .voicefab{position:fixed;z-index:60;width:58px;height:58px;border-radius:50%;border:2px solid var(--accb,var(--brand));background:var(--nuit2);display:grid;place-items:center;padding:0;box-shadow:0 8px 22px -6px rgba(0,0,0,.45);touch-action:none;cursor:grab}
 @media (min-width:761px){.shell.wide{grid-template-columns:260px minmax(0,1fr);max-width:1500px}.shell.wide .right{display:none}.shell.wide .main{max-width:980px;width:100%;margin:0 auto}}
+.card.unread b{font-weight:800}.card.unread .grow>.muted{color:var(--fg);font-weight:600}.card.row:not(.unread) .grow>.muted{opacity:.8}
