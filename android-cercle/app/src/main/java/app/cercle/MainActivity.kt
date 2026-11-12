@@ -93,6 +93,7 @@ class MainActivity : Activity() {
         }
 
         web.addJavascriptInterface(Native(), "CercleNative")
+        try { com.google.firebase.messaging.FirebaseMessaging.getInstance().token.addOnSuccessListener { t -> getSharedPreferences("notiif_fcm", Context.MODE_PRIVATE).edit().putString("token", t).apply() } } catch (e: Exception) { }
         web.loadUrl(urlFor(intent))
     }
 
@@ -124,6 +125,7 @@ class MainActivity : Activity() {
                 if (!pm.isIgnoringBatteryOptimizations(packageName)) startActivity(Intent(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:$packageName")))
             } catch (e: Exception) { } }
         }
+        @JavascriptInterface fun getPushToken(): String = getSharedPreferences("notiif_fcm", Context.MODE_PRIVATE).getString("token", "") ?: ""
         @JavascriptInterface fun hasNotifPermission(): Boolean = Build.VERSION.SDK_INT < 33 || checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
         @JavascriptInterface fun askNotif() { runOnUiThread { if (Build.VERSION.SDK_INT >= 33 && !hasNotifPermission()) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), RC_NOTIF) } }
         @JavascriptInterface fun notify(title: String, body: String) { notifyConv(title, body, "") }

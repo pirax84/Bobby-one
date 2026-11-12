@@ -1,4 +1,5 @@
 import { serverLive, SB_URL, SB_KEY } from "./auth";
+import { req } from "./server";
 import { type Grp, dbg, tKinds, getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, heartbeatAway, peersNow, setReaction, allReactions, listGroups, groupMessages, sendGroupMessage, getGroupMedia } from "./server";
 import { setPeers } from "./peers";
 import { pushNative } from "./catnotif";
@@ -16,8 +17,14 @@ function toNative(s: { access: string; refresh: string; uid: string }) {
   try { nat.setSession(SB_URL, SB_KEY, s.access, s.refresh, s.uid); pushNative();
     if (!localStorage.getItem("notiif-nat-ask")) { localStorage.setItem("notiif-nat-ask", "1"); nat.askNotif?.(); setTimeout(() => nat.askBattery?.(), 2500); } } catch { /* ignoré */ }
 }
+let pushReg = "";
+/** Donne au serveur l'adresse de notification (Firebase) de ce téléphone, pour pouvoir le prévenir application fermée. */
+async function regPush(uid: string) {
+  const nat = (window as any).CercleNative; let tk = ""; try { tk = nat?.getPushToken?.() || ""; } catch { /* ignoré */ } if (!tk || pushReg === tk) return;
+  const r = await req("POST", "/rest/v1/push_tokens?on_conflict=token", { user_id: uid, token: tk }, "resolution=merge-duplicates,return=minimal"); if (r.ok) pushReg = tk;
+}
 const pull = async () => {
-  const t00 = Date.now(); const s = getSess(); if (s) toNative(s); if (!s || busy || document.visibilityState === "hidden") return; busy = true;
+  const t00 = Date.now(); const s = getSess(); if (s) { toNative(s); void regPush(s.uid); } if (!s || busy || document.visibilityState === "hidden") return; busy = true;
   try { const [fr, msgs, rxs] = await Promise.all([listFriends(), allMessages(), allReactions()]);
     if (Date.now() - lastGroups > 4000) { lastGroups = Date.now(); const gl = await listGroups(); if (gl) groupsCache = gl; }
     const gm = await groupMessages();

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "129128838718",
+    "project_id": "notiif-da2b4",
+    "storage_bucket": "notiif-da2b4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129128838718:android:60343a900d1fd10ca0036f",
+        "android_client_info": {
+          "package_name": "app.cercle.prive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ6ayxT3rh7QSLrLPgzy-4iFcgMoBA1qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
