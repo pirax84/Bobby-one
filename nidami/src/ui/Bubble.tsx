@@ -6,7 +6,7 @@ import { MicBtn } from "./Recorder";
 import { CallButton } from "./Chat";
 import { AudioWave } from "./AudioWave";
 import { t } from "../i18n";
-import { typingPing } from "../lib/sync";
+import { typingPing, setActiveConv } from "../lib/sync";
 
 /** Bulle de messages flottante (comme Messenger) : touchez-la pour lire et répondre sans quitter la page. */
 /** Onglets supplémentaires de la bulle : les 3 principaux restent visibles, les autres vont dans « Plus ». Vide pour l'instant. */
@@ -23,7 +23,7 @@ export function ChatBubble({ openFull, openList }: { openFull: (convId: string) 
   const groups = s.social.groups.filter((g) => g.memberIds.includes(me) && convs.some((x) => x.groupId === g.id));
   const groupUnread = groups.reduce((a, g) => a + (convs.filter((x) => x.groupId === g.id).reduce((b, x) => b + unread(x), 0)), 0);
   const title = (c: Conv) => c.title || c.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
-  const c = convs.find((x) => x.id === sel);
+  const c = convs.find((x) => x.id === sel); useEffect(() => { setActiveConv(c?.id || ""); }, [c?.id]);
   // Petite info qui apparaît quand un nouveau message arrive.
   useEffect(() => {
     if (total > prev.current && !open) { const cv = convs.find((x) => unread(x) > 0); const m = cv?.msgs.filter((y) => y.from !== me).at(-1); if (cv && m) { setPop({ id: cv.id, who: userOf(s, m.from)?.name || "", text: m.secs || m.once ? t("🔒 Message éphémère") : m.audio ? t("🎤 Message vocal") : m.text || t("📷 Photo") }); const tx = setTimeout(() => setPop(null), 6000); prev.current = total; return () => clearTimeout(tx); } }

@@ -1,5 +1,5 @@
 import { serverLive, SB_URL, SB_KEY } from "./auth";
-import { dbg, getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, heartbeatAway, peersNow, setReaction, allReactions } from "./server";
+import { dbg, tKinds, getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, heartbeatAway, peersNow, setReaction, allReactions } from "./server";
 import { setPeers } from "./peers";
 import { presenceNow } from "./presence";
 import { soundTyping } from "./fx";
@@ -20,13 +20,16 @@ const pull = async () => {
     const have = new Set<string>(); for (const c of getState().convs) for (const m of c.msgs) have.add(m.id);
     for (const m of msgs) if (m.media_kind && !have.has(m.id)) { if (m.sender === s.uid) { m.media_kind = null; continue; } const d = await getMedia(m.id); if (d) m.media = d; else m.media_kind = null; } actions.sbMerge({ prime: !primed, uid: s.uid, fr: fr.map((f) => ({ id: f.id, name: f.name })), msgs }); if (rxs) actions.sbReactions(rxs, s.uid); primed = true; dbg.pull = Math.round(Date.now() - t00) + " ms"; if (Date.now() - lastPeers > 2500) { lastPeers = Date.now(); void peersNow().then(setPeers); } } finally { busy = false; }
 };
-let lastPeers = 0; let lastPing = 0; const heard = new Map<string, number>();
-/** Appelé quand j'écris dans une conversation du serveur : prévient l'ami (au plus toutes les 2,5 s). */
-export function typingPing(convId: string) { if (!convId.startsWith("sbc_") || Date.now() - lastPing < 2500) return; lastPing = Date.now(); void sendTyping(convId.slice(4)); }
+let lastPeers = 0; const lastPing: Record<string, number> = {}; const heard = new Map<string, number>();
+let activeConv = ""; export const setActiveConv = (id: string) => { activeConv = id; };
+/** Appelé quand j'écris / j'enregistre dans une conversation du serveur : prévient l'ami (au plus toutes les 2,5 s). */
+export function typingPing(convId: string, kind: "text" | "audio" | "video" = "text") { if (!convId.startsWith("sbc_") || Date.now() - (lastPing[kind] || 0) < 2500) return; lastPing[kind] = Date.now(); void sendTyping(convId.slice(4), kind); }
+/** Pendant un enregistrement (vocal ou vidéo) : signal répété toutes les 2 s. Renvoie la fonction qui l'arrête. */
+export function recordLoop(kind: "audio" | "video"): () => void { const id = activeConv; if (!id) return () => {}; typingPing(id, kind); const iv = setInterval(() => typingPing(id, kind), 2000); return () => clearInterval(iv); }
 const watchTyping = async () => {
   if (!getSess() || document.visibilityState === "hidden") return;
   const ids = await typingNow(); if (!ids.length) return;
-  actions.sbTyping(ids);
+  actions.sbTyping(ids, tKinds);
   for (const id of ids) { const l = heard.get(id) || 0; if (Date.now() - l > 9000) soundTyping(); heard.set(id, Date.now()); }
 };
 export function startSync() {

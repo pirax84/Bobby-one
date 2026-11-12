@@ -68,14 +68,21 @@ void q;
 
 /** « Je suis en train d'écrire à cet ami » (le signal expire tout seul). */
 export const dbg = { tPost: "–", tGet: "–", pull: "–" };
-export const sendTyping = async (to: string) => { const r = await req("POST", "/rest/v1/typing?on_conflict=user_id,to_id", { user_id: getSess()?.uid, to_id: to, at: new Date().toISOString() }, "resolution=merge-duplicates,return=minimal"); dbg.tPost = r.status + " " + new Date().toLocaleTimeString(); return r; };
+let kindOk = true;
+export const sendTyping = async (to: string, kind: string = "text") => {
+  const body: Record<string, unknown> = { user_id: getSess()?.uid, to_id: to, at: new Date().toISOString() }; if (kindOk) body.kind = kind;
+  let r = await req("POST", "/rest/v1/typing?on_conflict=user_id,to_id", body, "resolution=merge-duplicates,return=minimal");
+  if (!r.ok && kindOk && r.status === 400) { kindOk = false; delete body.kind; r = await req("POST", "/rest/v1/typing?on_conflict=user_id,to_id", body, "resolution=merge-duplicates,return=minimal"); }
+  dbg.tPost = r.status + " " + new Date().toLocaleTimeString(); return r;
+};
+export const tKinds: Record<string, string> = {};
 /** Qui m'écrit en ce moment (dernières secondes). */
 const tSeen = new Map<string, { at: string; local: number }>();
 export async function typingNow(): Promise<string[]> {
   const me = getSess()?.uid; if (!me) return [];
-  const r = await req("GET", `/rest/v1/typing?to_id=eq.${me}&select=user_id,at`); dbg.tGet = r.status + " (" + (Array.isArray(r.data) ? r.data.length : "?") + " signal) " + new Date().toLocaleTimeString(); if (!Array.isArray(r.data)) return [];
+  let r = await req("GET", `/rest/v1/typing?to_id=eq.${me}&select=user_id,at,kind`); if (!r.ok) r = await req("GET", `/rest/v1/typing?to_id=eq.${me}&select=user_id,at`); dbg.tGet = r.status + " (" + (Array.isArray(r.data) ? r.data.length : "?") + " signal) " + new Date().toLocaleTimeString(); if (!Array.isArray(r.data)) return [];
   const out: string[] = []; const t0 = Date.now();
-  for (const x of r.data as { user_id: string; at: string }[]) {
+  for (const x of r.data as { user_id: string; at: string; kind?: string }[]) { tKinds[x.user_id] = x.kind || "text";
     const old = tSeen.get(x.user_id);
     if (!old) tSeen.set(x.user_id, { at: x.at, local: 0 }); /* première vue : on ignore (peut être un vieux signal) */
     else if (old.at !== x.at) { tSeen.set(x.user_id, { at: x.at, local: t0 }); out.push(x.user_id); }

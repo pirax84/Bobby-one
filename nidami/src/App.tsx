@@ -82,9 +82,9 @@ export function BrandWm({ id, light, sound, big, onHome, bdText, force }: { id: 
 
 function TypingPill() {
   const [tick, setTick] = useState(0); useEffect(() => { const i = setInterval(() => setTick((x) => x + 1), 1000); return () => clearInterval(i); }, []);
-  const who = useStore((x) => { const n: string[] = []; for (const c of x.convs) if (c.typing && c.memberIds.includes(x.me)) for (const [id, at] of Object.entries(c.typing)) if (id !== x.me && Date.now() - at < 4500) n.push(x.users.find((u) => u.id === id)?.name || "?"); return n.join(", "); }); void tick;
+  const who = useStore((x) => { const n: string[] = []; for (const c of x.convs) if (c.typing && c.memberIds.includes(x.me)) for (const [id, at] of Object.entries(c.typing)) if (id !== x.me && Date.now() - at < 4500) n.push((c.tk?.[id] === "audio" ? "🎤 " : c.tk?.[id] === "video" ? "🎥 " : "✍️ ") + (x.users.find((u) => u.id === id)?.name || "?") + (c.tk?.[id] === "audio" ? " enregistre un vocal" : c.tk?.[id] === "video" ? " enregistre une vidéo" : " écrit")); return n.join(" · "); }); void tick;
   if (!who) return null;
-  return <div aria-live="polite" style={{ position: "fixed", top: 10, left: 12, zIndex: 9999, display: "flex", alignItems: "center", gap: 8, padding: "7px 12px", borderRadius: 999, background: "var(--card, #fff)", color: "var(--fg, #222)", border: "1px solid rgba(127,127,127,.35)", boxShadow: "0 4px 16px rgba(0,0,0,.25)", fontSize: 13, fontWeight: 700 }}><span style={{ fontWeight: 900, letterSpacing: 1, color: "var(--accb, #7c5cff)" }}>NOTIIF</span>✍️ {who} écrit<span className="tdots">…</span></div>;
+  return <div aria-live="polite" style={{ position: "fixed", top: 10, left: 12, zIndex: 9999, display: "flex", alignItems: "center", gap: 8, padding: "7px 12px", borderRadius: 999, background: "var(--card, #fff)", color: "var(--fg, #222)", border: "1px solid rgba(127,127,127,.35)", boxShadow: "0 4px 16px rgba(0,0,0,.25)", fontSize: 13, fontWeight: 700 }}><span style={{ fontWeight: 900, letterSpacing: 1, color: "var(--accb, #7c5cff)" }}>NOTIIF</span>{who}<span className="tdots">…</span></div>;
 }
 export default function App() {
   useLang();

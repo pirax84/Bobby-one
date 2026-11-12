@@ -8,6 +8,7 @@ import { stopPlayer } from "./Links";
 import { AudioWave } from "./AudioWave";
 
 import { t } from "../i18n";
+import { recordLoop } from "../lib/sync";
 
 /** Enregistre un selfie vidéo ou un vocal (durée limitée). Rend le résultat en « data URL ». */
 export function Recorder({ kind, max = 10, onDone, onCancel, onPhoto }: { kind: "video" | "audio"; max?: number; onDone: (url: string) => void; onCancel: () => void; onPhoto?: (url: string) => void }) {
@@ -18,7 +19,7 @@ export function Recorder({ kind, max = 10, onDone, onCancel, onPhoto }: { kind: 
     catch { toast(kind === "video" ? t("Caméra ou micro indisponible ou refusé.") : t("Micro indisponible ou refusé.")); onCancel(); } })(); return () => { dead = true; stop(); }; }, []);
   const start = () => { const st = stream.current; if (!st) return; const r = new MediaRecorder(st, kind === "video" ? { videoBitsPerSecond: 250000, audioBitsPerSecond: 32000 } : undefined); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data); let n = max; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
     r.onstop = () => { clearInterval(iv); stop(); setLeft(null); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: ((r.mimeType || "audio/webm").split(";")[0]) })); };
-    soundStart(); r.start(); rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), max * 1000); };
+    soundStart(); r.start(); { const sp = recordLoop(kind === "video" ? "video" : "audio"); r.addEventListener("stop", sp); } rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), max * 1000); };
   return <div className="card col" style={{ alignItems: "center", gap: 8 }}>
     {kind === "video" ? <video ref={vid} muted playsInline style={{ width: "100%", maxHeight: 260, borderRadius: 14, background: "#000", transform: "scaleX(-1)", objectFit: "cover" }} /> : <div style={{ fontSize: "3rem" }}>{left !== null ? "🔴" : "🎤"}</div>}
     <div className="row" style={{ gap: 8 }}>
@@ -35,7 +36,7 @@ export function HoldMic({ onDone, className = "btn", max = 60, children }: { onD
     stopPlayer(); setPrev(null); review.current = false; lockedR.current = false; setLocked(false); held.current = true; cancel.current = false; setCancelUi(false); setOn(true); setSec(0); t0.current = Date.now(); stopTick(); iv.current = window.setInterval(() => setSec(Math.floor((Date.now() - t0.current) / 1000)), 250);
     try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((tx) => tx.stop()); stopTick(); setOn(false); return; } st.current = s; const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => ch.push(e.data);
       rec.onstop = () => { lockedR.current = false; setLocked(false); stopTick(); s.getTracks().forEach((tx) => tx.stop()); setOn(false); if (cancel.current) return toast(t("Vocal annulé.")); if (Date.now() - t0.current < 600) return toast(pc ? t("Trop court : parlez un peu plus longtemps.") : t("Maintenez le bouton enfoncé pour parler.")); const fr = new FileReader(); fr.onload = () => { if (review.current) { setPrev(String(fr.result)); return; } soundEnd(); onDone(String(fr.result)); }; fr.readAsDataURL(new Blob(ch, { type: ((rec.mimeType || "audio/webm").split(";")[0]) })); };
-      soundStart(); rec.start(); r.current = rec; setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000); } catch { held.current = false; stopTick(); setOn(false); setDenied(true); }
+      soundStart(); rec.start(); { const sp = recordLoop("audio"); rec.addEventListener("stop", sp); } r.current = rec; setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000); } catch { held.current = false; stopTick(); setOn(false); setDenied(true); }
   };
   const end = () => { if (!held.current) return; held.current = false; if (r.current?.state === "recording") r.current.stop(); else if (!st.current) { stopTick(); setOn(false); } r.current = null; st.current = null; };
   useEffect(() => { if (!pc || !(on && locked) || prev) return; const k = (e: KeyboardEvent) => { if (e.key === "Enter") { e.preventDefault(); end(); } else if (e.key === "Escape") { cancel.current = true; end(); } }; window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [on, locked, prev]);
@@ -74,12 +75,12 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
     if (rec.current?.state === "recording") { rec.current.stop(); return; }
     const st = stream.current; const c = cv.current; if (!st || !c) return; const cs = c.captureStream(30); st.getAudioTracks().forEach((tx) => cs.addTrack(tx)); const r = new MediaRecorder(cs, { videoBitsPerSecond: 600000, audioBitsPerSecond: 40000 }); const ch: Blob[] = []; r.ondataavailable = (e) => e.data.size && ch.push(e.data); let n = max; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
     r.onstop = () => { clearInterval(iv); setLeft(null); stop(); if (cancelled.current) return; const fr = new FileReader(); fr.onload = () => setRes({ video: String(fr.result) }); fr.readAsDataURL(new Blob(ch, { type: (r.mimeType || "video/webm").split(";")[0] })); };
-    soundStart(); r.start(250); rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), max * 1000);
+    soundStart(); r.start(250); { const sp = recordLoop("video"); r.addEventListener("stop", sp); } rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), max * 1000);
   };
   const VMAX = 60;
   const vStart = () => { const st = stream.current; if (!st || !ready) return; const at = st.getAudioTracks(); if (!at.length) return toast(t("Micro indisponible ou refusé.")); vheld.current = true; vt0.current = Date.now(); setVsec(0); const r = new MediaRecorder(new MediaStream(at)); const ch: Blob[] = []; r.ondataavailable = (e) => e.data.size && ch.push(e.data);
     r.onstop = () => { if (viv.current) { clearInterval(viv.current); viv.current = undefined; } setLeft(null); if (cancelled.current) return; if (Date.now() - vt0.current < 600) return toast(t("Maintenez le bouton enfoncé pour parler.")); stop(); const fr = new FileReader(); fr.onload = () => setRes({ audio: String(fr.result) }); fr.readAsDataURL(new Blob(ch, { type: (r.mimeType || "audio/webm").split(";")[0] })); };
-    soundStart(); r.start(250); vrec.current = r; setLeft(0); viv.current = window.setInterval(() => setVsec(Math.floor((Date.now() - vt0.current) / 1000)), 250); setTimeout(() => r.state === "recording" && r.stop(), VMAX * 1000); };
+    soundStart(); r.start(250); { const sp = recordLoop("audio"); r.addEventListener("stop", sp); } vrec.current = r; setLeft(0); viv.current = window.setInterval(() => setVsec(Math.floor((Date.now() - vt0.current) / 1000)), 250); setTimeout(() => r.state === "recording" && r.stop(), VMAX * 1000); };
   const vEnd = () => { if (!vheld.current) return; vheld.current = false; if (vrec.current?.state === "recording") vrec.current.stop(); vrec.current = null; };
   const close = () => { cancelled.current = true; if (rec.current?.state === "recording") rec.current.stop(); stop(); onClose(); };
   const recording = left !== null; const vm = (n: number) => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
@@ -135,7 +136,7 @@ export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; 
     try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((tx) => tx.stop()); setOn(false); return; }
       const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => e.data.size && ch.push(e.data);
       rec.onstop = () => { clear(); s.getTracks().forEach((tx) => tx.stop()); setOn(false); if (Date.now() - t0.current < 600) return toast(t("Maintenez le micro enfoncé pour parler.")); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: (rec.mimeType || "audio/webm").split(";")[0] })); };
-      rec.start(250); r.current = rec; iv.current = window.setInterval(() => setSec(Math.floor((Date.now() - t0.current) / 1000)), 250); setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000);
+      rec.start(250); { const sp = recordLoop("audio"); rec.addEventListener("stop", sp); } r.current = rec; iv.current = window.setInterval(() => setSec(Math.floor((Date.now() - t0.current) / 1000)), 250); setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000);
     } catch { held.current = false; setOn(false); toast(t("Micro indisponible ou refusé.")); }
   };
   const end = () => { if (!held.current) return; held.current = false; if (r.current?.state === "recording") r.current.stop(); else setOn(false); r.current = null; };

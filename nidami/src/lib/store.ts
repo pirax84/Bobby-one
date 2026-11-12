@@ -8,7 +8,7 @@ export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
 export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none"; birthday?: string; byear?: number; handleChanged?: boolean; reqAt?: number[] }
 export interface Msg { id: ID; from: ID; video?: string | null; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx | "custom"; cfx?: { name: string; img?: string; audio?: string }; hid?: ID[]; rx?: Record<ID, string> }
-export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
+export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number>; tk?: Record<ID, string> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string; by?: ID; v?: string; ref?: ID; pv?: string }
 export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: number; place: string; inviteIds: ID[]; rsvp: Record<ID, "yes" | "no" | "maybe"> }
 export interface Game { id: ID; kind: "morpion"; xId: ID; oId: ID; board: string[]; turn: "X" | "O"; winner: "X" | "O" | "draw" | null; at: number }
@@ -51,9 +51,9 @@ export const isRestricted = (s: State, id: ID) => new Set(s.reports.filter((r) =
 const MAX_REQ_DAY = 15;
 function setCats(s: State, friend: ID, ids: string[]) { const o = { ...(s.social.catOf || {}) }; o[s.me] = { ...(o[s.me] || {}) }; if (ids.length) o[s.me][friend] = [...new Set(ids)]; else delete o[s.me][friend]; s.social.catOf = o; }
 export const actions = {
-  sbTyping(fids: string[]) {
+  sbTyping(fids: string[], kinds?: Record<string, string>) {
     if (!state.started || !fids.length) return;
-    mut((s) => { for (const f of fids) { const c = s.convs.find((x) => x.id === "sbc_" + f); if (c) { c.typing = { ...(c.typing || {}), ["sb_" + f]: now() }; } } });
+    mut((s) => { for (const f of fids) { const c = s.convs.find((x) => x.id === "sbc_" + f); if (c) { c.typing = { ...(c.typing || {}), ["sb_" + f]: now() }; c.tk = { ...(c.tk || {}), ["sb_" + f]: kinds?.[f] || "text" }; } } });
   },
   sbMerge(d: { prime?: boolean; uid: string; fr: { id: string; name: string }[]; msgs: { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string; media_kind?: string | null; media?: string | null }[] }) {
     if (!state.started || !state.me) return;
