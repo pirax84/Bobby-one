@@ -67,7 +67,7 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
     x.drawImage(v, (W - w) / 2, (H - h) / 2, w, h); x.restore(); } raf = requestAnimationFrame(draw); }; raf = requestAnimationFrame(draw); return () => cancelAnimationFrame(raf); }, [ready, res]);
   const stop = () => stream.current?.getTracks().forEach((tx) => tx.stop());
   useEffect(() => { let dead = false; setReady(false); stop(); if (res) return; (async () => {
-    try { const st = await navigator.mediaDevices.getUserMedia({ video: { facingMode: face, width: { ideal: 960 }, height: { ideal: 1280 } }, audio: true }); if (dead) { st.getTracks().forEach((tx) => tx.stop()); return; } stream.current = st; if (vid.current) { vid.current.srcObject = st; void vid.current.play().catch(() => {}); } setReady(true); }
+    try { const st = await navigator.mediaDevices.getUserMedia({ video: { facingMode: face, width: { ideal: 960 }, height: { ideal: 1280 }, aspectRatio: { ideal: 0.75 } }, audio: true }); if (dead) { st.getTracks().forEach((tx) => tx.stop()); return; } stream.current = st; if (vid.current) { vid.current.srcObject = st; void vid.current.play().catch(() => {}); } setReady(true); }
     catch { toast(t("Caméra ou micro indisponible ou refusé.")); onClose(); } })(); return () => { dead = true; stop(); }; }, [face, res]);
   const shoot = () => { const c = cv.current; if (!c || !c.width) return; const o = document.createElement("canvas"); o.width = c.width; o.height = c.height; const x = o.getContext("2d")!; if (face === "user") { x.translate(o.width, 0); x.scale(-1, 1); } x.drawImage(c, 0, 0); stop(); setRes({ photo: trimBars(o).toDataURL("image/jpeg", 0.85) }); };
   const toggleRec = () => {

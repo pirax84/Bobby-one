@@ -77,7 +77,7 @@ export async function typingNow(): Promise<string[]> {
   const out: string[] = []; const t0 = Date.now();
   for (const x of r.data as { user_id: string; at: string }[]) {
     const old = tSeen.get(x.user_id);
-    if (!old || old.at !== x.at) { tSeen.set(x.user_id, { at: x.at, local: t0 }); if (!(tFirst && !old && t0 - Date.parse(x.at) > 6000)) out.push(x.user_id); }
+    if (!old || old.at !== x.at) { tSeen.set(x.user_id, { at: x.at, local: t0 }); if (!(tFirst && !old && t0 - Date.parse(x.at) > 3000)) out.push(x.user_id); }
     else if (t0 - old.local < 4500) out.push(x.user_id);
   }
   tFirst = false; return out;
