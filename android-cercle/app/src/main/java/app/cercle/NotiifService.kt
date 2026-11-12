@@ -25,9 +25,10 @@ class NotiifService : Service() {
     companion object {
         const val CH_SVC = "notiif_service"
         const val CH_MSG = "notiif_msg_pop"
-        const val CH_TXT = "notiif_txt2"
-        const val CH_VOC = "notiif_voc2"
-        const val CH_MED = "notiif_med2"
+        const val CH_TXT = "notiif_txt3"
+        const val CH_VOC = "notiif_voc3"
+        const val CH_MED = "notiif_med3"
+        const val CH_TYP = "notiif_typ3"
         @Volatile var visible = false
         fun start(ctx: Context) {
             val i = Intent(ctx, NotiifService::class.java)
@@ -44,7 +45,7 @@ class NotiifService : Service() {
                 ch.setSound(android.net.Uri.parse("android.resource://" + packageName + "/" + R.raw.notiif_pop), android.media.AudioAttributes.Builder().setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION).setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
                 nm.createNotificationChannel(ch)
             }
-            for ((id, nom, res) in listOf(Triple(CH_TXT, "Messages écrits", R.raw.notiif_text), Triple(CH_VOC, "Vocaux", R.raw.notiif_voice), Triple(CH_MED, "Photos et vidéos", R.raw.notiif_media))) {
+            for ((id, nom, res) in listOf(Triple(CH_TXT, "Messages écrits", R.raw.notiif_fin_text), Triple(CH_VOC, "Vocaux", R.raw.notiif_fin_voice), Triple(CH_MED, "Photos et vidéos", R.raw.notiif_fin_media), Triple(CH_TYP, "En train d'écrire", R.raw.notiif_debut))) {
                 if (nm.getNotificationChannel(id) == null) {
                     val c2 = NotificationChannel(id, nom, NotificationManager.IMPORTANCE_HIGH)
                     c2.enableVibration(true); c2.vibrationPattern = longArrayOf(0, 200, 100, 200)
@@ -73,9 +74,12 @@ class NotiifService : Service() {
         if (!running) {
             running = true
             worker = Thread {
+                var k = 0
                 while (running) {
-                    try { poll() } catch (e: Exception) { }
-                    try { Thread.sleep(6000) } catch (e: InterruptedException) { break }
+                    try { typing() } catch (e: Exception) { }
+                    if (k % 3 == 0) { try { poll() } catch (e: Exception) { } }
+                    k++
+                    try { Thread.sleep(2000) } catch (e: InterruptedException) { break }
                 }
             }.also { it.isDaemon = true; it.start() }
         }
@@ -111,6 +115,34 @@ class NotiifService : Service() {
         names[id] = n; return n
     }
 
+    private val tSeen = HashMap<String, String>()
+    private val tSound = HashMap<String, Long>()
+
+    /** « Quelqu'un t'écrit » : le début du son NOTIIF, même app fermée. */
+    private fun typing() {
+        if (visible) return
+        val p = prefs(); val base = p.getString("url", null) ?: return; val key = p.getString("key", null) ?: return
+        val uid = p.getString("uid", null) ?: return; var tk = p.getString("access", null) ?: return
+        val q = "$base/rest/v1/typing?to_id=eq.$uid&select=user_id,at"
+        var r = http("GET", q, key, tk)
+        if (r.first == 401 || r.first == 403) { if (refresh(base, key)) { tk = p.getString("access", tk)!!; r = http("GET", q, key, tk) } }
+        if (r.first !in 200..299) return
+        val arr = JSONArray(r.second); val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        for (i in 0 until arr.length()) {
+            val o = arr.getJSONObject(i); val u = o.getString("user_id"); val at = o.getString("at")
+            val old = tSeen[u]; tSeen[u] = at
+            if (old == null || old == at) continue
+            if ((p.getString("mute", "") ?: "").split(",").contains(u)) continue
+            val now = System.currentTimeMillis(); if (now - (tSound[u] ?: 0L) < 9000) continue; tSound[u] = now
+            val who = nameOf(base, key, tk, u)
+            val pi = PendingIntent.getActivity(this, ("t" + u).hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + u), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, CH_TYP) else Notification.Builder(this)
+            b.setContentTitle(who).setContentText("est en train d'écrire…").setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
+            if (Build.VERSION.SDK_INT >= 26) b.setTimeoutAfter(5000)
+            nm.notify(("t" + u).hashCode(), b.build())
+        }
+    }
+
     private fun poll() {
         val p = prefs(); val base = p.getString("url", null) ?: return; val key = p.getString("key", null) ?: return
         val uid = p.getString("uid", null) ?: return; var tk = p.getString("access", null) ?: return
@@ -126,6 +158,7 @@ class NotiifService : Service() {
             val m = arr.getJSONObject(i); last = m.getString("created_at")
             if (visible) continue
             if ((p.getString("mute", "") ?: "").split(",").contains(m.getString("sender"))) continue
+            nm.cancel(("t" + m.getString("sender")).hashCode())
             val who = nameOf(base, key, tk, m.getString("sender"))
             val fx = if (m.isNull("fx")) "" else m.getString("fx")
             val mk = if (m.has("media_kind") && !m.isNull("media_kind")) m.getString("media_kind") else ""

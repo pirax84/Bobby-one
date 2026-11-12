@@ -356,7 +356,8 @@ function fxOn(): boolean { try { const x = JSON.parse(localStorage.getItem("nida
 const cfgNow = (): any => { try { const x = JSON.parse(localStorage.getItem("nidami-v1") || "null"); return x?.settings?.[x?.me] || {}; } catch { return {}; } };
 /** Petits sons de l'application (likes, commentaires) : réglables, coupés par « Application discrète ». */
 export function uiSound(k: "like" | "comm") { const c = cfgNow(); if (c.discret) return; if (k === "like" ? c.sndlike === false : c.sndcomm === false) return; try { const a = new Audio(k === "like" ? "./sounds/reserve/S3-rebond.mp3" : "./sounds/reserve/S2-vibrato.mp3"); a.volume = 0.5; a.play().catch(() => {}); } catch { /* ignoré */ } if (c.vibtap) buzz([18]); }
-export function soundTyping() { if (cfgNow().sndsend === true && fxOn() && !cfgNow().discret && !cfgNow().quiet) popNotes(6, 0.3); }
+const playFile = (f: string, v = 0.7) => { try { const a = new Audio("./sounds/notiif/" + f); a.volume = v; void a.play().catch(() => {}); } catch { /* rien */ } };
+export function soundTyping() { if (cfgNow().sndsend === true && fxOn() && !cfgNow().discret && !cfgNow().quiet) playFile("debut.mp3"); }
 export function soundStart() { if (fxOn() && !cfgNow().discret && cfgNow().sndsend === true) popNotes(6, 0.3); }
 /** Fin de la notification : le message est parti. */
 export function soundEnd() { if (fxOn() && !cfgNow().discret && cfgNow().sndsend === true) popNotes(3, 0.3); }
@@ -381,8 +382,7 @@ export function playCallRing() { if (!fxOn() || cfgNow().discret) return; stopSo
 /** Son d'un message reçu, différent selon le contenu : écrit (2 pops), vocal (4 notes graves), photo/vidéo (montée de 5 notes). */
 export function playMsgSound(kind: "text" | "audio" | "media") {
   if (cfgNow().discret || cfgNow().quiet || !fxOn()) return;
-  const seq: [number, number, number][] = kind === "audio" ? [[0, 0, .8], [140, 1, .8], [280, 2, .8], [420, 0, .8]] : kind === "media" ? [[0, 0, 1.1], [60, 1, 1.1], [120, 2, 1.1], [180, 3, 1.1], [300, 4, 1.1]] : [[0, 0, 1], [160, 2, 1]];
-  for (const [ms, i, sh] of seq) setTimeout(() => popNotes(1, 0.3, sh * Math.pow(1.122, i * 2)), ms);
+  playFile(kind === "audio" ? "fin-vocal.mp3" : kind === "media" ? "fin-media.mp3" : "fin-texte.mp3");
 }
 export function playNotifSound() {
   const cs = soundFor("notif");
