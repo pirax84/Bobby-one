@@ -1553,3 +1553,5 @@
 1552|Zaboravio sam
 1553|Ukloni zaključavanje
 1554|U demo načinu zaključavanje se može ukloniti samo brisanjem podataka aplikacije.
+1555|📞 Nazvat ću te kasnije
+1556|Nazvat ću te kasnije

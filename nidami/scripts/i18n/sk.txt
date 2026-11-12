@@ -1553,3 +1553,5 @@
 1552|Zabudol som
 1553|Odstrániť zámok
 1554|V ukážkovom režime sa zámok dá odstrániť len vymazaním údajov aplikácie.
+1555|📞 Zavolám ti neskôr
+1556|Zavolám ti neskôr

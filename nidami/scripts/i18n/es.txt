@@ -1553,3 +1553,5 @@
 1552|Lo olvidé
 1553|Quitar el bloqueo
 1554|En modo demostración, el bloqueo solo se quita borrando los datos de la app.
+1555|📞 Te llamo más tarde
+1556|Te llamo más tarde

@@ -1553,3 +1553,5 @@
 1552|Pozabil sem
 1553|Odstrani zaklep
 1554|V predstavitvenem načinu lahko zaklep odstraniš samo z brisanjem podatkov aplikacije.
+1555|📞 Pokličem te kasneje
+1556|Pokličem te kasneje

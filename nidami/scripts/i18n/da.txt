@@ -1553,3 +1553,5 @@
 1552|Jeg har glemt den
 1553|Fjern låsen
 1554|I demotilstand kan låsen kun fjernes ved at slette appens data.
+1555|📞 Jeg ringer til dig senere
+1556|Jeg ringer til dig senere

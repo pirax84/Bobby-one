@@ -1553,3 +1553,5 @@
 1552|Esqueci-me
 1553|Remover o bloqueio
 1554|No modo de demonstração, o bloqueio só se remove apagando os dados da app.
+1555|📞 Ligo-te mais tarde
+1556|Ligo-te mais tarde

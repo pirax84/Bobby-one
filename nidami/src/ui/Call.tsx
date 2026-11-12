@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useStore, userOf } from "../lib/store";
 import { Avatar } from "./common";
+import { actions } from "../lib/store";
+import { t } from "../i18n";
 import { callState, onCall, accept, decline, end, toggleMute } from "../lib/call";
 
 /** Écran d'appel : sonnerie, appel en cours, raccrocher. */
@@ -13,7 +15,7 @@ export function CallLayer() {
   const label = c.phase === "ringing-in" ? "t'appelle…" : c.phase === "ringing-out" ? "Appel en cours…" : c.phase === "connecting" ? "Connexion…" : mm;
   return <div className="calllayer" role="dialog" aria-label="Appel"><div className="callbox">
     <Avatar u={u} s={96} /><b style={{ fontSize: "1.4rem" }}>{u?.name || "Un ami"}</b><span className="muted">{label}</span>
-    {c.phase === "ringing-in" ? <div className="row" style={{ gap: 28, marginTop: 20 }}><button type="button" className="callbtn bad" onClick={decline} aria-label="Refuser">✕</button><button type="button" className="callbtn ok" onClick={() => void accept()} aria-label="Répondre">📞</button></div>
+    {c.phase === "ringing-in" ? <><div className="row" style={{ gap: 28, marginTop: 20 }}><button type="button" className="callbtn bad" onClick={decline} aria-label="Refuser">✕</button><button type="button" className="callbtn ok" onClick={() => void accept()} aria-label="Répondre">📞</button></div><button type="button" className="btn ghost" style={{ marginTop: 14 }} onClick={() => { const id = "sbc_" + c.peer; decline(); try { actions.send(id, t("📞 Je te rappelle plus tard")); } catch { /* ignoré */ } }}>{t("Je te rappelle plus tard")}</button></>
       : <div className="row" style={{ gap: 28, marginTop: 20 }}>{c.phase === "live" && <button type="button" className={"callbtn" + (c.muted ? " on" : "")} onClick={toggleMute} aria-label="Couper le micro">{c.muted ? "🔇" : "🎙"}</button>}<button type="button" className="callbtn bad" onClick={() => end(true)} aria-label="Raccrocher">✕</button></div>}
   </div></div>;
 }

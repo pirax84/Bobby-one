@@ -1553,3 +1553,5 @@
 1552|Insejt
 1553|Neħħi l-lukkett
 1554|Fil-modalità demo, il-lukkett jista' jitneħħa biss billi tħassar id-data tal-applikazzjoni.
+1555|📞 Se nċempillek aktar tard
+1556|Se nċempillek aktar tard

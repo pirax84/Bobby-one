@@ -9,7 +9,7 @@ export function WmImage({ src, label, alt, className = "photo", style, plain = f
   useEffect(() => {
     const im = new Image(); let dead = false;
     im.onload = () => { if (dead || !ref.current) return; const c = ref.current; const W = Math.min(1000, im.naturalWidth), H = Math.round(W * im.naturalHeight / im.naturalWidth); c.width = W; c.height = H; setRatio(W / H);
-      const g = c.getContext("2d")!; g.drawImage(im, 0, 0, W, H); if (plain) return; const t = `${label} · NOTIIF · ${new Date().toLocaleDateString(locale())}`; const fs = Math.max(12, Math.round(W / 46));
+      const g = c.getContext("2d")!; g.drawImage(im, 0, 0, W, H); if (plain) return; const t = `NOTIIF · ${label} · NOTIIF · ${label} · ${new Date().toLocaleDateString(locale())}`; const fs = Math.max(12, Math.round(W / 46));
       g.save(); g.rotate(-Math.PI / 7); g.font = `700 ${fs}px system-ui,sans-serif`; g.textBaseline = "middle";
       const step = fs * 4.2, tw = g.measureText(t).width + fs * 3;
       for (let y = -W; y < H + W; y += step) for (let x = -W, k = 0; x < W * 2; x += tw, k++) { const xx = x + ((y / step) % 2 ? tw / 2 : 0); g.fillStyle = "rgba(0,0,0,.28)"; g.fillText(t, xx + 1.5, y + 1.5); g.fillStyle = "rgba(255,255,255,.34)"; g.fillText(t, xx, y); }
@@ -35,7 +35,7 @@ export function useCaptureGuard(onSuspect: () => void, active: boolean) {
 
 /** Vidéo avec filigrane par-dessus (nom du spectateur + date). Pas de bouton de téléchargement ; ce n'est pas une protection absolue. */
 export function VideoWm({ src, label, poster = false, bare = false, plain = false, onEnded, onTime }: { src: string; label: string; poster?: boolean; bare?: boolean; plain?: boolean; onEnded?: () => void; onTime?: (cur: number, dur: number) => void }) {
-  const wm = `${label} · NOTIIF · ${new Date().toLocaleDateString(locale())}`;
+  const wm = `NOTIIF · ${label} · NOTIIF · ${label} · ${new Date().toLocaleDateString(locale())}`;
   const vid = useRef<HTMLVideoElement>(null); const [started, setStarted] = useState(false); const [playing, setPlaying] = useState(false); const [cur, setCur] = useState(0); const [dur, setDur] = useState(0); const [barOn, setBarOn] = useState(true); const hide = useRef<number | undefined>(undefined);
   const flash = () => { setBarOn(true); clearTimeout(hide.current); hide.current = window.setTimeout(() => setBarOn(false), 2200); }; useEffect(() => () => clearTimeout(hide.current), []);
   const custom = !poster && !bare; const mmss = (n: number) => { const m = Math.floor(n / 60), x = Math.floor(n % 60); return `${m}:${x < 10 ? "0" : ""}${x}`; };

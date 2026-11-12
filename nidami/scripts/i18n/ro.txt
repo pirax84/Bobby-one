@@ -1553,3 +1553,5 @@
 1552|Am uitat
 1553|Elimină blocarea
 1554|În modul demo, blocarea se poate elimina doar ștergând datele aplicației.
+1555|📞 Te sun mai târziu
+1556|Te sun mai târziu

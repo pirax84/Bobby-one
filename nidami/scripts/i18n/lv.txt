@@ -1553,3 +1553,5 @@
 1552|Es aizmirsu
 1553|Noņemt bloķēšanu
 1554|Demonstrācijas režīmā bloķēšanu var noņemt tikai, izdzēšot lietotnes datus.
+1555|📞 Piezvanīšu vēlāk
+1556|Piezvanīšu vēlāk

@@ -83,8 +83,8 @@ function SignUp() {
   const legalBtn = <button type="button" style={{ background: "none", border: 0, padding: 0, color: "var(--brand2)", textDecoration: "underline" }} onClick={() => setLegal(true)}>{t("conditions d'utilisation et la politique de confidentialité")}</button>;
   const next = () => { if (!okStep(step)) { setInfo(why(step)); return; } setInfo(""); if (step < 4) setStep(step + 1); else void finish(); };
   const finish = async () => { setBusy(true);
-    if (!on) { actions.start(name.trim(), "", pseudo); await saveAll(); setBusy(false); return; }
-    const r = await emailSignUp(email.trim(), pw, name.trim(), extra()); setBusy(false); setInfo(r.msg); if (r.who) { actions.start(r.who.name, "", pseudo); await saveAll(); } };
+    if (!on) { actions.start((name.trim() + " " + last.trim()).slice(0, 30), "", pseudo); await saveAll(); setBusy(false); return; }
+    const r = await emailSignUp(email.trim(), pw, (name.trim() + " " + last.trim()).slice(0, 30), extra()); setBusy(false); setInfo(r.msg); if (r.who) { actions.start(r.who.name, "", pseudo); await saveAll(); } };
   const login = async (e: React.FormEvent) => { e.preventDefault(); setBusy(true); const r = await emailLogin(email.trim(), pw); setBusy(false); setInfo(r.msg); if (r.who) actions.start(r.who.name, "", ""); };
   const pickPhoto = async (f?: File) => { if (!f) return; try { setPhoto(await fileToDataUrl(f, 240, 0.8)); } catch { toast(t("Image illisible.")); } };
   const titles = ["", t("Ton compte"), t("Ton nom"), t("Où tu habites"), t("Presque fini")];

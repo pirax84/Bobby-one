@@ -1553,3 +1553,5 @@
 1552|Unustasin
 1553|Eemalda lukk
 1554|Demorežiimis saab luku eemaldada ainult rakenduse andmeid kustutades.
+1555|📞 Helistan sulle hiljem tagasi
+1556|Helistan sulle hiljem tagasi

@@ -1553,3 +1553,5 @@
 1552|Pamiršau
 1553|Pašalinti užraktą
 1554|Demonstraciniu režimu užraktą galima pašalinti tik ištrynus programos duomenis.
+1555|📞 Perskambinsiu vėliau
+1556|Perskambinsiu vėliau

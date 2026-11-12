@@ -1553,3 +1553,5 @@
 1552|Ho dimenticato
 1553|Rimuovi il blocco
 1554|In modalità demo, il blocco si può togliere solo cancellando i dati dell'app.
+1555|📞 Ti richiamo più tardi
+1556|Ti richiamo più tardi

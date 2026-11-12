@@ -1553,3 +1553,5 @@
 1552|Ik ben het vergeten
 1553|Vergrendeling verwijderen
 1554|In demomodus kan de vergrendeling alleen worden verwijderd door de app-gegevens te wissen.
+1555|📞 Ik bel je later terug
+1556|Ik bel je later terug

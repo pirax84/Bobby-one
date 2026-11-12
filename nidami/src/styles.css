@@ -1076,3 +1076,21 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
 .fxstopf button{pointer-events:auto;width:64px;height:64px;border-radius:50%;border:0;background:rgb(var(--brand-rgb));box-shadow:0 4px 20px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;cursor:pointer}
 .fxstopf button i{width:22px;height:22px;border-radius:4px;background:#15122b;display:block}
 .fxstopf span{pointer-events:none;font-size:.72rem;background:rgba(21,18,43,.88);color:#fff;padding:3px 10px;border-radius:999px}
+
+/* === v255 : barre du bas plate et sobre (comme les images validées) === */
+@media (max-width:760px){
+  html .bottom{left:0!important;right:0!important;width:auto!important;bottom:0!important;height:calc(64px + env(safe-area-inset-bottom))!important;padding-bottom:env(safe-area-inset-bottom);border-radius:0!important;border:0!important;border-top:1px solid var(--bd)!important;box-shadow:none!important;background:var(--bg)!important;justify-content:space-around}
+  html:not(.moving) .bottom{transform:none!important}
+  html .bottom button:not(.plus){border-radius:0!important;background:none!important;flex-direction:column!important;gap:2px!important;font-size:.68rem;padding:6px 4px}
+  html .bottom button:not(.plus) i{display:inline!important}
+  html .bottom button:not(.plus) svg{background:none!important;color:var(--mute)!important;padding:0!important;border-radius:0!important;box-shadow:none!important;width:24px!important;height:24px!important;stroke-width:2!important}
+  html .bottom button.on:not(.plus){color:var(--brand)!important;font-weight:700}
+  html .bottom button.on:not(.plus) svg{color:var(--brand)!important}
+  html[data-theme] .bottom button[data-k] svg{background:none!important;color:var(--mute)!important}
+  html[data-theme] .bottom button.on[data-k] svg{color:var(--brand)!important}
+  html .bottom .plus{margin-top:-24px!important}
+  .brandbar{justify-content:flex-start;padding:6px 0 4px}
+  .brandbar img{height:34px}
+  html .ishome>.brandbar .wm{display:inline-block!important;width:auto!important}
+  html .brandbar .wm .wmb{height:36px!important;width:auto!important}
+}

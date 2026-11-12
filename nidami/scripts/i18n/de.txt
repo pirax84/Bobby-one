@@ -1553,3 +1553,5 @@
 1552|Ich habe es vergessen
 1553|Sperre entfernen
 1554|Im Demomodus lässt sich die Sperre nur entfernen, indem die App-Daten gelöscht werden.
+1555|📞 Ich rufe dich später zurück
+1556|Ich rufe dich später zurück

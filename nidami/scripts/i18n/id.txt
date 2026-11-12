@@ -1553,3 +1553,5 @@
 1552|Saya lupa
 1553|Hapus kunci
 1554|Dalam mode demo, kunci hanya bisa dihapus dengan menghapus data aplikasi.
+1555|📞 Aku telepon lagi nanti
+1556|Aku telepon lagi nanti

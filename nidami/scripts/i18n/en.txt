@@ -1553,3 +1553,5 @@
 1552|I forgot
 1553|Remove the lock
 1554|In demo mode, the lock can only be removed by erasing the app data.
+1555|📞 I'll call you back later
+1556|I'll call you back later

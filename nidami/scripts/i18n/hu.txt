@@ -1553,3 +1553,5 @@
 1552|Elfelejtettem
 1553|Zár eltávolítása
 1554|Bemutató módban a zár csak az alkalmazás adatainak törlésével távolítható el.
+1555|📞 Később visszahívlak
+1556|Később visszahívlak

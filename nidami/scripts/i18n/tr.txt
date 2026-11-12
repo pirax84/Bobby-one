@@ -1553,3 +1553,5 @@
 1552|Unuttum
 1553|Kilidi kaldır
 1554|Demo modunda kilit yalnızca uygulama verilerini silerek kaldırılabilir.
+1555|📞 Seni sonra ararım
+1556|Seni sonra ararım

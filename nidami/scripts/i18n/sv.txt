@@ -1553,3 +1553,5 @@
 1552|Jag har glömt
 1553|Ta bort låset
 1554|I demoläge kan låset bara tas bort genom att radera appens data.
+1555|📞 Jag ringer upp dig senare
+1556|Jag ringer upp dig senare

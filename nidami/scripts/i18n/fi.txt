@@ -1553,3 +1553,5 @@
 1552|Unohdin
 1553|Poista lukitus
 1554|Demotilassa lukituksen voi poistaa vain tyhjentämällä sovelluksen tiedot.
+1555|📞 Soitan sinulle myöhemmin
+1556|Soitan sinulle myöhemmin

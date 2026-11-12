@@ -1553,3 +1553,5 @@
 1552|Zapomněl jsem
 1553|Odebrat zámek
 1554|V ukázkovém režimu lze zámek odebrat jen smazáním dat aplikace.
+1555|📞 Zavolám ti později
+1556|Zavolám ti později

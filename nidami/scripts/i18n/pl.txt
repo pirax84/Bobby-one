@@ -1553,3 +1553,5 @@
 1552|Zapomniałem
 1553|Usuń blokadę
 1554|W trybie demo blokadę można usunąć tylko przez wyczyszczenie danych aplikacji.
+1555|📞 Oddzwonię później
+1556|Oddzwonię później

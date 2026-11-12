@@ -179,7 +179,7 @@ export const actions = {
   // Qui peut me trouver ? public : par nom ou pseudo · limité : pseudo exact ou ami d'un ami · caché : jamais (seulement QR/code).
   searchUsers(q: string): User[] { const s = state; const tx = q.trim().toLowerCase().replace(/^@/, ""); if (tx.length < 2) return [];
     const mutual = (id: ID) => (s.social.friends[s.me] || []).some((f) => (s.social.friends[f] || []).includes(id));
-    return s.users.filter((u) => u.id !== s.me && !isBlocked(s.social, s.me, u.id) && (u.discover === "public" ? (u.name.toLowerCase().includes(tx) || u.handle.includes(tx)) : u.discover === "limited" ? (u.handle === tx || (mutual(u.id) && (u.name.toLowerCase().includes(tx) || u.handle.includes(tx)))) : false)); },
+    return s.users.filter((u) => u.id !== s.me && !isBlocked(s.social, s.me, u.id) && (u.discover === "public" ? u.handle.includes(tx) : u.discover === "limited" ? (u.handle === tx || (mutual(u.id) && u.handle.includes(tx))) : false)); },
   // ── Partage avec accord ──
   requestShare(postId: ID, audienceIds: ID[], note = ""): { ok: boolean; msg: string } { let r = { ok: false, msg: t("Introuvable.") }; mut((s) => { const p = s.posts.find((x) => x.id === postId); if (!p || p.sharedFrom || p.authorId === s.me || !p.recipients.includes(s.me)) return;
     const aud = audienceIds.filter((i) => i !== p.authorId && areFriends(s.social, s.me, i) && !isBlocked(s.social, p.authorId, i)); if (!aud.length) { r = { ok: false, msg: t("Choisissez au moins un ami (qui ne soit pas bloqué par l'auteur).") }; return; }
