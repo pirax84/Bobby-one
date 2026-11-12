@@ -1050,3 +1050,5 @@ html[data-chatbg=points] .msgs{background:radial-gradient(rgba(var(--brand-rgb),
 .frlist{display:block!important;gap:0!important}
 .frlist .frow{border:0!important;border-bottom:1px solid rgba(var(--brand-rgb),.16)!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;margin:0!important;padding:11px 4px!important}
 .frlist .frow:last-child{border-bottom:0!important}
+html:not([data-style=bold]) .frlist .frow,html[data-style=bold] .frlist .frow{border:0!important;border-bottom:1px solid rgba(var(--brand-rgb),.16)!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;margin:0!important;padding:11px 4px!important}
+html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frlist .frow:last-child{border-bottom:0!important}
