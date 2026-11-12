@@ -19,6 +19,7 @@ import { CatPicker, SeesCard } from "./Cats";
 import { catsOf, friendCats } from "../lib/cats";
 import { useDev, setDevClient, APP_VERSION } from "../lib/dev";
 import { dbg } from "../lib/server";
+import { usePref, setPref } from "../lib/uipref";
 import { KidCard } from "./Kid";
 import { LangPicker } from "./LangPicker";
 import { LegalView } from "./Legal";
@@ -231,7 +232,7 @@ const navopts = (): [string, string][] => [["home", t("Accueil")], ["friends", t
 export function Settings({ go }: { go?: (v: any) => void }) {
   const pc = isPC(); const dev = useDev(); const taps = useRef({ n: 0, t: 0 });
   const verTap = () => { const now = Date.now(); const c = taps.current; c.n = now - c.t < 1500 ? c.n + 1 : 1; c.t = now; if (c.n >= 7) { c.n = 0; if (dev.unlocked && dev.client) { setDevClient(false); toast(t("Mode développeur rétabli.")); } } };
-  const s = useStore((x) => x); const cfg = cfgOf(s, s.me);
+  const s = useStore((x) => x); const cfg = cfgOf(s, s.me); const midPref = usePref("mid", "plus"); const micPref = usePref("micpos", "top");
   const [sec, setSec] = useState<string | null>(() => (history.state?.sec as string) || null); const [q, setQ] = useState(""); const [legal, setLegal] = useState(false); const pageRef = useRef<HTMLDivElement>(null);
   useEffect(() => { // dans chaque page de réglages, les cartes deviennent des catégories à ouvrir au toucher
     const root = pageRef.current; if (!root || !sec) return;
@@ -265,6 +266,9 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     {sec === "notifs" && <>
     <div className="card col" style={{ gap: 6 }}><h3>{t("🔈 Sons dans l'application")}</h3>
       <label className="row" style={{ padding: "4px 0" }}><span className="grow"><b>{t("Application discrète")}</b><span className="muted small" style={{ display: "block" }}>{(pc ? t("Aucun son quand l'application est ouverte. Les notifications de l'ordinateur ne changent pas.") : t("Aucun son quand l'application est ouverte. Les notifications du téléphone ne changent pas."))}</span></span><Switch on={!!cfg.discret} label={t("Application discrète")} onChange={(v) => actions.setSetting("discret", v)} /></label>
+      <div className="col" style={{ gap: 6, padding: "6px 0" }}><b>Bouton du milieu (en bas)</b><div className="row wrap" style={{ gap: 6 }} role="radiogroup" aria-label="Bouton du milieu">{([["plus", "N+ (créer)"], ["mic", "Micro (vocal)"]] as const).map(([k, l]) => <button key={k} type="button" role="radio" aria-checked={midPref === k} className={"chip" + (midPref === k ? " on" : "")} onClick={() => setPref("mid", k)}>{l}</button>)}</div>
+        <span className="muted small">L'autre bouton monte en petit, tout en haut avec les bulles.</span>
+        {midPref === "plus" && <><b className="small">Micro</b><div className="row wrap" style={{ gap: 6 }} role="radiogroup" aria-label="Micro">{([["top", "En haut"], ["bubble", "Bulle flottante"], ["none", "Aucun"]] as const).map(([k, l]) => <button key={k} type="button" role="radio" aria-checked={micPref === k} className={"chip" + (micPref === k ? " on" : "")} onClick={() => setPref("micpos", k)}>{l}</button>)}</div></>}</div>
       <label className="row" style={{ padding: "4px 0" }}><span className="grow"><b>Sons quand j'écris et j'envoie</b></span><Switch on={cfg.sndsend === true} label="Sons quand j'écris et j'envoie" onChange={(v) => actions.setSetting("sndsend", v)} /></label>
       <label className="row" style={{ padding: "4px 0" }}><span className="grow"><b>{t("Son des likes")}</b></span><Switch on={cfg.sndlike !== false} label={t("Son des likes")} onChange={(v) => actions.setSetting("sndlike", v)} /></label>
       <label className="row" style={{ padding: "4px 0" }}><span className="grow"><b>{t("Son des commentaires")}</b></span><Switch on={cfg.sndcomm !== false} label={t("Son des commentaires")} onChange={(v) => actions.setSetting("sndcomm", v)} /></label>

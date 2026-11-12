@@ -378,6 +378,12 @@ function ringFile(url: string, times = 3) {
   go();
 }
 export function playCallRing() { if (!fxOn() || cfgNow().discret) return; stopSounds(); const cs = soundFor("appel"); const mine = CALL_TONES.find((x) => x[0] === cfgNow().ctone); ringFile(mine ? mine[2] : cs ? cs.data : (CALL_TONES.find((x) => x[0] === sndMapOf("appel")) || CALL_TONES[0])[2]); }
+/** Son d'un message reçu, différent selon le contenu : écrit (2 pops), vocal (4 notes graves), photo/vidéo (montée de 5 notes). */
+export function playMsgSound(kind: "text" | "audio" | "media") {
+  if (cfgNow().discret || cfgNow().quiet || !fxOn()) return;
+  const seq: [number, number, number][] = kind === "audio" ? [[0, 0, .8], [140, 1, .8], [280, 2, .8], [420, 0, .8]] : kind === "media" ? [[0, 0, 1.1], [60, 1, 1.1], [120, 2, 1.1], [180, 3, 1.1], [300, 4, 1.1]] : [[0, 0, 1], [160, 2, 1]];
+  for (const [ms, i, sh] of seq) setTimeout(() => popNotes(1, 0.3, sh * Math.pow(1.122, i * 2)), ms);
+}
 export function playNotifSound() {
   const cs = soundFor("notif");
   if (cs) { stopSounds(); if (fxOn() && !cfgNow().discret) { try { const a = track(new Audio(cs.data)); a.volume = 1; void a.play().catch(() => {}); } catch { /* ignoré */ } } return; }

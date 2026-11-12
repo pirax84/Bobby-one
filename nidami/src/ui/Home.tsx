@@ -15,6 +15,8 @@ import { LinkCard, safeUrl } from "./Links";
 import { t } from "../i18n";
 import { MemoryCard, ArrivedModal } from "./Extras";
 import { usePeer, peerColor, PEER } from "../lib/peers";
+import { usePref } from "../lib/uipref";
+import { TopNplus, TopMic } from "./QuickVoice";
 
 // ───────── Barre des stories
 /** Aperçu d'une story dans la bulle : la photo ou la vidéo ; jamais pour une story éphémère (elle reste cachée). */
@@ -29,7 +31,9 @@ export function Stories({ me }: { me: string }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(5000);
   const [open, setOpen] = useState<string | null>(null); 
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
+  const mid = usePref("mid", "plus"); const micpos = usePref("micpos", "top");
   return (<><div className="stories">
+    {mid === "mic" && <TopNplus />}{mid === "plus" && micpos === "top" && <TopMic />}
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = a !== me && list.filter((p) => p.authorId === a).every((p) => p.views[me] !== undefined);
       return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"wreath" + (seen ? " seen" : "")}><Wreath {...preview(list.filter((p) => p.authorId === a), u)} /></span><div className="ell">{a === me ? t("Moi") : (u?.name || "").split(" ")[0]}</div></button>; })}
   </div>

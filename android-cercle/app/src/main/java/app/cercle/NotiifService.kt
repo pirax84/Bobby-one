@@ -25,6 +25,9 @@ class NotiifService : Service() {
     companion object {
         const val CH_SVC = "notiif_service"
         const val CH_MSG = "notiif_msg_pop"
+        const val CH_TXT = "notiif_txt2"
+        const val CH_VOC = "notiif_voc2"
+        const val CH_MED = "notiif_med2"
         @Volatile var visible = false
         fun start(ctx: Context) {
             val i = Intent(ctx, NotiifService::class.java)
@@ -40,6 +43,14 @@ class NotiifService : Service() {
                 ch.enableVibration(true); ch.vibrationPattern = longArrayOf(0, 200, 100, 200)
                 ch.setSound(android.net.Uri.parse("android.resource://" + packageName + "/" + R.raw.notiif_pop), android.media.AudioAttributes.Builder().setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION).setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
                 nm.createNotificationChannel(ch)
+            }
+            for ((id, nom, res) in listOf(Triple(CH_TXT, "Messages écrits", R.raw.notiif_text), Triple(CH_VOC, "Vocaux", R.raw.notiif_voice), Triple(CH_MED, "Photos et vidéos", R.raw.notiif_media))) {
+                if (nm.getNotificationChannel(id) == null) {
+                    val c2 = NotificationChannel(id, nom, NotificationManager.IMPORTANCE_HIGH)
+                    c2.enableVibration(true); c2.vibrationPattern = longArrayOf(0, 200, 100, 200)
+                    c2.setSound(android.net.Uri.parse("android.resource://" + packageName + "/" + res), android.media.AudioAttributes.Builder().setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION).setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+                    nm.createNotificationChannel(c2)
+                }
             }
         }
         }
@@ -105,7 +116,7 @@ class NotiifService : Service() {
         val uid = p.getString("uid", null) ?: return; var tk = p.getString("access", null) ?: return
         var last = p.getString("last", null)
         if (last == null) { val f = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US); f.timeZone = TimeZone.getTimeZone("UTC"); last = f.format(Date()); p.edit().putString("last", last).apply() }
-        val q = "$base/rest/v1/messages?recipient=eq.$uid&created_at=gt.${URLEncoder.encode(last, "UTF-8")}&order=created_at.asc&limit=20&select=id,sender,body,fx,created_at"
+        val q = "$base/rest/v1/messages?recipient=eq.$uid&created_at=gt.${URLEncoder.encode(last, "UTF-8")}&order=created_at.asc&limit=20&select=id,sender,body,fx,created_at,media_kind"
         var r = http("GET", q, key, tk)
         if (r.first == 401 || r.first == 403) { if (refresh(base, key)) { tk = p.getString("access", tk)!!; r = http("GET", q, key, tk) } }
         if (r.first !in 200..299) return
@@ -116,9 +127,11 @@ class NotiifService : Service() {
             if (visible) continue
             val who = nameOf(base, key, tk, m.getString("sender"))
             val fx = if (m.isNull("fx")) "" else m.getString("fx")
-            val body = if (fx.isNotEmpty()) "✨ t'a envoyé un effet" else m.getString("body")
+            val mk = if (m.has("media_kind") && !m.isNull("media_kind")) m.getString("media_kind") else ""
+            val body = if (fx.isNotEmpty()) "✨ t'a envoyé un effet" else if (mk == "audio") "🎤 t'a envoyé un vocal" else if (mk == "video") "🎬 t'a envoyé une vidéo" else if (mk.isNotEmpty()) "📷 t'a envoyé une photo" else m.getString("body")
+            val chId = if (mk == "audio") CH_VOC else if (mk.isNotEmpty()) CH_MED else CH_TXT
             val pi = PendingIntent.getActivity(this, m.getString("id").hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + m.getString("sender")), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-            val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, CH_MSG) else Notification.Builder(this)
+            val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, chId) else Notification.Builder(this)
             b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
             nm.notify(m.getString("id").hashCode(), b.build())
         }

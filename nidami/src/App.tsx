@@ -2,7 +2,7 @@ import { BRAND } from "./lib/brand";
 import { applyTheme, accentOf, ACCENTS } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn, getState } from "./lib/store";
-import { micText, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
+import { micText, MicIcon, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { VoiceHome } from "./ui/VoiceChat";
 import { Friends, Groups, Events, Profile, Notifs, Settings } from "./ui/Social";
@@ -14,7 +14,7 @@ import { Onboarding, needInstall } from "./ui/Auth";
 import { ChatBubble } from "./ui/Bubble";
 import { SearchTop } from "./ui/Search";
 import { MiniPlayer } from "./ui/Links";
-import { playFx, playCustom, Fx, playTone, vibrate, popNotes, soundEnd, sfx, notifSound, playCallRing, playNotifSound } from "./lib/fx";
+import { playFx, playCustom, Fx, playTone, vibrate, popNotes, soundEnd, sfx, notifSound, playCallRing, playNotifSound, playMsgSound } from "./lib/fx";
 import { sessionFromReturn } from "./lib/auth";
 import { t, locale, useLang } from "./i18n";
 import { ArrivedModal } from "./ui/Extras";
@@ -58,6 +58,8 @@ function BdayDeco({ children }: { children: React.ReactNode }) {
 import { useDev, feteFx, feteAuto, devHidden } from "./lib/dev";
 import type { Fete } from "./lib/fetes";
 import { startSync } from "./lib/sync";
+import { usePref } from "./lib/uipref";
+import { QuickVoice, VoiceFab } from "./ui/QuickVoice";
 import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
@@ -99,6 +101,8 @@ export default function App() {
   const [pendCode, setPendCode] = useState(parseHash());
   useEffect(() => { const f = () => setPendCode(parseHash() || ""); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
   useEffect(() => { const f = () => document.documentElement.classList.toggle("scrolled", window.scrollY > 90); f(); window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []);
+  const mid = usePref("mid", "plus"); const micpos = usePref("micpos", "top"); const [voice, setVoice] = useState(false);
+  useEffect(() => { const a = () => setVoice(true); const c = (e: Event) => { const d = (e as CustomEvent).detail; if (d === "selfie") setCompose("selfie"); else setAsk(true); }; window.addEventListener("notiif-voice", a); window.addEventListener("notiif-create", c); return () => { window.removeEventListener("notiif-voice", a); window.removeEventListener("notiif-create", c); }; }, []);
   const [arrived, setArrived] = useState(false); const [kidOk, setKidOk] = useState(false); useEffect(() => { let id = 0; const f = () => { document.documentElement.classList.add("scrolling"); clearTimeout(id); id = window.setTimeout(() => document.documentElement.classList.remove("scrolling"), 700); }; window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []); const [treasure, setTreasure] = useState(false); useEffect(() => { const f = () => setTreasure(true); window.addEventListener("notiif-treasure", f); return () => window.removeEventListener("notiif-treasure", f); }, []); const fresh = !history.state?.v; const [v, setV] = useState<V>(() => (history.state?.v as V) || (startCfg && startCfg !== "create" && navItems().some((n) => n[0] === startCfg) ? (startCfg as V) : "home")); const [ask, setAsk] = useState(() => fresh && startCfg === "create"); const [storyC, setStoryC] = useState(false); const [compose, setCompose] = useState<false | "short" | "long" | "selfie" | "photo" | "text" | "audio" | "saudio" | "link">(false); const [wall, setWall] = useState(false); const [more, setMore] = useState(false);
   const accAuto = useStore((x) => x.settings[x.me]?.accauto); const accDay = useStore((x) => x.settings[x.me]?.accday);
   // Couleur du jour : une nouvelle couleur au hasard chaque jour (jamais celle de la veille)
@@ -131,7 +135,7 @@ export default function App() {
   useEffect(() => { // notifications du téléphone : seulement quand l'application est ouverte ou en arrière-plan (hors-ligne = serveur nécessaire)
     if (seenN.current === undefined) { seenN.current = lastNotif?.id || ""; return; }
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
-    if (!th0?.quiet) { playNotifSound(); vibrate(th0?.vibm, 1); }
+    if (!th0?.quiet) { if (lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_")) playMsgSound(lastNotif.pv === "🎤" ? "audio" : lastNotif.pv === "📷" ? "media" : "text"); else playNotifSound(); vibrate(th0?.vibm, 1); }
     const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
     const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
@@ -173,8 +177,10 @@ export default function App() {
     </aside>
     <nav className="bottom" aria-label={t("Navigation")}>
       {bar.slice(0, half).map(tab)}
-      <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("selfie"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>
+      {mid === "mic" ? <button className="plus micmid" onClick={() => setVoice(true)} aria-label="Envoyer un vocal"><MicIcon size={34} /></button> : <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("selfie"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>}
       {bar.slice(half).map(tab)}</nav>
+    {voice && <QuickVoice onClose={() => setVoice(false)} />}
+    {mid === "plus" && micpos === "bubble" && <VoiceFab onOpen={() => setVoice(true)} />}
     {more && <Modal title={t("Plus")} onClose={() => { if (history.state?.more) history.back(); else setMore(false); }}><div className="col" style={{ gap: 18 }}>
       {([[t("Les plus utiles"), [["media", t("Photos"), "img"], ["groups", t("Groupes"), "group"], ["games", t("Jeux"), "game"], ["events", t("Événements"), "cal"], ["voice", t("Vocal"), "voice"], ["calls", t("Appels"), "phone"]]], [t("Le reste"), [["shares", t("Partages"), "send"], ["notifs", t("Notifications"), "bell"], ["profile", t("Profil"), "user"], ["settings", t("Paramètres"), "cog"], ["legal", t("Légal"), "lock"]]]] as [string, [V, string, string][]][]).map(([tx, items]) =>
         <div key={tx} className="col" style={{ gap: 8 }}><b className="muted small" style={{ textTransform: "uppercase", letterSpacing: ".08em" }}>{tx}</b>
