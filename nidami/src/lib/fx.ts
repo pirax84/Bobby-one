@@ -357,7 +357,9 @@ const cfgNow = (): any => { try { const x = JSON.parse(localStorage.getItem("nid
 /** Petits sons de l'application (likes, commentaires) : réglables, coupés par « Application discrète ». */
 export function uiSound(k: "like" | "comm") { const c = cfgNow(); if (c.discret) return; if (k === "like" ? c.sndlike === false : c.sndcomm === false) return; try { const a = new Audio(k === "like" ? "./sounds/reserve/S3-rebond.mp3" : "./sounds/reserve/S2-vibrato.mp3"); a.volume = 0.5; a.play().catch(() => {}); } catch { /* ignoré */ } if (c.vibtap) buzz([18]); }
 const playFile = (f: string, v = 0.7) => { try { const a = new Audio("./sounds/notiif/" + f); a.volume = v; void a.play().catch(() => {}); } catch { /* rien */ } };
-export function soundTyping() { if (cfgNow().sndsend === true && fxOn() && !cfgNow().discret && !cfgNow().quiet) playFile("debut.mp3"); }
+export function soundTyping() { if (fxOn() && !cfgNow().discret && !cfgNow().quiet) playFile("debut.mp3", 0.9); }
+/** Le navigateur ne laisse jouer un son qu'après un premier toucher : on « débloque » le son une fois. */
+if (typeof window !== "undefined") { const unlock = () => { try { const a = new Audio("./sounds/notiif/debut.mp3"); a.volume = 0; void a.play().then(() => a.pause()).catch(() => {}); } catch { /* rien */ } window.removeEventListener("pointerdown", unlock, true); }; window.addEventListener("pointerdown", unlock, true); }
 export function soundStart() { if (fxOn() && !cfgNow().discret && cfgNow().sndsend === true) popNotes(6, 0.3); }
 /** Fin de la notification : le message est parti. */
 export function soundEnd() { if (fxOn() && !cfgNow().discret && cfgNow().sndsend === true) popNotes(3, 0.3); }

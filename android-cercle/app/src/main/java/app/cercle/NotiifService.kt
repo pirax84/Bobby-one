@@ -162,7 +162,7 @@ class NotiifService : Service() {
             val who = nameOf(base, key, tk, m.getString("sender"))
             val fx = if (m.isNull("fx")) "" else m.getString("fx")
             val mk = if (m.has("media_kind") && !m.isNull("media_kind")) m.getString("media_kind") else ""
-            val body = if (fx.isNotEmpty()) "✨ t'a envoyé un effet" else if (mk == "audio") "🎤 t'a envoyé un vocal" else if (mk == "video") "🎬 t'a envoyé une vidéo" else if (mk.isNotEmpty()) "📷 t'a envoyé une photo" else m.getString("body")
+            val body = if (fx.isNotEmpty()) "✨ Nouvel effet" else if (mk == "audio") "🎤 Nouveau vocal" else if (mk == "video") "🎬 Nouvelle vidéo" else if (mk.isNotEmpty()) "📷 Nouvelle photo" else "💬 Nouveau message"
             val chId = if (mk == "audio") CH_VOC else if (mk.isNotEmpty()) CH_MED else CH_TXT
             val pi = PendingIntent.getActivity(this, m.getString("id").hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + m.getString("sender")), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, chId) else Notification.Builder(this)
