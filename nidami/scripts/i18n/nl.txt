@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Wachtwoord verbergen
+1474|Wachtwoord tonen
+1475|Schrijf een geldig e-mailadres.
+1476|Het wachtwoord moet minstens 8 tekens hebben.
+1477|De twee wachtwoorden zijn niet gelijk.
+1478|Schrijf je voornaam en je achternaam.
+1479|Kies je land en schrijf je stad.
+1480|Kies een oudercode van 4 cijfers, twee keer hetzelfde geschreven.
+1481|Je account
+1482|Je naam
+1483|Waar je woont
+1484|Bijna klaar
+1485|E-mailadres
+1486|Echte accounts hebben een server nodig, die nog niet is verbonden.
+1487|Stap {n} van 4
+1488|Om je account terug te vinden
+1489|8 tekens of meer
+1490|Schrijf het nog een keer
+1491|✓ Beide zijn gelijk
+1492|✗ Niet gelijk, kijk goed
+1493|Je taal: je kunt die altijd wijzigen met de knop bovenaan.
+1494|Je echte voornaam
+1495|Achternaam
+1496|Je echte achternaam
+1497|Gebruikersnaam (openbaar)
+1498|Gezien door mensen die geen vrienden zijn
+1499|Om je verjaardag te vieren
+1500|Land
+1501|Kiezen…
+1502|Stad
+1503|Telefoonnummer (optioneel)
+1504|Zodat je vrienden je vinden
+1505|Alleen je vrienden zien je stad. Je telefoon en e-mail blijven privé.
+1506|Profielfoto (optioneel)
+1507|Je kunt het later doen
+1508|Jonger dan 18? Een ouder kiest hier de oudercode.
+1509|Oudercode (4 cijfers)
+1510|Doorgaan
+1511|Verjaardag en feest
+1512|{label} versturen
+1513|De test stoppen
+1514|Verbind minstens 4 punten.
+1515|Patroon
+1516|Bevestigen
+1517|Vergrendeling uitgezet.
+1518|Je apparaat kan dit niet.
+1519|Kon niet worden aangezet. Probeer opnieuw.
+1520|Vergrendeling aangezet.
+1521|Niet gelijk. Begin opnieuw.
+1522|NOTIIF-vergrendeling
+1523|Zodat niemand NOTIIF op je apparaat opent
+1524|Kies je vergrendeling
+1525|Geen vergrendeling
+1526|Geen vergrendeling, NOTIIF opent direct
+1527|Vingerafdruk of gezicht, als je pc dat toelaat
+1528|Niet beschikbaar op deze pc
+1529|Vingerafdruk
+1530|Je vinger op de sensor
+1531|Niet beschikbaar op deze telefoon
+1532|Gezicht
+1533|Je telefoon herkent je
+1534|Een tekening met je vinger
+1535|Pincode
+1536|4 tot 6 cijfers
+1537|Teken het nog een keer
+1538|Teken je patroon
+1539|Kies je pincode
+1540|Als je het vergeet, kun je het opnieuw instellen met je wachtwoord.
+1541|Vergrendelen
+1542|Meteen
+1543|Na 1 min
+1544|Na 5 min
+1545|Voorbeeld in recente apps verbergen
+1546|Vergrendeling uitgezet. Je kunt in de instellingen een andere kiezen.
+1547|NOTIIF is vergrendeld
+1548|Gebruik Windows Hello
+1549|Leg je vinger erop of toon je gezicht
+1550|Ontgrendelen
+1551|Het werkt niet. Probeer opnieuw.
+1552|Ik ben het vergeten
+1553|Vergrendeling verwijderen
+1554|In demomodus kan de vergrendeling alleen worden verwijderd door de app-gegevens te wissen.

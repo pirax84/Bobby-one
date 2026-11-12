@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Skrij geslo
+1474|Pokaži geslo
+1475|Vpiši veljaven e-poštni naslov.
+1476|Geslo mora imeti vsaj 8 znakov.
+1477|Obe gesli nista enaki.
+1478|Vpiši svoje ime in priimek.
+1479|Izberi svojo državo in vpiši svoje mesto.
+1480|Izberi štirimestno starševsko kodo, dvakrat vpisano enako.
+1481|Tvoj račun
+1482|Tvoje ime
+1483|Kje živiš
+1484|Skoraj končano
+1485|E-poštni naslov
+1486|Pravi računi potrebujejo strežnik, ki še ni povezan.
+1487|Korak {n} od 4
+1488|Da najdeš svoj račun
+1489|8 znakov ali več
+1490|Vpiši ga še enkrat
+1491|✓ Obe sta enaki
+1492|✗ Nista enaki, poglej dobro
+1493|Tvoj jezik: kadar koli ga lahko spremeniš z gumbom zgoraj.
+1494|Tvoje pravo ime
+1495|Priimek
+1496|Tvoj pravi priimek
+1497|Vzdevek (javen)
+1498|Vidijo ga ljudje, ki niso tvoji prijatelji
+1499|Da praznujemo tvoj rojstni dan
+1500|Država
+1501|Izberi…
+1502|Mesto
+1503|Telefonska številka (neobvezno)
+1504|Da te prijatelji najdejo
+1505|Samo tvoji prijatelji vidijo tvoje mesto. Telefon in e-pošta ostaneta zasebna.
+1506|Profilna slika (neobvezno)
+1507|To lahko narediš pozneje
+1508|Mlajši od 18 let? Starš tukaj izbere starševsko kodo.
+1509|Starševska koda (4 števke)
+1510|Naprej
+1511|Rojstni dan in zabava
+1512|Pošlji {label}
+1513|Ustavi preizkus
+1514|Poveži vsaj 4 točke.
+1515|Vzorec
+1516|Potrdi
+1517|Zaklep izklopljen.
+1518|Tvoja naprava tega ne zna.
+1519|Vklop ni uspel. Poskusi znova.
+1520|Zaklep vklopljen.
+1521|Nista enaki. Začni znova.
+1522|Zaklep NOTIIF
+1523|Da nihče ne odpre NOTIIF na tvoji napravi
+1524|Izberi svoj zaklep
+1525|Brez zaklepa
+1526|Brez zaklepa, NOTIIF se odpre takoj
+1527|Prstni odtis ali obraz, če to tvoj računalnik omogoča
+1528|Na tem računalniku ni na voljo
+1529|Prstni odtis
+1530|Tvoj prst na tipalu
+1531|Na tem telefonu ni na voljo
+1532|Obraz
+1533|Tvoj telefon te prepozna
+1534|Risba s prstom
+1535|Koda PIN
+1536|4 do 6 števk
+1537|Nariši ga še enkrat
+1538|Nariši svoj vzorec
+1539|Izberi svojo kodo PIN
+1540|Če ga pozabiš, ga lahko znova nastaviš z geslom.
+1541|Zakleni
+1542|Takoj
+1543|Po 1 min
+1544|Po 5 min
+1545|Skrij predogled v nedavnih aplikacijah
+1546|Zaklep izklopljen. V nastavitvah lahko izbereš drugega.
+1547|NOTIIF je zaklenjen
+1548|Uporabi Windows Hello
+1549|Položi prst ali pokaži obraz
+1550|Odkleni
+1551|Ne deluje. Poskusi znova.
+1552|Pozabil sem
+1553|Odstrani zaklep
+1554|V predstavitvenem načinu lahko zaklep odstraniš samo z brisanjem podatkov aplikacije.

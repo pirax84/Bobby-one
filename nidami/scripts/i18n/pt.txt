@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Ocultar a palavra-passe
+1474|Ver a palavra-passe
+1475|Escreve um endereço de e-mail válido.
+1476|A palavra-passe deve ter 8 caracteres ou mais.
+1477|As duas palavras-passe não são iguais.
+1478|Escreve o teu nome e o teu apelido.
+1479|Escolhe o teu país e escreve a tua cidade.
+1480|Escolhe um código parental de 4 dígitos, escrito duas vezes igual.
+1481|A tua conta
+1482|O teu nome
+1483|Onde moras
+1484|Quase pronto
+1485|Endereço de e-mail
+1486|As contas reais precisam de um servidor, que ainda não está ligado.
+1487|Passo {n} de 4
+1488|Para encontrares a tua conta
+1489|8 caracteres ou mais
+1490|Escreve-a mais uma vez
+1491|✓ As duas são iguais
+1492|✗ Não são iguais, olha bem
+1493|A tua língua: podes mudá-la quando quiseres com o botão no topo.
+1494|O teu nome verdadeiro
+1495|Apelido
+1496|O teu apelido verdadeiro
+1497|Nome de utilizador (público)
+1498|Visto por quem não é teu amigo
+1499|Para festejar o teu aniversário
+1500|País
+1501|Escolher…
+1502|Cidade
+1503|Número de telefone (opcional)
+1504|Para os teus amigos te encontrarem
+1505|Só os teus amigos veem a tua cidade. O teu telefone e o teu e-mail ficam privados.
+1506|Foto de perfil (opcional)
+1507|Podes fazê-lo mais tarde
+1508|Menos de 18 anos? Um pai ou mãe escolhe aqui o código parental.
+1509|Código parental (4 dígitos)
+1510|Continuar
+1511|Aniversário e festa
+1512|Enviar {label}
+1513|Parar o teste
+1514|Liga pelo menos 4 pontos.
+1515|Padrão
+1516|Confirmar
+1517|Bloqueio desativado.
+1518|O teu dispositivo não consegue fazer isto.
+1519|Não foi possível ativar. Tenta de novo.
+1520|Bloqueio ativado.
+1521|Não são iguais. Recomeça.
+1522|Bloqueio do NOTIIF
+1523|Para que ninguém abra o NOTIIF no teu dispositivo
+1524|Escolhe o teu bloqueio
+1525|Sem bloqueio
+1526|Sem bloqueio, o NOTIIF abre logo
+1527|Impressão digital ou rosto, se o teu PC permitir
+1528|Não disponível neste PC
+1529|Impressão digital
+1530|O teu dedo no sensor
+1531|Não disponível neste telemóvel
+1532|Rosto
+1533|O teu telemóvel reconhece-te
+1534|Um desenho com o dedo
+1535|Código PIN
+1536|De 4 a 6 dígitos
+1537|Desenha-o mais uma vez
+1538|Desenha o teu padrão
+1539|Escolhe o teu código PIN
+1540|Se te esqueceres, podes refazê-lo com a tua palavra-passe.
+1541|Bloquear
+1542|Logo
+1543|Após 1 min
+1544|Após 5 min
+1545|Ocultar a pré-visualização nas aplicações recentes
+1546|Bloqueio desativado. Podes escolher outro nas definições.
+1547|O NOTIIF está bloqueado
+1548|Usa o Windows Hello
+1549|Põe o dedo ou mostra o rosto
+1550|Desbloquear
+1551|Não funciona. Tenta de novo.
+1552|Esqueci-me
+1553|Remover o bloqueio
+1554|No modo de demonstração, o bloqueio só se remove apagando os dados da app.

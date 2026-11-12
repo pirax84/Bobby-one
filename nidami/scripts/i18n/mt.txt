@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Aħbi l-password
+1474|Uri l-password
+1475|Ikteb indirizz e-mail validu.
+1476|Il-password trid ikollha mill-anqas 8 karattri.
+1477|It-tnejn password mhumiex l-istess.
+1478|Ikteb ismek u kunjomok.
+1479|Agħżel pajjiżek u ikteb il-belt tiegħek.
+1480|Agħżel kodiċi tal-ġenituri ta' 4 ċifri, miktub darbtejn l-istess.
+1481|Il-kont tiegħek
+1482|Ismek
+1483|Fejn tgħix
+1484|Kważi lest
+1485|Indirizz e-mail
+1486|Kontijiet reali jeħtieġu server, li għadu mhux konness.
+1487|Pass {n} minn 4
+1488|Biex terġa' ssib il-kont tiegħek
+1489|8 karattri jew aktar
+1490|Ikteb darba oħra
+1491|✓ It-tnejn huma l-istess
+1492|✗ Mhumiex l-istess, ħares tajjeb
+1493|Il-lingwa tiegħek: tista' tbiddilha meta trid bil-buttuna fuq.
+1494|Ismek veru
+1495|Kunjom
+1496|Kunjomok veru
+1497|Laqam (pubbliku)
+1498|Jarawh nies li mhumiex ħbieb tiegħek
+1499|Biex niċċelebraw għeluq sninek
+1500|Pajjiż
+1501|Agħżel…
+1502|Belt
+1503|Numru tat-telefon (mhux obbligatorju)
+1504|Biex ħbieb tiegħek isibuk
+1505|Biss ħbieb tiegħek jaraw il-belt tiegħek. It-telefon u l-e-mail tiegħek jibqgħu privati.
+1506|Ritratt tal-profil (mhux obbligatorju)
+1507|Tista' tagħmel dan aktar tard
+1508|Inqas minn 18? Ġenitur jagħżel il-kodiċi tal-ġenituri hawn.
+1509|Kodiċi tal-ġenituri (4 ċifri)
+1510|Kompli
+1511|Għeluq is-snin u festa
+1512|Ibgħat {label}
+1513|Waqqaf it-test
+1514|Qabbad mill-anqas 4 punti.
+1515|Mudell
+1516|Ikkonferma
+1517|Il-lukkett intefa.
+1518|L-apparat tiegħek ma jistax jagħmel dan.
+1519|Ma setax jitqabbad. Erġa' pprova.
+1520|Il-lukkett tqabbad.
+1521|Mhumiex l-istess. Ibda mill-ġdid.
+1522|Lukkett NOTIIF
+1523|Biexħadd ma jiftaħ NOTIIF fuq l-apparat tiegħek
+1524|Agħżel il-lukkett tiegħek
+1525|Bla lukkett
+1526|Bla lukkett, NOTIIF jinfetaħ direttament
+1527|Marka tas-swaba' jew wiċċ, jekk il-kompjuter tiegħek jippermetti
+1528|Mhux disponibbli fuq dan il-kompjuter
+1529|Marka tas-swaba'
+1530|Subgħajk fuq is-sensor
+1531|Mhux disponibbli fuq dan it-telefon
+1532|Wiċċ
+1533|It-telefon tiegħek jagħrfek
+1534|Tpinġija bis-saba'
+1535|Kodiċi PIN
+1536|Minn 4 sa 6 ċifri
+1537|Ipinġiha darba oħra
+1538|Ipinġi l-mudell tiegħek
+1539|Agħżel il-kodiċi PIN tiegħek
+1540|Jekk tinsa, tista' terġa' tagħmilha bil-password tiegħek.
+1541|Illokkja
+1542|Immedjatament
+1543|Wara minuta
+1544|Wara 5 minuti
+1545|Aħbi l-preview fl-applikazzjonijiet reċenti
+1546|Il-lukkett intefa. Tista' tagħżel ieħor fis-settings.
+1547|NOTIIF huwa llokkjat
+1548|Uża Windows Hello
+1549|Poġġi subgħajk jew uri wiċċek
+1550|Iftaħ
+1551|Ma jaħdimx. Erġa' pprova.
+1552|Insejt
+1553|Neħħi l-lukkett
+1554|Fil-modalità demo, il-lukkett jista' jitneħħa biss billi tħassar id-data tal-applikazzjoni.

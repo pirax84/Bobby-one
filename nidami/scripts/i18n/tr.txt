@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Şifreyi gizle
+1474|Şifreyi göster
+1475|Geçerli bir e-posta adresi yaz.
+1476|Şifre en az 8 karakter olmalı.
+1477|İki şifre aynı değil.
+1478|Adını ve soyadını yaz.
+1479|Ülkeni seç ve şehrini yaz.
+1480|Aynı şekilde iki kez yazılmış 4 haneli bir ebeveyn kodu seç.
+1481|Hesabın
+1482|Adın
+1483|Nerede yaşıyorsun
+1484|Neredeyse bitti
+1485|E-posta adresi
+1486|Gerçek hesaplar için henüz bağlanmamış bir sunucu gerekir.
+1487|Adım {n} / 4
+1488|Hesabını yeniden bulmak için
+1489|8 karakter veya daha fazla
+1490|Bir kez daha yaz
+1491|✓ İkisi de aynı
+1492|✗ Aynı değil, dikkatle bak
+1493|Dilin: üstteki düğmeyle istediğin zaman değiştirebilirsin.
+1494|Gerçek adın
+1495|Soyadı
+1496|Gerçek soyadın
+1497|Takma ad (herkese açık)
+1498|Arkadaşın olmayan kişiler görür
+1499|Doğum gününü kutlamak için
+1500|Ülke
+1501|Seç…
+1502|Şehir
+1503|Telefon numarası (isteğe bağlı)
+1504|Arkadaşların seni bulabilsin diye
+1505|Şehrini yalnızca arkadaşların görür. Telefonun ve e-postan gizli kalır.
+1506|Profil fotoğrafı (isteğe bağlı)
+1507|Bunu daha sonra yapabilirsin
+1508|18 yaşından küçük müsün? Bir ebeveyn ebeveyn kodunu burada seçer.
+1509|Ebeveyn kodu (4 hane)
+1510|Devam
+1511|Doğum günü ve parti
+1512|{label} gönder
+1513|Denemeyi durdur
+1514|En az 4 noktayı birleştir.
+1515|Desen
+1516|Onayla
+1517|Kilit kapatıldı.
+1518|Cihazın bunu yapamıyor.
+1519|Açılamadı. Tekrar dene.
+1520|Kilit açıldı.
+1521|Aynı değil. Baştan başla.
+1522|NOTIIF kilidi
+1523|Kimse NOTIIF'i cihazında açmasın diye
+1524|Kilidini seç
+1525|Kilit yok
+1526|Kilit yok, NOTIIF doğrudan açılır
+1527|Parmak izi veya yüz, bilgisayarın destekliyorsa
+1528|Bu bilgisayarda kullanılamıyor
+1529|Parmak izi
+1530|Parmağın sensörde
+1531|Bu telefonda kullanılamıyor
+1532|Yüz
+1533|Telefonun seni tanır
+1534|Parmağınla bir çizim
+1535|PIN kodu
+1536|4 ila 6 hane
+1537|Bir kez daha çiz
+1538|Desenini çiz
+1539|PIN kodunu seç
+1540|Unutursan, şifrenle yeniden oluşturabilirsin.
+1541|Kilitle
+1542|Hemen
+1543|1 dk sonra
+1544|5 dk sonra
+1545|Son uygulamalarda önizlemeyi gizle
+1546|Kilit kapatıldı. Ayarlardan başka birini seçebilirsin.
+1547|NOTIIF kilitli
+1548|Windows Hello'yu kullan
+1549|Parmağını koy veya yüzünü göster
+1550|Kilidi aç
+1551|Çalışmıyor. Tekrar dene.
+1552|Unuttum
+1553|Kilidi kaldır
+1554|Demo modunda kilit yalnızca uygulama verilerini silerek kaldırılabilir.

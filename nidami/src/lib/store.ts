@@ -6,7 +6,7 @@ import { t } from "../i18n";
 
 export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
-export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none"; birthday?: string; byear?: number; handleChanged?: boolean; reqAt?: number[] }
+export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none"; birthday?: string; byear?: number; lastName?: string; country?: string; city?: string; phone?: string; handleChanged?: boolean; reqAt?: number[] }
 export interface Msg { id: ID; from: ID; video?: string | null; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx | "custom"; cfx?: { name: string; img?: string; audio?: string }; hid?: ID[]; rx?: Record<ID, string> }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number>; tk?: Record<ID, string> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string; by?: ID; v?: string; ref?: ID; pv?: string }
@@ -131,7 +131,7 @@ export const actions = {
     s.events.push({ id: uid(), hostId: "emilie", title: t("Repas de famille"), desc: t("Chacun apporte un petit plat."), at: now() + 5 * 864e5, place: t("Chez Mamie"), inviteIds: [id, "celine", "thomas"], rsvp: { thomas: "yes" } });
   }); },
   switchUser(id: ID) { mut((s) => { s.me = id; }); },
-  updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis" | "birthday" | "byear">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
+  updateProfile(p: Partial<Pick<User, "name" | "bio" | "status" | "avatar" | "avatarVis" | "birthday" | "byear" | "lastName" | "country" | "city" | "phone">>) { mut((s) => { const u = userOf(s, s.me)!; Object.assign(u, p); }); },
   setSetting(k: "sndsend" | "quiet" | "light" | "autoplay" | "premium" | "push" | "fx" | "fxfav" | "cfx" | "ntone" | "ctone" | "vibm" | "vibc" | "nav" | "hand" | "top" | "bubble" | "start" | "likes" | "comm" | "bg" | "fg" | "accent" | "mode" | "fs" | "style" | "accauto" | "accday" | "discret" | "sndlike" | "sndcomm" | "vibtap" | "shakesnd", v: boolean | string) { mut((s) => { s.settings[s.me] = { ...cfgOf(s, s.me), [k]: v }; }); },
   backupAll(): string { try { return localStorage.getItem(KEY) || JSON.stringify(state); } catch { return JSON.stringify(state); } },
   restoreAll(text: string): boolean { try { const o = JSON.parse(text); if (o?.v !== 1 || !Array.isArray(o.users) || !Array.isArray(o.convs) || !Array.isArray(o.posts)) return false; localStorage.setItem(KEY, text); return true; } catch { return false; } },

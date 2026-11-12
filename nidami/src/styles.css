@@ -1068,3 +1068,11 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
 .fs-acts i{width:56px;height:56px;border-radius:50%;background:var(--grad);color:var(--on);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -8px rgba(var(--brand-rgb),.8)}
 .fs-acts i.mic{background:var(--nuit2);box-shadow:inset 0 0 0 2px var(--accb)}
 @media (max-width:700px){.fsheet-ov{align-items:stretch}.fsheet{width:100%;max-width:none;height:100%;border-radius:0;min-height:0}}
+
+.fxsend{display:inline-flex;flex-direction:column;align-items:center;gap:2px;border:0;background:none;color:var(--fg);cursor:pointer;padding:2px;font-size:.62rem}
+.fxsend i{width:34px;height:34px;border-radius:50%;background:rgb(var(--brand-rgb));position:relative;display:block}
+.fxsend i::after{content:"";position:absolute;left:13px;top:9px;border-left:13px solid #15122b;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.fxstopf{position:fixed;left:0;right:0;bottom:110px;z-index:99999;display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none}
+.fxstopf button{pointer-events:auto;width:64px;height:64px;border-radius:50%;border:0;background:rgb(var(--brand-rgb));box-shadow:0 4px 20px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.fxstopf button i{width:22px;height:22px;border-radius:4px;background:#15122b;display:block}
+.fxstopf span{pointer-events:none;font-size:.72rem;background:rgba(21,18,43,.88);color:#fff;padding:3px 10px;border-radius:999px}

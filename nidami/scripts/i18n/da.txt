@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Skjul adgangskode
+1474|Vis adgangskode
+1475|Skriv en gyldig e-mailadresse.
+1476|Adgangskoden skal have mindst 8 tegn.
+1477|De to adgangskoder er ikke ens.
+1478|Skriv dit fornavn og dit efternavn.
+1479|Vælg dit land og skriv din by.
+1480|Vælg en forældrekode på 4 cifre, skrevet to gange ens.
+1481|Din konto
+1482|Dit navn
+1483|Hvor du bor
+1484|Næsten færdig
+1485|E-mailadresse
+1486|Rigtige konti kræver en server, som endnu ikke er tilsluttet.
+1487|Trin {n} af 4
+1488|For at finde din konto igen
+1489|8 tegn eller flere
+1490|Skriv den en gang til
+1491|✓ De er ens
+1492|✗ Ikke ens, se godt efter
+1493|Dit sprog: du kan til enhver tid ændre det med knappen øverst.
+1494|Dit rigtige fornavn
+1495|Efternavn
+1496|Dit rigtige efternavn
+1497|Brugernavn (offentligt)
+1498|Ses af folk, der ikke er dine venner
+1499|For at fejre din fødselsdag
+1500|Land
+1501|Vælg…
+1502|By
+1503|Telefonnummer (valgfrit)
+1504|Så dine venner kan finde dig
+1505|Kun dine venner kan se din by. Din telefon og din e-mail forbliver private.
+1506|Profilbillede (valgfrit)
+1507|Du kan gøre det senere
+1508|Under 18? En forælder vælger forældrekoden her.
+1509|Forældrekode (4 cifre)
+1510|Fortsæt
+1511|Fødselsdag og fest
+1512|Send {label}
+1513|Stop prøven
+1514|Forbind mindst 4 punkter.
+1515|Mønster
+1516|Bekræft
+1517|Lås slået fra.
+1518|Din enhed kan ikke det.
+1519|Kunne ikke slås til. Prøv igen.
+1520|Lås slået til.
+1521|Ikke ens. Start forfra.
+1522|NOTIIF-lås
+1523|Så ingen åbner NOTIIF på din enhed
+1524|Vælg din lås
+1525|Ingen lås
+1526|Ingen lås, NOTIIF åbner med det samme
+1527|Fingeraftryk eller ansigt, hvis din pc tillader det
+1528|Ikke tilgængelig på denne pc
+1529|Fingeraftryk
+1530|Din finger på sensoren
+1531|Ikke tilgængelig på denne telefon
+1532|Ansigt
+1533|Din telefon genkender dig
+1534|En tegning med fingeren
+1535|PIN-kode
+1536|4 til 6 cifre
+1537|Tegn det en gang til
+1538|Tegn dit mønster
+1539|Vælg din PIN-kode
+1540|Hvis du glemmer den, kan du lave den igen med din adgangskode.
+1541|Lås
+1542|Med det samme
+1543|Efter 1 min
+1544|Efter 5 min
+1545|Skjul forhåndsvisning i seneste apps
+1546|Lås slået fra. Du kan vælge en anden i indstillingerne.
+1547|NOTIIF er låst
+1548|Brug Windows Hello
+1549|Læg fingeren på eller vis dit ansigt
+1550|Lås op
+1551|Det virker ikke. Prøv igen.
+1552|Jeg har glemt den
+1553|Fjern låsen
+1554|I demotilstand kan låsen kun fjernes ved at slette appens data.

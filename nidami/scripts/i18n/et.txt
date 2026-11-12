@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Peida parool
+1474|Näita parooli
+1475|Kirjuta kehtiv e-posti aadress.
+1476|Parool peab olema vähemalt 8 märki.
+1477|Kaks parooli ei ole ühesugused.
+1478|Kirjuta oma eesnimi ja perekonnanimi.
+1479|Vali oma riik ja kirjuta oma linn.
+1480|Vali 4-kohaline vanemakood, kirjutatud kaks korda ühtmoodi.
+1481|Sinu konto
+1482|Sinu nimi
+1483|Kus sa elad
+1484|Peaaegu valmis
+1485|E-posti aadress
+1486|Päris kontod vajavad serverit, mis pole veel ühendatud.
+1487|Samm {n} / 4
+1488|Et oma konto uuesti leida
+1489|8 märki või rohkem
+1490|Kirjuta see veel kord
+1491|✓ Mõlemad on ühesugused
+1492|✗ Ei ole ühesugused, vaata hoolega
+1493|Sinu keel: saad seda igal ajal muuta ülemise nupuga.
+1494|Sinu päris eesnimi
+1495|Perekonnanimi
+1496|Sinu päris perekonnanimi
+1497|Hüüdnimi (avalik)
+1498|Seda näevad inimesed, kes ei ole sinu sõbrad
+1499|Et tähistada sinu sünnipäeva
+1500|Riik
+1501|Vali…
+1502|Linn
+1503|Telefoninumber (valikuline)
+1504|Et sinu sõbrad sind leiaksid
+1505|Ainult sinu sõbrad näevad sinu linna. Telefon ja e-post jäävad privaatseks.
+1506|Profiilipilt (valikuline)
+1507|Saad seda teha hiljem
+1508|Alla 18-aastane? Vanem valib siin vanemakoodi.
+1509|Vanemakood (4 numbrit)
+1510|Jätka
+1511|Sünnipäev ja pidu
+1512|Saada {label}
+1513|Peata katse
+1514|Ühenda vähemalt 4 punkti.
+1515|Muster
+1516|Kinnita
+1517|Lukk on välja lülitatud.
+1518|Sinu seade ei oska seda.
+1519|Sisselülitamine ei õnnestunud. Proovi uuesti.
+1520|Lukk on sisse lülitatud.
+1521|Ei ole ühesugused. Alusta uuesti.
+1522|NOTIIF-i lukk
+1523|Et keegi ei avaks NOTIIF-i sinu seadmes
+1524|Vali oma lukk
+1525|Lukku pole
+1526|Lukku pole, NOTIIF avaneb kohe
+1527|Sõrmejälg või nägu, kui sinu arvuti seda lubab
+1528|Sellel arvutil pole saadaval
+1529|Sõrmejälg
+1530|Sinu sõrm sensoril
+1531|Sellel telefonil pole saadaval
+1532|Nägu
+1533|Sinu telefon tunneb sind ära
+1534|Joonis sõrmega
+1535|PIN-kood
+1536|4 kuni 6 numbrit
+1537|Joonista see veel kord
+1538|Joonista oma muster
+1539|Vali oma PIN-kood
+1540|Kui unustad selle, saad selle oma parooliga uuesti seada.
+1541|Lukusta
+1542|Kohe
+1543|1 min pärast
+1544|5 min pärast
+1545|Peida eelvaade viimastes rakendustes
+1546|Lukk on välja lülitatud. Seadetes saad valida teise.
+1547|NOTIIF on lukus
+1548|Kasuta Windows Hellot
+1549|Pane sõrm peale või näita nägu
+1550|Ava lukk
+1551|See ei tööta. Proovi uuesti.
+1552|Unustasin
+1553|Eemalda lukk
+1554|Demorežiimis saab luku eemaldada ainult rakenduse andmeid kustutades.

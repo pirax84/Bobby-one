@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Hide password
+1474|Show password
+1475|Write a valid e-mail address.
+1476|The password must have 8 characters or more.
+1477|The two passwords are not the same.
+1478|Write your first name and your last name.
+1479|Choose your country and write your city.
+1480|Choose a 4-digit parental code, written the same twice.
+1481|Your account
+1482|Your name
+1483|Where you live
+1484|Almost done
+1485|E-mail address
+1486|Real accounts need a server, which is not connected yet.
+1487|Step {n} of 4
+1488|To find your account again
+1489|8 characters or more
+1490|Write it once more
+1491|✓ Both are the same
+1492|✗ Not the same, look carefully
+1493|Your language: you can change it any time with the button at the top.
+1494|Your real first name
+1495|Last name
+1496|Your real last name
+1497|Username (public)
+1498|Seen by people who are not your friends
+1499|To celebrate your birthday
+1500|Country
+1501|Choose…
+1502|City
+1503|Phone number (optional)
+1504|So your friends can find you
+1505|Only your friends see your city. Your phone and e-mail stay private.
+1506|Profile photo (optional)
+1507|You can do it later
+1508|Under 18? A parent chooses the parental code here.
+1509|Parental code (4 digits)
+1510|Continue
+1511|Birthday and party
+1512|Send {label}
+1513|Stop the test
+1514|Connect at least 4 dots.
+1515|Pattern
+1516|Confirm
+1517|Lock turned off.
+1518|Your device cannot do this.
+1519|Could not turn it on. Try again.
+1520|Lock turned on.
+1521|Not the same. Start again.
+1522|NOTIIF lock
+1523|So nobody opens NOTIIF on your device
+1524|Choose your lock
+1525|No lock
+1526|No lock, NOTIIF opens directly
+1527|Fingerprint or face, if your PC allows it
+1528|Not available on this PC
+1529|Fingerprint
+1530|Your finger on the sensor
+1531|Not available on this phone
+1532|Face
+1533|Your phone recognizes you
+1534|A drawing with your finger
+1535|PIN code
+1536|4 to 6 digits
+1537|Draw it once more
+1538|Draw your pattern
+1539|Choose your PIN code
+1540|If you forget it, you can set it again with your password.
+1541|Lock
+1542|Right away
+1543|After 1 min
+1544|After 5 min
+1545|Hide the preview in recent apps
+1546|Lock turned off. You can choose another one in settings.
+1547|NOTIIF is locked
+1548|Use Windows Hello
+1549|Put your finger or show your face
+1550|Unlock
+1551|It does not work. Try again.
+1552|I forgot
+1553|Remove the lock
+1554|In demo mode, the lock can only be removed by erasing the app data.

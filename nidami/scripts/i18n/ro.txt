@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Ascunde parola
+1474|Arată parola
+1475|Scrie o adresă de e-mail validă.
+1476|Parola trebuie să aibă cel puțin 8 caractere.
+1477|Cele două parole nu sunt la fel.
+1478|Scrie prenumele și numele tău.
+1479|Alege țara și scrie orașul tău.
+1480|Alege un cod parental de 4 cifre, scris de două ori la fel.
+1481|Contul tău
+1482|Numele tău
+1483|Unde locuiești
+1484|Aproape gata
+1485|Adresă de e-mail
+1486|Conturile reale au nevoie de un server, care nu este încă conectat.
+1487|Pasul {n} din 4
+1488|Ca să-ți regăsești contul
+1489|8 caractere sau mai multe
+1490|Scrie-o încă o dată
+1491|✓ Amândouă sunt la fel
+1492|✗ Nu sunt la fel, uită-te bine
+1493|Limba ta: o poți schimba oricând cu butonul de sus.
+1494|Prenumele tău real
+1495|Nume de familie
+1496|Numele tău real de familie
+1497|Pseudonim (public)
+1498|Văzut de cei care nu sunt prietenii tăi
+1499|Ca să-ți sărbătorim ziua de naștere
+1500|Țara
+1501|Alege…
+1502|Oraș
+1503|Număr de telefon (opțional)
+1504|Ca prietenii tăi să te găsească
+1505|Doar prietenii tăi îți văd orașul. Telefonul și e-mailul rămân private.
+1506|Fotografie de profil (opțional)
+1507|Poți face asta mai târziu
+1508|Sub 18 ani? Un părinte alege aici codul parental.
+1509|Cod parental (4 cifre)
+1510|Continuă
+1511|Zi de naștere și petrecere
+1512|Trimite {label}
+1513|Oprește testul
+1514|Unește cel puțin 4 puncte.
+1515|Model
+1516|Confirmă
+1517|Blocare dezactivată.
+1518|Dispozitivul tău nu poate face asta.
+1519|Nu s-a putut activa. Încearcă din nou.
+1520|Blocare activată.
+1521|Nu sunt la fel. Începe din nou.
+1522|Blocarea NOTIIF
+1523|Ca nimeni să nu deschidă NOTIIF pe dispozitivul tău
+1524|Alege blocarea
+1525|Fără blocare
+1526|Fără blocare, NOTIIF se deschide direct
+1527|Amprentă sau față, dacă PC-ul tău permite
+1528|Indisponibil pe acest PC
+1529|Amprentă
+1530|Degetul tău pe senzor
+1531|Indisponibil pe acest telefon
+1532|Față
+1533|Telefonul te recunoaște
+1534|Un desen cu degetul
+1535|Cod PIN
+1536|De la 4 la 6 cifre
+1537|Desenează-l încă o dată
+1538|Desenează-ți modelul
+1539|Alege codul PIN
+1540|Dacă îl uiți, îl poți face din nou cu parola ta.
+1541|Blochează
+1542|Imediat
+1543|După 1 min
+1544|După 5 min
+1545|Ascunde previzualizarea în aplicațiile recente
+1546|Blocare dezactivată. Poți alege alta în setări.
+1547|NOTIIF este blocat
+1548|Folosește Windows Hello
+1549|Pune degetul sau arată fața
+1550|Deblochează
+1551|Nu merge. Încearcă din nou.
+1552|Am uitat
+1553|Elimină blocarea
+1554|În modul demo, blocarea se poate elimina doar ștergând datele aplicației.

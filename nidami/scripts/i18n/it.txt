@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Nascondi la password
+1474|Mostra la password
+1475|Scrivi un indirizzo e-mail valido.
+1476|La password deve avere almeno 8 caratteri.
+1477|Le due password non sono uguali.
+1478|Scrivi il tuo nome e il tuo cognome.
+1479|Scegli il tuo paese e scrivi la tua città.
+1480|Scegli un codice genitore di 4 cifre, scritto due volte uguale.
+1481|Il tuo account
+1482|Il tuo nome
+1483|Dove abiti
+1484|Quasi finito
+1485|Indirizzo e-mail
+1486|Gli account veri richiedono un server, che non è ancora collegato.
+1487|Passo {n} di 4
+1488|Per ritrovare il tuo account
+1489|8 caratteri o più
+1490|Scrivila ancora una volta
+1491|✓ Le due sono uguali
+1492|✗ Non sono uguali, guarda bene
+1493|La tua lingua: puoi cambiarla quando vuoi con il pulsante in alto.
+1494|Il tuo vero nome
+1495|Cognome
+1496|Il tuo vero cognome
+1497|Nome utente (pubblico)
+1498|Visto da chi non è tuo amico
+1499|Per festeggiare il tuo compleanno
+1500|Paese
+1501|Scegli…
+1502|Città
+1503|Numero di telefono (facoltativo)
+1504|Perché i tuoi amici ti trovino
+1505|Solo i tuoi amici vedono la tua città. Il tuo telefono e la tua e-mail restano privati.
+1506|Foto del profilo (facoltativa)
+1507|Puoi farlo più tardi
+1508|Meno di 18 anni? Un genitore sceglie qui il codice genitore.
+1509|Codice genitore (4 cifre)
+1510|Continua
+1511|Compleanno e festa
+1512|Invia {label}
+1513|Ferma la prova
+1514|Collega almeno 4 punti.
+1515|Sequenza
+1516|Conferma
+1517|Blocco disattivato.
+1518|Il tuo dispositivo non può farlo.
+1519|Impossibile attivarlo. Riprova.
+1520|Blocco attivato.
+1521|Non sono uguali. Ricomincia.
+1522|Blocco NOTIIF
+1523|Perché nessuno apra NOTIIF sul tuo dispositivo
+1524|Scegli il tuo blocco
+1525|Nessun blocco
+1526|Nessun blocco, NOTIIF si apre subito
+1527|Impronta o volto, se il tuo PC lo permette
+1528|Non disponibile su questo PC
+1529|Impronta
+1530|Il tuo dito sul sensore
+1531|Non disponibile su questo telefono
+1532|Volto
+1533|Il tuo telefono ti riconosce
+1534|Un disegno con il dito
+1535|Codice PIN
+1536|Da 4 a 6 cifre
+1537|Disegnalo ancora una volta
+1538|Disegna la tua sequenza
+1539|Scegli il tuo codice PIN
+1540|Se lo dimentichi, puoi rifarlo con la tua password.
+1541|Blocca
+1542|Subito
+1543|Dopo 1 min
+1544|Dopo 5 min
+1545|Nascondi l'anteprima nelle app recenti
+1546|Blocco disattivato. Puoi sceglierne un altro nelle impostazioni.
+1547|NOTIIF è bloccato
+1548|Usa Windows Hello
+1549|Appoggia il dito o mostra il volto
+1550|Sblocca
+1551|Non funziona. Riprova.
+1552|Ho dimenticato
+1553|Rimuovi il blocco
+1554|In modalità demo, il blocco si può togliere solo cancellando i dati dell'app.

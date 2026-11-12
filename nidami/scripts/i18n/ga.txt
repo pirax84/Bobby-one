@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Folaigh an focal faire
+1474|Taispeáin an focal faire
+1475|Scríobh seoladh ríomhphoist bailí.
+1476|Caithfidh 8 gcarachtar nó níos mó a bheith sa focal faire.
+1477|Níl an dá fhocal faire mar a chéile.
+1478|Scríobh d'ainm agus do shloinne.
+1479|Roghnaigh do thír agus scríobh do chathair.
+1480|Roghnaigh cód tuismitheora 4 dhigit, scríofa faoi dhó mar an gcéanna.
+1481|Do chuntas
+1482|D'ainm
+1483|Cá gcónaíonn tú
+1484|Beagnach críochnaithe
+1485|Seoladh ríomhphoist
+1486|Teastaíonn freastalaí ó chuntais fhíora, nach bhfuil ceangailte go fóill.
+1487|Céim {n} de 4
+1488|Chun do chuntas a aimsiú arís
+1489|8 gcarachtar nó níos mó
+1490|Scríobh arís é
+1491|✓ Tá an bheirt mar an gcéanna
+1492|✗ Níl siad mar a chéile, féach go cúramach
+1493|Do theanga: is féidir leat í a athrú am ar bith leis an gcnaipe thuas.
+1494|D'fhíorainm
+1495|Sloinne
+1496|Do fhíorshloinne
+1497|Leasainm (poiblí)
+1498|Feiceann daoine nach cairde leat é
+1499|Chun do bhreithlá a cheiliúradh
+1500|Tír
+1501|Roghnaigh…
+1502|Cathair
+1503|Uimhir ghutháin (roghnach)
+1504|Ionas go bhfaighidh do chairde thú
+1505|Ní fheiceann ach do chairde do chathair. Fanann do ghuthán agus do ríomhphost príobháideach.
+1506|Pictiúr próifíle (roghnach)
+1507|Is féidir leat é a dhéanamh níos déanaí
+1508|Faoi bhun 18? Roghnaíonn tuismitheoir an cód tuismitheora anseo.
+1509|Cód tuismitheora (4 dhigit)
+1510|Lean ar aghaidh
+1511|Breithlá agus cóisir
+1512|Seol {label}
+1513|Stop an triail
+1514|Ceangail 4 phointe ar a laghad.
+1515|Patrún
+1516|Deimhnigh
+1517|Cuireadh an glas as.
+1518|Ní féidir le do ghléas é seo a dhéanamh.
+1519|Níorbh fhéidir é a chur ar siúl. Bain triail eile as.
+1520|Cuireadh an glas air.
+1521|Níl siad mar a chéile. Tosaigh arís.
+1522|Glas NOTIIF
+1523|Ionas nach n-osclóidh aon duine NOTIIF ar do ghléas
+1524|Roghnaigh do ghlas
+1525|Gan glas
+1526|Gan glas, osclaíonn NOTIIF díreach
+1527|Méarloirg nó aghaidh, má cheadaíonn do ríomhaire é
+1528|Níl sé ar fáil ar an ríomhaire seo
+1529|Méarloirg
+1530|Do mhéar ar an braiteoir
+1531|Níl sé ar fáil ar an nguthán seo
+1532|Aghaidh
+1533|Aithníonn do ghuthán thú
+1534|Líníocht le do mhéar
+1535|Cód PIN
+1536|4 go 6 dhigit
+1537|Tarraing arís é
+1538|Tarraing do phatrún
+1539|Roghnaigh do chód PIN
+1540|Má dhéanann tú dearmad air, is féidir leat é a athchruthú le do phasfhocal.
+1541|Glasáil
+1542|Láithreach
+1543|Tar éis 1 nóim.
+1544|Tar éis 5 nóim.
+1545|Folaigh réamhamharc in aipeanna le déanaí
+1546|Cuireadh an glas as. Is féidir leat ceann eile a roghnú sna socruithe.
+1547|Tá NOTIIF glasáilte
+1548|Úsáid Windows Hello
+1549|Cuir do mhéar air nó taispeáin d'aghaidh
+1550|Díghlasáil
+1551|Ní oibríonn sé. Bain triail eile as.
+1552|Rinne mé dearmad
+1553|Bain an glas
+1554|Sa mhodh taispeána, ní féidir an glas a bhaint ach amháin trí shonraí na haipe a scriosadh.

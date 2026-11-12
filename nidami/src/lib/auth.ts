@@ -25,8 +25,8 @@ async function call(path: string, body: unknown): Promise<{ ok: boolean; data: a
   try { const r = await fetch(SB_URL + path, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json" }, body: JSON.stringify(body) }); return { ok: r.ok, data: await r.json().catch(() => ({})) }; } catch { return { ok: false, data: { msg: t("Serveur injoignable.") } }; }
 }
 const msgOf = (d: any) => String(d?.msg || d?.error_description || d?.message || t("Une erreur est survenue."));
-export async function emailSignUp(email: string, password: string, name: string): Promise<{ ok: boolean; msg: string; who?: Who }> {
-  const r = await call("/auth/v1/signup", { email, password, data: { name } });
+export async function emailSignUp(email: string, password: string, name: string, extra: Record<string, string> = {}): Promise<{ ok: boolean; msg: string; who?: Who }> {
+  const r = await call("/auth/v1/signup", { email, password, data: { name, ...extra } });
   if (!r.ok) return { ok: false, msg: msgOf(r.data) };
   if (r.data?.access_token) saveSession(r.data);
   if (r.data?.access_token) return { ok: true, msg: t("Compte créé."), who: { name: nameOf(r.data.user, name), email } };

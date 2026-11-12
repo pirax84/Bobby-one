@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Sakrij zaporku
+1474|Prikaži zaporku
+1475|Upiši valjanu e-adresu.
+1476|Zaporka mora imati najmanje 8 znakova.
+1477|Obje zaporke nisu iste.
+1478|Upiši svoje ime i prezime.
+1479|Odaberi svoju državu i upiši svoj grad.
+1480|Odaberi četveroznamenkasti roditeljski kod, upisan dvaput isto.
+1481|Tvoj račun
+1482|Tvoje ime
+1483|Gdje živiš
+1484|Gotovo je skoro
+1485|E-adresa
+1486|Pravi računi trebaju poslužitelj koji još nije povezan.
+1487|Korak {n} od 4
+1488|Da pronađeš svoj račun
+1489|8 znakova ili više
+1490|Upiši je još jednom
+1491|✓ Obje su iste
+1492|✗ Nisu iste, pogledaj dobro
+1493|Tvoj jezik: možeš ga promijeniti kad god želiš gumbom na vrhu.
+1494|Tvoje pravo ime
+1495|Prezime
+1496|Tvoje pravo prezime
+1497|Nadimak (javni)
+1498|Vide ga osobe koje nisu tvoji prijatelji
+1499|Da proslavimo tvoj rođendan
+1500|Država
+1501|Odaberi…
+1502|Grad
+1503|Telefonski broj (neobavezno)
+1504|Da te prijatelji mogu pronaći
+1505|Samo tvoji prijatelji vide tvoj grad. Telefon i e-adresa ostaju privatni.
+1506|Profilna fotografija (neobavezno)
+1507|To možeš učiniti kasnije
+1508|Imaš manje od 18 godina? Roditelj ovdje bira roditeljski kod.
+1509|Roditeljski kod (4 znamenke)
+1510|Nastavi
+1511|Rođendan i zabava
+1512|Pošalji {label}
+1513|Zaustavi probu
+1514|Spoji barem 4 točke.
+1515|Uzorak
+1516|Potvrdi
+1517|Zaključavanje isključeno.
+1518|Tvoj uređaj to ne može.
+1519|Nije bilo moguće uključiti. Pokušaj ponovno.
+1520|Zaključavanje uključeno.
+1521|Nisu iste. Počni ponovno.
+1522|NOTIIF zaključavanje
+1523|Da nitko ne otvori NOTIIF na tvom uređaju
+1524|Odaberi svoje zaključavanje
+1525|Bez zaključavanja
+1526|Bez zaključavanja, NOTIIF se odmah otvara
+1527|Otisak prsta ili lice, ako tvoje računalo to omogućuje
+1528|Nije dostupno na ovom računalu
+1529|Otisak prsta
+1530|Tvoj prst na senzoru
+1531|Nije dostupno na ovom telefonu
+1532|Lice
+1533|Tvoj telefon te prepoznaje
+1534|Crtež prstom
+1535|PIN kod
+1536|4 do 6 znamenki
+1537|Nacrtaj ga još jednom
+1538|Nacrtaj svoj uzorak
+1539|Odaberi svoj PIN kod
+1540|Ako ga zaboraviš, možeš ga ponovno postaviti zaporkom.
+1541|Zaključaj
+1542|Odmah
+1543|Nakon 1 min
+1544|Nakon 5 min
+1545|Sakrij pregled u nedavnim aplikacijama
+1546|Zaključavanje isključeno. U postavkama možeš odabrati drugo.
+1547|NOTIIF je zaključan
+1548|Koristi Windows Hello
+1549|Stavi prst ili pokaži lice
+1550|Otključaj
+1551|Ne radi. Pokušaj ponovno.
+1552|Zaboravio sam
+1553|Ukloni zaključavanje
+1554|U demo načinu zaključavanje se može ukloniti samo brisanjem podataka aplikacije.

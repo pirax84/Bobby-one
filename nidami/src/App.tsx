@@ -1,3 +1,5 @@
+import { FxStopFloat } from "./ui/FxSwitch";
+import { LockGate } from "./ui/Lock";
 import { BRAND } from "./lib/brand";
 import { applyTheme, accentOf, ACCENTS } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
@@ -165,7 +167,7 @@ export default function App() {
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button data-k={k} className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className={"shell" + (v === "messages" ? " wide" : "")}>
-    <aside className="side"><div className="brand" style={{ justifyContent: "center" }}><Logo s={60} /></div>
+    <aside className="side"><div className="brand" style={{ justifyContent: "flex-start", gap: 10 }}><Logo s={38} /><b style={{ fontSize: "1.15rem", letterSpacing: "-.02em" }}>NOTIIF</b></div>
       <button type="button" className="sideme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={40} /><span className="grow ell"><b>{user.name}</b></span></button>
       <button className="btn" style={{ margin: "2px 0 8px" }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button>
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
@@ -215,7 +217,7 @@ export default function App() {
     {storyC && <QuickCompose story onClose={() => setStoryC(false)} />}
     {compose && <QuickCompose key={compose} long={compose === "long" || compose === "selfie"} story={compose === "selfie" || compose === "photo" || compose === "saudio"} alsoWall={wall} kind={compose === "saudio" ? "audio" : compose === "text" || compose === "photo" || compose === "audio" || compose === "link" ? compose : undefined} onClose={() => setCompose(false)} />}
     {!hand && !matchMedia("(hover: hover) and (pointer: fine)").matches && <Modal title={t("Quelle main ?")} onClose={() => actions.setSetting("hand", "right")}><div className="col" style={{ gap: 10 }}><p style={{ margin: 0 }}>{t("Tu tiens ton téléphone avec quelle main ? Les gros boutons se placeront du côté de ton pouce. Tu peux changer plus tard dans les réglages.")}</p><div className="row" style={{ gap: 10 }}><button type="button" className="btn bigbtn grow" onClick={() => actions.setSetting("hand", "left")}>{t("✋ Main gauche")}</button><button type="button" className="btn bigbtn grow" onClick={() => actions.setSetting("hand", "right")}>{t("🤚 Main droite")}</button></div></div></Modal>}
-    <MiniPlayer /><TypingPill /><ToastHost /></div>);
+    <MiniPlayer /><TypingPill /><FxStopFloat /><LockGate /><ToastHost /></div>);
 }
 function RightPanel({ go }: { go: (v: string) => void }) {
   const s = useStore((x) => x); const evs = s.events.filter((e) => (e.hostId === s.me || e.inviteIds.includes(s.me)) && e.at > Date.now()).sort((a, b) => a.at - b.at).slice(0, 3); const groups = s.social.groups.filter((g) => g.memberIds.includes(s.me));

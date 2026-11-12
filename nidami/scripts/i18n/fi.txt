@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Piilota salasana
+1474|Näytä salasana
+1475|Kirjoita kelvollinen sähköpostiosoite.
+1476|Salasanassa on oltava vähintään 8 merkkiä.
+1477|Kaksi salasanaa eivät ole samat.
+1478|Kirjoita etunimesi ja sukunimesi.
+1479|Valitse maasi ja kirjoita kaupunkisi.
+1480|Valitse nelinumeroinen vanhempien koodi, kirjoitettuna kaksi kertaa samoin.
+1481|Tilisi
+1482|Nimesi
+1483|Missä asut
+1484|Melkein valmis
+1485|Sähköpostiosoite
+1486|Oikeat tilit tarvitsevat palvelimen, jota ei ole vielä yhdistetty.
+1487|Vaihe {n}/4
+1488|Jotta löydät tilisi uudelleen
+1489|8 merkkiä tai enemmän
+1490|Kirjoita se vielä kerran
+1491|✓ Molemmat ovat samat
+1492|✗ Eivät ole samat, katso tarkasti
+1493|Kielesi: voit vaihtaa sen milloin tahansa ylhäällä olevalla painikkeella.
+1494|Oikea etunimesi
+1495|Sukunimi
+1496|Oikea sukunimesi
+1497|Nimimerkki (julkinen)
+1498|Näkyy ihmisille, jotka eivät ole ystäviäsi
+1499|Syntymäpäivääsi varten
+1500|Maa
+1501|Valitse…
+1502|Kaupunki
+1503|Puhelinnumero (valinnainen)
+1504|Jotta ystäväsi löytävät sinut
+1505|Vain ystäväsi näkevät kaupunkisi. Puhelimesi ja sähköpostisi pysyvät yksityisinä.
+1506|Profiilikuva (valinnainen)
+1507|Voit tehdä sen myöhemmin
+1508|Alle 18-vuotias? Vanhempi valitsee tässä vanhempien koodin.
+1509|Vanhempien koodi (4 numeroa)
+1510|Jatka
+1511|Syntymäpäivä ja juhla
+1512|Lähetä {label}
+1513|Pysäytä kokeilu
+1514|Yhdistä vähintään 4 pistettä.
+1515|Kuvio
+1516|Vahvista
+1517|Lukitus pois päältä.
+1518|Laitteesi ei osaa tätä.
+1519|Käyttöönotto ei onnistunut. Yritä uudelleen.
+1520|Lukitus päällä.
+1521|Eivät ole samat. Aloita alusta.
+1522|NOTIIF-lukitus
+1523|Jotta kukaan ei avaa NOTIIFia laitteellasi
+1524|Valitse lukituksesi
+1525|Ei lukitusta
+1526|Ei lukitusta, NOTIIF avautuu heti
+1527|Sormenjälki tai kasvot, jos tietokoneesi sallii
+1528|Ei käytettävissä tällä tietokoneella
+1529|Sormenjälki
+1530|Sormesi sensorilla
+1531|Ei käytettävissä tällä puhelimella
+1532|Kasvot
+1533|Puhelimesi tunnistaa sinut
+1534|Piirros sormella
+1535|PIN-koodi
+1536|4–6 numeroa
+1537|Piirrä se vielä kerran
+1538|Piirrä kuviosi
+1539|Valitse PIN-koodisi
+1540|Jos unohdat sen, voit tehdä sen uudelleen salasanallasi.
+1541|Lukitse
+1542|Heti
+1543|1 min jälkeen
+1544|5 min jälkeen
+1545|Piilota esikatselu viimeisimmissä sovelluksissa
+1546|Lukitus pois päältä. Voit valita toisen asetuksissa.
+1547|NOTIIF on lukittu
+1548|Käytä Windows Hello'a
+1549|Laita sormesi tai näytä kasvosi
+1550|Avaa lukitus
+1551|Ei toimi. Yritä uudelleen.
+1552|Unohdin
+1553|Poista lukitus
+1554|Demotilassa lukituksen voi poistaa vain tyhjentämällä sovelluksen tiedot.

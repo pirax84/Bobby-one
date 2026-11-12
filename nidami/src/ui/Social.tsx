@@ -23,6 +23,7 @@ import { dbg } from "../lib/server";
 import { usePref, setPref } from "../lib/uipref";
 import { CatsModal } from "./CatsModal";
 import { KidCard } from "./Kid";
+import { LockCard } from "./Lock";
 import { LangPicker } from "./LangPicker";
 import { LegalView } from "./Legal";
 
@@ -330,6 +331,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <div className="card col" style={{ gap: 6 }}><h3>{t("💬 Bulle et écran de démarrage")}</h3><label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Bulle de messages")}</b><div className="muted small">{t("Une petite bulle que vous déplacez où vous voulez. Quand elle est affichée, « Messages » est remplacé par « Groupes » dans la barre du bas.")}</div></div><Switch on={cfg.bubble !== false} onChange={(v) => actions.setSetting("bubble", v)} label={t("Bulle de messages")} /></label><VerifyRow />{cfg.bubble !== false && <div className="col" style={{ gap: 6, paddingBottom: 6 }}><b className="small">Que fait la bulle ?</b><div className="row wrap" style={{ gap: 6 }} role="radiogroup" aria-label="Type de bulle">{([["msg", "💬 Messages"], ["voice", "🎙 Vocal"], ["media", "🎥 Photo / vidéo"]] as const).map(([k, l]) => <button key={k} type="button" role="radio" aria-checked={fabPref === k} className={"chip" + (fabPref === k ? " on" : "")} onClick={() => setPref("fab", k)}>{l}</button>)}</div></div>}<hr /><label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Écran de démarrage")}</b><div className="muted small">{t("La page qui s'ouvre quand vous lancez NOTIIF.")}</div></div><select className="inp sm" style={{ width: "auto" }} value={cfg.start || "home"} onChange={(e) => actions.setSetting("start", e.target.value)} aria-label={t("Écran de démarrage")}>{[["home", t("Accueil")], ["create", t("Créer")], ["friends", t("Amis")], ["messages", t("Messages")], ["groups", t("Groupes")], ["calls", t("Appels")], ["notifs", t("Notifications")], ["media", t("Photos")], ["events", t("Événements")], ["games", t("Jeux")]].map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></label></div>
     </>}
     {sec === "priv" && <>
+    <LockCard />
     <SeesCard />
     <div className="card col"><h3>{t("🔒 Confidentialité")}</h3><ul className="muted" style={{ margin: 0, paddingLeft: 18 }}><li>{t("Aucune publicité. Aucune vente de données.")}</li><li>{t("Aucun bouton de partage vers l'extérieur, aucun profil public.")}</li><li>{t("Personne ne peut vous trouver sans votre code d'invitation.")}</li><li>{t("Aucune application ne peut empêcher une personne autorisée de photographier son écran avec un autre appareil.")}</li></ul></div>
     </>}

@@ -5,6 +5,8 @@ import { toast, isPC, Modal } from "./common";
 const K = "notiif-kid-hash";
 export const kidOn = () => { try { return !!localStorage.getItem(K); } catch { return false; } };
 async function hash(pin: string) { const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("notiif:" + pin)); return Array.from(new Uint8Array(b)).map((x) => x.toString(16).padStart(2, "0")).join(""); }
+/** Enregistre le code parental choisi à l'inscription d'un mineur. */
+export const setKidCode = async (pin: string) => { try { localStorage.setItem(K, await hash(pin)); return true; } catch { return false; } };
 const ok = async (pin: string) => { try { return (await hash(pin)) === localStorage.getItem(K); } catch { return false; } };
 
 /** Écran de code : protège Paramètres, Profil et Amis quand le contrôle parental est actif. */

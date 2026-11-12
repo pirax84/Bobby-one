@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Slėpti slaptažodį
+1474|Rodyti slaptažodį
+1475|Įrašyk galiojantį el. pašto adresą.
+1476|Slaptažodį turi sudaryti bent 8 simboliai.
+1477|Abu slaptažodžiai nesutampa.
+1478|Įrašyk savo vardą ir pavardę.
+1479|Pasirink savo šalį ir įrašyk savo miestą.
+1480|Pasirink 4 skaitmenų tėvų kodą, įrašytą du kartus vienodai.
+1481|Tavo paskyra
+1482|Tavo vardas
+1483|Kur gyveni
+1484|Beveik baigta
+1485|El. pašto adresas
+1486|Tikroms paskyroms reikia serverio, kuris dar neprijungtas.
+1487|{n} žingsnis iš 4
+1488|Kad vėl rastum savo paskyrą
+1489|8 simboliai ar daugiau
+1490|Įrašyk jį dar kartą
+1491|✓ Abu vienodi
+1492|✗ Nevienodi, atidžiai pažiūrėk
+1493|Tavo kalba: gali ją pakeisti bet kada viršuje esančiu mygtuku.
+1494|Tavo tikrasis vardas
+1495|Pavardė
+1496|Tavo tikroji pavardė
+1497|Slapyvardis (viešas)
+1498|Mato žmonės, kurie nėra tavo draugai
+1499|Kad paminėtume tavo gimtadienį
+1500|Šalis
+1501|Pasirinkti…
+1502|Miestas
+1503|Telefono numeris (neprivaloma)
+1504|Kad draugai tave rastų
+1505|Tik tavo draugai mato tavo miestą. Telefonas ir el. paštas lieka privatūs.
+1506|Profilio nuotrauka (neprivaloma)
+1507|Gali tai padaryti vėliau
+1508|Jauniau nei 18? Tėvas čia pasirenka tėvų kodą.
+1509|Tėvų kodas (4 skaitmenys)
+1510|Tęsti
+1511|Gimtadienis ir šventė
+1512|Siųsti {label}
+1513|Sustabdyti bandymą
+1514|Sujunk bent 4 taškus.
+1515|Raštas
+1516|Patvirtinti
+1517|Užraktas išjungtas.
+1518|Tavo įrenginys to nemoka.
+1519|Nepavyko įjungti. Bandyk dar kartą.
+1520|Užraktas įjungtas.
+1521|Nevienodi. Pradėk iš naujo.
+1522|NOTIIF užraktas
+1523|Kad niekas neatidarytų NOTIIF tavo įrenginyje
+1524|Pasirink savo užraktą
+1525|Be užrakto
+1526|Be užrakto, NOTIIF atsidaro iškart
+1527|Piršto antspaudas ar veidas, jei tavo kompiuteris leidžia
+1528|Šiame kompiuteryje neprieinama
+1529|Piršto antspaudas
+1530|Tavo pirštas ant jutiklio
+1531|Šiame telefone neprieinama
+1532|Veidas
+1533|Tavo telefonas tave atpažįsta
+1534|Piešinys pirštu
+1535|PIN kodas
+1536|Nuo 4 iki 6 skaitmenų
+1537|Nupiešk jį dar kartą
+1538|Nupiešk savo raštą
+1539|Pasirink savo PIN kodą
+1540|Jei jį pamirši, gali jį sukurti iš naujo su slaptažodžiu.
+1541|Užrakinti
+1542|Iškart
+1543|Po 1 min.
+1544|Po 5 min.
+1545|Slėpti peržiūrą naujausiose programose
+1546|Užraktas išjungtas. Nustatymuose gali pasirinkti kitą.
+1547|NOTIIF užrakinta
+1548|Naudok „Windows Hello“
+1549|Priglausk pirštą arba parodyk veidą
+1550|Atrakinti
+1551|Neveikia. Bandyk dar kartą.
+1552|Pamiršau
+1553|Pašalinti užraktą
+1554|Demonstraciniu režimu užraktą galima pašalinti tik ištrynus programos duomenis.

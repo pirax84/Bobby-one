@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Skrýt heslo
+1474|Zobrazit heslo
+1475|Napiš platnou e-mailovou adresu.
+1476|Heslo musí mít alespoň 8 znaků.
+1477|Obě hesla nejsou stejná.
+1478|Napiš své jméno a příjmení.
+1479|Vyber svou zemi a napiš své město.
+1480|Vyber čtyřmístný rodičovský kód, napsaný dvakrát stejně.
+1481|Tvůj účet
+1482|Tvé jméno
+1483|Kde bydlíš
+1484|Skoro hotovo
+1485|E-mailová adresa
+1486|Skutečné účty potřebují server, který ještě není připojen.
+1487|Krok {n} ze 4
+1488|Abys našel svůj účet
+1489|8 znaků nebo více
+1490|Napiš ho ještě jednou
+1491|✓ Obě jsou stejná
+1492|✗ Nejsou stejná, podívej se pořádně
+1493|Tvůj jazyk: můžeš ho kdykoli změnit tlačítkem nahoře.
+1494|Tvé skutečné jméno
+1495|Příjmení
+1496|Tvé skutečné příjmení
+1497|Přezdívka (veřejná)
+1498|Vidí ji lidé, kteří nejsou tví přátelé
+1499|Abychom oslavili tvé narozeniny
+1500|Země
+1501|Vybrat…
+1502|Město
+1503|Telefonní číslo (nepovinné)
+1504|Aby tě přátelé našli
+1505|Jen tví přátelé vidí tvé město. Telefon a e-mail zůstávají soukromé.
+1506|Profilová fotka (nepovinné)
+1507|Můžeš to udělat později
+1508|Je ti méně než 18? Rodič zde vybere rodičovský kód.
+1509|Rodičovský kód (4 číslice)
+1510|Pokračovat
+1511|Narozeniny a oslava
+1512|Odeslat {label}
+1513|Zastavit test
+1514|Spoj alespoň 4 body.
+1515|Gesto
+1516|Potvrdit
+1517|Zámek vypnut.
+1518|Tvé zařízení to neumí.
+1519|Nepodařilo se zapnout. Zkus to znovu.
+1520|Zámek zapnut.
+1521|Nejsou stejné. Začni znovu.
+1522|Zámek NOTIIF
+1523|Aby nikdo neotevřel NOTIIF na tvém zařízení
+1524|Vyber svůj zámek
+1525|Žádný zámek
+1526|Žádný zámek, NOTIIF se otevře hned
+1527|Otisk prstu nebo obličej, pokud to tvůj počítač umí
+1528|Na tomto počítači není dostupné
+1529|Otisk prstu
+1530|Tvůj prst na čtečce
+1531|Na tomto telefonu není dostupné
+1532|Obličej
+1533|Tvůj telefon tě pozná
+1534|Obrázek prstem
+1535|Kód PIN
+1536|4 až 6 číslic
+1537|Nakresli ho ještě jednou
+1538|Nakresli své gesto
+1539|Vyber svůj kód PIN
+1540|Když ho zapomeneš, můžeš ho vytvořit znovu pomocí hesla.
+1541|Zamknout
+1542|Hned
+1543|Po 1 min
+1544|Po 5 min
+1545|Skrýt náhled v nedávných aplikacích
+1546|Zámek vypnut. V nastavení můžeš vybrat jiný.
+1547|NOTIIF je zamčený
+1548|Použij Windows Hello
+1549|Přilož prst nebo ukaž obličej
+1550|Odemknout
+1551|Nefunguje to. Zkus to znovu.
+1552|Zapomněl jsem
+1553|Odebrat zámek
+1554|V ukázkovém režimu lze zámek odebrat jen smazáním dat aplikace.

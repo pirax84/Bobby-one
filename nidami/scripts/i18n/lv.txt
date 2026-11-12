@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Paslēpt paroli
+1474|Rādīt paroli
+1475|Ieraksti derīgu e-pasta adresi.
+1476|Parolei jābūt vismaz 8 rakstzīmēm.
+1477|Abas paroles nav vienādas.
+1478|Ieraksti savu vārdu un uzvārdu.
+1479|Izvēlies savu valsti un ieraksti savu pilsētu.
+1480|Izvēlies 4 ciparu vecāku kodu, ierakstītu divreiz vienādi.
+1481|Tavs konts
+1482|Tavs vārds
+1483|Kur tu dzīvo
+1484|Gandrīz gatavs
+1485|E-pasta adrese
+1486|Īstiem kontiem vajag serveri, kas vēl nav pieslēgts.
+1487|{n}. solis no 4
+1488|Lai atkal atrastu savu kontu
+1489|8 rakstzīmes vai vairāk
+1490|Ieraksti to vēlreiz
+1491|✓ Abas ir vienādas
+1492|✗ Nav vienādas, paskaties uzmanīgi
+1493|Tava valoda: tu vari to mainīt jebkurā laikā ar pogu augšā.
+1494|Tavs īstais vārds
+1495|Uzvārds
+1496|Tavs īstais uzvārds
+1497|Segvārds (publisks)
+1498|To redz cilvēki, kas nav tavi draugi
+1499|Lai nosvinētu tavu dzimšanas dienu
+1500|Valsts
+1501|Izvēlēties…
+1502|Pilsēta
+1503|Tālruņa numurs (nav obligāts)
+1504|Lai draugi tevi atrastu
+1505|Tikai tavi draugi redz tavu pilsētu. Tālrunis un e-pasts paliek privāti.
+1506|Profila foto (nav obligāts)
+1507|Tu vari to izdarīt vēlāk
+1508|Jaunāks par 18? Vecāks šeit izvēlas vecāku kodu.
+1509|Vecāku kods (4 cipari)
+1510|Turpināt
+1511|Dzimšanas diena un svētki
+1512|Sūtīt {label}
+1513|Apturēt izmēģinājumu
+1514|Savieno vismaz 4 punktus.
+1515|Zīmējums
+1516|Apstiprināt
+1517|Bloķēšana izslēgta.
+1518|Tava ierīce to nemāk.
+1519|Neizdevās ieslēgt. Mēģini vēlreiz.
+1520|Bloķēšana ieslēgta.
+1521|Nav vienādi. Sāc no jauna.
+1522|NOTIIF bloķēšana
+1523|Lai neviens neatvērtu NOTIIF tavā ierīcē
+1524|Izvēlies savu bloķēšanu
+1525|Bez bloķēšanas
+1526|Bez bloķēšanas, NOTIIF atveras uzreiz
+1527|Pirksta nospiedums vai seja, ja tavs dators to atļauj
+1528|Šajā datorā nav pieejams
+1529|Pirksta nospiedums
+1530|Tavs pirksts uz sensora
+1531|Šajā tālrunī nav pieejams
+1532|Seja
+1533|Tavs tālrunis tevi atpazīst
+1534|Zīmējums ar pirkstu
+1535|PIN kods
+1536|No 4 līdz 6 cipariem
+1537|Uzzīmē to vēlreiz
+1538|Uzzīmē savu zīmējumu
+1539|Izvēlies savu PIN kodu
+1540|Ja tu to aizmirsīsi, vari to izveidot no jauna ar savu paroli.
+1541|Bloķēt
+1542|Uzreiz
+1543|Pēc 1 min.
+1544|Pēc 5 min.
+1545|Paslēpt priekšskatījumu nesenajās lietotnēs
+1546|Bloķēšana izslēgta. Iestatījumos vari izvēlēties citu.
+1547|NOTIIF ir bloķēts
+1548|Izmanto Windows Hello
+1549|Pieliec pirkstu vai parādi seju
+1550|Atbloķēt
+1551|Nedarbojas. Mēģini vēlreiz.
+1552|Es aizmirsu
+1553|Noņemt bloķēšanu
+1554|Demonstrācijas režīmā bloķēšanu var noņemt tikai, izdzēšot lietotnes datus.

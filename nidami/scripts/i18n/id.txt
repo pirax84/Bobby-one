@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Sembunyikan kata sandi
+1474|Tampilkan kata sandi
+1475|Tulis alamat e-mail yang valid.
+1476|Kata sandi harus punya 8 karakter atau lebih.
+1477|Kedua kata sandi tidak sama.
+1478|Tulis nama depan dan nama belakangmu.
+1479|Pilih negaramu dan tulis kotamu.
+1480|Pilih kode orang tua 4 angka, ditulis dua kali sama.
+1481|Akunmu
+1482|Namamu
+1483|Tempat tinggalmu
+1484|Hampir selesai
+1485|Alamat e-mail
+1486|Akun asli membutuhkan server, yang belum terhubung.
+1487|Langkah {n} dari 4
+1488|Untuk menemukan akunmu lagi
+1489|8 karakter atau lebih
+1490|Tulis sekali lagi
+1491|✓ Keduanya sama
+1492|✗ Tidak sama, lihat baik-baik
+1493|Bahasamu: kamu bisa mengubahnya kapan saja dengan tombol di atas.
+1494|Nama depan aslimu
+1495|Nama belakang
+1496|Nama belakang aslimu
+1497|Nama pengguna (publik)
+1498|Dilihat orang yang bukan temanmu
+1499|Untuk merayakan ulang tahunmu
+1500|Negara
+1501|Pilih…
+1502|Kota
+1503|Nomor telepon (opsional)
+1504|Agar temanmu bisa menemukanmu
+1505|Hanya temanmu yang melihat kotamu. Telepon dan e-mailmu tetap pribadi.
+1506|Foto profil (opsional)
+1507|Kamu bisa melakukannya nanti
+1508|Di bawah 18 tahun? Orang tua memilih kode orang tua di sini.
+1509|Kode orang tua (4 angka)
+1510|Lanjut
+1511|Ulang tahun dan pesta
+1512|Kirim {label}
+1513|Hentikan uji coba
+1514|Hubungkan minimal 4 titik.
+1515|Pola
+1516|Konfirmasi
+1517|Kunci dimatikan.
+1518|Perangkatmu tidak bisa melakukannya.
+1519|Gagal mengaktifkan. Coba lagi.
+1520|Kunci diaktifkan.
+1521|Tidak sama. Mulai lagi.
+1522|Kunci NOTIIF
+1523|Agar tidak ada yang membuka NOTIIF di perangkatmu
+1524|Pilih kuncimu
+1525|Tanpa kunci
+1526|Tanpa kunci, NOTIIF langsung terbuka
+1527|Sidik jari atau wajah, jika PC-mu mendukung
+1528|Tidak tersedia di PC ini
+1529|Sidik jari
+1530|Jarimu di sensor
+1531|Tidak tersedia di ponsel ini
+1532|Wajah
+1533|Ponselmu mengenalimu
+1534|Gambar dengan jari
+1535|Kode PIN
+1536|4 sampai 6 angka
+1537|Gambar sekali lagi
+1538|Gambar polamu
+1539|Pilih kode PIN-mu
+1540|Jika kamu lupa, kamu bisa membuatnya lagi dengan kata sandimu.
+1541|Kunci
+1542|Langsung
+1543|Setelah 1 menit
+1544|Setelah 5 menit
+1545|Sembunyikan pratinjau di aplikasi terbaru
+1546|Kunci dimatikan. Kamu bisa memilih yang lain di pengaturan.
+1547|NOTIIF terkunci
+1548|Gunakan Windows Hello
+1549|Letakkan jarimu atau tunjukkan wajahmu
+1550|Buka kunci
+1551|Tidak berhasil. Coba lagi.
+1552|Saya lupa
+1553|Hapus kunci
+1554|Dalam mode demo, kunci hanya bisa dihapus dengan menghapus data aplikasi.

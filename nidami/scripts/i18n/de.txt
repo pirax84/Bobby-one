@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Passwort verbergen
+1474|Passwort anzeigen
+1475|Gib eine gültige E-Mail-Adresse ein.
+1476|Das Passwort muss mindestens 8 Zeichen haben.
+1477|Die beiden Passwörter sind nicht gleich.
+1478|Schreibe deinen Vornamen und deinen Nachnamen.
+1479|Wähle dein Land und schreibe deine Stadt.
+1480|Wähle einen vierstelligen Elterncode, zweimal gleich geschrieben.
+1481|Dein Konto
+1482|Dein Name
+1483|Wo du wohnst
+1484|Fast fertig
+1485|E-Mail-Adresse
+1486|Echte Konten brauchen einen Server, der noch nicht verbunden ist.
+1487|Schritt {n} von 4
+1488|Um dein Konto wiederzufinden
+1489|Mindestens 8 Zeichen
+1490|Schreibe es noch einmal
+1491|✓ Beide sind gleich
+1492|✗ Nicht gleich, schau genau hin
+1493|Deine Sprache: Du kannst sie jederzeit mit der Taste oben ändern.
+1494|Dein echter Vorname
+1495|Nachname
+1496|Dein echter Nachname
+1497|Nutzername (öffentlich)
+1498|Sichtbar für Personen, die nicht deine Freunde sind
+1499|Um deinen Geburtstag zu feiern
+1500|Land
+1501|Auswählen…
+1502|Stadt
+1503|Telefonnummer (freiwillig)
+1504|Damit deine Freunde dich finden
+1505|Nur deine Freunde sehen deine Stadt. Dein Telefon und deine E-Mail bleiben privat.
+1506|Profilfoto (freiwillig)
+1507|Du kannst es später tun
+1508|Unter 18? Ein Elternteil wählt hier den Elterncode.
+1509|Elterncode (4 Ziffern)
+1510|Weiter
+1511|Geburtstag und Party
+1512|{label} senden
+1513|Test stoppen
+1514|Verbinde mindestens 4 Punkte.
+1515|Muster
+1516|Bestätigen
+1517|Sperre ausgeschaltet.
+1518|Dein Gerät kann das nicht.
+1519|Aktivierung nicht möglich. Versuche es erneut.
+1520|Sperre eingeschaltet.
+1521|Nicht gleich. Fang noch einmal an.
+1522|NOTIIF-Sperre
+1523|Damit niemand NOTIIF auf deinem Gerät öffnet
+1524|Wähle deine Sperre
+1525|Keine Sperre
+1526|Keine Sperre, NOTIIF öffnet sich direkt
+1527|Fingerabdruck oder Gesicht, wenn dein PC es kann
+1528|Auf diesem PC nicht verfügbar
+1529|Fingerabdruck
+1530|Dein Finger auf dem Sensor
+1531|Auf diesem Telefon nicht verfügbar
+1532|Gesicht
+1533|Dein Telefon erkennt dich
+1534|Eine Zeichnung mit dem Finger
+1535|PIN-Code
+1536|4 bis 6 Ziffern
+1537|Zeichne es noch einmal
+1538|Zeichne dein Muster
+1539|Wähle deinen PIN-Code
+1540|Wenn du es vergisst, kannst du es mit deinem Passwort neu festlegen.
+1541|Sperren
+1542|Sofort
+1543|Nach 1 Min.
+1544|Nach 5 Min.
+1545|Vorschau in den letzten Apps verbergen
+1546|Sperre ausgeschaltet. Du kannst in den Einstellungen eine andere wählen.
+1547|NOTIIF ist gesperrt
+1548|Nutze Windows Hello
+1549|Lege den Finger auf oder zeige dein Gesicht
+1550|Entsperren
+1551|Es klappt nicht. Versuche es erneut.
+1552|Ich habe es vergessen
+1553|Sperre entfernen
+1554|Im Demomodus lässt sich die Sperre nur entfernen, indem die App-Daten gelöscht werden.

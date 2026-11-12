@@ -1471,3 +1471,85 @@
 1470|For each holiday, choose the effect (and its music) played when you tap the logo.
 1471|Rising
 1472|Bounce
+1473|Jelszó elrejtése
+1474|Jelszó megjelenítése
+1475|Írj be érvényes e-mail-címet.
+1476|A jelszónak legalább 8 karakteresnek kell lennie.
+1477|A két jelszó nem egyezik.
+1478|Írd be a keresztneved és a vezetékneved.
+1479|Válaszd ki az országodat, és írd be a városodat.
+1480|Válassz 4 számjegyű szülői kódot, kétszer ugyanúgy beírva.
+1481|A fiókod
+1482|A neved
+1483|Hol laksz
+1484|Majdnem kész
+1485|E-mail-cím
+1486|A valódi fiókokhoz szerver kell, amely még nincs csatlakoztatva.
+1487|{n}. lépés a 4-ből
+1488|Hogy újra megtaláld a fiókodat
+1489|8 vagy több karakter
+1490|Írd be még egyszer
+1491|✓ A kettő egyezik
+1492|✗ Nem egyeznek, nézd meg jól
+1493|A nyelved: bármikor megváltoztathatod a felső gombbal.
+1494|A valódi keresztneved
+1495|Vezetéknév
+1496|A valódi vezetékneved
+1497|Becenév (nyilvános)
+1498|Azok látják, akik nem a barátaid
+1499|Hogy megünnepeljük a születésnapodat
+1500|Ország
+1501|Választás…
+1502|Város
+1503|Telefonszám (nem kötelező)
+1504|Hogy a barátaid megtaláljanak
+1505|Csak a barátaid látják a városodat. A telefonod és az e-mailed privát marad.
+1506|Profilkép (nem kötelező)
+1507|Ezt később is megteheted
+1508|18 év alatt? Egy szülő itt választja ki a szülői kódot.
+1509|Szülői kód (4 számjegy)
+1510|Tovább
+1511|Születésnap és buli
+1512|{label} küldése
+1513|Próba leállítása
+1514|Kösd össze legalább 4 pontot.
+1515|Minta
+1516|Megerősítés
+1517|A zár kikapcsolva.
+1518|Az eszközöd ezt nem tudja.
+1519|Nem sikerült bekapcsolni. Próbáld újra.
+1520|A zár bekapcsolva.
+1521|Nem egyeznek. Kezdd elölről.
+1522|NOTIIF-zár
+1523|Hogy senki ne nyissa meg a NOTIIF-et az eszközödön
+1524|Válaszd ki a zárat
+1525|Nincs zár
+1526|Nincs zár, a NOTIIF azonnal megnyílik
+1527|Ujjlenyomat vagy arc, ha a számítógéped támogatja
+1528|Ezen a számítógépen nem érhető el
+1529|Ujjlenyomat
+1530|Az ujjad az érzékelőn
+1531|Ezen a telefonon nem érhető el
+1532|Arc
+1533|A telefonod felismer téged
+1534|Rajz az ujjaddal
+1535|PIN-kód
+1536|4–6 számjegy
+1537|Rajzold le még egyszer
+1538|Rajzold le a mintádat
+1539|Válaszd ki a PIN-kódodat
+1540|Ha elfelejted, a jelszavaddal újra beállíthatod.
+1541|Zárolás
+1542|Azonnal
+1543|1 perc után
+1544|5 perc után
+1545|Előnézet elrejtése a legutóbbi alkalmazásoknál
+1546|A zár kikapcsolva. A beállításokban választhatsz másikat.
+1547|A NOTIIF zárolva van
+1548|Használd a Windows Hellót
+1549|Tedd rá az ujjad vagy mutasd az arcod
+1550|Feloldás
+1551|Nem működik. Próbáld újra.
+1552|Elfelejtettem
+1553|Zár eltávolítása
+1554|Bemutató módban a zár csak az alkalmazás adatainak törlésével távolítható el.
