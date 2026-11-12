@@ -997,7 +997,7 @@ html.collapsing,html.collapsing body{overflow:hidden!important}
 .card.row.dn1{padding:6px 10px;gap:8px}.card.row.dn2{padding:3px 8px;gap:8px;min-height:0}.card.row.dn2 .grow>.muted{display:none}.card.row.dn1 .grow>.muted{font-size:.75rem}
 .reqline,.addline{display:flex;align-items:center;gap:10px;width:100%;padding:10px 14px;border-radius:16px;color:inherit;text-align:left;font:inherit;cursor:pointer}
 .reqline{background:rgba(var(--brand-rgb),.16);border:1.5px solid var(--brand)}.addline{background:transparent;border:1.5px dashed var(--bd)}
-@media (min-width:900px){.fgrid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px!important}.fgrid .frow{min-width:0}}
+@media (min-width:900px){.frlist{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px!important}.frlist .frow{min-width:0}}
 /* fond neutre par défaut (thème Lavande) : la couleur ne sert plus que pour les détails */
 html[data-accent=lavande]{--bg:#121214;--bg2:#1B1B1F}
 html[data-accent=lavande][data-theme=light]{--bg:#F4F4F7;--bg2:#E8E8EE;--card:#ECECF2;--card2:#FFFFFF}
