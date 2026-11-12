@@ -43,7 +43,7 @@ export function VideoWm({ src, label, poster = false, bare = false, plain = fals
   const tap = () => { const v = vid.current; if (!v) return; if (!v.paused && !barOn) flash(); else toggle(); };
   const jump = (d: number) => { const v = vid.current; if (v) v.currentTime = Math.max(0, Math.min(v.duration || 0, v.currentTime + d)); };
   return <div className="vwrap protected" onContextMenu={(e) => e.preventDefault()}>
-    <video ref={vid} src={custom ? src + "#t=0.1" : src} controls={false} autoPlay={bare} muted={poster} playsInline preload={bare ? "auto" : "metadata"} onClick={custom ? (e) => { e.stopPropagation(); tap(); } : undefined}
+    <video ref={vid} src={custom ? src + "#t=0.1" : src} poster="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" controls={false} autoPlay={bare} muted={poster} playsInline preload={bare ? "auto" : "metadata"} onClick={custom ? (e) => { e.stopPropagation(); tap(); } : undefined}
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onLoadedMetadata={(e) => setDur(e.currentTarget.duration || 0)}
       onEnded={() => { setPlaying(false); onEnded?.(); }} onTimeUpdate={(e) => { setCur(e.currentTarget.currentTime); onTime?.(e.currentTarget.currentTime, e.currentTarget.duration); }} controlsList="nodownload noremoteplayback" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} />
     {custom && started && <div className={"vbar" + (barOn ? "" : " off")} onClick={(e) => { e.stopPropagation(); flash(); }} onPointerDown={(e) => e.stopPropagation()}>
