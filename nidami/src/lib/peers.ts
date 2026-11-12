@@ -5,7 +5,7 @@ export const PEER: Record<Peer, { c: string; dark: string; label: string }> = {
   here: { c: "#16a34a", dark: "#22c55e", label: "Connecté" },
   later: { c: "#d97706", dark: "#f59e0b", label: "Je reviens plus tard" },
   busy: { c: "#dc2626", dark: "#ef4444", label: "Occupé" },
-  away: { c: "#8b90a0", dark: "#b8bcc6", label: "Absent / déconnecté" },
+  away: { c: "#6b7183", dark: "#b8bcc6", label: "Absent / déconnecté" },
 };
 const m = new Map<string, Peer>();
 export function setPeers(o: Record<string, Peer>) {
