@@ -26,6 +26,8 @@ export function demoPosts(me: ID): Post[] {
     mk({ authorId: "thomas", kind: "photo", img: scene(1), text: "Balade en vélo ce matin 🚴", createdAt: t - 5 * 3600e3 }),
     mk({ authorId: "thomas", kind: "video", video: "./demo/demo-notiif.mp4", text: "Petite vidéo de démonstration 🎬", createdAt: t - 6 * 3600e3 }),
     mk({ authorId: "max", kind: "text", text: "Qui est chaud pour un Morpion ce soir ? 😎", bg: 2, createdAt: t - 8 * 3600e3 }),
+    mk({ authorId: "thomas", kind: "photo", img: scene(2), text: "Ma première story NOTIIF ✨", story: true, createdAt: t - 1800e3, expiresAt: t + 23 * 3600e3 }),
+    mk({ authorId: "emilie", kind: "photo", img: scene(3), text: "Bonne soirée à tous 🌙", story: true, createdAt: t - 2400e3, expiresAt: t + 23 * 3600e3 }),
     mk({ authorId: "celine", kind: "text", text: "Coucou la famille !", bg: 1, story: true, createdAt: t - 3600e3, expiresAt: t + 23 * 3600e3 }),
   ];
 }
