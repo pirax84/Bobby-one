@@ -1,19 +1,23 @@
 import { useRef, useState } from "react";
 import { useStore, actions, userOf } from "../lib/store";
-import { Modal, Avatar, MicIcon, toast, pressProps } from "./common";
+import { Avatar, MicIcon, toast, pressProps } from "./common";
 import { HoldMic } from "./Recorder";
 
-/** Vocal rapide : on choisit la personne, on maintient pour parler, on lâche : le vocal part. */
+/** Vocal rapide : petit bandeau en bas. On choisit la personne, on maintient le micro ; gauche = annuler, haut = verrouiller. */
 export function QuickVoice({ onClose }: { onClose: () => void }) {
-  const s = useStore((x) => x); const me = s.me; const [pick, setPick] = useState<string | null>(null);
+  const s = useStore((x) => x); const me = s.me;
   const convs = s.convs.filter((c) => c.memberIds.includes(me) && !c.groupId);
-  const name = (id: string) => userOf(s, convs.find((c) => c.id === id)?.memberIds.find((m) => m !== me) || "")?.name || "";
-  return <Modal title="Vocal" onClose={onClose}><div className="col" style={{ gap: 10, alignItems: "stretch" }}>
-    {!pick && <>{convs.map((c) => { const o = userOf(s, c.memberIds.find((m) => m !== me) || ""); return <button key={c.id} type="button" className="card row" style={{ gap: 12, textAlign: "left" }} onClick={() => setPick(c.id)}><Avatar u={o} s={44} /><b className="grow">{o?.name}</b><MicIcon size={22} /></button>; })}{!convs.length && <p className="muted">Aucune conversation : écrivez d'abord à un ami depuis « Amis ».</p>}</>}
-    {pick && <div className="col" style={{ alignItems: "center", gap: 14, padding: "10px 0" }}><b>À {name(pick)}</b>
-      <HoldMic className="btn" max={60} onDone={(u) => { actions.send(pick, "", 0, null, undefined, u, false); toast("Vocal envoyé."); onClose(); }}><span style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "6px 10px" }}><MicIcon size={34} />Maintiens pour parler</span></HoldMic>
-      <button type="button" className="btn ghost sm" onClick={() => setPick(null)}>Changer de personne</button></div>}
-  </div></Modal>;
+  const [pick, setPick] = useState<string>(() => { let l = ""; try { l = localStorage.getItem("notiif-qv-last") || ""; } catch { /* rien */ } return convs.some((c) => c.id === l) ? l : (convs[0]?.id || ""); });
+  const [verify, setVerify] = useState<boolean>(() => { try { return localStorage.getItem("notiif-qv-verify") === "1"; } catch { return false; } });
+  const other = (id: string) => userOf(s, convs.find((c) => c.id === id)?.memberIds.find((m) => m !== me) || "");
+  const choose = (id: string) => { setPick(id); try { localStorage.setItem("notiif-qv-last", id); } catch { /* rien */ } };
+  return <div className="qvback" onClick={onClose}><div className="qvdock" role="dialog" aria-label="Vocal" onClick={(e) => e.stopPropagation()}>
+    {!convs.length ? <p className="muted center" style={{ margin: 0 }}>Aucune conversation : écrivez d'abord à un ami depuis « Amis ».</p> : <>
+      <div className="qvstrip">{convs.map((c) => { const o = other(c.id); return <button key={c.id} type="button" className={"qvpick" + (c.id === pick ? " sel" : "")} onClick={() => choose(c.id)}><Avatar u={o} s={42} /><span>{o?.name?.split(" ")[0]}</span></button>; })}</div>
+      <p className="muted small center" style={{ margin: "8px 0 4px" }}>Pour <b>{other(pick)?.name}</b> · maintiens le micro</p>
+      <div style={{ display: "flex", justifyContent: "center" }}><HoldMic className="btn" max={60} verify={verify} onDone={(u) => { actions.send(pick, "", 0, null, undefined, u, false); toast("Vocal envoyé."); onClose(); }}><span style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "6px 14px" }}><MicIcon size={34} />Maintiens pour parler</span></HoldMic></div>
+      <label className="row small muted" style={{ justifyContent: "center", marginTop: 8, gap: 8 }}><input type="checkbox" checked={verify} onChange={(e) => { setVerify(e.target.checked); try { localStorage.setItem("notiif-qv-verify", e.target.checked ? "1" : "0"); } catch { /* rien */ } }} />Vérifier avant d'envoyer</label></>}
+  </div></div>;
 }
 
 /** Bulle flottante du micro : on la déplace où on veut, on la touche pour envoyer un vocal. */

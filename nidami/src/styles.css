@@ -1001,3 +1001,8 @@ html.collapsing,html.collapsing body{overflow:hidden!important}
 /* fond neutre par défaut (thème Lavande) : la couleur ne sert plus que pour les détails */
 html[data-accent=lavande]{--bg:#121214;--bg2:#1B1B1F}
 html[data-accent=lavande][data-theme=light]{--bg:#F4F4F7;--bg2:#E8E8EE;--card:#ECECF2;--card2:#FFFFFF}
+.qvback{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.35);display:flex;align-items:flex-end;justify-content:center}
+.qvdock{width:min(480px,100%);margin:0 10px calc(14px + env(safe-area-inset-bottom));padding:14px;border-radius:24px;background:var(--bg2);border:1px solid var(--bd);box-shadow:0 14px 40px -10px #000a}
+.qvstrip{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 2px;justify-content:flex-start}
+.qvpick{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:var(--mute);font-size:.72rem;flex:none;padding:2px}
+.qvpick.sel{color:var(--fg);font-weight:700}.qvpick.sel .avs{filter:drop-shadow(0 0 0 var(--brand)) drop-shadow(0 0 5px var(--brand))}
