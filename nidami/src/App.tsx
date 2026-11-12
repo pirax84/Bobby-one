@@ -160,7 +160,7 @@ export default function App() {
   const page = kidOn() && !kidOk && (v === "settings" || v === "profile" || v === "friends") ? <PinGate onOk={() => setKidOk(true)} /> : page0;
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button data-k={k} className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
-  return (<div className="shell">
+  return (<div className={"shell" + (v === "messages" ? " wide" : "")}>
     <aside className="side"><div className="brand" style={{ justifyContent: "center" }}><Logo s={60} /></div>
       <button type="button" className="sideme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={40} /><span className="grow ell"><b>{user.name}</b></span></button>
       <button className="btn" style={{ margin: "2px 0 8px" }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button>

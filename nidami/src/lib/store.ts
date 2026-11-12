@@ -57,7 +57,7 @@ export const actions = {
   },
   sbGroups(d: { prime?: boolean; uid: string; groups: { id: string; name: string; members: { id: string; name: string }[] }[]; msgs: { id: string; group_id: string; sender: string; body: string; fx: string | null; created_at: string; media_kind?: string | null; media?: string | null }[] }) {
     if (!state.started || !state.me) return;
-    const need = d.groups.some((g) => { const c = state.convs.find((x) => x.id === "sbg_" + g.id); return !c || c.title !== g.name || c.memberIds.length !== g.members.length; }) || d.msgs.some((m) => { const c = state.convs.find((x) => x.id === "sbg_" + m.group_id); return !c || !c.msgs.some((x) => x.id === m.id); });
+    const need = d.groups.some((g) => { const c = state.convs.find((x) => x.id === "sbg_" + g.id); return !c || c.title !== g.name || c.memberIds.length !== g.members.length; }) || d.msgs.some((m) => { const c = state.convs.find((x) => x.id === "sbg_" + m.group_id); return !c || !c.msgs.some((x) => x.id === m.id && !(m.media && !x.audio && !x.img && !x.video)); });
     if (!need) return;
     mut((s) => {
       for (const g of d.groups) {
@@ -67,7 +67,7 @@ export const actions = {
         if (!c) s.convs.push({ id: cid, memberIds: ids, title: g.name, groupId: cid, msgs: [] }); else { c.memberIds = ids; c.title = g.name; }
       }
       for (const m of d.msgs) {
-        const c = s.convs.find((x) => x.id === "sbg_" + m.group_id); if (!c || c.msgs.some((x) => x.id === m.id)) continue;
+        const c = s.convs.find((x) => x.id === "sbg_" + m.group_id); if (!c) continue; const ex = c.msgs.find((x) => x.id === m.id); if (ex) { if (m.media && !ex.audio && !ex.img && !ex.video) { if (m.media_kind === "audio") ex.audio = m.media; else if (m.media_kind === "video") ex.video = m.media; else ex.img = m.media; } continue; }
         const fx = m.fx && (m.fx in FX) ? (m.fx as Fx) : undefined; const mine = m.sender === d.uid; const fresh = !mine && !d.prime;
         c.msgs.push({ id: m.id, from: mine ? s.me : "sb_" + m.sender, text: m.body, at: fresh ? Math.max(Date.parse(m.created_at) || 0, now()) : Date.parse(m.created_at) || now(), secs: 0, reads: {}, gone: {}, ...(fx ? { fx } : {}), ...(m.media ? (m.media_kind === "audio" ? { audio: m.media } : m.media_kind === "video" ? { video: m.media } : { img: m.media }) : {}) } as Msg);
         if (fresh) notify(s, s.me, t("{name} : nouveau message.", { name: c.title || "?" }), "messages", { by: "sb_" + m.sender, v: "messages", ref: c.id, pv: fx ? FX[fx].text : m.media_kind === "audio" ? "🎤" : m.media_kind ? "📷" : m.body.slice(0, 160) });

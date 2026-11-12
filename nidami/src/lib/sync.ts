@@ -20,7 +20,7 @@ const pull = async () => {
   try { const [fr, msgs, rxs] = await Promise.all([listFriends(), allMessages(), allReactions()]);
     if (Date.now() - lastGroups > 4000) { lastGroups = Date.now(); const gl = await listGroups(); if (gl) groupsCache = gl; }
     const gm = await groupMessages();
-    const have = new Set<string>(); for (const c of getState().convs) for (const m of c.msgs) have.add(m.id);
+    const have = new Set<string>(); for (const c of getState().convs) for (const m of c.msgs) if (m.text || m.img || m.audio || m.video || m.fx) have.add(m.id);
     for (const m of msgs) if (m.media_kind && !have.has(m.id)) { const d = await getMedia(m.id); if (d) m.media = d; else m.media_kind = null; } actions.sbMerge({ prime: !primed, uid: s.uid, fr: fr.map((f) => ({ id: f.id, name: f.name })), msgs }); if (rxs) actions.sbReactions(rxs, s.uid);
     if (gm) { const hv = new Set<string>(); for (const c of getState().convs) for (const m of c.msgs) hv.add(m.id); for (const m of gm) if (m.media_kind && !hv.has(m.id)) { const d = await getGroupMedia(m.id); if (d) m.media = d; else m.media_kind = null; } actions.sbGroups({ prime: !gprimed, uid: s.uid, groups: groupsCache, msgs: gm }); gprimed = true; } primed = true; dbg.pull = Math.round(Date.now() - t00) + " ms"; if (Date.now() - lastPeers > 2500) { lastPeers = Date.now(); void peersNow().then(setPeers); } } finally { busy = false; }
 };
