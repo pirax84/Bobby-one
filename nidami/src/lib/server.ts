@@ -69,10 +69,17 @@ void q;
 /** « Je suis en train d'écrire à cet ami » (le signal expire tout seul). */
 export const sendTyping = (to: string) => req("POST", "/rest/v1/typing?on_conflict=user_id,to_id", { user_id: getSess()?.uid, to_id: to, at: new Date().toISOString() }, "resolution=merge-duplicates,return=minimal");
 /** Qui m'écrit en ce moment (dernières secondes). */
+const tSeen = new Map<string, { at: string; local: number }>(); let tFirst = true;
 export async function typingNow(): Promise<string[]> {
-  const since = new Date(Date.now() - 5000).toISOString();
-  const r = await req("GET", `/rest/v1/typing?at=gt.${q(since)}&to_id=eq.${getSess()?.uid}&select=user_id`);
-  return Array.isArray(r.data) ? r.data.map((x: any) => x.user_id) : [];
+  const me = getSess()?.uid; if (!me) return [];
+  const r = await req("GET", `/rest/v1/typing?to_id=eq.${me}&select=user_id,at`); if (!Array.isArray(r.data)) return [];
+  const out: string[] = []; const t0 = Date.now();
+  for (const x of r.data as { user_id: string; at: string }[]) {
+    const old = tSeen.get(x.user_id);
+    if (!old || old.at !== x.at) { tSeen.set(x.user_id, { at: x.at, local: t0 }); if (!(tFirst && !old && t0 - Date.parse(x.at) > 6000)) out.push(x.user_id); }
+    else if (t0 - old.local < 4500) out.push(x.user_id);
+  }
+  tFirst = false; return out;
 }
 
 /** Mon état de présence + « je suis là maintenant ». */
@@ -80,9 +87,17 @@ export const heartbeat = (presence: string) => req("PATCH", `/rest/v1/profiles?i
 /** Appli cachée ou fermée : je me déclare absent tout de suite (la requête part même pendant la fermeture). */
 export function heartbeatAway() { const s = getSess(); if (!s) return; try { void fetch(SB_URL + `/rest/v1/profiles?id=eq.${s.uid}`, { method: "PATCH", keepalive: true, headers: { apikey: SB_KEY, Authorization: "Bearer " + s.access, "Content-Type": "application/json", Prefer: "return=minimal" }, body: JSON.stringify({ presence: "away", seen_at: new Date(Date.now() - 60000).toISOString() }) }); } catch { /* ignoré */ } }
 /** Présence de mes amis : « absent » si pas vu depuis plus de 75 secondes. */
+const pSeen = new Map<string, { v: string; local: number }>();
 export async function peersNow(): Promise<Record<string, "here" | "later" | "busy" | "away">> {
   const r = await req("GET", "/rest/v1/profiles?select=id,presence,seen_at"); const out: Record<string, "here" | "later" | "busy" | "away"> = {};
-  if (!Array.isArray(r.data)) return out;
-  for (const p of r.data) { const fresh = p.seen_at && Date.now() - Date.parse(p.seen_at) < 20000; out[p.id] = !fresh ? "away" : p.presence === "busy" ? "busy" : p.presence === "later" ? "later" : p.presence === "away" ? "away" : "here"; }
+  if (!Array.isArray(r.data)) return out; const t0 = Date.now();
+  for (const p of r.data) {
+    const v = String(p.seen_at || ""); const old = pSeen.get(p.id); let fresh: boolean;
+    if (!v) fresh = false;
+    else if (!old) { pSeen.set(p.id, { v, local: t0 }); fresh = t0 - Date.parse(v) < 25000; }
+    else if (old.v !== v) { pSeen.set(p.id, { v, local: t0 }); fresh = true; }
+    else fresh = t0 - old.local < 25000;
+    out[p.id] = !fresh ? "away" : p.presence === "busy" ? "busy" : p.presence === "later" ? "later" : p.presence === "away" ? "away" : "here";
+  }
   return out;
 }
