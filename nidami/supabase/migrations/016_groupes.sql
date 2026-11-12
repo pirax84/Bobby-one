@@ -1,0 +1,14 @@
+create table if not exists public.groups (id uuid primary key default gen_random_uuid(), name text not null, created_by uuid not null default auth.uid(), created_at timestamptz not null default now());
+create table if not exists public.group_members (group_id uuid not null references public.groups(id) on delete cascade, user_id uuid not null, primary key (group_id, user_id));
+create table if not exists public.group_messages (id uuid primary key default gen_random_uuid(), group_id uuid not null references public.groups(id) on delete cascade, sender uuid not null default auth.uid(), body text not null default '', fx text, media_kind text, media text, created_at timestamptz not null default now());
+alter table public.groups enable row level security;
+alter table public.group_members enable row level security;
+alter table public.group_messages enable row level security;
+create or replace function public.is_member(g uuid) returns boolean language sql security definer set search_path = public stable as $$ select exists (select 1 from public.group_members where group_id = g and user_id = auth.uid()) $$;
+create policy g_sel on public.groups for select using (created_by = auth.uid() or public.is_member(id));
+create policy g_ins on public.groups for insert with check (created_by = auth.uid());
+create policy gm_sel on public.group_members for select using (public.is_member(group_id));
+create policy gm_ins on public.group_members for insert with check (exists (select 1 from public.groups g where g.id = group_members.group_id and g.created_by = auth.uid()));
+create policy gmsg_sel on public.group_messages for select using (public.is_member(group_id));
+create policy gmsg_ins on public.group_messages for insert with check (sender = auth.uid() and public.is_member(group_id));
+create policy prof_grp on public.profiles for select using (exists (select 1 from public.group_members a join public.group_members b on a.group_id = b.group_id where a.user_id = auth.uid() and b.user_id = profiles.id));

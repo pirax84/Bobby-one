@@ -118,3 +118,21 @@ export const setReaction = (id: string, emoji: string | null) => emoji === null
 export async function allReactions(): Promise<{ message_id: string; user_id: string; emoji: string }[] | null> {
   const r = await req("GET", "/rest/v1/msg_reactions?select=message_id,user_id,emoji"); return r.ok && Array.isArray(r.data) ? r.data : null;
 }
+
+/** Groupes entre vrais comptes. */
+export interface Grp { id: string; name: string; members: { id: string; name: string }[] }
+export interface GMsg { id: string; group_id: string; sender: string; body: string; fx: string | null; created_at: string; media_kind?: string | null; media?: string | null }
+export async function listGroups(): Promise<Grp[] | null> {
+  const g = await req("GET", "/rest/v1/groups?select=id,name"); if (!g.ok || !Array.isArray(g.data)) return null; if (!g.data.length) return [];
+  const m = await req("GET", "/rest/v1/group_members?select=group_id,user_id"); if (!Array.isArray(m.data)) return null;
+  const ids = [...new Set((m.data as { user_id: string }[]).map((x) => x.user_id))]; const nm = await names(ids);
+  return (g.data as { id: string; name: string }[]).map((x) => ({ id: x.id, name: x.name, members: (m.data as { group_id: string; user_id: string }[]).filter((y) => y.group_id === x.id).map((y) => ({ id: y.user_id, name: nm[y.user_id] || "?" })) }));
+}
+export async function groupMessages(): Promise<GMsg[] | null> { const r = await req("GET", "/rest/v1/group_messages?order=created_at.desc&limit=300&select=id,group_id,sender,body,fx,created_at,media_kind"); return r.ok && Array.isArray(r.data) ? (r.data as GMsg[]) : null; }
+export const sendGroupMessage = (gid: string, body: string, fx?: string, id?: string, media?: { kind: string; data: string }) => req("POST", "/rest/v1/group_messages", { ...(id ? { id } : {}), group_id: gid, sender: getSess()?.uid, body, fx: fx || null, ...(media ? { media_kind: media.kind, media: media.data } : {}) }, "return=minimal");
+export async function getGroupMedia(id: string): Promise<string | null> { const r = await req("GET", `/rest/v1/group_messages?id=eq.${id}&select=media`); return Array.isArray(r.data) && r.data[0]?.media ? String(r.data[0].media) : null; }
+export async function createGroup(name: string, members: string[]): Promise<string | null> {
+  const me = getSess()?.uid; if (!me) return null; const id = crypto.randomUUID();
+  const g = await req("POST", "/rest/v1/groups", { id, name: name.slice(0, 40), created_by: me }, "return=minimal"); if (!g.ok) return null;
+  const m = await req("POST", "/rest/v1/group_members", [...new Set([me, ...members])].map((u) => ({ group_id: id, user_id: u })), "return=minimal"); return m.ok ? id : null;
+}
