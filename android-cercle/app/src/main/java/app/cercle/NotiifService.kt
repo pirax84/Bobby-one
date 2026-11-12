@@ -168,10 +168,10 @@ class NotiifService : Service() {
             val mk = if (m.has("media_kind") && !m.isNull("media_kind")) m.getString("media_kind") else ""
             val body = if (fx.isNotEmpty()) "✨ Nouvel effet" else if (mk == "audio") "🎤 Nouveau vocal" else if (mk == "video") "🎬 Nouvelle vidéo" else if (mk.isNotEmpty()) "📷 Nouvelle photo" else "💬 Nouveau message"
             val chId = if (mk == "audio") CH_VOC else if (mk.isNotEmpty()) CH_MED else CH_TXT
-            val pi = PendingIntent.getActivity(this, m.getString("id").hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + m.getString("sender") + (if (mk == "audio") "~a" else "")), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            val pi = PendingIntent.getActivity(this, ("m" + m.getString("sender")).hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + m.getString("sender") + (if (mk == "audio") "~a" else "")), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, chId) else Notification.Builder(this)
-            b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true).setOnlyAlertOnce(true)
-            nm.notify(m.getString("id").hashCode(), b.build())
+            b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
+            nm.notify(("m" + m.getString("sender")).hashCode(), b.build())
         }
         p.edit().putString("last", last).apply()
     }
