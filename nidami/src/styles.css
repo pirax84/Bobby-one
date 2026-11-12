@@ -971,3 +971,13 @@ html.collapsing,html.collapsing body{overflow:hidden!important}
 .bottom button:not(.plus){min-width:48px!important;padding:10px!important;flex-direction:column;align-items:center;justify-content:center}
 .bottom button.on:not(.plus){box-shadow:0 0 0 2px var(--brand)}
 .bottom button.on:not(.plus)::after{content:"";position:absolute;bottom:3px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--brand)}
+
+/* Les deux « i » mis en avant : plus grands, un peu plus hauts, avec une lueur douce */
+.wml.wli{transform:translateY(-5%) scale(1.2);transform-origin:var(--ox,64%) 50%}
+.wml.wli[style*="--i: 4"],.wml.wli[style*="--i:4"]{--ox:68%}
+.wml.wli[style*="--i: 3"],.wml.wli[style*="--i:3"]{--ox:62%}
+.wm.go .wml.wli{animation:wmhopi .75s cubic-bezier(.3,1.6,.5,1) both,wmrb 1.2s linear both}
+.wmglow{position:absolute;left:58%;top:6%;width:14%;height:88%;pointer-events:none;border-radius:50%;background:radial-gradient(closest-side,rgba(255,150,60,.55),rgba(255,150,60,0));filter:blur(4px);animation:wmglow 3.2s ease-in-out infinite}
+@keyframes wmglow{0%,100%{opacity:.45}50%{opacity:.9}}
+@media (prefers-reduced-motion:reduce){.wmglow{animation:none}}
+@keyframes wmhopi{0%{transform:translateY(-5%) scale(1.2)}35%{transform:translateY(-14%) scale(1.38)}70%{transform:translateY(-4%) scale(1.17)}100%{transform:translateY(-5%) scale(1.2)}}

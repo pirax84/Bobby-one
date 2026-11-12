@@ -73,8 +73,9 @@ export function BrandWm({ id, light, sound, big, onHome, bdText, force }: { id: 
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
     {fx && <FeteUnder fete={fx} suf={suf} light={light} />}
+    {!bdText && !fx && <span className="wmglow" aria-hidden="true" />}
     {bdText && <svg className="wmbd" viewBox="0 0 524 184" aria-label={bdText}><text x="262" y="116" textAnchor="middle" fontSize={bdText.length > 15 ? 54 : 64} fontWeight="900" fontFamily="'Arial Black',Arial,sans-serif" textLength={bdText.length > 15 ? 450 : 420} lengthAdjust="spacingAndGlyphs">{[...bdText].map((c, i) => <tspan key={i} fill={BD_COL[i % BD_COL.length]}>{c}</tspan>)}</text></svg>}
-    {!bdText && WM_CUTS.slice(0, 6).map((c, i) => (fx && i === 1) ? null : <img key={i + "-" + go} className="wml" draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(${fx ? (i === 3 || i === 4 ? "41%" : i === 5 ? "35%" : "0") : "0"} ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
+    {!bdText && WM_CUTS.slice(0, 6).map((c, i) => (fx && i === 1) ? null : <img key={i + "-" + go} className={"wml" + (!fx && (i === 3 || i === 4) ? " wli" : "")} draggable={false} alt="" src={`./wm-fg-${suf}.png`} style={{ ["--i" as string]: i, clipPath: `inset(${fx ? (i === 3 || i === 4 ? "41%" : i === 5 ? "35%" : "0") : "0"} ${100 - WM_CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
     {fx && <FeteOrnaments fete={fx} suf={suf} light={light} />}
   </span>;
 }
