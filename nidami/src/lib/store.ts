@@ -50,6 +50,10 @@ export const HANDLE_RE = /^[a-z0-9_.]{3,20}$/;
 export const isRestricted = (s: State, id: ID) => new Set(s.reports.filter((r) => r.target === id).map((r) => r.by)).size >= 3;
 const MAX_REQ_DAY = 15;
 function setCats(s: State, friend: ID, ids: string[]) { const o = { ...(s.social.catOf || {}) }; o[s.me] = { ...(o[s.me] || {}) }; if (ids.length) o[s.me][friend] = [...new Set(ids)]; else delete o[s.me][friend]; s.social.catOf = o; }
+const TOMB_K = "notiif-tomb"; let tombSet: Set<string> | null = null;
+const tomb = (id: string) => { if (!tombSet) { try { tombSet = new Set<string>(JSON.parse(localStorage.getItem(TOMB_K) || "[]")); } catch { tombSet = new Set<string>(); } } return tombSet.has(id); };
+export const isTomb = tomb;
+const addTomb = (id: string) => { tomb(id); tombSet!.add(id); try { localStorage.setItem(TOMB_K, JSON.stringify([...tombSet!].slice(-500))); } catch { /* rien */ } };
 export const actions = {
   sbTyping(fids: string[], kinds?: Record<string, string>) {
     if (!state.started || !fids.length) return;
@@ -57,7 +61,7 @@ export const actions = {
   },
   sbGroups(d: { prime?: boolean; uid: string; groups: { id: string; name: string; members: { id: string; name: string }[] }[]; msgs: { id: string; group_id: string; sender: string; body: string; fx: string | null; created_at: string; media_kind?: string | null; media?: string | null }[] }) {
     if (!state.started || !state.me) return;
-    const need = d.groups.some((g) => { const c = state.convs.find((x) => x.id === "sbg_" + g.id); return !c || c.title !== g.name || c.memberIds.length !== g.members.length; }) || d.msgs.some((m) => { const c = state.convs.find((x) => x.id === "sbg_" + m.group_id); return !c || !c.msgs.some((x) => x.id === m.id && !(m.media && !x.audio && !x.img && !x.video)); });
+    const need = d.groups.some((g) => { const c = state.convs.find((x) => x.id === "sbg_" + g.id); return !c || c.title !== g.name || c.memberIds.length !== g.members.length; }) || d.msgs.some((m) => { if (tomb(m.id)) return false; const c = state.convs.find((x) => x.id === "sbg_" + m.group_id); return !c || !c.msgs.some((x) => x.id === m.id && !(m.media && !x.audio && !x.img && !x.video)); });
     if (!need) return;
     mut((s) => {
       for (const g of d.groups) {
@@ -66,7 +70,7 @@ export const actions = {
         const cid = "sbg_" + g.id; const c = s.convs.find((x) => x.id === cid);
         if (!c) s.convs.push({ id: cid, memberIds: ids, title: g.name, groupId: cid, msgs: [] }); else { c.memberIds = ids; c.title = g.name; }
       }
-      for (const m of d.msgs) {
+      for (const m of d.msgs) { if (tomb(m.id)) continue;
         const c = s.convs.find((x) => x.id === "sbg_" + m.group_id); if (!c) continue; const ex = c.msgs.find((x) => x.id === m.id); if (ex) { if (m.media && !ex.audio && !ex.img && !ex.video) { if (m.media_kind === "audio") ex.audio = m.media; else if (m.media_kind === "video") ex.video = m.media; else ex.img = m.media; } continue; }
         const fx = m.fx && (m.fx in FX) ? (m.fx as Fx) : undefined; const mine = m.sender === d.uid; const fresh = !mine && !d.prime;
         c.msgs.push({ id: m.id, from: mine ? s.me : "sb_" + m.sender, text: m.body, at: fresh ? Math.max(Date.parse(m.created_at) || 0, now()) : Date.parse(m.created_at) || now(), secs: 0, reads: {}, gone: {}, ...(fx ? { fx } : {}), ...(m.media ? (m.media_kind === "audio" ? { audio: m.media } : m.media_kind === "video" ? { video: m.media } : { img: m.media }) : {}) } as Msg);
@@ -77,7 +81,7 @@ export const actions = {
   },
   sbMerge(d: { prime?: boolean; uid: string; fr: { id: string; name: string }[]; msgs: { id: string; sender: string; recipient: string; body: string; fx: string | null; created_at: string; media_kind?: string | null; media?: string | null }[] }) {
     if (!state.started || !state.me) return;
-    const need = d.fr.some((f) => !state.users.some((u) => u.id === "sb_" + f.id) || !state.convs.some((c) => c.id === "sbc_" + f.id)) || d.msgs.some((m) => { const o = m.sender === d.uid ? m.recipient : m.sender; const c = state.convs.find((x) => x.id === "sbc_" + o); return !c || !c.msgs.some((x) => x.id === m.id); });
+    const need = d.fr.some((f) => !state.users.some((u) => u.id === "sb_" + f.id) || !state.convs.some((c) => c.id === "sbc_" + f.id)) || d.msgs.some((m) => { if (tomb(m.id)) return false; const o = m.sender === d.uid ? m.recipient : m.sender; const c = state.convs.find((x) => x.id === "sbc_" + o); return !c || !c.msgs.some((x) => x.id === m.id); });
     if (!need) return;
     mut((s) => {
       for (const f of d.fr) {
@@ -87,7 +91,7 @@ export const actions = {
         s.social.friends[s.me] = [...new Set([...(s.social.friends[s.me] || []), fid])]; s.social.friends[fid] = [...new Set([...(s.social.friends[fid] || []), s.me])];
         if (!s.convs.some((c) => c.id === "sbc_" + f.id)) s.convs.push({ id: "sbc_" + f.id, memberIds: [s.me, fid], msgs: [] });
       }
-      for (const m of d.msgs) {
+      for (const m of d.msgs) { if (tomb(m.id)) continue;
         const o = m.sender === d.uid ? m.recipient : m.sender; const c = s.convs.find((x) => x.id === "sbc_" + o); if (!c || c.msgs.some((x) => x.id === m.id)) continue;
         const fx = m.fx && (m.fx in FX) ? (m.fx as Fx) : undefined;
         const mine = m.sender === d.uid; const fresh = !mine && !d.prime;
@@ -197,7 +201,7 @@ export const actions = {
     if (c.memberIds.filter((x) => x !== m.from).every((x) => m.gone![x] !== undefined)) { m.text = ""; m.img = null; m.audio = null; m.video = null; } }); },
   suspectCapture(postId: ID | null, convId?: ID, msgId?: ID) { mut((s) => { let author = ""; if (postId) author = s.posts.find((p) => p.id === postId)?.authorId || ""; else if (convId) author = s.convs.find((c) => c.id === convId)?.msgs.find((m) => m.id === msgId)?.from || ""; if (author && author !== s.me) notify(s, author, t("{name} a peut-être tenté une capture d'un de vos contenus.", { name: userOf(s, s.me)!.name }), "home"); }); },
   editMsg(convId: ID, id: ID, text: string) { mut((s) => { const m = s.convs.find((c) => c.id === convId)?.msgs.find((x) => x.id === id); if (m && m.from === s.me && text.trim()) { m.text = text.trim().slice(0, 2000); m.edited = true; } }); },
-  deleteMsg(convId: ID, id: ID) { mut((s) => { const c = s.convs.find((x) => x.id === convId); if (c) c.msgs = c.msgs.filter((m) => !(m.id === id && m.from === s.me)); }); },
+  deleteMsg(convId: ID, id: ID) { const priv = convId.startsWith("sbc_") || convId.startsWith("sbg_"); if (priv) addTomb(id); mut((s) => { const c = s.convs.find((x) => x.id === convId); if (c) c.msgs = c.msgs.filter((m) => !(m.id === id && (priv || m.from === s.me))); }); },
   reactMsg(convId: ID, id: ID, emoji: string) { mut((s) => { const m = s.convs.find((c) => c.id === convId && c.memberIds.includes(s.me))?.msgs.find((x) => x.id === id); if (!m) return; const rx = { ...(m.rx || {}) }; if (rx[s.me] === emoji) { delete rx[s.me]; if (convId.startsWith("sbc_")) sbReact?.(id, null); } else { rx[s.me] = emoji; if (convId.startsWith("sbc_")) sbReact?.(id, emoji); } m.rx = rx; rxLocal.set(id, now()); }); },
   sbReactions(list: { message_id: string; user_id: string; emoji: string }[], uid: string) {
     if (!state.started || !state.me) return; const want: Record<string, Record<string, string>> = {};

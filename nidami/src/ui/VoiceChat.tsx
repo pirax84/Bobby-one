@@ -50,7 +50,7 @@ function VoiceChat({ item, back }: { item: Item; back: () => void }) {
     <div className="card msgs voicemsgs" role="log" aria-live="polite">{msgs.map((m) => { const mine = m.from === me; const hidden = !mine && (m.once || m.secs > 0);
       return <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start" }}>
         {hidden ? <div className="bubble muted">{t("🔒 Vocal éphémère · à ouvrir dans la conversation écrite")}</div> : <div className={"bubble" + (mine ? " me" : "")}><AudioWave src={m.audio!} mine={mine} /></div>}
-        <div className="muted small row" style={{ gap: 8 }}>{ago(m.at, now)}{mine && m.once ? " · 🔥" : mine && m.secs > 0 ? " · ⏱ " + (m.secs >= 60 ? m.secs / 60 + " min" : m.secs + " s") : ""}{mine && <button type="button" className="btn ghost sm" onClick={() => setDel(m.id)} aria-label={t("Supprimer ce vocal")}><Ico n="trash" s={16} /></button>}</div></div>; })}
+        <div className="muted small row" style={{ gap: 8 }}>{ago(m.at, now)}{mine && m.once ? " · 🔥" : mine && m.secs > 0 ? " · ⏱ " + (m.secs >= 60 ? m.secs / 60 + " min" : m.secs + " s") : ""}{<button type="button" className="btn ghost sm" onClick={() => setDel(m.id)} aria-label={t("Supprimer ce vocal")}><Ico n="trash" s={16} /></button>}</div></div>; })}
       {!msgs.length && <p className="muted center">{t("Aucun vocal pour l'instant : dis bonjour avec ta voix !")}</p>}<div ref={end} /></div>
     {del && cid && <ConfirmDel what={t("ce vocal")} onYes={() => actions.deleteMsg(cid, del)} onClose={() => setDel(null)} />}
     <div className="col" style={{ alignItems: "center", gap: 6 }}>
