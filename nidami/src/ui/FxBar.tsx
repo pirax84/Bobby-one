@@ -7,8 +7,8 @@ import { FX, BDAY_KEYS, NOEL_KEYS, FX_ALL, FX_KEYS, Fx, playFx, playCustom, stop
 import { Modal, toast, fileToDataUrl } from "./common";
 import { t } from "../i18n";
 
-export const DEFAULT_FAV: Fx[] = ["shake", "clap", "hearts", "kiss"];
-export const favOf = (v?: string): Fx[] => { const l = (v ? v.split(",") : DEFAULT_FAV).filter((k) => k in FX) as Fx[]; return l.length ? l.slice(0, 4) : DEFAULT_FAV; };
+export const DEFAULT_FAV: Fx[] = ["shake", "laugh", "hearts", "kiss"];
+export const favOf = (v?: string): Fx[] => { const l = (v && v !== "shake,clap,hearts,kiss" ? v.split(",") : DEFAULT_FAV).filter((k) => k in FX) as Fx[]; return l.length ? l.slice(0, 4) : DEFAULT_FAV; };
 
 /** 4 effets favoris toujours visibles + un bouton « + » pour tous les autres. */
 export function FxBar({ convId, compact = false }: { convId: string; compact?: boolean }) {
