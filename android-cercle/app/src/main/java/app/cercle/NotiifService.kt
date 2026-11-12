@@ -26,7 +26,7 @@ class NotiifService : Service() {
         const val CH_SVC = "notiif_service"
         const val CH_MSG = "notiif_msg_pop"
         const val CH_TXT = "notiif_txt3"
-        const val CH_VOC = "notiif_voc3"
+        const val CH_VOC = "notiif_voc4"
         const val CH_MED = "notiif_med3"
         const val CH_TYP = "notiif_typ3"
         @Volatile var visible = false
