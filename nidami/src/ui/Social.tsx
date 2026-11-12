@@ -8,6 +8,7 @@ import { areFriends } from "../lib/engine";
 import { FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, playTone, vibrate, SHAKE_SNDS, CALL_TONES, playOne } from "../lib/fx";
 import { favOf, DEFAULT_FAV } from "./FxBar";
 import { HowTo } from "./HowTo";
+import { FriendSheet } from "./FriendSheet";
 import { Avatar, Ico, Modal, toast, ago, fileToDataUrl, useNow, Switch, ConfirmDel, DobFields, ageFrom, isPC } from "./common";
 import { Home } from "./Home";
 import { Camera } from "./Recorder";
@@ -113,13 +114,7 @@ export function Friends({ go }: { go: (v: string, conv?: string) => void }) {
     {!friends.length && <p className="muted">{t("Pas encore d'amis.")}</p>}
     {rep && <Modal title={t("Signaler cette personne")} onClose={() => setRep(null)}><div className="col" style={{ gap: 8 }}><p className="muted small" style={{ margin: 0 }}>{t("Pourquoi ? Trois signalements de personnes différentes suspendent automatiquement le compte le temps d'une vérification.")}</p>{[t("Faux profil"), t("Vente, publicité ou démarchage"), t("Arnaque"), t("Propositions sexuelles ou escorting"), t("Contenu illégal"), t("Harcèlement"), t("Autre")].map((w) => <button key={w} className="btn ghost" onClick={() => { actions.report(rep, w); toast(t("Merci, signalement enregistré.")); setRep(null); }}>{w}</button>)}</div></Modal>}
     {ct && <InviteContacts onClose={() => setCt(false)} />}
-    {menu && (() => { const f = userOf(s, menu); if (!f) return null; return <Modal title={f.name} onClose={() => setMenu(null)}><div className="col" style={{ gap: 8 }}><div className="row"><Avatar u={f} s={48} /><div className="muted small">@{f.handle}</div></div>
-      <div><b className="small">{t("Lien avec {name}", { name: f.name })}</b><div className="chiprow" style={{ marginTop: 6 }}>{([[undefined, T("Aucun")], ["family", T("Famille")], ["fav", T("Favori")]] as const).map(([k, l]) => <button key={l} className={"chip" + ((s.social.ties?.[f.id] || undefined) === k ? " on" : "")} onClick={() => actions.setTie(f.id, k || null)}>{k === "family" ? "❤ " : k === "fav" ? "★ " : ""}{t(l)}</button>)}</div></div>
-      <div><b className="small">{t("Catégories")}</b><div style={{ marginTop: 6 }}><CatPicker value={friendCats(s.social, me, f.id)} onChange={(v) => actions.setFriendCats(f.id, v)} /></div></div>
-      <button className="btn" onClick={() => { const cid = actions.startDm(f.id); setMenu(null); go("messages", cid); }}>{t("💬 Écrire")}</button>
-      <button className="btn ghost" onClick={() => { if (confirm(t("Retirer {name} de vos amis ?", { name: f.name }))) { actions.unfriend(f.id); setMenu(null); } }}>{t("Retirer des amis")}</button>
-      <button className="btn ghost" onClick={() => { setRep(f.id); setMenu(null); }}>{t("Signaler")}</button>
-      <button className="btn danger" onClick={() => { if (confirm(t("Bloquer {name} ? Il ne verra plus vos contenus.", { name: f.name }))) { actions.block(f.id, true); toast(t("Bloqué.")); setMenu(null); } }}>{t("Bloquer")}</button></div></Modal>; })()}
+    {menu && <FriendSheet id={menu} onClose={() => setMenu(null)} go={go} onReport={(x) => setRep(x)} />}
     <div className="card col"><div className="row"><h3 className="grow">{t("Mes listes")}</h3><button className="btn sm" onClick={() => setList(true)}><Ico n="plus" s={16} />{" "}{t("Créer")}</button></div>
       {mylists.map((l) => <div key={l.id}><b>{l.name}</b> <span className="muted small">{l.memberIds.map((i) => userOf(s, i)?.name).join(", ")}</span></div>)}{!mylists.length && <p className="muted small">{t("Ex. « Cousins », « Collègues »… pour choisir vite qui voit vos publications.")}</p>}</div>
     {blocked.length > 0 && <div className="card col"><h3>{t("Personnes bloquées")}</h3>{blocked.map((b) => <div key={b.id} className="row"><Avatar u={b} s={34} /><b className="grow">{b.name}</b><button className="btn ghost sm" onClick={() => actions.block(b.id, false)}>{t("Débloquer")}</button></div>)}</div>}
