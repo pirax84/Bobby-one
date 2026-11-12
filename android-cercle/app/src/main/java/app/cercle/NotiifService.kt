@@ -30,6 +30,9 @@ class NotiifService : Service() {
         const val CH_MED = "notiif_med3"
         const val CH_TYP = "notiif_typ3"
         @Volatile var visible = false
+        private val notified = LinkedHashSet<String>()
+        /** Un même message ne doit déclencher qu'une seule notification (Firebase ou veille, le premier arrivé). */
+        fun claim(id: String): Boolean = synchronized(notified) { if (!notified.add(id)) false else { if (notified.size > 300) notified.remove(notified.first()); true } }
         fun start(ctx: Context) {
             val i = Intent(ctx, NotiifService::class.java)
             if (Build.VERSION.SDK_INT >= 26) ctx.startForegroundService(i) else ctx.startService(i)
@@ -159,6 +162,7 @@ class NotiifService : Service() {
             if (visible) continue
             if ((p.getString("mute", "") ?: "").split(",").contains(m.getString("sender"))) continue
             nm.cancel(("t" + m.getString("sender")).hashCode())
+            if (!claim(m.getString("id"))) continue
             val who = nameOf(base, key, tk, m.getString("sender"))
             val fx = if (m.isNull("fx")) "" else m.getString("fx")
             val mk = if (m.has("media_kind") && !m.isNull("media_kind")) m.getString("media_kind") else ""
@@ -166,7 +170,7 @@ class NotiifService : Service() {
             val chId = if (mk == "audio") CH_VOC else if (mk.isNotEmpty()) CH_MED else CH_TXT
             val pi = PendingIntent.getActivity(this, m.getString("id").hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + m.getString("sender") + (if (mk == "audio") "~a" else "")), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, chId) else Notification.Builder(this)
-            b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
+            b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true).setOnlyAlertOnce(true)
             nm.notify(m.getString("id").hashCode(), b.build())
         }
         p.edit().putString("last", last).apply()

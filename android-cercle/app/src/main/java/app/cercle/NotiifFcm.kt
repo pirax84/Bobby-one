@@ -19,6 +19,7 @@ class NotiifFcm : FirebaseMessagingService() {
         val d = msg.data
         if (d.isEmpty() || NotiifService.visible) return
         val id = d["id"] ?: System.currentTimeMillis().toString()
+        if (!NotiifService.claim(id)) return
         val sender = d["sender"] ?: ""
         val who = d["name"] ?: "Un ami"
         val kind = d["kind"] ?: "text"
@@ -26,9 +27,10 @@ class NotiifFcm : FirebaseMessagingService() {
         val chId = when (kind) { "audio" -> NotiifService.CH_VOC; "video", "image" -> NotiifService.CH_MED; else -> NotiifService.CH_TXT }
         NotiifService.channels(this)
         val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        nm.cancel(("t" + sender).hashCode())
         val pi = PendingIntent.getActivity(this, id.hashCode(), Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("conv", "sbc_" + sender + (if (kind == "audio") "~a" else "")), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, chId) else Notification.Builder(this)
-        b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
+        b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true).setOnlyAlertOnce(true)
         nm.notify(id.hashCode(), b.build())
     }
 }
