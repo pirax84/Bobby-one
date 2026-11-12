@@ -74,3 +74,13 @@ export async function typingNow(): Promise<string[]> {
   const r = await req("GET", `/rest/v1/typing?at=gt.${q(since)}&to_id=eq.${getSess()?.uid}&select=user_id`);
   return Array.isArray(r.data) ? r.data.map((x: any) => x.user_id) : [];
 }
+
+/** Mon état de présence + « je suis là maintenant ». */
+export const heartbeat = (presence: string) => req("PATCH", `/rest/v1/profiles?id=eq.${getSess()?.uid}`, { presence, seen_at: new Date().toISOString() }, "return=minimal");
+/** Présence de mes amis : « absent » si pas vu depuis plus de 75 secondes. */
+export async function peersNow(): Promise<Record<string, "here" | "later" | "busy" | "away">> {
+  const r = await req("GET", "/rest/v1/profiles?select=id,presence,seen_at"); const out: Record<string, "here" | "later" | "busy" | "away"> = {};
+  if (!Array.isArray(r.data)) return out;
+  for (const p of r.data) { const fresh = p.seen_at && Date.now() - Date.parse(p.seen_at) < 75000; out[p.id] = !fresh ? "away" : p.presence === "busy" ? "busy" : p.presence === "later" ? "later" : p.presence === "away" ? "away" : "here"; }
+  return out;
+}

@@ -1,3 +1,4 @@
+import { usePeer, peerColor, PEER } from "../lib/peers";
 import { ReactNode, useEffect, useId, useState } from "react";
 import { useStore, type User } from "../lib/store";
 import { t, T, locale } from "../i18n";
@@ -54,12 +55,13 @@ export const SHAPES: Record<string, string> = { puffy: "M30 2H70C90 2 98 10 98 3
 /** « MM-JJ » : est-ce l'anniversaire aujourd'hui (0) ou dans N jours ? */
 export function isBirthday(b: string | undefined, inDays: number): boolean { if (!b) return false; const d = new Date(Date.now() + inDays * 864e5); return b === String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
 export function Avatar({ u, s = 44 }: { u?: User; s?: number }) {
+  const pr = usePeer(u?.id.startsWith("sb_") ? u.id.slice(3) : undefined);
   const me = useStore((x) => x.me); const isFriend = useStore((x) => !!u && (x.social.friends[x.me] || []).includes(u.id)); const tie = useStore((x) => (u ? x.social.ties?.[u.id] : undefined));
   if (!u) return <div className="av" style={{ width: s, height: s, background: "#555" }}>?</div>;
   const vis = u.avatarVis || "friends"; const show = !!u.avatar && (u.id === me || vis === "all" || (vis === "friends" && isFriend));
   const shape = u.id === me ? "puffy" : tie === "family" ? "heart" : tie === "fav" ? "star" : "hex";
   const bday = isBirthday(u.birthday, 0); const g = u.id === me || tie === "family" ? "ga" : tie === "fav" ? "gb" : isFriend ? "gc" : "gd"; const d = SHAPES[shape];
-  return <span className="avs" style={{ width: s, height: s }} aria-label={u.name} role="img"><svg viewBox="-4 -4 108 108" width={s} height={s} aria-hidden="true" style={{ overflow: "visible" }}>
+  const pc = pr ? peerColor(pr) : ""; return <span className="avs" style={{ width: s, height: s, position: "relative", ...(pr ? { filter: `drop-shadow(0 0 1.5px ${pc}) drop-shadow(0 0 1.5px ${pc})` } : {}) }} aria-label={u.name + (pr ? " · " + PEER[pr].label : "")} role="img">{pr && <i style={{ position: "absolute", right: -1, bottom: -1, width: Math.max(10, Math.round(s * 0.28)), height: Math.max(10, Math.round(s * 0.28)), borderRadius: "50%", background: pc, border: "2.5px solid var(--bg, #fff)", boxSizing: "border-box", zIndex: 2 }} />}<svg viewBox="-4 -4 108 108" width={s} height={s} aria-hidden="true" style={{ overflow: "visible" }}>
     <path d={d} fill={`url(#${g})`} />
     {show ? <image href={u.avatar!} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${shape})`} /> : <text x="50" y={shape === "star" ? 62 : 58} textAnchor="middle" fontSize="36" fontWeight="800" fill="#fff" fontFamily="system-ui,sans-serif">{u.name.slice(0, 1).toUpperCase()}</text>}
     <path d={d} fill="none" stroke="var(--ink)" strokeWidth={s < 40 ? 7 : 6} strokeLinejoin="round" />
