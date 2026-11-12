@@ -126,7 +126,8 @@ class MainActivity : Activity() {
         }
         @JavascriptInterface fun hasNotifPermission(): Boolean = Build.VERSION.SDK_INT < 33 || checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
         @JavascriptInterface fun askNotif() { runOnUiThread { if (Build.VERSION.SDK_INT >= 33 && !hasNotifPermission()) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), RC_NOTIF) } }
-        @JavascriptInterface fun notify(title: String, body: String) {
+        @JavascriptInterface fun notify(title: String, body: String) { notifyConv(title, body, "") }
+        @JavascriptInterface fun notifyConv(title: String, body: String, conv: String) {
             if (!hasNotifPermission()) return
             val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             NotiifService.channels(this@MainActivity)
@@ -134,10 +135,13 @@ class MainActivity : Activity() {
                 val ch = NotificationChannel(CHANNEL, "Messages et activité", NotificationManager.IMPORTANCE_HIGH)
                 ch.enableVibration(true); ch.vibrationPattern = longArrayOf(0, 200, 100, 200); nm.createNotificationChannel(ch)
             }
-            val pi = PendingIntent.getActivity(this@MainActivity, 0, Intent(this@MainActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            val nid = (System.currentTimeMillis() % 100000).toInt()
+            val it = Intent(this@MainActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            if (conv.isNotEmpty()) it.putExtra("conv", conv)
+            val pi = PendingIntent.getActivity(this@MainActivity, nid, it, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this@MainActivity, CHANNEL) else Notification.Builder(this@MainActivity)
             b.setContentTitle(title).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)).setAutoCancel(true).setContentIntent(pi)
-            nm.notify((System.currentTimeMillis() % 100000).toInt(), b.build())
+            nm.notify(nid, b.build())
         }
         /** Vibre selon un motif « durées en ms séparées par des virgules » (vibre, pause, vibre…), à la force demandée (1 à 255). */
         @JavascriptInterface fun vibrate(pattern: String, amplitude: Int) {

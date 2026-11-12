@@ -138,7 +138,7 @@ export default function App() {
     if (!lastNotif || lastNotif.id === seenN.current) return; seenN.current = lastNotif.id;
     const fm = lastNotif.by ? friendMode(lastNotif.by) : "normal"; if (fm === "silent") return;
     if (!th0?.quiet) { if (fm === "priority") setTimeout(() => playMsgSound("text"), 450); if (lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_")) playMsgSound(lastNotif.pv === "🎤" ? "audio" : lastNotif.pv === "📷" ? "media" : "text"); else playNotifSound(); vibrate(th0?.vibm, 1); }
-    const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
+    const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { const cv = lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_") ? "sbc_" + lastNotif.by.slice(3) : ""; if (cv && nat.notifyConv) nat.notifyConv(BRAND, lastNotif.text, cv); else nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
     const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
     navigator.serviceWorker?.ready.then((r) => r.showNotification(BRAND, opt)).catch(() => { try { new Notification(BRAND, opt); } catch { /* ignoré */ } });
