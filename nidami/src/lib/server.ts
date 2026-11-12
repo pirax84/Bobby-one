@@ -77,10 +77,12 @@ export async function typingNow(): Promise<string[]> {
 
 /** Mon état de présence + « je suis là maintenant ». */
 export const heartbeat = (presence: string) => req("PATCH", `/rest/v1/profiles?id=eq.${getSess()?.uid}`, { presence, seen_at: new Date().toISOString() }, "return=minimal");
+/** Appli cachée ou fermée : je me déclare absent tout de suite (la requête part même pendant la fermeture). */
+export function heartbeatAway() { const s = getSess(); if (!s) return; try { void fetch(SB_URL + `/rest/v1/profiles?id=eq.${s.uid}`, { method: "PATCH", keepalive: true, headers: { apikey: SB_KEY, Authorization: "Bearer " + s.access, "Content-Type": "application/json", Prefer: "return=minimal" }, body: JSON.stringify({ presence: "away", seen_at: new Date(Date.now() - 60000).toISOString() }) }); } catch { /* ignoré */ } }
 /** Présence de mes amis : « absent » si pas vu depuis plus de 75 secondes. */
 export async function peersNow(): Promise<Record<string, "here" | "later" | "busy" | "away">> {
   const r = await req("GET", "/rest/v1/profiles?select=id,presence,seen_at"); const out: Record<string, "here" | "later" | "busy" | "away"> = {};
   if (!Array.isArray(r.data)) return out;
-  for (const p of r.data) { const fresh = p.seen_at && Date.now() - Date.parse(p.seen_at) < 75000; out[p.id] = !fresh ? "away" : p.presence === "busy" ? "busy" : p.presence === "later" ? "later" : p.presence === "away" ? "away" : "here"; }
+  for (const p of r.data) { const fresh = p.seen_at && Date.now() - Date.parse(p.seen_at) < 20000; out[p.id] = !fresh ? "away" : p.presence === "busy" ? "busy" : p.presence === "later" ? "later" : p.presence === "away" ? "away" : "here"; }
   return out;
 }

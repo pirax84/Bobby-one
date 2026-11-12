@@ -6,6 +6,7 @@ import { MicBtn } from "./Recorder";
 import { CallButton } from "./Chat";
 import { AudioWave } from "./AudioWave";
 import { t } from "../i18n";
+import { typingPing } from "../lib/sync";
 
 /** Bulle de messages flottante (comme Messenger) : touchez-la pour lire et répondre sans quitter la page. */
 /** Onglets supplémentaires de la bulle : les 3 principaux restent visibles, les autres vont dans « Plus ». Vide pour l'instant. */
@@ -48,7 +49,7 @@ export function ChatBubble({ openFull, openList }: { openFull: (convId: string) 
           {del && sel && <ConfirmDel what={t("ce message")} onYes={() => actions.deleteMsg(sel, del)} onClose={() => setDel(null)} />}
           {emo && <div className="empanel" style={{ margin: "0 8px", maxHeight: 150 }}><EmojiGrid onPick={(e) => setTxt((tx) => tx + e)} onClose={() => setEmo(false)} /></div>}
           <FxBar convId={c.id} compact />
-          <form className="bform" onSubmit={(e) => { e.preventDefault(); send(); }}><button type="button" className="bi2" onClick={() => setEmo(!emo)} aria-label={t("Emojis")}><Ico n="smile" s={18} /></button><MicBtn onDone={(u) => actions.send(c.id, "", 0, null, undefined, u, false)} /><input className="inp sm" placeholder={t("Votre message…")} value={txt} onChange={(e) => setTxt(e.target.value)} aria-label={t("Message rapide")} autoFocus /><button className="btn micbtn" disabled={!txt.trim()} aria-label={t("Envoyer")}><Ico n="send" s={20} /></button></form></>}
+          <form className="bform" onSubmit={(e) => { e.preventDefault(); send(); }}><button type="button" className="bi2" onClick={() => setEmo(!emo)} aria-label={t("Emojis")}><Ico n="smile" s={18} /></button><MicBtn onDone={(u) => actions.send(c.id, "", 0, null, undefined, u, false)} /><input className="inp sm" placeholder={t("Votre message…")} value={txt} onChange={(e) => { if (c) typingPing(c.id); setTxt(e.target.value); }} aria-label={t("Message rapide")} autoFocus /><button className="btn micbtn" disabled={!txt.trim()} aria-label={t("Envoyer")}><Ico n="send" s={20} /></button></form></>}
     </div>}
     {!open && <button className="bfab" style={pos ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto", touchAction: "none" } : { touchAction: "none" }}
       onPointerDown={(e) => { const r = e.currentTarget.getBoundingClientRect(); drag.current = { dx: e.clientX - r.left, dy: e.clientY - r.top, sx: e.clientX, sy: e.clientY, moved: false }; try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* ignoré */ } }}

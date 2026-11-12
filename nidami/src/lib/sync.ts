@@ -1,5 +1,5 @@
 import { serverLive, SB_URL, SB_KEY } from "./auth";
-import { getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, peersNow } from "./server";
+import { getSess, listFriends, allMessages, sendMessage, getMedia, sendTyping, typingNow, heartbeat, heartbeatAway, peersNow } from "./server";
 import { setPeers } from "./peers";
 import { presenceNow } from "./presence";
 import { soundTyping } from "./fx";
@@ -32,6 +32,6 @@ const watchTyping = async () => {
 export function startSync() {
   if (!serverLive() || timer) return;
   setSbOut((convId, body, fx, id, media) => { const to = convId.replace(/^sbc_/, ""); void sendMessage(to, body, fx, id, media); });
-  void pull(); timer = setInterval(() => void pull(), 3000); setInterval(() => void watchTyping(), 1800); const hb = () => { if (getSess() && document.visibilityState !== "hidden") void heartbeat(presenceNow()); }; hb(); setInterval(hb, 25000); document.addEventListener("visibilitychange", hb);
+  void pull(); timer = setInterval(() => void pull(), 3000); setInterval(() => void watchTyping(), 1800); const hb = () => { if (!getSess()) return; if (document.visibilityState === "hidden") heartbeatAway(); else void heartbeat(presenceNow()); }; hb(); setInterval(hb, 8000); document.addEventListener("visibilitychange", hb); window.addEventListener("pagehide", () => heartbeatAway());
 }
 export function stopSync() { if (timer) clearInterval(timer); timer = null; setSbOut(null); }
