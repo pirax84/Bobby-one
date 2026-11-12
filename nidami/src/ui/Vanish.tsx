@@ -23,8 +23,8 @@ function Mask({ k, children }: { k: number; children: ReactNode }) {
 function Burn({ k, children }: { k: number; children: ReactNode }) {
   const t0 = useRef(0); const [, force] = useState(0);
   if (k > 0 && !t0.current) t0.current = Date.now();
-  useEffect(() => { if (k > 0 && t0.current && !started.has(t0.current)) { started.add(t0.current); sceneShow("fire"); const id = setTimeout(() => force((x) => x + 1), 8900); return () => clearTimeout(id); } }, [k > 0]);
-  if (t0.current && Date.now() - t0.current > 8800) return null;
+  useEffect(() => { if (k > 0 && t0.current && !started.has(t0.current)) { started.add(t0.current); sceneShow("fire"); const id = setTimeout(() => force((x) => x + 1), 5900); return () => clearTimeout(id); } }, [k > 0]);
+  if (t0.current && Date.now() - t0.current > 5800) return null;
   return <div data-fire-target="1" style={{ position: "relative", borderRadius: 14, overflow: "hidden" }}>{children}</div>;
 }
 const started = new Set<number>();

@@ -4,7 +4,7 @@ export const SCENES: Scene[] = ["snow", "fireworks", "ghost", "fire", "bubbles",
 type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; s: number; r: number; vr: number; c: string; k?: number; h?: number[][] };
 const rnd = (a: number, b: number) => a + Math.random() * (b - a);
 const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-const DUR: Record<Scene, number> = { snow: 7, fireworks: 7.5, ghost: 7, fire: 8.5, bubbles: 7.5, party: 6, rocket: 7, clap: 6, money: 6.5, bomb: 6.2 };
+const DUR: Record<Scene, number> = { snow: 7, fireworks: 7.5, ghost: 7, fire: 6, bubbles: 7.5, party: 6, rocket: 7, clap: 6, money: 6.5, bomb: 6.2 };
 
 import { blastCollapse } from "./collapse";
 import { bdLayers, type BdKind } from "./bdscenes";
@@ -128,7 +128,7 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
       const SEL = ".msg, .bubble, h1, h2, h3, p, .btn, .chip, .navbtn, .avatar, button, input, li";
       type B = { el: HTMLElement | null; m?: { g: CanvasRenderingContext2D; ox: number; oy: number }; x: number; y: number; w: number; h: number; t0: number; D: number; px: number; py: number; sd: number; maxR: number; done: boolean };
       const items: B[] = Array.from(document.querySelectorAll<HTMLElement>(SEL)).map((el) => ({ el, r: el.getBoundingClientRect() })).filter(({ r }) => r.width > 24 && r.height > 12 && r.height < 120 && r.width * r.height < W * H * 0.09 && r.bottom > 0 && r.top < H && r.right > 0 && r.left < W).slice(0, 90)
-        .map(({ el, r }) => { const cy = r.top + r.height / 2; return { el, x: r.left, y: r.top, w: r.width, h: r.height, t0: (1 - Math.min(1, Math.max(0, cy / H))) * 3.6 + rnd(0, 0.5), D: Math.min(2.1, Math.max(0.8, r.width / 300 + r.height / 380)), px: r.left + rnd(0.15, 0.85) * r.width, py: r.top + r.height * rnd(0.65, 1), sd: rnd(0, 100), maxR: Math.hypot(r.width, r.height) * 1.0, done: false }; });
+        .map(({ el, r }) => { const cy = r.top + r.height / 2; return { el, x: r.left, y: r.top, w: r.width, h: r.height, t0: (1 - Math.min(1, Math.max(0, cy / H))) * 2.4 + rnd(0, 0.4), D: Math.min(1.5, Math.max(0.6, r.width / 300 + r.height / 380)), px: r.left + rnd(0.15, 0.85) * r.width, py: r.top + r.height * rnd(0.65, 1), sd: rnd(0, 100), maxR: Math.hypot(r.width, r.height) * 1.0, done: false }; });
       const targets: { el: HTMLElement; c: HTMLCanvasElement }[] = [];
       document.querySelectorAll<HTMLElement>("[data-fire-target]").forEach((el) => {
         const r = el.getBoundingClientRect(); if (r.width < 20 || r.height < 20) return;
@@ -136,7 +136,7 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
         mg.fillStyle = "#000"; mg.fillRect(0, 0, c.width, c.height); targets.push({ el, c });
         const cs = 56; for (let y = 0; y < r.height; y += cs) for (let x = 0; x < r.width; x += cs) {
           const w = Math.min(cs, r.width - x), h = Math.min(cs, r.height - y); const cy = y + h / 2;
-          items.push({ el: null, m: { g: mg, ox: r.left, oy: r.top }, x: r.left + x, y: r.top + y, w, h, t0: 0.3 + (1 - cy / r.height) * 3.4 + rnd(0, 0.5), D: rnd(0.9, 1.4), px: r.left + x + rnd(0.2, 0.8) * w, py: r.top + y + h * rnd(0.5, 1), sd: rnd(0, 100), maxR: Math.hypot(w, h) * 1.05, done: false });
+          items.push({ el: null, m: { g: mg, ox: r.left, oy: r.top }, x: r.left + x, y: r.top + y, w, h, t0: 0.3 + (1 - cy / r.height) * 2.2 + rnd(0, 0.4), D: rnd(0.7, 1.0), px: r.left + x + rnd(0.2, 0.8) * w, py: r.top + y + h * rnd(0.5, 1), sd: rnd(0, 100), maxR: Math.hypot(w, h) * 1.05, done: false });
         }
       });
       let fr = 0;
@@ -159,7 +159,7 @@ function makeScene(kind: Scene, W: number, H: number, g: CanvasRenderingContext2
         for (const b of items) {
           if (t < b.t0) continue; const p = Math.min(1, (t - b.t0) / b.D); const R = Math.pow(p, 0.85) * b.maxR;
           if (!b.done && p >= 1) { b.done = true; if (b.el) { b.el.dataset.burnt = "1"; b.el.style.transition = "none"; b.el.style.opacity = "0"; } if (b.m) { b.m.g.save(); b.m.g.globalCompositeOperation = "destination-out"; b.m.g.fillStyle = "#000"; b.m.g.fillRect(b.x - b.m.ox - 1, b.y - b.m.oy - 1, b.w + 2, b.h + 2); b.m.g.restore(); }
-            const n = Math.min(46, Math.round((b.w * b.h) / 900) + 6); for (let i = 0; i < n; i++) ash.push({ x: rnd(b.x, b.x + b.w), y: rnd(b.y, b.y + b.h), vx: rnd(-22, 22), vy: rnd(15, 90), life: 0, max: rnd(1.4, 3), s: rnd(1.5, 5.5), r: rnd(0, 6), vr: rnd(-4, 4), c: "", k: Math.random() < 0.35 ? 1 : 0 });
+            const n = Math.min(46, Math.round((b.w * b.h) / 900) + 6); for (let i = 0; i < n; i++) ash.push({ x: rnd(b.x, b.x + b.w), y: rnd(b.y, b.y + b.h), vx: rnd(-22, 22), vy: rnd(15, 90), life: 0, max: rnd(1, 2), s: rnd(1.5, 5.5), r: rnd(0, 6), vr: rnd(-4, 4), c: "", k: Math.random() < 0.35 ? 1 : 0 });
             for (let i = 0; i < 6; i++) sm.push({ x: rnd(b.x, b.x + b.w), y: b.y + b.h * rnd(0.2, 0.8), vx: rnd(-10, 25), vy: -rnd(30, 70), life: 0, max: rnd(1.6, 2.8), s: rnd(14, 34), r: 0, vr: 0, c: "" }); }
           if (b.m && !b.done) { const G = b.m.g; G.save(); G.globalCompositeOperation = "destination-out"; G.translate(-b.m.ox, -b.m.oy); G.beginPath(); G.rect(b.x, b.y, b.w, b.h); G.clip(); blob(b.px, b.py, R * 0.92, b.sd, t, G); G.fillStyle = "#000"; G.fill(); G.restore(); }
           const alive = b.done ? 1 - (t - b.t0 - b.D) / 0.5 : 1; if (alive <= 0) continue;
