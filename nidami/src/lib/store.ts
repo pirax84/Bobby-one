@@ -7,7 +7,7 @@ import { t } from "../i18n";
 export type Discover = "public" | "limited" | "hidden";
 export interface Share { id: ID; postId: ID; authorId: ID; requesterId: ID; audienceIds: ID[]; note: string; status: "pending" | "approved" | "denied" | "revoked"; at: number }
 export interface User { id: ID; handle: string; discover: Discover; name: string; hue: number; bio: string; status: string; joinedAt: number; code: string; demo?: boolean; avatar?: string | null; avatarVis?: "all" | "friends" | "none"; birthday?: string; byear?: number; handleChanged?: boolean; reqAt?: number[] }
-export interface Msg { id: ID; from: ID; video?: string | null; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx | "custom"; cfx?: { name: string; img?: string; audio?: string }; hid?: ID[] }
+export interface Msg { id: ID; from: ID; video?: string | null; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx | "custom"; cfx?: { name: string; img?: string; audio?: string }; hid?: ID[]; rx?: Record<ID, string> }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string; by?: ID; v?: string; ref?: ID; pv?: string }
 export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: number; place: string; inviteIds: ID[]; rsvp: Record<ID, "yes" | "no" | "maybe"> }
@@ -42,6 +42,9 @@ let lastFx = 0;
 /** Pont serveur : appelé quand un message est envoyé dans une conversation « sbc_ » (vrai compte). */
 let sbOut: ((convId: string, body: string, fx: string | undefined, id: string, media?: { kind: string; data: string }) => void) | null = null;
 export const setSbOut = (f: typeof sbOut) => { sbOut = f; };
+let sbReact: ((msgId: string, emoji: string | null) => void) | null = null;
+export const setSbReact = (f: typeof sbReact) => { sbReact = f; };
+const rxLocal = new Map<string, number>();
 export const HANDLE_RE = /^[a-z0-9_.]{3,20}$/;
 /** Compte mis en examen automatiquement : au moins 3 personnes différentes l'ont signalé. */
 export const isRestricted = (s: State, id: ID) => new Set(s.reports.filter((r) => r.target === id).map((r) => r.by)).size >= 3;
@@ -175,6 +178,14 @@ export const actions = {
   suspectCapture(postId: ID | null, convId?: ID, msgId?: ID) { mut((s) => { let author = ""; if (postId) author = s.posts.find((p) => p.id === postId)?.authorId || ""; else if (convId) author = s.convs.find((c) => c.id === convId)?.msgs.find((m) => m.id === msgId)?.from || ""; if (author && author !== s.me) notify(s, author, t("{name} a peut-être tenté une capture d'un de vos contenus.", { name: userOf(s, s.me)!.name }), "home"); }); },
   editMsg(convId: ID, id: ID, text: string) { mut((s) => { const m = s.convs.find((c) => c.id === convId)?.msgs.find((x) => x.id === id); if (m && m.from === s.me && text.trim()) { m.text = text.trim().slice(0, 2000); m.edited = true; } }); },
   deleteMsg(convId: ID, id: ID) { mut((s) => { const c = s.convs.find((x) => x.id === convId); if (c) c.msgs = c.msgs.filter((m) => !(m.id === id && m.from === s.me)); }); },
+  reactMsg(convId: ID, id: ID, emoji: string) { mut((s) => { const m = s.convs.find((c) => c.id === convId && c.memberIds.includes(s.me))?.msgs.find((x) => x.id === id); if (!m) return; const rx = { ...(m.rx || {}) }; if (rx[s.me] === emoji) { delete rx[s.me]; if (convId.startsWith("sbc_")) sbReact?.(id, null); } else { rx[s.me] = emoji; if (convId.startsWith("sbc_")) sbReact?.(id, emoji); } m.rx = rx; rxLocal.set(id, now()); }); },
+  sbReactions(list: { message_id: string; user_id: string; emoji: string }[], uid: string) {
+    if (!state.started || !state.me) return; const want: Record<string, Record<string, string>> = {};
+    for (const r of list) (want[r.message_id] ||= {})[r.user_id === uid ? state.me : "sb_" + r.user_id] = r.emoji;
+    const diff = state.convs.some((c) => c.id.startsWith("sbc_") && c.msgs.some((m) => now() - (rxLocal.get(m.id) || 0) > 5000 && JSON.stringify(m.rx || {}) !== JSON.stringify(want[m.id] || {})));
+    if (!diff) return;
+    mut((s) => { for (const c of s.convs) if (c.id.startsWith("sbc_")) for (const m of c.msgs) { if (now() - (rxLocal.get(m.id) || 0) <= 5000) continue; const w = want[m.id]; if (JSON.stringify(m.rx || {}) !== JSON.stringify(w || {})) m.rx = w || undefined; } });
+  },
   pinMsg(convId: ID, id: ID) { mut((s) => { const m = s.convs.find((c) => c.id === convId && c.memberIds.includes(s.me))?.msgs.find((x) => x.id === id); if (m) m.pinned = !m.pinned; }); },
 
   createEvent(e: { title: string; desc: string; at: number; place: string; inviteIds: ID[] }) { mut((s) => { s.events.push({ id: uid(), hostId: s.me, ...e, title: e.title.slice(0, 60), rsvp: { [s.me]: "yes" } }); for (const i of e.inviteIds) notify(s, i, t("{name} vous invite : {title}.", { name: userOf(s, s.me)!.name, title: e.title }), "events", { by: s.me, v: "events" }); }); },

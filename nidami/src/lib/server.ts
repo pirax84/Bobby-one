@@ -102,3 +102,11 @@ export async function peersNow(): Promise<Record<string, "here" | "later" | "bus
   }
   return out;
 }
+
+/** Réactions (❤️ 😂 …) sur les messages. */
+export const setReaction = (id: string, emoji: string | null) => emoji === null
+  ? req("DELETE", `/rest/v1/msg_reactions?message_id=eq.${id}&user_id=eq.${getSess()?.uid}`)
+  : req("POST", "/rest/v1/msg_reactions?on_conflict=message_id,user_id", { message_id: id, user_id: getSess()?.uid, emoji }, "resolution=merge-duplicates,return=minimal");
+export async function allReactions(): Promise<{ message_id: string; user_id: string; emoji: string }[] | null> {
+  const r = await req("GET", "/rest/v1/msg_reactions?select=message_id,user_id,emoji"); return r.ok && Array.isArray(r.data) ? r.data : null;
+}
