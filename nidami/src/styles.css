@@ -1009,3 +1009,6 @@ html[data-accent=lavande][data-theme=light]{--bg:#F4F4F7;--bg2:#E8E8EE;--card:#E
 .bigmic{width:120px;height:120px;border-radius:50%;border:3px solid var(--accb,var(--brand));background:var(--nuit2,var(--bg2));display:grid;place-items:center;padding:0;box-shadow:0 0 0 12px rgba(var(--brand-rgb),.15)}
 .voicefab.mediafab{border:0;background:var(--grad);color:var(--on);box-shadow:0 12px 28px -8px rgba(var(--brand-rgb),.7)}
 html[data-theme=light] .voicefab.mediafab{background:var(--nuit2,#2A1F5C);color:var(--accb,#9B87F5)}
+.calllayer{position:fixed;inset:0;z-index:500;background:rgba(10,8,24,.94);display:flex;align-items:center;justify-content:center;color:#fff}
+.callbox{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px}
+.callbtn{width:68px;height:68px;border-radius:50%;border:0;font-size:1.6rem;color:#fff;background:#3a3a46;display:grid;place-items:center}.callbtn.ok{background:#22b573}.callbtn.bad{background:#e5484d}.callbtn.on{background:#fff;color:#111}

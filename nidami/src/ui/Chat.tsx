@@ -11,6 +11,7 @@ import { FxGrid } from "./FxBar";
 import { AudioWave } from "./AudioWave";
 import { MicBtn, Camera } from "./Recorder";
 import { soundStart, soundEnd } from "../lib/fx";
+import { startCall } from "../lib/call";
 import { typingPing, setActiveConv } from "../lib/sync";
 import { NewGroup } from "./NewGroup";
 import { usePeer, peerColor, PEER } from "../lib/peers";
@@ -36,7 +37,7 @@ export function CallButton({ convId }: { convId: string }) {
   const visio = () => { const a = new Uint8Array(9); crypto.getRandomValues(a); const room = t("Cercle") + Array.from(a, (x) => x.toString(36)).join(""); const url = "https://meet.jit.si/" + room; actions.send(convId, t("📹 Je lance une visio : {url}", { url }), 0); window.open(url, "_blank", "noopener"); toast(t("Visio lancée : le lien est envoyé dans la conversation."));  setOpen(false); };
   return <><button type="button" className="bi2" onClick={() => setOpen(true)} aria-label={t("Appeler")}><Ico n="phone" s={18} /></button>
     {open && createPortal(<Modal title={t("Appeler")} onClose={() => setOpen(false)}><div className="col" style={{ gap: 10 }}>
-      <button className="btn bigbtn" onClick={() => { toast(t("L'appel simple arrive bientôt : il demande le serveur NOTIIF.")); setOpen(false); }}><span className="grow"><b>{t("📞 Appel simple")}</b><small>{t("Voix seulement · bientôt")}</small></span></button>
+      <button className="btn bigbtn" onClick={() => { setOpen(false); if (convId.startsWith("sbc_")) { void startCall(convId.slice(4)).then((ok) => { if (!ok) toast("Appel impossible : autorise le micro, puis réessaie."); }); } else toast("L'appel vocal se fait avec un ami, pas dans un groupe."); }}><span className="grow"><b>{t("📞 Appel simple")}</b><small>{"Voix seulement · l'autre doit avoir NOTIIF ouvert"}</small></span></button>
       <button className="btn bigbtn" onClick={visio}><span className="grow"><b>{t("📹 Visio")}</b><small>{t("Voix et image · disponible")}</small></span></button></div></Modal>, document.body)}</>;
 }
 /** Je suis présent, occupé, pas là, ou je reviens plus tard. + mon message d'absence (5 s) et la réponse automatique. */

@@ -4,6 +4,7 @@ import { setPeers } from "./peers";
 import { pushNative } from "./catnotif";
 import { presenceNow } from "./presence";
 import { soundTyping } from "./fx";
+import { startCallWatch } from "./call";
 import { actions, setSbOut, setSbReact, getState, isTomb } from "./store";
 
 /** Relie le serveur à l'écran Messages : amis réels, messages et effets reçus d'un autre appareil. Actif seulement dans la version développeur, avec un compte connecté. */
@@ -41,6 +42,6 @@ export function startSync() {
   if (!serverLive() || timer) return;
   setSbOut((convId, body, fx, id, media) => { if (convId.startsWith("sbg_")) void sendGroupMessage(convId.slice(4), body, fx, id, media); else if (convId.startsWith("sbc_")) void sendMessage(convId.slice(4), body, fx, id, media); });
   setSbReact((id, e) => { void setReaction(id, e); });
-  void pull(); timer = setInterval(() => void pull(), 1000); setInterval(() => void watchTyping(), 1000); const hb = () => { if (!getSess()) return; pushNative(); if (document.visibilityState === "hidden") heartbeatAway(); else void heartbeat(presenceNow()); }; hb(); setInterval(hb, 8000); document.addEventListener("visibilitychange", hb); window.addEventListener("pagehide", () => heartbeatAway());
+  startCallWatch(); void pull(); timer = setInterval(() => void pull(), 1000); setInterval(() => void watchTyping(), 1000); const hb = () => { if (!getSess()) return; pushNative(); if (document.visibilityState === "hidden") heartbeatAway(); else void heartbeat(presenceNow()); }; hb(); setInterval(hb, 8000); document.addEventListener("visibilitychange", hb); window.addEventListener("pagehide", () => heartbeatAway());
 }
 export function stopSync() { if (timer) clearInterval(timer); timer = null; setSbOut(null); }

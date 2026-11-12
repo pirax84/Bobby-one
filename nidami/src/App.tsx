@@ -61,6 +61,7 @@ import { startSync } from "./lib/sync";
 import { usePref } from "./lib/uipref";
 import { friendMode } from "./lib/catnotif";
 import { QuickVoice, VoiceFab } from "./ui/QuickVoice";
+import { CallLayer } from "./ui/Call";
 import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
@@ -183,6 +184,7 @@ export default function App() {
       {bar.slice(0, half).map(tab)}
       {mid === "mic" ? <button className="plus micmid" onClick={() => setVoice(true)} aria-label="Envoyer un vocal"><MicIcon size={34} /></button> : <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("selfie"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>}
       {bar.slice(half).map(tab)}</nav>
+    <CallLayer />
     {voice && <QuickVoice onClose={() => setVoice(false)} />}
     {mid === "plus" && micpos === "bubble" && <VoiceFab onOpen={() => setVoice(true)} />}
     {bubbleOn && fabKind === "voice" && v !== "voice" && <VoiceFab onOpen={() => go("voice")} />}

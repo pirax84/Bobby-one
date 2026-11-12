@@ -18,7 +18,7 @@ async function token(): Promise<string | null> {
   } catch { return s.access; }
 }
 export interface Res<T = any> { ok: boolean; status: number; data: T }
-async function req(method: string, path: string, body?: unknown, prefer?: string): Promise<Res> {
+export async function req(method: string, path: string, body?: unknown, prefer?: string): Promise<Res> {
   const tk = await token(); if (!tk) return { ok: false, status: 401, data: null };
   try {
     const r = await fetch(SB_URL + path, { method, headers: { apikey: SB_KEY, Authorization: "Bearer " + tk, "Content-Type": "application/json", ...(prefer ? { Prefer: prefer } : {}) }, body: body === undefined ? undefined : JSON.stringify(body) });
