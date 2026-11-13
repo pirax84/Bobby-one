@@ -43,10 +43,10 @@ export const Ico = ({ n, s = 22 }: { n: string; s?: number }) => n === "voice" ?
 );
 /** Bulle de BD dessinée à la main : l'aperçu de la story remplit toute la forme, avec un contour aux couleurs de l'application. */
 export function Wreath({ img, video, bg, icon, blur, letter }: { img?: string | null; video?: string | null; bg?: string; icon?: string; blur?: boolean; letter?: string }) {
-  return <><svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true"><clipPath id="bubbleclip" clipPathUnits="objectBoundingBox"><path transform="scale(0.01)" d="M50 5C80 5 95 20 95 50C95 80 80 95 50 95C20 95 5 80 5 50C5 20 20 5 50 5Z" /></clipPath></svg>
+  return <><svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true"><clipPath id="bubbleclip" clipPathUnits="objectBoundingBox"><path transform="scale(0.01)" d="M30 3H70C90 3 97 10 97 30V70C97 90 90 97 70 97H30C10 97 3 90 3 70V30C3 10 10 3 30 3Z" /></clipPath></svg>
     <span className={"wmedia" + (blur ? " wblur" : "")} style={{ background: bg || "var(--grad)" }}>{img ? <><img className="wbg" src={img} alt="" /><img className="wfg" src={img} alt="" /></> : video ? <video className="wfg" src={video + "#t=0.1"} muted playsInline preload="metadata" /> : icon ? <span className="wicon">{icon === "mic" ? <MicIcon size={34} /> : icon}</span> : letter ? <b className="wletter">{letter}</b> : null}</span>
     <svg className="wreathsvg" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="var(--brand)" /><stop offset="1" stopColor="var(--brand2)" /></linearGradient></defs>
-      <g className="wl" fill="none" strokeLinecap="round" strokeLinejoin="round"><path strokeWidth="4.2" d="M50 5C80 5 95 20 95 50C95 80 80 95 50 95C20 95 5 80 5 50C5 20 20 5 50 5Z" /></g></svg></>;
+      <g className="wl" fill="none" strokeLinecap="round" strokeLinejoin="round"><path strokeWidth="4.2" d="M30 3H70C90 3 97 10 97 30V70C97 90 90 97 70 97H30C10 97 3 90 3 70V30C3 10 10 3 30 3Z" /></g></svg></>;
 }
 export const Logo = ({ s = 44 }: { s?: number }) => <img src={s > 96 ? "./logo-512.png" : "./logo-192.png"} width={s} height={s} alt={t("Logo NOTIIF")} style={{ borderRadius: s * 0.24 }} />;
 
