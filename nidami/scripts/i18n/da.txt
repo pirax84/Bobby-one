@@ -1603,3 +1603,16 @@
 1602|Ringetoner
 1603|Farveblindhed, kraftige vibrationer
 1604|Tilgængelighed
+1605|Svar inden (valgfrit): uden svar tælles personen som fraværende
+1606|Svarfrist
+1607|⏰ Svar lukket
+1608|⏰ Svar inden {d}
+1609|Jeg kommer med
+1610|🧩 Hurtige profiler
+1611|Ét tryk indstiller flere ting på én gang. Bagefter kan du ændre alt i hånden.
+1612|👁 Jeg ser dårligt
+1613|🦻 Jeg hører dårligt
+1614|🎨 Farveblindhed
+1615|Indstillet.
+1616|Videoopkaldet mislykkedes: tillad kamera og mikrofon, og prøv igen.
+1617|Sluk kameraet

@@ -1603,3 +1603,16 @@
 1602|Ringtones
 1603|Color blindness, strong vibrations
 1604|Accessibility
+1605|Reply before (optional): with no reply, the person counts as absent
+1606|Reply deadline
+1607|⏰ Replies closed
+1608|⏰ Reply before {d}
+1609|I'm coming with
+1610|🧩 Quick profiles
+1611|One tap sets several things at once. You can then change everything by hand.
+1612|👁 I have low vision
+1613|🦻 I'm hard of hearing
+1614|🎨 Color blindness
+1615|All set.
+1616|Video call failed: allow camera and microphone, then try again.
+1617|Turn off camera

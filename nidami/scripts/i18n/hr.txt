@@ -1603,3 +1603,16 @@
 1602|Melodije zvona
 1603|Daltonizam, jake vibracije
 1604|Pristupačnost
+1605|Odgovori prije (neobavezno): bez odgovora osoba se računa kao odsutna
+1606|Rok za odgovor
+1607|⏰ Odgovori zatvoreni
+1608|⏰ Odgovori prije {d}
+1609|Dolazim s
+1610|🧩 Brzi profili
+1611|Jedan dodir postavlja više stvari odjednom. Poslije sve možeš promijeniti ručno.
+1612|👁 Slabo vidim
+1613|🦻 Slabo čujem
+1614|🎨 Daltonizam
+1615|Postavljeno.
+1616|Videopoziv nije uspio: dopusti kameru i mikrofon pa pokušaj ponovno.
+1617|Isključi kameru

@@ -1603,3 +1603,16 @@
 1602|Cloigíní
 1603|Dalltacht, creathadh láidir
 1604|Inrochtaineacht
+1605|Freagair roimh (roghnach): gan freagra, áirítear an duine mar dhuine as láthair
+1606|Spriocdháta freagartha
+1607|⏰ Dúnta ar fhreagraí
+1608|⏰ Freagair roimh {d}
+1609|Tá mé ag teacht le
+1610|🧩 Próifílí tapa
+1611|Socraíonn tadhall amháin roinnt rudaí in aon uair. Ina dhiaidh sin is féidir gach rud a athrú de láimh.
+1612|👁 Tá lagradharc agam
+1613|🦻 Tá lagchlos agam
+1614|🎨 Dalltacht
+1615|Socraithe.
+1616|Theip ar an bhfíseal: ceadaigh an ceamara agus an micreafón agus bain triail eile as.
+1617|Múch an ceamara

@@ -1603,3 +1603,16 @@
 1602|Zil sesleri
 1603|Renk körlüğü, güçlü titreşim
 1604|Erişilebilirlik
+1605|Şu tarihe kadar yanıtla (isteğe bağlı): yanıtsız kişi gelmiyor sayılır
+1606|Yanıt son tarihi
+1607|⏰ Yanıtlar kapandı
+1608|⏰ {d} tarihine kadar yanıtla
+1609|Birlikte geleceğim kişi sayısı
+1610|🧩 Hızlı profiller
+1611|Tek dokunuş birkaç şeyi birden ayarlar. Sonra her şeyi elle değiştirebilirsin.
+1612|👁 Az görüyorum
+1613|🦻 Az duyuyorum
+1614|🎨 Renk körlüğü
+1615|Ayarlandı.
+1616|Görüntülü arama yapılamadı: kamera ve mikrofona izin ver, sonra tekrar dene.
+1617|Kamerayı kapat

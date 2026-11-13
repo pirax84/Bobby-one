@@ -1603,3 +1603,16 @@
 1602|Ringsignaler
 1603|Färgblindhet, starka vibrationer
 1604|Tillgänglighet
+1605|Svara senast (valfritt): utan svar räknas personen som frånvarande
+1606|Svarsfrist
+1607|⏰ Svar stängda
+1608|⏰ Svara senast {d}
+1609|Jag kommer med
+1610|🧩 Snabbprofiler
+1611|Ett tryck ställer in flera saker på en gång. Sedan kan du ändra allt för hand.
+1612|👁 Jag ser dåligt
+1613|🦻 Jag hör dåligt
+1614|🎨 Färgblindhet
+1615|Klart.
+1616|Videosamtalet misslyckades: tillåt kamera och mikrofon och försök igen.
+1617|Stäng av kameran

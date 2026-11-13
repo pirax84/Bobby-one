@@ -1603,3 +1603,16 @@
 1602|Nada dering
 1603|Buta warna, getaran kuat
 1604|Aksesibilitas
+1605|Balas sebelum (opsional): tanpa balasan, orang itu dihitung absen
+1606|Batas waktu balasan
+1607|⏰ Balasan ditutup
+1608|⏰ Balas sebelum {d}
+1609|Aku datang bersama
+1610|🧩 Profil cepat
+1611|Satu ketukan mengatur beberapa hal sekaligus. Setelah itu kamu bisa mengubah semuanya manual.
+1612|👁 Penglihatanku kurang
+1613|🦻 Pendengaranku kurang
+1614|🎨 Buta warna
+1615|Sudah diatur.
+1616|Panggilan video gagal: izinkan kamera dan mikrofon, lalu coba lagi.
+1617|Matikan kamera

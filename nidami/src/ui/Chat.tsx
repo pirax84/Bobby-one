@@ -39,7 +39,7 @@ export function CallButton({ convId }: { convId: string }) {
   return <><button type="button" className="bi2" onClick={() => setOpen(true)} aria-label={t("Appeler")}><Ico n="phone" s={18} /></button>
     {open && createPortal(<Modal title={t("Appeler")} onClose={() => setOpen(false)}><div className="col" style={{ gap: 10 }}>
       <button className="btn bigbtn" onClick={() => { setOpen(false); if (convId.startsWith("sbc_")) { void startCall(convId.slice(4)).then((ok) => { if (!ok) toast("Appel impossible : autorise le micro, puis réessaie."); }); } else toast("L'appel vocal se fait avec un ami, pas dans un groupe."); }}><span className="grow"><b>{t("📞 Appel simple")}</b><small>{"Voix seulement · l'autre doit avoir NOTIIF ouvert"}</small></span></button>
-      <button className="btn bigbtn" onClick={visio}><span className="grow"><b>{t("📹 Visio")}</b><small>{t("Voix et image · disponible")}</small></span></button></div></Modal>, document.body)}</>;
+      <button className="btn bigbtn" onClick={() => { if (convId.startsWith("sbc_")) { setOpen(false); void startCall(convId.slice(4), true).then((ok) => { if (!ok) toast(t("Visio impossible : autorise la caméra et le micro, puis réessaie.")); }); } else visio(); }}><span className="grow"><b>{t("📹 Visio")}</b><small>{t("Voix et image · disponible")}</small></span></button></div></Modal>, document.body)}</>;
 }
 /** Je suis présent, occupé, pas là, ou je reviens plus tard. + mon message d'absence (5 s) et la réponse automatique. */
 const hm = (x: number) => new Date(x).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });

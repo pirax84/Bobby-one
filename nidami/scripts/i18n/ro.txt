@@ -1603,3 +1603,16 @@
 1602|Tonuri de apel
 1603|Daltonism, vibrații puternice
 1604|Accesibilitate
+1605|Răspunde înainte de (opțional): fără răspuns, persoana e considerată absentă
+1606|Termen de răspuns
+1607|⏰ Răspunsuri închise
+1608|⏰ Răspunde înainte de {d}
+1609|Vin cu
+1610|🧩 Profiluri rapide
+1611|O atingere reglează mai multe lucruri deodată. Apoi poți schimba totul manual.
+1612|👁 Văd prost
+1613|🦻 Aud prost
+1614|🎨 Daltonism
+1615|Gata.
+1616|Apel video imposibil: permite camera și microfonul, apoi încearcă din nou.
+1617|Oprește camera

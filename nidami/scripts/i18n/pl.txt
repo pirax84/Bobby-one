@@ -1603,3 +1603,16 @@
 1602|Dzwonki
 1603|Daltonizm, mocne wibracje
 1604|Dostępność
+1605|Odpowiedz przed (opcjonalnie): bez odpowiedzi osoba liczy się jako nieobecna
+1606|Termin odpowiedzi
+1607|⏰ Odpowiedzi zamknięte
+1608|⏰ Odpowiedz przed {d}
+1609|Przyjdę z
+1610|🧩 Szybkie profile
+1611|Jedno dotknięcie ustawia kilka rzeczy naraz. Potem możesz wszystko zmienić ręcznie.
+1612|👁 Słabo widzę
+1613|🦻 Słabo słyszę
+1614|🎨 Daltonizm
+1615|Gotowe.
+1616|Nie udało się rozpocząć rozmowy wideo: zezwól na kamerę i mikrofon i spróbuj ponownie.
+1617|Wyłącz kamerę

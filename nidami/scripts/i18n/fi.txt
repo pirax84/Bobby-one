@@ -1603,3 +1603,16 @@
 1602|Soittoäänet
 1603|Värisokeus, voimakkaat värinät
 1604|Saavutettavuus
+1605|Vastaa ennen (valinnainen): ilman vastausta henkilö lasketaan poissaolevaksi
+1606|Vastausaika
+1607|⏰ Vastaukset suljettu
+1608|⏰ Vastaa ennen {d}
+1609|Tulen mukana
+1610|🧩 Pikaprofiilit
+1611|Yksi napautus asettaa useita asioita kerralla. Sen jälkeen voit muuttaa kaiken käsin.
+1612|👁 Näen huonosti
+1613|🦻 Kuulen huonosti
+1614|🎨 Värisokeus
+1615|Valmis.
+1616|Videopuhelu epäonnistui: salli kamera ja mikrofoni ja yritä uudelleen.
+1617|Sammuta kamera

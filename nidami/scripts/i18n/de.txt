@@ -1603,3 +1603,16 @@
 1602|Klingeltöne
 1603|Farbenblindheit, starke Vibration
 1604|Barrierefreiheit
+1605|Antworten bis (optional): ohne Antwort gilt die Person als abwesend
+1606|Antwortfrist
+1607|⏰ Antworten geschlossen
+1608|⏰ Antworten bis {d}
+1609|Ich komme mit
+1610|🧩 Schnellprofile
+1611|Ein Tipp stellt mehrere Dinge auf einmal ein. Danach kannst du alles von Hand ändern.
+1612|👁 Ich sehe schlecht
+1613|🦻 Ich höre schlecht
+1614|🎨 Farbenblindheit
+1615|Fertig eingestellt.
+1616|Videoanruf nicht möglich: Erlaube Kamera und Mikrofon und versuche es erneut.
+1617|Kamera ausschalten

@@ -1603,3 +1603,16 @@
 1602|Toques
 1603|Daltonismo, vibrações fortes
 1604|Acessibilidade
+1605|Responder até (opcional): sem resposta, a pessoa conta como ausente
+1606|Prazo de resposta
+1607|⏰ Respostas encerradas
+1608|⏰ Responder até {d}
+1609|Vou com
+1610|🧩 Perfis rápidos
+1611|Um toque regula várias coisas de uma vez. Depois podes mudar tudo à mão.
+1612|👁 Vejo mal
+1613|🦻 Ouço mal
+1614|🎨 Daltonismo
+1615|Pronto.
+1616|Não foi possível iniciar a videochamada: permite a câmara e o microfone e tenta de novo.
+1617|Desligar a câmara

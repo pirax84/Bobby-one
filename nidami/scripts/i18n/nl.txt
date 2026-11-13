@@ -1603,3 +1603,16 @@
 1602|Beltonen
 1603|Kleurenblindheid, sterke trillingen
 1604|Toegankelijkheid
+1605|Reageer vóór (optioneel): zonder reactie telt de persoon als afwezig
+1606|Reactietermijn
+1607|⏰ Reacties gesloten
+1608|⏰ Reageer vóór {d}
+1609|Ik kom met
+1610|🧩 Snelle profielen
+1611|Eén tik stelt meerdere dingen tegelijk in. Daarna kun je alles met de hand wijzigen.
+1612|👁 Ik zie slecht
+1613|🦻 Ik hoor slecht
+1614|🎨 Kleurenblindheid
+1615|Ingesteld.
+1616|Videobellen mislukt: sta camera en microfoon toe en probeer opnieuw.
+1617|Camera uitzetten

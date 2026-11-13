@@ -1603,3 +1603,16 @@
 1602|Suonerie
 1603|Daltonismo, vibrazioni forti
 1604|Accessibilità
+1605|Rispondi entro (facoltativo): senza risposta la persona è considerata assente
+1606|Scadenza della risposta
+1607|⏰ Risposte chiuse
+1608|⏰ Rispondi entro il {d}
+1609|Vengo con
+1610|🧩 Profili rapidi
+1611|Un tocco imposta più cose insieme. Poi puoi cambiare tutto a mano.
+1612|👁 Vedo poco
+1613|🦻 Sento poco
+1614|🎨 Daltonismo
+1615|Fatto.
+1616|Videochiamata impossibile: consenti fotocamera e microfono, poi riprova.
+1617|Spegni la fotocamera

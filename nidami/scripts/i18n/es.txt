@@ -1603,3 +1603,16 @@
 1602|Tonos
 1603|Daltonismo, vibraciones fuertes
 1604|Accesibilidad
+1605|Responder antes de (opcional): sin respuesta, se cuenta como ausente
+1606|Fecha límite de respuesta
+1607|⏰ Respuestas cerradas
+1608|⏰ Responder antes del {d}
+1609|Voy con
+1610|🧩 Perfiles rápidos
+1611|Un toque ajusta varias cosas a la vez. Luego puedes cambiarlo todo a mano.
+1612|👁 Veo mal
+1613|🦻 Oigo mal
+1614|🎨 Daltonismo
+1615|Listo.
+1616|No se pudo iniciar la videollamada: permite la cámara y el micrófono e inténtalo de nuevo.
+1617|Apagar la cámara

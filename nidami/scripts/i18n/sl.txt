@@ -1603,3 +1603,16 @@
 1602|Melodije zvonjenja
 1603|Barvna slepota, močne vibracije
 1604|Dostopnost
+1605|Odgovori do (neobvezno): brez odgovora se oseba šteje kot odsotna
+1606|Rok za odgovor
+1607|⏰ Odgovori zaprti
+1608|⏰ Odgovori do {d}
+1609|Pridem z
+1610|🧩 Hitri profili
+1611|En dotik nastavi več stvari naenkrat. Potem lahko vse spremeniš ročno.
+1612|👁 Slabo vidim
+1613|🦻 Slabo slišim
+1614|🎨 Barvna slepota
+1615|Nastavljeno.
+1616|Videoklic ni uspel: dovoli kamero in mikrofon ter poskusi znova.
+1617|Izklopi kamero

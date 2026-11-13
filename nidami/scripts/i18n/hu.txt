@@ -1603,3 +1603,16 @@
 1602|Csengőhangok
 1603|Színtévesztés, erős rezgés
 1604|Hozzáférhetőség
+1605|Válaszolj eddig (nem kötelező): válasz nélkül a személy távolmaradónak számít
+1606|Válaszadási határidő
+1607|⏰ A válaszadás lezárult
+1608|⏰ Válaszolj eddig: {d}
+1609|Ennyi vendéggel jövök
+1610|🧩 Gyorsprofilok
+1611|Egy érintés több dolgot állít be egyszerre. Utána mindent kézzel módosíthatsz.
+1612|👁 Rosszul látok
+1613|🦻 Rosszul hallok
+1614|🎨 Színtévesztés
+1615|Beállítva.
+1616|A videóhívás nem sikerült: engedélyezd a kamerát és a mikrofont, majd próbáld újra.
+1617|Kamera kikapcsolása

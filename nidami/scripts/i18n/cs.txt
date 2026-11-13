@@ -1603,3 +1603,16 @@
 1602|Vyzvánění
 1603|Barvoslepost, silné vibrace
 1604|Přístupnost
+1605|Odpovědět do (volitelné): bez odpovědi se osoba počítá jako nepřítomná
+1606|Termín odpovědi
+1607|⏰ Odpovědi uzavřeny
+1608|⏰ Odpovědět do {d}
+1609|Přijdu s
+1610|🧩 Rychlé profily
+1611|Jedno klepnutí nastaví více věcí najednou. Pak můžeš vše změnit ručně.
+1612|👁 Špatně vidím
+1613|🦻 Špatně slyším
+1614|🎨 Barvoslepost
+1615|Hotovo.
+1616|Videohovor se nezdařil: povol kameru a mikrofon a zkus to znovu.
+1617|Vypnout kameru

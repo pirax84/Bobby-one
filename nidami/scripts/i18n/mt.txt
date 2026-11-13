@@ -1603,3 +1603,16 @@
 1602|Ringtones
 1603|Għama tal-kuluri, vibrazzjonijiet qawwija
 1604|Aċċessibbiltà
+1605|Wieġeb qabel (mhux obbligatorju): mingħajr tweġiba, il-persuna tingħadd bħala assenti
+1606|Skadenza tat-tweġiba
+1607|⏰ It-tweġibiet magħluqa
+1608|⏰ Wieġeb qabel {d}
+1609|Ġej ma'
+1610|🧩 Profili ta' malajr
+1611|Mess wieħed jirregola diversi affarijiet f'daqqa. Wara tista' tbiddel kollox bl-idejn.
+1612|👁 Nara ħażin
+1613|🦻 Nisma' ħażin
+1614|🎨 Għama tal-kuluri
+1615|Lest.
+1616|Il-vidjokonferenza falliet: ippermetti l-kamera u l-mikrofonu u erġa' pprova.
+1617|Itfi l-kamera

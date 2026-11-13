@@ -1603,3 +1603,16 @@
 1602|Skambėjimo tonai
 1603|Spalvų aklumas, stiprios vibracijos
 1604|Prieinamumas
+1605|Atsakyti iki (nebūtina): be atsakymo asmuo laikomas nedalyvausiančiu
+1606|Atsakymo terminas
+1607|⏰ Atsakymai uždaryti
+1608|⏰ Atsakyti iki {d}
+1609|Ateinu su
+1610|🧩 Greiti profiliai
+1611|Vienas palietimas nustato kelis dalykus iš karto. Vėliau viską galėsi pakeisti rankiniu būdu.
+1612|👁 Blogai matau
+1613|🦻 Blogai girdžiu
+1614|🎨 Spalvų aklumas
+1615|Nustatyta.
+1616|Vaizdo skambutis nepavyko: leisk kamerą ir mikrofoną ir bandyk dar kartą.
+1617|Išjungti kamerą

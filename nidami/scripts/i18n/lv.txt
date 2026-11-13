@@ -1603,3 +1603,16 @@
 1602|Zvana signāli
 1603|Krāsu aklums, spēcīgas vibrācijas
 1604|Pieejamība
+1605|Atbildēt līdz (nav obligāti): bez atbildes persona tiek uzskatīta par neierodošos
+1606|Atbildes termiņš
+1607|⏰ Atbildes slēgtas
+1608|⏰ Atbildēt līdz {d}
+1609|Nāku kopā ar
+1610|🧩 Ātrie profili
+1611|Viens pieskāriens iestata vairākas lietas uzreiz. Pēc tam visu vari mainīt ar roku.
+1612|👁 Slikti redzu
+1613|🦻 Slikti dzirdu
+1614|🎨 Krāsu aklums
+1615|Iestatīts.
+1616|Video zvans neizdevās: atļauj kameru un mikrofonu un mēģini vēlreiz.
+1617|Izslēgt kameru

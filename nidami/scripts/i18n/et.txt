@@ -1603,3 +1603,16 @@
 1602|Helinad
 1603|Värvipimedus, tugevad vibratsioonid
 1604|Juurdepääsetavus
+1605|Vasta enne (valikuline): vastuseta loetakse inimene puudujaks
+1606|Vastamise tähtaeg
+1607|⏰ Vastused suletud
+1608|⏰ Vasta enne {d}
+1609|Tulen kaasaga
+1610|🧩 Kiirprofiilid
+1611|Üks puudutus seadistab mitu asja korraga. Hiljem saad kõike käsitsi muuta.
+1612|👁 Näen halvasti
+1613|🦻 Kuulen halvasti
+1614|🎨 Värvipimedus
+1615|Valmis.
+1616|Videokõne ebaõnnestus: luba kaamera ja mikrofon ning proovi uuesti.
+1617|Lülita kaamera välja
