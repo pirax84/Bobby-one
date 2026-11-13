@@ -1596,3 +1596,10 @@
 1595|{n} kiriman
 1596|Log keamanan
 1597|Dibatalkan
+1598|Filter
+1599|Belum dibaca
+1600|Peringatan
+1601|Suara
+1602|Nada dering
+1603|Buta warna, getaran kuat
+1604|Aksesibilitas

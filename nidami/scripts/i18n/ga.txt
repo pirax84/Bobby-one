@@ -1596,3 +1596,10 @@
 1595|{n} postáil
 1596|Logleabhar slándála
 1597|Cealaithe
+1598|Scag
+1599|Gan léamh
+1600|Foláirimh
+1601|Fuaimeanna
+1602|Cloigíní
+1603|Dalltacht, creathadh láidir
+1604|Inrochtaineacht

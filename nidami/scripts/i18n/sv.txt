@@ -1596,3 +1596,10 @@
 1595|{n} inlägg
 1596|Säkerhetslogg
 1597|Ångrad
+1598|Filtrera
+1599|Olästa
+1600|Aviseringar
+1601|Ljud
+1602|Ringsignaler
+1603|Färgblindhet, starka vibrationer
+1604|Tillgänglighet

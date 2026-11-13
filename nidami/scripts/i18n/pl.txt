@@ -1596,3 +1596,10 @@
 1595|{n} wpisów
 1596|Dziennik bezpieczeństwa
 1597|Cofnięto
+1598|Filtruj
+1599|Nieprzeczytane
+1600|Alerty
+1601|Dźwięki
+1602|Dzwonki
+1603|Daltonizm, mocne wibracje
+1604|Dostępność

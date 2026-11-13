@@ -1596,3 +1596,10 @@
 1595|{n} opslag
 1596|Sikkerhedslog
 1597|Fortrudt
+1598|Filtrer
+1599|Ulæste
+1600|Advarsler
+1601|Lyde
+1602|Ringetoner
+1603|Farveblindhed, kraftige vibrationer
+1604|Tilgængelighed

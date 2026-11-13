@@ -1104,3 +1104,8 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
  html .main.ishome>.top .tcenter{order:1;flex:1 1 auto;min-width:0}
  html .main.ishome>.top .topr{order:2;margin-left:auto}
 }
+/* v257 phone : liste de messages à plat (comme le modèle) */
+@media (max-width:760px){
+ html .col>button.card.row[class*="dn"]{background:none!important;border:0!important;border-bottom:1px solid var(--bd)!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:10px 2px!important}
+ html .col>button.card.row[class*="dn"].unread b{color:var(--fg)}
+}

@@ -1596,3 +1596,10 @@
 1595|{n} įrašų
 1596|Saugumo žurnalas
 1597|Atšaukta
+1598|Filtruoti
+1599|Neperskaityti
+1600|Perspėjimai
+1601|Garsai
+1602|Skambėjimo tonai
+1603|Spalvų aklumas, stiprios vibracijos
+1604|Prieinamumas

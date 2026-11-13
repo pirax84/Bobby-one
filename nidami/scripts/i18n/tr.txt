@@ -1596,3 +1596,10 @@
 1595|{n} gönderi
 1596|Güvenlik günlüğü
 1597|Geri alındı
+1598|Filtrele
+1599|Okunmamış
+1600|Uyarılar
+1601|Sesler
+1602|Zil sesleri
+1603|Renk körlüğü, güçlü titreşim
+1604|Erişilebilirlik

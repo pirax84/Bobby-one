@@ -1596,3 +1596,10 @@
 1595|{n} post
 1596|Registro di sicurezza
 1597|Annullato
+1598|Filtra
+1599|Non letti
+1600|Avvisi
+1601|Suoni
+1602|Suonerie
+1603|Daltonismo, vibrazioni forti
+1604|Accessibilità

@@ -1596,3 +1596,10 @@
 1595|{n} príspevkov
 1596|Bezpečnostný denník
 1597|Zrušené
+1598|Filtrovať
+1599|Neprečítané
+1600|Upozornenia
+1601|Zvuky
+1602|Vyzváňanie
+1603|Farbosleposť, silné vibrácie
+1604|Prístupnosť

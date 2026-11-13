@@ -1596,3 +1596,10 @@
 1595|{n} berichten
 1596|Beveiligingslogboek
 1597|Ongedaan gemaakt
+1598|Filteren
+1599|Ongelezen
+1600|Meldingen
+1601|Geluiden
+1602|Beltonen
+1603|Kleurenblindheid, sterke trillingen
+1604|Toegankelijkheid

@@ -1596,3 +1596,10 @@
 1595|{n} publicações
 1596|Registo de segurança
 1597|Anulado
+1598|Filtrar
+1599|Não lidas
+1600|Alertas
+1601|Sons
+1602|Toques
+1603|Daltonismo, vibrações fortes
+1604|Acessibilidade

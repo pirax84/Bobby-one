@@ -1596,3 +1596,10 @@
 1595|{n} julkaisua
 1596|Turvallisuusloki
 1597|Peruttu
+1598|Suodata
+1599|Lukemattomat
+1600|Hälytykset
+1601|Äänet
+1602|Soittoäänet
+1603|Värisokeus, voimakkaat värinät
+1604|Saavutettavuus

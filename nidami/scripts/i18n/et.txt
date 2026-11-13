@@ -1596,3 +1596,10 @@
 1595|{n} postitust
 1596|Turvalogi
 1597|Tühistatud
+1598|Filtreeri
+1599|Lugemata
+1600|Teavitused
+1601|Helid
+1602|Helinad
+1603|Värvipimedus, tugevad vibratsioonid
+1604|Juurdepääsetavus

@@ -1596,3 +1596,10 @@
 1595|{n} posts
 1596|Reġistru tas-sigurtà
 1597|Annullat
+1598|Iffiltra
+1599|Mhux moqrija
+1600|Twissijiet
+1601|Ħsejjes
+1602|Ringtones
+1603|Għama tal-kuluri, vibrazzjonijiet qawwija
+1604|Aċċessibbiltà

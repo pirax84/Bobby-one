@@ -1596,3 +1596,10 @@
 1595|{n} postări
 1596|Jurnal de securitate
 1597|Anulat
+1598|Filtrează
+1599|Necitite
+1600|Alerte
+1601|Sunete
+1602|Tonuri de apel
+1603|Daltonism, vibrații puternice
+1604|Accesibilitate

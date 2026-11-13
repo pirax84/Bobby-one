@@ -1596,3 +1596,10 @@
 1595|{n} posts
 1596|Security log
 1597|Undone
+1598|Filter
+1599|Unread
+1600|Alerts
+1601|Sounds
+1602|Ringtones
+1603|Color blindness, strong vibrations
+1604|Accessibility

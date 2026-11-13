@@ -1596,3 +1596,10 @@
 1595|{n} ieraksti
 1596|Drošības žurnāls
 1597|Atcelts
+1598|Filtrēt
+1599|Nelasītie
+1600|Brīdinājumi
+1601|Skaņas
+1602|Zvana signāli
+1603|Krāsu aklums, spēcīgas vibrācijas
+1604|Pieejamība

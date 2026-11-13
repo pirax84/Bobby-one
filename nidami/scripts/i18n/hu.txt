@@ -1596,3 +1596,10 @@
 1595|{n} bejegyzés
 1596|Biztonsági napló
 1597|Visszavonva
+1598|Szűrő
+1599|Olvasatlan
+1600|Értesítések
+1601|Hangok
+1602|Csengőhangok
+1603|Színtévesztés, erős rezgés
+1604|Hozzáférhetőség

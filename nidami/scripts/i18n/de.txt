@@ -1596,3 +1596,10 @@
 1595|{n} Beiträge
 1596|Sicherheitsprotokoll
 1597|Rückgängig gemacht
+1598|Filtern
+1599|Ungelesen
+1600|Hinweise
+1601|Töne
+1602|Klingeltöne
+1603|Farbenblindheit, starke Vibration
+1604|Barrierefreiheit

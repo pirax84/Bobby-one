@@ -1596,3 +1596,10 @@
 1595|{n} objav
 1596|Varnostni dnevnik
 1597|Preklicano
+1598|Filtriraj
+1599|Neprebrano
+1600|Opozorila
+1601|Zvoki
+1602|Melodije zvonjenja
+1603|Barvna slepota, močne vibracije
+1604|Dostopnost

@@ -1596,3 +1596,10 @@
 1595|{n} objava
 1596|Sigurnosni dnevnik
 1597|Poništeno
+1598|Filtriraj
+1599|Nepročitano
+1600|Upozorenja
+1601|Zvukovi
+1602|Melodije zvona
+1603|Daltonizam, jake vibracije
+1604|Pristupačnost
