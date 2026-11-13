@@ -1628,3 +1628,13 @@
 1627|Logotip {n}
 1628|Izvirni logotip obnovljen.
 1629|↺ Izvirni logotip
+1630|Tvoj skupni seštevek
+1631|S prijateljem
+1632|Vprašanja, točke
+1633|Proti robotu
+1634|Križci in krožci sam
+1635|Poišči pare
+1636|Dotakni se igre in igraj.
+1637|Spomin
+1638|Kviz
+1639|Križci in krožci v dvoje

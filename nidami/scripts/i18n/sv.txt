@@ -1628,3 +1628,13 @@
 1627|Logotyp {n}
 1628|Originallogotypen återställd.
 1629|↺ Originallogotyp
+1630|Din totalsumma
+1631|Med en vän
+1632|Frågor, poäng
+1633|Mot roboten
+1634|Tre i rad ensam
+1635|Hitta paren
+1636|Tryck på ett spel för att spela.
+1637|Memory
+1638|Frågesport
+1639|Tre i rad för två

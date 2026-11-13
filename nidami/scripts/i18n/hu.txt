@@ -1628,3 +1628,13 @@
 1627|Logó {n}
 1628|Az eredeti logó visszaállítva.
 1629|↺ Eredeti logó
+1630|Az összpontszámod
+1631|Baráttal
+1632|Kérdések, pontok
+1633|A robot ellen
+1634|Amőba egyedül
+1635|Keresd meg a párokat
+1636|Koppints egy játékra.
+1637|Memória
+1638|Kvíz
+1639|Amőba kettesben

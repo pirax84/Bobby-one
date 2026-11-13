@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Algne logo taastatud.
 1629|↺ Algne logo
+1630|Sinu kokkuvõte
+1631|Sõbraga
+1632|Küsimused, punktid
+1633|Roboti vastu
+1634|Trips-traps-trull üksi
+1635|Leia paarid
+1636|Puuduta mängu, et mängida.
+1637|Mälumäng
+1638|Viktoriin
+1639|Trips-traps-trull kahele

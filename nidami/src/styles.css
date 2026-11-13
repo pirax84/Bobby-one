@@ -1127,3 +1127,19 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
  html .main:not(.ishome)>.top.sub{padding:0 0 6px!important}
 }
 @media (max-width:760px){ html .main:not(.ishome)>.top.sub .tcenter{display:none!important} html .main:not(.ishome)>.top.sub{justify-content:space-between} }
+/* v266 Jeux comme la maquette */
+.gtotal{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:18px;background:var(--card);border:1px solid var(--bd);color:var(--brand)}
+.gtotal b{font-size:1.3rem;color:var(--brand)}
+.ggrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gcard{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:150px;padding:14px 8px;border-radius:20px;background:var(--card);border:1px solid var(--bd);color:var(--fg);text-align:center}
+.gcard b{font-size:1rem}
+.gqm{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--brand) 22%,transparent);color:var(--brand);font-size:2rem;font-weight:800}
+.qbar{height:5px;border-radius:3px;background:color-mix(in srgb,var(--brand) 22%,transparent);overflow:hidden}.qbar i{display:block;height:100%;background:var(--brand);border-radius:3px}
+/* v266 palette de couleurs propre */
+.accgrid{grid-template-columns:repeat(5,1fr);gap:12px 6px}
+.accbtn{border:0!important;background:none!important;box-shadow:none!important;padding:2px 0;min-height:0;gap:6px;color:var(--fg)!important;font-weight:600;font-size:.68rem}
+.accbtn i{width:40px;height:40px;display:grid;place-items:center;border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--bd)}
+.accbtn.on i{box-shadow:0 0 0 3px var(--fg)}
+.accbtn span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:360px){.accgrid{grid-template-columns:repeat(4,1fr)}}
+.setsub .card.fold.open>.accgrid{display:grid}

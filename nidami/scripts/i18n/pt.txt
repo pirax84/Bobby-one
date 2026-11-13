@@ -1628,3 +1628,13 @@
 1627|Logótipo {n}
 1628|Logótipo original reposto.
 1629|↺ Logótipo original
+1630|O teu total
+1631|Com um amigo
+1632|Perguntas, pontos
+1633|Contra o robô
+1634|Jogo do galo a solo
+1635|Encontra os pares
+1636|Toca num jogo para jogar.
+1637|Memória
+1638|Quiz
+1639|Jogo do galo a dois

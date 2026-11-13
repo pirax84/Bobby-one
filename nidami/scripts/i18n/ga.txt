@@ -1628,3 +1628,13 @@
 1627|Lógó {n}
 1628|Athchuireadh an bunlógó.
 1629|↺ Bunlógó
+1630|Do iomlán
+1631|Le cara
+1632|Ceisteanna, pointí
+1633|In aghaidh an róbat
+1634|Cluiche X agus O leat féin
+1635|Aimsigh na péirí
+1636|Tadhall le cluiche chun imirt.
+1637|Cuimhne
+1638|Tráth na gceist
+1639|Cluiche X agus O do bheirt

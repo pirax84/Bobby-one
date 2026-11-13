@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Originallogo wiederhergestellt.
 1629|↺ Originallogo
+1630|Dein Gesamtstand
+1631|Mit einem Freund
+1632|Fragen, Punkte
+1633|Gegen den Roboter
+1634|Tic-Tac-Toe solo
+1635|Finde die Paare
+1636|Tippe auf ein Spiel.
+1637|Memory
+1638|Quiz
+1639|Tic-Tac-Toe zu zweit

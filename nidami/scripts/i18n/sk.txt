@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Pôvodné logo obnovené.
 1629|↺ Pôvodné logo
+1630|Tvoj celkový počet
+1631|S kamarátom
+1632|Otázky, body
+1633|Proti robotovi
+1634|Piškvorky sólo
+1635|Nájdi dvojice
+1636|Ťukni na hru a hraj.
+1637|Pexeso
+1638|Kvíz
+1639|Piškvorky vo dvojici

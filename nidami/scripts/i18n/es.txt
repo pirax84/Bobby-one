@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Logo original restaurado.
 1629|↺ Logo original
+1630|Tu total
+1631|Con un amigo
+1632|Preguntas, puntos
+1633|Contra el robot
+1634|Tres en raya solo
+1635|Encuentra las parejas
+1636|Toca un juego para jugar.
+1637|Memoria
+1638|Quiz
+1639|Tres en raya para dos

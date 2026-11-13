@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Logo asli dipulihkan.
 1629|↺ Logo asli
+1630|Totalmu
+1631|Dengan teman
+1632|Pertanyaan, poin
+1633|Lawan robot
+1634|Tic-tac-toe solo
+1635|Temukan pasangan
+1636|Ketuk game untuk bermain.
+1637|Memory
+1638|Kuis
+1639|Tic-tac-toe berdua

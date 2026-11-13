@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Przywrócono oryginalne logo.
 1629|↺ Oryginalne logo
+1630|Twój wynik
+1631|Z przyjacielem
+1632|Pytania, punkty
+1633|Przeciw robotowi
+1634|Kółko i krzyżyk solo
+1635|Znajdź pary
+1636|Dotknij gry, aby zagrać.
+1637|Memory
+1638|Quiz
+1639|Kółko i krzyżyk we dwoje

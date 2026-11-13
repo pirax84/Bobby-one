@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Il-logo oriġinali reġa' ġie stabbilit.
 1629|↺ Logo oriġinali
+1630|It-total tiegħek
+1631|Ma' ħabib
+1632|Mistoqsijiet, punti
+1633|Kontra r-robot
+1634|Tic-tac-toe waħdek
+1635|Sib il-pari
+1636|Messu logħba biex tilgħab.
+1637|Memorja
+1638|Kwiż
+1639|Tic-tac-toe għal tnejn

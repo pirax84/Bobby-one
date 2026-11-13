@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Logoul original a fost restabilit.
 1629|↺ Logo original
+1630|Totalul tău
+1631|Cu un prieten
+1632|Întrebări, puncte
+1633|Împotriva robotului
+1634|X și 0 singur
+1635|Găsește perechile
+1636|Atinge un joc ca să joci.
+1637|Memory
+1638|Quiz
+1639|X și 0 în doi

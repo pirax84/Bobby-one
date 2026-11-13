@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Originalt logo gendannet.
 1629|↺ Originalt logo
+1630|Din samlede score
+1631|Med en ven
+1632|Spørgsmål, point
+1633|Mod robotten
+1634|Kryds og bolle alene
+1635|Find parrene
+1636|Tryk på et spil for at spille.
+1637|Memory
+1638|Quiz
+1639|Kryds og bolle for to

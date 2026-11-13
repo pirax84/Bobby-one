@@ -1628,3 +1628,13 @@
 1627|Logotipas {n}
 1628|Atkurtas originalus logotipas.
 1629|↺ Originalus logotipas
+1630|Tavo suma
+1631|Su draugu
+1632|Klausimai, taškai
+1633|Prieš robotą
+1634|Kryžiukai nuliukai vienam
+1635|Rask poras
+1636|Palieskite žaidimą, kad žaistumėte.
+1637|Atmintis
+1638|Viktorina
+1639|Kryžiukai nuliukai dviem

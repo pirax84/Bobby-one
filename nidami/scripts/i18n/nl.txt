@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Originele logo hersteld.
 1629|↺ Originele logo
+1630|Jouw totaal
+1631|Met een vriend
+1632|Vragen, punten
+1633|Tegen de robot
+1634|Boter-kaas-en-eieren solo
+1635|Vind de paren
+1636|Tik op een spel om te spelen.
+1637|Memory
+1638|Quiz
+1639|Boter-kaas-en-eieren voor twee

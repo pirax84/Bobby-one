@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Original logo restored.
 1629|↺ Original logo
+1630|Your total
+1631|With a friend
+1632|Questions, points
+1633|Against the robot
+1634|Solo tic-tac-toe
+1635|Find the pairs
+1636|Tap a game to play.
+1637|Memory
+1638|Quiz
+1639|Tic-tac-toe for two

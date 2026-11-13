@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Alkuperäinen logo palautettu.
 1629|↺ Alkuperäinen logo
+1630|Kokonaispisteesi
+1631|Kaverin kanssa
+1632|Kysymyksiä, pisteitä
+1633|Robottia vastaan
+1634|Ristinolla yksin
+1635|Löydä parit
+1636|Napauta peliä pelataksesi.
+1637|Muistipeli
+1638|Tietovisa
+1639|Ristinolla kahdelle

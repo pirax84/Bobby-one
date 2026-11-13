@@ -1628,3 +1628,13 @@
 1627|Logotips {n}
 1628|Atjaunots oriģinālais logotips.
 1629|↺ Oriģinālais logotips
+1630|Tavs kopsavilkums
+1631|Ar draugu
+1632|Jautājumi, punkti
+1633|Pret robotu
+1634|Krustiņi un nullītes vienam
+1635|Atrodi pārus
+1636|Pieskaries spēlei, lai spēlētu.
+1637|Atmiņa
+1638|Viktorīna
+1639|Krustiņi un nullītes diviem

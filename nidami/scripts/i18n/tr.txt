@@ -1628,3 +1628,13 @@
 1627|Logo {n}
 1628|Özgün logo geri yüklendi.
 1629|↺ Özgün logo
+1630|Toplamın
+1631|Bir arkadaşla
+1632|Sorular, puanlar
+1633|Robota karşı
+1634|Tek kişilik XOX
+1635|Çiftleri bul
+1636|Oynamak için bir oyuna dokun.
+1637|Hafıza
+1638|Bilgi yarışması
+1639|İki kişilik XOX
