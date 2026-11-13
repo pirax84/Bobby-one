@@ -1226,3 +1226,10 @@ html[data-theme=light][data-accent=gris]{--tint:#3C444D}
 html[data-theme=light][data-accent=beige]{--tint:#4F3B1D}
 html[data-tint="1"]:not([data-theme=light]){--tint:var(--brand2)}
 html[data-tint="1"] h1,html[data-tint="1"] h2,html[data-tint="1"] h3,html[data-tint="1"] .setrow b,html[data-tint="1"] .glrow b,html[data-tint="1"] .frow b,html[data-tint="1"] .nrow .ntx,html[data-tint="1"] .gcard b,html[data-tint="1"] .pstats b{color:var(--tint)!important}
+/* v271 Blanc : vrai fond blanc, sans aurore ni dégradé */
+html[data-accent=blanc][data-theme=light]{--bg:#fff;--bg2:#fff;--card:#fff;--card2:#fff;--bd:rgba(0,0,0,.14)}
+html[data-accent=blanc][data-theme=light] body,html[data-accent=blanc][data-theme=light] #root,html[data-accent=blanc][data-theme=light] .main{background:#fff!important}
+html[data-accent=blanc][data-theme=light] body::before,html[data-accent=blanc][data-theme=light] body::after{background:none!important;display:none!important}
+html[data-accent=blanc][data-theme=light] .card,html[data-accent=blanc][data-theme=light] .setrow,html[data-accent=blanc][data-theme=light] .gcard{background:#fff!important;box-shadow:none!important;border:1px solid rgba(0,0,0,.14)!important}
+html[data-accent=blanc][data-theme=light] .inp,html[data-accent=blanc][data-theme=light] .chip:not(.on){background:#fff!important;border:1px solid rgba(0,0,0,.18)!important;box-shadow:none!important}
+html[data-accent=blanc][data-theme=light] .home-gap>.card.col{border:0!important;border-bottom:1px solid rgba(0,0,0,.1)!important;border-radius:0!important}

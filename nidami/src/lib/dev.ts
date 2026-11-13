@@ -7,7 +7,7 @@ let PUB: Record<string, string> = {};
 export const setPublicConfig = (o: Record<string, unknown>) => { PUB = {}; for (const k of CONFIG_KEYS) { const v = o[k]; if (typeof v === "string") PUB[k] = v; } };
 const get = (k: string) => { if (!devUnlocked() && CONFIG_KEYS.includes(k)) return PUB[k] || ""; try { return localStorage.getItem(k) || ""; } catch { return ""; } };
 const set = (k: string, v: string) => { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* ignoré */ } window.dispatchEvent(new Event("notiif-dev")); };
-export const APP_VERSION = "v271";
+export const APP_VERSION = "v272";
 /** Cadre « aperçu client » : l'appli reçoit la fête simulée dans l'adresse et ignore tout le reste du mode développeur. */
 const url = (() => { try { return new URLSearchParams(location.search); } catch { return new URLSearchParams(); } })();
 export const asClientFrame = url.get("client") === "1";
