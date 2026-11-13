@@ -10,6 +10,8 @@ import { useDev, setDevClient, setDevFete, setDevBday, setDevDate, setDevNoFete,
 import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
 import { t } from "../i18n";
+import { DEV_COLORS, DEV_FONTS, DEV_BGS, getDevLook, setDevLook, resetDevLook } from "../lib/devlook";
+import { usePref } from "../lib/uipref";
 
 const FETES: [Fete, string][] = [["hal", "🎃 Halloween"], ["noel", "🎄 Noël"], ["val", "💕 Saint-Valentin"]];
 const play = (f: string) => playFx(feteFx(f) as Fx, true);
@@ -39,6 +41,21 @@ function DevLogos() {
     <div className="col" style={{ gap: 8, alignItems: "center" }}>{ACCENTS.map((a) => <BrandWm key={a.id} id={a.id} light={light} sound={false} force="none" />)}</div>
     <b>{t("Icônes de l'application")}</b>
     <div className="row wrap" style={{ gap: 10 }}>{["icon-192.png", "icon-512.png", "icon-maskable.png", "logo-192.png", "badge-96.png", "favicon-48.png"].map((n) => <img key={n} src={"./" + n} alt={n} width={72} height={72} style={{ borderRadius: 14, background: "#8884" }} />)}</div></div>;
+}
+
+/** Apparence : 100 couleurs, 50 polices, 12 fonds (choix du mode développeur, sur cet appareil). */
+function DevLook() {
+  usePref("x", ""); const d = getDevLook();
+  return <div className="card col" style={{ gap: 8 }}><h3>{t("🎨 Apparence (développeur)")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("Ces choix s'ajoutent aux couleurs de l'application. « Normal » remet l'origine.")}</p>
+    <b>{t("Couleur")} · 100</b>
+    <div className="row wrap" style={{ gap: 6 }}>{DEV_COLORS.map((c) => <button key={c.id} type="button" aria-label={c.hex} aria-pressed={d.color === c.id} onClick={() => setDevLook({ color: c.id })} style={{ width: 28, height: 28, borderRadius: 9, border: d.color === c.id ? "3px solid var(--fg)" : "1px solid var(--bd)", background: c.hex, padding: 0 }}>{d.color === c.id ? "✓" : ""}</button>)}</div>
+    <b>{t("Police")} · 50</b>
+    <div className="row wrap" style={{ gap: 6 }}>{DEV_FONTS.map(([n, f]) => <button key={n} type="button" className={"chip" + ((d.font || "Normale") === n ? " on" : "")} style={{ fontFamily: f.split(";")[0] || undefined }} onClick={() => setDevLook({ font: n })}>{n}</button>)}</div>
+    <b>{t("Fond")} · 12</b>
+    <div className="row wrap" style={{ gap: 6 }}>{DEV_BGS.map(([n, a]) => <button key={n} type="button" className={"chip" + ((d.bg || "Normal") === n ? " on" : "")} onClick={() => setDevLook({ bg: n })}><span style={{ display: "inline-block", width: 14, height: 14, borderRadius: 5, marginRight: 6, verticalAlign: "middle", background: a || "var(--bg)", border: "1px solid var(--bd)" }} />{n}</button>)}</div>
+    <button type="button" className="chip" onClick={() => { resetDevLook(); toast(t("Apparence remise à zéro.")); }}>{t("↺ Tout remettre normal")}</button>
+  </div>;
 }
 
 /** Effets : montrer / cacher, couper le son, remplacer le son. */
@@ -124,7 +141,7 @@ export function DevPanel() {
         <div className="row" style={{ gap: 8 }}><button type="button" className="chip" onClick={() => play(k)}>{t("▶ Tester")}</button></div></div>)}
       <button className="btn ghost" onClick={async () => { try { await navigator.clipboard.writeText(devChoices()); toast(t("Choix copiés : collez-les dans la conversation pour les rendre définitifs.")); } catch { toast(t("Copie impossible.")); } }}>{t("📋 Copier mes choix (pour les rendre définitifs)")}</button>
       <p className="muted small" style={{ margin: 0 }}>{t("Vos choix ne changent que votre appareil. Envoyez-les-moi pour qu'ils deviennent ceux de tous les clients.")}</p></div>
-    <DevNav /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
+    <DevNav /><DevLook /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
     <div className="card col" style={{ gap: 8 }}><h3>{t("✨ Tester les effets")}</h3>
       <p className="muted small" style={{ margin: 0 }}>{t("Touchez un effet pour le voir et l'entendre. Un nouvel effet arrête le précédent.")}</p>
       <div className="row wrap" style={{ gap: 6 }}>{FX_ALL.map((k) => <button key={k} type="button" className="chip" onClick={() => playFx(k, true)}>{FX[k].label}</button>)}</div>

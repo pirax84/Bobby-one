@@ -1555,3 +1555,23 @@
 1554|U demo načinu zaključavanje se može ukloniti samo brisanjem podataka aplikacije.
 1555|📞 Nazvat ću te kasnije
 1556|Nazvat ću te kasnije
+1557|♿ Pristupačnost
+1558|Oblici i tekst umjesto boja
+1559|Za daltonizam: tvoja dostupnost prikazuje se oblikom i riječju, ne samo bojom.
+1560|Jake vibracije
+1561|Vibracije su dulje i jače.
+1562|🍽️ Tko što donosi
+1563|Još nitko nije odabrao.
+1564|Donosim…
+1565|Ništa za donijeti
+1566|Bok! Pozivam te na {title}{place}. Nadam se da ćeš moći doći. Reci mi dolaziš li i što donosiš!
+1567|moj događaj
+1568| u {p}
+1569|✍️ Pomozi mi napisati pozivnicu
+1570|🎨 Izgled (programer)
+1571|Ovi izbori nadopunjuju boje aplikacije. „Normalno” vraća izvorno.
+1572|Boja
+1573|Font
+1574|Pozadina
+1575|Izgled vraćen.
+1576|↺ Vrati sve

@@ -1,3 +1,4 @@
+import { usePref } from "../lib/uipref";
 import { usePresence, setPresence, setAutoMode, setAbsentMsg, PRESENCES, type AutoMode } from "../lib/presence";
 import { recordAbsent } from "../lib/absent";
 import { FxSwitch } from "./FxSwitch";
@@ -51,7 +52,8 @@ export function PresenceBar({ part }: { part?: "row" | "more" } = {}) {
   const { presence, mode, msg } = usePresence(); const [rec, setRec] = useState<{ stop: () => void } | null>(null); const [sec, setSec] = useState(0);
   const start = async () => { try { setSec(0); const r = await recordAbsent(setSec); setRec(r); const d = await r.done; setRec(null); setAbsentMsg(d); toast(t("Message enregistré.")); } catch { setRec(null); toast(t("Micro impossible. Autorisez le micro puis réessayez.")); } };
   const MODES: [AutoMode, string][] = [["off", "🚫 Jamais"], ["away", "🟡 Quand je ne suis pas là"], ["always", "🔁 Tout le temps"]];
-  const rowEl = part === "row" ? <div className="row" style={{ gap: 6, flexWrap: "nowrap", overflowX: "auto" }} role="radiogroup" aria-label={t("Ma disponibilité")}>{PRESENCES.map(([k, e, l]) => <button key={k} type="button" role="radio" aria-checked={presence === k} aria-label={t(l)} className={"chip" + (presence === k ? " on" : "")} style={{ padding: "5px 10px", fontSize: 13, whiteSpace: "nowrap", flex: "none" }} onClick={() => setPresence(k)}>{e}{presence === k ? " " + t(l) : ""}</button>)}</div> : <div className="row wrap" style={{ gap: 6 }} role="radiogroup" aria-label={t("Ma disponibilité")}>{PRESENCES.map(([k, e, l]) => <button key={k} type="button" role="radio" aria-checked={presence === k} className={"chip" + (presence === k ? " on" : "")} onClick={() => setPresence(k)}>{e} {t(l)}</button>)}</div>;
+  const shapes = usePref("a11y-shapes", "") === "1"; const shp = (k: string, e: string) => (shapes ? ({ here: "●", busy: "■", away: "▲", later: "◆" } as Record<string, string>)[k] || e : e);
+  const rowEl = part === "row" ? <div className="row" style={{ gap: 6, flexWrap: "nowrap", overflowX: "auto" }} role="radiogroup" aria-label={t("Ma disponibilité")}>{PRESENCES.map(([k, e, l]) => <button key={k} type="button" role="radio" aria-checked={presence === k} aria-label={t(l)} className={"chip" + (presence === k ? " on" : "")} style={{ padding: "5px 10px", fontSize: 13, whiteSpace: "nowrap", flex: "none" }} onClick={() => setPresence(k)}>{shp(k, e)}{presence === k || shapes ? " " + t(l) : ""}</button>)}</div> : <div className="row wrap" style={{ gap: 6 }} role="radiogroup" aria-label={t("Ma disponibilité")}>{PRESENCES.map(([k, e, l]) => <button key={k} type="button" role="radio" aria-checked={presence === k} className={"chip" + (presence === k ? " on" : "")} onClick={() => setPresence(k)}>{shp(k, e)} {t(l)}</button>)}</div>;
   if (part === "row") return rowEl;
   return <div className="col" style={{ gap: 8 }}>
     {part !== "more" && rowEl}

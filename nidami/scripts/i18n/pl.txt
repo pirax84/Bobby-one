@@ -1555,3 +1555,23 @@
 1554|W trybie demo blokadę można usunąć tylko przez wyczyszczenie danych aplikacji.
 1555|📞 Oddzwonię później
 1556|Oddzwonię później
+1557|♿ Dostępność
+1558|Kształty i tekst zamiast kolorów
+1559|Przy daltonizmie: Twoja dostępność pokazuje kształt i słowo, nie tylko kolor.
+1560|Mocne wibracje
+1561|Wibracje są dłuższe i mocniejsze.
+1562|🍽️ Kto co przynosi
+1563|Nikt jeszcze nie wybrał.
+1564|Przynoszę…
+1565|Nic do przyniesienia
+1566|Cześć! Zapraszam Cię na {title}{place}. Mam nadzieję, że przyjdziesz. Daj znać, czy przyjdziesz i co przyniesiesz!
+1567|moje wydarzenie
+1568| w {p}
+1569|✍️ Pomóż mi napisać zaproszenie
+1570|🎨 Wygląd (programista)
+1571|Te wybory uzupełniają kolory aplikacji. „Normalny” przywraca oryginał.
+1572|Kolor
+1573|Czcionka
+1574|Tło
+1575|Wygląd zresetowany.
+1576|↺ Zresetuj wszystko

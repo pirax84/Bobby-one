@@ -220,7 +220,7 @@ export function playTone(id: string, times = 1) {
   try { const c = (ctx ||= new (window.AudioContext || (window as any).webkitAudioContext)()); if (c.state === "suspended") void c.resume(); const master = c.createGain(); master.gain.value = 0.9; const comp = c.createDynamicsCompressor(); master.connect(comp); comp.connect(c.destination); for (let i = 0; i < times; i++) d.play(c, master, c.currentTime + 0.03 + i * (d.len + 0.5)); } catch { /* son indisponible */ }
 }
 /** Dans l'application Android : vibre vraiment au maximum (force 255) ; sinon, motif standard du navigateur. */
-export const buzz = (pat: number[], amp = 255) => { try { const n = (window as any).CercleNative; if (n?.vibrate) { n.vibrate(pat.join(","), amp); return; } navigator.vibrate?.(pat); } catch { /* ignoré */ } };
+export const buzz = (pat: number[], amp = 255) => { try { if (localStorage.getItem("notiif-a11y-vibe") === "1") { pat = pat.map((x, i) => (i % 2 ? x : Math.round(x * 2))); amp = 255; } const n = (window as any).CercleNative; if (n?.vibrate) { n.vibrate(pat.join(","), amp); return; } navigator.vibrate?.(pat); } catch { /* ignoré */ } };
 /** Niveaux de vibration réglables (messages, appels). La secousse, elle, vibre toujours au maximum. */
 export const VIB_LEVELS: { id: string; label: string; pat: number[] }[] = [
   { id: "0", get label() { return t("Aucune"); }, pat: [] }, { id: "1", get label() { return t("Légère"); }, pat: [80] }, { id: "2", get label() { return t("Moyenne"); }, pat: [180, 90, 180] }, { id: "3", get label() { return t("Forte"); }, pat: [450, 80, 450, 80, 450] },

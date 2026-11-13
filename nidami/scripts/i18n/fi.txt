@@ -1555,3 +1555,23 @@
 1554|Demotilassa lukituksen voi poistaa vain tyhjentämällä sovelluksen tiedot.
 1555|📞 Soitan sinulle myöhemmin
 1556|Soitan sinulle myöhemmin
+1557|♿ Saavutettavuus
+1558|Muotoja ja tekstiä värien sijaan
+1559|Värisokeudelle: tilasi näytetään muodolla ja sanalla, ei vain värillä.
+1560|Voimakkaat värinät
+1561|Värinät ovat pidempiä ja voimakkaampia.
+1562|🍽️ Kuka tuo mitä
+1563|Kukaan ei ole vielä valinnut.
+1564|Tuon…
+1565|Ei tuotavaa
+1566|Moi! Kutsun sinut tapahtumaan {title}{place}. Toivottavasti pääset tulemaan. Kerro, tuletko ja mitä tuot!
+1567|tapahtumani
+1568| paikassa {p}
+1569|✍️ Auta kirjoittamaan kutsu
+1570|🎨 Ulkoasu (kehittäjä)
+1571|Nämä valinnat lisätään sovelluksen väreihin. ”Normaali” palauttaa alkuperäisen.
+1572|Väri
+1573|Fontti
+1574|Tausta
+1575|Ulkoasu nollattu.
+1576|↺ Nollaa kaikki

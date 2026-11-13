@@ -1555,3 +1555,23 @@
 1554|In demo mode, the lock can only be removed by erasing the app data.
 1555|📞 I'll call you back later
 1556|I'll call you back later
+1557|♿ Accessibility
+1558|Shapes and text instead of colors
+1559|For color blindness: your status shows a shape and a word, not just a color.
+1560|Strong vibrations
+1561|Vibrations are longer and stronger.
+1562|🍽️ Who brings what
+1563|Nobody has chosen yet.
+1564|I'm bringing…
+1565|Nothing to bring
+1566|Hi! I'm inviting you to {title}{place}. I hope you can come. Tell me if you're coming and what you're bringing!
+1567|my event
+1568| at {p}
+1569|✍️ Help me write the invitation
+1570|🎨 Appearance (developer)
+1571|These choices add to the app's colors. “Normal” restores the original.
+1572|Color
+1573|Font
+1574|Background
+1575|Appearance reset.
+1576|↺ Reset everything

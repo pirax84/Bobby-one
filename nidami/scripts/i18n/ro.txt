@@ -1555,3 +1555,23 @@
 1554|În modul demo, blocarea se poate elimina doar ștergând datele aplicației.
 1555|📞 Te sun mai târziu
 1556|Te sun mai târziu
+1557|♿ Accesibilitate
+1558|Forme și text în loc de culori
+1559|Pentru daltonism: disponibilitatea ta arată o formă și un cuvânt, nu doar o culoare.
+1560|Vibrații puternice
+1561|Vibrațiile sunt mai lungi și mai puternice.
+1562|🍽️ Cine aduce ce
+1563|Nimeni nu a ales încă.
+1564|Aduc…
+1565|Nimic de adus
+1566|Salut! Te invit la {title}{place}. Sper că poți veni. Spune-mi dacă vii și ce aduci!
+1567|evenimentul meu
+1568| la {p}
+1569|✍️ Ajută-mă să scriu invitația
+1570|🎨 Aspect (dezvoltator)
+1571|Aceste alegeri se adaugă culorilor aplicației. „Normal” restabilește originalul.
+1572|Culoare
+1573|Font
+1574|Fundal
+1575|Aspect resetat.
+1576|↺ Resetează tot

@@ -1555,3 +1555,23 @@
 1554|Sa mhodh taispeána, ní féidir an glas a bhaint ach amháin trí shonraí na haipe a scriosadh.
 1555|📞 Cuirfidh mé scairt ort níos déanaí
 1556|Cuirfidh mé scairt ort níos déanaí
+1557|♿ Inrochtaineacht
+1558|Cruthanna agus téacs in ionad dathanna
+1559|I gcás dalltachta: taispeántar do infhaighteacht le cruth agus focal, ní le dath amháin.
+1560|Creathadh láidir
+1561|Tá na creathanna níos faide agus níos láidre.
+1562|🍽️ Cé a thugann céard
+1563|Níl aon duine tar éis roghnú fós.
+1564|Tabharfaidh mé…
+1565|Faic le tabhairt
+1566|Haigh! Tá cuireadh agam duit chuig {title}{place}. Tá súil agam go mbeidh tú in ann teacht. Inis dom an dtiocfaidh tú agus céard a thabharfaidh tú!
+1567|mo imeacht
+1568| ag {p}
+1569|✍️ Cabhraigh liom an cuireadh a scríobh
+1570|🎨 Cuma (forbróir)
+1571|Cuirtear na roghanna seo le dathanna na haipe. Athchuireann “Gnáth” an bunleagan.
+1572|Dath
+1573|Cló
+1574|Cúlra
+1575|Athshocraíodh an chuma.
+1576|↺ Athshocraigh gach rud

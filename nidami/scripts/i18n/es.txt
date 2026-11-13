@@ -1555,3 +1555,23 @@
 1554|En modo demostración, el bloqueo solo se quita borrando los datos de la app.
 1555|📞 Te llamo más tarde
 1556|Te llamo más tarde
+1557|♿ Accesibilidad
+1558|Formas y texto en lugar de colores
+1559|Para el daltonismo: tu disponibilidad se muestra con una forma y una palabra, no solo con un color.
+1560|Vibraciones fuertes
+1561|Las vibraciones son más largas y más fuertes.
+1562|🍽️ Quién trae qué
+1563|Nadie ha elegido todavía.
+1564|Traigo…
+1565|Nada que traer
+1566|¡Hola! Te invito a {title}{place}. Espero que puedas venir. ¡Dime si vienes y qué traes!
+1567|mi evento
+1568| en {p}
+1569|✍️ Ayúdame a escribir la invitación
+1570|🎨 Apariencia (desarrollador)
+1571|Estas opciones se suman a los colores de la app. «Normal» restaura el original.
+1572|Color
+1573|Fuente
+1574|Fondo
+1575|Apariencia restablecida.
+1576|↺ Restablecer todo

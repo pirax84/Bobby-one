@@ -1555,3 +1555,23 @@
 1554|In demomodus kan de vergrendeling alleen worden verwijderd door de app-gegevens te wissen.
 1555|📞 Ik bel je later terug
 1556|Ik bel je later terug
+1557|♿ Toegankelijkheid
+1558|Vormen en tekst in plaats van kleuren
+1559|Voor kleurenblindheid: je beschikbaarheid toont een vorm en een woord, niet alleen een kleur.
+1560|Sterke trillingen
+1561|De trillingen zijn langer en sterker.
+1562|🍽️ Wie brengt wat mee
+1563|Niemand heeft nog gekozen.
+1564|Ik breng mee…
+1565|Niets mee te brengen
+1566|Hoi! Ik nodig je uit voor {title}{place}. Ik hoop dat je kunt komen. Laat me weten of je komt en wat je meebrengt!
+1567|mijn evenement
+1568| in {p}
+1569|✍️ Help me de uitnodiging schrijven
+1570|🎨 Uiterlijk (ontwikkelaar)
+1571|Deze keuzes komen bovenop de kleuren van de app. 'Normaal' herstelt het origineel.
+1572|Kleur
+1573|Lettertype
+1574|Achtergrond
+1575|Uiterlijk teruggezet.
+1576|↺ Alles terugzetten

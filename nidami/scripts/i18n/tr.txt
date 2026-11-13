@@ -1555,3 +1555,23 @@
 1554|Demo modunda kilit yalnızca uygulama verilerini silerek kaldırılabilir.
 1555|📞 Seni sonra ararım
 1556|Seni sonra ararım
+1557|♿ Erişilebilirlik
+1558|Renkler yerine şekiller ve metin
+1559|Renk körlüğü için: durumun yalnızca renkle değil, bir şekil ve bir kelimeyle gösterilir.
+1560|Güçlü titreşimler
+1561|Titreşimler daha uzun ve daha güçlüdür.
+1562|🍽️ Kim ne getiriyor
+1563|Henüz kimse seçmedi.
+1564|Getireceğim…
+1565|Getirecek bir şey yok
+1566|Selam! Seni {title}{place} etkinliğine davet ediyorum. Umarım gelebilirsin. Gelip gelmediğini ve ne getireceğini söyle!
+1567|etkinliğim
+1568| yer: {p}
+1569|✍️ Daveti yazmama yardım et
+1570|🎨 Görünüm (geliştirici)
+1571|Bu seçimler uygulamanın renklerine eklenir. «Normal» aslına döndürür.
+1572|Renk
+1573|Yazı tipi
+1574|Arka plan
+1575|Görünüm sıfırlandı.
+1576|↺ Hepsini sıfırla

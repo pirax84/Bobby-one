@@ -1,3 +1,4 @@
+import "./lib/devlook";
 import { FxStopFloat } from "./ui/FxSwitch";
 import { LockGate } from "./ui/Lock";
 import { BRAND } from "./lib/brand";

@@ -1555,3 +1555,23 @@
 1554|Demorežiimis saab luku eemaldada ainult rakenduse andmeid kustutades.
 1555|📞 Helistan sulle hiljem tagasi
 1556|Helistan sulle hiljem tagasi
+1557|♿ Juurdepääsetavus
+1558|Kujud ja tekst värvide asemel
+1559|Värvipimeduse jaoks: sinu olek kuvatakse kuju ja sõnaga, mitte ainult värviga.
+1560|Tugevad vibratsioonid
+1561|Vibratsioonid on pikemad ja tugevamad.
+1562|🍽️ Kes mida toob
+1563|Keegi pole veel valinud.
+1564|Toon…
+1565|Midagi pole vaja tuua
+1566|Tere! Kutsun sind üritusele {title}{place}. Loodan, et saad tulla. Anna teada, kas tuled ja mida tood!
+1567|minu sündmus
+1568| kohas {p}
+1569|✍️ Aita mul kutset kirjutada
+1570|🎨 Välimus (arendaja)
+1571|Need valikud lisanduvad rakenduse värvidele. „Tavaline” taastab algse.
+1572|Värv
+1573|Font
+1574|Taust
+1575|Välimus lähtestatud.
+1576|↺ Lähtesta kõik

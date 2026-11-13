@@ -1555,3 +1555,23 @@
 1554|Im Demomodus lässt sich die Sperre nur entfernen, indem die App-Daten gelöscht werden.
 1555|📞 Ich rufe dich später zurück
 1556|Ich rufe dich später zurück
+1557|♿ Barrierefreiheit
+1558|Formen und Text statt Farben
+1559|Bei Farbenblindheit: Dein Status zeigt eine Form und ein Wort, nicht nur eine Farbe.
+1560|Starke Vibrationen
+1561|Die Vibrationen sind länger und stärker.
+1562|🍽️ Wer bringt was mit
+1563|Noch niemand hat gewählt.
+1564|Ich bringe mit…
+1565|Nichts mitzubringen
+1566|Hallo! Ich lade dich zu {title}{place} ein. Ich hoffe, du kannst kommen. Sag mir, ob du kommst und was du mitbringst!
+1567|mein Ereignis
+1568| in {p}
+1569|✍️ Hilf mir, die Einladung zu schreiben
+1570|🎨 Darstellung (Entwickler)
+1571|Diese Auswahl ergänzt die Farben der App. „Normal“ stellt das Original wieder her.
+1572|Farbe
+1573|Schriftart
+1574|Hintergrund
+1575|Darstellung zurückgesetzt.
+1576|↺ Alles zurücksetzen

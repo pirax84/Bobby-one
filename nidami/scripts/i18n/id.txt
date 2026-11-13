@@ -1555,3 +1555,23 @@
 1554|Dalam mode demo, kunci hanya bisa dihapus dengan menghapus data aplikasi.
 1555|📞 Aku telepon lagi nanti
 1556|Aku telepon lagi nanti
+1557|♿ Aksesibilitas
+1558|Bentuk dan teks sebagai ganti warna
+1559|Untuk buta warna: ketersediaanmu ditampilkan dengan bentuk dan kata, bukan hanya warna.
+1560|Getaran kuat
+1561|Getaran lebih lama dan lebih kuat.
+1562|🍽️ Siapa bawa apa
+1563|Belum ada yang memilih.
+1564|Aku bawa…
+1565|Tidak perlu bawa apa-apa
+1566|Hai! Aku mengundangmu ke {title}{place}. Semoga kamu bisa datang. Kabari apakah kamu datang dan apa yang kamu bawa!
+1567|acaraku
+1568| di {p}
+1569|✍️ Bantu aku menulis undangan
+1570|🎨 Tampilan (pengembang)
+1571|Pilihan ini menambah warna aplikasi. «Normal» mengembalikan aslinya.
+1572|Warna
+1573|Font
+1574|Latar
+1575|Tampilan direset.
+1576|↺ Reset semua

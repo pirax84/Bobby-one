@@ -1555,3 +1555,23 @@
 1554|Demonstraciniu režimu užraktą galima pašalinti tik ištrynus programos duomenis.
 1555|📞 Perskambinsiu vėliau
 1556|Perskambinsiu vėliau
+1557|♿ Prieinamumas
+1558|Formos ir tekstas vietoj spalvų
+1559|Spalvų aklumui: tavo būsena rodoma forma ir žodžiu, ne tik spalva.
+1560|Stiprios vibracijos
+1561|Vibracijos ilgesnės ir stipresnės.
+1562|🍽️ Kas ką atsineša
+1563|Dar niekas nepasirinko.
+1564|Atsinešu…
+1565|Nieko nereikia nešti
+1566|Sveiki! Kviečiu tave į {title}{place}. Tikiuosi, kad galėsi ateiti. Pasakyk, ar ateisi ir ką atsineši!
+1567|mano renginys
+1568| vietoje {p}
+1569|✍️ Padėk parašyti kvietimą
+1570|🎨 Išvaizda (kūrėjas)
+1571|Šie pasirinkimai papildo programos spalvas. „Įprasta“ grąžina originalą.
+1572|Spalva
+1573|Šriftas
+1574|Fonas
+1575|Išvaizda atstatyta.
+1576|↺ Atstatyti viską

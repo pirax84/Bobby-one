@@ -1555,3 +1555,23 @@
 1554|Demonstrācijas režīmā bloķēšanu var noņemt tikai, izdzēšot lietotnes datus.
 1555|📞 Piezvanīšu vēlāk
 1556|Piezvanīšu vēlāk
+1557|♿ Pieejamība
+1558|Formas un teksts krāsu vietā
+1559|Krāsu aklumam: tava pieejamība tiek rādīta ar formu un vārdu, ne tikai ar krāsu.
+1560|Spēcīgas vibrācijas
+1561|Vibrācijas ir garākas un spēcīgākas.
+1562|🍽️ Kurš ko atnes
+1563|Neviens vēl nav izvēlējies.
+1564|Atnesīšu…
+1565|Nekas nav jānes
+1566|Sveiki! Aicinu tevi uz {title}{place}. Cerams, ka vari atnākt. Pasaki, vai nāksi un ko atnesīsi!
+1567|mans pasākums
+1568| vietā {p}
+1569|✍️ Palīdzi uzrakstīt uzaicinājumu
+1570|🎨 Izskats (izstrādātājs)
+1571|Šīs izvēles papildina lietotnes krāsas. “Parasts” atjauno oriģinālu.
+1572|Krāsa
+1573|Fonts
+1574|Fons
+1575|Izskats atiestatīts.
+1576|↺ Atiestatīt visu

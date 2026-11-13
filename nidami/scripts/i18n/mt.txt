@@ -1555,3 +1555,23 @@
 1554|Fil-modalità demo, il-lukkett jista' jitneħħa biss billi tħassar id-data tal-applikazzjoni.
 1555|📞 Se nċempillek aktar tard
 1556|Se nċempillek aktar tard
+1557|♿ Aċċessibbiltà
+1558|Forom u test minflok kuluri
+1559|Għall-għama tal-kuluri: id-disponibbiltà tiegħek tidher b'forma u kelma, mhux biss kulur.
+1560|Vibrazzjonijiet qawwija
+1561|Il-vibrazzjonijiet huma itwal u aktar b'saħħithom.
+1562|🍽️ Min iġib x'hiex
+1563|Għadu ħadd ma għażel.
+1564|Se niġib…
+1565|Xejn x'iġġib
+1566|Ħej! Qed insejjaħlek għal {title}{place}. Nispera li tista' tiġi. Għidli jekk tiġix u x'se tiġib!
+1567|l-avveniment tiegħi
+1568| f'{p}
+1569|✍️ Għinni nikteb l-istedina
+1570|🎨 Dehra (żviluppatur)
+1571|Dawn l-għażliet jiżdiedu mal-kuluri tal-app. “Normali” terġa' tqiegħed l-oriġinal.
+1572|Kulur
+1573|Font
+1574|Sfond
+1575|Id-dehra tnaddfet.
+1576|↺ Irrisettja kollox

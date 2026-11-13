@@ -1555,3 +1555,23 @@
 1554|I demotilstand kan låsen kun fjernes ved at slette appens data.
 1555|📞 Jeg ringer til dig senere
 1556|Jeg ringer til dig senere
+1557|♿ Tilgængelighed
+1558|Former og tekst i stedet for farver
+1559|Ved farveblindhed: din status vises med en form og et ord, ikke kun en farve.
+1560|Kraftige vibrationer
+1561|Vibrationerne er længere og kraftigere.
+1562|🍽️ Hvem tager hvad med
+1563|Ingen har valgt endnu.
+1564|Jeg tager med…
+1565|Intet at tage med
+1566|Hej! Jeg inviterer dig til {title}{place}. Jeg håber, du kan komme. Sig til, om du kommer, og hvad du tager med!
+1567|min begivenhed
+1568| i {p}
+1569|✍️ Hjælp mig med at skrive invitationen
+1570|🎨 Udseende (udvikler)
+1571|Disse valg kommer oven i appens farver. »Normal« gendanner originalen.
+1572|Farve
+1573|Skrifttype
+1574|Baggrund
+1575|Udseende nulstillet.
+1576|↺ Nulstil alt

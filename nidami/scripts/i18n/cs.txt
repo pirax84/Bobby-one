@@ -1555,3 +1555,23 @@
 1554|V ukázkovém režimu lze zámek odebrat jen smazáním dat aplikace.
 1555|📞 Zavolám ti později
 1556|Zavolám ti později
+1557|♿ Přístupnost
+1558|Tvary a text místo barev
+1559|Pro barvoslepost: tvůj stav se zobrazí tvarem a slovem, ne jen barvou.
+1560|Silné vibrace
+1561|Vibrace jsou delší a silnější.
+1562|🍽️ Kdo co přinese
+1563|Zatím nikdo nevybral.
+1564|Přinesu…
+1565|Nic nenosit
+1566|Ahoj! Zvu tě na {title}{place}. Doufám, že přijdeš. Napiš, jestli přijdeš a co přineseš!
+1567|moje událost
+1568| v {p}
+1569|✍️ Pomoz mi napsat pozvánku
+1570|🎨 Vzhled (vývojář)
+1571|Tyto volby se přidají k barvám aplikace. „Normální“ obnoví původní.
+1572|Barva
+1573|Písmo
+1574|Pozadí
+1575|Vzhled obnoven.
+1576|↺ Obnovit vše

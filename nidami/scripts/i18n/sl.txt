@@ -1555,3 +1555,23 @@
 1554|V predstavitvenem načinu lahko zaklep odstraniš samo z brisanjem podatkov aplikacije.
 1555|📞 Pokličem te kasneje
 1556|Pokličem te kasneje
+1557|♿ Dostopnost
+1558|Oblike in besedilo namesto barv
+1559|Za barvno slepoto: tvoja razpoložljivost je prikazana z obliko in besedo, ne le z barvo.
+1560|Močne vibracije
+1561|Vibracije so daljše in močnejše.
+1562|🍽️ Kdo kaj prinese
+1563|Nihče še ni izbral.
+1564|Prinesem…
+1565|Nič za prinesti
+1566|Živjo! Vabim te na {title}{place}. Upam, da lahko prideš. Povej, ali prideš in kaj prineseš!
+1567|moj dogodek
+1568| v {p}
+1569|✍️ Pomagaj mi napisati vabilo
+1570|🎨 Videz (razvijalec)
+1571|Te izbire dopolnjujejo barve aplikacije. »Običajno« povrne izvirnik.
+1572|Barva
+1573|Pisava
+1574|Ozadje
+1575|Videz ponastavljen.
+1576|↺ Ponastavi vse

@@ -10,7 +10,7 @@ export interface User { id: ID; handle: string; discover: Discover; name: string
 export interface Msg { id: ID; from: ID; video?: string | null; once?: boolean; gone?: Record<ID, number>; text: string; img?: string | null; audio?: string | null; at: number; secs: number; reads: Record<ID, number>; edited?: boolean; pinned?: boolean; replyTo?: ID; nowm?: boolean; fx?: Fx | "custom"; cfx?: { name: string; img?: string; audio?: string }; hid?: ID[]; rx?: Record<ID, string> }
 export interface Conv { id: ID; memberIds: ID[]; groupId?: ID; title?: string; msgs: Msg[]; typing?: Record<ID, number>; tk?: Record<ID, string> }
 export interface Notif { id: ID; to: ID; text: string; at: number; read: boolean; go?: string; by?: ID; v?: string; ref?: ID; pv?: string }
-export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: number; place: string; inviteIds: ID[]; rsvp: Record<ID, "yes" | "no" | "maybe"> }
+export interface EventT { id: ID; hostId: ID; title: string; desc: string; at: number; place: string; inviteIds: ID[]; rsvp: Record<ID, "yes" | "no" | "maybe">; bring?: Record<ID, string> }
 export interface Game { id: ID; kind: "morpion"; xId: ID; oId: ID; board: string[]; turn: "X" | "O"; winner: "X" | "O" | "draw" | null; at: number }
 export interface Req { id: ID; from: ID; to: ID; at: number }
 export interface Report { id: ID; by: ID; target: ID; why: string; at: number }
@@ -228,6 +228,7 @@ export const actions = {
 
   createEvent(e: { title: string; desc: string; at: number; place: string; inviteIds: ID[] }) { mut((s) => { s.events.push({ id: uid(), hostId: s.me, ...e, title: e.title.slice(0, 60), rsvp: { [s.me]: "yes" } }); for (const i of e.inviteIds) notify(s, i, t("{name} vous invite : {title}.", { name: userOf(s, s.me)!.name, title: e.title }), "events", { by: s.me, v: "events" }); }); },
   rsvp(id: ID, v: "yes" | "no" | "maybe") { mut((s) => { const e = s.events.find((x) => x.id === id); if (e && (e.hostId === s.me || e.inviteIds.includes(s.me))) e.rsvp[s.me] = v; }); },
+  bring(id: ID, v: string) { mut((s) => { const e = s.events.find((x) => x.id === id); if (e && (e.hostId === s.me || e.inviteIds.includes(s.me))) { e.bring = e.bring || {}; if (v.trim()) e.bring[s.me] = v.trim().slice(0, 60); else delete e.bring[s.me]; } }); },
   deleteEvent(id: ID) { mut((s) => { s.events = s.events.filter((e) => !(e.id === id && e.hostId === s.me)); }); },
 
   newGame(other: ID) { mut((s) => { if (!areFriends(s.social, s.me, other)) return; s.games.unshift({ id: uid(), kind: "morpion", xId: s.me, oId: other, board: Array(9).fill(""), turn: "X", winner: null, at: now() }); notify(s, other, t("{name} vous invite à une partie de Morpion.", { name: userOf(s, s.me)!.name }), "games", { by: s.me, v: "games" }); }); },

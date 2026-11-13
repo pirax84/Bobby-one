@@ -1555,3 +1555,23 @@
 1554|Bemutató módban a zár csak az alkalmazás adatainak törlésével távolítható el.
 1555|📞 Később visszahívlak
 1556|Később visszahívlak
+1557|♿ Hozzáférhetőség
+1558|Formák és szöveg színek helyett
+1559|Színtévesztéshez: az állapotod formával és szóval jelenik meg, nem csak színnel.
+1560|Erős rezgések
+1561|A rezgések hosszabbak és erősebbek.
+1562|🍽️ Ki mit hoz
+1563|Még senki sem választott.
+1564|Hozok…
+1565|Nincs mit hozni
+1566|Szia! Meghívlak ide: {title}{place}. Remélem, el tudsz jönni. Írd meg, jössz-e, és mit hozol!
+1567|az eseményem
+1568| itt: {p}
+1569|✍️ Segíts megírni a meghívót
+1570|🎨 Megjelenés (fejlesztő)
+1571|Ezek a választások kiegészítik az app színeit. A „Normál” visszaállítja az eredetit.
+1572|Szín
+1573|Betűtípus
+1574|Háttér
+1575|Megjelenés visszaállítva.
+1576|↺ Minden visszaállítása
