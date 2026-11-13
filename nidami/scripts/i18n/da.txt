@@ -1640,3 +1640,5 @@
 1639|Kryds og bolle for to
 1640|Tidligere
 1641|Flere valgmuligheder
+1642|Rediger
+1643|Tilføj en ven

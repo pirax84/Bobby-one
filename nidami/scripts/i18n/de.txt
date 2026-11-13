@@ -1640,3 +1640,5 @@
 1639|Tic-Tac-Toe zu zweit
 1640|Früher
 1641|Weitere Optionen
+1642|Bearbeiten
+1643|Freund hinzufügen

@@ -1640,3 +1640,5 @@
 1639|X și 0 în doi
 1640|Mai devreme
 1641|Mai multe opțiuni
+1642|Editează
+1643|Adaugă un prieten

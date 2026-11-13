@@ -1640,3 +1640,5 @@
 1639|Piškvorky vo dvojici
 1640|Skôr
 1641|Ďalšie možnosti
+1642|Upraviť
+1643|Pridať priateľa

@@ -1640,3 +1640,5 @@
 1639|Kryžiukai nuliukai dviem
 1640|Anksčiau
 1641|Daugiau parinkčių
+1642|Redaguoti
+1643|Pridėti draugą

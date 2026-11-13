@@ -1157,3 +1157,15 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
 .nrow.unread .dot{width:9px;height:9px;border-radius:50%;background:var(--brand)}
 .nrow .ntime{flex:none}
 .npage{position:relative}
+/* v268 Mon profil comme la maquette */
+.pflat .pcard{gap:8px;padding:6px 0}
+.pflat .pcard h2{margin:0}
+.pstats{display:grid;grid-template-columns:repeat(3,1fr);width:100%;text-align:center;margin:6px 0}
+.pstats b{display:block;font-size:1.5rem}.pstats span{font-size:.78rem;color:var(--mute)}
+.pflat>.card{background:none;border:0;box-shadow:none;border-radius:0;padding:10px 0}
+.pflat>.card>.btn:first-child{display:none}
+.pflat .pcard .btn{white-space:nowrap;padding-inline:10px;font-size:.9rem}
+.pflat .card{background:none!important;border:0!important;box-shadow:none!important;padding:8px 2px}
+/* v268 Amis comme la maquette */
+.fmsg{background:none!important;border:1.5px solid var(--bd)!important;color:var(--mute)!important;box-shadow:none!important}
+.reqline{background:var(--card);box-shadow:none}

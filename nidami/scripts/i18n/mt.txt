@@ -1640,3 +1640,5 @@
 1639|Tic-tac-toe għal tnejn
 1640|Aktar kmieni
 1641|Aktar għażliet
+1642|Editja
+1643|Żid ħabib

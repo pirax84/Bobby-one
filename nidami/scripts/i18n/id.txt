@@ -1640,3 +1640,5 @@
 1639|Tic-tac-toe berdua
 1640|Sebelumnya
 1641|Opsi lainnya
+1642|Ubah
+1643|Tambah teman

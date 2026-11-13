@@ -1640,3 +1640,5 @@
 1639|Jogo do galo a dois
 1640|Mais cedo
 1641|Mais opções
+1642|Editar
+1643|Adicionar um amigo

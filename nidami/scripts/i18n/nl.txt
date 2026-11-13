@@ -1640,3 +1640,5 @@
 1639|Boter-kaas-en-eieren voor twee
 1640|Eerder
 1641|Meer opties
+1642|Bewerken
+1643|Vriend toevoegen

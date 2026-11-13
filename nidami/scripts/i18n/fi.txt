@@ -1640,3 +1640,5 @@
 1639|Ristinolla kahdelle
 1640|Aiemmin
 1641|Lisää vaihtoehtoja
+1642|Muokkaa
+1643|Lisää kaveri

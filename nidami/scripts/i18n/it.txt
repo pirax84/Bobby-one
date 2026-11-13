@@ -1640,3 +1640,5 @@
 1639|Tris in due
 1640|Prima
 1641|Altre opzioni
+1642|Modifica
+1643|Aggiungi un amico

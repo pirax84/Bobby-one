@@ -1640,3 +1640,5 @@
 1639|Tre i rad för två
 1640|Tidigare
 1641|Fler alternativ
+1642|Redigera
+1643|Lägg till en vän

@@ -1640,3 +1640,5 @@
 1639|Trips-traps-trull kahele
 1640|Varem
 1641|Rohkem valikuid
+1642|Muuda
+1643|Lisa sõber

@@ -1640,3 +1640,5 @@
 1639|Kółko i krzyżyk we dwoje
 1640|Wcześniej
 1641|Więcej opcji
+1642|Edytuj
+1643|Dodaj znajomego

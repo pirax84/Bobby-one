@@ -1640,3 +1640,5 @@
 1639|Tres en raya para dos
 1640|Antes
 1641|Más opciones
+1642|Editar
+1643|Añadir un amigo

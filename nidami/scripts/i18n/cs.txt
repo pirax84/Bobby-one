@@ -1640,3 +1640,5 @@
 1639|Piškvorky ve dvou
 1640|Dříve
 1641|Další možnosti
+1642|Upravit
+1643|Přidat přítele

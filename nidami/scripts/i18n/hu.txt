@@ -1640,3 +1640,5 @@
 1639|Amőba kettesben
 1640|Korábban
 1641|További lehetőségek
+1642|Szerkesztés
+1643|Barát hozzáadása

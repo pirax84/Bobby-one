@@ -1640,3 +1640,5 @@
 1639|Križić-kružić u dvoje
 1640|Ranije
 1641|Više opcija
+1642|Uredi
+1643|Dodaj prijatelja

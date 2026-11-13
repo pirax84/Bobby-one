@@ -1640,3 +1640,5 @@
 1639|Krustiņi un nullītes diviem
 1640|Agrāk
 1641|Citas iespējas
+1642|Rediģēt
+1643|Pievienot draugu
