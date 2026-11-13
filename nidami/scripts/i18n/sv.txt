@@ -1638,3 +1638,5 @@
 1637|Memory
 1638|Frågesport
 1639|Tre i rad för två
+1640|Tidigare
+1641|Fler alternativ

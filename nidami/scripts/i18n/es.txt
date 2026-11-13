@@ -1638,3 +1638,5 @@
 1637|Memoria
 1638|Quiz
 1639|Tres en raya para dos
+1640|Antes
+1641|Más opciones

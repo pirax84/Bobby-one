@@ -1638,3 +1638,5 @@
 1637|Memory
 1638|Quiz
 1639|Tris in due
+1640|Prima
+1641|Altre opzioni

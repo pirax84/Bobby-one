@@ -1638,3 +1638,5 @@
 1637|Atmiņa
 1638|Viktorīna
 1639|Krustiņi un nullītes diviem
+1640|Agrāk
+1641|Citas iespējas

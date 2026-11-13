@@ -1638,3 +1638,5 @@
 1637|Muistipeli
 1638|Tietovisa
 1639|Ristinolla kahdelle
+1640|Aiemmin
+1641|Lisää vaihtoehtoja

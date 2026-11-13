@@ -1638,3 +1638,5 @@
 1637|Memory
 1638|Quiz
 1639|X și 0 în doi
+1640|Mai devreme
+1641|Mai multe opțiuni

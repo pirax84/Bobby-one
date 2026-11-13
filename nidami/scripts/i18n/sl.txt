@@ -1638,3 +1638,5 @@
 1637|Spomin
 1638|Kviz
 1639|Križci in krožci v dvoje
+1640|Prej
+1641|Več možnosti

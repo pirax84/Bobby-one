@@ -1143,3 +1143,17 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
 .accbtn span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:360px){.accgrid{grid-template-columns:repeat(4,1fr)}}
 .setsub .card.fold.open>.accgrid{display:grid}
+/* v267 Notifications comme la maquette */
+.nmenu{position:absolute;top:0;right:0;z-index:5}
+.nmenu>.btn{font-size:1.4rem;line-height:1;min-width:44px;min-height:44px}
+.nmenu-pop{position:absolute;right:0;top:46px;min-width:200px;background:var(--card);border:1px solid var(--bd);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.2);padding:6px;display:flex;flex-direction:column}
+.nmenu-pop button{background:none;border:0;color:var(--fg);text-align:start;padding:12px 14px;border-radius:10px;font-weight:600;min-height:44px}
+.nmenu-pop button:hover{background:color-mix(in srgb,var(--brand) 14%,transparent)}
+.ngrp{display:flex;flex-direction:column}
+.nlab{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:10px 2px 4px}
+.nrow{display:flex;align-items:center;gap:12px;width:100%;text-align:start;background:none;border:0;border-bottom:1px solid var(--bd);padding:12px 2px;color:var(--fg);min-height:60px}
+.nrow .ntx{font-weight:600}.nrow.isread .ntx{font-weight:400;opacity:.75}
+.nrow .dot{flex:none}
+.nrow.unread .dot{width:9px;height:9px;border-radius:50%;background:var(--brand)}
+.nrow .ntime{flex:none}
+.npage{position:relative}

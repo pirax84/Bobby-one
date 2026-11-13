@@ -1638,3 +1638,5 @@
 1637|Atmintis
 1638|Viktorina
 1639|Kryžiukai nuliukai dviem
+1640|Anksčiau
+1641|Daugiau parinkčių

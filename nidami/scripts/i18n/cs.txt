@@ -1638,3 +1638,5 @@
 1637|Pexeso
 1638|Kvíz
 1639|Piškvorky ve dvou
+1640|Dříve
+1641|Další možnosti

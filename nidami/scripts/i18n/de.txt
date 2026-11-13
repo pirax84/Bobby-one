@@ -1638,3 +1638,5 @@
 1637|Memory
 1638|Quiz
 1639|Tic-Tac-Toe zu zweit
+1640|Früher
+1641|Weitere Optionen

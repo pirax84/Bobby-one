@@ -1638,3 +1638,5 @@
 1637|Memorja
 1638|Kwiż
 1639|Tic-tac-toe għal tnejn
+1640|Aktar kmieni
+1641|Aktar għażliet

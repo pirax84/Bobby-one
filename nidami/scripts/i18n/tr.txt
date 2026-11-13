@@ -1638,3 +1638,5 @@
 1637|Hafıza
 1638|Bilgi yarışması
 1639|İki kişilik XOX
+1640|Daha önce
+1641|Diğer seçenekler

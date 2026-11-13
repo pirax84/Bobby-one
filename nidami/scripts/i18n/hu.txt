@@ -1638,3 +1638,5 @@
 1637|Memória
 1638|Kvíz
 1639|Amőba kettesben
+1640|Korábban
+1641|További lehetőségek
