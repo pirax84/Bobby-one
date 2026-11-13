@@ -1680,3 +1680,6 @@
 1679|🖍️ Spalvotas tekstas
 1680|Spalvotas tekstas
 1681|Antraštės įgauna tamsų pasirinktos spalvos atspalvį (šviesų tamsiuoju režimu).
+1682|🔔 Pranešimai uždarius programą
+1683|✅ Įjungta: gausi pranešimą, net kai programa uždaryta.
+1684|⚠️ Čia neaktyvu: su šiuo įdiegimu žinutes gauni tik atidarius programą. Įdiek NOTIIF Android programą, kad gautum pranešimus ir uždarius.

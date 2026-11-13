@@ -1680,3 +1680,6 @@
 1679|🖍️ Krāsains teksts
 1680|Krāsains teksts
 1681|Virsraksti iegūst izvēlētās krāsas tumšu toni (gaišu tumšajā režīmā).
+1682|🔔 Paziņojumi, kad lietotne ir aizvērta
+1683|✅ Ieslēgts: tu saņemsi paziņojumu arī tad, ja lietotne ir aizvērta.
+1684|⚠️ Šeit nav aktīvs: ar šo instalāciju ziņas saņem tikai tad, kad lietotne ir atvērta. Instalē NOTIIF Android lietotni, lai saņemtu paziņojumus arī aizvērtu.

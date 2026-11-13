@@ -1680,3 +1680,6 @@
 1679|🖍️ Farvet tekst
 1680|Farvet tekst
 1681|Overskrifter får en mørk nuance af den valgte farve (lys i mørk tilstand).
+1682|🔔 Notifikationer når appen er lukket
+1683|✅ Aktiv: du får besked, selv når appen er lukket.
+1684|⚠️ Ikke aktiv her: med denne installation får du kun beskeder, når appen er åben. Installer NOTIIF-appen til Android for at få besked, når den er lukket.

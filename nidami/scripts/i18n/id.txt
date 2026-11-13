@@ -1680,3 +1680,6 @@
 1679|🖍️ Teks berwarna
 1680|Teks berwarna
 1681|Judul memakai warna gelap dari warna yang dipilih (terang di mode gelap).
+1682|🔔 Notifikasi saat aplikasi ditutup
+1683|✅ Aktif: kamu diberi tahu meski aplikasi ditutup.
+1684|⚠️ Tidak aktif di sini: pada pemasangan ini kamu hanya menerima pesan saat aplikasi terbuka. Pasang aplikasi Android NOTIIF agar diberi tahu saat aplikasi ditutup.

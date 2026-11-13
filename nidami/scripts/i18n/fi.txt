@@ -1680,3 +1680,6 @@
 1679|🖍️ Värillinen teksti
 1680|Värillinen teksti
 1681|Otsikot saavat valitun värin tumman sävyn (vaalean tummassa tilassa).
+1682|🔔 Ilmoitukset kun sovellus on suljettu
+1683|✅ Päällä: saat ilmoituksen, vaikka sovellus olisi suljettu.
+1684|⚠️ Ei käytössä täällä: tällä asennuksella saat viestit vain kun sovellus on auki. Asenna NOTIIF Android -sovellus saadaksesi ilmoituksia suljettuna.

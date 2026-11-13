@@ -1680,3 +1680,6 @@
 1679|🖍️ Kolorowy tekst
 1680|Kolorowy tekst
 1681|Tytuły przyjmują ciemny odcień wybranego koloru (jasny w trybie ciemnym).
+1682|🔔 Powiadomienia przy zamkniętej aplikacji
+1683|✅ Aktywne: dostaniesz powiadomienie także przy zamkniętej aplikacji.
+1684|⚠️ Nieaktywne tutaj: przy tej instalacji dostajesz wiadomości tylko przy otwartej aplikacji. Zainstaluj aplikację NOTIIF na Androida, by dostawać powiadomienia przy zamkniętej.

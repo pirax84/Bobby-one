@@ -1680,3 +1680,6 @@
 1679|🖍️ Värviline tekst
 1680|Värviline tekst
 1681|Pealkirjad saavad valitud värvi tumeda tooni (heleda tumedas režiimis).
+1682|🔔 Teavitused suletud rakenduse korral
+1683|✅ Sees: saad teavituse ka siis, kui rakendus on suletud.
+1684|⚠️ Siin pole aktiivne: selle paigaldusega saad sõnumeid ainult avatud rakenduses. Paigalda NOTIIF Androidi rakendus, et saada teavitusi ka suletuna.

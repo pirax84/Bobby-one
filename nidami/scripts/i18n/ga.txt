@@ -1680,3 +1680,6 @@
 1679|🖍️ Téacs daite
 1680|Téacs daite
 1681|Glacann teidil le scáth dorcha den dath roghnaithe (éadrom sa mhodh dorcha).
+1682|🔔 Fógraí nuair a bhíonn an aip dúnta
+1683|✅ Gníomhach: gheobhaidh tú fógra fiú nuair a bhíonn an aip dúnta.
+1684|⚠️ Níl sé gníomhach anseo: leis an suiteáil seo ní fhaigheann tú teachtaireachtaí ach nuair a bhíonn an aip oscailte. Suiteáil aip Android NOTIIF chun fógraí a fháil nuair a bhíonn sí dúnta.

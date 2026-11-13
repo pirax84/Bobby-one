@@ -1680,3 +1680,6 @@
 1679|🖍️ Renkli metin
 1680|Renkli metin
 1681|Başlıklar seçilen rengin koyu tonunu alır (karanlık modda açık).
+1682|🔔 Uygulama kapalıyken bildirimler
+1683|✅ Açık: uygulama kapalıyken bile bildirim alırsın.
+1684|⚠️ Burada etkin değil: bu kurulumda mesajları yalnızca uygulama açıkken alırsın. Kapalıyken bildirim almak için NOTIIF Android uygulamasını kur.

@@ -1680,3 +1680,6 @@
 1679|🖍️ Barvno besedilo
 1680|Barvno besedilo
 1681|Naslovi dobijo temen odtenek izbrane barve (svetel v temnem načinu).
+1682|🔔 Obvestila ob zaprti aplikaciji
+1683|✅ Vklopljeno: obvestilo dobiš tudi ob zaprti aplikaciji.
+1684|⚠️ Tukaj ni aktivno: pri tej namestitvi prejemaš sporočila le ob odprti aplikaciji. Namesti aplikacijo NOTIIF za Android, da dobiš obvestila tudi ob zaprti.

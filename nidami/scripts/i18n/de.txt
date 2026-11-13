@@ -1680,3 +1680,6 @@
 1679|🖍️ Farbiger Text
 1680|Farbiger Text
 1681|Titel erhalten einen dunklen Ton der gewählten Farbe (hell im Dunkelmodus).
+1682|🔔 Benachrichtigungen bei geschlossener App
+1683|✅ Aktiv: Du wirst auch bei geschlossener App benachrichtigt.
+1684|⚠️ Hier nicht aktiv: Bei dieser Installation erhältst du Nachrichten nur bei geöffneter App. Installiere die NOTIIF-Android-App, um auch bei geschlossener App benachrichtigt zu werden.

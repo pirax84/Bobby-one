@@ -1680,3 +1680,6 @@
 1679|🖍️ Színes szöveg
 1680|Színes szöveg
 1681|A címek a választott szín sötét árnyalatát kapják (sötét módban világosat).
+1682|🔔 Értesítések zárt alkalmazásnál
+1683|✅ Aktív: akkor is értesítést kapsz, ha az alkalmazás zárva van.
+1684|⚠️ Itt nem aktív: ezzel a telepítéssel csak nyitott alkalmazásnál kapsz üzeneteket. Telepítsd a NOTIIF Android alkalmazást, hogy zárt állapotban is értesítést kapj.

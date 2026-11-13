@@ -1680,3 +1680,6 @@
 1679|🖍️ Texto de color
 1680|Texto de color
 1681|Los títulos toman un tono oscuro del color elegido (claro en modo oscuro).
+1682|🔔 Notificaciones con la app cerrada
+1683|✅ Activas: te avisamos aunque la app esté cerrada.
+1684|⚠️ No activas aquí: en esta instalación solo recibes mensajes con la app abierta. Instala la app Android NOTIIF para recibir avisos con la app cerrada.

@@ -1680,3 +1680,6 @@
 1679|🖍️ Colored text
 1680|Colored text
 1681|Titles take a dark shade of the chosen color (light in dark mode).
+1682|🔔 Notifications when the app is closed
+1683|✅ On: you get notified even when the app is closed.
+1684|⚠️ Not active here: on this installation you only get messages while the app is open. Install the NOTIIF Android app to be notified when it is closed.

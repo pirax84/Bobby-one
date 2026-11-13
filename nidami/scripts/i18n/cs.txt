@@ -1680,3 +1680,6 @@
 1679|🖍️ Barevný text
 1680|Barevný text
 1681|Nadpisy mají tmavý odstín zvolené barvy (světlý v tmavém režimu).
+1682|🔔 Oznámení při zavřené aplikaci
+1683|✅ Zapnuto: oznámení dostaneš i při zavřené aplikaci.
+1684|⚠️ Zde nefunguje: při této instalaci dostáváš zprávy jen při otevřené aplikaci. Nainstaluj aplikaci NOTIIF pro Android, abys dostával oznámení i při zavřené.

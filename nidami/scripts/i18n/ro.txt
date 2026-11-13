@@ -1680,3 +1680,6 @@
 1679|🖍️ Text colorat
 1680|Text colorat
 1681|Titlurile iau o nuanță închisă a culorii alese (deschisă în modul întunecat).
+1682|🔔 Notificări cu aplicația închisă
+1683|✅ Active: ești anunțat chiar și cu aplicația închisă.
+1684|⚠️ Inactive aici: la această instalare primești mesaje doar cu aplicația deschisă. Instalează aplicația Android NOTIIF ca să fii anunțat și cu aplicația închisă.

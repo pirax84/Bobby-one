@@ -1680,3 +1680,6 @@
 1679|🖍️ Obojeni tekst
 1680|Obojeni tekst
 1681|Naslovi dobivaju tamni ton odabrane boje (svijetli u tamnom načinu).
+1682|🔔 Obavijesti kad je aplikacija zatvorena
+1683|✅ Uključeno: dobit ćeš obavijest i kad je aplikacija zatvorena.
+1684|⚠️ Ovdje nije aktivno: s ovom instalacijom poruke primaš samo dok je aplikacija otvorena. Instaliraj NOTIIF aplikaciju za Android da dobivaš obavijesti i kad je zatvorena.

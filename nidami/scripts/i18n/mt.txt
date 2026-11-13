@@ -1680,3 +1680,6 @@
 1679|🖍️ Test ikkuluri
 1680|Test ikkuluri
 1681|It-titli jieħdu sfumatura skura tal-kulur magħżul (ċara fil-modalità skura).
+1682|🔔 Notifiki meta l-app tkun magħluqa
+1683|✅ Attivi: tkun avżat anki meta l-app tkun magħluqa.
+1684|⚠️ Mhux attivi hawn: b'din l-installazzjoni tirċievi l-messaġġi biss meta l-app tkun miftuħa. Installa l-app NOTIIF għall-Android biex tkun avżat meta tkun magħluqa.
