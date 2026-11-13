@@ -125,7 +125,7 @@ function SignUp() {
         <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch on={ok} onChange={setOk} label={t("J'accepte les conditions")} /><span>{tn("J'ai 15 ans ou plus et j'accepte les {legalBtn}.", { legalBtn })}</span></label></>}
       {info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}
       <div className="row" style={{ gap: 8 }}>{step > 1 && <button type="button" className="btn ghost grow" onClick={() => { setStep(step - 1); setInfo(""); }}>{t("Retour")}</button>}
-        <button className="btn grow" disabled={busy || !okStep(step)}>{step < 4 ? t("Continuer") : on ? t("Créer mon compte") : t("Essayer en mode démo")}</button></div>
+        <button className="btn grow" disabled={busy} style={okStep(step) ? undefined : { opacity: .55 }}>{step < 4 ? t("Continuer") : on ? t("Créer mon compte") : t("Essayer en mode démo")}</button></div>
       <button type="button" className="btn ghost" onClick={() => { setMode("old"); setInfo(""); }}>{t("J'ai déjà un compte")}</button></form>}
     {mode === "old" && info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}
     {prov && <Modal title={prov.label} onClose={() => setProv(null)}><div className="col"><p style={{ margin: 0 }}>{prov.soon}</p><p className="muted small" style={{ margin: 0 }}>{t("Pour l'instant, vous pouvez essayer l'application en mode démo, sur cet appareil, avec des amis fictifs.")}</p><button className="btn" onClick={() => setProv(null)}>{t("Compris, j'essaie en mode démo")}</button></div></Modal>}

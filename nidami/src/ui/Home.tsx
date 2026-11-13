@@ -27,6 +27,7 @@ function preview(posts: Post[], u?: { avatar?: string | null }): { img?: string 
   if (p.bg !== undefined) return { bg: BG[p.bg % BG.length] };
   return u?.avatar ? { img: u.avatar } : {};
 }
+const SGRAD = ["linear-gradient(135deg,#B04DEF,#FF8A6B)", "linear-gradient(135deg,#6C3CF0,#2FCDBE)", "linear-gradient(135deg,#FF8A6B,#2FCDBE)", "linear-gradient(135deg,#E5679C,#FF9A6B)"];
 export function Stories({ me }: { me: string }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(5000);
   const [open, setOpen] = useState<string | null>(null); 
@@ -35,7 +36,7 @@ export function Stories({ me }: { me: string }) {
   return (<><div className="stories">
     {mid === "mic" && <TopNplus />}
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = a !== me && list.filter((p) => p.authorId === a).every((p) => p.views[me] !== undefined);
-      return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"wreath" + (seen ? " seen" : "")}><Wreath {...preview(list.filter((p) => p.authorId === a), u)} /></span><div className="ell">{a === me ? t("Moi") : (u?.name || "").split(" ")[0]}</div></button>; })}
+      return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"wreath" + (seen ? " seen" : "")}><Wreath {...(() => { const pv = preview(list.filter((p) => p.authorId === a), u); return pv.img || pv.video || pv.icon ? pv : { ...pv, bg: pv.bg || SGRAD[(a.charCodeAt(a.length - 1) + a.length) % SGRAD.length], letter: (u?.name || "?").trim().charAt(0).toUpperCase() }; })()} /></span><div className="ell">{a === me ? t("Moi") : (u?.name || "").split(" ")[0]}</div></button>; })}
   </div>
   {open && <StoryViewer authorId={open} me={me} onClose={() => setOpen(null)} />}
 </>);
