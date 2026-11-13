@@ -1672,3 +1672,11 @@
 1671|Emoji dodan.
 1672|Oblike in slog
 1673|Avatarji, gumbi, poudarjeni robovi
+1674|Barbie roza
+1675|Bela
+1676|Črna
+1677|Svetlosiva
+1678|Bež
+1679|🖍️ Barvno besedilo
+1680|Barvno besedilo
+1681|Naslovi dobijo temen odtenek izbrane barve (svetel v temnem načinu).

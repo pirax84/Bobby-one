@@ -1672,3 +1672,11 @@
 1671|Emoji added.
 1672|Shapes and style
 1673|Avatars, buttons, bold borders
+1674|Barbie pink
+1675|White
+1676|Black
+1677|Light gray
+1678|Beige
+1679|🖍️ Colored text
+1680|Colored text
+1681|Titles take a dark shade of the chosen color (light in dark mode).

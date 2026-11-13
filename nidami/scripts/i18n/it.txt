@@ -1672,3 +1672,11 @@
 1671|Emoji aggiunta.
 1672|Forme e stile
 1673|Avatar, pulsanti, bordi marcati
+1674|Rosa Barbie
+1675|Bianco
+1676|Nero
+1677|Grigio chiaro
+1678|Beige
+1679|🖍️ Testo colorato
+1680|Testo colorato
+1681|I titoli prendono una tonalità scura del colore scelto (chiara in modalità scura).

@@ -1672,3 +1672,11 @@
 1671|Emoji hinzugefügt.
 1672|Formen und Stil
 1673|Avatare, Schaltflächen, kräftige Ränder
+1674|Barbie-Rosa
+1675|Weiß
+1676|Schwarz
+1677|Hellgrau
+1678|Beige
+1679|🖍️ Farbiger Text
+1680|Farbiger Text
+1681|Titel erhalten einen dunklen Ton der gewählten Farbe (hell im Dunkelmodus).

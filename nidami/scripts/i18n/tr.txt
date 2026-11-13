@@ -1672,3 +1672,11 @@
 1671|Emoji eklendi.
 1672|Şekiller ve stil
 1673|Avatarlar, düğmeler, belirgin kenarlar
+1674|Barbie pembesi
+1675|Beyaz
+1676|Siyah
+1677|Açık gri
+1678|Bej
+1679|🖍️ Renkli metin
+1680|Renkli metin
+1681|Başlıklar seçilen rengin koyu tonunu alır (karanlık modda açık).

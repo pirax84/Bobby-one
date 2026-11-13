@@ -1672,3 +1672,11 @@
 1671|Cuireadh an emoji leis.
 1672|Cruthanna agus stíl
 1673|Abhatáir, cnaipí, imill threisithe
+1674|Bándearg Barbie
+1675|Bán
+1676|Dubh
+1677|Liath éadrom
+1678|Béis
+1679|🖍️ Téacs daite
+1680|Téacs daite
+1681|Glacann teidil le scáth dorcha den dath roghnaithe (éadrom sa mhodh dorcha).

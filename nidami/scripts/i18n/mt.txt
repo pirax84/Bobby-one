@@ -1672,3 +1672,11 @@
 1671|Emoji miżjud.
 1672|Forom u stil
 1673|Avatars, buttuni, truf ċari
+1674|Roża Barbie
+1675|Abjad
+1676|Iswed
+1677|Griż ċar
+1678|Beige
+1679|🖍️ Test ikkuluri
+1680|Test ikkuluri
+1681|It-titli jieħdu sfumatura skura tal-kulur magħżul (ċara fil-modalità skura).

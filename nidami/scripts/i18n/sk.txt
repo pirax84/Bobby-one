@@ -1672,3 +1672,11 @@
 1671|Emoji pridané.
 1672|Tvary a štýl
 1673|Avatary, tlačidlá, výrazné okraje
+1674|Barbie ružová
+1675|Biela
+1676|Čierna
+1677|Svetlosivá
+1678|Béžová
+1679|🖍️ Farebný text
+1680|Farebný text
+1681|Nadpisy majú tmavý odtieň zvolenej farby (svetlý v tmavom režime).

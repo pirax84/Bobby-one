@@ -1672,3 +1672,11 @@
 1671|Emoji tillagd.
 1672|Former och stil
 1673|Avatarer, knappar, markerade kanter
+1674|Barbierosa
+1675|Vit
+1676|Svart
+1677|Ljusgrå
+1678|Beige
+1679|🖍️ Färgad text
+1680|Färgad text
+1681|Rubriker får en mörk nyans av den valda färgen (ljus i mörkt läge).

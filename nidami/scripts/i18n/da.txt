@@ -1672,3 +1672,11 @@
 1671|Emoji tilføjet.
 1672|Former og stil
 1673|Avatarer, knapper, markerede kanter
+1674|Barbie-pink
+1675|Hvid
+1676|Sort
+1677|Lysegrå
+1678|Beige
+1679|🖍️ Farvet tekst
+1680|Farvet tekst
+1681|Overskrifter får en mørk nuance af den valgte farve (lys i mørk tilstand).

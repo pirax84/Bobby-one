@@ -1672,3 +1672,11 @@
 1671|Emoji hozzáadva.
 1672|Formák és stílus
 1673|Avatarok, gombok, hangsúlyos keretek
+1674|Barbie rózsaszín
+1675|Fehér
+1676|Fekete
+1677|Világosszürke
+1678|Bézs
+1679|🖍️ Színes szöveg
+1680|Színes szöveg
+1681|A címek a választott szín sötét árnyalatát kapják (sötét módban világosat).

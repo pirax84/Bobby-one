@@ -1672,3 +1672,11 @@
 1671|Emoji toegevoegd.
 1672|Vormen en stijl
 1673|Avatars, knoppen, duidelijke randen
+1674|Barbieroze
+1675|Wit
+1676|Zwart
+1677|Lichtgrijs
+1678|Beige
+1679|🖍️ Gekleurde tekst
+1680|Gekleurde tekst
+1681|Titels krijgen een donkere tint van de gekozen kleur (licht in donkere modus).

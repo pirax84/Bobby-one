@@ -1672,3 +1672,11 @@
 1671|Emoji lisatud.
 1672|Kujud ja stiil
 1673|Avatarid, nupud, rõhutatud servad
+1674|Barbie roosa
+1675|Valge
+1676|Must
+1677|Helehall
+1678|Beež
+1679|🖍️ Värviline tekst
+1680|Värviline tekst
+1681|Pealkirjad saavad valitud värvi tumeda tooni (heleda tumedas režiimis).

@@ -1672,3 +1672,11 @@
 1671|Emoji lisätty.
 1672|Muodot ja tyyli
 1673|Avatarit, painikkeet, selkeät reunat
+1674|Barbie-pinkki
+1675|Valkoinen
+1676|Musta
+1677|Vaaleanharmaa
+1678|Beige
+1679|🖍️ Värillinen teksti
+1680|Värillinen teksti
+1681|Otsikot saavat valitun värin tumman sävyn (vaalean tummassa tilassa).

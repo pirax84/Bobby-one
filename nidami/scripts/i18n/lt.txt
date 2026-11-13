@@ -1672,3 +1672,11 @@
 1671|Jaustukas pridėtas.
 1672|Formos ir stilius
 1673|Avatarai, mygtukai, ryškūs kraštai
+1674|Barbės rožinė
+1675|Balta
+1676|Juoda
+1677|Šviesiai pilka
+1678|Smėlio
+1679|🖍️ Spalvotas tekstas
+1680|Spalvotas tekstas
+1681|Antraštės įgauna tamsų pasirinktos spalvos atspalvį (šviesų tamsiuoju režimu).

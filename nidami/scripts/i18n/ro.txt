@@ -1672,3 +1672,11 @@
 1671|Emoji adăugat.
 1672|Forme și stil
 1673|Avatare, butoane, contururi marcate
+1674|Roz Barbie
+1675|Alb
+1676|Negru
+1677|Gri deschis
+1678|Bej
+1679|🖍️ Text colorat
+1680|Text colorat
+1681|Titlurile iau o nuanță închisă a culorii alese (deschisă în modul întunecat).

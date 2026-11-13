@@ -1672,3 +1672,11 @@
 1671|Emocijzīme pievienota.
 1672|Formas un stils
 1673|Avatari, pogas, izteiktas malas
+1674|Bārbijas rozā
+1675|Balta
+1676|Melna
+1677|Gaiši pelēka
+1678|Bēša
+1679|🖍️ Krāsains teksts
+1680|Krāsains teksts
+1681|Virsraksti iegūst izvēlētās krāsas tumšu toni (gaišu tumšajā režīmā).

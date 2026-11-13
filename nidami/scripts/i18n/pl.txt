@@ -1672,3 +1672,11 @@
 1671|Dodano emoji.
 1672|Kształty i styl
 1673|Awatary, przyciski, wyraźne obramowania
+1674|Róż Barbie
+1675|Biały
+1676|Czarny
+1677|Jasnoszary
+1678|Beżowy
+1679|🖍️ Kolorowy tekst
+1680|Kolorowy tekst
+1681|Tytuły przyjmują ciemny odcień wybranego koloru (jasny w trybie ciemnym).
