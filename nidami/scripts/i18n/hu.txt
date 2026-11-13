@@ -1642,3 +1642,6 @@
 1641|További lehetőségek
 1642|Szerkesztés
 1643|Barát hozzáadása
+1644|Te
+1645|ellen
+1646|Új játék

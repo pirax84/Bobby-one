@@ -1642,3 +1642,6 @@
 1641|Mai multe opțiuni
 1642|Editează
 1643|Adaugă un prieten
+1644|Tu
+1645|contra
+1646|Joc nou

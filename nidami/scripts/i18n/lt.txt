@@ -1642,3 +1642,6 @@
 1641|Daugiau parinkčių
 1642|Redaguoti
 1643|Pridėti draugą
+1644|Tu
+1645|prieš
+1646|Naujas žaidimas

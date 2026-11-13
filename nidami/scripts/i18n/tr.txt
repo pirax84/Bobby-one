@@ -1642,3 +1642,6 @@
 1641|Diğer seçenekler
 1642|Düzenle
 1643|Arkadaş ekle
+1644|Sen
+1645|karşı
+1646|Yeni oyun

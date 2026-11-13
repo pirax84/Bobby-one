@@ -1642,3 +1642,6 @@
 1641|Opsi lainnya
 1642|Ubah
 1643|Tambah teman
+1644|Kamu
+1645|lawan
+1646|Permainan baru

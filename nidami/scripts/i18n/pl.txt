@@ -1642,3 +1642,6 @@
 1641|Więcej opcji
 1642|Edytuj
 1643|Dodaj znajomego
+1644|Ty
+1645|przeciw
+1646|Nowa gra

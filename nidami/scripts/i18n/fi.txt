@@ -1642,3 +1642,6 @@
 1641|Lisää vaihtoehtoja
 1642|Muokkaa
 1643|Lisää kaveri
+1644|Sinä
+1645|vastaan
+1646|Uusi peli

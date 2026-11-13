@@ -1642,3 +1642,6 @@
 1641|Meer opties
 1642|Bewerken
 1643|Vriend toevoegen
+1644|Jij
+1645|tegen
+1646|Nieuw spel

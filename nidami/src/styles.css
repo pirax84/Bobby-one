@@ -1169,3 +1169,10 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
 /* v268 Amis comme la maquette */
 .fmsg{background:none!important;border:1.5px solid var(--bd)!important;color:var(--mute)!important;box-shadow:none!important}
 .reqline{background:var(--card);box-shadow:none}
+/* v269 galerie photos serrée */
+.grid2{grid-template-columns:repeat(3,1fr)!important;gap:4px!important}
+.grid2 .card,.grid2>*{border-radius:14px;overflow:hidden}
+.grid2 .card{padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+@media(min-width:900px){.grid2{grid-template-columns:repeat(5,1fr)!important}}
+.gstatus{width:100%;text-align:center;padding:12px;border-radius:24px;border:1.5px solid var(--brand);color:var(--brand);font-weight:700}
+.gstatus.muted{border-color:var(--bd);color:var(--mute)}

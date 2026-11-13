@@ -1642,3 +1642,6 @@
 1641|Rohkem valikuid
 1642|Muuda
 1643|Lisa sõber
+1644|Sina
+1645|vastu
+1646|Uus mäng

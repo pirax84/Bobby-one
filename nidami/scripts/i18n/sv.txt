@@ -1642,3 +1642,6 @@
 1641|Fler alternativ
 1642|Redigera
 1643|Lägg till en vän
+1644|Du
+1645|mot
+1646|Nytt spel

@@ -1642,3 +1642,6 @@
 1641|Več možnosti
 1642|Uredi
 1643|Dodaj prijatelja
+1644|Ti
+1645|proti
+1646|Nova igra

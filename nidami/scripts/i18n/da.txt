@@ -1642,3 +1642,6 @@
 1641|Flere valgmuligheder
 1642|Rediger
 1643|Tilføj en ven
+1644|Dig
+1645|mod
+1646|Nyt spil

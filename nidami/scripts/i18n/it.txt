@@ -1642,3 +1642,6 @@
 1641|Altre opzioni
 1642|Modifica
 1643|Aggiungi un amico
+1644|Tu
+1645|contro
+1646|Nuova partita

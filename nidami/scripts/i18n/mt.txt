@@ -1642,3 +1642,6 @@
 1641|Aktar għażliet
 1642|Editja
 1643|Żid ħabib
+1644|Int
+1645|kontra
+1646|Logħba ġdida

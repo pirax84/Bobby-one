@@ -1642,3 +1642,6 @@
 1641|More options
 1642|Edit
 1643|Add a friend
+1644|You
+1645|vs
+1646|New game

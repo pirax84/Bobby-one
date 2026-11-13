@@ -1642,3 +1642,6 @@
 1641|Ďalšie možnosti
 1642|Upraviť
 1643|Pridať priateľa
+1644|Ty
+1645|proti
+1646|Nová hra

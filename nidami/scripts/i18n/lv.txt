@@ -1642,3 +1642,6 @@
 1641|Citas iespējas
 1642|Rediģēt
 1643|Pievienot draugu
+1644|Tu
+1645|pret
+1646|Jauna spēle
