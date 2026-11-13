@@ -1233,3 +1233,9 @@ html[data-accent=blanc][data-theme=light] body::before,html[data-accent=blanc][d
 html[data-accent=blanc][data-theme=light] .card,html[data-accent=blanc][data-theme=light] .setrow,html[data-accent=blanc][data-theme=light] .gcard{background:#fff!important;box-shadow:none!important;border:1px solid rgba(0,0,0,.14)!important}
 html[data-accent=blanc][data-theme=light] .inp,html[data-accent=blanc][data-theme=light] .chip:not(.on){background:#fff!important;border:1px solid rgba(0,0,0,.18)!important;box-shadow:none!important}
 html[data-accent=blanc][data-theme=light] .home-gap>.card.col{border:0!important;border-bottom:1px solid rgba(0,0,0,.1)!important;border-radius:0!important}
+/* v273 inscription : rien ne dépasse de l'écran */
+input[type=file]{max-width:100%;min-width:0}
+.authcard,.auth .card,.auth{max-width:100%;min-width:0;box-sizing:border-box}
+.card.col.center{max-width:100%;box-sizing:border-box}
+.card.col.center>*{max-width:100%}
+.card.col.center input[type=file]{width:100%}
