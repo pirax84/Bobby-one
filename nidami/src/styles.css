@@ -1119,3 +1119,11 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
  html .home-gap>.card.col{background:none!important;border:0!important;border-bottom:1px solid var(--bd)!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:12px 2px 16px!important}
  html .home-gap>.tabs .chip.on,html .home-gap>.tabs button.on{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important}
 }
+/* v263 phone : pages sans la barre de logo (le logo reste sur l'accueil), titres plus petits, groupes en liste */
+.glrow .gic{width:46px;height:46px;border-radius:30%;display:grid;place-items:center;font-size:1.5rem;background:linear-gradient(135deg,rgba(var(--brand-rgb),.35),rgba(var(--brand2-rgb),.25));flex:none}
+@media (max-width:760px){
+ html .main:not(.ishome)>.brandbar{display:none}
+ html .main:not(.ishome) h1{font-size:1.7rem;margin:2px 0 8px}
+ html .main:not(.ishome)>.top.sub{padding:0 0 6px!important}
+}
+@media (max-width:760px){ html .main:not(.ishome)>.top.sub .tcenter{display:none!important} html .main:not(.ishome)>.top.sub{justify-content:space-between} }
