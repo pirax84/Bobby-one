@@ -1616,3 +1616,15 @@
 1615|Postavljeno.
 1616|Videopoziv nije uspio: dopusti kameru i mikrofon pa pokušaj ponovno.
 1617|Isključi kameru
+1618|🖼 Razvrstani logotipi
+1619|Odaberi namjenu i temu pa dodirni logotip. Onaj na kartici preglednika mijenja se odmah.
+1620|Ikona telefona
+1621|Obavijest (gornja traka)
+1622|Logotip na vrhu aplikacije
+1623|Veliki logotip u sredini
+1624|Kartica preglednika (PC)
+1625|Uobičajene boje
+1626|🎂 Rođendan i proslava
+1627|Logotip {n}
+1628|Izvorni logotip vraćen.
+1629|↺ Izvorni logotip

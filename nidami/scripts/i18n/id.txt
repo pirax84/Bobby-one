@@ -1616,3 +1616,15 @@
 1615|Sudah diatur.
 1616|Panggilan video gagal: izinkan kamera dan mikrofon, lalu coba lagi.
 1617|Matikan kamera
+1618|🖼 Logo terklasifikasi
+1619|Pilih penggunaan dan tema, lalu ketuk logo yang dipakai. Logo tab browser langsung berubah.
+1620|Ikon ponsel
+1621|Notifikasi (bilah atas)
+1622|Logo di atas aplikasi
+1623|Logo besar di tengah
+1624|Tab browser (PC)
+1625|Warna normal
+1626|🎂 Ulang tahun dan pesta
+1627|Logo {n}
+1628|Logo asli dipulihkan.
+1629|↺ Logo asli

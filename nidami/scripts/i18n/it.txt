@@ -1616,3 +1616,15 @@
 1615|Fatto.
 1616|Videochiamata impossibile: consenti fotocamera e microfono, poi riprova.
 1617|Spegni la fotocamera
+1618|🖼 Loghi classificati
+1619|Scegli un uso e un tema, poi tocca il logo da usare. Quello della scheda del browser cambia subito.
+1620|Icona del telefono
+1621|Notifica (barra in alto)
+1622|Logo in alto nell'app
+1623|Grande logo al centro
+1624|Scheda del browser (PC)
+1625|Colori normali
+1626|🎂 Compleanno e festa
+1627|Logo {n}
+1628|Logo originale ripristinato.
+1629|↺ Logo originale

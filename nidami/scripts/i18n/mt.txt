@@ -1616,3 +1616,15 @@
 1615|Lest.
 1616|Il-vidjokonferenza falliet: ippermetti l-kamera u l-mikrofonu u erġa' pprova.
 1617|Itfi l-kamera
+1618|🖼 Loghis ikklassifikati
+1619|Agħżel użu u tema, imbagħad messu l-logo. Dak tat-tab tal-browser jinbidel minnufih.
+1620|Ikona tat-telefon
+1621|Notifika (bar ta' fuq)
+1622|Logo fuq nett tal-app
+1623|Logo kbir f'nofs
+1624|Tab tal-browser (PC)
+1625|Kuluri normali
+1626|🎂 Għeluq is-snin u festa
+1627|Logo {n}
+1628|Il-logo oriġinali reġa' ġie stabbilit.
+1629|↺ Logo oriġinali

@@ -1616,3 +1616,15 @@
 1615|Listo.
 1616|No se pudo iniciar la videollamada: permite la cámara y el micrófono e inténtalo de nuevo.
 1617|Apagar la cámara
+1618|🖼 Logos clasificados
+1619|Elige un uso y un tema, y toca el logo que quieras usar. El de la pestaña del navegador cambia al instante.
+1620|Icono del teléfono
+1621|Notificación (barra superior)
+1622|Logo en la parte superior de la app
+1623|Logo grande del centro
+1624|Pestaña del navegador (PC)
+1625|Colores normales
+1626|🎂 Cumpleaños y fiesta
+1627|Logo {n}
+1628|Logo original restaurado.
+1629|↺ Logo original

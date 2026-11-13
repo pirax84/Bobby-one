@@ -1,4 +1,5 @@
 import "./lib/devlook";
+import { setLogoTheme } from "./lib/logos";
 import { FxStopFloat } from "./ui/FxSwitch";
 import { LockGate } from "./ui/Lock";
 import { BRAND } from "./lib/brand";
@@ -118,7 +119,7 @@ export default function App() {
   useEffect(() => { window.scrollTo(0, 0); }, [v]);
   useEffect(() => { if (!history.state?.v) history.replaceState({ v: "home" }, ""); const f = (e: PopStateEvent) => { setV(((e.state && e.state.v) as V) || "home"); setMore(!!(e.state && e.state.more)); }; window.addEventListener("popstate", f); return () => window.removeEventListener("popstate", f); }, []);
   const fxList = useStore((x) => { const a: { id: string; fx: string; at: number }[] = []; for (const c of x.convs) if (c.memberIds.includes(x.me)) for (const m of c.msgs) if (m.fx && m.from !== x.me) a.push({ id: m.id, fx: m.fx, at: m.at }); a.sort((p, q) => p.at - q.at); return a.map((m) => m.at + "|" + m.fx).join(";"); });
-  const meId = useStore((x) => x.me); const fxBusy = useRef(false); const bdt = useBdText();
+  const meId = useStore((x) => x.me); const fxBusy = useRef(false); const bdt = useBdText(); const feteNow = useFete(); useEffect(() => { setLogoTheme(bdt.text ? "anniv" : feteNow === "hal" ? "halloween" : feteNow === "noel" ? "noel" : feteNow === "val" ? "valentin" : "normal"); }, [feteNow, bdt.text]);
   useEffect(() => { if (!(typeof matchMedia !== "undefined" && matchMedia("(hover: hover) and (pointer: fine)").matches)) return; const k = (e: KeyboardEvent) => { const el = e.target as HTMLElement; const typing = !!el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable); if (e.key === "/" && !typing) { const i = document.querySelector<HTMLInputElement>(".dsearch input"); if (i) { e.preventDefault(); i.focus(); } } else if (e.key === "Escape" && !document.querySelector(".overlay,.modal,.detail,.viewer") && v !== "home" && !(typing && (el as HTMLInputElement).value)) { if (typing) el.blur(); history.back(); } }; window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [v]);
   useEffect(() => {
     const run = () => {

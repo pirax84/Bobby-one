@@ -1616,3 +1616,15 @@
 1615|Indstillet.
 1616|Videoopkaldet mislykkedes: tillad kamera og mikrofon, og prøv igen.
 1617|Sluk kameraet
+1618|🖼 Sorterede logoer
+1619|Vælg en brug og et tema, og tryk på logoet. Logoet i browserfanen ændres med det samme.
+1620|Telefonikon
+1621|Notifikation (øverste bjælke)
+1622|Logo øverst i appen
+1623|Stort logo i midten
+1624|Browserfane (pc)
+1625|Normale farver
+1626|🎂 Fødselsdag og fest
+1627|Logo {n}
+1628|Originalt logo gendannet.
+1629|↺ Originalt logo

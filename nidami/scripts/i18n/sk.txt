@@ -1616,3 +1616,15 @@
 1615|Hotovo.
 1616|Videohovor sa nepodaril: povoľ kameru a mikrofón a skús to znova.
 1617|Vypnúť kameru
+1618|🖼 Roztriedené logá
+1619|Vyber použitie a tému a ťukni na logo. Logo na karte prehliadača sa zmení hneď.
+1620|Ikona telefónu
+1621|Oznámenie (horná lišta)
+1622|Logo hore v aplikácii
+1623|Veľké logo uprostred
+1624|Karta prehliadača (PC)
+1625|Normálne farby
+1626|🎂 Narodeniny a oslava
+1627|Logo {n}
+1628|Pôvodné logo obnovené.
+1629|↺ Pôvodné logo

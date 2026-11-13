@@ -1616,3 +1616,15 @@
 1615|Valmis.
 1616|Videopuhelu epäonnistui: salli kamera ja mikrofoni ja yritä uudelleen.
 1617|Sammuta kamera
+1618|🖼 Luokitellut logot
+1619|Valitse käyttö ja teema ja napauta sitten logoa. Selaimen välilehden logo vaihtuu heti.
+1620|Puhelimen kuvake
+1621|Ilmoitus (yläpalkki)
+1622|Logo sovelluksen ylälaidassa
+1623|Iso logo keskellä
+1624|Selaimen välilehti (tietokone)
+1625|Normaalit värit
+1626|🎂 Syntymäpäivä ja juhla
+1627|Logo {n}
+1628|Alkuperäinen logo palautettu.
+1629|↺ Alkuperäinen logo

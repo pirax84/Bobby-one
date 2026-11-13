@@ -1616,3 +1616,15 @@
 1615|Fertig eingestellt.
 1616|Videoanruf nicht möglich: Erlaube Kamera und Mikrofon und versuche es erneut.
 1617|Kamera ausschalten
+1618|🖼 Sortierte Logos
+1619|Wähle eine Verwendung und ein Thema und tippe dann auf das Logo. Das Logo im Browser-Tab ändert sich sofort.
+1620|Telefon-Symbol
+1621|Benachrichtigung (obere Leiste)
+1622|Logo oben in der App
+1623|Großes Logo in der Mitte
+1624|Browser-Tab (PC)
+1625|Normale Farben
+1626|🎂 Geburtstag und Feier
+1627|Logo {n}
+1628|Originallogo wiederhergestellt.
+1629|↺ Originallogo

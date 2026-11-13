@@ -1616,3 +1616,15 @@
 1615|Iestatīts.
 1616|Video zvans neizdevās: atļauj kameru un mikrofonu un mēģini vēlreiz.
 1617|Izslēgt kameru
+1618|🖼 Šķirotie logotipi
+1619|Izvēlies lietojumu un tēmu, tad pieskaries logotipam. Pārlūka cilnes logotips mainās uzreiz.
+1620|Tālruņa ikona
+1621|Paziņojums (augšējā josla)
+1622|Logotips lietotnes augšā
+1623|Lielais logotips vidū
+1624|Pārlūka cilne (dators)
+1625|Parastās krāsas
+1626|🎂 Dzimšanas diena un svētki
+1627|Logotips {n}
+1628|Atjaunots oriģinālais logotips.
+1629|↺ Oriģinālais logotips

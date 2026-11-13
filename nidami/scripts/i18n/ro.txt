@@ -1616,3 +1616,15 @@
 1615|Gata.
 1616|Apel video imposibil: permite camera și microfonul, apoi încearcă din nou.
 1617|Oprește camera
+1618|🖼 Logouri clasate
+1619|Alege o utilizare și o temă, apoi atinge logoul dorit. Cel din fila browserului se schimbă imediat.
+1620|Pictograma telefonului
+1621|Notificare (bara de sus)
+1622|Logo în partea de sus a aplicației
+1623|Logo mare în mijloc
+1624|Fila browserului (PC)
+1625|Culori normale
+1626|🎂 Aniversare și petrecere
+1627|Logo {n}
+1628|Logoul original a fost restabilit.
+1629|↺ Logo original

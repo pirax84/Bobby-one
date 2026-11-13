@@ -10,6 +10,7 @@ import { useDev, setDevClient, setDevFete, setDevBday, setDevDate, setDevNoFete,
 import { feteOf, type Fete } from "../lib/fetes";
 import { toast, isPC } from "./common";
 import { t } from "../i18n";
+import { LOGO_USES, LOGO_THEMES, logoUrl, getPicks, setPick } from "../lib/logos";
 import { DEV_COLORS, DEV_FONTS, DEV_BGS, getDevLook, setDevLook, resetDevLook } from "../lib/devlook";
 import { usePref } from "../lib/uipref";
 
@@ -71,6 +72,18 @@ function DevMembers() {
     {s.users.filter((u) => u.id !== s.me).map((u) => <div key={u.id} className="row" style={{ gap: 8, padding: "6px 0", borderTop: "1px solid var(--line, #ddd)" }}><span className="grow"><b>{u.name}</b><span className="muted small" style={{ display: "block" }}>{t("{n} publications", { n: s.posts.filter((p) => p.authorId === u.id).length })}</span></span><button type="button" className={"chip" + (blocked.has(u.id) ? " on" : "")} onClick={() => tog(u.id, u.name)}>{blocked.has(u.id) ? t("Débloquer") : t("Bloquer")}</button></div>)}
     <b>{t("Journal de sécurité")}</b>
     {J.length === 0 ? <div className="muted small">{t("Rien pour l'instant.")}</div> : J.slice(0, 10).map((e, i) => <div key={e.at} className="row small" style={{ gap: 8 }}><span className="grow">{new Date(e.at).toLocaleString()} · {e.txt}</span>{e.undone ? <span className="muted">{t("Annulé")}</span> : <button type="button" className="chip" onClick={() => undo(i)}>{t("Annuler")}</button>}</div>)}
+  </div>;
+}
+
+/** Les logos classés par usage et par thème : on voit tout et on choisit celui de chaque cas. */
+function DevLogoPicker() {
+  usePref("x", ""); const [u, setU] = useState(LOGO_USES[2][0]); const [th, setTh] = useState(LOGO_THEMES[0][0]); const P = getPicks(); const use = LOGO_USES.find((x) => x[0] === u)!;
+  return <div className="card col" style={{ gap: 8 }}><h3>{t("🖼 Logos classés")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("Choisissez un usage et un thème, puis touchez le logo à utiliser. Celui de l'onglet du navigateur change tout de suite.")}</p>
+    <div className="row wrap" style={{ gap: 6 }}>{LOGO_USES.map(([k, l, n]) => <button key={k} type="button" className={"chip" + (u === k ? " on" : "")} onClick={() => setU(k)}>{t(l)} · {n}</button>)}</div>
+    <div className="row wrap" style={{ gap: 6 }}>{LOGO_THEMES.map(([k, l]) => <button key={k} type="button" className={"chip" + (th === k ? " on" : "")} onClick={() => setTh(k)}>{t(l)}</button>)}</div>
+    <div className="row wrap" style={{ gap: 8 }}>{Array.from({ length: use[2] }, (_, i) => i + 1).map((n) => <button key={n} type="button" aria-label={t("Logo {n}", { n })} aria-pressed={P[u + ":" + th] === n} onClick={() => setPick(u, th, n)} style={{ padding: 2, borderRadius: 12, background: "var(--bg2)", border: P[u + ":" + th] === n ? "3px solid var(--brand)" : "1px solid var(--bd)" }}><img src={logoUrl(u, th, n)} alt="" width={use[3]} height={use[3]} loading="lazy" style={{ display: "block", borderRadius: 10 }} /></button>)}</div>
+    <button type="button" className="chip" onClick={() => { setPick(u, th, 0); toast(t("Logo d'origine remis.")); }}>{t("↺ Logo d'origine")}</button>
   </div>;
 }
 
@@ -157,7 +170,7 @@ export function DevPanel() {
         <div className="row" style={{ gap: 8 }}><button type="button" className="chip" onClick={() => play(k)}>{t("▶ Tester")}</button></div></div>)}
       <button className="btn ghost" onClick={async () => { try { await navigator.clipboard.writeText(devChoices()); toast(t("Choix copiés : collez-les dans la conversation pour les rendre définitifs.")); } catch { toast(t("Copie impossible.")); } }}>{t("📋 Copier mes choix (pour les rendre définitifs)")}</button>
       <p className="muted small" style={{ margin: 0 }}>{t("Vos choix ne changent que votre appareil. Envoyez-les-moi pour qu'ils deviennent ceux de tous les clients.")}</p></div>
-    <DevNav /><DevMembers /><DevLook /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
+    <DevNav /><DevLogoPicker /><DevMembers /><DevLook /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
     <div className="card col" style={{ gap: 8 }}><h3>{t("✨ Tester les effets")}</h3>
       <p className="muted small" style={{ margin: 0 }}>{t("Touchez un effet pour le voir et l'entendre. Un nouvel effet arrête le précédent.")}</p>
       <div className="row wrap" style={{ gap: 6 }}>{FX_ALL.map((k) => <button key={k} type="button" className="chip" onClick={() => playFx(k, true)}>{FX[k].label}</button>)}</div>

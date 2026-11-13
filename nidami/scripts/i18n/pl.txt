@@ -1616,3 +1616,15 @@
 1615|Gotowe.
 1616|Nie udało się rozpocząć rozmowy wideo: zezwól na kamerę i mikrofon i spróbuj ponownie.
 1617|Wyłącz kamerę
+1618|🖼 Logo według kategorii
+1619|Wybierz zastosowanie i motyw, a potem dotknij logo. Logo karty przeglądarki zmienia się od razu.
+1620|Ikona telefonu
+1621|Powiadomienie (górny pasek)
+1622|Logo u góry aplikacji
+1623|Duże logo pośrodku
+1624|Karta przeglądarki (PC)
+1625|Zwykłe kolory
+1626|🎂 Urodziny i impreza
+1627|Logo {n}
+1628|Przywrócono oryginalne logo.
+1629|↺ Oryginalne logo

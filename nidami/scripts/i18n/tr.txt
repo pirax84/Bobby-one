@@ -1616,3 +1616,15 @@
 1615|Ayarlandı.
 1616|Görüntülü arama yapılamadı: kamera ve mikrofona izin ver, sonra tekrar dene.
 1617|Kamerayı kapat
+1618|🖼 Sınıflandırılmış logolar
+1619|Bir kullanım ve bir tema seç, sonra kullanmak istediğin logoya dokun. Tarayıcı sekmesindeki hemen değişir.
+1620|Telefon simgesi
+1621|Bildirim (üst çubuk)
+1622|Uygulamanın üstündeki logo
+1623|Ortadaki büyük logo
+1624|Tarayıcı sekmesi (PC)
+1625|Normal renkler
+1626|🎂 Doğum günü ve kutlama
+1627|Logo {n}
+1628|Özgün logo geri yüklendi.
+1629|↺ Özgün logo

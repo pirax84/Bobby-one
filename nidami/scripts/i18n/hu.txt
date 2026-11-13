@@ -1616,3 +1616,15 @@
 1615|Beállítva.
 1616|A videóhívás nem sikerült: engedélyezd a kamerát és a mikrofont, majd próbáld újra.
 1617|Kamera kikapcsolása
+1618|🖼 Csoportosított logók
+1619|Válassz felhasználást és témát, majd koppints a használni kívánt logóra. A böngészőfül logója azonnal változik.
+1620|Telefon ikon
+1621|Értesítés (felső sáv)
+1622|Logó az app tetején
+1623|Nagy logó középen
+1624|Böngészőfül (PC)
+1625|Normál színek
+1626|🎂 Születésnap és buli
+1627|Logó {n}
+1628|Az eredeti logó visszaállítva.
+1629|↺ Eredeti logó

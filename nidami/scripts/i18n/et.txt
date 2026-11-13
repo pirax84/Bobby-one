@@ -1616,3 +1616,15 @@
 1615|Valmis.
 1616|Videokõne ebaõnnestus: luba kaamera ja mikrofon ning proovi uuesti.
 1617|Lülita kaamera välja
+1618|🖼 Sorditud logod
+1619|Vali kasutus ja teema ning puuduta logo. Brauseri vahekaardi logo muutub kohe.
+1620|Telefoni ikoon
+1621|Teavitus (ülariba)
+1622|Logo rakenduse ülaosas
+1623|Suur logo keskel
+1624|Brauseri vahekaart (arvuti)
+1625|Tavalised värvid
+1626|🎂 Sünnipäev ja pidu
+1627|Logo {n}
+1628|Algne logo taastatud.
+1629|↺ Algne logo

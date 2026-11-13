@@ -1616,3 +1616,15 @@
 1615|Nustatyta.
 1616|Vaizdo skambutis nepavyko: leisk kamerą ir mikrofoną ir bandyk dar kartą.
 1617|Išjungti kamerą
+1618|🖼 Išrūšiuoti logotipai
+1619|Pasirink naudojimą ir temą, tada palieskite logotipą. Naršyklės skirtuko logotipas pasikeičia iškart.
+1620|Telefono piktograma
+1621|Pranešimas (viršutinė juosta)
+1622|Logotipas programos viršuje
+1623|Didelis logotipas viduryje
+1624|Naršyklės skirtukas (kompiuteris)
+1625|Įprastos spalvos
+1626|🎂 Gimtadienis ir šventė
+1627|Logotipas {n}
+1628|Atkurtas originalus logotipas.
+1629|↺ Originalus logotipas

@@ -1616,3 +1616,15 @@
 1615|Pronto.
 1616|Não foi possível iniciar a videochamada: permite a câmara e o microfone e tenta de novo.
 1617|Desligar a câmara
+1618|🖼 Logótipos classificados
+1619|Escolhe uma utilização e um tema e toca no logótipo a usar. O do separador do navegador muda logo.
+1620|Ícone do telemóvel
+1621|Notificação (barra superior)
+1622|Logótipo no topo da app
+1623|Logótipo grande ao centro
+1624|Separador do navegador (PC)
+1625|Cores normais
+1626|🎂 Aniversário e festa
+1627|Logótipo {n}
+1628|Logótipo original reposto.
+1629|↺ Logótipo original

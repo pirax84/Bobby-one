@@ -1616,3 +1616,15 @@
 1615|Klart.
 1616|Videosamtalet misslyckades: tillåt kamera och mikrofon och försök igen.
 1617|Stäng av kameran
+1618|🖼 Sorterade logotyper
+1619|Välj användning och tema och tryck sedan på logotypen. Den i webbläsarfliken ändras direkt.
+1620|Telefonikon
+1621|Avisering (övre fältet)
+1622|Logotyp högst upp i appen
+1623|Stor logotyp i mitten
+1624|Webbläsarflik (dator)
+1625|Normala färger
+1626|🎂 Födelsedag och fest
+1627|Logotyp {n}
+1628|Originallogotypen återställd.
+1629|↺ Originallogotyp

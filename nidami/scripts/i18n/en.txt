@@ -1616,3 +1616,15 @@
 1615|All set.
 1616|Video call failed: allow camera and microphone, then try again.
 1617|Turn off camera
+1618|🖼 Sorted logos
+1619|Choose a use and a theme, then tap the logo to use. The browser tab one changes right away.
+1620|Phone icon
+1621|Notification (top bar)
+1622|Logo at the top of the app
+1623|Big logo in the middle
+1624|Browser tab (PC)
+1625|Normal colors
+1626|🎂 Birthday and party
+1627|Logo {n}
+1628|Original logo restored.
+1629|↺ Original logo

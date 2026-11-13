@@ -1616,3 +1616,15 @@
 1615|Socraithe.
 1616|Theip ar an bhfíseal: ceadaigh an ceamara agus an micreafón agus bain triail eile as.
 1617|Múch an ceamara
+1618|🖼 Lógónna rangaithe
+1619|Roghnaigh úsáid agus téama, ansin tadhall leis an lógó. Athraíonn lógó chluaisín an bhrabhsálaí láithreach.
+1620|Deilbhín an ghutháin
+1621|Fógra (barra uachtair)
+1622|Lógó ag barr na haipe
+1623|Lógó mór sa lár
+1624|Cluaisín an bhrabhsálaí (PC)
+1625|Gnáthdhathanna
+1626|🎂 Breithlá agus féasta
+1627|Lógó {n}
+1628|Athchuireadh an bunlógó.
+1629|↺ Bunlógó

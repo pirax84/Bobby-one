@@ -1616,3 +1616,15 @@
 1615|Ingesteld.
 1616|Videobellen mislukt: sta camera en microfoon toe en probeer opnieuw.
 1617|Camera uitzetten
+1618|🖼 Gesorteerde logo's
+1619|Kies een gebruik en een thema en tik op het logo dat je wilt. Dat van het browsertabblad verandert meteen.
+1620|Telefoonpictogram
+1621|Melding (bovenste balk)
+1622|Logo bovenin de app
+1623|Groot logo in het midden
+1624|Browsertabblad (pc)
+1625|Normale kleuren
+1626|🎂 Verjaardag en feest
+1627|Logo {n}
+1628|Originele logo hersteld.
+1629|↺ Originele logo
