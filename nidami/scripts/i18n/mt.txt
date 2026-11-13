@@ -1645,3 +1645,30 @@
 1644|Int
 1645|kontra
 1646|Logħba ġdida
+1647|Kuluri
+1648|Fonts
+1649|Sfondi
+1650|100 kulur, żid wieħed jew irrisetja
+1651|12-il sfond għall-app
+1652|50 font
+1653|Loghis
+1654|Skont it-tema u l-post tal-użu
+1655|Festi u effetti
+1656|Dati, effetti, mużika, veduta tal-klijent
+1657|Ħsejjes u notifiki
+1658|Ittestja, silenzja, ibdel
+1659|Bars u menus
+1660|X'jidher fuq u t'isfel
+1661|Membri
+1662|Ara, imblokka, reġistru tas-sigurtà
+1663|Biddel l-app kollha f'daqqa
+1664|Kulur, sfond u font flimkien
+1665|Għodod u pubblikazzjoni
+1666|Gwida, info, config.json, irrisetja
+1667|Emojis
+1668|Żid emoji jew pakkett
+1669|L-emojis tiegħi
+1670|Waħħal emoji wieħed jew aktar
+1671|Emoji miżjud.
+1672|Forom u stil
+1673|Avatars, buttuni, truf ċari

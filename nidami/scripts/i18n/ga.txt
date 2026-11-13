@@ -1645,3 +1645,30 @@
 1644|Tú
 1645|in aghaidh
 1646|Cluiche nua
+1647|Dathanna
+1648|Clófhoirne
+1649|Cúlraí
+1650|100 dath, cuir ceann leis nó athshocraigh
+1651|12 chúlra don aip
+1652|50 clófhoireann
+1653|Lógónna
+1654|De réir téama agus áite úsáide
+1655|Féilte agus éifeachtaí
+1656|Dátaí, éifeachtaí, ceol, radharc an chliaint
+1657|Fuaimeanna agus fógraí
+1658|Tástáil, balbhaigh, ionadaigh
+1659|Barraí agus roghchláir
+1660|Cad a thaispeántar thuas agus thíos
+1661|Baill
+1662|Féach, bac, logchlár slándála
+1663|Athraigh an aip ar fad in aon uair
+1664|Dath, cúlra agus clófhoireann le chéile
+1665|Uirlisí agus foilsiú
+1666|Treoir, eolas, config.json, athshocrú
+1667|Emoji
+1668|Cuir emoji nó pacáiste leis
+1669|Mo chuid emoji
+1670|Greamaigh emoji amháin nó níos mó
+1671|Cuireadh an emoji leis.
+1672|Cruthanna agus stíl
+1673|Abhatáir, cnaipí, imill threisithe

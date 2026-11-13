@@ -63,6 +63,7 @@ import { useDev, feteFx, feteAuto, devHidden } from "./lib/dev";
 import type { Fete } from "./lib/fetes";
 import { startSync } from "./lib/sync";
 import { usePref } from "./lib/uipref";
+import { pickedUrl } from "./lib/logos";
 import { friendMode } from "./lib/catnotif";
 import { QuickVoice, VoiceFab } from "./ui/QuickVoice";
 import { CallLayer } from "./ui/Call";
@@ -70,6 +71,7 @@ import { useFete, FeteOrnaments, FeteUnder, FeteBar } from "./lib/fetes";
 const WM_CUTS = [0, 354, 502, 616, 678, 751, 1048];
 const BD_COL = ["#B83FD0", "#F2704A", "#1FA58F", "#E5679C", "#F2A33A", "#38A0F0"];
 export function BrandWm({ id, light, sound, big, onHome, bdText, force }: { id: string; light: boolean; sound: boolean; big?: boolean; onHome?: () => void; bdText?: string; force?: Fete | "none" }) {
+  const [lv, setLv] = useState(0); useEffect(() => { const h = () => setLv((x) => x + 1); window.addEventListener("notiif-logos", h); return () => window.removeEventListener("notiif-logos", h); }, []); const pk = pickedUrl(big ? "big" : "top");
   const bday = !!bdText; const fete0 = useFete(); const fete = force ? (force === "none" ? null : force) : fete0; const fx = !bdText ? fete : null;
   const [go, setGo] = useState(0); const suf = id + (light ? "-light" : "");
   const tapped = () => { try { const now = Date.now(); const last = +(localStorage.getItem("notiif-tap-t") || 0); const streak = now - last < 2500 ? +(localStorage.getItem("notiif-tap-s") || 0) + 1 : 1; localStorage.setItem("notiif-tap-t", String(now)); localStorage.setItem("notiif-tap-s", String(streak));
@@ -78,6 +80,7 @@ export function BrandWm({ id, light, sound, big, onHome, bdText, force }: { id: 
     else if (streak === 7) { const P = [t("Tu es précieux pour tes proches 💜"), t("Merci d'être là, ça fait plaisir !"), t("Un petit coup de fil à quelqu'un que tu aimes ? 💌"), t("Tu fais du bien autour de toi 🌸")]; toast(P[Math.floor(Math.random() * P.length)]); } } catch { /* rien */ } };
   const lp = useRef<{ t: number; done: boolean }>({ t: 0, done: false });
   const hop = () => { if (lp.current.done) { lp.current.done = false; return; } tapped(); onHome?.(); let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { /* rien */ } if (reduce) return; setGo((g) => g + 1); if (sound || fx) { if (bday) sfx("birthday"); else if (fx) playFx(feteFx(fx) as Fx, sound); else popNotes(6); } try { navigator.vibrate?.(12); } catch { /* rien */ } };
+  if (pk && lv >= 0) return <span className={"wm wmpick" + (big ? " big" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onClick={() => { tapped(); onHome?.(); }}><img src={pk} alt="" draggable={false} style={{ height: "100%", width: "auto", maxWidth: "100%", objectFit: "contain" }} /></span>;
   return <span className={"wm" + (big ? " big" : "") + (go ? " go" : "") + (fx ? " fete" : "")} role="button" tabIndex={0} aria-label="NOTIIF" onPointerDown={() => { lp.current.done = false; clearTimeout(lp.current.t); lp.current.t = window.setTimeout(() => { if (!onHome) return; lp.current.done = true; try { navigator.vibrate?.(20); } catch { /* rien */ } window.dispatchEvent(new Event("notiif-qr")); }, 600); }} onPointerUp={() => clearTimeout(lp.current.t)} onPointerLeave={() => clearTimeout(lp.current.t)} onPointerCancel={() => clearTimeout(lp.current.t)} onContextMenu={(e) => { if (onHome) e.preventDefault(); }} onClick={hop} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hop(); } }}>
     <img className="wmb" src={`./wm-bg-${suf}.png`} alt="" draggable={false} />
 
@@ -148,7 +151,7 @@ export default function App() {
     if (!th0?.quiet) { if (fm === "priority") setTimeout(() => playMsgSound("text"), 450); if (lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_")) playMsgSound(lastNotif.pv === "🎤" ? "audio" : lastNotif.pv === "📷" ? "media" : "text"); else playNotifSound(); vibrate(th0?.vibm, 1); }
     const nat = (window as any).CercleNative; if (pushOn && nat?.notify) { try { const cv = lastNotif.v === "messages" && lastNotif.by?.startsWith("sb_") ? "sbc_" + lastNotif.by.slice(3) : ""; if (cv && nat.notifyConv) nat.notifyConv(BRAND, lastNotif.text, cv + (lastNotif.pv === "🎤" ? "~a" : "")); else nat.notify(BRAND, lastNotif.text); } catch { /* ignoré */ } return; }
     if (!pushOn || typeof Notification === "undefined" || Notification.permission !== "granted") return;
-    const opt = { body: lastNotif.text, icon: "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
+    const opt = { body: lastNotif.text, icon: pickedUrl("notif") || "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
     navigator.serviceWorker?.ready.then((r) => r.showNotification(BRAND, opt)).catch(() => { try { new Notification(BRAND, opt); } catch { /* ignoré */ } });
   }, [lastNotif?.id, pushOn]);
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);

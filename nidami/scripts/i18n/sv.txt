@@ -1645,3 +1645,30 @@
 1644|Du
 1645|mot
 1646|Nytt spel
+1647|Färger
+1648|Typsnitt
+1649|Bakgrunder
+1650|100 färger, lägg till eller återställ
+1651|12 bakgrunder för appen
+1652|50 typsnitt
+1653|Logotyper
+1654|Efter tema och användningsplats
+1655|Högtider och effekter
+1656|Datum, effekter, musik, kundvy
+1657|Ljud och aviseringar
+1658|Testa, tysta, ersätt
+1659|Fält och menyer
+1660|Vad som visas upptill och nedtill
+1661|Medlemmar
+1662|Visa, blockera, säkerhetslogg
+1663|Ändra hela appen på en gång
+1664|Färg, bakgrund och typsnitt tillsammans
+1665|Verktyg och publicering
+1666|Guide, info, config.json, återställ
+1667|Emojier
+1668|Lägg till en emoji eller ett paket
+1669|Mina emojier
+1670|Klistra in en eller flera emojier
+1671|Emoji tillagd.
+1672|Former och stil
+1673|Avatarer, knappar, markerade kanter

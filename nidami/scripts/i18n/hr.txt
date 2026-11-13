@@ -1645,3 +1645,30 @@
 1644|Ti
 1645|protiv
 1646|Nova igra
+1647|Boje
+1648|Fontovi
+1649|Pozadine
+1650|100 boja, dodaj ili vrati
+1651|12 pozadina za aplikaciju
+1652|50 fontova
+1653|Logotipi
+1654|Po temi i mjestu korištenja
+1655|Blagdani i efekti
+1656|Datumi, efekti, glazba, prikaz klijenta
+1657|Zvukovi i obavijesti
+1658|Testiraj, utišaj, zamijeni
+1659|Trake i izbornici
+1660|Što se prikazuje gore i dolje
+1661|Članovi
+1662|Pregled, blokiranje, sigurnosni dnevnik
+1663|Promijeni cijelu aplikaciju odjednom
+1664|Boja, pozadina i font zajedno
+1665|Alati i objava
+1666|Vodič, info, config.json, poništavanje
+1667|Emojiji
+1668|Dodaj emoji ili paket
+1669|Moji emojiji
+1670|Zalijepi jedan ili više emojija
+1671|Emoji dodan.
+1672|Oblici i stil
+1673|Avatari, gumbi, istaknuti rubovi

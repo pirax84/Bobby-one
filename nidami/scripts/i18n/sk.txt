@@ -1645,3 +1645,30 @@
 1644|Ty
 1645|proti
 1646|Nová hra
+1647|Farby
+1648|Písma
+1649|Pozadia
+1650|100 farieb, pridať alebo obnoviť
+1651|12 pozadí pre aplikáciu
+1652|50 písem
+1653|Logá
+1654|Podľa témy a miesta použitia
+1655|Sviatky a efekty
+1656|Dátumy, efekty, hudba, pohľad zákazníka
+1657|Zvuky a oznámenia
+1658|Vyskúšať, stlmiť, nahradiť
+1659|Lišty a ponuky
+1660|Čo sa zobrazuje hore a dole
+1661|Členovia
+1662|Zobraziť, blokovať, bezpečnostný denník
+1663|Zmeniť celú aplikáciu naraz
+1664|Farba, pozadie a písmo spolu
+1665|Nástroje a zverejnenie
+1666|Sprievodca, info, config.json, obnovenie
+1667|Emoji
+1668|Pridať emoji alebo balíček
+1669|Moje emoji
+1670|Vlož jedno alebo viac emoji
+1671|Emoji pridané.
+1672|Tvary a štýl
+1673|Avatary, tlačidlá, výrazné okraje

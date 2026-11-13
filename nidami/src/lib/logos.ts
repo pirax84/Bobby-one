@@ -5,14 +5,18 @@ const K = "notiif-logopick";
 const base = () => (import.meta.env.BASE_URL || "./");
 export const logoUrl = (use: string, theme: string, n: number) => `${base()}logos/${use}/${theme}/${String(n).padStart(2, "0")}.webp`;
 export const getPicks = (): Record<string, number> => { try { return JSON.parse(localStorage.getItem(K) || "{}"); } catch { return {}; } };
-export function setPick(use: string, theme: string, n: number) { const p = getPicks(); if (n) p[use + ":" + theme] = n; else delete p[use + ":" + theme]; try { localStorage.setItem(K, JSON.stringify(p)); } catch { /* ignoré */ } applyLogos(); window.dispatchEvent(new Event("notiif-pref")); }
+export function setPick(use: string, theme: string, n: number) { const p = getPicks(); if (n) p[use + ":" + theme] = n; else delete p[use + ":" + theme]; try { localStorage.setItem(K, JSON.stringify(p)); } catch { /* ignoré */ } applyLogos(); window.dispatchEvent(new Event("notiif-pref"));  window.dispatchEvent(new Event("notiif-logos")); }
 /** Thème de logo actif d'après la fête en cours (null = couleurs normales). */
 let curTheme = "normal";
-export function setLogoTheme(t: string) { if (t !== curTheme) { curTheme = t; applyLogos(); } }
+export function setLogoTheme(t: string) { if (t !== curTheme) { curTheme = t; applyLogos(); window.dispatchEvent(new Event("notiif-logos")); } }
 export function pickFor(use: string, theme = curTheme): number { return getPicks()[use + ":" + theme] || 0; }
 /** Met le logo choisi dans l'onglet du navigateur. */
 export function applyLogos() {
+  const ph = pickFor("phone"); for (const l of Array.from(document.querySelectorAll('link[rel="apple-touch-icon"]')) as HTMLLinkElement[]) { if (!l.dataset.orig) l.dataset.orig = l.href; l.href = ph ? logoUrl("phone", curTheme, ph) : l.dataset.orig; }
   const n = pickFor("tab"); const links = Array.from(document.querySelectorAll('link[rel~="icon"]')) as HTMLLinkElement[];
   if (!links.length) return;
   for (const l of links) { if (!l.dataset.orig) l.dataset.orig = l.href; if (n) { l.href = logoUrl("tab", curTheme, n); l.type = "image/webp"; } else { l.href = l.dataset.orig; } }
 }
+
+/** Logo choisi par le développeur pour un usage (adresse de l'image), ou null. */
+export const pickedUrl = (use: string): string | null => { const n = pickFor(use); return n ? logoUrl(use, curTheme, n) : null; };

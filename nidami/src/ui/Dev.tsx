@@ -8,7 +8,7 @@ import { PresenceBar } from "./Chat";
 import { ServerCard } from "./ServerCard";
 import { useDev, setDevClient, setDevFete, setDevBday, setDevDate, setDevNoFete, setDevPreview, setFeteFx, setFeteAuto, feteFx, feteAuto, devChoices, APP_VERSION, devIsOff, devToggleHidden, customSounds, addCustomSound, removeCustomSound, sndMapOf, setSndMap, devResetAll, exportConfig, importConfig } from "../lib/dev";
 import { feteOf, type Fete } from "../lib/fetes";
-import { toast, isPC } from "./common";
+import { toast, isPC, Ico, devEmojiList, setDevEmojis } from "./common";
 import { t } from "../i18n";
 import { LOGO_USES, LOGO_THEMES, logoUrl, getPicks, setPick } from "../lib/logos";
 import { DEV_COLORS, DEV_FONTS, DEV_BGS, getDevLook, setDevLook, resetDevLook } from "../lib/devlook";
@@ -45,20 +45,31 @@ function DevLogos() {
 }
 
 /** Apparence : 100 couleurs, 50 polices, 12 fonds (choix du mode développeur, sur cet appareil). */
-function DevLook() {
-  usePref("x", ""); const d = getDevLook();
-  return <div className="card col" style={{ gap: 8 }}><h3>{t("🎨 Apparence (développeur)")}</h3>
+function DevLook({ part }: { part?: "color" | "font" | "bg" }) {
+  usePref("x", ""); const d = getDevLook(); const sh = (k: string) => !part || part === k;
+  return <div className="card col" style={{ gap: 8 }}><h3>{part === "color" ? t("Couleurs") : part === "font" ? t("Polices") : part === "bg" ? t("Fonds") : t("🎨 Apparence (développeur)")}</h3>
     <p className="muted small" style={{ margin: 0 }}>{t("Ces choix s'ajoutent aux couleurs de l'application. « Normal » remet l'origine.")}</p>
-    <b>{t("Couleur")} · 100</b>
-    <div className="row wrap" style={{ gap: 6 }}>{DEV_COLORS.map((c) => <button key={c.id} type="button" aria-label={c.hex} aria-pressed={d.color === c.id} onClick={() => setDevLook({ color: c.id })} style={{ width: 28, height: 28, borderRadius: 9, border: d.color === c.id ? "3px solid var(--fg)" : "1px solid var(--bd)", background: c.hex, padding: 0 }}>{d.color === c.id ? "✓" : ""}</button>)}</div>
-    <b>{t("Police")} · 50</b>
-    <div className="row wrap" style={{ gap: 6 }}>{DEV_FONTS.map(([n, f]) => <button key={n} type="button" className={"chip" + ((d.font || "Normale") === n ? " on" : "")} style={{ fontFamily: f.split(";")[0] || undefined }} onClick={() => setDevLook({ font: n })}>{n}</button>)}</div>
-    <b>{t("Fond")} · 12</b>
-    <div className="row wrap" style={{ gap: 6 }}>{DEV_BGS.map(([n, a]) => <button key={n} type="button" className={"chip" + ((d.bg || "Normal") === n ? " on" : "")} onClick={() => setDevLook({ bg: n })}><span style={{ display: "inline-block", width: 14, height: 14, borderRadius: 5, marginRight: 6, verticalAlign: "middle", background: a || "var(--bg)", border: "1px solid var(--bd)" }} />{n}</button>)}</div>
+    {sh("color") && <><b>{t("Couleur")} · 100</b>
+    <div className="row wrap" style={{ gap: 6 }}>{DEV_COLORS.map((c) => <button key={c.id} type="button" aria-label={c.hex} aria-pressed={d.color === c.id} onClick={() => setDevLook({ color: c.id })} style={{ width: 28, height: 28, borderRadius: 9, border: d.color === c.id ? "3px solid var(--fg)" : "1px solid var(--bd)", background: c.hex, padding: 0 }}>{d.color === c.id ? "✓" : ""}</button>)}</div></>}
+    {sh("font") && <><b>{t("Police")} · 50</b>
+    <div className="row wrap" style={{ gap: 6 }}>{DEV_FONTS.map(([n, f]) => <button key={n} type="button" className={"chip" + ((d.font || "Normale") === n ? " on" : "")} style={{ fontFamily: f.split(";")[0] || undefined }} onClick={() => setDevLook({ font: n })}>{n}</button>)}</div></>}
+    {sh("bg") && <><b>{t("Fond")} · 12</b>
+    <div className="row wrap" style={{ gap: 6 }}>{DEV_BGS.map(([n, a]) => <button key={n} type="button" className={"chip" + ((d.bg || "Normal") === n ? " on" : "")} onClick={() => setDevLook({ bg: n })}><span style={{ display: "inline-block", width: 14, height: 14, borderRadius: 5, marginRight: 6, verticalAlign: "middle", background: a || "var(--bg)", border: "1px solid var(--bd)" }} />{n}</button>)}</div></>}
     <button type="button" className="chip" onClick={() => { resetDevLook(); toast(t("Apparence remise à zéro.")); }}>{t("↺ Tout remettre normal")}</button>
   </div>;
 }
 
+function DevEmojis() {
+  const [l, setL] = useState(devEmojiList()); const [v, setV] = useState("");
+  const add = () => { const seg = typeof Intl !== "undefined" && (Intl as any).Segmenter ? Array.from(new (Intl as any).Segmenter(undefined, { granularity: "grapheme" }).segment(v), (x: any) => x.segment as string) : Array.from(v); const n = seg.map((x) => x.trim()).filter((x) => x && /\p{Extended_Pictographic}/u.test(x)); if (!n.length) return toast(t("Colle un ou plusieurs émojis")); const nl = Array.from(new Set([...l, ...n])); setL(nl); setDevEmojis(nl); setV(""); toast(t("Émoji ajouté.")); };
+  return <div className="card col" style={{ gap: 8 }}><h3>{t("Émojis")}</h3>
+    <div className="row wrap" style={{ gap: 6 }}>{l.map((e) => <button key={e} type="button" className="chip" aria-label={e} onClick={() => { const nl = l.filter((x) => x !== e); setL(nl); setDevEmojis(nl); }} style={{ fontSize: "1.3rem" }}>{e}</button>)}</div>
+    <div className="row" style={{ gap: 8 }}><input className="inp grow" value={v} onChange={(e) => setV(e.target.value)} placeholder={t("Colle un ou plusieurs émojis")} aria-label={t("Colle un ou plusieurs émojis")} /><button type="button" className="btn sm" onClick={add}>{t("Ajouter")}</button></div></div>;
+}
+function DevStyle() {
+  const st = useStore((x) => x.settings[x.me]?.style) || "soft";
+  return <div className="card col" style={{ gap: 8 }}><h3>{t("Formes et style")}</h3><div className="row" style={{ gap: 6 }}>{([["soft", t("Doux")], ["bold", t("Contours marqués")]] as const).map(([k, l]) => <button key={k} type="button" className={"chip grow" + (st === k ? " on" : "")} aria-pressed={st === k} onClick={() => actions.setSetting("style", k)}>{l}</button>)}</div></div>;
+}
 /** Membres : voir leurs contenus, bloquer / débloquer, avec un journal de sécurité (Annuler). */
 const JK = "notiif-secjournal";
 const jget = (): { at: number; txt: string; id: string; on: boolean; undone?: boolean }[] => { try { return JSON.parse(localStorage.getItem(JK) || "[]"); } catch { return []; } };
@@ -151,7 +162,15 @@ export function DevPanel() {
   const pickDate = (v: string) => { setDevNoFete(false); setDevFete(""); setDevDate(v); const [y, m, j] = v.split("-").map(Number); const f = v ? feteOf(new Date(y, m - 1, j, 12)) : null; if (f) setTimeout(() => play(f), 400); else if (v) toast(t("Ce jour-là, il n'y a pas de fête dans l'application.")); };
   const cur = d.fete || (d.date ? (() => { const [y, m, j] = d.date.split("-").map(Number); return feteOf(new Date(y, m - 1, j, 12)); })() : null);
   const info = [[t("Version"), APP_VERSION], [t("Appareil"), pc ? t("Ordinateur") : t("Téléphone")], [t("Fête simulée"), d.noFete ? t("coupée") : cur ? FETES.find((x) => x[0] === cur)?.[1] || cur : t("aucune (vraie date)")]];
+  const [cat, setCat] = useState("");
+  const HUB: [string, string, string][] = [["color", t("Couleurs"), t("100 couleurs, en ajouter ou remettre normal")], ["bg", t("Fonds"), t("12 fonds pour l'appli")], ["font", t("Polices"), t("50 polices")], ["emoji", t("Émojis"), t("Ajouter un émoji ou un pack")], ["style", t("Formes et style"), t("Avatars, boutons, bords marqués")], ["logos", t("Logos"), t("Par thème et par endroit d'utilisation")], ["fetes", t("Fêtes et effets"), t("Dates, effets, musiques, vue client")], ["sons", t("Sons et notifications"), t("Tester, couper, remplacer")], ["nav", t("Barres et menus"), t("Ce qui s'affiche en haut et en bas")], ["membres", t("Membres"), t("Voir, bloquer, journal de sécurité")], ["all", t("Changer toute l'appli d'un coup"), t("Couleur, fond et police ensemble")], ["tools", t("Outils et publication"), t("Guide, infos, config.json, remise à zéro")]];
+  if (!cat) return <div className="col" style={{ gap: 8 }}>{HUB.map(([k, l, sub]) => <button key={k} type="button" className="setrow" onClick={() => { setCat(k); window.scrollTo(0, 0); }}><span className="grow"><b>{l}</b><small>{sub}</small></span><span className="setch">›</span></button>)}</div>;
   return <>
+    <button type="button" className="btn ghost sm" style={{ alignSelf: "flex-start" }} onClick={() => setCat("")}><Ico n="back" s={16} />{" "}{HUB.find((h) => h[0] === cat)?.[1]}</button>
+    {cat === "color" && <DevLook part="color" />}{cat === "bg" && <DevLook part="bg" />}{cat === "font" && <DevLook part="font" />}{cat === "emoji" && <DevEmojis />}{cat === "style" && <DevStyle />}{cat === "all" && <DevLook />}
+    {cat === "logos" && <><DevLogoPicker /><DevLogos /></>}
+    {cat === "nav" && <DevNav />}{cat === "membres" && <DevMembers />}
+    {cat === "fetes" && <>
     <div className="card col" style={{ gap: 8 }}><h3>{t("👁 Voir comme un client")}</h3>
       <p className="muted small" style={{ margin: 0 }}>{pc ? t("Un cadre à droite montre l'appli telle que la voit un client, avec la fête choisie. Vous changez un réglage ici, le cadre se met à jour tout seul.") : t("Pour montrer l'application à quelqu'un : il ne verra ni ce mode, ni les fêtes simulées. Pour revenir ici, touchez 7 fois la version en bas de Paramètres.")}</p>
       {pc && <button className="btn" onClick={() => setDevPreview(!d.preview)}>{d.preview ? t("Fermer le cadre client") : t("Ouvrir le cadre client à droite")}</button>}
@@ -170,11 +189,14 @@ export function DevPanel() {
         <div className="row" style={{ gap: 8 }}><button type="button" className="chip" onClick={() => play(k)}>{t("▶ Tester")}</button></div></div>)}
       <button className="btn ghost" onClick={async () => { try { await navigator.clipboard.writeText(devChoices()); toast(t("Choix copiés : collez-les dans la conversation pour les rendre définitifs.")); } catch { toast(t("Copie impossible.")); } }}>{t("📋 Copier mes choix (pour les rendre définitifs)")}</button>
       <p className="muted small" style={{ margin: 0 }}>{t("Vos choix ne changent que votre appareil. Envoyez-les-moi pour qu'ils deviennent ceux de tous les clients.")}</p></div>
-    <DevNav /><DevLogoPicker /><DevMembers /><DevLook /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
+    </>}
+    {cat === "sons" && <><DevEffects /><DevSounds /><DevNotifs />
     <div className="card col" style={{ gap: 8 }}><h3>{t("✨ Tester les effets")}</h3>
       <p className="muted small" style={{ margin: 0 }}>{t("Touchez un effet pour le voir et l'entendre. Un nouvel effet arrête le précédent.")}</p>
       <div className="row wrap" style={{ gap: 6 }}>{FX_ALL.map((k) => <button key={k} type="button" className="chip" onClick={() => playFx(k, true)}>{FX[k].label}</button>)}</div>
       <button className="btn ghost" onClick={() => stopFx()}>{t("⏹ Tout arrêter")}</button></div>
+    </>}
+    {cat === "tools" && <>
     <div className="card col" style={{ gap: 8 }}><h3>{t("🛠 Outils")}</h3>
       <button className="btn ghost" onClick={() => window.dispatchEvent(new Event("notiif-guide"))}>{t("▶ Voir le guide maintenant")}</button>
       <button className="btn ghost" onClick={() => { try { Object.keys(localStorage).filter((k) => /^(dev:)?notiif-(auto|fete)-/.test(k)).forEach((k) => localStorage.removeItem(k)); } catch { /* ignoré */ } window.dispatchEvent(new Event("notiif-dev")); toast(t("Messages de fête et effets du jour remis à zéro.")); }}>{t("Remontrer les messages de fête fermés")}</button>
@@ -190,5 +212,6 @@ export function DevPanel() {
       <button className="btn ghost" onClick={() => { setDevFete(""); setDevBday(false); setDevDate(""); setDevNoFete(false); toast(t("Date réelle rétablie.")); }}>{t("Revenir à la vraie date")}</button>
       <button className="btn ghost" onClick={() => { devResetAll(); toast(t("Tout est remis comme au départ (sections, effets, sons).")); }}>{t("Tout remettre comme au départ")}</button>
       <button className="btn ghost" onClick={() => { location.href = "./"; }}>{t("↩ Ouvrir l'appli officielle")}</button></div>
+    </>}
   </>;
 }

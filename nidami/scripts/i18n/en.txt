@@ -1645,3 +1645,30 @@
 1644|You
 1645|vs
 1646|New game
+1647|Colors
+1648|Fonts
+1649|Backgrounds
+1650|100 colors, add one or reset
+1651|12 backgrounds for the app
+1652|50 fonts
+1653|Logos
+1654|By theme and by place of use
+1655|Holidays and effects
+1656|Dates, effects, music, customer view
+1657|Sounds and notifications
+1658|Test, mute, replace
+1659|Bars and menus
+1660|What shows at the top and bottom
+1661|Members
+1662|View, block, security log
+1663|Change the whole app at once
+1664|Color, background and font together
+1665|Tools and publishing
+1666|Guide, info, config.json, reset
+1667|Emojis
+1668|Add an emoji or a pack
+1669|My emojis
+1670|Paste one or more emojis
+1671|Emoji added.
+1672|Shapes and style
+1673|Avatars, buttons, bold borders

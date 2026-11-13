@@ -1645,3 +1645,30 @@
 1644|Tu
 1645|pret
 1646|Jauna spēle
+1647|Krāsas
+1648|Fonti
+1649|Foni
+1650|100 krāsu, pievienot vai atiestatīt
+1651|12 foni lietotnei
+1652|50 fontu
+1653|Logotipi
+1654|Pēc tēmas un lietošanas vietas
+1655|Svētki un efekti
+1656|Datumi, efekti, mūzika, klienta skats
+1657|Skaņas un paziņojumi
+1658|Pārbaudīt, izslēgt, aizstāt
+1659|Joslas un izvēlnes
+1660|Kas redzams augšā un apakšā
+1661|Dalībnieki
+1662|Skatīt, bloķēt, drošības žurnāls
+1663|Mainīt visu lietotni uzreiz
+1664|Krāsa, fons un fonts kopā
+1665|Rīki un publicēšana
+1666|Ceļvedis, informācija, config.json, atiestatīšana
+1667|Emocijzīmes
+1668|Pievienot emocijzīmi vai paketi
+1669|Manas emocijzīmes
+1670|Ielīmē vienu vai vairākas emocijzīmes
+1671|Emocijzīme pievienota.
+1672|Formas un stils
+1673|Avatari, pogas, izteiktas malas

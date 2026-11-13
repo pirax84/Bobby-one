@@ -1645,3 +1645,30 @@
 1644|Te
 1645|ellen
 1646|Új játék
+1647|Színek
+1648|Betűtípusok
+1649|Hátterek
+1650|100 szín, hozzáadás vagy visszaállítás
+1651|12 háttér az apphoz
+1652|50 betűtípus
+1653|Logók
+1654|Téma és felhasználási hely szerint
+1655|Ünnepek és effektek
+1656|Dátumok, effektek, zene, ügyfélnézet
+1657|Hangok és értesítések
+1658|Kipróbálás, némítás, csere
+1659|Sávok és menük
+1660|Mi látszik fent és lent
+1661|Tagok
+1662|Megtekintés, tiltás, biztonsági napló
+1663|Az egész app megváltoztatása egyszerre
+1664|Szín, háttér és betűtípus együtt
+1665|Eszközök és közzététel
+1666|Útmutató, infó, config.json, visszaállítás
+1667|Emojik
+1668|Emoji vagy csomag hozzáadása
+1669|Saját emojik
+1670|Illessz be egy vagy több emojit
+1671|Emoji hozzáadva.
+1672|Formák és stílus
+1673|Avatarok, gombok, hangsúlyos keretek

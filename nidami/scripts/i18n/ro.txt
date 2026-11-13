@@ -1645,3 +1645,30 @@
 1644|Tu
 1645|contra
 1646|Joc nou
+1647|Culori
+1648|Fonturi
+1649|Fundaluri
+1650|100 de culori, adaugă una sau resetează
+1651|12 fundaluri pentru aplicație
+1652|50 de fonturi
+1653|Logouri
+1654|După temă și loc de utilizare
+1655|Sărbători și efecte
+1656|Date, efecte, muzică, vedere client
+1657|Sunete și notificări
+1658|Testează, oprește, înlocuiește
+1659|Bare și meniuri
+1660|Ce apare sus și jos
+1661|Membri
+1662|Vezi, blochează, jurnal de securitate
+1663|Schimbă toată aplicația dintr-o dată
+1664|Culoare, fundal și font împreună
+1665|Unelte și publicare
+1666|Ghid, informații, config.json, resetare
+1667|Emoji-uri
+1668|Adaugă un emoji sau un pachet
+1669|Emoji-urile mele
+1670|Lipește unul sau mai multe emoji-uri
+1671|Emoji adăugat.
+1672|Forme și stil
+1673|Avatare, butoane, contururi marcate

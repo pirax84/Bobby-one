@@ -1645,3 +1645,30 @@
 1644|Jij
 1645|tegen
 1646|Nieuw spel
+1647|Kleuren
+1648|Lettertypen
+1649|Achtergronden
+1650|100 kleuren, toevoegen of herstellen
+1651|12 achtergronden voor de app
+1652|50 lettertypen
+1653|Logo's
+1654|Per thema en per plaats van gebruik
+1655|Feestdagen en effecten
+1656|Data, effecten, muziek, klantweergave
+1657|Geluiden en meldingen
+1658|Testen, dempen, vervangen
+1659|Balken en menu's
+1660|Wat boven en onder staat
+1661|Leden
+1662|Bekijken, blokkeren, beveiligingslogboek
+1663|Hele app in één keer wijzigen
+1664|Kleur, achtergrond en lettertype samen
+1665|Hulpmiddelen en publicatie
+1666|Gids, info, config.json, resetten
+1667|Emoji's
+1668|Emoji of pakket toevoegen
+1669|Mijn emoji's
+1670|Plak een of meer emoji's
+1671|Emoji toegevoegd.
+1672|Vormen en stijl
+1673|Avatars, knoppen, duidelijke randen

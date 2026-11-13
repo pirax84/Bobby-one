@@ -1645,3 +1645,30 @@
 1644|Sen
 1645|karşı
 1646|Yeni oyun
+1647|Renkler
+1648|Yazı tipleri
+1649|Arka planlar
+1650|100 renk, ekle veya sıfırla
+1651|Uygulama için 12 arka plan
+1652|50 yazı tipi
+1653|Logolar
+1654|Temaya ve kullanım yerine göre
+1655|Bayramlar ve efektler
+1656|Tarihler, efektler, müzik, müşteri görünümü
+1657|Sesler ve bildirimler
+1658|Dene, sustur, değiştir
+1659|Çubuklar ve menüler
+1660|Üstte ve altta görünenler
+1661|Üyeler
+1662|Gör, engelle, güvenlik günlüğü
+1663|Tüm uygulamayı tek seferde değiştir
+1664|Renk, arka plan ve yazı tipi birlikte
+1665|Araçlar ve yayınlama
+1666|Rehber, bilgi, config.json, sıfırlama
+1667|Emojiler
+1668|Emoji veya paket ekle
+1669|Emojilerim
+1670|Bir veya daha fazla emoji yapıştır
+1671|Emoji eklendi.
+1672|Şekiller ve stil
+1673|Avatarlar, düğmeler, belirgin kenarlar

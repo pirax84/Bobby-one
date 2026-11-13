@@ -1645,3 +1645,30 @@
 1644|Sina
 1645|vastu
 1646|Uus mäng
+1647|Värvid
+1648|Fondid
+1649|Taustad
+1650|100 värvi, lisa või lähtesta
+1651|12 tausta rakendusele
+1652|50 fonti
+1653|Logod
+1654|Teema ja kasutuskoha järgi
+1655|Pühad ja efektid
+1656|Kuupäevad, efektid, muusika, kliendivaade
+1657|Helid ja teavitused
+1658|Proovi, vaigista, asenda
+1659|Ribad ja menüüd
+1660|Mis kuvatakse üleval ja all
+1661|Liikmed
+1662|Vaata, blokeeri, turvalogi
+1663|Muuda kogu rakendus korraga
+1664|Värv, taust ja font koos
+1665|Tööriistad ja avaldamine
+1666|Juhend, info, config.json, lähtestus
+1667|Emojid
+1668|Lisa emoji või pakett
+1669|Minu emojid
+1670|Kleebi üks või mitu emojit
+1671|Emoji lisatud.
+1672|Kujud ja stiil
+1673|Avatarid, nupud, rõhutatud servad

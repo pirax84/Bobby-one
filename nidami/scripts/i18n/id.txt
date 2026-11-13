@@ -1645,3 +1645,30 @@
 1644|Kamu
 1645|lawan
 1646|Permainan baru
+1647|Warna
+1648|Font
+1649|Latar belakang
+1650|100 warna, tambah atau atur ulang
+1651|12 latar belakang untuk aplikasi
+1652|50 font
+1653|Logo
+1654|Menurut tema dan tempat penggunaan
+1655|Hari raya dan efek
+1656|Tanggal, efek, musik, tampilan pelanggan
+1657|Suara dan notifikasi
+1658|Coba, bisukan, ganti
+1659|Bilah dan menu
+1660|Yang tampil di atas dan bawah
+1661|Anggota
+1662|Lihat, blokir, log keamanan
+1663|Ubah seluruh aplikasi sekaligus
+1664|Warna, latar belakang, dan font bersama
+1665|Alat dan publikasi
+1666|Panduan, info, config.json, atur ulang
+1667|Emoji
+1668|Tambah emoji atau paket
+1669|Emoji saya
+1670|Tempel satu atau beberapa emoji
+1671|Emoji ditambahkan.
+1672|Bentuk dan gaya
+1673|Avatar, tombol, tepi tegas

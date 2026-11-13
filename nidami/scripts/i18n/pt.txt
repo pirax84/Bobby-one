@@ -1645,3 +1645,30 @@
 1644|Tu
 1645|contra
 1646|Novo jogo
+1647|Cores
+1648|Tipos de letra
+1649|Fundos
+1650|100 cores, adicionar uma ou repor
+1651|12 fundos para a app
+1652|50 tipos de letra
+1653|Logótipos
+1654|Por tema e por local de uso
+1655|Festas e efeitos
+1656|Datas, efeitos, música, vista de cliente
+1657|Sons e notificações
+1658|Testar, silenciar, substituir
+1659|Barras e menus
+1660|O que aparece em cima e em baixo
+1661|Membros
+1662|Ver, bloquear, registo de segurança
+1663|Mudar a app toda de uma vez
+1664|Cor, fundo e letra juntos
+1665|Ferramentas e publicação
+1666|Guia, info, config.json, repor
+1667|Emojis
+1668|Adicionar um emoji ou pacote
+1669|Os meus emojis
+1670|Cola um ou mais emojis
+1671|Emoji adicionado.
+1672|Formas e estilo
+1673|Avatares, botões, contornos marcados

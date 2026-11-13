@@ -100,12 +100,18 @@ export const EMOJI_GROUPS: [string, string[]][] = [
   [T("Symboles"), ["✅", "❌", "❗", "❓", "💤", "💥", "💫", "🔥", "⭐", "🌟", "⚡", "☀️", "🌙", "☁️", "❄️", "🌈", "♻️", "➕", "➖", "🔴", "🟢", "🔵", "⚠️", "🚫", "💬", "💭", "🗯️", "➡️", "⬅️", "⬆️", "⬇️", "🔄", "🔁", "🔔", "🔕", "📣", "🆗", "🆕", "🆒", "🔝", "🔜", "©️", "™️", "✔️", "☑️", "🟡", "🟠", "🟣", "⚫", "⚪", "🔶", "🔷", "▶️", "⏸️", "🎵"]],
   [T("Plus"), ["🥲", "😵", "🤐", "🤫", "🧐", "🤓", "😷", "🤕", "🤢", "🤧", "😇", "🥴", "😵‍💫", "😮‍💨", "🫣", "🫤", "🥸", "😒", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😿", "😾", "👀", "👁️", "👅", "👄", "🫦", "🧠", "🦷", "🦴", "👣", "🫂", "🪩", "🪄", "🔮", "🧿", "🪬", "🎖️", "🎗️", "🎫", "🏁", "🚩", "🎌", "🏴", "🏳️", "🌐", "🧬", "🔭", "🔬", "🪐", "🌌", "🌑", "🌕", "☄️", "🌪️", "🌫️", "🌡️", "🍯", "🧂", "🫖", "🧋", "🥡", "🍿", "🧆", "🫓", "🫔", "🥪", "🌈"]],
 ];
+/** Émojis ajoutés par le développeur (gardés sur l'appareil) : un groupe « Mes émojis » en tête du sélecteur. */
+const DEVEMO = "notiif-devemoji";
+export const devEmojiList = (): string[] => { try { return JSON.parse(localStorage.getItem(DEVEMO) || "[]"); } catch { return []; } };
+export function applyDevEmojis() { const l = devEmojiList(); const i = EMOJI_GROUPS.findIndex((g) => g[0] === "__dev"); if (i >= 0) EMOJI_GROUPS.splice(i, 1); if (l.length) EMOJI_GROUPS.unshift(["__dev", l]); }
+export function setDevEmojis(l: string[]) { try { localStorage.setItem(DEVEMO, JSON.stringify(l)); } catch { /* ignoré */ } applyDevEmojis(); }
+applyDevEmojis();
 /** Les emojis que la personne utilise le plus (gardés sur l'appareil) : toujours les 5 premiers proposés. */
 const useKey = (me: string) => "notiif-emoji-use-" + me;
 export function topEmojis(me: string, n = 5): string[] { let c: Record<string, number> = {}; try { c = JSON.parse(localStorage.getItem(useKey(me)) || "{}"); } catch { /* ignoré */ } const base = EMOJIS.slice(0, n); const used = Object.entries(c).sort((a, b) => b[1] - a[1]).map(([e]) => e).slice(0, n); return [...used, ...base.filter((e) => !used.includes(e))].slice(0, n); }
 export function bumpEmoji(me: string, e: string) { try { const c = JSON.parse(localStorage.getItem(useKey(me)) || "{}"); c[e] = (c[e] || 0) + 1; localStorage.setItem(useKey(me), JSON.stringify(c)); } catch { /* ignoré */ } }
 export function EmojiGrid({ onPick, onClose }: { onPick: (e: string) => void; onClose?: () => void }) {
-  return <div className="egrid">{onClose && <div style={{ position: "sticky", top: 0, display: "flex", justifyContent: "flex-end", zIndex: 1 }}><button type="button" className="btn ghost sm" onClick={onClose} aria-label={t("Fermer les emojis")} style={{ background: "var(--card)" }}>✕</button></div>}{EMOJI_GROUPS.map(([tx, l]) => <div key={tx}><div className="muted small" style={{ margin: "6px 2px" }}>{t(tx)}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
+  return <div className="egrid">{onClose && <div style={{ position: "sticky", top: 0, display: "flex", justifyContent: "flex-end", zIndex: 1 }}><button type="button" className="btn ghost sm" onClick={onClose} aria-label={t("Fermer les emojis")} style={{ background: "var(--card)" }}>✕</button></div>}{EMOJI_GROUPS.map(([tx, l]) => <div key={tx}><div className="muted small" style={{ margin: "6px 2px" }}>{tx === "__dev" ? t("Mes émojis") : t(tx)}</div><div className="erow">{l.map((e) => <button type="button" key={e} onClick={() => onPick(e)} aria-label={e}>{e}</button>)}</div></div>)}</div>;
 }
 export function useNow(ms = 1000) { const [tx, setT] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setT(Date.now()), ms); return () => clearInterval(i); }, [ms]); return tx; }
 

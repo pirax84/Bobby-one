@@ -1645,3 +1645,30 @@
 1644|Sinä
 1645|vastaan
 1646|Uusi peli
+1647|Värit
+1648|Fontit
+1649|Taustat
+1650|100 väriä, lisää tai palauta
+1651|12 taustaa sovellukselle
+1652|50 fonttia
+1653|Logot
+1654|Teeman ja käyttöpaikan mukaan
+1655|Juhlapäivät ja tehosteet
+1656|Päivämäärät, tehosteet, musiikki, asiakasnäkymä
+1657|Äänet ja ilmoitukset
+1658|Kokeile, mykistä, korvaa
+1659|Palkit ja valikot
+1660|Mitä näkyy ylhäällä ja alhaalla
+1661|Jäsenet
+1662|Katso, estä, turvaloki
+1663|Vaihda koko sovellus kerralla
+1664|Väri, tausta ja fontti yhdessä
+1665|Työkalut ja julkaisu
+1666|Opas, tiedot, config.json, nollaus
+1667|Emojit
+1668|Lisää emoji tai paketti
+1669|Omat emojini
+1670|Liitä yksi tai useampi emoji
+1671|Emoji lisätty.
+1672|Muodot ja tyyli
+1673|Avatarit, painikkeet, selkeät reunat

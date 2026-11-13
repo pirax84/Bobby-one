@@ -1645,3 +1645,30 @@
 1644|Tu
 1645|prieš
 1646|Naujas žaidimas
+1647|Spalvos
+1648|Šriftai
+1649|Fonai
+1650|100 spalvų, pridėti arba atstatyti
+1651|12 programos fonų
+1652|50 šriftų
+1653|Logotipai
+1654|Pagal temą ir naudojimo vietą
+1655|Šventės ir efektai
+1656|Datos, efektai, muzika, kliento vaizdas
+1657|Garsai ir pranešimai
+1658|Išbandyti, nutildyti, pakeisti
+1659|Juostos ir meniu
+1660|Kas rodoma viršuje ir apačioje
+1661|Nariai
+1662|Peržiūrėti, blokuoti, saugos žurnalas
+1663|Pakeisti visą programą iškart
+1664|Spalva, fonas ir šriftas kartu
+1665|Įrankiai ir paskelbimas
+1666|Vadovas, informacija, config.json, atstatymas
+1667|Jaustukai
+1668|Pridėti jaustuką ar paketą
+1669|Mano jaustukai
+1670|Įklijuokite vieną ar kelis jaustukus
+1671|Jaustukas pridėtas.
+1672|Formos ir stilius
+1673|Avatarai, mygtukai, ryškūs kraštai
