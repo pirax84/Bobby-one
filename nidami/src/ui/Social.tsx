@@ -246,7 +246,7 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     const root = pageRef.current; if (!root || !sec) return;
     const cards = Array.from(root.querySelectorAll(":scope > .card")).filter((c) => c.firstElementChild?.tagName === "H3") as HTMLElement[];
     if (cards.length < 2) return;
-    cards.forEach((c, i) => { const h = c.firstElementChild as HTMLElement; c.classList.add("fold"); h.classList.add("foldh"); h.setAttribute("role", "button"); h.tabIndex = 0; h.setAttribute("aria-expanded", "false"); if (i === 0 && false) c.classList.add("open"); const tg = () => { const o = c.classList.toggle("open"); h.setAttribute("aria-expanded", String(o)); }; h.onclick = tg; h.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tg(); } }; });
+    cards.forEach((c, i) => { const h = c.firstElementChild as HTMLElement; c.classList.add("fold"); h.classList.add("foldh"); h.setAttribute("role", "button"); h.tabIndex = 0; h.setAttribute("aria-expanded", "false"); if (sec === "a11y") { c.classList.add("open"); h.setAttribute("aria-expanded", "true"); } const tg = () => { const o = c.classList.toggle("open"); h.setAttribute("aria-expanded", String(o)); }; h.onclick = tg; h.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tg(); } }; });
   }, [sec, pc, nt]);
   useEffect(() => { const h = () => setSec((history.state?.sec as string) || null); window.addEventListener("popstate", h); return () => window.removeEventListener("popstate", h); }, []);
   const open = (k: string) => { history.pushState({ ...(history.state || {}), v: "settings", sec: k }, ""); setSec(k); window.scrollTo(0, 0); };
