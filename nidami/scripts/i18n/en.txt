@@ -1575,3 +1575,24 @@
 1574|Background
 1575|Appearance reset.
 1576|↺ Reset everything
+1577|My sharing rules
+1578|Always ask me
+1579|Every share waits for your approval.
+1580|My close ones can share
+1581|Only those you marked as close or family.
+1582|Nobody can share
+1583|All requests are declined.
+1584|Everyone except…
+1585|All friends, except those you tick.
+1586|No friends yet.
+1587|Invite someone
+1588|Link copied.
+1589|🔗 Share the link
+1590|▦ Show the QR code
+1591|👥 Members and security
+1592|You see how many items each member has, never their private messages.
+1593|Blocked: 
+1594|Unblocked: 
+1595|{n} posts
+1596|Security log
+1597|Undone

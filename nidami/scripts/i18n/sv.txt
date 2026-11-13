@@ -1575,3 +1575,24 @@
 1574|Bakgrund
 1575|Utseendet återställt.
 1576|↺ Återställ allt
+1577|Mina delningsregler
+1578|Fråga mig alltid
+1579|Varje delning väntar på ditt godkännande.
+1580|Mina nära får dela
+1581|Bara de du markerat som nära eller familj.
+1582|Ingen får dela
+1583|Alla förfrågningar nekas.
+1584|Alla utom…
+1585|Alla vänner utom de du kryssar i.
+1586|Inga vänner än.
+1587|Bjud in någon
+1588|Länk kopierad.
+1589|🔗 Dela länken
+1590|▦ Visa QR-koden
+1591|👥 Medlemmar och säkerhet
+1592|Du ser hur många inlägg varje medlem har, aldrig deras privata meddelanden.
+1593|Blockerad: 
+1594|Avblockerad: 
+1595|{n} inlägg
+1596|Säkerhetslogg
+1597|Ångrad

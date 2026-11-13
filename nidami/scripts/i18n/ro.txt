@@ -1575,3 +1575,24 @@
 1574|Fundal
 1575|Aspect resetat.
 1576|↺ Resetează tot
+1577|Regulile mele de partajare
+1578|Întreabă-mă mereu
+1579|Fiecare partajare așteaptă acordul tău.
+1580|Apropiații mei pot partaja
+1581|Doar cei marcați ca apropiați sau familie.
+1582|Nimeni nu poate partaja
+1583|Toate cererile sunt refuzate.
+1584|Toți în afară de…
+1585|Toți prietenii, în afară de cei bifați.
+1586|Niciun prieten încă.
+1587|Invită pe cineva
+1588|Link copiat.
+1589|🔗 Partajează linkul
+1590|▦ Arată codul QR
+1591|👥 Membri și securitate
+1592|Vezi câte conținuturi are fiecare membru, niciodată mesajele private.
+1593|Blocat: 
+1594|Deblocat: 
+1595|{n} postări
+1596|Jurnal de securitate
+1597|Anulat

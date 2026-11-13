@@ -1575,3 +1575,24 @@
 1574|Pozadina
 1575|Izgled vraćen.
 1576|↺ Vrati sve
+1577|Moja pravila dijeljenja
+1578|Uvijek me pitaj
+1579|Svako dijeljenje čeka tvoje odobrenje.
+1580|Moji bliski mogu dijeliti
+1581|Samo oni koje si označio kao bliske ili obitelj.
+1582|Nitko ne može dijeliti
+1583|Svi su zahtjevi odbijeni.
+1584|Svi osim…
+1585|Svi prijatelji, osim označenih.
+1586|Još nema prijatelja.
+1587|Pozovi nekoga
+1588|Poveznica kopirana.
+1589|🔗 Podijeli poveznicu
+1590|▦ Prikaži QR kôd
+1591|👥 Članovi i sigurnost
+1592|Vidiš koliko sadržaja ima svaki član, nikad njihove privatne poruke.
+1593|Blokiran: 
+1594|Deblokiran: 
+1595|{n} objava
+1596|Sigurnosni dnevnik
+1597|Poništeno

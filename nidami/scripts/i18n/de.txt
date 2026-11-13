@@ -1575,3 +1575,24 @@
 1574|Hintergrund
 1575|Darstellung zurückgesetzt.
 1576|↺ Alles zurücksetzen
+1577|Meine Teilen-Regeln
+1578|Immer fragen
+1579|Jedes Teilen wartet auf deine Zustimmung.
+1580|Meine Nahestehenden dürfen teilen
+1581|Nur die, die du als nah oder Familie markiert hast.
+1582|Niemand darf teilen
+1583|Alle Anfragen werden abgelehnt.
+1584|Alle außer…
+1585|Alle Freunde, außer den angekreuzten.
+1586|Noch keine Freunde.
+1587|Jemanden einladen
+1588|Link kopiert.
+1589|🔗 Link teilen
+1590|▦ QR-Code anzeigen
+1591|👥 Mitglieder und Sicherheit
+1592|Du siehst, wie viele Inhalte jedes Mitglied hat, nie deren private Nachrichten.
+1593|Blockiert: 
+1594|Entsperrt: 
+1595|{n} Beiträge
+1596|Sicherheitsprotokoll
+1597|Rückgängig gemacht

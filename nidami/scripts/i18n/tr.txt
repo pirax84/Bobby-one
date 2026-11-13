@@ -1575,3 +1575,24 @@
 1574|Arka plan
 1575|Görünüm sıfırlandı.
 1576|↺ Hepsini sıfırla
+1577|Paylaşım kurallarım
+1578|Her zaman bana sor
+1579|Her paylaşım onayını bekler.
+1580|Yakınlarım paylaşabilir
+1581|Yalnızca yakın veya aile olarak işaretlediklerin.
+1582|Kimse paylaşamaz
+1583|Tüm istekler reddedilir.
+1584|Herkes, şunlar hariç…
+1585|İşaretlediklerin dışındaki tüm arkadaşlar.
+1586|Henüz arkadaş yok.
+1587|Birini davet et
+1588|Bağlantı kopyalandı.
+1589|🔗 Bağlantıyı paylaş
+1590|▦ QR kodunu göster
+1591|👥 Üyeler ve güvenlik
+1592|Her üyenin kaç içeriği olduğunu görürsün, özel mesajlarını asla.
+1593|Engellendi: 
+1594|Engeli kalktı: 
+1595|{n} gönderi
+1596|Güvenlik günlüğü
+1597|Geri alındı

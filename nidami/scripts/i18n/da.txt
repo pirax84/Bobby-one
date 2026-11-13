@@ -1575,3 +1575,24 @@
 1574|Baggrund
 1575|Udseende nulstillet.
 1576|↺ Nulstil alt
+1577|Mine delingsregler
+1578|Spørg mig altid
+1579|Hver deling venter på din godkendelse.
+1580|Mine nærmeste må dele
+1581|Kun dem, du har markeret som nære eller familie.
+1582|Ingen må dele
+1583|Alle anmodninger afvises.
+1584|Alle undtagen…
+1585|Alle venner, undtagen dem du afkrydser.
+1586|Ingen venner endnu.
+1587|Inviter nogen
+1588|Link kopieret.
+1589|🔗 Del linket
+1590|▦ Vis QR-koden
+1591|👥 Medlemmer og sikkerhed
+1592|Du kan se, hvor mange opslag hvert medlem har, aldrig deres private beskeder.
+1593|Blokeret: 
+1594|Fjernet blokering: 
+1595|{n} opslag
+1596|Sikkerhedslog
+1597|Fortrudt

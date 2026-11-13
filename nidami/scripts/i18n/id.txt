@@ -1575,3 +1575,24 @@
 1574|Latar
 1575|Tampilan direset.
 1576|↺ Reset semua
+1577|Aturan berbagi saya
+1578|Selalu tanya saya
+1579|Setiap berbagi menunggu persetujuanmu.
+1580|Orang terdekat boleh berbagi
+1581|Hanya yang kamu tandai sebagai dekat atau keluarga.
+1582|Tidak ada yang boleh berbagi
+1583|Semua permintaan ditolak.
+1584|Semua kecuali…
+1585|Semua teman, kecuali yang kamu centang.
+1586|Belum ada teman.
+1587|Undang seseorang
+1588|Tautan disalin.
+1589|🔗 Bagikan tautan
+1590|▦ Tampilkan kode QR
+1591|👥 Anggota dan keamanan
+1592|Kamu melihat jumlah konten tiap anggota, tidak pernah pesan pribadi mereka.
+1593|Diblokir: 
+1594|Blokir dibuka: 
+1595|{n} kiriman
+1596|Log keamanan
+1597|Dibatalkan

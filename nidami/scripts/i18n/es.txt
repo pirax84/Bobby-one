@@ -1575,3 +1575,24 @@
 1574|Fondo
 1575|Apariencia restablecida.
 1576|↺ Restablecer todo
+1577|Mis reglas para compartir
+1578|Preguntarme siempre
+1579|Cada publicación compartida espera tu permiso.
+1580|Mis allegados pueden compartir
+1581|Solo los que marcaste como allegados o familia.
+1582|Nadie puede compartir
+1583|Se rechazan todas las solicitudes.
+1584|Todos excepto…
+1585|Todos los amigos, salvo los que marques.
+1586|Aún no hay amigos.
+1587|Invitar a alguien
+1588|Enlace copiado.
+1589|🔗 Compartir el enlace
+1590|▦ Mostrar el código QR
+1591|👥 Miembros y seguridad
+1592|Ves cuántos contenidos tiene cada miembro, nunca sus mensajes privados.
+1593|Bloqueado: 
+1594|Desbloqueado: 
+1595|{n} publicaciones
+1596|Registro de seguridad
+1597|Anulado

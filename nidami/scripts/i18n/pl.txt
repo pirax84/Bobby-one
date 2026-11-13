@@ -1575,3 +1575,24 @@
 1574|Tło
 1575|Wygląd zresetowany.
 1576|↺ Zresetuj wszystko
+1577|Moje zasady udostępniania
+1578|Zawsze pytaj mnie
+1579|Każde udostępnienie czeka na Twoją zgodę.
+1580|Moi bliscy mogą udostępniać
+1581|Tylko osoby oznaczone jako bliscy lub rodzina.
+1582|Nikt nie może udostępniać
+1583|Wszystkie prośby są odrzucane.
+1584|Wszyscy oprócz…
+1585|Wszyscy znajomi, poza zaznaczonymi.
+1586|Brak znajomych.
+1587|Zaproś kogoś
+1588|Skopiowano link.
+1589|🔗 Udostępnij link
+1590|▦ Pokaż kod QR
+1591|👥 Członkowie i bezpieczeństwo
+1592|Widzisz, ile treści ma każdy członek, nigdy ich prywatnych wiadomości.
+1593|Zablokowano: 
+1594|Odblokowano: 
+1595|{n} wpisów
+1596|Dziennik bezpieczeństwa
+1597|Cofnięto

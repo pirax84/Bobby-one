@@ -1575,3 +1575,24 @@
 1574|Fonas
 1575|Išvaizda atstatyta.
 1576|↺ Atstatyti viską
+1577|Mano dalijimosi taisyklės
+1578|Visada manęs klausti
+1579|Kiekvienas pasidalijimas laukia tavo sutikimo.
+1580|Mano artimieji gali dalytis
+1581|Tik tie, kuriuos pažymėjai kaip artimus ar šeimą.
+1582|Niekas negali dalytis
+1583|Visos užklausos atmetamos.
+1584|Visi, išskyrus…
+1585|Visi draugai, išskyrus pažymėtus.
+1586|Dar nėra draugų.
+1587|Pakviesti ką nors
+1588|Nuoroda nukopijuota.
+1589|🔗 Dalytis nuoroda
+1590|▦ Rodyti QR kodą
+1591|👥 Nariai ir saugumas
+1592|Matai, kiek turinio turi kiekvienas narys, bet niekada jų privačių žinučių.
+1593|Užblokuota: 
+1594|Atblokuota: 
+1595|{n} įrašų
+1596|Saugumo žurnalas
+1597|Atšaukta

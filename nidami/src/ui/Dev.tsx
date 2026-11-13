@@ -1,8 +1,8 @@
 import { CALL_TONES, playOne, stopSounds, playCallRing, playNotifSound, FX, FX_ALL, TONES, TONE_IDS, VIB_LEVELS, SHAKE_SNDS, playFx, stopFx, playTone, vibrate, notifSound, popNotes, type Fx } from "../lib/fx";
 import { BrandWm, navItems } from "../App";
 import { ACCENTS } from "../lib/theme";
-import { useStore } from "../lib/store";
-import { useRef } from "react";
+import { useStore, actions } from "../lib/store";
+import { useRef, useState } from "react";
 import { FxSwitch } from "./FxSwitch";
 import { PresenceBar } from "./Chat";
 import { ServerCard } from "./ServerCard";
@@ -55,6 +55,22 @@ function DevLook() {
     <b>{t("Fond")} · 12</b>
     <div className="row wrap" style={{ gap: 6 }}>{DEV_BGS.map(([n, a]) => <button key={n} type="button" className={"chip" + ((d.bg || "Normal") === n ? " on" : "")} onClick={() => setDevLook({ bg: n })}><span style={{ display: "inline-block", width: 14, height: 14, borderRadius: 5, marginRight: 6, verticalAlign: "middle", background: a || "var(--bg)", border: "1px solid var(--bd)" }} />{n}</button>)}</div>
     <button type="button" className="chip" onClick={() => { resetDevLook(); toast(t("Apparence remise à zéro.")); }}>{t("↺ Tout remettre normal")}</button>
+  </div>;
+}
+
+/** Membres : voir leurs contenus, bloquer / débloquer, avec un journal de sécurité (Annuler). */
+const JK = "notiif-secjournal";
+const jget = (): { at: number; txt: string; id: string; on: boolean; undone?: boolean }[] => { try { return JSON.parse(localStorage.getItem(JK) || "[]"); } catch { return []; } };
+function DevMembers() {
+  const s = useStore((x) => x); const [, bump] = useState(0); const blocked = new Set(s.social.blocks[s.me] || []); const J = jget();
+  const log = (txt: string, id: string, on: boolean) => { try { localStorage.setItem(JK, JSON.stringify([{ at: Date.now(), txt, id, on }, ...jget()].slice(0, 50))); } catch { /* ignoré */ } bump((n) => n + 1); };
+  const tog = (id: string, name: string) => { const on = !blocked.has(id); actions.block(id, on); log((on ? t("Bloqué : ") : t("Débloqué : ")) + name, id, on); };
+  const undo = (i: number) => { const e = jget()[i]; if (!e || e.undone) return; actions.block(e.id, !e.on); const L = jget(); L[i].undone = true; try { localStorage.setItem(JK, JSON.stringify(L)); } catch { /* ignoré */ } bump((n) => n + 1); };
+  return <div className="card col" style={{ gap: 8 }}><h3>{t("👥 Membres et sécurité")}</h3>
+    <p className="muted small" style={{ margin: 0 }}>{t("Vous voyez le nombre de contenus de chaque membre, jamais leurs messages privés.")}</p>
+    {s.users.filter((u) => u.id !== s.me).map((u) => <div key={u.id} className="row" style={{ gap: 8, padding: "6px 0", borderTop: "1px solid var(--line, #ddd)" }}><span className="grow"><b>{u.name}</b><span className="muted small" style={{ display: "block" }}>{t("{n} publications", { n: s.posts.filter((p) => p.authorId === u.id).length })}</span></span><button type="button" className={"chip" + (blocked.has(u.id) ? " on" : "")} onClick={() => tog(u.id, u.name)}>{blocked.has(u.id) ? t("Débloquer") : t("Bloquer")}</button></div>)}
+    <b>{t("Journal de sécurité")}</b>
+    {J.length === 0 ? <div className="muted small">{t("Rien pour l'instant.")}</div> : J.slice(0, 10).map((e, i) => <div key={e.at} className="row small" style={{ gap: 8 }}><span className="grow">{new Date(e.at).toLocaleString()} · {e.txt}</span>{e.undone ? <span className="muted">{t("Annulé")}</span> : <button type="button" className="chip" onClick={() => undo(i)}>{t("Annuler")}</button>}</div>)}
   </div>;
 }
 
@@ -141,7 +157,7 @@ export function DevPanel() {
         <div className="row" style={{ gap: 8 }}><button type="button" className="chip" onClick={() => play(k)}>{t("▶ Tester")}</button></div></div>)}
       <button className="btn ghost" onClick={async () => { try { await navigator.clipboard.writeText(devChoices()); toast(t("Choix copiés : collez-les dans la conversation pour les rendre définitifs.")); } catch { toast(t("Copie impossible.")); } }}>{t("📋 Copier mes choix (pour les rendre définitifs)")}</button>
       <p className="muted small" style={{ margin: 0 }}>{t("Vos choix ne changent que votre appareil. Envoyez-les-moi pour qu'ils deviennent ceux de tous les clients.")}</p></div>
-    <DevNav /><DevLook /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
+    <DevNav /><DevMembers /><DevLook /><DevLogos /><DevEffects /><DevSounds /><DevNotifs />
     <div className="card col" style={{ gap: 8 }}><h3>{t("✨ Tester les effets")}</h3>
       <p className="muted small" style={{ margin: 0 }}>{t("Touchez un effet pour le voir et l'entendre. Un nouvel effet arrête le précédent.")}</p>
       <div className="row wrap" style={{ gap: 6 }}>{FX_ALL.map((k) => <button key={k} type="button" className="chip" onClick={() => playFx(k, true)}>{FX[k].label}</button>)}</div>

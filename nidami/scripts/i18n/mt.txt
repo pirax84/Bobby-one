@@ -1575,3 +1575,24 @@
 1574|Sfond
 1575|Id-dehra tnaddfet.
 1576|↺ Irrisettja kollox
+1577|Ir-regoli tiegħi tal-kondiviżjoni
+1578|Dejjem staqsini
+1579|Kull kondiviżjoni tistenna l-approvazzjoni tiegħek.
+1580|Dawk qrib tiegħi jistgħu jaqsmu
+1581|Biss dawk li ssemmew bħala qrib jew familja.
+1582|Ħadd ma jista' jaqsam
+1583|It-talbiet kollha jiġu rrifjutati.
+1584|Kulħadd ħlief…
+1585|L-ħbieb kollha, ħlief dawk li tagħżel.
+1586|Għad m'hemm ebda ħabib.
+1587|Stieden lil xi ħadd
+1588|Il-link ikkupjat.
+1589|🔗 Aqsam il-link
+1590|▦ Uri l-kodiċi QR
+1591|👥 Membri u sigurtà
+1592|Tara kemm kontenut għandu kull membru, qatt il-messaġġi privati tagħhom.
+1593|Imblukkat: 
+1594|Mhux imblukkat: 
+1595|{n} posts
+1596|Reġistru tas-sigurtà
+1597|Annullat

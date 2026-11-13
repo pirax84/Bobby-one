@@ -1094,3 +1094,13 @@ html:not([data-style=bold]) .frlist .frow:last-child,html[data-style=bold] .frli
   html .ishome>.brandbar .wm{display:inline-block!important;width:auto!important}
   html .brandbar .wm .wmb{height:36px!important;width:auto!important}
 }
+/* v256 phone : une seule ligne en haut de l'accueil = logo | recherche et boutons | photo */
+@media (max-width:760px){
+ html .main.ishome{display:grid!important;grid-template-columns:auto minmax(0,1fr);column-gap:8px;align-items:center}
+ html .main.ishome>*{grid-column:1/-1;min-width:0}
+ html .main.ishome>.brandbar{grid-column:1;grid-row:1;margin:0 0 12px!important;padding:0!important}
+ html .main.ishome>.top{grid-column:2;grid-row:1;padding:0!important;margin:0 0 12px!important;position:static!important;justify-content:flex-end}
+ html .main.ishome>.top .topme{order:3}
+ html .main.ishome>.top .tcenter{order:1;flex:1 1 auto;min-width:0}
+ html .main.ishome>.top .topr{order:2;margin-left:auto}
+}

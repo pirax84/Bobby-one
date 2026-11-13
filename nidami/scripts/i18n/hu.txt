@@ -1575,3 +1575,24 @@
 1574|Háttér
 1575|Megjelenés visszaállítva.
 1576|↺ Minden visszaállítása
+1577|Megosztási szabályaim
+1578|Mindig kérdezzen meg
+1579|Minden megosztás a jóváhagyásodra vár.
+1580|A közeliek megoszthatnak
+1581|Csak akiket közelinek vagy családnak jelöltél.
+1582|Senki sem oszthat meg
+1583|Minden kérés elutasítva.
+1584|Mindenki, kivéve…
+1585|Minden barát, kivéve a bejelölteket.
+1586|Még nincs barát.
+1587|Valaki meghívása
+1588|Hivatkozás másolva.
+1589|🔗 Hivatkozás megosztása
+1590|▦ QR-kód mutatása
+1591|👥 Tagok és biztonság
+1592|Látod, hány tartalma van minden tagnak, a privát üzeneteiket soha.
+1593|Letiltva: 
+1594|Tiltás feloldva: 
+1595|{n} bejegyzés
+1596|Biztonsági napló
+1597|Visszavonva

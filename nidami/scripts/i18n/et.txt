@@ -1575,3 +1575,24 @@
 1574|Taust
 1575|Välimus lähtestatud.
 1576|↺ Lähtesta kõik
+1577|Minu jagamisreeglid
+1578|Küsi alati minult
+1579|Iga jagamine ootab sinu nõusolekut.
+1580|Mu lähedased võivad jagada
+1581|Ainult need, keda märkisid lähedaseks või perekonnaks.
+1582|Keegi ei tohi jagada
+1583|Kõik taotlused lükatakse tagasi.
+1584|Kõik peale…
+1585|Kõik sõbrad, välja arvatud märgitud.
+1586|Sõpru veel pole.
+1587|Kutsu keegi
+1588|Link kopeeritud.
+1589|🔗 Jaga linki
+1590|▦ Näita QR-koodi
+1591|👥 Liikmed ja turvalisus
+1592|Näed iga liikme sisu hulka, mitte kunagi nende privaatsõnumeid.
+1593|Blokeeritud: 
+1594|Blokeering eemaldatud: 
+1595|{n} postitust
+1596|Turvalogi
+1597|Tühistatud

@@ -1575,3 +1575,24 @@
 1574|Achtergrond
 1575|Uiterlijk teruggezet.
 1576|↺ Alles terugzetten
+1577|Mijn deelregels
+1578|Altijd mij vragen
+1579|Elke deling wacht op jouw akkoord.
+1580|Mijn naasten mogen delen
+1581|Alleen wie je als naaste of familie hebt gemarkeerd.
+1582|Niemand mag delen
+1583|Alle verzoeken worden geweigerd.
+1584|Iedereen behalve…
+1585|Alle vrienden, behalve de aangevinkte.
+1586|Nog geen vrienden.
+1587|Iemand uitnodigen
+1588|Link gekopieerd.
+1589|🔗 Link delen
+1590|▦ QR-code tonen
+1591|👥 Leden en veiligheid
+1592|Je ziet hoeveel items elk lid heeft, nooit hun privéberichten.
+1593|Geblokkeerd: 
+1594|Gedeblokkeerd: 
+1595|{n} berichten
+1596|Beveiligingslogboek
+1597|Ongedaan gemaakt

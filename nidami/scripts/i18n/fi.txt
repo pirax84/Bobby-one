@@ -1575,3 +1575,24 @@
 1574|Tausta
 1575|Ulkoasu nollattu.
 1576|↺ Nollaa kaikki
+1577|Jakosääntöni
+1578|Kysy aina minulta
+1579|Jokainen jako odottaa hyväksyntääsi.
+1580|Läheiseni saavat jakaa
+1581|Vain ne, jotka olet merkinnyt läheisiksi tai perheeksi.
+1582|Kukaan ei saa jakaa
+1583|Kaikki pyynnöt hylätään.
+1584|Kaikki paitsi…
+1585|Kaikki ystävät, paitsi rastittamasi.
+1586|Ei vielä ystäviä.
+1587|Kutsu joku
+1588|Linkki kopioitu.
+1589|🔗 Jaa linkki
+1590|▦ Näytä QR-koodi
+1591|👥 Jäsenet ja turvallisuus
+1592|Näet jokaisen jäsenen sisältöjen määrän, et koskaan yksityisviestejä.
+1593|Estetty: 
+1594|Esto poistettu: 
+1595|{n} julkaisua
+1596|Turvallisuusloki
+1597|Peruttu

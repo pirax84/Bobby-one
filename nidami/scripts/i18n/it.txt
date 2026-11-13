@@ -1575,3 +1575,24 @@
 1574|Sfondo
 1575|Aspetto reimpostato.
 1576|↺ Ripristina tutto
+1577|Le mie regole di condivisione
+1578|Chiedimelo sempre
+1579|Ogni condivisione attende il tuo consenso.
+1580|I miei cari possono condividere
+1581|Solo chi hai messo tra i cari o la famiglia.
+1582|Nessuno può condividere
+1583|Tutte le richieste sono rifiutate.
+1584|Tutti tranne…
+1585|Tutti gli amici, tranne quelli che spunti.
+1586|Ancora nessun amico.
+1587|Invita qualcuno
+1588|Link copiato.
+1589|🔗 Condividi il link
+1590|▦ Mostra il codice QR
+1591|👥 Membri e sicurezza
+1592|Vedi quanti contenuti ha ogni membro, mai i loro messaggi privati.
+1593|Bloccato: 
+1594|Sbloccato: 
+1595|{n} post
+1596|Registro di sicurezza
+1597|Annullato

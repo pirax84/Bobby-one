@@ -1575,3 +1575,24 @@
 1574|Fundo
 1575|Aparência reposta.
 1576|↺ Repor tudo
+1577|As minhas regras de partilha
+1578|Perguntar-me sempre
+1579|Cada partilha espera a tua autorização.
+1580|Os meus próximos podem partilhar
+1581|Só quem marcaste como próximo ou família.
+1582|Ninguém pode partilhar
+1583|Todos os pedidos são recusados.
+1584|Todos exceto…
+1585|Todos os amigos, exceto os que marcares.
+1586|Ainda sem amigos.
+1587|Convidar alguém
+1588|Ligação copiada.
+1589|🔗 Partilhar a ligação
+1590|▦ Mostrar o código QR
+1591|👥 Membros e segurança
+1592|Vês quantos conteúdos cada membro tem, nunca as mensagens privadas.
+1593|Bloqueado: 
+1594|Desbloqueado: 
+1595|{n} publicações
+1596|Registo de segurança
+1597|Anulado

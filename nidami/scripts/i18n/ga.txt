@@ -1575,3 +1575,24 @@
 1574|Cúlra
 1575|Athshocraíodh an chuma.
 1576|↺ Athshocraigh gach rud
+1577|Mo rialacha comhroinnte
+1578|Fiafraigh díom i gcónaí
+1579|Fanann gach comhroinnt le do cheadú.
+1580|Is féidir le mo dhaoine gaolmhara comhroinnt
+1581|Iad siúd amháin a mharcáil tú mar dhaoine gar nó teaghlach.
+1582|Ní féidir le duine ar bith comhroinnt
+1583|Diúltaítear do gach iarratas.
+1584|Gach duine seachas…
+1585|Gach cara, seachas iad siúd a thiceálann tú.
+1586|Níl aon chara fós.
+1587|Tabhair cuireadh do dhuine
+1588|Cóipeáladh an nasc.
+1589|🔗 Comhroinn an nasc
+1590|▦ Taispeáin an cód QR
+1591|👥 Baill agus slándáil
+1592|Feiceann tú cé mhéad ábhar atá ag gach ball, ní fheiceann tú a gcuid teachtaireachtaí príobháideacha riamh.
+1593|Blocáilte: 
+1594|Díbhlocáilte: 
+1595|{n} postáil
+1596|Logleabhar slándála
+1597|Cealaithe

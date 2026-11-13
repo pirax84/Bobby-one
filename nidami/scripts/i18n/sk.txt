@@ -1575,3 +1575,24 @@
 1574|Pozadie
 1575|Vzhľad obnovený.
 1576|↺ Obnoviť všetko
+1577|Moje pravidlá zdieľania
+1578|Vždy sa ma opýtať
+1579|Každé zdieľanie čaká na tvoj súhlas.
+1580|Moji blízki môžu zdieľať
+1581|Len tí, ktorých si označil ako blízkych alebo rodinu.
+1582|Nikto nemôže zdieľať
+1583|Všetky žiadosti sú zamietnuté.
+1584|Všetci okrem…
+1585|Všetci priatelia okrem zaškrtnutých.
+1586|Zatiaľ žiadni priatelia.
+1587|Pozvať niekoho
+1588|Odkaz skopírovaný.
+1589|🔗 Zdieľať odkaz
+1590|▦ Zobraziť QR kód
+1591|👥 Členovia a zabezpečenie
+1592|Vidíš počet obsahov každého člena, nikdy ich súkromné správy.
+1593|Zablokované: 
+1594|Odblokované: 
+1595|{n} príspevkov
+1596|Bezpečnostný denník
+1597|Zrušené

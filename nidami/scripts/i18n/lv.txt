@@ -1575,3 +1575,24 @@
 1574|Fons
 1575|Izskats atiestatīts.
 1576|↺ Atiestatīt visu
+1577|Mani kopīgošanas noteikumi
+1578|Vienmēr jautāt man
+1579|Katra kopīgošana gaida tavu piekrišanu.
+1580|Mani tuvie var kopīgot
+1581|Tikai tie, ko atzīmēji kā tuvus vai ģimeni.
+1582|Neviens nevar kopīgot
+1583|Visi pieprasījumi tiek noraidīti.
+1584|Visi, izņemot…
+1585|Visi draugi, izņemot atzīmētos.
+1586|Vēl nav draugu.
+1587|Uzaicināt kādu
+1588|Saite nokopēta.
+1589|🔗 Kopīgot saiti
+1590|▦ Rādīt QR kodu
+1591|👥 Dalībnieki un drošība
+1592|Tu redzi, cik satura ir katram dalībniekam, nekad viņu privātās ziņas.
+1593|Bloķēts: 
+1594|Atbloķēts: 
+1595|{n} ieraksti
+1596|Drošības žurnāls
+1597|Atcelts
