@@ -1785,3 +1785,84 @@
 1784|Wkrótce
 1785|Ta gra pojawi się wkrótce.
 1786|Solo przeciwko komputerowi
+1787|Poignée zapowiedziana ({n} atutów): +{v}
+1788|Ekskuza
+1789|Atut {n}
+1790|Gracz po lewej
+1791|Gracz naprzeciwko
+1792|Gracz po prawej
+1793|Twoja kolej: wybierz licytację lub spasuj.
+1794|{n} myśli…
+1795|Wziąłeś: odrzuć 6 kart (bez Króla, bez bouta, atuty tylko w ostateczności).
+1796|{n} bierze z „{b}” i robi odrzut…
+1797|Twoja kolej na grę.
+1798|Przegrałeś to rozdanie.
+1799|Rozgrywający ma {a} punktów z {b} boutami (potrzeba było {c}). Twój wynik: {m}
+1800|Rozgrywający
+1801|Lewy
+1802|Pas
+1803|Pies
+1804|Odrzut: {n} / 6
+1805|Odrzuć
+1806|Tarot francuski, 4 graczy: 78 kart (56 kolorowych, 21 atutów, Ekskuza). Każdy dostaje 18 kart, 6 tworzy psa.\nLicytacja: Pas, Petite, Garde, Garde sans (pies niewidoczny), Garde contre (pies idzie do obrońców). Rozgrywający gra sam przeciw trzem.\nPrzy Petite lub Garde rozgrywający bierze psa i odrzuca 6 kart (bez Króla, bez bouta; atuty tylko w razie potrzeby).\nTrzeba dołożyć do koloru; w przeciwnym razie przebić atutem (wyżej, jeśli można). Przy atucie trzeba iść wyżej, jeśli się da. Ekskuzę można zagrać zawsze, nigdy nie bierze lewy.\nBouty to 21, 1 (petit) i Ekskuza. Potrzebne punkty: 56 przy 0 boutach, 51 przy 1, 41 przy 2, 36 przy 3.\nBonusy: petit au bout (1 bierze ostatnią lewę), poignée (10, 13 lub 15 atutów: 20, 30, 40), szlem (wszystkie lewy: +200).
+1807|Przeciwnik po lewej
+1808|Partner
+1809|Przeciwnik po prawej
+1810|Twoja kolej: bierzesz do {n}?
+1811|Twoja kolej: wybierz atut lub spasuj.
+1812|Atut
+1813|My
+1814|Oni
+1815|Biorę
+1816|Pasuję
+1817|Belote w 4 osoby: ty i partner (naprzeciwko) przeciw 2 przeciwnikom. 32 karty, po 8.\nWzięcie: odkrywa się kartę. Kolejno każdy może ją wziąć (jej kolor staje się atutem). Jeśli nikt nie weźmie, w drugiej rundzie można wybrać inny kolor. Jeśli wszyscy spasują, rozdaje się od nowa.\nAtut: Walet 20, 9 14, As 11, 10 10, Król 4, Dama 3. Inne kolory: As 11, 10 10, Król 4, Dama 3, Walet 2.\nTrzeba dołożyć do koloru; w przeciwnym razie przebić atutem (wyżej, jeśli można), chyba że partner bierze lewę. Przy atucie idź wyżej, jeśli możesz.\nBelote-rebelote: Król + Dama atutu = 20 punktów. Dziesiątka ostatniej lewy: +10. Capot (wszystkie lewy): +90.\nRozgrywający musi zdobyć więcej punktów niż przeciwnicy, inaczej jest „w środku”: przeciwnicy dostają 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Ostatnia lewa: +10
+1821|My {a} · Oni {b}
+1822|Rozgrywający nie wyszedł!
+1823|Capot!
+1824|🏆 Brawo, wygraliście! (+4 punkty)
+1825|Przegraliście to rozdanie.
+1826|Zasady gry
+1827|Komputer dobiera {n} kart.
+1828|Komputer dobiera kartę.
+1829|Komputer wybiera {n}.
+1830|Musisz dobrać {n} kart lub odpowiedzieć siódemką.
+1831|Twoja kolej: zagraj kartę tego samego koloru lub wartości.
+1832|Nie możesz zagrać: dobierz kartę.
+1833|Komputer ma kart: {n}
+1834|Stos
+1835|Żądany kolor
+1836|Zagraj kartę tego samego koloru lub wartości co wierzchnia.\n8: wolno zagrać na wszystko, wybierasz kolor.\n7: przeciwnik dobiera 2 karty (może odpowiedzieć kolejną siódemką: +2).\nAs: przeciwnik traci kolejkę.\nJeśli nie możesz zagrać, dobierasz kartę. Wygrywa ten, kto pierwszy pozbędzie się kart.
+1837|Zasady oficjalne
+1838|Remik, który wszyscy znają: 13 kart, wyłożenie od 51 punktów.
+1839|Zasady własne
+1840|14 kart, widoczna karta z dołu, którą bierze się tylko kończąc za jednym razem, zrzut podnosi się tylko, by wyjść.
+1841|W pierwszej turze nie możesz podnieść zrzutu.
+1842|Aby podnieść zrzut, musisz móc wyłożyć (51 punktów) z tą kartą.
+1843|Tę kartę bierze się tylko, kończąc za jednym razem (minimum 51 punktów).
+1844|Ta kombinacja jest nieprawidłowa.
+1845|Wyłożenie udane!
+1846|Wyłożenie: {n} / 51 punktów
+1847|Ta karta tu nie pasuje.
+1848|Wyłóż 51 punktów lub anuluj przed odrzuceniem.
+1849|Podniosłeś zrzut: musisz wyłożyć (51 punktów).
+1850|Wybierz tylko jedną kartę do odrzucenia.
+1851|Zostało ci {n} punktów.
+1852|Twoja kolej: dobierz lub weź zrzut.
+1853|Wyłóż kombinacje, dołóż do tych na stole, potem odrzuć kartę.
+1854|Wyłóż kombinacje (51 punktów na start), potem odrzuć kartę.
+1855|Karta z dołu
+1856|Stos zrzutu
+1857|Kombinacja {n}
+1858|Wyłóż
+1859|Odrzuć
+1860|Każdy ma 14 kart. Zaczynający dobiera 15. kartę. Na dole stosu leży odkryta karta: bierze się ją tylko, kończąc za jednym razem (wszystkie karty wyłożone, minimum 51 punktów). W przeciwnym razie gra się normalnie i odrzuca jawnie.\nW pierwszej turze nie wolno podnieść zrzutu. Od drugiej tury wolno, ale wtedy trzeba obowiązkowo wyłożyć (co najmniej 51 punktów z tą kartą).\nKombinacja: sekwens 3+ kart tego samego koloru albo trójka/czwórka tej samej wartości w różnych kolorach. Joker zastępuje dowolną kartę. Po wyłożeniu dokłada się do kombinacji na stole. Wygrywa ten, kto pierwszy pozbędzie się kart.
+1861|Każdy ma 13 kart. W swojej kolejce: dobierz (lub weź zrzut), wyłóż kombinacje, jeśli chcesz, i odrzuć kartę.\nKombinacja: sekwens 3+ kart tego samego koloru (As niski lub wysoki, bez zawijania) albo trójka/czwórka tej samej wartości w różnych kolorach. Joker zastępuje dowolną kartę.\nWyłożenie: pierwsze wyłożenie musi być warte co najmniej 51 punktów (As = 11, figury = 10, As w A-2-3 = 1). Potem możesz dokładać do wszystkich kombinacji na stole i wymienić jokera na kartę, którą zastępuje.\nWygrywa ten, kto pierwszy pozbędzie się kart.
+1862|Komputer wziął zrzut.
+1863|Komputer dobrał kartę.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

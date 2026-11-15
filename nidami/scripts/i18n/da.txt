@@ -1785,3 +1785,84 @@
 1784|Kommer snart
 1785|Dette spil kommer meget snart.
 1786|Alene mod computeren
+1787|Poignée meldt ({n} trumf): +{v}
+1788|Excuse
+1789|Trumf {n}
+1790|Spiller til venstre
+1791|Spiller overfor
+1792|Spiller til højre
+1793|Din tur: vælg dit bud eller pas.
+1794|{n} tænker…
+1795|Du tog: smid 6 kort (ingen konge, ingen oudler, trumf kun hvis du ikke har andet valg).
+1796|{n} tager med »{b}« og smider…
+1797|Det er din tur til at spille.
+1798|Du tabte denne omgang.
+1799|Spilfører har {a} point med {b} oudler (der krævedes {c}). Din score: {m}
+1800|Spilfører
+1801|Stik
+1802|Pas
+1803|Hunden
+1804|Afkast: {n} / 6
+1805|Smid
+1806|Fransk tarok, 4 spillere: 78 kort (56 farvekort, 21 trumf, Excuse). Alle får 18 kort, 6 danner hunden.\nBud: Pas, Petite, Garde, Garde sans (hunden uset), Garde contre (hunden går til forsvarerne). Spilfører spiller alene mod tre.\nMed Petite eller Garde tager spilfører hunden og smider 6 kort (ingen konge, ingen oudler; trumf kun hvis nødvendigt).\nMan skal bekende farve; ellers trumfe (overtrumfe hvis muligt). Ved trumf skal man gå højere, hvis man kan. Excuse kan spilles når som helst og vinder aldrig stikket.\nOudlers er 21, 1 (petit) og Excuse. Nødvendige point: 56 med 0 oudlers, 51 med 1, 41 med 2, 36 med 3.\nBonus: petit au bout (1 vinder sidste stik), poignée (10, 13 eller 15 trumf: 20, 30, 40), slem (alle stik: +200).
+1807|Modstander til venstre
+1808|Makker
+1809|Modstander til højre
+1810|Din tur: tager du på {n}?
+1811|Din tur: vælg trumf eller pas.
+1812|Trumf
+1813|Os
+1814|Dem
+1815|Jeg tager
+1816|Jeg passer
+1817|Belote for 4: du og din makker (overfor) mod de 2 modstandere. 32 kort, 8 hver.\nTagning: et kort vendes. Efter tur kan alle tage det (dets farve bliver trumf). Hvis ingen tager det, kan man i anden runde vælge en anden farve. Hvis alle passer, gives der om.\nTrumf: Knægt 20, 9 14, Es 11, 10 10, Konge 4, Dame 3. Andre farver: Es 11, 10 10, Konge 4, Dame 3, Knægt 2.\nMan skal bekende farve; ellers trumfe (højere hvis muligt), medmindre din makker vinder. Ved trumf går man højere, hvis man kan.\nBelote-rebelote: Konge + Dame i trumf = 20 point. Sidste stik: +10. Capot (alle stik): +90.\nSpilfører skal score flere point end modstanderne, ellers er han »inde«: modstanderne får 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Sidste stik: +10
+1821|Os {a} · Dem {b}
+1822|Spilfører mislykkedes!
+1823|Capot!
+1824|🏆 Flot, I vandt! (+4 point)
+1825|I tabte denne omgang.
+1826|Spilleregler
+1827|Computeren trækker {n} kort.
+1828|Computeren trækker et kort.
+1829|Computeren vælger {n}.
+1830|Du skal trække {n} kort eller svare med en 7'er.
+1831|Din tur: spil et kort i samme farve eller værdi.
+1832|Du kan ikke spille: træk et kort.
+1833|Computeren har {n} kort
+1834|Bunke
+1835|Ønsket farve
+1836|Spil et kort i samme farve eller værdi som det øverste.\n8: kan spilles på alt, du vælger farve.\n7: modstanderen trækker 2 kort (kan svare med endnu en 7'er: +2).\nEs: modstanderen springer over.\nKan du ikke spille, trækker du et kort. Den første uden kort vinder.
+1837|Officielle regler
+1838|Rummy som alle kender: 13 kort, udlægning fra 51 point.
+1839|Egne regler
+1840|14 kort, et synligt bundkort der kun tages ved at gå ud på én gang, kassebunken samles kun op for at gå ud.
+1841|Første tur må du ikke samle kasseret op.
+1842|For at samle kasseret op skal du kunne lægge ud (51 point) med dette kort.
+1843|Dette kort tages kun, hvis du går ud på én gang (mindst 51 point).
+1844|Denne kombination er ugyldig.
+1845|Udlægning lykkedes!
+1846|Udlægning: {n} / 51 point
+1847|Dette kort passer ikke her.
+1848|Læg 51 point ud eller fortryd, før du smider.
+1849|Du samlede kasseret op: du skal lægge ud (51 point).
+1850|Vælg kun ét kort at smide.
+1851|Du havde {n} point tilbage.
+1852|Din tur: træk eller tag kasseret.
+1853|Læg kombinationer ud, byg på dem på bordet, og smid så et kort.
+1854|Læg kombinationer ud (51 point for at åbne), og smid så et kort.
+1855|Bundkort
+1856|Kassebunke
+1857|Kombination {n}
+1858|Læg ud
+1859|Smid
+1860|Alle har 14 kort. Den, der starter, trækker 15. kort. Nederst i bunken ligger et kort med billedsiden opad: det tages kun, hvis man går ud på én gang (alle kort lagt ud, mindst 51 point). Ellers spiller man normalt og smider åbent.\nFørste tur må man ikke samle kasseret op. Fra anden tur må man, men så skal man lægge ud (mindst 51 point med det kort).\nKombination: række på 3+ kort i samme farve eller tre/fire ens i forskellige farver. Jokeren erstatter ethvert kort. Efter udlægning kan man bygge på kombinationerne på bordet. Den første uden kort vinder.
+1861|Alle har 13 kort. På din tur: træk (eller tag kasseret), læg kombinationer ud, hvis du vil, og smid et kort.\nKombination: række på 3+ kort i samme farve (es lavt eller højt, ingen rundt) eller tre/fire ens i forskellige farver. Jokeren erstatter ethvert kort.\nUdlægning: første udlægning skal være mindst 51 point værd (es = 11, billedkort = 10, es i A-2-3 = 1). Derefter kan du bygge på alle kombinationer på bordet og bytte en joker med det kort, den står for.\nDen første uden kort vinder.
+1862|Computeren tog kasseret.
+1863|Computeren trak et kort.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

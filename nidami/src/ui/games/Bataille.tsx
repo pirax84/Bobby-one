@@ -39,7 +39,7 @@ export function Bataille() {
   const again = () => { scored.current = false; setS(fresh()); };
   const status = s.msg || t("Appuie sur « Retourner » pour jouer.");
   return (
-    <GameShell status={status} over={s.over} onAgain={again}>
+    <GameShell felt status={status} over={s.over} onAgain={again}>
       <div className="row" style={{ width: "100%", justifyContent: "space-around", alignItems: "center" }}>
         <div className="col" style={{ alignItems: "center", gap: 6 }}><b>{t("Ordinateur")}</b><PlayCard c={s.tableCpu[s.tableCpu.length - 1]} down={!s.tableCpu.length} w={64} /><span className="muted small">{t("{n} cartes", { n: s.cpu.length })}</span></div>
         <div className="col" style={{ alignItems: "center", gap: 6 }}><b>{t("Toi")}</b><PlayCard c={s.tableMe[s.tableMe.length - 1]} down={!s.tableMe.length} w={64} /><span className="muted small">{t("{n} cartes", { n: s.me.length })}</span></div>

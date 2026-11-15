@@ -1785,3 +1785,84 @@
 1784|Em breve
 1785|Este jogo chega muito em breve.
 1786|Sozinho contra o computador
+1787|Poignée anunciada ({n} trunfos): +{v}
+1788|Desculpa
+1789|Trunfo {n}
+1790|Jogador da esquerda
+1791|Jogador da frente
+1792|Jogador da direita
+1793|A tua vez: escolhe a tua licitação ou passa.
+1794|{n} está a pensar…
+1795|Ficaste com ele: descarta 6 cartas (nem Rei, nem bout; trunfos só se não tiveres alternativa).
+1796|{n} fica com «{b}» e faz o descarte…
+1797|É a tua vez de jogar.
+1798|Perdeste esta mão.
+1799|Quem ficou tem {a} pontos com {b} bout(s) (eram precisos {c}). A tua pontuação: {m}
+1800|Declarante
+1801|Vazas
+1802|Passo
+1803|Cão
+1804|Descarte: {n} / 6
+1805|Descartar
+1806|Tarot francês, 4 jogadores: 78 cartas (56 de naipe, 21 trunfos, a Desculpa). Cada um recebe 18 cartas, 6 formam o cão.\nLicitações: Passo, Petite, Garde, Garde sans (cão não visto), Garde contre (o cão vai para os defensores). O declarante joga sozinho contra três.\nCom Petite ou Garde, o declarante fica com o cão e descarta 6 cartas (nem Rei, nem bout; trunfos só se necessário).\nÉ preciso servir o naipe; senão, cortar com trunfo (subir se possível). Se se joga trunfo, é preciso subir se puder. A Desculpa joga-se quando quiseres e nunca ganha a vaza.\nOs bouts são o 21, o 1 (petit) e a Desculpa. Pontos necessários: 56 com 0 bouts, 51 com 1, 41 com 2, 36 com 3.\nBónus: petit au bout (o 1 ganha a última vaza), poignée (10, 13 ou 15 trunfos: 20, 30, 40), slam (todas as vazas: +200).
+1807|Adversário da esquerda
+1808|Parceiro
+1809|Adversário da direita
+1810|A tua vez: ficas com {n}?
+1811|A tua vez: escolhe um trunfo ou passa.
+1812|Trunfo
+1813|Nós
+1814|Eles
+1815|Fico
+1816|Passo
+1817|Belote a 4: tu e o teu parceiro (em frente) contra os 2 adversários. 32 cartas, 8 cada.\nTomada: vira-se uma carta. Cada um, por sua vez, pode ficar com ela (o naipe dela passa a ser trunfo). Se ninguém ficar, uma segunda volta permite escolher outro naipe. Se todos passarem, volta a dar-se.\nTrunfo: Valete 20, 9 14, Ás 11, 10 10, Rei 4, Dama 3. Outros naipes: Ás 11, 10 10, Rei 4, Dama 3, Valete 2.\nÉ preciso servir o naipe; senão, cortar com trunfo (subir se possível), exceto se o parceiro estiver a ganhar. Com trunfo, sobe-se se puder.\nBelote-rebelote: Rei + Dama de trunfo = 20 pontos. Dez de último: +10. Capot (todas as vazas): +90.\nQuem tomou tem de fazer mais pontos do que os adversários; senão fica «dentro»: os adversários marcam 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Dez de último: +10
+1821|Nós {a} · Eles {b}
+1822|O declarante falhou!
+1823|Capot!
+1824|🏆 Parabéns, ganharam! (+4 pontos)
+1825|Perderam esta mão.
+1826|Regras do jogo
+1827|O computador tira {n} cartas.
+1828|O computador tira uma carta.
+1829|O computador escolhe {n}.
+1830|Tens de tirar {n} cartas ou responder com um 7.
+1831|A tua vez: joga uma carta do mesmo naipe ou valor.
+1832|Não podes jogar: tira uma carta.
+1833|O computador tem {n} cartas
+1834|Baralho
+1835|Naipe pedido
+1836|Joga uma carta do mesmo naipe ou valor da que está em cima.\n8: joga-se sobre tudo, escolhes o naipe.\n7: o adversário tira 2 cartas (pode responder com outro 7: +2).\nÁs: o adversário perde a vez.\nSe não podes jogar, tiras uma carta. Ganha quem ficar primeiro sem cartas.
+1837|Regras oficiais
+1838|O Rummy que toda a gente conhece: 13 cartas, abertura com 51 pontos.
+1839|Regras personalizadas
+1840|14 cartas, uma carta do fundo visível que só se apanha fechando de uma vez, descarte que só se apanha para sair.
+1841|Na primeira jogada não podes apanhar o descarte.
+1842|Para apanhar o descarte, tens de poder abrir (51 pontos) com esta carta.
+1843|Esta carta só se apanha se fechares de uma vez (mínimo 51 pontos).
+1844|Esta combinação não é válida.
+1845|Abertura conseguida!
+1846|Abertura: {n} / 51 pontos
+1847|Esta carta não encaixa aqui.
+1848|Baixa 51 pontos ou cancela antes de descartar.
+1849|Apanhaste o descarte: tens de abrir (baixar 51 pontos).
+1850|Escolhe uma só carta para descartar.
+1851|Ficavam-te {n} pontos.
+1852|A tua vez: tira ou apanha o descarte.
+1853|Baixa combinações, completa as da mesa e descarta uma carta.
+1854|Baixa combinações (51 pontos para abrir) e descarta uma carta.
+1855|Carta do fundo
+1856|Descarte
+1857|Combinação {n}
+1858|Baixar
+1859|Descartar
+1860|Cada um tem 14 cartas. Quem começa tira a 15.ª. No fundo do baralho há uma carta virada para cima: só se apanha fechando de uma vez (todas as cartas baixadas, mínimo 51 pontos). Senão joga-se normalmente e descarta-se, cartas à vista.\nNa primeira jogada não se pode apanhar o descarte. A partir da segunda pode-se, mas então é obrigatório abrir (baixar pelo menos 51 pontos com essa carta).\nCombinação: sequência de 3+ cartas do mesmo naipe, ou trio/quadra do mesmo valor de naipes diferentes. O joker substitui qualquer carta. Depois de abrir, completam-se as combinações da mesa. Ganha quem ficar primeiro sem cartas.
+1861|Cada um tem 13 cartas. Na tua vez: tira (ou apanha o descarte), baixa combinações se quiseres e descarta uma carta.\nCombinação: sequência de 3+ cartas do mesmo naipe (Ás baixo ou alto, sem voltar ao início), ou trio/quadra do mesmo valor de naipes diferentes. O joker substitui qualquer carta.\nAbertura: a primeira baixa deve valer pelo menos 51 pontos (Ás = 11, figuras = 10, Ás em A-2-3 = 1). Depois podes completar todas as combinações da mesa e trocar um joker pela carta que ele representa.\nGanha quem ficar primeiro sem cartas.
+1862|O computador apanhou o descarte.
+1863|O computador tirou uma carta.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

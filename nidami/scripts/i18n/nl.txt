@@ -1785,3 +1785,84 @@
 1784|Binnenkort
 1785|Dit spel komt heel binnenkort.
 1786|Alleen tegen de computer
+1787|Poignée aangekondigd ({n} troeven): +{v}
+1788|Excuse
+1789|Troef {n}
+1790|Speler links
+1791|Speler tegenover
+1792|Speler rechts
+1793|Jouw beurt: kies je bod of pas.
+1794|{n} denkt na…
+1795|Je hebt genomen: leg 6 kaarten af (geen Heer, geen oudler, troeven alleen als het niet anders kan).
+1796|{n} neemt met “{b}” en legt af…
+1797|Jouw beurt om te spelen.
+1798|Je hebt deze ronde verloren.
+1799|De nemer heeft {a} punten met {b} oudler(s) (nodig: {c}). Jouw score: {m}
+1800|Nemer
+1801|Slagen
+1802|Pas
+1803|Hond
+1804|Afleggen: {n} / 6
+1805|Afleggen
+1806|Frans Tarot, 4 spelers: 78 kaarten (56 kleurkaarten, 21 troeven, de Excuse). Iedereen krijgt 18 kaarten, 6 vormen de hond.\nBieden: Pas, Petite, Garde, Garde sans (hond ongezien), Garde contre (de hond gaat naar de verdedigers). De nemer speelt alleen tegen drie.\nBij Petite of Garde neemt de nemer de hond en legt 6 kaarten af (geen Heer, geen oudler; troeven alleen als het moet).\nKleur bekennen; anders troeven (overtroeven indien mogelijk). Bij troef hoger spelen als het kan. De Excuse mag altijd en wint nooit de slag.\nOudlers zijn de 21, de 1 (petit) en de Excuse. Nodige punten: 56 met 0 oudlers, 51 met 1, 41 met 2, 36 met 3.\nBonussen: petit au bout (de 1 wint de laatste slag), poignée (10, 13 of 15 troeven: 20, 30, 40), slem (alle slagen: +200).
+1807|Tegenstander links
+1808|Partner
+1809|Tegenstander rechts
+1810|Jouw beurt: neem je op {n}?
+1811|Jouw beurt: kies een troefkleur of pas.
+1812|Troef
+1813|Wij
+1814|Zij
+1815|Ik neem
+1816|Ik pas
+1817|Belote met 4: jij en je partner (tegenover) tegen de 2 tegenstanders. 32 kaarten, 8 elk.\nNemen: er wordt een kaart omgedraaid. Beurtelings mag iedereen hem nemen (die kleur wordt troef). Neemt niemand hem, dan mag je in een tweede ronde een andere kleur kiezen. Passen allen, dan wordt opnieuw gedeeld.\nTroef: Boer 20, 9 14, Aas 11, 10 10, Heer 4, Vrouw 3. Andere kleuren: Aas 11, 10 10, Heer 4, Vrouw 3, Boer 2.\nKleur bekennen; anders troeven (hoger indien mogelijk), behalve als je partner wint. Bij troef hoger spelen als het kan.\nBelote-rebelote: Heer + Vrouw van troef = 20 punten. Laatste slag: +10. Capot (alle slagen): +90.\nDe nemer moet meer punten halen dan de tegenstanders, anders zit hij “erin”: de tegenstanders krijgen 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Laatste slag: +10
+1821|Wij {a} · Zij {b}
+1822|De nemer is gevallen!
+1823|Capot!
+1824|🏆 Goed gedaan, jullie hebben gewonnen! (+4 punten)
+1825|Jullie hebben deze ronde verloren.
+1826|Spelregels
+1827|De computer trekt {n} kaarten.
+1828|De computer trekt een kaart.
+1829|De computer kiest {n}.
+1830|Je moet {n} kaarten trekken of antwoorden met een 7.
+1831|Jouw beurt: speel een kaart van dezelfde kleur of waarde.
+1832|Je kunt niet spelen: trek een kaart.
+1833|De computer heeft {n} kaarten
+1834|Stapel
+1835|Gevraagde kleur
+1836|Speel een kaart van dezelfde kleur of waarde als de bovenste.\n8: speelbaar op alles, jij kiest de kleur.\n7: de tegenstander trekt 2 kaarten (hij mag antwoorden met nog een 7: +2).\nAas: de tegenstander slaat een beurt over.\nKun je niet spelen, dan trek je een kaart. Wie als eerste geen kaarten meer heeft, wint.
+1837|Officiële regels
+1838|De Rummy die iedereen kent: 13 kaarten, uitkomen met 51 punten.
+1839|Eigen regels
+1840|14 kaarten, een zichtbare onderste kaart die je alleen pakt als je in één keer uitgaat, aflegstapel alleen oprapen om uit te komen.
+1841|In de eerste beurt mag je de aflegstapel niet oprapen.
+1842|Om de aflegstapel op te rapen moet je met deze kaart kunnen uitkomen (51 punten).
+1843|Deze kaart pak je alleen als je in één keer uitgaat (minimaal 51 punten).
+1844|Deze combinatie is niet geldig.
+1845|Uitkomen gelukt!
+1846|Uitkomen: {n} / 51 punten
+1847|Deze kaart past hier niet.
+1848|Leg 51 punten neer of annuleer voor het afleggen.
+1849|Je hebt de aflegstapel opgeraapt: je moet uitkomen (51 punten neerleggen).
+1850|Kies maar één kaart om af te leggen.
+1851|Je had nog {n} punten.
+1852|Jouw beurt: trek of pak de aflegstapel.
+1853|Leg combinaties neer, vul die op tafel aan en leg dan een kaart af.
+1854|Leg combinaties neer (51 punten om uit te komen) en leg dan een kaart af.
+1855|Onderste kaart
+1856|Aflegstapel
+1857|Combinatie {n}
+1858|Neerleggen
+1859|Afleggen
+1860|Iedereen heeft 14 kaarten. De starter trekt de 15e kaart. Onderaan de stapel ligt een kaart open: die pak je alleen als je in één keer uitgaat (al je kaarten neergelegd, minimaal 51 punten). Anders speel je normaal en leg je open af.\nIn de eerste beurt mag je de aflegstapel niet oprapen. Vanaf de tweede beurt mag het, maar dan moet je uitkomen (minstens 51 punten met die kaart).\nCombinatie: reeks van 3+ kaarten van dezelfde kleur, of drietal/vierling van dezelfde waarde in verschillende kleuren. De joker vervangt elke kaart. Na het uitkomen vul je combinaties op tafel aan. Wie als eerste geen kaarten meer heeft, wint.
+1861|Iedereen heeft 13 kaarten. Aan de beurt: trek (of pak de aflegstapel), leg combinaties neer als je wilt en leg een kaart af.\nCombinatie: reeks van 3+ kaarten van dezelfde kleur (Aas laag of hoog, niet rond), of drietal/vierling van dezelfde waarde in verschillende kleuren. De joker vervangt elke kaart.\nUitkomen: je eerste keer neerleggen moet minstens 51 punten waard zijn (Aas = 11, plaatjes = 10, Aas in A-2-3 = 1). Daarna vul je alle combinaties op tafel aan en ruil je een joker tegen de kaart die hij vervangt.\nWie als eerste geen kaarten meer heeft, wint.
+1862|De computer pakte de aflegstapel.
+1863|De computer trok een kaart.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

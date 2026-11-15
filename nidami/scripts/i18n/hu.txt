@@ -1785,3 +1785,84 @@
 1784|Hamarosan
 1785|Ez a játék hamarosan érkezik.
 1786|Egyedül a számítógép ellen
+1787|Poignée bejelentve ({n} adu): +{v}
+1788|Excuse
+1789|Adu {n}
+1790|Játékos balra
+1791|Játékos szemben
+1792|Játékos jobbra
+1793|Te jössz: válaszd ki a licitedet, vagy passzolj.
+1794|{n} gondolkodik…
+1795|Elvitted: dobj le 6 lapot (nem lehet király, sem oudler, adu csak végszükségben).
+1796|{n} viszi a(z) „{b}” licittel, és lerak…
+1797|Te jössz.
+1798|Elvesztetted ezt az osztást.
+1799|A felvevőnek {a} pontja van {b} oudlerrel (kellett {c}). A te pontszámod: {m}
+1800|Felvevő
+1801|Ütések
+1802|Passz
+1803|Kutya
+1804|Dobás: {n} / 6
+1805|Eldob
+1806|Francia tarokk, 4 játékos: 78 lap (56 színes, 21 adu, az Excuse). Mindenki 18 lapot kap, 6 alkotja a kutyát.\nLicit: Passz, Petite, Garde, Garde sans (a kutya nem látszik), Garde contre (a kutya a védőké). A felvevő egyedül játszik hárman ellen.\nPetite vagy Garde esetén a felvevő felveszi a kutyát, és 6 lapot dob le (nem király, nem oudler; adu csak ha muszáj).\nSzínt kell követni; különben adúval vágni (ha lehet, magasabbal). Adúnál magasabbat kell tenni, ha lehet. Az Excuse bármikor kijátszható, és sosem viszi az ütést.\nOudlerek: a 21, az 1 (petit) és az Excuse. Szükséges pontok: 56 0 oudlerrel, 51 1-gyel, 41 2-vel, 36 3-mal.\nBónuszok: petit au bout (az 1 viszi az utolsó ütést), poignée (10, 13 vagy 15 adu: 20, 30, 40), szlem (minden ütés: +200).
+1807|Ellenfél balra
+1808|Társ
+1809|Ellenfél jobbra
+1810|Te jössz: viszed ennyivel: {n}?
+1811|Te jössz: válassz adut, vagy passzolj.
+1812|Adu
+1813|Mi
+1814|Ők
+1815|Viszem
+1816|Passzolok
+1817|Belote négyen: te és a társad (szemben) a 2 ellenfél ellen. 32 lap, fejenként 8.\nFelvétel: felfordítanak egy lapot. Sorban bárki elviheti (a színe lesz az adu). Ha senki nem viszi, a második körben másik színt lehet választani. Ha mindenki passzol, újraosztás.\nAdu: Alsó 20, 9 14, Ász 11, 10 10, Király 4, Dáma 3. Más színek: Ász 11, 10 10, Király 4, Dáma 3, Alsó 2.\nSzínt kell követni; különben adúval vágni (ha lehet, magasabbal), kivéve ha a társad viszi. Adúnál magasabbat kell tenni, ha lehet.\nBelote-rebelote: adu Király + Dáma = 20 pont. Utolsó ütés: +10. Capot (minden ütés): +90.\nA felvevőnek több pontot kell szereznie, mint az ellenfeleknek, különben „bent marad”: az ellenfelek 162 pontot kapnak.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Utolsó ütés: +10
+1821|Mi {a} · Ők {b}
+1822|A felvevő elbukott!
+1823|Capot!
+1824|🏆 Szép munka, nyertetek! (+4 pont)
+1825|Elvesztettétek ezt az osztást.
+1826|Játékszabályok
+1827|A számítógép húz {n} lapot.
+1828|A számítógép húz egy lapot.
+1829|A számítógép választ: {n}.
+1830|Húznod kell {n} lapot, vagy válaszolj egy hetessel.
+1831|Te jössz: tégy egy azonos színű vagy értékű lapot.
+1832|Nem tudsz lépni: húzz egy lapot.
+1833|A számítógépnek {n} lapja van
+1834|Húzópakli
+1835|Kért szín
+1836|Tégy egy azonos színű vagy értékű lapot, mint a legfelső.\n8: bármire tehető, te választod a színt.\n7: az ellenfél húz 2 lapot (válaszolhat egy újabb hetessel: +2).\nÁsz: az ellenfél kimarad.\nHa nem tudsz lépni, húzol egy lapot. Az nyer, akinek elfogy a lapja.
+1837|Hivatalos szabályok
+1838|A Römi, amit mindenki ismer: 13 lap, kijövetel 51 ponttal.
+1839|Saját szabályok
+1840|14 lap, látható alsó lap, amit csak egy lépésben való kiszállással lehet felvenni, a dobott lapot csak kijövetelhez lehet felszedni.
+1841|Az első körben nem szedheted fel a dobott lapot.
+1842|A dobott lap felszedéséhez ki kell tudnod jönni (51 pont) ezzel a lappal.
+1843|Ezt a lapot csak akkor veheted fel, ha egy lépésben kiszállsz (legalább 51 pont).
+1844|Ez a kombináció érvénytelen.
+1845|Sikeres kijövetel!
+1846|Kijövetel: {n} / 51 pont
+1847|Ez a lap ide nem illik.
+1848|Tegyél le 51 pontot, vagy vond vissza dobás előtt.
+1849|Felszedted a dobott lapot: ki kell jönnöd (le kell tenned 51 pontot).
+1850|Csak egy lapot válassz dobásra.
+1851|{n} pontod maradt.
+1852|Te jössz: húzz, vagy vedd fel a dobott lapot.
+1853|Tegyél le kombinációkat, egészítsd ki az asztalon lévőket, majd dobj egy lapot.
+1854|Tegyél le kombinációkat (51 pont a kijövetelhez), majd dobj egy lapot.
+1855|Alsó lap
+1856|Dobópakli
+1857|{n}. kombináció
+1858|Letesz
+1859|Eldob
+1860|Mindenkinek 14 lapja van. A kezdő húzza a 15. lapot. A pakli alján egy lap felfelé fordítva fekszik: csak akkor vehető fel, ha egy lépésben kiszállsz (minden lap lerakva, legalább 51 pont). Különben normálisan játszol, és nyitva dobsz.\nAz első körben nem szedhető fel a dobott lap. A második körtől igen, de akkor kötelező kijönni (legalább 51 pont ezzel a lappal).\nKombináció: legalább 3 azonos színű lap sorban, vagy azonos értékű három/négy különböző színben. A joker bármely lapot helyettesít. Kijövetel után az asztalon lévő kombinációk kiegészíthetők. Az nyer, akinek először elfogy a lapja.
+1861|Mindenkinek 13 lapja van. A körödben: húzz (vagy vedd fel a dobott lapot), tegyél le kombinációkat, ha akarsz, és dobj egy lapot.\nKombináció: legalább 3 azonos színű lap sorban (az ász alacsony vagy magas, körbe nem), vagy azonos értékű három/négy különböző színben. A joker bármely lapot helyettesít.\nKijövetel: az első letételnek legalább 51 pontot kell érnie (ász = 11, figurák = 10, ász az A-2-3-ban = 1). Utána kiegészítheted az asztalon lévő összes kombinációt, és kicserélhetsz egy jokert arra a lapra, amelyet helyettesít.\nAz nyer, akinek először elfogy a lapja.
+1862|A számítógép felvette a dobott lapot.
+1863|A számítógép húzott egy lapot.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

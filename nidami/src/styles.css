@@ -1317,3 +1317,11 @@ html[data-accent=citron] .topr .topb svg,html[data-accent=miel] .topr .topb svg,
 html:not(.zz) .topme{border-radius:14px!important;overflow:hidden;box-shadow:0 4px 10px -4px rgba(0,0,0,.45)!important}
 html:not(.zz) .topme>*,html:not(.zz) .topme img{border-radius:14px!important}
 @media (max-width:760px){html:not(.zz) .topr .topb{width:38px!important;height:38px!important}html:not(.zz) .topme{width:42px;height:42px;flex:none}html:not(.zz) .topme>*{width:42px!important;height:42px!important}}
+
+/* Tapis des jeux de cartes : dégradé doux aux couleurs de l'appli, les cartes ressortent */
+.gfelt{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 8px 10px;border-radius:22px;color:#fff;background:radial-gradient(120% 90% at 50% 0%,#5B49C8 0%,#3E3396 55%,#2A6D8C 130%);box-shadow:inset 0 2px 18px rgba(0,0,0,.35),0 6px 18px rgba(60,40,140,.25)}
+.gfelt .muted,.gfelt .small.muted{color:rgba(255,255,255,.78)!important}
+.gfelt b{color:#fff}
+.gfelt .btn.ghost{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.35)}
+.gfelt .btn:disabled{opacity:.45}
+.gfelt details summary{color:#fff}

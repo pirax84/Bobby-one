@@ -152,6 +152,10 @@ import { Dames } from "./games/Dames";
 import { Navale } from "./games/Navale";
 import { Dominos } from "./games/Dominos";
 import { Pouilleux } from "./games/Pouilleux";
+import { Huit } from "./games/Huit";
+import { Rami } from "./games/Rami";
+import { Belote } from "./games/Belote";
+import { Tarot } from "./games/Tarot";
 export function Games() {
   const s = useStore((x) => x); const me = s.me; const [tab, setTab] = useState(""); const friends = (s.social.friends[me] || []).map((i) => userOf(s, i)!).filter(Boolean);
   const games = s.games.filter((g) => g.xId === me || g.oId === me);
@@ -161,7 +165,7 @@ export function Games() {
       <div className={"gstatus" + (w ? "" : " muted")}>{w ? (w === "draw" ? t("Match nul 🤝") : t("🏆 {name} a gagné !", { name: nm(w === "X" ? g.xId : g.oId) })) : mine ? t("C'est votre tour") : t("Au tour de {name} (changez de membre dans Paramètres pour jouer à sa place en démo)", { name: nm(g.turn === "X" ? g.xId : g.oId) })}</div>{w && <button className="btn ghost" onClick={() => actions.newGame(g.xId === me ? g.oId : g.xId)}>{t("Nouvelle partie")}</button>}</div>; };
   const gt: Record<string, string> = { belote: t("Belote"), rami: t("Rami"), tarot: t("Tarot"), bataille: t("Bataille"), pouilleux: t("Pouilleux"), huit: t("8 américain"), aligne4: t("Aligne 4"), dames: t("Dames"), navale: t("Bataille navale"), morpion: t("Morpion"), dominos: t("Dominos"), memory: t("Memory") };
   const sub: Record<string, string> = { belote: t("4 joueurs · atout"), rami: t("Suites et brelans"), tarot: t("Prises, bouts"), bataille: t("Le plus fort gagne"), pouilleux: t("Évite le valet"), huit: t("Pose, pioche, 8 !"), aligne4: t("4 jetons alignés"), dames: t("Prends tous les pions"), navale: t("Coule la flotte"), morpion: t("Avec un ami ou seul"), dominos: t("Pose bout à bout"), memory: t("Trouve les paires") };
-  const ready: Record<string, ReactNode> = { bataille: <Bataille />, aligne4: <Aligne4 />, dames: <Dames />, navale: <Navale />, dominos: <Dominos />, pouilleux: <Pouilleux />, memory: <MemoryGame /> };
+  const ready: Record<string, ReactNode> = { belote: <Belote />, rami: <Rami />, tarot: <Tarot />, huit: <Huit />, bataille: <Bataille />, aligne4: <Aligne4 />, dames: <Dames />, navale: <Navale />, dominos: <Dominos />, pouilleux: <Pouilleux />, memory: <MemoryGame /> };
   const [mode, setMode] = useState<"" | "ami" | "bot">("");
   const back = () => { if (tab === "morpion" && mode) setMode(""); else { setTab(""); setMode(""); } };
   return (<div className="col">

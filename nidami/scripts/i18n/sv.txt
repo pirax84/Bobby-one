@@ -1785,3 +1785,84 @@
 1784|Kommer snart
 1785|Det här spelet kommer snart.
 1786|Ensam mot datorn
+1787|Poignée utropad ({n} trumf): +{v}
+1788|Excuse
+1789|Trumf {n}
+1790|Spelare till vänster
+1791|Spelare mittemot
+1792|Spelare till höger
+1793|Din tur: välj ditt bud eller passa.
+1794|{n} tänker…
+1795|Du tog: släng 6 kort (ingen kung, ingen oudler, trumf bara om du inte har något val).
+1796|{n} tar med ”{b}” och slänger…
+1797|Din tur att spela.
+1798|Du förlorade den här given.
+1799|Spelföraren har {a} poäng med {b} oudler (det krävdes {c}). Din poäng: {m}
+1800|Spelförare
+1801|Stick
+1802|Pass
+1803|Hunden
+1804|Släng: {n} / 6
+1805|Släng
+1806|Fransk tarock, 4 spelare: 78 kort (56 färgkort, 21 trumf, Excuse). Alla får 18 kort, 6 bildar hunden.\nBud: Pass, Petite, Garde, Garde sans (hunden osedd), Garde contre (hunden går till försvararna). Spelföraren spelar ensam mot tre.\nMed Petite eller Garde tar spelföraren hunden och slänger 6 kort (ingen kung, ingen oudler; trumf bara om nödvändigt).\nMan måste följa färg; annars trumfa (överträmpa om möjligt). Vid trumf ska man gå högre om man kan. Excuse kan spelas när som helst och vinner aldrig sticket.\nOudlers är 21, 1 (petit) och Excuse. Poäng som krävs: 56 med 0 oudlers, 51 med 1, 41 med 2, 36 med 3.\nBonus: petit au bout (1 vinner sista sticket), poignée (10, 13 eller 15 trumf: 20, 30, 40), slam (alla stick: +200).
+1807|Motståndare till vänster
+1808|Partner
+1809|Motståndare till höger
+1810|Din tur: tar du på {n}?
+1811|Din tur: välj trumf eller passa.
+1812|Trumf
+1813|Vi
+1814|De
+1815|Jag tar
+1816|Jag passar
+1817|Belote för 4: du och din partner (mittemot) mot de 2 motståndarna. 32 kort, 8 var.\nTagning: ett kort vänds upp. I tur och ordning kan alla ta det (dess färg blir trumf). Om ingen tar det väljer man annan färg i andra varvet. Om alla passar delas det om.\nTrumf: Knekt 20, 9 14, Ess 11, 10 10, Kung 4, Dam 3. Andra färger: Ess 11, 10 10, Kung 4, Dam 3, Knekt 2.\nMan måste följa färg; annars trumfa (högre om möjligt), utom om din partner vinner. Vid trumf går man högre om man kan.\nBelote-rebelote: Kung + Dam i trumf = 20 poäng. Sista sticket: +10. Capot (alla stick): +90.\nSpelföraren måste få fler poäng än motståndarna, annars är han ”inne”: motståndarna får 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Sista sticket: +10
+1821|Vi {a} · De {b}
+1822|Spelföraren misslyckades!
+1823|Capot!
+1824|🏆 Bra jobbat, ni vann! (+4 poäng)
+1825|Ni förlorade den här given.
+1826|Spelregler
+1827|Datorn drar {n} kort.
+1828|Datorn drar ett kort.
+1829|Datorn väljer {n}.
+1830|Du måste dra {n} kort eller svara med en 7:a.
+1831|Din tur: spela ett kort av samma färg eller värde.
+1832|Du kan inte spela: dra ett kort.
+1833|Datorn har {n} kort
+1834|Hög
+1835|Begärd färg
+1836|Spela ett kort av samma färg eller värde som det översta.\n8: kan spelas på allt, du väljer färg.\n7: motståndaren drar 2 kort (kan svara med en till 7:a: +2).\nEss: motståndaren hoppar över sin tur.\nKan du inte spela drar du ett kort. Den som först blir av med alla kort vinner.
+1837|Officiella regler
+1838|Rummy som alla känner till: 13 kort, utläggning från 51 poäng.
+1839|Egna regler
+1840|14 kort, ett synligt bottenkort som bara tas när man går ut på en gång, kasthögen plockas bara för att gå ut.
+1841|Första turen får du inte plocka kasthögen.
+1842|För att plocka kasthögen måste du kunna lägga ut (51 poäng) med det här kortet.
+1843|Det här kortet tas bara om du går ut på en gång (minst 51 poäng).
+1844|Den här kombinationen är ogiltig.
+1845|Utläggningen lyckades!
+1846|Utläggning: {n} / 51 poäng
+1847|Det här kortet passar inte här.
+1848|Lägg ut 51 poäng eller ångra innan du kastar.
+1849|Du plockade kasthögen: du måste lägga ut (51 poäng).
+1850|Välj bara ett kort att kasta.
+1851|Du hade {n} poäng kvar.
+1852|Din tur: dra eller ta kasthögen.
+1853|Lägg ut kombinationer, bygg på dem på bordet och kasta sedan ett kort.
+1854|Lägg ut kombinationer (51 poäng för att öppna) och kasta sedan ett kort.
+1855|Bottenkort
+1856|Kasthög
+1857|Kombination {n}
+1858|Lägg ut
+1859|Kasta
+1860|Alla har 14 kort. Den som börjar drar det 15:e kortet. Längst ned i högen ligger ett kort med framsidan upp: det tas bara om man går ut på en gång (alla kort utlagda, minst 51 poäng). Annars spelar man som vanligt och kastar öppet.\nFörsta turen får man inte plocka kasthögen. Från andra turen får man det, men då måste man lägga ut (minst 51 poäng med det kortet).\nKombination: stege med 3+ kort i samma färg eller tretal/fyrtal av samma värde i olika färger. Jokern ersätter vilket kort som helst. Efter utläggning kan man bygga på kombinationerna på bordet. Den som först blir av med alla kort vinner.
+1861|Alla har 13 kort. På din tur: dra (eller ta kasthögen), lägg ut kombinationer om du vill och kasta ett kort.\nKombination: stege med 3+ kort i samma färg (ess lågt eller högt, ingen runda) eller tretal/fyrtal av samma värde i olika färger. Jokern ersätter vilket kort som helst.\nUtläggning: första utläggningen måste vara värd minst 51 poäng (ess = 11, klädda kort = 10, ess i A-2-3 = 1). Därefter kan du bygga på alla kombinationer på bordet och byta en joker mot kortet den står för.\nDen som först blir av med alla kort vinner.
+1862|Datorn tog kasthögen.
+1863|Datorn drog ett kort.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

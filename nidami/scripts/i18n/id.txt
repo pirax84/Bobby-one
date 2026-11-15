@@ -1785,3 +1785,84 @@
 1784|Segera hadir
 1785|Permainan ini segera hadir.
 1786|Sendiri melawan komputer
+1787|Poignée diumumkan ({n} truf): +{v}
+1788|Excuse
+1789|Truf {n}
+1790|Pemain di kiri
+1791|Pemain di seberang
+1792|Pemain di kanan
+1793|Giliranmu: pilih tawaranmu atau lewati.
+1794|{n} sedang berpikir…
+1795|Kamu mengambil: buang 6 kartu (tanpa Raja, tanpa oudler, truf hanya jika tidak ada pilihan).
+1796|{n} mengambil dengan “{b}” dan membuang kartu…
+1797|Giliranmu bermain.
+1798|Kamu kalah di pembagian ini.
+1799|Pengambil punya {a} poin dengan {b} oudler (dibutuhkan {c}). Skormu: {m}
+1800|Pengambil
+1801|Trik
+1802|Lewat
+1803|Anjing
+1804|Buangan: {n} / 6
+1805|Buang
+1806|Tarot Prancis, 4 pemain: 78 kartu (56 kartu warna, 21 truf, Excuse). Tiap pemain dapat 18 kartu, 6 kartu membentuk anjing.\nTawaran: Lewat, Petite, Garde, Garde sans (anjing tidak dilihat), Garde contre (anjing untuk pihak bertahan). Pengambil bermain sendirian melawan tiga orang.\nDengan Petite atau Garde, pengambil mengambil anjing lalu membuang 6 kartu (tanpa Raja, tanpa oudler; truf hanya jika perlu).\nHarus mengikuti warna; jika tidak, potong dengan truf (lebih tinggi jika bisa). Saat truf dimainkan, naiklah jika bisa. Excuse boleh dimainkan kapan saja dan tidak pernah memenangkan trik.\nOudler adalah 21, 1 (petit), dan Excuse. Poin yang dibutuhkan: 56 dengan 0 oudler, 51 dengan 1, 41 dengan 2, 36 dengan 3.\nBonus: petit au bout (1 memenangkan trik terakhir), poignée (10, 13, atau 15 truf: 20, 30, 40), slam (semua trik: +200).
+1807|Lawan di kiri
+1808|Rekan
+1809|Lawan di kanan
+1810|Giliranmu: apakah kamu mengambil di {n}?
+1811|Giliranmu: pilih truf atau lewati.
+1812|Truf
+1813|Kami
+1814|Mereka
+1815|Aku ambil
+1816|Aku lewat
+1817|Belote untuk 4 orang: kamu dan rekanmu (di seberang) melawan 2 lawan. 32 kartu, masing-masing 8.\nMengambil: satu kartu dibuka. Bergiliran, setiap pemain boleh mengambilnya (warnanya menjadi truf). Jika tidak ada yang mengambil, putaran kedua memungkinkan memilih warna lain. Jika semua lewat, kartu dibagi ulang.\nTruf: Jack 20, 9 14, As 11, 10 10, Raja 4, Ratu 3. Warna lain: As 11, 10 10, Raja 4, Ratu 3, Jack 2.\nHarus mengikuti warna; jika tidak, potong dengan truf (lebih tinggi jika bisa), kecuali rekanmu sedang menang. Pada truf, naiklah jika bisa.\nBelote-rebelote: Raja + Ratu truf = 20 poin. Trik terakhir: +10. Capot (semua trik): +90.\nPengambil harus mendapat poin lebih banyak dari lawan, jika tidak dia “di dalam”: lawan mendapat 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Trik terakhir: +10
+1821|Kami {a} · Mereka {b}
+1822|Pengambil gagal!
+1823|Capot!
+1824|🏆 Hebat, kalian menang! (+4 poin)
+1825|Kalian kalah di pembagian ini.
+1826|Aturan permainan
+1827|Komputer mengambil {n} kartu.
+1828|Komputer mengambil satu kartu.
+1829|Komputer memilih {n}.
+1830|Kamu harus mengambil {n} kartu atau menjawab dengan angka 7.
+1831|Giliranmu: mainkan kartu dengan warna atau nilai yang sama.
+1832|Kamu tidak bisa bermain: ambil satu kartu.
+1833|Komputer punya {n} kartu
+1834|Tumpukan
+1835|Warna yang diminta
+1836|Mainkan kartu dengan warna atau nilai yang sama dengan kartu teratas.\n8: bisa dimainkan di atas apa saja, kamu memilih warnanya.\n7: lawan mengambil 2 kartu (bisa menjawab dengan 7 lain: +2).\nAs: lawan melewatkan gilirannya.\nJika tidak bisa bermain, kamu mengambil satu kartu. Yang pertama kehabisan kartu menang.
+1837|Aturan resmi
+1838|Rummy yang dikenal semua orang: 13 kartu, buka dengan 51 poin.
+1839|Aturan khusus
+1840|14 kartu, satu kartu dasar yang terlihat yang hanya bisa diambil dengan selesai sekaligus, kartu buangan hanya diambil untuk keluar.
+1841|Di giliran pertama, kamu tidak boleh mengambil kartu buangan.
+1842|Untuk mengambil kartu buangan, kamu harus bisa membuka (51 poin) dengan kartu ini.
+1843|Kartu ini hanya bisa diambil jika kamu selesai sekaligus (minimal 51 poin).
+1844|Kombinasi ini tidak valid.
+1845|Pembukaan berhasil!
+1846|Pembukaan: {n} / 51 poin
+1847|Kartu ini tidak cocok di sini.
+1848|Turunkan 51 poin atau batalkan sebelum membuang.
+1849|Kamu mengambil kartu buangan: kamu harus membuka (menurunkan 51 poin).
+1850|Pilih hanya satu kartu untuk dibuang.
+1851|Kamu masih punya {n} poin.
+1852|Giliranmu: ambil atau ambil kartu buangan.
+1853|Turunkan kombinasi, lengkapi yang ada di meja, lalu buang satu kartu.
+1854|Turunkan kombinasi (51 poin untuk membuka), lalu buang satu kartu.
+1855|Kartu dasar
+1856|Tumpukan buangan
+1857|Kombinasi {n}
+1858|Turunkan
+1859|Buang
+1860|Setiap pemain punya 14 kartu. Pemain pertama mengambil kartu ke-15. Di dasar tumpukan ada satu kartu menghadap atas: hanya bisa diambil jika kamu selesai sekaligus (semua kartu diturunkan, minimal 51 poin). Jika tidak, bermain biasa dan membuang terbuka.\nDi giliran pertama, kartu buangan tidak boleh diambil. Mulai giliran kedua boleh, tetapi kamu wajib membuka (minimal 51 poin dengan kartu itu).\nKombinasi: urutan 3+ kartu dengan warna sama, atau tiga/empat kartu bernilai sama dengan warna berbeda. Joker menggantikan kartu apa pun. Setelah membuka, kombinasi di meja bisa dilengkapi. Yang pertama kehabisan kartu menang.
+1861|Setiap pemain punya 13 kartu. Di gilirannya: ambil (atau ambil kartu buangan), turunkan kombinasi jika mau, lalu buang satu kartu.\nKombinasi: urutan 3+ kartu dengan warna sama (As rendah atau tinggi, tanpa memutar) atau tiga/empat kartu bernilai sama dengan warna berbeda. Joker menggantikan kartu apa pun.\nPembukaan: penurunan pertama harus bernilai minimal 51 poin (As = 11, kartu gambar = 10, As di A-2-3 = 1). Setelah itu kamu bisa melengkapi semua kombinasi di meja dan menukar joker dengan kartu yang diwakilinya.\nYang pertama kehabisan kartu menang.
+1862|Komputer mengambil kartu buangan.
+1863|Komputer mengambil satu kartu.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

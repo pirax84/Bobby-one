@@ -1785,3 +1785,84 @@
 1784|Uskoro
 1785|Ova igra stiže uskoro.
 1786|Sam protiv računala
+1787|Poignée najavljena ({n} aduta): +{v}
+1788|Excuse
+1789|Adut {n}
+1790|Igrač slijeva
+1791|Igrač nasuprot
+1792|Igrač zdesna
+1793|Na tebi je red: odaberi svoju ponudu ili pasaj.
+1794|{n} razmišlja…
+1795|Uzeo si: odbaci 6 karata (bez kralja, bez bouta, aduti samo ako nemaš izbora).
+1796|{n} uzima s „{b}” i odbacuje…
+1797|Na tebi je red za igru.
+1798|Izgubio si ovo dijeljenje.
+1799|Igrač koji je uzeo ima {a} bodova s {b} boutova (trebalo je {c}). Tvoj rezultat: {m}
+1800|Igrač koji uzima
+1801|Štihovi
+1802|Pas
+1803|Talon
+1804|Odbacivanje: {n} / 6
+1805|Odbaci
+1806|Francuski tarok, 4 igrača: 78 karata (56 u bojama, 21 adut, Excuse). Svatko dobiva 18 karata, 6 čini talon.\nLicitacija: Pas, Petite, Garde, Garde sans (talon neviđen), Garde contre (talon ide braniteljima). Igrač koji uzima igra sam protiv trojice.\nUz Petite ili Garde uzima talon i odbacuje 6 karata (bez kralja, bez bouta; aduti samo ako je nužno).\nTreba pratiti boju; inače rezati adutom (više ako možeš). Kod aduta idi više ako možeš. Excuse se može igrati bilo kada i nikad ne nosi štih.\nBoutovi su 21, 1 (petit) i Excuse. Potrebni bodovi: 56 s 0 boutova, 51 s 1, 41 s 2, 36 s 3.\nBonusi: petit au bout (1 nosi zadnji štih), poignée (10, 13 ili 15 aduta: 20, 30, 40), šlem (svi štihovi: +200).
+1807|Protivnik slijeva
+1808|Partner
+1809|Protivnik zdesna
+1810|Na tebi je red: uzimaš li na {n}?
+1811|Na tebi je red: odaberi adut ili pasaj.
+1812|Adut
+1813|Mi
+1814|Oni
+1815|Uzimam
+1816|Pasam
+1817|Belote za 4: ti i tvoj partner (nasuprot) protiv 2 protivnika. 32 karte, po 8.\nUzimanje: okrene se karta. Redom je svatko može uzeti (njezina boja postaje adut). Ako je nitko ne uzme, u drugom krugu može se odabrati druga boja. Ako svi pasaju, dijeli se ponovno.\nAdut: Dečko 20, 9 14, As 11, 10 10, Kralj 4, Dama 3. Ostale boje: As 11, 10 10, Kralj 4, Dama 3, Dečko 2.\nTreba pratiti boju; inače rezati adutom (više ako možeš), osim ako tvoj partner nosi. Kod aduta idi više ako možeš.\nBelote-rebelote: Kralj + Dama aduta = 20 bodova. Zadnji štih: +10. Capot (svi štihovi): +90.\nTko je uzeo mora osvojiti više bodova od protivnika, inače je „unutra”: protivnici dobivaju 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Zadnji štih: +10
+1821|Mi {a} · Oni {b}
+1822|Igrač nije uspio!
+1823|Capot!
+1824|🏆 Bravo, pobijedili ste! (+4 boda)
+1825|Izgubili ste ovo dijeljenje.
+1826|Pravila igre
+1827|Računalo vuče {n} karata.
+1828|Računalo vuče kartu.
+1829|Računalo bira {n}.
+1830|Moraš povući {n} karata ili odgovoriti sedmicom.
+1831|Na tebi je red: odigraj kartu iste boje ili vrijednosti.
+1832|Ne možeš igrati: povuci kartu.
+1833|Računalo ima {n} karata
+1834|Špil
+1835|Tražena boja
+1836|Odigraj kartu iste boje ili vrijednosti kao gornja.\n8: igra se na sve, ti biraš boju.\n7: protivnik vuče 2 karte (može odgovoriti drugom sedmicom: +2).\nAs: protivnik preskače potez.\nAko ne možeš igrati, vučeš kartu. Pobjeđuje tko prvi ostane bez karata.
+1837|Službena pravila
+1838|Remi koji svi poznaju: 13 karata, izlaganje od 51 boda.
+1839|Vlastita pravila
+1840|14 karata, vidljiva donja karta koja se uzima samo završavanjem odjednom, odbačena se podiže samo za izlazak.
+1841|U prvom potezu ne smiješ podići odbačenu kartu.
+1842|Da bi podigao odbačenu kartu, moraš s njom moći izaći (51 bod).
+1843|Ova se karta uzima samo ako završiš odjednom (najmanje 51 bod).
+1844|Ova kombinacija nije valjana.
+1845|Izlaganje uspjelo!
+1846|Izlaganje: {n} / 51 bod
+1847|Ova karta ovdje ne pristaje.
+1848|Izloži 51 bod ili poništi prije odbacivanja.
+1849|Podigao si odbačenu kartu: moraš izaći (izložiti 51 bod).
+1850|Odaberi samo jednu kartu za odbacivanje.
+1851|Ostalo ti je {n} bodova.
+1852|Na tebi je red: vuci ili uzmi odbačenu kartu.
+1853|Izlaži kombinacije, dopuni one na stolu, pa odbaci kartu.
+1854|Izlaži kombinacije (51 bod za otvaranje), pa odbaci kartu.
+1855|Donja karta
+1856|Odbačeni špil
+1857|Kombinacija {n}
+1858|Izloži
+1859|Odbaci
+1860|Svatko ima 14 karata. Onaj tko počinje vuče 15. kartu. Na dnu špila leži karta okrenuta licem prema gore: uzima se samo završavanjem odjednom (sve karte izložene, najmanje 51 bod). Inače se igra normalno i odbacuje otvoreno.\nU prvom potezu ne može se podići odbačena karta. Od drugog poteza može, ali tada je obavezno izaći (najmanje 51 bod s tom kartom).\nKombinacija: niz od 3+ karata iste boje ili tri/četiri iste vrijednosti u različitim bojama. Joker zamjenjuje bilo koju kartu. Nakon izlaganja dopunjavaju se kombinacije na stolu. Pobjeđuje tko prvi ostane bez karata.
+1861|Svatko ima 13 karata. Na potezu: vuci (ili uzmi odbačenu kartu), izloži kombinacije ako želiš i odbaci kartu.\nKombinacija: niz od 3+ karata iste boje (as nisko ili visoko, bez kruga) ili tri/četiri iste vrijednosti u različitim bojama. Joker zamjenjuje bilo koju kartu.\nIzlaganje: prvo izlaganje mora vrijediti najmanje 51 bod (as = 11, figure = 10, as u A-2-3 = 1). Nakon toga možeš dopunjavati sve kombinacije na stolu i zamijeniti jokera kartom koju predstavlja.\nPobjeđuje tko prvi ostane bez karata.
+1862|Računalo je uzelo odbačenu kartu.
+1863|Računalo je povuklo kartu.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

@@ -1785,3 +1785,84 @@
 1784|Drīzumā
 1785|Šī spēle būs drīzumā.
 1786|Vienatnē pret datoru
+1787|Poignée pieteikta ({n} trumpji): +{v}
+1788|Excuse
+1789|Trumpis {n}
+1790|Spēlētājs pa kreisi
+1791|Spēlētājs pretī
+1792|Spēlētājs pa labi
+1793|Tava kārta: izvēlies solījumu vai pasē.
+1794|{n} domā…
+1795|Tu paņēmi: nomet 6 kārtis (bez karaļa, bez oudlera, trumpjus tikai ja nav izvēles).
+1796|{n} ņem ar “{b}” un met kārtis…
+1797|Tava kārta spēlēt.
+1798|Tu zaudēji šo sadali.
+1799|Ņēmējam ir {a} punkti un {b} oudleri (vajadzēja {c}). Tavs rezultāts: {m}
+1800|Ņēmējs
+1801|Stiķi
+1802|Pase
+1803|Suns
+1804|Nomešana: {n} / 6
+1805|Mest
+1806|Franču taro, 4 spēlētāji: 78 kārtis (56 krāsu, 21 trumpis, Excuse). Katrs saņem 18 kārtis, 6 veido suni.\nSolījumi: Pase, Petite, Garde, Garde sans (suns neredzams), Garde contre (suns tiek aizstāvjiem). Ņēmējs spēlē viens pret trim.\nAr Petite vai Garde ņēmējs paņem suni un nomet 6 kārtis (bez karaļa, bez oudlera; trumpjus tikai nepieciešamības gadījumā).\nJāseko krāsai; citādi jāsit ar trumpi (ja var, ar augstāku). Spēlējot trumpi, ej augstāk, ja vari. Excuse var spēlēt jebkurā laikā, un tā nekad neņem stiķi.\nOudleri ir 21, 1 (petit) un Excuse. Vajadzīgie punkti: 56 ar 0 oudleriem, 51 ar 1, 41 ar 2, 36 ar 3.\nBonusi: petit au bout (1 ņem pēdējo stiķi), poignée (10, 13 vai 15 trumpji: 20, 30, 40), slems (visi stiķi: +200).
+1807|Pretinieks pa kreisi
+1808|Partneris
+1809|Pretinieks pa labi
+1810|Tava kārta: vai ņem uz {n}?
+1811|Tava kārta: izvēlies trumpi vai pasē.
+1812|Trumpis
+1813|Mēs
+1814|Viņi
+1815|Ņemu
+1816|Pasēju
+1817|Belote četriem: tu un tavs partneris (pretī) pret 2 pretiniekiem. 32 kārtis, katram 8.\nŅemšana: tiek atvērta kārts. Pēc kārtas katrs to var ņemt (tās krāsa kļūst par trumpi). Ja neviens neņem, otrajā lokā var izvēlēties citu krāsu. Ja visi pasē, kārtis sadala no jauna.\nTrumpis: Kalps 20, 9 14, Dūzis 11, 10 10, Karalis 4, Dāma 3. Citas krāsas: Dūzis 11, 10 10, Karalis 4, Dāma 3, Kalps 2.\nJāseko krāsai; citādi jāsit ar trumpi (ja var, ar augstāku), ja vien stiķi neņem partneris. Trumpim ej augstāk, ja vari.\nBelote-rebelote: trumpja Karalis + Dāma = 20 punkti. Pēdējais stiķis: +10. Capot (visi stiķi): +90.\nŅēmējam jāiegūst vairāk punktu nekā pretiniekiem, citādi viņš ir “iekšā”: pretinieki iegūst 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Pēdējais stiķis: +10
+1821|Mēs {a} · Viņi {b}
+1822|Ņēmējam neizdevās!
+1823|Capot!
+1824|🏆 Malači, jūs uzvarējāt! (+4 punkti)
+1825|Jūs zaudējāt šo sadali.
+1826|Spēles noteikumi
+1827|Dators velk {n} kārtis.
+1828|Dators velk kārti.
+1829|Dators izvēlas {n}.
+1830|Tev jāvelk {n} kārtis vai jāatbild ar septiņnieku.
+1831|Tava kārta: spēlē tās pašas krāsas vai vērtības kārti.
+1832|Tu nevari spēlēt: velc kārti.
+1833|Datoram ir {n} kārtis
+1834|Kava
+1835|Prasītā krāsa
+1836|Spēlē tās pašas krāsas vai vērtības kārti kā augšējā.\n8: spēlējams uz visa, krāsu izvēlies tu.\n7: pretinieks velk 2 kārtis (var atbildēt ar vēl vienu septiņnieku: +2).\nDūzis: pretinieks izlaiž gājienu.\nJa nevari spēlēt, velc kārti. Uzvar tas, kurš pirmais tiek vaļā no kārtīm.
+1837|Oficiālie noteikumi
+1838|Rummijs, ko zina visi: 13 kāršu, izlikšana no 51 punkta.
+1839|Pašu noteikumi
+1840|14 kārtis, redzama apakšējā kārts, ko drīkst ņemt tikai beidzot uzreiz, nomesto kārti paņem tikai lai izietu.
+1841|Pirmajā gājienā nomesto kārti paņemt nedrīkst.
+1842|Lai paņemtu nomesto kārti, ar to jāspēj izlikt (51 punkts).
+1843|Šo kārti drīkst ņemt tikai tad, ja beidz uzreiz (vismaz 51 punkts).
+1844|Šī kombinācija nav derīga.
+1845|Izlikšana izdevās!
+1846|Izlikšana: {n} / 51 punkts
+1847|Šī kārts šeit neder.
+1848|Izliec 51 punktu vai atcel pirms nomešanas.
+1849|Tu paņēmi nomesto kārti: jāizliek (51 punkts).
+1850|Izvēlies tikai vienu kārti nomešanai.
+1851|Tev bija atlikuši {n} punkti.
+1852|Tava kārta: velc vai ņem nomesto kārti.
+1853|Izliec kombinācijas, papildini galda kombinācijas un nomet kārti.
+1854|Izliec kombinācijas (51 punkts atvēršanai) un nomet kārti.
+1855|Apakšējā kārts
+1856|Nomesto kāršu kaudze
+1857|Kombinācija {n}
+1858|Izlikt
+1859|Mest
+1860|Katram ir 14 kārtis. Sācējs velk 15. kārti. Kavas apakšā guļ kārts ar seju uz augšu: to drīkst ņemt tikai tad, ja beidz uzreiz (visas kārtis izliktas, vismaz 51 punkts). Citādi spēlē kā parasti un met atklāti.\nPirmajā gājienā nomesto kārti paņemt nedrīkst. No otrā gājiena drīkst, bet tad obligāti jāizliek (vismaz 51 punkts ar šo kārti).\nKombinācija: vismaz 3 vienas krāsas kārtis pēc kārtas vai trīs/četras vienādas vērtības kārtis dažādās krāsās. Džokers aizstāj jebkuru kārti. Pēc izlikšanas drīkst papildināt galda kombinācijas. Uzvar tas, kurš pirmais tiek vaļā no kārtīm.
+1861|Katram ir 13 kārtis. Savā gājienā: velc (vai ņem nomesto kārti), vēlēšanās izliec kombinācijas un nomet kārti.\nKombinācija: vismaz 3 vienas krāsas kārtis pēc kārtas (dūzis zems vai augsts, bez apļa) vai trīs/četras vienādas vērtības kārtis dažādās krāsās. Džokers aizstāj jebkuru kārti.\nIzlikšana: pirmajai izlikšanai jābūt vismaz 51 punkta vērtībā (dūzis = 11, figūras = 10, dūzis A-2-3 = 1). Pēc tam vari papildināt visas galda kombinācijas un nomainīt džokeru pret kārti, ko tas aizstāj.\nUzvar tas, kurš pirmais tiek vaļā no kārtīm.
+1862|Dators paņēma nomesto kārti.
+1863|Dators izvilka kārti.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

@@ -1785,3 +1785,84 @@
 1784|Již brzy
 1785|Tato hra přijde už brzy.
 1786|Sám proti počítači
+1787|Poignée ohlášena ({n} trumfů): +{v}
+1788|Excuse
+1789|Trumf {n}
+1790|Hráč vlevo
+1791|Hráč naproti
+1792|Hráč vpravo
+1793|Jsi na tahu: vyber svou nabídku, nebo pasuj.
+1794|{n} přemýšlí…
+1795|Vzal jsi: odhoď 6 karet (žádný král, žádný oudler, trumfy jen v nouzi).
+1796|{n} bere s „{b}“ a odhazuje…
+1797|Jsi na tahu.
+1798|Prohrál jsi toto rozdání.
+1799|Hrající má {a} bodů s {b} oudlery (bylo třeba {c}). Tvé skóre: {m}
+1800|Hrající
+1801|Zdvihy
+1802|Pas
+1803|Pes
+1804|Odhoz: {n} / 6
+1805|Odhodit
+1806|Francouzské tarok, 4 hráči: 78 karet (56 barevných, 21 trumfů, Excuse). Každý dostane 18 karet, 6 tvoří psa.\nLicitace: Pas, Petite, Garde, Garde sans (pes neviděný), Garde contre (pes jde obráncům). Hrající hraje sám proti třem.\nPři Petite nebo Garde hrající vezme psa a odhodí 6 karet (žádný král, žádný oudler; trumfy jen je-li třeba).\nMusíš přiznat barvu; jinak přebít trumfem (výš, pokud lze). Při trumfu jdi výš, pokud můžeš. Excuse lze zahrát kdykoli a nikdy nebere zdvih.\nOudlery jsou 21, 1 (petit) a Excuse. Potřebné body: 56 s 0 oudlery, 51 s 1, 41 se 2, 36 se 3.\nBonusy: petit au bout (1 vyhraje poslední zdvih), poignée (10, 13 nebo 15 trumfů: 20, 30, 40), slem (všechny zdvihy: +200).
+1807|Soupeř vlevo
+1808|Partner
+1809|Soupeř vpravo
+1810|Jsi na tahu: bereš na {n}?
+1811|Jsi na tahu: vyber trumf, nebo pasuj.
+1812|Trumf
+1813|My
+1814|Oni
+1815|Beru
+1816|Pasuji
+1817|Belote pro 4: ty a tvůj partner (naproti) proti 2 soupeřům. 32 karet, po 8.\nBrání: otočí se karta. Postupně ji může vzít každý (její barva se stane trumfem). Nikdo-li ji nevezme, ve druhém kole lze zvolit jinou barvu. Pasují-li všichni, rozdává se znovu.\nTrumf: Spodek 20, 9 14, Eso 11, 10 10, Král 4, Dáma 3. Ostatní barvy: Eso 11, 10 10, Král 4, Dáma 3, Spodek 2.\nMusíš přiznat barvu; jinak přebít trumfem (výš, pokud lze), pokud nebere tvůj partner. Při trumfu jdi výš, pokud můžeš.\nBelote-rebelote: Král + Dáma trumfů = 20 bodů. Poslední zdvih: +10. Capot (všechny zdvihy): +90.\nHrající musí získat víc bodů než soupeři, jinak je „uvnitř“: soupeři získají 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Poslední zdvih: +10
+1821|My {a} · Oni {b}
+1822|Hrající neuspěl!
+1823|Capot!
+1824|🏆 Skvělé, vyhráli jste! (+4 body)
+1825|Prohráli jste toto rozdání.
+1826|Pravidla hry
+1827|Počítač si bere {n} karet.
+1828|Počítač si bere kartu.
+1829|Počítač volí {n}.
+1830|Musíš si vzít {n} karet, nebo odpovědět sedmičkou.
+1831|Jsi na tahu: zahraj kartu stejné barvy nebo hodnoty.
+1832|Nemůžeš hrát: vezmi si kartu.
+1833|Počítač má karet: {n}
+1834|Balíček
+1835|Požadovaná barva
+1836|Zahraj kartu stejné barvy nebo hodnoty jako vrchní.\n8: lze zahrát na cokoli, volíš barvu.\n7: soupeř si bere 2 karty (může odpovědět další sedmičkou: +2).\nEso: soupeř vynechává tah.\nPokud nemůžeš hrát, vezmeš si kartu. Vyhrává, kdo se první zbaví karet.
+1837|Oficiální pravidla
+1838|Rummy, které zná každý: 13 karet, vynesení od 51 bodů.
+1839|Vlastní pravidla
+1840|14 karet, viditelná spodní karta, kterou lze vzít jen při ukončení najednou, odhozenou lze zvednout jen pro vynesení.
+1841|V prvním tahu nesmíš zvednout odhozenou kartu.
+1842|Abys zvedl odhozenou kartu, musíš s ní umět vynést (51 bodů).
+1843|Tuto kartu lze vzít jen při ukončení najednou (minimálně 51 bodů).
+1844|Tato kombinace není platná.
+1845|Vynesení se povedlo!
+1846|Vynesení: {n} / 51 bodů
+1847|Tato karta sem nepasuje.
+1848|Vyloz 51 bodů, nebo zruš před odhozem.
+1849|Zvedl jsi odhozenou kartu: musíš vynést (vyložit 51 bodů).
+1850|Vyber jen jednu kartu k odhození.
+1851|Zbývalo ti {n} bodů.
+1852|Jsi na tahu: táhni, nebo vezmi odhozenou kartu.
+1853|Vykládej kombinace, doplňuj ty na stole a odhoď kartu.
+1854|Vykládej kombinace (51 bodů k otevření) a odhoď kartu.
+1855|Spodní karta
+1856|Odhazovací balíček
+1857|Kombinace {n}
+1858|Vyložit
+1859|Odhodit
+1860|Každý má 14 karet. Začínající si bere 15. kartu. Na dně balíčku leží karta lícem nahoru: lze ji vzít jen při ukončení najednou (všechny karty vyložené, minimálně 51 bodů). Jinak se hraje normálně a odhazuje se lícem nahoru.\nV prvním tahu nelze zvednout odhozenou kartu. Od druhého tahu ano, ale pak je nutné vynést (alespoň 51 bodů s touto kartou).\nKombinace: postupka 3+ karet stejné barvy, nebo trojice/čtveřice stejné hodnoty v různých barvách. Žolík nahrazuje libovolnou kartu. Po vynesení lze doplňovat kombinace na stole. Vyhrává, kdo se první zbaví karet.
+1861|Každý má 13 karet. Na tahu: táhni (nebo vezmi odhozenou kartu), případně vyložit kombinace a odhoď kartu.\nKombinace: postupka 3+ karet stejné barvy (eso nízké nebo vysoké, bez přechodu) nebo trojice/čtveřice stejné hodnoty v různých barvách. Žolík nahrazuje libovolnou kartu.\nVynesení: první vyložení musí mít hodnotu alespoň 51 bodů (eso = 11, figury = 10, eso v A-2-3 = 1). Poté můžeš doplňovat všechny kombinace na stole a vyměnit žolíka za kartu, kterou zastupuje.\nVyhrává, kdo se první zbaví karet.
+1862|Počítač vzal odhozenou kartu.
+1863|Počítač si vzal kartu.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

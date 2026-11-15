@@ -1785,3 +1785,84 @@
 1784|Varsti
 1785|See mäng tuleb varsti.
 1786|Üksi arvuti vastu
+1787|Poignée kuulutatud ({n} trumpi): +{v}
+1788|Excuse
+1789|Trump {n}
+1790|Mängija vasakul
+1791|Mängija vastas
+1792|Mängija paremal
+1793|Sinu kord: vali pakkumine või passi.
+1794|{n} mõtleb…
+1795|Sa võtsid: viska 6 kaarti (ilma kuningata ja oudlerita, trumpe ainult hädaga).
+1796|{n} võtab pakkumisega „{b}” ja viskab…
+1797|Sinu kord mängida.
+1798|Kaotasid selle jaotuse.
+1799|Võtjal on {a} punkti ja {b} oudlerit (vaja oli {c}). Sinu tulemus: {m}
+1800|Võtja
+1801|Võtted
+1802|Pass
+1803|Koer
+1804|Äraviskamine: {n} / 6
+1805|Viska
+1806|Prantsuse tarokk, 4 mängijat: 78 kaarti (56 mastikaarti, 21 trumpi, Excuse). Igaüks saab 18 kaarti, 6 moodustavad koera.\nPakkumised: Pass, Petite, Garde, Garde sans (koera ei näe), Garde contre (koer läheb kaitsjatele). Võtja mängib üksi kolme vastu.\nPetite’i või Garde’iga võtab ta koera ja viskab 6 kaarti ära (ilma kuningata ja oudlerita; trumpe ainult vajadusel).\nMasti tuleb tunnistada; muidu trumbata (võimalusel kõrgema trumbiga). Trumbi puhul mine võimalusel kõrgemale. Excuse’i võib mängida igal ajal ja see ei võida kunagi võtet.\nOudlerid on 21, 1 (petit) ja Excuse. Vajalikud punktid: 56 ilma oudlerita, 51 ühega, 41 kahega, 36 kolmega.\nBoonused: petit au bout (1 võidab viimase võtte), poignée (10, 13 või 15 trumpi: 20, 30, 40), slämm (kõik võtted: +200).
+1807|Vastane vasakul
+1808|Partner
+1809|Vastane paremal
+1810|Sinu kord: kas võtad masti {n} peal?
+1811|Sinu kord: vali trump või passi.
+1812|Trump
+1813|Meie
+1814|Nemad
+1815|Võtan
+1816|Passin
+1817|Belote neljale: sina ja su partner (vastas) kahe vastase vastu. 32 kaarti, igaühel 8.\nVõtmine: pööratakse üles üks kaart. Kordamööda võib igaüks selle võtta (selle mastist saab trump). Kui keegi ei võta, saab teises ringis valida teise masti. Kui kõik passivad, jagatakse uuesti.\nTrump: Soldat 20, 9 14, Äss 11, 10 10, Kuningas 4, Emand 3. Muud mastid: Äss 11, 10 10, Kuningas 4, Emand 3, Soldat 2.\nMasti tuleb tunnistada; muidu trumbata (võimalusel kõrgema trumbiga), välja arvatud kui su partner võidab. Trumbi puhul mine võimalusel kõrgemale.\nBelote-rebelote: trumbi Kuningas + Emand = 20 punkti. Viimane võte: +10. Capot (kõik võtted): +90.\nVõtja peab saama rohkem punkte kui vastased, muidu on ta „sees”: vastased saavad 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Viimane võte: +10
+1821|Meie {a} · Nemad {b}
+1822|Võtja ebaõnnestus!
+1823|Capot!
+1824|🏆 Tubli, te võitsite! (+4 punkti)
+1825|Te kaotasite selle jaotuse.
+1826|Mängureeglid
+1827|Arvuti tõmbab {n} kaarti.
+1828|Arvuti tõmbab kaardi.
+1829|Arvuti valib {n}.
+1830|Pead tõmbama {n} kaarti või vastama seitsmega.
+1831|Sinu kord: mängi sama masti või sama väärtusega kaart.
+1832|Sa ei saa käia: tõmba kaart.
+1833|Arvutil on {n} kaarti
+1834|Pakk
+1835|Nõutud mast
+1836|Mängi kaart, mis on sama masti või sama väärtusega kui ülemine.\n8: sobib kõigele, sina valid masti.\n7: vastane tõmbab 2 kaarti (võib vastata uue seitsmega: +2).\nÄss: vastane jätab käigu vahele.\nKui sa ei saa käia, tõmbad kaardi. Võidab see, kellel kaardid esimesena otsa saavad.
+1837|Ametlikud reeglid
+1838|Rummy, mida kõik tunnevad: 13 kaarti, avamine 51 punktiga.
+1839|Oma reeglid
+1840|14 kaarti, nähtav põhjakaart, mida võib võtta ainult ühe korraga lõpetades, äraviskamise saab üles võtta ainult väljumiseks.
+1841|Esimesel käigul ei tohi äraviskamist üles võtta.
+1842|Äraviskamise üles võtmiseks pead selle kaardiga avama saama (51 punkti).
+1843|Seda kaarti võib võtta ainult siis, kui lõpetad ühe korraga (vähemalt 51 punkti).
+1844|See kombinatsioon ei kehti.
+1845|Avamine õnnestus!
+1846|Avamine: {n} / 51 punkti
+1847|See kaart ei sobi siia.
+1848|Pane 51 punkti maha või tühista enne viskamist.
+1849|Võtsid äraviskamise üles: pead avama (51 punkti maha panema).
+1850|Vali viskamiseks ainult üks kaart.
+1851|Sul oli veel {n} punkti.
+1852|Sinu kord: tõmba või võta äraviskamine.
+1853|Pane kombinatsioone maha, täienda laual olevaid ja viska siis kaart.
+1854|Pane kombinatsioone maha (avamiseks 51 punkti) ja viska siis kaart.
+1855|Põhjakaart
+1856|Äraviskamise pakk
+1857|Kombinatsioon {n}
+1858|Pane maha
+1859|Viska
+1860|Igaühel on 14 kaarti. Alustaja tõmbab 15. kaardi. Paki põhjas on nägu üleval kaart: seda võib võtta ainult siis, kui lõpetad ühe korraga (kõik kaardid maha pandud, vähemalt 51 punkti). Muidu mängitakse tavaliselt ja visatakse lahtiselt.\nEsimesel käigul ei tohi äraviskamist üles võtta. Teisest käigust alates tohib, kuid siis tuleb kindlasti avada (vähemalt 51 punkti selle kaardiga).\nKombinatsioon: vähemalt 3 sama masti kaarti reas või kolm/neli sama väärtusega kaarti eri mastidest. Jokker asendab iga kaarti. Pärast avamist võib laual olevaid kombinatsioone täiendada. Võidab see, kellel kaardid esimesena otsa saavad.
+1861|Igaühel on 13 kaarti. Sinu käigul: tõmba (või võta äraviskamine), pane soovi korral kombinatsioone maha ja viska kaart.\nKombinatsioon: vähemalt 3 sama masti kaarti reas (äss madal või kõrge, ilma ringi minemata) või kolm/neli sama väärtusega kaarti eri mastidest. Jokker asendab iga kaarti.\nAvamine: esimene mahapanek peab olema väärt vähemalt 51 punkti (äss = 11, piltkaardid = 10, äss kombinatsioonis A-2-3 = 1). Pärast seda võid täiendada kõiki laual olevaid kombinatsioone ja vahetada jokkeri selle kaardi vastu, mida see esindab.\nVõidab see, kellel kaardid esimesena otsa saavad.
+1862|Arvuti võttis äraviskamise.
+1863|Arvuti tõmbas kaardi.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

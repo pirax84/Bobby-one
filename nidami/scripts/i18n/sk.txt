@@ -1785,3 +1785,84 @@
 1784|Čoskoro
 1785|Táto hra príde čoskoro.
 1786|Sám proti počítaču
+1787|Poignée ohlásená ({n} trumfov): +{v}
+1788|Excuse
+1789|Trumf {n}
+1790|Hráč vľavo
+1791|Hráč oproti
+1792|Hráč vpravo
+1793|Si na ťahu: vyber svoju ponuku, alebo pasuj.
+1794|{n} premýšľa…
+1795|Zobral si: odhoď 6 kariet (žiadny kráľ, žiadny oudler, trumfy len v núdzi).
+1796|{n} berie s „{b}“ a odhadzuje…
+1797|Si na ťahu.
+1798|Prehral si toto rozdanie.
+1799|Hrajúci má {a} bodov s {b} oudlermi (bolo treba {c}). Tvoje skóre: {m}
+1800|Hrajúci
+1801|Zdvihy
+1802|Pas
+1803|Pes
+1804|Odhod: {n} / 6
+1805|Odhodiť
+1806|Francúzske tarok, 4 hráči: 78 kariet (56 farebných, 21 trumfov, Excuse). Každý dostane 18 kariet, 6 tvorí psa.\nLicitácia: Pas, Petite, Garde, Garde sans (pes nevidený), Garde contre (pes ide obrancom). Hrajúci hrá sám proti trom.\nPri Petite alebo Garde hrajúci vezme psa a odhodí 6 kariet (žiadny kráľ, žiadny oudler; trumfy len ak treba).\nMusíš priznať farbu; inak prebiť trumfom (vyššie, ak sa dá). Pri trumfe choď vyššie, ak môžeš. Excuse sa dá zahrať kedykoľvek a nikdy nebere zdvih.\nOudlery sú 21, 1 (petit) a Excuse. Potrebné body: 56 s 0 oudlermi, 51 s 1, 41 s 2, 36 s 3.\nBonusy: petit au bout (1 vyhrá posledný zdvih), poignée (10, 13 alebo 15 trumfov: 20, 30, 40), slem (všetky zdvihy: +200).
+1807|Súper vľavo
+1808|Partner
+1809|Súper vpravo
+1810|Si na ťahu: berieš na {n}?
+1811|Si na ťahu: vyber trumf, alebo pasuj.
+1812|Trumf
+1813|My
+1814|Oni
+1815|Beriem
+1816|Pasujem
+1817|Belote pre 4: ty a tvoj partner (oproti) proti 2 súperom. 32 kariet, po 8.\nBranie: otočí sa karta. Postupne ju môže vziať každý (jej farba sa stane trumfom). Ak ju nikto nevezme, v druhom kole možno zvoliť inú farbu. Ak všetci pasujú, rozdáva sa znova.\nTrumf: Spodok 20, 9 14, Eso 11, 10 10, Kráľ 4, Dáma 3. Ostatné farby: Eso 11, 10 10, Kráľ 4, Dáma 3, Spodok 2.\nMusíš priznať farbu; inak prebiť trumfom (vyššie, ak sa dá), pokiaľ nebere tvoj partner. Pri trumfe choď vyššie, ak môžeš.\nBelote-rebelote: Kráľ + Dáma trumfov = 20 bodov. Posledný zdvih: +10. Capot (všetky zdvihy): +90.\nHrajúci musí získať viac bodov ako súperi, inak je „vnútri“: súperi získajú 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Posledný zdvih: +10
+1821|My {a} · Oni {b}
+1822|Hrajúci neuspel!
+1823|Capot!
+1824|🏆 Skvelé, vyhrali ste! (+4 body)
+1825|Prehrali ste toto rozdanie.
+1826|Pravidlá hry
+1827|Počítač si berie {n} kariet.
+1828|Počítač si berie kartu.
+1829|Počítač volí {n}.
+1830|Musíš si vziať {n} kariet, alebo odpovedať sedmičkou.
+1831|Si na ťahu: zahraj kartu rovnakej farby alebo hodnoty.
+1832|Nemôžeš hrať: vezmi si kartu.
+1833|Počítač má kariet: {n}
+1834|Balíček
+1835|Požadovaná farba
+1836|Zahraj kartu rovnakej farby alebo hodnoty ako vrchná.\n8: dá sa zahrať na čokoľvek, voliš farbu.\n7: súper si berie 2 karty (môže odpovedať ďalšou sedmičkou: +2).\nEso: súper vynecháva ťah.\nAk nemôžeš hrať, vezmeš si kartu. Vyhráva, kto sa prvý zbaví kariet.
+1837|Oficiálne pravidlá
+1838|Rummy, ktoré pozná každý: 13 kariet, vynesenie od 51 bodov.
+1839|Vlastné pravidlá
+1840|14 kariet, viditeľná spodná karta, ktorú možno vziať len pri ukončení naraz, odhodenú možno zdvihnúť len na vynesenie.
+1841|V prvom ťahu nesmieš zdvihnúť odhodenú kartu.
+1842|Aby si zdvihol odhodenú kartu, musíš s ňou vedieť vyniesť (51 bodov).
+1843|Túto kartu možno vziať len pri ukončení naraz (minimálne 51 bodov).
+1844|Táto kombinácia nie je platná.
+1845|Vynesenie sa podarilo!
+1846|Vynesenie: {n} / 51 bodov
+1847|Táto karta sem nepasuje.
+1848|Vylož 51 bodov, alebo zruš pred odhodením.
+1849|Zdvihol si odhodenú kartu: musíš vyniesť (vyložiť 51 bodov).
+1850|Vyber len jednu kartu na odhodenie.
+1851|Zostávalo ti {n} bodov.
+1852|Si na ťahu: ťahaj, alebo vezmi odhodenú kartu.
+1853|Vykladaj kombinácie, dopĺňaj tie na stole a odhoď kartu.
+1854|Vykladaj kombinácie (51 bodov na otvorenie) a odhoď kartu.
+1855|Spodná karta
+1856|Odhadzovací balíček
+1857|Kombinácia {n}
+1858|Vyložiť
+1859|Odhodiť
+1860|Každý má 14 kariet. Začínajúci si berie 15. kartu. Na dne balíčka leží karta lícom nahor: možno ju vziať len pri ukončení naraz (všetky karty vyložené, minimálne 51 bodov). Inak sa hrá normálne a odhadzuje lícom nahor.\nV prvom ťahu nemožno zdvihnúť odhodenú kartu. Od druhého ťahu áno, ale vtedy treba vyniesť (aspoň 51 bodov s touto kartou).\nKombinácia: postupka 3+ kariet rovnakej farby, alebo trojica/štvorica rovnakej hodnoty v rôznych farbách. Žolík nahrádza ľubovoľnú kartu. Po vynesení možno dopĺňať kombinácie na stole. Vyhráva, kto sa prvý zbaví kariet.
+1861|Každý má 13 kariet. Na ťahu: ťahaj (alebo vezmi odhodenú kartu), prípadne vyložiť kombinácie a odhoď kartu.\nKombinácia: postupka 3+ kariet rovnakej farby (eso nízke alebo vysoké, bez prechodu) alebo trojica/štvorica rovnakej hodnoty v rôznych farbách. Žolík nahrádza ľubovoľnú kartu.\nVynesenie: prvé vyloženie musí mať hodnotu aspoň 51 bodov (eso = 11, figúry = 10, eso v A-2-3 = 1). Potom môžeš dopĺňať všetky kombinácie na stole a vymeniť žolíka za kartu, ktorú zastupuje.\nVyhráva, kto sa prvý zbaví kariet.
+1862|Počítač vzal odhodenú kartu.
+1863|Počítač si vzal kartu.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

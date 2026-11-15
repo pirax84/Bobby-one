@@ -1785,3 +1785,84 @@
 1784|Coming soon
 1785|This game is coming very soon.
 1786|Solo against the computer
+1787|Handful announced ({n} trumps): +{v}
+1788|Excuse
+1789|Trump {n}
+1790|Player on the left
+1791|Player opposite
+1792|Player on the right
+1793|Your turn: choose your bid or pass.
+1794|{n} is thinking…
+1795|You took it: discard 6 cards (no King, no oudler, trumps only if you have no choice).
+1796|{n} takes with “{b}” and makes the discard…
+1797|Your turn to play.
+1798|You lost this deal.
+1799|The taker has {a} points with {b} oudler(s) (needed {c}). Your score: {m}
+1800|Taker
+1801|Tricks
+1802|Pass
+1803|Kitty
+1804|Discard: {n} / 6
+1805|Discard
+1806|French Tarot, 4 players: 78 cards (56 suit cards, 21 trumps, the Excuse). Everyone gets 18 cards, 6 form the kitty.\nBidding: Pass, Petite, Garde, Garde sans (kitty unseen), Garde contre (kitty goes to the defenders). The taker plays alone against three.\nWith Petite or Garde, the taker takes the kitty then discards 6 cards (no King, no oudler; trumps only if necessary).\nYou must follow suit; otherwise trump (overtrump if possible). When trumps are led, go higher if you can. The Excuse can be played any time and never wins the trick.\nOudlers are the 21, the 1 (petit) and the Excuse. Points needed: 56 with 0 oudlers, 51 with 1, 41 with 2, 36 with 3.\nBonuses: petit au bout (the 1 wins the last trick), handful (10, 13 or 15 trumps: 20, 30, 40), slam (all tricks: +200).
+1807|Opponent on the left
+1808|Partner
+1809|Opponent on the right
+1810|Your turn: do you take at {n}?
+1811|Your turn: choose a trump suit or pass.
+1812|Trump
+1813|Us
+1814|Them
+1815|I take
+1816|I pass
+1817|Belote, 4 players: you and your partner (opposite) against the 2 opponents. 32 cards, 8 each.\nTaking: a card is turned up. In turn, each player may take it (its suit becomes trump). If nobody takes it, a second round lets you choose another suit. If everyone passes, the cards are redealt.\nTrump: Jack 20, 9 14, Ace 11, 10 10, King 4, Queen 3. Other suits: Ace 11, 10 10, King 4, Queen 3, Jack 2.\nYou must follow suit; otherwise trump (go higher if possible), unless your partner is winning. When trumps are led, go higher if you can.\nBelote-rebelote: King + Queen of trump = 20 points. Last trick: +10. Capot (all tricks): +90.\nThe taker must score more than the opponents, otherwise they are “inside”: the opponents score 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Last trick bonus: +10
+1821|Us {a} · Them {b}
+1822|The taker failed!
+1823|Capot!
+1824|🏆 Well done, you won! (+4 points)
+1825|You lost this deal.
+1826|Game rules
+1827|The computer draws {n} cards.
+1828|The computer draws a card.
+1829|The computer chooses {n}.
+1830|You must draw {n} cards or answer with a 7.
+1831|Your turn: play a card of the same suit or value.
+1832|You can't play: draw a card.
+1833|The computer has {n} cards
+1834|Stock
+1835|Requested suit
+1836|Play a card of the same suit or value as the top card.\n8: playable on anything, you choose the suit.\n7: the opponent draws 2 cards (they may answer with another 7: +2 more).\nAce: the opponent skips their turn.\nIf you can't play, you draw a card. The first player with no cards wins.
+1837|Official rules
+1838|The Rummy everyone knows: 13 cards, opening at 51 points.
+1839|Custom rules
+1840|14 cards, a visible bottom card that can only be taken by going out in one go, discard pickup only to go out.
+1841|On the first turn, you can't pick up the discard.
+1842|To pick up the discard, you must be able to open (51 points) with this card.
+1843|This card can only be taken if you go out in one go (51 points minimum).
+1844|This combination isn't valid.
+1845|Opening successful!
+1846|Opening: {n} / 51 points
+1847|This card doesn't fit here.
+1848|Lay down 51 points or cancel before discarding.
+1849|You picked up the discard: you must open (lay down 51 points).
+1850|Choose a single card to discard.
+1851|You had {n} points left.
+1852|Your turn: draw or take the discard.
+1853|Lay down melds, add to those on the table, then discard a card.
+1854|Lay down melds (51 points to open), then discard a card.
+1855|Bottom card
+1856|Discard pile
+1857|Meld {n}
+1858|Lay down
+1859|Discard
+1860|Everyone has 14 cards. The starter draws the 15th card. At the bottom of the stock, one card is face up: it can only be taken by going out in one go (all your cards laid down, 51 points minimum). Otherwise you play normally and discard, cards face up.\nOn the first turn, you can't pick up the discard. From the second turn on, you may pick it up, but then you must open (lay down at least 51 points using that card).\nMeld: a run of 3+ cards of the same suit, or a set of the same value in different suits. The joker replaces any card. After opening, you can add to the melds on the table. The first player with no cards wins.
+1861|Everyone has 13 cards. On your turn: draw (or take the discard), lay down melds if you wish, then discard a card.\nMeld: a run of 3+ cards of the same suit (Ace low or high, no wrap-around), or a set of the same value in different suits. The joker replaces any card.\nOpening: your first lay-down must be worth at least 51 points (Ace = 11, face cards = 10, Ace in A-2-3 = 1). After that you can add to every meld on the table and swap a joker for the card it stands for.\nThe first player with no cards wins.
+1862|The computer took the discard.
+1863|The computer drew a card.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

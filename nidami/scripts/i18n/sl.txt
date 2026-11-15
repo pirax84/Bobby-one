@@ -1785,3 +1785,84 @@
 1784|Kmalu
 1785|Ta igra prihaja kmalu.
 1786|Sam proti računalniku
+1787|Poignée napovedana ({n} adutov): +{v}
+1788|Excuse
+1789|Adut {n}
+1790|Igralec na levi
+1791|Igralec nasproti
+1792|Igralec na desni
+1793|Si na vrsti: izberi licitacijo ali pasiraj.
+1794|{n} razmišlja…
+1795|Vzel si: odvrzi 6 kart (brez kralja, brez bouta, aduti samo, če nimaš izbire).
+1796|{n} vzame z »{b}« in odvrže…
+1797|Na vrsti si za igro.
+1798|Izgubil si to delitev.
+1799|Igralec, ki je vzel, ima {a} točk z {b} bouti (potrebnih je bilo {c}). Tvoj rezultat: {m}
+1800|Igralec, ki vzame
+1801|Štihi
+1802|Pas
+1803|Pes
+1804|Odmet: {n} / 6
+1805|Odvrzi
+1806|Francoski tarok, 4 igralci: 78 kart (56 barvnih, 21 adutov, Excuse). Vsak dobi 18 kart, 6 jih tvori psa.\nLicitacija: Pas, Petite, Garde, Garde sans (pes nevidjen), Garde contre (pes gre branilcem). Igralec, ki vzame, igra sam proti trem.\nPri Petite ali Garde vzame psa in odvrže 6 kart (brez kralja, brez bouta; aduti le, če je nujno).\nBarvo je treba priznati; sicer rezati z adutom (višje, če se da). Pri adutu pojdi višje, če lahko. Excuse se lahko igra kadar koli in nikoli ne vzame štiha.\nBouti so 21, 1 (petit) in Excuse. Potrebne točke: 56 z 0 bouti, 51 z 1, 41 z 2, 36 s 3.\nBonusi: petit au bout (1 vzame zadnji štih), poignée (10, 13 ali 15 adutov: 20, 30, 40), šlem (vsi štihi: +200).
+1807|Nasprotnik na levi
+1808|Partner
+1809|Nasprotnik na desni
+1810|Si na vrsti: ali vzameš na {n}?
+1811|Si na vrsti: izberi adut ali pasiraj.
+1812|Adut
+1813|Mi
+1814|Oni
+1815|Vzamem
+1816|Pasiram
+1817|Belote za 4: ti in tvoj partner (nasproti) proti 2 nasprotnikoma. 32 kart, po 8.\nVzem: obrne se karta. Po vrsti jo lahko vzame vsak (njena barva postane adut). Če je nihče ne vzame, se v drugem krogu lahko izbere druga barva. Če vsi pasirajo, se razdeli znova.\nAdut: Fant 20, 9 14, As 11, 10 10, Kralj 4, Dama 3. Druge barve: As 11, 10 10, Kralj 4, Dama 3, Fant 2.\nBarvo je treba priznati; sicer rezati z adutom (višje, če se da), razen če štih jemlje tvoj partner. Pri adutu pojdi višje, če lahko.\nBelote-rebelote: Kralj + Dama aduta = 20 točk. Zadnji štih: +10. Capot (vsi štihi): +90.\nIgralec, ki je vzel, mora doseči več točk kot nasprotnika, sicer je »notri«: nasprotnika dobita 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Zadnji štih: +10
+1821|Mi {a} · Oni {b}
+1822|Igralec ni uspel!
+1823|Capot!
+1824|🏆 Bravo, zmagali ste! (+4 točke)
+1825|Izgubili ste to delitev.
+1826|Pravila igre
+1827|Računalnik vleče {n} kart.
+1828|Računalnik vleče karto.
+1829|Računalnik izbere {n}.
+1830|Moraš vleči {n} kart ali odgovoriti s sedmico.
+1831|Si na vrsti: odigraj karto iste barve ali vrednosti.
+1832|Ne moreš igrati: vleci karto.
+1833|Računalnik ima {n} kart
+1834|Kup
+1835|Zahtevana barva
+1836|Odigraj karto iste barve ali vrednosti kot zgornja.\n8: igra se na vse, ti izbereš barvo.\n7: nasprotnik vleče 2 karti (lahko odgovori z novo sedmico: +2).\nAs: nasprotnik izpusti potezo.\nČe ne moreš igrati, vlečeš karto. Zmaga, kdor prvi ostane brez kart.
+1837|Uradna pravila
+1838|Remi, ki ga pozna vsak: 13 kart, izložitev od 51 točk.
+1839|Lastna pravila
+1840|14 kart, vidna spodnja karta, ki jo lahko vzameš samo z zaključkom naenkrat, odvrženo karto pobereš samo za izhod.
+1841|V prvi potezi ne smeš pobrati odvržene karte.
+1842|Da pobereš odvrženo karto, moraš z njo lahko iziti (51 točk).
+1843|To karto lahko vzameš samo, če zaključiš naenkrat (najmanj 51 točk).
+1844|Ta kombinacija ni veljavna.
+1845|Izložitev uspela!
+1846|Izložitev: {n} / 51 točk
+1847|Ta karta tu ne paše.
+1848|Izloži 51 točk ali prekliči pred odmetom.
+1849|Pobral si odvrženo karto: moraš iziti (izložiti 51 točk).
+1850|Izberi samo eno karto za odmet.
+1851|Ostalo ti je {n} točk.
+1852|Si na vrsti: vleci ali vzemi odvrženo karto.
+1853|Izlagaj kombinacije, dopolni tiste na mizi, nato odvrzi karto.
+1854|Izlagaj kombinacije (51 točk za odprtje), nato odvrzi karto.
+1855|Spodnja karta
+1856|Odlagalni kup
+1857|Kombinacija {n}
+1858|Izloži
+1859|Odvrzi
+1860|Vsak ima 14 kart. Začetnik vleče 15. karto. Na dnu kupa leži karta z licem navzgor: vzameš jo lahko samo z zaključkom naenkrat (vse karte izložene, najmanj 51 točk). Sicer igraš normalno in odvržeš odprto.\nV prvi potezi ne smeš pobrati odvržene karte. Od druge poteze lahko, a takrat moraš obvezno iziti (najmanj 51 točk s to karto).\nKombinacija: zaporedje 3+ kart iste barve ali trojica/četverica iste vrednosti v različnih barvah. Žolf nadomesti katero koli karto. Po izložitvi lahko dopolnjuješ kombinacije na mizi. Zmaga, kdor prvi ostane brez kart.
+1861|Vsak ima 13 kart. Na potezi: vleci (ali vzemi odvrženo karto), po želji izloži kombinacije in odvrzi karto.\nKombinacija: zaporedje 3+ kart iste barve (as nizek ali visok, brez kroga) ali trojica/četverica iste vrednosti v različnih barvah. Žolf nadomesti katero koli karto.\nIzložitev: prva izložitev mora biti vredna vsaj 51 točk (as = 11, figure = 10, as v A-2-3 = 1). Nato lahko dopolnjuješ vse kombinacije na mizi in zamenjaš žolfa s karto, ki jo predstavlja.\nZmaga, kdor prvi ostane brez kart.
+1862|Računalnik je vzel odvrženo karto.
+1863|Računalnik je vlekel karto.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

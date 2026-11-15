@@ -1785,3 +1785,84 @@
 1784|Presto
 1785|Questo gioco arriva molto presto.
 1786|Da solo contro il computer
+1787|Poignée annunciata ({n} atout): +{v}
+1788|Matto
+1789|Atout {n}
+1790|Giocatore a sinistra
+1791|Giocatore di fronte
+1792|Giocatore a destra
+1793|Tocca a te: scegli la tua dichiarazione o passa.
+1794|{n} sta pensando…
+1795|Hai preso: scarta 6 carte (né Re, né bout; atout solo se non hai scelta).
+1796|{n} prende con «{b}» e fa lo scarto…
+1797|Tocca a te giocare.
+1798|Hai perso questa mano.
+1799|Il chiamante ha {a} punti con {b} bout (ne servivano {c}). Il tuo punteggio: {m}
+1800|Chiamante
+1801|Prese
+1802|Passo
+1803|Cane
+1804|Scarto: {n} / 6
+1805|Scarta
+1806|Tarocchi francesi, 4 giocatori: 78 carte (56 di seme, 21 atout, il Matto). Ognuno riceve 18 carte, 6 formano il cane.\nDichiarazioni: Passo, Petite, Garde, Garde sans (cane non visto), Garde contre (il cane va ai difensori). Il chiamante gioca da solo contro tre.\nCon Petite o Garde, il chiamante prende il cane e scarta 6 carte (né Re, né bout; atout solo se necessario).\nSi deve rispondere al seme; altrimenti tagliare con un atout (salire se possibile). Se si gioca atout, bisogna salire se si può. Il Matto si gioca quando si vuole e non vince mai la presa.\nI bout sono il 21, l'1 (petit) e il Matto. Punti necessari: 56 con 0 bout, 51 con 1, 41 con 2, 36 con 3.\nBonus: petit au bout (l'1 vince l'ultima presa), poignée (10, 13 o 15 atout: 20, 30, 40), slam (tutte le prese: +200).
+1807|Avversario a sinistra
+1808|Compagno
+1809|Avversario a destra
+1810|Tocca a te: prendi a {n}?
+1811|Tocca a te: scegli un atout o passa.
+1812|Atout
+1813|Noi
+1814|Loro
+1815|Prendo
+1816|Passo
+1817|Belote a 4: tu e il tuo compagno (di fronte) contro i 2 avversari. 32 carte, 8 a testa.\nPresa: si scopre una carta. A turno ognuno può prenderla (il suo seme diventa atout). Se nessuno la prende, un secondo giro permette di scegliere un altro seme. Se tutti passano, si ridistribuisce.\nAtout: Fante 20, 9 14, Asso 11, 10 10, Re 4, Donna 3. Altri semi: Asso 11, 10 10, Re 4, Donna 3, Fante 2.\nSi deve rispondere al seme; altrimenti tagliare con l'atout (salire se possibile), salvo se il compagno sta vincendo. Con atout si sale se si può.\nBelote-rebelote: Re + Donna di atout = 20 punti. Dieci di der: +10. Capot (tutte le prese): +90.\nIl chiamante deve fare più punti degli avversari, altrimenti è «dentro»: gli avversari fanno 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Dieci di der: +10
+1821|Noi {a} · Loro {b}
+1822|Il chiamante è dentro!
+1823|Capot!
+1824|🏆 Bravo, avete vinto! (+4 punti)
+1825|Avete perso questa mano.
+1826|Regole del gioco
+1827|Il computer pesca {n} carte.
+1828|Il computer pesca una carta.
+1829|Il computer sceglie {n}.
+1830|Devi pescare {n} carte o rispondere con un 7.
+1831|Tocca a te: gioca una carta dello stesso seme o valore.
+1832|Non puoi giocare: pesca una carta.
+1833|Il computer ha {n} carte
+1834|Mazzo
+1835|Seme richiesto
+1836|Gioca una carta dello stesso seme o valore di quella in cima.\n8: si gioca su tutto, scegli il seme.\n7: l'avversario pesca 2 carte (può rispondere con un altro 7: +2).\nAsso: l'avversario salta il turno.\nSe non puoi giocare, peschi una carta. Vince chi finisce per primo le carte.
+1837|Regole ufficiali
+1838|Il Ramino che tutti conoscono: 13 carte, apertura a 51 punti.
+1839|Regole personalizzate
+1840|14 carte, una carta del fondo visibile che si prende solo chiudendo in una volta, scarto da raccogliere solo per uscire.
+1841|Al primo turno non puoi raccogliere lo scarto.
+1842|Per raccogliere lo scarto devi poter aprire (51 punti) con questa carta.
+1843|Questa carta si prende solo se chiudi in una volta (almeno 51 punti).
+1844|Questa combinazione non è valida.
+1845|Apertura riuscita!
+1846|Apertura: {n} / 51 punti
+1847|Questa carta non va qui.
+1848|Cala 51 punti o annulla prima di scartare.
+1849|Hai raccolto lo scarto: devi aprire (calare 51 punti).
+1850|Scegli una sola carta da scartare.
+1851|Ti restavano {n} punti.
+1852|Tocca a te: pesca o prendi lo scarto.
+1853|Cala combinazioni, completa quelle sul tavolo, poi scarta una carta.
+1854|Cala combinazioni (51 punti per aprire), poi scarta una carta.
+1855|Carta del fondo
+1856|Scarto
+1857|Combinazione {n}
+1858|Cala
+1859|Scarta
+1860|Ognuno ha 14 carte. Chi inizia pesca la 15ª. In fondo al mazzo c'è una carta scoperta: si prende solo chiudendo in una volta (tutte le carte calate, almeno 51 punti). Altrimenti si gioca normalmente e si scarta, carte visibili.\nAl primo turno non si può raccogliere lo scarto. Dal secondo turno sì, ma allora bisogna obbligatoriamente aprire (calare almeno 51 punti con quella carta).\nCombinazione: scala di 3+ carte dello stesso seme, o tris/poker dello stesso valore di semi diversi. Il jolly sostituisce qualsiasi carta. Dopo l'apertura si completano le combinazioni sul tavolo. Vince chi finisce per primo le carte.
+1861|Ognuno ha 13 carte. Al tuo turno: pesca (o prendi lo scarto), cala combinazioni se vuoi, poi scarta una carta.\nCombinazione: scala di 3+ carte dello stesso seme (Asso basso o alto, senza giro), o tris/poker dello stesso valore di semi diversi. Il jolly sostituisce qualsiasi carta.\nApertura: la prima calata deve valere almeno 51 punti (Asso = 11, figure = 10, Asso in A-2-3 = 1). Poi puoi completare tutte le combinazioni sul tavolo e scambiare un jolly con la carta che rappresenta.\nVince chi finisce per primo le carte.
+1862|Il computer ha preso lo scarto.
+1863|Il computer ha pescato una carta.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

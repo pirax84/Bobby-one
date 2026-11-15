@@ -1785,3 +1785,84 @@
 1784|Dalwaqt
 1785|Din il-logħba tkun hawn dalwaqt.
 1786|Waħdek kontra l-kompjuter
+1787|Poignée imħabbra ({n} trumps): +{v}
+1788|Excuse
+1789|Trump {n}
+1790|Plejer fuq ix-xellug
+1791|Plejer faċċata
+1792|Plejer fuq il-lemin
+1793|Id-dawra tiegħek: agħżel l-offerta jew għaddi.
+1794|{n} qed jaħseb…
+1795|Ħadt: armi 6 kards (mingħajr Re, mingħajr oudler, trumps biss jekk m'hemm għażla).
+1796|{n} jieħu b'“{b}” u jarmi…
+1797|Id-dawra tiegħek biex tilgħab.
+1798|Tlifna din id-distribuzzjoni.
+1799|Min ħa għandu {a} punti b'{b} oudler(s) (kien hemm bżonn {c}). Il-punteġġ tiegħek: {m}
+1800|Min jieħu
+1801|Trick
+1802|Għaddi
+1803|Il-Kelb
+1804|Armi: {n} / 6
+1805|Armi
+1806|Tarot Franċiż, 4 plejers: 78 kard (56 tal-qligħ, 21 trump, l-Excuse). Kull wieħed jieħu 18-il kard, 6 jiffurmaw il-kelb.\nOffer: Għaddi, Petite, Garde, Garde sans (il-kelb ma jidhirx), Garde contre (il-kelb imur għand id-difensuri). Min jieħu jilgħab waħdu kontra tlieta.\nB'Petite jew Garde, jieħu l-kelb u jarmi 6 kards (mingħajr Re, mingħajr oudler; trumps biss jekk meħtieġ).\nIrid isegwi s-sevi; inkella jqatta' bit-trump (ogħla jekk jista'). Meta jintlagħab trump, mur ogħla jekk tista'. L-Excuse tintlagħab meta trid u qatt ma tirbaħ it-trick.\nL-oudlers huma 21, 1 (petit) u l-Excuse. Punti meħtieġa: 56 b'0 oudlers, 51 b'1, 41 b'2, 36 b'3.\nBonus: petit au bout (1 jirbaħ l-aħħar trick), poignée (10, 13 jew 15-il trump: 20, 30, 40), slam (it-tricks kollha: +200).
+1807|Avversarju fuq ix-xellug
+1808|Sieħeb
+1809|Avversarju fuq il-lemin
+1810|Id-dawra tiegħek: tieħu fuq {n}?
+1811|Id-dawra tiegħek: agħżel trump jew għaddi.
+1812|Trump
+1813|Aħna
+1814|Huma
+1815|Nieħu
+1816|Ngħaddi
+1817|Belote għal 4: int u s-sieħeb tiegħek (faċċata) kontra 2 avversarji. 32 kard, 8 kull wieħed.\nTieħu: tinqaleb kard. Wieħed wara l-ieħor, kulħadd jista' jieħodha (is-sevi tagħha jsir trump). Jekk ħadd ma jieħodha, t-tieni rawnd iħalli tagħżel sevi ieħor. Jekk kulħadd jgħaddi, terġa' tinqasam.\nTrump: Fanti 20, 9 14, Assu 11, 10 10, Re 4, Reġina 3. Sevi oħra: Assu 11, 10 10, Re 4, Reġina 3, Fanti 2.\nIrid isegwi s-sevi; inkella jqatta' bit-trump (ogħla jekk jista'), ħlief jekk is-sieħeb qed jirbaħ. Fit-trump mur ogħla jekk tista'.\nBelote-rebelote: Re + Reġina tat-trump = 20 punt. L-aħħar trick: +10. Capot (it-tricks kollha): +90.\nMin ħa jrid jagħmel aktar punti mill-avversarji, inkella jkun “ġewwa”: l-avversarji jieħdu 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|L-aħħar trick: +10
+1821|Aħna {a} · Huma {b}
+1822|Min ħa falla!
+1823|Capot!
+1824|🏆 Brava, rbaħtu! (+4 punti)
+1825|Tlifthu din id-distribuzzjoni.
+1826|Regoli tal-logħba
+1827|Il-kompjuter jiġbed {n} kards.
+1828|Il-kompjuter jiġbed kard.
+1829|Il-kompjuter jagħżel {n}.
+1830|Trid tiġbed {n} kards jew twieġeb b'7.
+1831|Id-dawra tiegħek: ilgħab kard tal-istess sevi jew valur.
+1832|Ma tistax tilgħab: iġbed kard.
+1833|Il-kompjuter għandu {n} kards
+1834|Munzell
+1835|Sevi mitlub
+1836|Ilgħab kard tal-istess sevi jew valur bħal dik ta' fuq.\n8: tintlagħab fuq kollox, int tagħżel is-sevi.\n7: l-avversarju jiġbed 2 kards (jista' jwieġeb b'7 ieħor: +2).\nAssu: l-avversarju jaqbeż id-dawra.\nJekk ma tistax tilgħab, tiġbed kard. Jirbaħ min jispiċċa l-ewwel mill-kards.
+1837|Regoli uffiċjali
+1838|Ir-Rummy li kulħadd jaf: 13-il kard, ftuħ b'51 punt.
+1839|Regoli personalizzati
+1840|14-il kard, kard ta' taħt viżibbli li tittieħed biss meta tispiċċa f'daqqa, l-iskart jittella' biss biex toħroġ.
+1841|L-ewwel dawra ma tistax tiltaqat l-iskart.
+1842|Biex tiltaqat l-iskart, trid tkun tista' tiftaħ (51 punt) b'din il-kard.
+1843|Din il-kard tittieħed biss jekk tispiċċa f'daqqa (mill-inqas 51 punt).
+1844|Din il-kombinazzjoni mhix valida.
+1845|Ftuħ rnexxa!
+1846|Ftuħ: {n} / 51 punt
+1847|Din il-kard ma taqbilx hawn.
+1848|Niżżel 51 punt jew ikkanċella qabel tarmi.
+1849|Ltqajt l-iskart: trid tiftaħ (tniżżel 51 punt).
+1850|Agħżel kard waħda biss biex tarmi.
+1851|Kien fadlek {n} punti.
+1852|Id-dawra tiegħek: iġbed jew ħu l-iskart.
+1853|Niżżel kombinazzjonijiet, kompli dawk fuq il-mejda, imbagħad armi kard.
+1854|Niżżel kombinazzjonijiet (51 punt biex tiftaħ), imbagħad armi kard.
+1855|Kard ta' taħt
+1856|Munzell tal-iskart
+1857|Kombinazzjoni {n}
+1858|Niżżel
+1859|Armi
+1860|Kull wieħed għandu 14-il kard. Min jibda jiġbed il-15-il kard. Fil-qiegħ tal-munzell hemm kard maqluba 'l fuq: tittieħed biss jekk tispiċċa f'daqqa (il-kards kollha mniżżla, mill-inqas 51 punt). Inkella tilgħab normali u tarmi quddiem kulħadd.\nL-ewwel dawra ma jistax jittella' l-iskart. Mit-tieni dawra jista', imma allura jkollok tiftaħ (mill-inqas 51 punt b'dik il-kard).\nKombinazzjoni: sekwenza ta' 3+ kards tal-istess sevi, jew tlieta/erbgħa tal-istess valur f'sevi differenti. Il-joker jissostitwixxi kwalunkwe kard. Wara l-ftuħ tista' tkompli l-kombinazzjonijiet fuq il-mejda. Jirbaħ min jispiċċa l-ewwel mill-kards.
+1861|Kull wieħed għandu 13-il kard. Fid-dawra tiegħek: iġbed (jew ħu l-iskart), niżżel kombinazzjonijiet jekk trid u armi kard.\nKombinazzjoni: sekwenza ta' 3+ kards tal-istess sevi (Assu baxx jew għoli, mingħajr ċirku) jew tlieta/erbgħa tal-istess valur f'sevi differenti. Il-joker jissostitwixxi kwalunkwe kard.\nFtuħ: l-ewwel tniżżil irid ikun jiswa mill-inqas 51 punt (Assu = 11, figuri = 10, Assu f'A-2-3 = 1). Wara tista' tkompli l-kombinazzjonijiet kollha fuq il-mejda u tbiddel joker bil-kard li jirrappreżenta.\nJirbaħ min jispiċċa l-ewwel mill-kards.
+1862|Il-kompjuter ħa l-iskart.
+1863|Il-kompjuter ġibed kard.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

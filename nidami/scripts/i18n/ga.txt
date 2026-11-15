@@ -1785,3 +1785,84 @@
 1784|Go luath
 1785|Beidh an cluiche seo ann go han-luath.
 1786|Leat féin in aghaidh an ríomhaire
+1787|Poignée fógartha ({n} trumpa): +{v}
+1788|Excuse
+1789|Trumpa {n}
+1790|Imreoir ar chlé
+1791|Imreoir os comhair
+1792|Imreoir ar dheis
+1793|Do threo: roghnaigh do tairiscint nó téigh thar.
+1794|Tá {n} ag smaoineamh…
+1795|Ghlac tú é: caith 6 chárta uait (gan Rí, gan oudler, trumpaí ach amháin mura bhfuil rogha agat).
+1796|Glacann {n} le “{b}” agus caitheann cártaí uaidh…
+1797|Do threo chun imirt.
+1798|Chaill tú an dáileadh seo.
+1799|Tá {a} pointe ag an nglacadóir le {b} oudler (bhí {c} de dhíth). Do scór: {m}
+1800|Glacadóir
+1801|Cleasanna
+1802|Pas
+1803|An Madra
+1804|Caitheamh: {n} / 6
+1805|Caith
+1806|Tarot Francach, 4 imreoir: 78 cárta (56 cárta culaith, 21 trumpa, an Excuse). Faigheann gach duine 18 gcárta, 6 cheann a dhéanann an madra.\nTairiscintí: Pas, Petite, Garde, Garde sans (madra gan feiceáil), Garde contre (téann an madra chuig na cosantóirí). Imríonn an glacadóir leis féin in aghaidh triúir.\nLe Petite nó Garde, glacann sé an madra agus caitheann 6 chárta uaidh (gan Rí, gan oudler; trumpaí ach amháin más gá).\nCaithfidh tú an chulaith a leanúint; ar shlí eile, gearr le trumpa (níos airde más féidir). Nuair a imrítear trumpa, téigh níos airde más féidir. Is féidir an Excuse a imirt am ar bith agus ní bhuaileann sí an cleas riamh.\nIs iad na oudlers ná 21, 1 (petit) agus an Excuse. Pointí de dhíth: 56 le 0 oudler, 51 le 1, 41 le 2, 36 le 3.\nBónais: petit au bout (buaileann an 1 an cleas deireanach), poignée (10, 13 nó 15 trumpa: 20, 30, 40), slam (gach cleas: +200).
+1807|Freasúra ar chlé
+1808|Páirtí
+1809|Freasúra ar dheis
+1810|Do threo: an nglacann tú ar {n}?
+1811|Do threo: roghnaigh trumpa nó téigh thar.
+1812|Trumpa
+1813|Muid
+1814|Iadsan
+1815|Glacaim
+1816|Téim thar
+1817|Belote do 4: tú féin agus do pháirtí (os comhair) in aghaidh 2 fhreasúra. 32 cárta, 8 an duine.\nGlacadh: casann cárta aníos. In ord, féadann gach duine é a ghlacadh (éiríonn a chulaith ina trumpa). Mura nglacann aon duine é, ligeann an dara babhta duit culaith eile a roghnú. Má théann gach duine thar, déantar athdháileadh.\nTrumpa: Jack 20, 9 14, Ace 11, 10 10, Rí 4, Banríon 3. Culaithe eile: Ace 11, 10 10, Rí 4, Banríon 3, Jack 2.\nCaithfidh tú an chulaith a leanúint; ar shlí eile, gearr le trumpa (níos airde más féidir), mura bhfuil do pháirtí ag buachan. Le trumpa, téigh níos airde más féidir.\nBelote-rebelote: Rí + Banríon na trumpa = 20 pointe. An cleas deireanach: +10. Capot (gach cleas): +90.\nCaithfidh an glacadóir níos mó pointí a fháil ná an freasúra, nó beidh sé “istigh”: faigheann an freasúra 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|An cleas deireanach: +10
+1821|Muid {a} · Iadsan {b}
+1822|Theip ar an nglacadóir!
+1823|Capot!
+1824|🏆 Bualadh bos, bhuaigh sibh! (+4 phointe)
+1825|Chaill sibh an dáileadh seo.
+1826|Rialacha an chluiche
+1827|Tarraingíonn an ríomhaire {n} cárta.
+1828|Tarraingíonn an ríomhaire cárta.
+1829|Roghnaíonn an ríomhaire {n}.
+1830|Caithfidh tú {n} cárta a tharraingt nó freagra a thabhairt le 7.
+1831|Do threo: imir cárta den chulaith chéanna nó den luach céanna.
+1832|Ní féidir leat imirt: tarraing cárta.
+1833|Tá {n} cárta ag an ríomhaire
+1834|Cruach
+1835|Culaith iarrtha
+1836|Imir cárta den chulaith chéanna nó den luach céanna leis an gcárta uachtarach.\n8: is féidir é a imirt ar aon rud, roghnaíonn tú an chulaith.\n7: tarraingíonn an freasúra 2 chárta (féadann sé freagra a thabhairt le 7 eile: +2).\nAce: scipeann an freasúra a threo.\nMura féidir leat imirt, tarraingíonn tú cárta. Buaann an chéad duine a bhfuil a chártaí go léir caite aige.
+1837|Rialacha oifigiúla
+1838|An Rummy a bhfuil aithne ag gach duine air: 13 chárta, oscailt ar 51 phointe.
+1839|Rialacha saincheaptha
+1840|14 chárta, cárta íochtair infheicthe nach nglactar ach nuair a chríochnaítear d'aon iarraidh, ní thógtar an ccarn caite ach chun imeacht.
+1841|Sa chéad treo, ní féidir leat an carn caite a thógáil.
+1842|Chun an carn caite a thógáil, ní mór duit a bheith in ann oscailt (51 phointe) leis an gcárta seo.
+1843|Ní ghlactar an cárta seo ach má chríochnaíonn tú d'aon iarraidh (51 phointe ar a laghad).
+1844|Níl an teaglaim seo bailí.
+1845|D'éirigh leis an oscailt!
+1846|Oscailt: {n} / 51 phointe
+1847|Ní oireann an cárta seo anseo.
+1848|Leag síos 51 phointe nó cealaigh sula gcaitheann tú.
+1849|Thóg tú an carn caite: ní mór duit oscailt (51 phointe a leagan síos).
+1850|Roghnaigh cárta amháin le caitheamh.
+1851|Bhí {n} phointe fágtha agat.
+1852|Do threo: tarraing nó glac an carn caite.
+1853|Leag síos teaglamaí, comhlánaigh iad siúd ar an mbord, ansin caith cárta.
+1854|Leag síos teaglamaí (51 phointe chun oscailt), ansin caith cárta.
+1855|Cárta íochtair
+1856|Carn caite
+1857|Teaglaim {n}
+1858|Leag síos
+1859|Caith
+1860|Tá 14 chárta ag gach duine. Tarraingíonn an té a thosaíonn an 15ú cárta. Ag bun na cruaiche tá cárta aghaidh in airde: ní ghlactar é ach má chríochnaíonn tú d'aon iarraidh (gach cárta leagtha síos, 51 phointe ar a laghad). Seachas sin, imrítear go gnáth agus caitear go hoscailte.\nSa chéad treo ní féidir an carn caite a thógáil. Ón dara treo ar aghaidh, is féidir, ach ansin ní mór oscailt (51 phointe ar a laghad leis an gcárta sin).\nTeaglaim: seicheamh de 3+ cárta den chulaith chéanna, nó trí/ceithre cárta den luach céanna i gculaithe éagsúla. Cuireann an cluiche-fear in ionad aon chárta. Tar éis na hoscailte, is féidir teaglamaí ar an mbord a chomhlánú. Buaann an chéad duine a bhfuil a chártaí go léir caite aige.
+1861|Tá 13 chárta ag gach duine. Ag do threo: tarraing (nó glac an carn caite), leag síos teaglamaí más mian leat, agus caith cárta.\nTeaglaim: seicheamh de 3+ cárta den chulaith chéanna (Ace íseal nó ard, gan timpeallú), nó trí/ceithre cárta den luach céanna i gculaithe éagsúla. Cuireann an cluiche-fear in ionad aon chárta.\nOscailt: caithfidh 51 phointe ar a laghad a bheith sa chéad leagan síos (Ace = 11, pictiúir = 10, Ace in A-2-3 = 1). Ina dhiaidh sin, is féidir leat gach teaglaim ar an mbord a chomhlánú agus cluiche-fear a mhalartú ar an gcárta a léiríonn sé.\nBuaann an chéad duine a bhfuil a chártaí go léir caite aige.
+1862|Thóg an ríomhaire an carn caite.
+1863|Tharraing an ríomhaire cárta.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

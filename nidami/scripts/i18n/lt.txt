@@ -1785,3 +1785,84 @@
 1784|Netrukus
 1785|Šis žaidimas netrukus.
 1786|Vienas prieš kompiuterį
+1787|Poignée paskelbta ({n} kozyriai): +{v}
+1788|Excuse
+1789|Kozyris {n}
+1790|Žaidėjas kairėje
+1791|Žaidėjas priešais
+1792|Žaidėjas dešinėje
+1793|Tavo eilė: pasirink statymą arba praleisk.
+1794|{n} mąsto…
+1795|Paėmei: išmesk 6 kortas (be karaliaus, be oudlerio, kozyrių tik jei nėra pasirinkimo).
+1796|{n} ima su „{b}“ ir meta kortas…
+1797|Tavo eilė žaisti.
+1798|Pralaimėjai šį dalijimą.
+1799|Paėmęs turi {a} taškų ir {b} oudlerius (reikėjo {c}). Tavo rezultatas: {m}
+1800|Paėmėjas
+1801|Eigos
+1802|Praleisti
+1803|Šuo
+1804|Išmetimas: {n} / 6
+1805|Išmesti
+1806|Prancūziškas taro, 4 žaidėjai: 78 kortos (56 mastų, 21 kozyris, Excuse). Kiekvienas gauna 18 kortų, 6 sudaro šunį.\nStatymai: Praleisti, Petite, Garde, Garde sans (šuo nematomas), Garde contre (šuo atitenka gynėjams). Paėmėjas žaidžia vienas prieš tris.\nSu Petite ar Garde paėmėjas pasiima šunį ir išmeta 6 kortas (be karaliaus, be oudlerio; kozyrių tik jei būtina).\nReikia sekti mastį; kitaip kirsti kozyriu (jei galima, aukštesniu). Žaidžiant kozyrį, eik aukščiau, jei gali. Excuse galima žaisti bet kada ir ji niekada neima eigos.\nOudleriai yra 21, 1 (petit) ir Excuse. Reikalingi taškai: 56 su 0 oudlerių, 51 su 1, 41 su 2, 36 su 3.\nPremijos: petit au bout (1 laimi paskutinę eigą), poignée (10, 13 ar 15 kozyrių: 20, 30, 40), šlemas (visos eigos: +200).
+1807|Priešininkas kairėje
+1808|Partneris
+1809|Priešininkas dešinėje
+1810|Tavo eilė: ar imi ties {n}?
+1811|Tavo eilė: pasirink kozyrį arba praleisk.
+1812|Kozyris
+1813|Mes
+1814|Jie
+1815|Imu
+1816|Praleidžiu
+1817|Belote keturiems: tu ir tavo partneris (priešais) prieš 2 priešininkus. 32 kortos, po 8.\nĖmimas: atverčiama korta. Paeiliui kiekvienas gali ją paimti (jos mastis tampa kozyriu). Jei niekas neima, antrame rate galima pasirinkti kitą mastį. Jei visi praleidžia, dalijama iš naujo.\nKozyris: Valetas 20, 9 14, Tūzas 11, 10 10, Karalius 4, Dama 3. Kiti mastai: Tūzas 11, 10 10, Karalius 4, Dama 3, Valetas 2.\nReikia sekti mastį; kitaip kirsti kozyriu (jei galima, aukštesniu), nebent eigą ima partneris. Žaidžiant kozyrį eik aukščiau, jei gali.\nBelote-rebelote: kozyrio Karalius + Dama = 20 taškų. Paskutinė eiga: +10. Capot (visos eigos): +90.\nPaėmėjas turi surinkti daugiau taškų nei priešininkai, kitaip jis „viduje“: priešininkai gauna 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Paskutinė eiga: +10
+1821|Mes {a} · Jie {b}
+1822|Paėmėjui nepavyko!
+1823|Capot!
+1824|🏆 Šaunu, laimėjote! (+4 taškai)
+1825|Pralaimėjote šį dalijimą.
+1826|Žaidimo taisyklės
+1827|Kompiuteris traukia {n} kortas.
+1828|Kompiuteris traukia kortą.
+1829|Kompiuteris pasirenka {n}.
+1830|Turi traukti {n} kortas arba atsakyti septynerte.
+1831|Tavo eilė: žaisk to paties masto ar tos pačios vertės kortą.
+1832|Negali žaisti: ištrauk kortą.
+1833|Kompiuteris turi kortų: {n}
+1834|Malka
+1835|Prašomas mastis
+1836|Žaisk to paties masto ar tos pačios vertės kortą kaip viršutinė.\n8: dedama ant bet ko, mastį renkiesi tu.\n7: priešininkas traukia 2 kortas (gali atsakyti kita septynerte: +2).\nTūzas: priešininkas praleidžia ėjimą.\nJei negali žaisti, traukia kortą. Laimi tas, kuris pirmas atsikrato kortų.
+1837|Oficialios taisyklės
+1838|Remis, kurį visi žino: 13 kortų, išdėstymas nuo 51 taško.
+1839|Savos taisyklės
+1840|14 kortų, matoma apatinė korta, kurią galima imti tik baigus iš karto, išmestą kortą pasiimi tik norėdamas išeiti.
+1841|Pirmo ėjimo metu negali pasiimti išmestos kortos.
+1842|Norėdamas pasiimti išmestą kortą, turi galėti su ja išdėstyti (51 taškas).
+1843|Šią kortą galima imti tik jei baigi iš karto (bent 51 taškas).
+1844|Šis derinys negalioja.
+1845|Išdėstymas pavyko!
+1846|Išdėstymas: {n} / 51 taškas
+1847|Ši korta čia netinka.
+1848|Išdėstyk 51 tašką arba atšauk prieš išmesdamas.
+1849|Pasiėmei išmestą kortą: turi išdėstyti (51 taškas).
+1850|Pasirink tik vieną kortą išmesti.
+1851|Tau liko {n} taškų.
+1852|Tavo eilė: traukk arba imk išmestą kortą.
+1853|Dėliok derinius, papildyk esančius ant stalo, tada išmesk kortą.
+1854|Dėliok derinius (51 taškas pradžiai), tada išmesk kortą.
+1855|Apatinė korta
+1856|Išmestų kortų krūva
+1857|Derinys {n}
+1858|Dėlioti
+1859|Išmesti
+1860|Kiekvienas turi 14 kortų. Pradedantysis traukia 15-ąją kortą. Malkos apačioje guli atversta korta: ją galima imti tik baigus iš karto (visos kortos išdėliotos, bent 51 taškas). Kitaip žaidžiama įprastai ir metama atvirai.\nPirmo ėjimo metu išmestos kortos pasiimti negalima. Nuo antro ėjimo galima, bet tada privaloma išeiti (bent 51 taškas su ta korta).\nDerinys: bent 3 to paties masto kortos iš eilės arba trys/keturios tos pačios vertės kortos skirtingų mastų. Džokeris pakeičia bet kurią kortą. Išdėsčius galima papildyti derinius ant stalo. Laimi tas, kuris pirmas atsikrato kortų.
+1861|Kiekvienas turi 13 kortų. Tavo ėjimas: traukk (arba imk išmestą kortą), jei nori, dėliok derinius ir išmesk kortą.\nDerinys: bent 3 to paties masto kortos iš eilės (tūzas žemas arba aukštas, be apsisukimo) arba trys/keturios tos pačios vertės kortos skirtingų mastų. Džokeris pakeičia bet kurią kortą.\nIšdėstymas: pirmas išdėstymas turi būti vertas bent 51 taško (tūzas = 11, paveikslėliai = 10, tūzas A-2-3 = 1). Po to gali papildyti visus derinius ant stalo ir pakeisti džokerį kortą, kurią jis atstoja.\nLaimi tas, kuris pirmas atsikrato kortų.
+1862|Kompiuteris pasiėmė išmestą kortą.
+1863|Kompiuteris ištraukė kortą.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

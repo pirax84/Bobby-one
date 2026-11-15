@@ -1785,3 +1785,84 @@
 1784|Próximamente
 1785|Este juego llega muy pronto.
 1786|Solo contra el ordenador
+1787|Poignée anunciada ({n} triunfos): +{v}
+1788|Excusa
+1789|Triunfo {n}
+1790|Jugador de la izquierda
+1791|Jugador de enfrente
+1792|Jugador de la derecha
+1793|Tu turno: elige tu apuesta o pasa.
+1794|{n} está pensando…
+1795|Lo has cogido: descarta 6 cartas (ni Rey, ni oudler; triunfos solo si no tienes otra opción).
+1796|{n} coge con «{b}» y hace su descarte…
+1797|Te toca jugar.
+1798|Has perdido esta mano.
+1799|El que coge tiene {a} puntos con {b} oudler(s) (hacían falta {c}). Tu marca: {m}
+1800|Cogedor
+1801|Bazas
+1802|Paso
+1803|Perro
+1804|Descarte: {n} / 6
+1805|Descartar
+1806|Tarot francés, 4 jugadores: 78 cartas (56 de palo, 21 triunfos, la Excusa). Cada uno recibe 18 cartas, 6 forman el perro.\nApuestas: Paso, Petite, Garde, Garde sans (perro oculto), Garde contre (el perro va a los defensores). El cogedor juega solo contra tres.\nCon Petite o Garde, el cogedor coge el perro y descarta 6 cartas (ni Rey, ni oudler; triunfos solo si es necesario).\nHay que servir el palo; si no, fallar con triunfo (subir si se puede). Si se juega triunfo, hay que subir si se puede. La Excusa se juega cuando quieras y nunca gana la baza.\nLos oudlers son el 21, el 1 (petit) y la Excusa. Puntos necesarios: 56 con 0 oudlers, 51 con 1, 41 con 2, 36 con 3.\nBonus: petit au bout (el 1 gana la última baza), poignée (10, 13 o 15 triunfos: 20, 30, 40), slam (todas las bazas: +200).
+1807|Rival de la izquierda
+1808|Compañero
+1809|Rival de la derecha
+1810|Tu turno: ¿coges en {n}?
+1811|Tu turno: elige un triunfo o pasa.
+1812|Triunfo
+1813|Nosotros
+1814|Ellos
+1815|Cojo
+1816|Paso
+1817|Belote a 4: tú y tu compañero (enfrente) contra los 2 rivales. 32 cartas, 8 cada uno.\nToma: se descubre una carta. Por turno, cada jugador puede cogerla (su palo será el triunfo). Si nadie la coge, una segunda ronda permite elegir otro palo. Si todos pasan, se vuelve a repartir.\nTriunfo: Sota 20, 9 14, As 11, 10 10, Rey 4, Dama 3. Otros palos: As 11, 10 10, Rey 4, Dama 3, Sota 2.\nHay que servir el palo; si no, fallar con triunfo (subir si se puede), salvo si tu compañero gana. Si se juega triunfo, hay que subir si se puede.\nBelote-rebelote: Rey + Dama de triunfo = 20 puntos. Diez de últimas: +10. Capot (todas las bazas): +90.\nQuien coge debe sumar más que los rivales; si no, se queda «dentro»: los rivales suman 162.
+1818|¡Belote!
+1819|¡Rebelote! (+20)
+1820|Diez de últimas: +10
+1821|Nosotros {a} · Ellos {b}
+1822|¡El cogedor ha fallado!
+1823|¡Capot!
+1824|🏆 ¡Bravo, habéis ganado! (+4 puntos)
+1825|Habéis perdido esta mano.
+1826|Reglas del juego
+1827|El ordenador roba {n} cartas.
+1828|El ordenador roba una carta.
+1829|El ordenador elige {n}.
+1830|Debes robar {n} cartas o responder con un 7.
+1831|Tu turno: juega una carta del mismo palo o valor.
+1832|No puedes jugar: roba una carta.
+1833|El ordenador tiene {n} cartas
+1834|Mazo
+1835|Palo pedido
+1836|Juega una carta del mismo palo o valor que la de arriba.\n8: se juega sobre todo, eliges el palo.\n7: el rival roba 2 cartas (puede responder con otro 7: +2 más).\nAs: el rival pierde su turno.\nSi no puedes jugar, robas una carta. Gana el primero que se queda sin cartas.
+1837|Reglas oficiales
+1838|El Rummy que todo el mundo conoce: 13 cartas, apertura con 51 puntos.
+1839|Reglas personalizadas
+1840|14 cartas, una carta del fondo visible que solo se coge terminando de golpe, descarte que se recoge solo para salir.
+1841|En el primer turno no puedes recoger el descarte.
+1842|Para recoger el descarte, debes poder abrir (51 puntos) con esta carta.
+1843|Esta carta solo se coge si terminas de golpe (51 puntos como mínimo).
+1844|Esta combinación no es válida.
+1845|¡Apertura conseguida!
+1846|Apertura: {n} / 51 puntos
+1847|Esta carta no encaja aquí.
+1848|Baja 51 puntos o cancela antes de descartar.
+1849|Has recogido el descarte: debes abrir (bajar 51 puntos).
+1850|Elige una sola carta para descartar.
+1851|Te quedaban {n} puntos.
+1852|Tu turno: roba o coge el descarte.
+1853|Baja combinaciones, completa las de la mesa y descarta una carta.
+1854|Baja combinaciones (51 puntos para abrir) y descarta una carta.
+1855|Carta del fondo
+1856|Descarte
+1857|Combinación {n}
+1858|Bajar
+1859|Descartar
+1860|Cada uno tiene 14 cartas. El que empieza roba la 15.ª. En el fondo del mazo hay una carta boca arriba: solo se puede coger terminando de golpe (todas tus cartas bajadas, 51 puntos como mínimo). Si no, se juega normal y se descarta, cartas visibles.\nEn el primer turno no se puede recoger el descarte. Desde el segundo turno sí, pero entonces hay que abrir obligatoriamente (bajar al menos 51 puntos con esa carta).\nCombinación: escalera de 3 o más cartas del mismo palo, o trío/cuarteto del mismo valor y palos distintos. El comodín sustituye a cualquier carta. Tras abrir, se completan las combinaciones de la mesa. Gana el primero que se queda sin cartas.
+1861|Cada uno tiene 13 cartas. En tu turno: roba (o coge el descarte), baja combinaciones si quieres y descarta una carta.\nCombinación: escalera de 3 o más cartas del mismo palo (As bajo o alto, sin dar la vuelta), o trío/cuarteto del mismo valor y palos distintos. El comodín sustituye a cualquier carta.\nApertura: tu primera bajada debe valer al menos 51 puntos (As = 11, figuras = 10, As de A-2-3 = 1). Después puedes completar todas las combinaciones de la mesa y cambiar un comodín por la carta que representa.\nGana el primero que se queda sin cartas.
+1862|El ordenador ha cogido el descarte.
+1863|El ordenador ha robado una carta.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

@@ -1785,3 +1785,84 @@
 1784|În curând
 1785|Acest joc vine foarte curând.
 1786|Singur împotriva calculatorului
+1787|Poignée anunțată ({n} atuuri): +{v}
+1788|Scuza
+1789|Atu {n}
+1790|Jucătorul din stânga
+1791|Jucătorul din față
+1792|Jucătorul din dreapta
+1793|Rândul tău: alege licitația sau treci.
+1794|{n} se gândește…
+1795|Ai luat: aruncă 6 cărți (fără Rege, fără bout, atuuri doar dacă nu ai de ales).
+1796|{n} ia cu „{b}” și aruncă…
+1797|E rândul tău să joci.
+1798|Ai pierdut această mână.
+1799|Cel care a luat are {a} puncte cu {b} bout(uri) (erau necesare {c}). Scorul tău: {m}
+1800|Preluător
+1801|Levate
+1802|Pas
+1803|Câinele
+1804|Aruncare: {n} / 6
+1805|Aruncă
+1806|Tarot francez, 4 jucători: 78 de cărți (56 de culoare, 21 de atuuri, Scuza). Fiecare primește 18 cărți, 6 formează câinele.\nLicitații: Pas, Petite, Garde, Garde sans (câinele nevăzut), Garde contre (câinele merge la apărători). Preluătorul joacă singur contra trei.\nCu Petite sau Garde, preluătorul ia câinele și aruncă 6 cărți (fără Rege, fără bout; atuuri doar dacă e necesar).\nTrebuie să dai culoarea cerută; altfel taie cu atu (mai sus, dacă poți). La atu, mergi mai sus dacă poți. Scuza se joacă oricând și nu câștigă niciodată levata.\nBouturile sunt 21, 1 (petit) și Scuza. Puncte necesare: 56 cu 0 bouturi, 51 cu 1, 41 cu 2, 36 cu 3.\nBonusuri: petit au bout (1 câștigă ultima levată), poignée (10, 13 sau 15 atuuri: 20, 30, 40), șlem (toate levatele: +200).
+1807|Adversarul din stânga
+1808|Partener
+1809|Adversarul din dreapta
+1810|Rândul tău: iei la {n}?
+1811|Rândul tău: alege un atu sau treci.
+1812|Atu
+1813|Noi
+1814|Ei
+1815|Iau
+1816|Trec
+1817|Belote în 4: tu și partenerul (în față) împotriva celor 2 adversari. 32 de cărți, câte 8.\nLuarea: se întoarce o carte. Pe rând, fiecare o poate lua (culoarea ei devine atu). Dacă nimeni nu o ia, un al doilea tur permite alegerea altei culori. Dacă toți trec, se împarte din nou.\nAtu: Valet 20, 9 14, As 11, 10 10, Rege 4, Damă 3. Alte culori: As 11, 10 10, Rege 4, Damă 3, Valet 2.\nTrebuie să dai culoarea cerută; altfel taie cu atu (mai sus, dacă poți), în afară de cazul în care partenerul câștigă. La atu, mergi mai sus dacă poți.\nBelote-rebelote: Rege + Damă de atu = 20 de puncte. Zece de der: +10. Capot (toate levatele): +90.\nCine a luat trebuie să facă mai multe puncte decât adversarii, altfel este „înăuntru”: adversarii fac 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Zece de der: +10
+1821|Noi {a} · Ei {b}
+1822|Preluătorul a căzut!
+1823|Capot!
+1824|🏆 Bravo, ați câștigat! (+4 puncte)
+1825|Ați pierdut această mână.
+1826|Regulile jocului
+1827|Calculatorul trage {n} cărți.
+1828|Calculatorul trage o carte.
+1829|Calculatorul alege {n}.
+1830|Trebuie să tragi {n} cărți sau să răspunzi cu un 7.
+1831|Rândul tău: joacă o carte de aceeași culoare sau valoare.
+1832|Nu poți juca: trage o carte.
+1833|Calculatorul are {n} cărți
+1834|Teanc
+1835|Culoare cerută
+1836|Joacă o carte de aceeași culoare sau valoare cu cea de deasupra.\n8: se joacă peste orice, alegi culoarea.\n7: adversarul trage 2 cărți (poate răspunde cu alt 7: +2).\nAs: adversarul își pierde rândul.\nDacă nu poți juca, tragi o carte. Câștigă primul care rămâne fără cărți.
+1837|Reguli oficiale
+1838|Remiul pe care îl știe toată lumea: 13 cărți, deschidere la 51 de puncte.
+1839|Reguli personalizate
+1840|14 cărți, o carte de jos vizibilă care se ia doar terminând dintr-o dată, descărcarea se ridică doar pentru a ieși.
+1841|La prima tură nu poți ridica descărcarea.
+1842|Ca să ridici descărcarea, trebuie să poți deschide (51 de puncte) cu această carte.
+1843|Această carte se ia doar dacă termini dintr-o dată (minimum 51 de puncte).
+1844|Această combinație nu este validă.
+1845|Deschidere reușită!
+1846|Deschidere: {n} / 51 de puncte
+1847|Această carte nu se potrivește aici.
+1848|Coboară 51 de puncte sau anulează înainte de a arunca.
+1849|Ai ridicat descărcarea: trebuie să deschizi (să cobori 51 de puncte).
+1850|Alege o singură carte de aruncat.
+1851|Îți rămăseseră {n} puncte.
+1852|Rândul tău: trage sau ia descărcarea.
+1853|Coboară combinații, completează-le pe cele de pe masă, apoi aruncă o carte.
+1854|Coboară combinații (51 de puncte pentru a deschide), apoi aruncă o carte.
+1855|Carte de jos
+1856|Descărcare
+1857|Combinație {n}
+1858|Coboară
+1859|Aruncă
+1860|Fiecare are 14 cărți. Cel care începe trage a 15-a carte. La baza teancului e o carte întoarsă cu fața în sus: se ia doar terminând dintr-o dată (toate cărțile coborâte, minimum 51 de puncte). Altfel se joacă normal și se aruncă cu fața în sus.\nLa prima tură nu se poate ridica descărcarea. Din a doua tură se poate, dar atunci trebuie obligatoriu să deschizi (să cobori cel puțin 51 de puncte cu acea carte).\nCombinație: secvență de 3+ cărți de aceeași culoare sau triplet/careu de aceeași valoare în culori diferite. Jokerul înlocuiește orice carte. După deschidere, se completează combinațiile de pe masă. Câștigă primul care rămâne fără cărți.
+1861|Fiecare are 13 cărți. La rândul tău: trage (sau ia descărcarea), coboară combinații dacă vrei, apoi aruncă o carte.\nCombinație: secvență de 3+ cărți de aceeași culoare (As jos sau sus, fără buclă) sau triplet/careu de aceeași valoare în culori diferite. Jokerul înlocuiește orice carte.\nDeschidere: prima coborâre trebuie să valoreze cel puțin 51 de puncte (As = 11, figuri = 10, As în A-2-3 = 1). Apoi poți completa toate combinațiile de pe masă și poți schimba un joker cu cartea pe care o reprezintă.\nCâștigă primul care rămâne fără cărți.
+1862|Calculatorul a luat descărcarea.
+1863|Calculatorul a tras o carte.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

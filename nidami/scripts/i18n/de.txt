@@ -1785,3 +1785,84 @@
 1784|Demnächst
 1785|Dieses Spiel kommt sehr bald.
 1786|Allein gegen den Computer
+1787|Poignée angesagt ({n} Trümpfe): +{v}
+1788|Excuse
+1789|Trumpf {n}
+1790|Spieler links
+1791|Spieler gegenüber
+1792|Spieler rechts
+1793|Du bist dran: Wähle dein Gebot oder passe.
+1794|{n} überlegt…
+1795|Du hast genommen: Lege 6 Karten ab (keinen König, kein Oudler, Trümpfe nur zur Not).
+1796|{n} nimmt mit „{b}“ und legt ab…
+1797|Du bist am Zug.
+1798|Du hast diese Runde verloren.
+1799|Der Spieler hat {a} Punkte mit {b} Oudler(n) (nötig: {c}). Dein Ergebnis: {m}
+1800|Spieler
+1801|Stiche
+1802|Passe
+1803|Hund
+1804|Ablage: {n} / 6
+1805|Ablegen
+1806|Französisches Tarock, 4 Spieler: 78 Karten (56 Farbkarten, 21 Trümpfe, die Excuse). Jeder erhält 18 Karten, 6 bilden den Hund.\nGebote: Passe, Petite, Garde, Garde sans (Hund ungesehen), Garde contre (Hund geht an die Verteidiger). Der Spieler spielt allein gegen drei.\nBei Petite oder Garde nimmt er den Hund und legt 6 Karten ab (keinen König, keinen Oudler; Trümpfe nur wenn nötig).\nFarbe bedienen; sonst trumpfen (übertrumpfen, wenn möglich). Wird Trumpf ausgespielt, muss man höher gehen, wenn man kann. Die Excuse darf jederzeit gespielt werden und gewinnt nie den Stich.\nOudler sind die 21, die 1 (Petit) und die Excuse. Nötige Punkte: 56 mit 0 Oudlern, 51 mit 1, 41 mit 2, 36 mit 3.\nBoni: Petit au bout (die 1 gewinnt den letzten Stich), Poignée (10, 13 oder 15 Trümpfe: 20, 30, 40), Schlemm (alle Stiche: +200).
+1807|Gegner links
+1808|Partner
+1809|Gegner rechts
+1810|Du bist dran: Nimmst du bei {n}?
+1811|Du bist dran: Wähle eine Trumpffarbe oder passe.
+1812|Trumpf
+1813|Wir
+1814|Sie
+1815|Ich nehme
+1816|Ich passe
+1817|Belote zu viert: du und dein Partner (gegenüber) gegen die 2 Gegner. 32 Karten, je 8.\nNehmen: Eine Karte wird aufgedeckt. Reihum darf jeder sie nehmen (ihre Farbe wird Trumpf). Nimmt sie niemand, darf man in einer zweiten Runde eine andere Farbe wählen. Passen alle, wird neu gegeben.\nTrumpf: Bube 20, 9 14, Ass 11, 10 10, König 4, Dame 3. Andere Farben: Ass 11, 10 10, König 4, Dame 3, Bube 2.\nFarbe bedienen; sonst trumpfen (höher, wenn möglich), außer dein Partner sticht. Bei Trumpf höher gehen, wenn möglich.\nBelote-Rebelote: König + Dame im Trumpf = 20 Punkte. Letzter Stich: +10. Capot (alle Stiche): +90.\nDer Nehmer muss mehr Punkte als die Gegner machen, sonst ist er „drin“: die Gegner erhalten 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Letzter Stich: +10
+1821|Wir {a} · Sie {b}
+1822|Der Nehmer ist gescheitert!
+1823|Capot!
+1824|🏆 Bravo, ihr habt gewonnen! (+4 Punkte)
+1825|Ihr habt diese Runde verloren.
+1826|Spielregeln
+1827|Der Computer zieht {n} Karten.
+1828|Der Computer zieht eine Karte.
+1829|Der Computer wählt {n}.
+1830|Du musst {n} Karten ziehen oder mit einer 7 antworten.
+1831|Du bist dran: Spiele eine Karte derselben Farbe oder desselben Werts.
+1832|Du kannst nicht spielen: Ziehe eine Karte.
+1833|Der Computer hat {n} Karten
+1834|Stapel
+1835|Gewünschte Farbe
+1836|Spiele eine Karte derselben Farbe oder desselben Werts wie die oberste.\n8: auf alles spielbar, du wählst die Farbe.\n7: Der Gegner zieht 2 Karten (er kann mit einer weiteren 7 antworten: +2).\nAss: Der Gegner setzt aus.\nKannst du nicht spielen, ziehst du eine Karte. Wer zuerst keine Karten mehr hat, gewinnt.
+1837|Offizielle Regeln
+1838|Das Rommé, das jeder kennt: 13 Karten, Auslegen ab 51 Punkten.
+1839|Eigene Regeln
+1840|14 Karten, eine sichtbare Bodenkarte, die man nur nimmt, wenn man auf einen Schlag fertig wird, Ablage nur zum Rauskommen.
+1841|Im ersten Zug darfst du die Ablage nicht aufnehmen.
+1842|Um die Ablage aufzunehmen, musst du mit dieser Karte auslegen können (51 Punkte).
+1843|Diese Karte darf nur genommen werden, wenn du auf einen Schlag fertig wirst (mindestens 51 Punkte).
+1844|Diese Kombination ist ungültig.
+1845|Auslegen geschafft!
+1846|Auslegen: {n} / 51 Punkte
+1847|Diese Karte passt hier nicht.
+1848|Lege 51 Punkte aus oder brich ab, bevor du ablegst.
+1849|Du hast die Ablage aufgenommen: Du musst auslegen (51 Punkte).
+1850|Wähle nur eine Karte zum Ablegen.
+1851|Dir blieben {n} Punkte.
+1852|Du bist dran: Ziehe oder nimm die Ablage.
+1853|Lege Kombinationen aus, ergänze die auf dem Tisch und lege dann eine Karte ab.
+1854|Lege Kombinationen aus (51 Punkte zum Öffnen) und lege dann eine Karte ab.
+1855|Bodenkarte
+1856|Ablagestapel
+1857|Kombination {n}
+1858|Auslegen
+1859|Ablegen
+1860|Jeder hat 14 Karten. Der Beginner zieht die 15. Karte. Unten im Stapel liegt eine Karte offen: Sie darf nur genommen werden, wenn man auf einen Schlag fertig wird (alle Karten ausgelegt, mindestens 51 Punkte). Sonst spielt man normal und legt offen ab.\nIm ersten Zug darf man die Ablage nicht aufnehmen. Ab dem zweiten Zug darf man sie aufnehmen, muss dann aber auslegen (mindestens 51 Punkte mit dieser Karte).\nKombination: Reihe aus 3+ Karten derselben Farbe oder Satz gleichen Werts in verschiedenen Farben. Der Joker ersetzt jede Karte. Nach dem Auslegen darf man Kombinationen auf dem Tisch ergänzen. Wer zuerst keine Karten mehr hat, gewinnt.
+1861|Jeder hat 13 Karten. Du ziehst (oder nimmst die Ablage), legst Kombinationen aus, wenn du willst, und legst eine Karte ab.\nKombination: Reihe aus 3+ Karten derselben Farbe (Ass niedrig oder hoch, ohne Umbruch) oder Satz gleichen Werts in verschiedenen Farben. Der Joker ersetzt jede Karte.\nAuslegen: Das erste Auslegen muss mindestens 51 Punkte wert sein (Ass = 11, Bilder = 10, Ass in A-2-3 = 1). Danach darfst du alle Kombinationen auf dem Tisch ergänzen und einen Joker gegen die Karte tauschen, die er ersetzt.\nWer zuerst keine Karten mehr hat, gewinnt.
+1862|Der Computer hat die Ablage genommen.
+1863|Der Computer hat eine Karte gezogen.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

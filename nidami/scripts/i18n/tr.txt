@@ -1785,3 +1785,84 @@
 1784|Yakında
 1785|Bu oyun çok yakında geliyor.
 1786|Bilgisayara karşı tek başına
+1787|Poignée ilan edildi ({n} koz): +{v}
+1788|Excuse
+1789|Koz {n}
+1790|Soldaki oyuncu
+1791|Karşıdaki oyuncu
+1792|Sağdaki oyuncu
+1793|Sıra sende: ihaleni seç ya da pas geç.
+1794|{n} düşünüyor…
+1795|Aldın: 6 kart at (papaz yok, bout yok, koz yalnızca mecbursan).
+1796|{n} “{b}” ile alıyor ve kart atıyor…
+1797|Oynama sırası sende.
+1798|Bu eli kaybettin.
+1799|Alanın {a} puanı ve {b} bout’u var ({c} gerekiyordu). Puanın: {m}
+1800|Alan
+1801|Eller
+1802|Pas
+1803|Köpek
+1804|Atış: {n} / 6
+1805|At
+1806|Fransız Tarot, 4 oyuncu: 78 kart (56 renk kartı, 21 koz, Excuse). Herkes 18 kart alır, 6 kart köpeği oluşturur.\nİhale: Pas, Petite, Garde, Garde sans (köpek görülmez), Garde contre (köpek savunmaya gider). Alan, üçe karşı tek başına oynar.\nPetite ya da Garde ile alan köpeği alır ve 6 kart atar (papaz yok, bout yok; koz yalnızca gerekirse).\nRenge uymak gerekir; yoksa kozla kes (mümkünse daha büyükle). Koz oynanınca mümkünse yükselmek gerekir. Excuse istenen zaman oynanır ve eli asla almaz.\nBout’lar 21, 1 (petit) ve Excuse’tur. Gereken puan: 0 bout ile 56, 1 ile 51, 2 ile 41, 3 ile 36.\nBonuslar: petit au bout (1 son eli alır), poignée (10, 13 ya da 15 koz: 20, 30, 40), slam (tüm eller: +200).
+1807|Soldaki rakip
+1808|Eş
+1809|Sağdaki rakip
+1810|Sıra sende: {n} ile alıyor musun?
+1811|Sıra sende: koz seç ya da pas geç.
+1812|Koz
+1813|Biz
+1814|Onlar
+1815|Alıyorum
+1816|Pas
+1817|4 kişilik Belote: sen ve eşin (karşında) 2 rakibe karşı. 32 kart, kişi başı 8.\nAlma: bir kart açılır. Sırayla herkes alabilir (rengi koz olur). Kimse almazsa ikinci turda başka bir renk seçilebilir. Herkes pas geçerse kartlar yeniden dağıtılır.\nKoz: Vale 20, 9 14, As 11, 10 10, Papaz 4, Kız 3. Diğer renkler: As 11, 10 10, Papaz 4, Kız 3, Vale 2.\nRenge uymak gerekir; yoksa kozla kes (mümkünse daha büyükle), eşin alıyorsa hariç. Kozda mümkünse yükselmek gerekir.\nBelote-rebelote: kozun Papaz + Kız’ı = 20 puan. Son el: +10. Capot (tüm eller): +90.\nAlan, rakiplerden fazla puan yapmalı, yoksa “içeride” kalır: rakipler 162 alır.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Son el: +10
+1821|Biz {a} · Onlar {b}
+1822|Alan başaramadı!
+1823|Capot!
+1824|🏆 Tebrikler, kazandınız! (+4 puan)
+1825|Bu eli kaybettiniz.
+1826|Oyun kuralları
+1827|Bilgisayar {n} kart çekiyor.
+1828|Bilgisayar bir kart çekiyor.
+1829|Bilgisayar {n} seçiyor.
+1830|{n} kart çekmelisin ya da bir 7 ile karşılık vermelisin.
+1831|Sıra sende: aynı renk ya da aynı değerde bir kart oyna.
+1832|Oynayamazsın: bir kart çek.
+1833|Bilgisayarda {n} kart var
+1834|Deste
+1835|İstenen renk
+1836|Üstteki kartla aynı renk ya da aynı değerde bir kart oyna.\n8: her şeyin üstüne oynanır, rengi sen seçersin.\n7: rakip 2 kart çeker (bir 7 daha ile karşılık verebilir: +2).\nAs: rakip sırasını kaybeder.\nOynayamazsan bir kart çekersin. Kartları ilk biten kazanır.
+1837|Resmî kurallar
+1838|Herkesin bildiği Remi: 13 kart, 51 puanla açılış.
+1839|Özel kurallar
+1840|14 kart, yalnızca tek seferde bitirerek alınabilen görünür alt kart, atılan yalnızca çıkmak için toplanır.
+1841|İlk turda atılan kartı alamazsın.
+1842|Atılan kartı almak için bu kartla açabilmelisin (51 puan).
+1843|Bu kart yalnızca tek seferde bitirirsen alınır (en az 51 puan).
+1844|Bu kombinasyon geçerli değil.
+1845|Açılış başarılı!
+1846|Açılış: {n} / 51 puan
+1847|Bu kart buraya uymuyor.
+1848|51 puan indir ya da atmadan önce iptal et.
+1849|Atılan kartı aldın: açmalısın (51 puan indirmelisin).
+1850|Atmak için yalnızca bir kart seç.
+1851|{n} puanın kalmıştı.
+1852|Sıra sende: çek ya da atılan kartı al.
+1853|Kombinasyonlar indir, masadakileri tamamla, sonra bir kart at.
+1854|Kombinasyonlar indir (açmak için 51 puan), sonra bir kart at.
+1855|Alt kart
+1856|Atılan deste
+1857|Kombinasyon {n}
+1858|İndir
+1859|At
+1860|Herkesin 14 kartı var. Başlayan 15. kartı çeker. Destenin altında yüzü açık bir kart durur: yalnızca tek seferde bitirirsen alınır (tüm kartlar indirilmiş, en az 51 puan). Aksi halde normal oynanır ve açık atılır.\nİlk turda atılan kart alınamaz. İkinci turdan itibaren alınabilir, ama o zaman açmak zorunludur (bu kartla en az 51 puan indirmek).\nKombinasyon: aynı renkten 3+ ardışık kart ya da farklı renklerde aynı değerden üçlü/dörtlü. Joker her kartın yerini tutar. Açtıktan sonra masadaki kombinasyonlar tamamlanabilir. Kartları ilk biten kazanır.
+1861|Herkesin 13 kartı var. Sıranda: çek (ya da atılanı al), istersen kombinasyon indir ve bir kart at.\nKombinasyon: aynı renkten 3+ ardışık kart (As alçak ya da yüksek, döngü yok) ya da farklı renklerde aynı değerden üçlü/dörtlü. Joker her kartın yerini tutar.\nAçılış: ilk indirme en az 51 puan etmeli (As = 11, resimliler = 10, A-2-3’teki As = 1). Sonra masadaki tüm kombinasyonları tamamlayabilir ve bir jokeri temsil ettiği kartla değiştirebilirsin.\nKartları ilk biten kazanır.
+1862|Bilgisayar atılan kartı aldı.
+1863|Bilgisayar bir kart çekti.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre

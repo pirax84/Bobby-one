@@ -1785,3 +1785,84 @@
 1784|Tulossa pian
 1785|Tämä peli tulee pian.
 1786|Yksin tietokonetta vastaan
+1787|Poignée ilmoitettu ({n} valttia): +{v}
+1788|Excuse
+1789|Valtti {n}
+1790|Pelaaja vasemmalla
+1791|Pelaaja vastapäätä
+1792|Pelaaja oikealla
+1793|Sinun vuorosi: valitse tarjouksesi tai passaa.
+1794|{n} miettii…
+1795|Otit: hylkää 6 korttia (ei kuningasta, ei oudleria, valttia vain pakosta).
+1796|{n} ottaa tarjouksella ”{b}” ja hylkää…
+1797|Sinun vuorosi pelata.
+1798|Hävisit tämän jaon.
+1799|Ottaja sai {a} pistettä ja {b} oudleria (tarvittiin {c}). Pisteesi: {m}
+1800|Ottaja
+1801|Tikit
+1802|Passaa
+1803|Koira
+1804|Hylky: {n} / 6
+1805|Hylkää
+1806|Ranskalainen tarokki, 4 pelaajaa: 78 korttia (56 maakorttia, 21 valttia, Excuse). Jokainen saa 18 korttia, 6 muodostaa koiran.\nTarjoukset: Passaa, Petite, Garde, Garde sans (koira näkemättä), Garde contre (koira menee puolustajille). Ottaja pelaa yksin kolmea vastaan.\nPetitellä tai Gardella ottaja ottaa koiran ja hylkää 6 korttia (ei kuningasta, ei oudleria; valttia vain tarvittaessa).\nMaata on tunnustettava; muuten leikataan valtilla (ylitetään jos mahdollista). Valttia pelattaessa mennään korkeammalle, jos voi. Excuse voidaan pelata milloin tahansa eikä se voita tikkiä.\nOudlerit ovat 21, 1 (petit) ja Excuse. Tarvittavat pisteet: 56 ilman oudleria, 51 yhdellä, 41 kahdella, 36 kolmella.\nBonukset: petit au bout (1 voittaa viimeisen tikin), poignée (10, 13 tai 15 valttia: 20, 30, 40), slam (kaikki tikit: +200).
+1807|Vastustaja vasemmalla
+1808|Pari
+1809|Vastustaja oikealla
+1810|Sinun vuorosi: otatko maalla {n}?
+1811|Sinun vuorosi: valitse valtti tai passaa.
+1812|Valtti
+1813|Me
+1814|He
+1815|Otan
+1816|Passaan
+1817|Belote neljälle: sinä ja parisi (vastapäätä) kahta vastustajaa vastaan. 32 korttia, 8 kullekin.\nOtto: kortti käännetään. Vuorotellen kukin voi ottaa sen (sen maasta tulee valtti). Jos kukaan ei ota, toisella kierroksella voi valita toisen maan. Jos kaikki passaavat, jaetaan uudelleen.\nValtti: Jätkä 20, 9 14, Ässä 11, 10 10, Kuningas 4, Kuningatar 3. Muut maat: Ässä 11, 10 10, Kuningas 4, Kuningatar 3, Jätkä 2.\nMaata on tunnustettava; muuten leikataan valtilla (korkeammalle jos voi), ellei parisi voita. Valtissa mennään korkeammalle, jos voi.\nBelote-rebelote: valtin kuningas + kuningatar = 20 pistettä. Viimeinen tikki: +10. Capot (kaikki tikit): +90.\nOttajan on saatava enemmän pisteitä kuin vastustajien, muuten hän on ”sisällä”: vastustajat saavat 162.
+1818|Belote!
+1819|Rebelote! (+20)
+1820|Viimeinen tikki: +10
+1821|Me {a} · He {b}
+1822|Ottaja epäonnistui!
+1823|Capot!
+1824|🏆 Hienoa, voitte! (+4 pistettä)
+1825|Hävisitte tämän jaon.
+1826|Pelisäännöt
+1827|Tietokone nostaa {n} korttia.
+1828|Tietokone nostaa kortin.
+1829|Tietokone valitsee {n}.
+1830|Sinun on nostettava {n} korttia tai vastattava seiskalla.
+1831|Sinun vuorosi: pelaa saman maan tai arvon kortti.
+1832|Et voi pelata: nosta kortti.
+1833|Tietokoneella on {n} korttia
+1834|Pakka
+1835|Vaadittu maa
+1836|Pelaa saman maan tai arvon kortti kuin päällimmäinen.\n8: voi pelata minkä tahansa päälle, valitset maan.\n7: vastustaja nostaa 2 korttia (voi vastata toisella seiskalla: +2).\nÄssä: vastustaja ohittaa vuoronsa.\nJos et voi pelata, nostat kortin. Ensimmäinen ilman kortteja voittaa.
+1837|Viralliset säännöt
+1838|Rommi, jonka kaikki tuntevat: 13 korttia, avaus 51 pisteellä.
+1839|Omat säännöt
+1840|14 korttia, näkyvä pohjakortti jonka saa vain loppumalla kerralla, poistopakan saa ottaa vain pelin lopettamiseksi.
+1841|Ensimmäisellä vuorolla et saa ottaa poistopakkaa.
+1842|Poistopakan ottamiseksi sinun on voitava avata (51 pistettä) tällä kortilla.
+1843|Tämän kortin saa ottaa vain, jos lopetat kerralla (vähintään 51 pistettä).
+1844|Tämä yhdistelmä ei kelpaa.
+1845|Avaus onnistui!
+1846|Avaus: {n} / 51 pistettä
+1847|Tämä kortti ei sovi tähän.
+1848|Laske 51 pistettä tai peru ennen hylkäämistä.
+1849|Otit poistopakan: sinun on avattava (laskettava 51 pistettä).
+1850|Valitse vain yksi kortti hylättäväksi.
+1851|Sinulle jäi {n} pistettä.
+1852|Sinun vuorosi: nosta tai ota poistopakka.
+1853|Laske yhdistelmiä, täydennä pöydällä olevia ja hylkää kortti.
+1854|Laske yhdistelmiä (51 pistettä avaukseen) ja hylkää kortti.
+1855|Pohjakortti
+1856|Poistopakka
+1857|Yhdistelmä {n}
+1858|Laske
+1859|Hylkää
+1860|Jokaisella on 14 korttia. Aloittaja nostaa 15. kortin. Pakan pohjalla on kortti kuvapuoli ylöspäin: sen saa ottaa vain, jos lopetat kerralla (kaikki kortit laskettu, vähintään 51 pistettä). Muuten pelataan normaalisti ja hylätään avoimena.\nEnsimmäisellä vuorolla poistopakkaa ei saa ottaa. Toisesta vuorosta alkaen saa, mutta silloin on pakko avata (vähintään 51 pistettä sillä kortilla).\nYhdistelmä: 3+ saman maan korttia peräkkäin tai kolme/neljä samanarvoista eri maista. Jokeri korvaa minkä tahansa kortin. Avauksen jälkeen pöydän yhdistelmiä voi täydentää. Ensimmäinen ilman kortteja voittaa.
+1861|Jokaisella on 13 korttia. Vuorollasi: nosta (tai ota poistopakka), laske yhdistelmiä jos haluat ja hylkää kortti.\nYhdistelmä: 3+ saman maan korttia peräkkäin (ässä matala tai korkea, ei kiertoa) tai kolme/neljä samanarvoista eri maista. Jokeri korvaa minkä tahansa kortin.\nAvaus: ensimmäisen laskun on oltava vähintään 51 pisteen arvoinen (ässä = 11, kuvakortit = 10, ässä A-2-3:ssa = 1). Sen jälkeen voit täydentää kaikkia pöydän yhdistelmiä ja vaihtaa jokerin korttiin, jota se edustaa.\nEnsimmäinen ilman kortteja voittaa.
+1862|Tietokone otti poistopakan.
+1863|Tietokone nosti kortin.
+1864|Petite
+1865|Garde
+1866|Garde sans
+1867|Garde contre
