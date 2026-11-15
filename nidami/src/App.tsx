@@ -165,8 +165,6 @@ export default function App() {
   const go = (x: string, conv?: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (conv) { history.pushState({ v: x, conv }, ""); setV(x as V); setMore(false); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
   let keys = navCfg ? navCfg.split(",") : ["home", "messages", "voice", "friends"];
   if (bubbleOn && keys.includes("messages")) { const alt = ["groups", "events", "media", "games"].find((x) => !keys.includes(x)) || "groups"; keys = keys.map((k) => (k === "messages" ? alt : k)); }
-  if (bubbleOn && fabKind === "voice") { const alt2 = ["media", "events", "games", "groups"].find((x) => !keys.includes(x)) || "media"; keys = keys.map((k) => (k === "voice" ? alt2 : k)); }
-  if (bubbleOn && fabKind === "media" && !keys.includes("voice") && keys.includes("media")) keys = keys.map((k) => (k === "media" ? "voice" : k));
   const bar = keys.map((k) => navItems().find((n) => n[0] === k)).filter(Boolean).slice(0, 4) as [V, string, string][]; const half = Math.ceil(bar.length / 2);
   const topKeys = (topCfg ? topCfg.split(",") : ["search", "notifs"]).filter((k) => k === "search" || k === "theme" || navItems().some((n) => n[0] === k)).slice(0, 4);
   const openConvFull = (id: string) => { history.pushState({ v: "messages", conv: id }, ""); setV("messages"); };
