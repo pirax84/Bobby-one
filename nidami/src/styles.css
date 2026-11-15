@@ -1297,3 +1297,12 @@ html .bottom button:focus:not(:focus-visible){outline:none}
 html .bottom button:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:18px}
 html:not(.zz) .bottom button[data-k]>svg,html:not(.zz) .bottom button[data-k].on>svg{color:#fff!important}
 html:not(.zz)[data-accent=citron] .bottom button[data-k]>svg,html:not(.zz)[data-accent=miel] .bottom button[data-k]>svg,html:not(.zz)[data-accent=gris] .bottom button[data-k]>svg,html:not(.zz)[data-accent=beige] .bottom button[data-k]>svg{color:#2A2442!important}
+
+/* v278 : le haut (recherche, cloche, menu, profil) reste accessible : il se cache pendant le défilement et revient dès qu'on s'arrête */
+@media (max-width:760px){
+html .main>.top,html .main.ishome>.top{position:sticky!important;top:0!important;z-index:25;transition:opacity .2s,transform .2s;background:linear-gradient(var(--bg) 70%,transparent)!important;padding:6px 0 12px!important}
+html .main.ishome>.brandbar{position:sticky!important;top:0;z-index:25;transition:opacity .2s,transform .2s;padding:6px 0 12px!important;background:linear-gradient(var(--bg) 70%,transparent)}
+html.moving .main.ishome>.brandbar{opacity:0;transform:translateY(-120%);pointer-events:none}
+html.moving .main>.top{opacity:0;transform:translateY(-120%);pointer-events:none}
+}
+@media (max-width:760px){html .main.ishome{column-gap:0!important}html .main.ishome>.brandbar{padding-right:8px!important}}
