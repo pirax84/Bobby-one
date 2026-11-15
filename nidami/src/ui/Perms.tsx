@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import { t } from "../i18n";
 import { actions } from "../lib/store";
 import { MkTile } from "./common";
+import { askNotifPerm } from "../lib/perm";
 
 type K = "notif" | "mic" | "cam";
 const G: Record<K, string> = { notif: "linear-gradient(135deg,#FF8FA3,#E0609A)", mic: "linear-gradient(135deg,#5EE0C8,#2BB8D8 60%,var(--brand))", cam: "linear-gradient(135deg,var(--brand),var(--brand2))" };
@@ -13,12 +14,7 @@ const SVG: Record<K, ReactNode> = {
 
 async function ask(k: K): Promise<boolean> {
   try {
-    if (k === "notif") {
-      if (typeof Notification === "undefined") return false;
-      const r = Notification.permission === "granted" ? "granted" : await Notification.requestPermission();
-      if (r === "granted") actions.setSetting("push", true);
-      return r === "granted";
-    }
+    if (k === "notif") { const r = await askNotifPerm(); if (r === "granted") actions.setSetting("push", true); return r === "granted"; }
     const s = await navigator.mediaDevices.getUserMedia(k === "mic" ? { audio: true } : { video: true });
     s.getTracks().forEach((x) => x.stop());
     return true;
