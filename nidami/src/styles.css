@@ -1276,3 +1276,7 @@ html[data-accent=blanc] .bottom .plus .mk{border:4px solid var(--bg);outline:1px
 .nit .ntx{font-size:.92rem;overflow-wrap:anywhere}
 .nit:focus-visible,.nchead button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 @media (min-width:900px){.npage{max-width:none}.npage>.ncard{max-width:420px}}
+
+html .bottom button .mk svg,html .bottom button .mk{padding:0!important;background:none;border-radius:0;box-shadow:none;color:inherit;stroke-width:initial!important}
+html .bottom button .mk{background:var(--mkbg);border-radius:36%;box-shadow:0 4px 10px -4px rgba(0,0,0,.45)}
+html .bottom button .mk svg{width:78%!important;height:78%!important;background:none!important}
