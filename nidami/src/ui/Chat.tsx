@@ -143,36 +143,37 @@ export function Messages() {
       {txt.trim() ? <button className="btn micbtn" aria-label={t("Envoyer")}><Ico n="send" s={20} /></button> : <MicBtn max={600} onDone={(u) => actions.send(c.id, "", secs, null, undefined, u, once)} />}</form></div></>);
 }
 
-// ───────── Jeux : Morpion à deux (chacun joue depuis son profil) + Quiz solo
-const QUIZ: [string, string[], number][] = [
-  [T("Combien de côtés a un hexagone ?"), ["5", "6", "7", "8"], 1], [T("Quelle est la capitale de l'Italie ?"), [T("Milan"), T("Naples"), T("Rome"), T("Turin")], 2], [T("Quel animal est le plus rapide sur terre ?"), [T("Lion"), T("Guépard"), T("Cheval"), T("Antilope")], 1],
-  [T("Combien y a-t-il de minutes dans une heure et demie ?"), ["60", "75", "90", "100"], 2], [T("Quelle planète est la plus proche du Soleil ?"), [T("Vénus"), T("Mars"), T("Terre"), T("Mercure")], 3], [T("Quel fruit donne le cidre ?"), [T("Poire"), T("Pomme"), T("Raisin"), T("Cerise")], 1],
-  [T("Combien de joueurs dans une équipe de football sur le terrain ?"), ["9", "10", "11", "12"], 2], [T("De quelle couleur est le mélange du bleu et du jaune ?"), [T("Vert"), T("Orange"), T("Violet"), T("Marron")], 0], [T("Quel est le plus grand océan ?"), [T("Atlantique"), T("Indien"), T("Arctique"), T("Pacifique")], 3], [T("Combien de jours en février d'une année bissextile ?"), ["28", "29", "30", "31"], 1],
-];
+// ───────── Jeux : 12 jeux (cartes, plateau, mer) contre l'ordinateur ; Morpion aussi avec un ami
 import { MorpionBot, MemoryGame } from "./Solo";
+import { GameLogo, Word, GAME_KEYS } from "./games/logos";
+import { Bataille } from "./games/Bataille";
+import { Aligne4 } from "./games/Aligne4";
+import { Dames } from "./games/Dames";
+import { Navale } from "./games/Navale";
+import { Dominos } from "./games/Dominos";
+import { Pouilleux } from "./games/Pouilleux";
 export function Games() {
   const s = useStore((x) => x); const me = s.me; const [tab, setTab] = useState(""); const friends = (s.social.friends[me] || []).map((i) => userOf(s, i)!).filter(Boolean);
   const games = s.games.filter((g) => g.xId === me || g.oId === me);
-  const [qi, setQi] = useState(0); const [pts, setPts] = useState(0); const [ans, setAns] = useState<number | null>(null); const [done, setDone] = useState(false);
   const board = (g: (typeof games)[0]) => { const mine = (g.turn === "X" ? g.xId : g.oId) === me; const w = g.winner; const nm = (id: string) => userOf(s, id)?.name;
     return <div key={g.id} className="card col" style={{ alignItems: "center" }}><div className="row" style={{ gap: 14, alignItems: "flex-start", justifyContent: "center" }}><div className="center col" style={{ alignItems: "center", gap: 2 }}><Avatar u={userOf(s, g.xId)!} s={52} /><small>{g.xId === me ? t("Toi") : nm(g.xId)} · ✕</small></div><span className="muted" style={{ alignSelf: "center" }}>{t("contre")}</span><div className="center col" style={{ alignItems: "center", gap: 2 }}><Avatar u={userOf(s, g.oId)!} s={52} /><small>{g.oId === me ? t("Toi") : nm(g.oId)} · ◯</small></div></div>
       <div className="ttt">{g.board.map((c, i) => <button key={i} onClick={() => actions.play(g.id, i)} disabled={!!c || !!w || !mine} aria-label={t("Case {v1}", { v1: (i + 1) })} style={{ color: c === "X" ? "var(--brand2)" : "var(--warm)" }}>{c === "X" ? "✕" : c === "O" ? "◯" : ""}</button>)}</div>
       <div className={"gstatus" + (w ? "" : " muted")}>{w ? (w === "draw" ? t("Match nul 🤝") : t("🏆 {name} a gagné !", { name: nm(w === "X" ? g.xId : g.oId) })) : mine ? t("C'est votre tour") : t("Au tour de {name} (changez de membre dans Paramètres pour jouer à sa place en démo)", { name: nm(g.turn === "X" ? g.xId : g.oId) })}</div>{w && <button className="btn ghost" onClick={() => actions.newGame(g.xId === me ? g.oId : g.xId)}>{t("Nouvelle partie")}</button>}</div>; };
-  const q = QUIZ[qi];
-  const gi = (k: string) => k === "morpion" ? <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M20 6V50M36 6V50M6 20H50M6 36H50" stroke="var(--mute)" strokeWidth="2.5" strokeLinecap="round" opacity=".55" /><path d="M9 9L17 17M17 9L9 17M39 39L47 47M47 39L39 47" stroke="var(--brand)" strokeWidth="3.5" strokeLinecap="round" /><circle cx="28" cy="28" r="5" stroke="var(--brand2)" strokeWidth="3.5" /></svg>
-    : k === "quiz" ? <span className="gqm">?</span> : k === "bot" ? <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="var(--brand2)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="17" width="38" height="28" rx="9" /><path d="M28 17V8" /><circle cx="28" cy="7" r="2" /><circle cx="19" cy="30" r="2.4" /><circle cx="37" cy="30" r="2.4" /><path d="M22 38Q28 42 34 38" /></svg>
-    : <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><rect x="8" y="12" width="17" height="32" rx="5" fill="var(--brand)" /><rect x="31" y="12" width="17" height="32" rx="5" stroke="var(--brand)" strokeWidth="3" /></svg>;
-  const gt: Record<string, string> = { morpion: t("Morpion à deux"), quiz: t("Quiz"), bot: t("Contre le robot"), mem: t("Memory") };
+  const gt: Record<string, string> = { belote: t("Belote"), rami: t("Rami"), tarot: t("Tarot"), bataille: t("Bataille"), pouilleux: t("Pouilleux"), huit: t("8 américain"), aligne4: t("Aligne 4"), dames: t("Dames"), navale: t("Bataille navale"), morpion: t("Morpion"), dominos: t("Dominos"), memory: t("Memory") };
+  const sub: Record<string, string> = { belote: t("4 joueurs · atout"), rami: t("Suites et brelans"), tarot: t("Prises, bouts"), bataille: t("Le plus fort gagne"), pouilleux: t("Évite le valet"), huit: t("Pose, pioche, 8 !"), aligne4: t("4 jetons alignés"), dames: t("Prends tous les pions"), navale: t("Coule la flotte"), morpion: t("Avec un ami ou seul"), dominos: t("Pose bout à bout"), memory: t("Trouve les paires") };
+  const ready: Record<string, ReactNode> = { bataille: <Bataille />, aligne4: <Aligne4 />, dames: <Dames />, navale: <Navale />, dominos: <Dominos />, pouilleux: <Pouilleux />, memory: <MemoryGame /> };
+  const [mode, setMode] = useState<"" | "ami" | "bot">("");
+  const back = () => { if (tab === "morpion" && mode) setMode(""); else { setTab(""); setMode(""); } };
   return (<div className="col">
-    {tab ? <div className="row" style={{ gap: 8 }}><button className="btn ghost sm" onClick={() => setTab("")} aria-label={t("Retour")}><Ico n="back" s={18} /></button><h1 className="grow" style={{ margin: 0 }}>{gt[tab]}</h1></div> : <h1>{t("Jeux")}</h1>}
+    {tab ? <div className="row" style={{ gap: 8 }}><button className="btn ghost sm" onClick={back} aria-label={t("Retour")}><Ico n="back" s={18} /></button><h1 className="grow" style={{ margin: 0 }}>{gt[tab]}</h1></div> : <h1>{t("Jeux")}</h1>}
     {!tab && <><div className="gtotal"><div className="grow"><div className="muted small">{t("Ton total")}</div><b>{s.scores[me] || 0} {t("points")}</b></div><Ico n="user" s={24} /></div>
-      <div className="ggrid">{([["morpion", t("Avec un ami")], ["quiz", t("Questions, points")], ["bot", t("Morpion solo")], ["mem", t("Trouve les paires")]] as [string, string][]).map(([k, sub]) => <button key={k} className="gcard" onClick={() => setTab(k)}>{gi(k)}<b>{gt[k]}</b><span className="muted small">{sub}</span></button>)}</div>
+      <div className="ggrid">{GAME_KEYS.map((k) => <button key={k} className="gcard" onClick={() => setTab(k)}><GameLogo k={k} size={76} /><b><Word w={gt[k]} s={gt[k].length > 9 ? 13 : 16} /></b><span className="muted small">{sub[k]}{ready[k] ? "" : " · " + t("Bientôt")}</span></button>)}</div>
       <div className="muted small center" style={{ textAlign: "center" }}>{t("Touche un jeu pour jouer.")}</div></>}
-    {tab === "bot" && <MorpionBot />}{tab === "mem" && <MemoryGame />}
-    {tab === "morpion" && <><div className="card col"><b>{t("Inviter un ami")}</b><div className="tabs" style={{ flexWrap: "wrap" }}>{friends.map((f) => <button key={f.id} className="chip" onClick={() => { if (areFriends(s.social, me, f.id)) { actions.newGame(f.id); toast(t("Partie lancée avec {name}.", { name: f.name })); } }}>{f.name}</button>)}</div></div>{games.map(board)}{!games.length && <p className="muted">{t("Aucune partie. Invitez un ami ci-dessus.")}</p>}</>}
-    {tab === "quiz" && <div className="card col">{done ? <div className="center col"><h2>{t("Bravo ! {pts}/{length}", { pts, length: QUIZ.length })}</h2><div className="muted">{t("Votre total :")}{" "}{s.scores[me] || 0}{" "}{t("points")}</div><button className="btn" onClick={() => { setQi(0); setPts(0); setDone(false); setAns(null); }}>{t("Rejouer")}</button></div> : <>
-      <div className="muted small">{t("Question {v1}/{length} · Score {pts}", { v1: qi + 1, length: QUIZ.length, pts })}</div><div className="qbar"><i style={{ width: ((qi + 1) / QUIZ.length * 100) + "%" }} /></div><h3>{t(q[0])}</h3>{q[1].map((o, i) => <button key={i} className="btn ghost" disabled={ans !== null} onClick={() => { setAns(i); if (i === q[2]) { setPts(pts + 1); actions.addScore(1); } }} style={ans !== null ? { background: i === q[2] ? "rgba(52,211,153,.3)" : i === ans ? "rgba(251,113,133,.3)" : undefined } : undefined}>{t(o)}</button>)}
-      {ans !== null && <button className="btn" onClick={() => { if (qi + 1 < QUIZ.length) { setQi(qi + 1); setAns(null); } else setDone(true); }}>{qi + 1 < QUIZ.length ? t("Suivante") : t("Terminer")}</button>}</>}</div>}
+    {tab && ready[tab]}
+    {tab && !ready[tab] && tab !== "morpion" && <div className="card col center" style={{ alignItems: "center", gap: 8 }}><GameLogo k={tab} size={96} /><b>{t("Ce jeu arrive très bientôt.")}</b></div>}
+    {tab === "morpion" && !mode && <div className="card col" style={{ gap: 8 }}><button className="btn" onClick={() => setMode("bot")}>{t("Seul contre l'ordinateur")}</button><button className="btn ghost" onClick={() => setMode("ami")}>{t("Avec un ami")}</button></div>}
+    {tab === "morpion" && mode === "bot" && <MorpionBot />}
+    {tab === "morpion" && mode === "ami" && <><div className="card col"><b>{t("Inviter un ami")}</b><div className="tabs" style={{ flexWrap: "wrap" }}>{friends.map((f) => <button key={f.id} className="chip" onClick={() => { if (areFriends(s.social, me, f.id)) { actions.newGame(f.id); toast(t("Partie lancée avec {name}.", { name: f.name })); } }}>{f.name}</button>)}</div></div>{games.map(board)}{!games.length && <p className="muted">{t("Aucune partie. Invitez un ami ci-dessus.")}</p>}</>}
   </div>);
 }
 

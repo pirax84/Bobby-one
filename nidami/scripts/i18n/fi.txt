@@ -1700,3 +1700,88 @@
 1699|Sallittu
 1700|Estetty: muuta puhelimen asetuksista
 1701|Pidä painiketta painettuna ja vedä sitä vasemmalle tai oikealle vaihtaaksesi sen paikkaa.
+1702|Voitat tämän kierroksen!
+1703|Tietokone voittaa tämän kierroksen.
+1704|Sota!
+1705|🏆 Hienoa, voitit kaikki kortit! (+3 pistettä)
+1706|Tietokone voitti tämän pelin.
+1707|Paina ”Käännä” pelataksesi.
+1708|{n} korttia
+1709|Käännä
+1710|Nostit kortin.
+1711|Tietokone nosti pelaajalta {n}.
+1712|sinä
+1713|toinen pelaaja
+1714|Pidät ristijätkän: olet musta Pekka!
+1715|🏆 Hienoa, et ole musta Pekka! (+3 pistettä)
+1716|Sinulla ei ole enää kortteja: olet pelastunut!
+1717|Sinun vuorosi: nosta piilotettu kortti pelaajalta {n}.
+1718|tietokone 1
+1719|tietokone 2
+1720|Tietokone miettii…
+1721|Tietokone {n}
+1722|🏆 Hienoa, voitit! (+5 pistettä)
+1723|Sinun on lyötävä nappula (lyöntipakko).
+1724|Sinun vuorosi: kosketa yhtä nappulaasi.
+1725|Tammilauta
+1726|Sinun nappulasi
+1727|Tietokoneen nappula
+1728|Mahdollinen ruutu
+1729|Ruutu
+1730|Uponnut! Upotit laivan.
+1731|Osuma!
+1732|Ohi… veteen.
+1733|Tietokone upotti yhden laivoistasi.
+1734|Tietokone osui yhteen laivoistasi.
+1735|Tietokone ampui ohi.
+1736|🏆 Hienoa, upotit koko laivaston! (+5 pistettä)
+1737|Tietokone upotti koko laivastosi.
+1738|Tässä laivastosi. Muuta sitä halutessasi ja aloita peli.
+1739|Sinun vuorosi: kosketa vihollisen meren ruutua.
+1740|Laivastosi
+1741|Sekoita laivastoni
+1742|Aloita peli
+1743|Tietokoneen meri
+1744|Ruutu {n}
+1745|🏆 Hienoa, voitit! (+3 pistettä)
+1746|Sinun vuorosi: valitse sarake.
+1747|7 sarakkeen ruudukko
+1748|Sarake {n}
+1749|Nostat laatan.
+1750|Ohitat vuorosi.
+1751|Tietokone ohittaa vuoronsa.
+1752|🏆 Hienoa, voitit! (+4 pistettä)
+1753|Sinun vuorosi: valitse laatta, joka sopii päähän.
+1754|Et voi pelata: nosta laatta.
+1755|Ei enää nostettavia: ohitat.
+1756|Tietokoneella on {n} laattaa · Pakka: {m}
+1757|Dominoketju
+1758|Aseta ensimmäinen laatta.
+1759|Vasen
+1760|Oikea
+1761|Nosta
+1762|Belote
+1763|Rommi
+1764|Tarot
+1765|Sota
+1766|Musta Pekka
+1767|Kasi
+1768|Neljä suora
+1769|Tammi
+1770|Laivanupotus
+1771|Ristinolla
+1772|Domino
+1773|4 pelaajaa · valtti
+1774|Suorat ja kolmoset
+1775|Tikit, bout-kortit
+1776|Korkein kortti voittaa
+1777|Vältä jätkää
+1778|Laita, nosta, 8!
+1779|4 peräkkäin
+1780|Lyö kaikki nappulat
+1781|Upota laivasto
+1782|Ystävän kanssa tai yksin
+1783|Aseta pää päätä vasten
+1784|Tulossa pian
+1785|Tämä peli tulee pian.
+1786|Yksin tietokonetta vastaan

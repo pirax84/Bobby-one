@@ -1700,3 +1700,88 @@
 1699|Leidžiama
 1700|Atmesta: pakeisk telefono nustatymuose
 1701|Palaikykite mygtuką ir nuvilkite jį į kairę ar dešinę, kad pakeistumėte jo vietą.
+1702|Tu laimi šį ratą!
+1703|Kompiuteris laimi šį ratą.
+1704|Karas!
+1705|🏆 Šaunu, laimėjai visas kortas! (+3 taškai)
+1706|Kompiuteris laimėjo šį žaidimą.
+1707|Norėdamas žaisti, paspausk „Apversti“.
+1708|Kortų: {n}
+1709|Apversti
+1710|Ištraukei kortą.
+1711|Kompiuteris ištraukė kortą iš: {n}.
+1712|tu
+1713|kitas žaidėjas
+1714|Tau liko kryžių valetas: tu esi juodasis Petras!
+1715|🏆 Šaunu, tu nesi juodasis Petras! (+3 taškai)
+1716|Kortų nebeturi: esi išgelbėtas!
+1717|Tavo eilė: ištrauk paslėptą kortą iš: {n}.
+1718|kompiuteris 1
+1719|kompiuteris 2
+1720|Kompiuteris mąsto…
+1721|Kompiuteris {n}
+1722|🏆 Šaunu, laimėjai! (+5 taškai)
+1723|Privalai paimti šaškę (ėmimas privalomas).
+1724|Tavo eilė: paliesk vieną savo šaškę.
+1725|Šaškių lenta
+1726|Tavo šaškė
+1727|Kompiuterio šaškė
+1728|Galimas langelis
+1729|Langelis
+1730|Nuskandinta! Nuskandinai laivą.
+1731|Pataikei!
+1732|Pramaišei… į vandenį.
+1733|Kompiuteris nuskandino vieną tavo laivą.
+1734|Kompiuteris pataikė į vieną tavo laivą.
+1735|Kompiuteris pramaišė.
+1736|🏆 Šaunu, nuskandinai visą laivyną! (+5 taškai)
+1737|Kompiuteris nuskandino visą tavo laivyną.
+1738|Štai tavo laivynas. Pakeisk jį, jei nori, ir pradėk žaidimą.
+1739|Tavo eilė: paliesk priešo jūros langelį.
+1740|Tavo laivynas
+1741|Sumaišyti mano laivyną
+1742|Pradėti žaidimą
+1743|Kompiuterio jūra
+1744|Langelis {n}
+1745|🏆 Šaunu, laimėjai! (+3 taškai)
+1746|Tavo eilė: pasirink stulpelį.
+1747|7 stulpelių tinklelis
+1748|Stulpelis {n}
+1749|Traukia kauliuką.
+1750|Praleidi ėjimą.
+1751|Kompiuteris praleidžia ėjimą.
+1752|🏆 Šaunu, laimėjai! (+4 taškai)
+1753|Tavo eilė: pasirink kauliuką, tinkantį galui.
+1754|Negali ėjimo: ištrauk kauliuką.
+1755|Kauliukų nebėra: praleidi.
+1756|Kompiuteris turi {n} kauliukų · Krūva: {m}
+1757|Domino grandinė
+1758|Padėk pirmą kauliuką.
+1759|Kairė
+1760|Dešinė
+1761|Traukti
+1762|Belote
+1763|Remis
+1764|Taro
+1765|Karas
+1766|Juodasis Petras
+1767|Aštuonetai
+1768|Keturi iš eilės
+1769|Šaškės
+1770|Jūrų mūšis
+1771|Kryžiukai ir nuliukai
+1772|Domino
+1773|4 žaidėjai · kozyris
+1774|Sekos ir trejetai
+1775|Kirtimai, boutai
+1776|Laimi aukščiausia korta
+1777|Venk valeto
+1778|Dėk, traukk, 8!
+1779|4 iš eilės
+1780|Paimk visas šaškes
+1781|Nuskandink laivyną
+1782|Su draugu arba vienas
+1783|Dėk galą prie galo
+1784|Netrukus
+1785|Šis žaidimas netrukus.
+1786|Vienas prieš kompiuterį

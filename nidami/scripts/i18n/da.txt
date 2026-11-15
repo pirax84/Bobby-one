@@ -1700,3 +1700,88 @@
 1699|Tilladt
 1700|Afvist: ændr det i telefonens indstillinger
 1701|Hold en knap nede, og træk den til venstre eller højre for at skifte plads.
+1702|Du vinder denne runde!
+1703|Computeren vinder denne runde.
+1704|Krig!
+1705|🏆 Flot, du vandt alle kortene! (+3 point)
+1706|Computeren vandt dette spil.
+1707|Tryk på »Vend« for at spille.
+1708|{n} kort
+1709|Vend
+1710|Du trak et kort.
+1711|Computeren trak fra {n}.
+1712|dig
+1713|den anden spiller
+1714|Du beholder klørknægten: du er sortepetter!
+1715|🏆 Flot, du er ikke sortepetter! (+3 point)
+1716|Du har ikke flere kort: du er reddet!
+1717|Din tur: træk et skjult kort fra {n}.
+1718|computer 1
+1719|computer 2
+1720|Computeren tænker…
+1721|Computer {n}
+1722|🏆 Flot, du vandt! (+5 point)
+1723|Du skal tage en brik (tvungen tagning).
+1724|Din tur: tryk på en af dine brikker.
+1725|Damspilsbræt
+1726|Din brik
+1727|Computerens brik
+1728|Mulig rude
+1729|Rude
+1730|Sænket! Du sænkede et skib.
+1731|Ramt!
+1732|Forbi… i vandet.
+1733|Computeren sænkede et af dine skibe.
+1734|Computeren ramte et af dine skibe.
+1735|Computeren ramte forbi.
+1736|🏆 Flot, du sænkede hele flåden! (+5 point)
+1737|Computeren sænkede hele din flåde.
+1738|Her er din flåde. Ændr den, hvis du vil, og start så spillet.
+1739|Din tur: tryk på en rude i fjendens hav.
+1740|Din flåde
+1741|Bland min flåde
+1742|Start spillet
+1743|Computerens hav
+1744|Rude {n}
+1745|🏆 Flot, du vandt! (+3 point)
+1746|Din tur: vælg en kolonne.
+1747|Gitter med 7 kolonner
+1748|Kolonne {n}
+1749|Du trækker en brik.
+1750|Du springer over.
+1751|Computeren springer over.
+1752|🏆 Flot, du vandt! (+4 point)
+1753|Din tur: vælg en brik, der passer til en ende.
+1754|Du kan ikke spille: træk en brik.
+1755|Ikke flere brikker: du springer over.
+1756|Computeren har {n} brikker · Stak: {m}
+1757|Dominokæde
+1758|Læg den første brik.
+1759|Venstre
+1760|Højre
+1761|Træk
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Krig
+1766|Sortepetter
+1767|Otte-spil
+1768|Fire på stribe
+1769|Dam
+1770|Sænke slagskibe
+1771|Kryds og bolle
+1772|Domino
+1773|4 spillere · trumf
+1774|Rækker og tripler
+1775|Stik, bouts
+1776|Højeste kort vinder
+1777|Undgå knægten
+1778|Læg, træk, 8!
+1779|4 på stribe
+1780|Tag alle brikker
+1781|Sænk flåden
+1782|Med en ven eller alene
+1783|Læg ende mod ende
+1784|Kommer snart
+1785|Dette spil kommer meget snart.
+1786|Alene mod computeren

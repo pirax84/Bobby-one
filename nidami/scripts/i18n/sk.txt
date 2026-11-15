@@ -1700,3 +1700,88 @@
 1699|Povolené
 1700|Zamietnuté: zmeň v nastaveniach telefónu
 1701|Podrž tlačidlo a presuň ho doľava alebo doprava, aby si zmenil jeho miesto.
+1702|Vyhrávaš toto kolo!
+1703|Počítač vyhráva toto kolo.
+1704|Vojna!
+1705|🏆 Skvelé, vyhral si všetky karty! (+3 body)
+1706|Počítač vyhral túto hru.
+1707|Na hranie stlač „Otočiť“.
+1708|Kariet: {n}
+1709|Otočiť
+1710|Ťahal si kartu.
+1711|Počítač ťahal kartu od hráča {n}.
+1712|ty
+1713|druhý hráč
+1714|Zostáva ti spodok z krížov: si čierny Peter!
+1715|🏆 Skvelé, nie si čierny Peter! (+3 body)
+1716|Už nemáš karty: si zachránený!
+1717|Si na ťahu: potiahni skrytú kartu od hráča {n}.
+1718|počítač 1
+1719|počítač 2
+1720|Počítač premýšľa…
+1721|Počítač {n}
+1722|🏆 Skvelé, vyhral si! (+5 bodov)
+1723|Musíš zobrať kameň (branie je povinné).
+1724|Si na ťahu: ťukni na jeden zo svojich kameňov.
+1725|Dámska doska
+1726|Tvoj kameň
+1727|Kameň počítača
+1728|Možné pole
+1729|Pole
+1730|Potopené! Potopil si loď.
+1731|Zásah!
+1732|Vedľa… do vody.
+1733|Počítač potopil jednu z tvojich lodí.
+1734|Počítač zasiahol jednu z tvojich lodí.
+1735|Počítač minul.
+1736|🏆 Skvelé, potopil si celú flotilu! (+5 bodov)
+1737|Počítač potopil celú tvoju flotilu.
+1738|Tu je tvoja flotila. Zmeň ju, ak chceš, a spusti hru.
+1739|Si na ťahu: ťukni na pole nepriateľského mora.
+1740|Tvoja flotila
+1741|Zamiešať moju flotilu
+1742|Spustiť hru
+1743|More počítača
+1744|Pole {n}
+1745|🏆 Skvelé, vyhral si! (+3 body)
+1746|Si na ťahu: vyber stĺpec.
+1747|Mriežka so 7 stĺpcami
+1748|Stĺpec {n}
+1749|Ťaháš kameň.
+1750|Vynechávaš ťah.
+1751|Počítač vynecháva ťah.
+1752|🏆 Skvelé, vyhral si! (+4 body)
+1753|Si na ťahu: vyber kameň, ktorý pasuje na koniec.
+1754|Nemôžeš hrať: potiahni kameň.
+1755|Žiadne kamene na ťahanie: vynechávaš.
+1756|Počítač má {n} kameňov · Zásoba: {m}
+1757|Reťaz domina
+1758|Polož prvý kameň.
+1759|Vľavo
+1760|Vpravo
+1761|Ťahať
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Vojna
+1766|Čierny Peter
+1767|Osmičky
+1768|Štyri v rade
+1769|Dáma
+1770|Lode
+1771|Piškvorky
+1772|Domino
+1773|4 hráči · tromf
+1774|Postupky a trojice
+1775|Zdvihy, bouty
+1776|Vyhráva najvyššia karta
+1777|Vyhni sa spodkovi
+1778|Polož, ťahaj, 8!
+1779|4 v rade
+1780|Zober všetky kamene
+1781|Potop flotilu
+1782|S kamarátom alebo sám
+1783|Prikladaj koniec ku koncu
+1784|Čoskoro
+1785|Táto hra príde čoskoro.
+1786|Sám proti počítaču

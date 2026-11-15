@@ -1700,3 +1700,88 @@
 1699|Engedélyezve
 1700|Elutasítva: módosítsd a telefon beállításaiban
 1701|Tartsd nyomva a gombot, majd húzd balra vagy jobbra a helyének megváltoztatásához.
+1702|Te nyered ezt a kört!
+1703|A számítógép nyeri ezt a kört.
+1704|Háború!
+1705|🏆 Szép munka, minden kártyát megnyertél! (+3 pont)
+1706|A számítógép nyerte ezt a játszmát.
+1707|A játékhoz nyomd meg a „Felfordítás” gombot.
+1708|{n} kártya
+1709|Felfordítás
+1710|Húztál egy lapot.
+1711|A számítógép húzott tőle: {n}.
+1712|te
+1713|a másik játékos
+1714|Nálad maradt a treff alsó: te vagy a fekete Péter!
+1715|🏆 Szép munka, nem te vagy a fekete Péter! (+3 pont)
+1716|Nincs több lapod: megmenekültél!
+1717|Te jössz: húzz egy rejtett lapot tőle: {n}.
+1718|számítógép 1
+1719|számítógép 2
+1720|A számítógép gondolkodik…
+1721|Számítógép {n}
+1722|🏆 Szép munka, nyertél! (+5 pont)
+1723|Ütnöd kell egy bábut (az ütés kötelező).
+1724|Te jössz: érintsd meg az egyik bábudat.
+1725|Dámatábla
+1726|A te bábud
+1727|A számítógép bábuja
+1728|Lehetséges mező
+1729|Mező
+1730|Elsüllyedt! Elsüllyesztettél egy hajót.
+1731|Találat!
+1732|Mellé… a vízbe.
+1733|A számítógép elsüllyesztette az egyik hajódat.
+1734|A számítógép eltalálta az egyik hajódat.
+1735|A számítógép mellélőtt.
+1736|🏆 Szép munka, elsüllyesztetted az egész flottát! (+5 pont)
+1737|A számítógép elsüllyesztette az egész flottádat.
+1738|Itt a flottád. Változtasd meg, ha akarod, aztán indítsd el a játékot.
+1739|Te jössz: érints meg egy mezőt az ellenség tengerén.
+1740|A flottád
+1741|Flottám megkeverése
+1742|Játék indítása
+1743|A számítógép tengere
+1744|{n}. mező
+1745|🏆 Szép munka, nyertél! (+3 pont)
+1746|Te jössz: válassz egy oszlopot.
+1747|7 oszlopos rács
+1748|{n}. oszlop
+1749|Húzol egy követ.
+1750|Kihagyod a lépést.
+1751|A számítógép kihagyja a lépést.
+1752|🏆 Szép munka, nyertél! (+4 pont)
+1753|Te jössz: válassz egy követ, amely illik valamelyik véghez.
+1754|Nem tudsz lépni: húzz egy követ.
+1755|Nincs több húzható kő: kihagyod.
+1756|A számítógépnek {n} köve van · Húzópakli: {m}
+1757|Dominólánc
+1758|Tedd le az első követ.
+1759|Bal
+1760|Jobb
+1761|Húzás
+1762|Belote
+1763|Römi
+1764|Tarot
+1765|Háború
+1766|Fekete Péter
+1767|Nyolcas
+1768|Négy egy sorban
+1769|Dáma
+1770|Torpedó
+1771|Amőba
+1772|Dominó
+1773|4 játékos · adu
+1774|Sorozatok és hármasok
+1775|Ütések, bout-ok
+1776|A legmagasabb lap nyer
+1777|Kerüld az alsót
+1778|Tégy, húzz, 8!
+1779|4 egy sorban
+1780|Üss le minden bábut
+1781|Süllyeszd el a flottát
+1782|Baráttal vagy egyedül
+1783|Illeszd végtől végig
+1784|Hamarosan
+1785|Ez a játék hamarosan érkezik.
+1786|Egyedül a számítógép ellen

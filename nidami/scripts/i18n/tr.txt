@@ -1700,3 +1700,88 @@
 1699|İzin verildi
 1700|Reddedildi: telefon ayarlarından değiştir
 1701|Bir düğmeye basılı tut, yerini değiştirmek için sola veya sağa sürükle.
+1702|Bu turu kazandın!
+1703|Bu turu bilgisayar kazandı.
+1704|Savaş!
+1705|🏆 Tebrikler, tüm kartları kazandın! (+3 puan)
+1706|Bu oyunu bilgisayar kazandı.
+1707|Oynamak için “Çevir”e bas.
+1708|{n} kart
+1709|Çevir
+1710|Bir kart çektin.
+1711|Bilgisayar {n} oyuncusundan çekti.
+1712|sen
+1713|diğer oyuncu
+1714|Sinek valesi sende kaldı: kaybeden sensin!
+1715|🏆 Tebrikler, kaybeden sen değilsin! (+3 puan)
+1716|Hiç kartın kalmadı: kurtuldun!
+1717|Sıra sende: {n} oyuncusundan kapalı bir kart çek.
+1718|bilgisayar 1
+1719|bilgisayar 2
+1720|Bilgisayar düşünüyor…
+1721|Bilgisayar {n}
+1722|🏆 Tebrikler, kazandın! (+5 puan)
+1723|Bir taş almak zorundasın (almak zorunlu).
+1724|Sıra sende: taşlarından birine dokun.
+1725|Dama tahtası
+1726|Senin taşın
+1727|Bilgisayarın taşı
+1728|Olası kare
+1729|Kare
+1730|Battı! Bir gemi batırdın.
+1731|İsabet!
+1732|Iska… suya düştü.
+1733|Bilgisayar gemilerinden birini batırdı.
+1734|Bilgisayar gemilerinden birini vurdu.
+1735|Bilgisayar ıskaladı.
+1736|🏆 Tebrikler, tüm filoyu batırdın! (+5 puan)
+1737|Bilgisayar tüm filonu batırdı.
+1738|İşte filon. İstersen değiştir, sonra oyunu başlat.
+1739|Sıra sende: düşman denizinde bir kareye dokun.
+1740|Senin filon
+1741|Filomu karıştır
+1742|Oyunu başlat
+1743|Bilgisayarın denizi
+1744|Kare {n}
+1745|🏆 Tebrikler, kazandın! (+3 puan)
+1746|Sıra sende: bir sütun seç.
+1747|7 sütunlu ızgara
+1748|Sütun {n}
+1749|Bir taş çekiyorsun.
+1750|Sırayı pas geçiyorsun.
+1751|Bilgisayar sırayı pas geçiyor.
+1752|🏆 Tebrikler, kazandın! (+4 puan)
+1753|Sıra sende: bir uca uyan taş seç.
+1754|Oynayamıyorsun: bir taş çek.
+1755|Çekilecek taş kalmadı: pas geçiyorsun.
+1756|Bilgisayarda {n} taş var · Yığın: {m}
+1757|Domino zinciri
+1758|İlk taşı koy.
+1759|Sol
+1760|Sağ
+1761|Çek
+1762|Belote
+1763|Remi
+1764|Tarot
+1765|Savaş
+1766|Kara Petek
+1767|Sekizli
+1768|Dört Birleştir
+1769|Dama
+1770|Amiral Battı
+1771|XOX
+1772|Domino
+1773|4 oyuncu · koz
+1774|Seriler ve üçlüler
+1775|Eller, bout'lar
+1776|En yüksek kart kazanır
+1777|Valeden kaç
+1778|Koy, çek, 8!
+1779|Yan yana 4
+1780|Tüm taşları al
+1781|Filoyu batır
+1782|Bir arkadaşla ya da tek başına
+1783|Uç uca ekle
+1784|Yakında
+1785|Bu oyun çok yakında geliyor.
+1786|Bilgisayara karşı tek başına

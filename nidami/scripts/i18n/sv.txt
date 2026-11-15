@@ -1700,3 +1700,88 @@
 1699|Tillåtet
 1700|Nekat: ändra i telefonens inställningar
 1701|Håll in en knapp och dra den åt vänster eller höger för att byta plats.
+1702|Du vinner den här ronden!
+1703|Datorn vinner den här ronden.
+1704|Krig!
+1705|🏆 Bra jobbat, du vann alla kort! (+3 poäng)
+1706|Datorn vann den här partiet.
+1707|Tryck på ”Vänd” för att spela.
+1708|{n} kort
+1709|Vänd
+1710|Du drog ett kort.
+1711|Datorn drog från {n}.
+1712|du
+1713|den andra spelaren
+1714|Du behåller klöver knekt: du är svarte Petter!
+1715|🏆 Bra jobbat, du är inte svarte Petter! (+3 poäng)
+1716|Du har inga kort kvar: du är räddad!
+1717|Din tur: dra ett dolt kort från {n}.
+1718|dator 1
+1719|dator 2
+1720|Datorn tänker…
+1721|Dator {n}
+1722|🏆 Bra jobbat, du vann! (+5 poäng)
+1723|Du måste ta en bricka (tvångstagning).
+1724|Din tur: tryck på en av dina brickor.
+1725|Damspelsbräde
+1726|Din bricka
+1727|Datorns bricka
+1728|Möjlig ruta
+1729|Ruta
+1730|Sänkt! Du sänkte ett skepp.
+1731|Träff!
+1732|Miss… i vattnet.
+1733|Datorn sänkte ett av dina skepp.
+1734|Datorn träffade ett av dina skepp.
+1735|Datorn missade.
+1736|🏆 Bra jobbat, du sänkte hela flottan! (+5 poäng)
+1737|Datorn sänkte hela din flotta.
+1738|Här är din flotta. Ändra den om du vill och starta sedan spelet.
+1739|Din tur: tryck på en ruta i fiendens hav.
+1740|Din flotta
+1741|Blanda min flotta
+1742|Starta spelet
+1743|Datorns hav
+1744|Ruta {n}
+1745|🏆 Bra jobbat, du vann! (+3 poäng)
+1746|Din tur: välj en kolumn.
+1747|Rutnät med 7 kolumner
+1748|Kolumn {n}
+1749|Du drar en bricka.
+1750|Du passar.
+1751|Datorn passar.
+1752|🏆 Bra jobbat, du vann! (+4 poäng)
+1753|Din tur: välj en bricka som passar en ände.
+1754|Du kan inte spela: dra en bricka.
+1755|Inga fler brickor att dra: du passar.
+1756|Datorn har {n} brickor · Hög: {m}
+1757|Dominokedja
+1758|Lägg den första brickan.
+1759|Vänster
+1760|Höger
+1761|Dra
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Krig
+1766|Svarte Petter
+1767|Femman
+1768|Fyra i rad
+1769|Dam
+1770|Sänka skepp
+1771|Tre i rad
+1772|Domino
+1773|4 spelare · trumf
+1774|Sviter och treor
+1775|Stick, bouts
+1776|Högsta kortet vinner
+1777|Undvik knekten
+1778|Lägg, dra, 8!
+1779|4 i rad
+1780|Ta alla brickor
+1781|Sänk flottan
+1782|Med en vän eller ensam
+1783|Lägg ände mot ände
+1784|Kommer snart
+1785|Det här spelet kommer snart.
+1786|Ensam mot datorn

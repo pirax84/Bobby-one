@@ -1700,3 +1700,88 @@
 1699|Permess
 1700|Miċħud: biddlu fis-settings tat-telefon
 1701|Żomm buttuna u kaxkarha lejn ix-xellug jew il-lemin biex tbiddel posta.
+1702|Tirbaħ dan ir-rawnd!
+1703|Il-kompjuter jirbaħ dan ir-rawnd.
+1704|Gwerra!
+1705|🏆 Brava, rbaħt il-kards kollha! (+3 punti)
+1706|Il-kompjuter rebaħ din il-logħba.
+1707|Agħfas «Aqleb» biex tilgħab.
+1708|{n} kards
+1709|Aqleb
+1710|Ġibt kard.
+1711|Il-kompjuter ġab kard minn {n}.
+1712|int
+1713|il-plejer l-ieħor
+1714|Baqagħlek il-fanti tal-flus: int il-ħati!
+1715|🏆 Brava, m'intix il-ħati! (+3 punti)
+1716|M'għandekx aktar kards: salvajt!
+1717|Id-dawra tiegħek: ġib kard moħbija minn {n}.
+1718|kompjuter 1
+1719|kompjuter 2
+1720|Il-kompjuter qed jaħseb…
+1721|Kompjuter {n}
+1722|🏆 Brava, rbaħt! (+5 punti)
+1723|Jeħtieġ tieħu biċċa (il-qbid hu obbligatorju).
+1724|Id-dawra tiegħek: messu waħda mill-biċċiet tiegħek.
+1725|Bord tad-dama
+1726|Il-biċċa tiegħek
+1727|Il-biċċa tal-kompjuter
+1728|Kwadru possibbli
+1729|Kwadru
+1730|Għereq! Għaraqt vapur.
+1731|Ħabbatha!
+1732|Missitha… fl-ilma.
+1733|Il-kompjuter għarraq wieħed mill-vapuri tiegħek.
+1734|Il-kompjuter laqat wieħed mill-vapuri tiegħek.
+1735|Il-kompjuter ma laqatx.
+1736|🏆 Brava, għaraqt il-flotta kollha! (+5 punti)
+1737|Il-kompjuter għarraq il-flotta kollha tiegħek.
+1738|Din hi l-flotta tiegħek. Biddilha jekk trid, imbagħad ibda l-logħba.
+1739|Id-dawra tiegħek: messu kwadru tal-baħar tal-għadu.
+1740|Il-flotta tiegħek
+1741|Ħawwad il-flotta tiegħi
+1742|Ibda l-logħba
+1743|Il-baħar tal-kompjuter
+1744|Kwadru {n}
+1745|🏆 Brava, rbaħt! (+3 punti)
+1746|Id-dawra tiegħek: agħżel kolonna.
+1747|Grillia ta' 7 kolonni
+1748|Kolonna {n}
+1749|Tiġbed biċċa.
+1750|Tgħaddi d-dawra.
+1751|Il-kompjuter jgħaddi d-dawra.
+1752|🏆 Brava, rbaħt! (+4 punti)
+1753|Id-dawra tiegħek: agħżel biċċa li taqbel ma' tarf.
+1754|Ma tistax tilgħab: iġbed biċċa.
+1755|M'hemmx aktar biċċiet x'iġbed: tgħaddi.
+1756|Il-kompjuter għandu {n} biċċiet · Munzell: {m}
+1757|Katina tad-domino
+1758|Poġġi l-ewwel biċċa.
+1759|Xellug
+1760|Lemin
+1761|Iġbed
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Gwerra
+1766|Il-Ħati
+1767|Tmienja
+1768|Erbgħa f'ringiela
+1769|Dama
+1770|Battalja navali
+1771|Tic-tac-toe
+1772|Domino
+1773|4 plejers · trumpet
+1774|Sekwenzi u tliet kards
+1775|Trick, bouts
+1776|Tirbaħ l-ogħla kard
+1777|Evita l-fanti
+1778|Poġġi, iġbed, 8!
+1779|4 f'ringiela
+1780|Aqbad il-biċċiet kollha
+1781|Għarraq il-flotta
+1782|Ma' ħabib jew waħdek
+1783|Waħħal tarf mat-tarf
+1784|Dalwaqt
+1785|Din il-logħba tkun hawn dalwaqt.
+1786|Waħdek kontra l-kompjuter

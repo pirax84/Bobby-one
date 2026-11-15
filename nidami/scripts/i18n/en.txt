@@ -1700,3 +1700,88 @@
 1699|Allowed
 1700|Denied: change it in your phone settings
 1701|Hold a button, then drag it left or right to change its place.
+1702|You win this round!
+1703|The computer wins this round.
+1704|War!
+1705|🏆 Well done, you won all the cards! (+3 points)
+1706|The computer won this game.
+1707|Press “Flip” to play.
+1708|{n} cards
+1709|Flip
+1710|You drew a card.
+1711|The computer drew from {n}.
+1712|you
+1713|the other player
+1714|You keep the jack of clubs: you're the loser!
+1715|🏆 Well done, you're not the loser! (+3 points)
+1716|You have no cards left: you're safe!
+1717|Your turn: draw a hidden card from {n}.
+1718|computer 1
+1719|computer 2
+1720|The computer is thinking…
+1721|Computer {n}
+1722|🏆 Well done, you won! (+5 points)
+1723|You must capture a piece (capture is mandatory).
+1724|Your turn: tap one of your pieces.
+1725|Checkers board
+1726|Your piece
+1727|Computer's piece
+1728|Possible square
+1729|Square
+1730|Sunk! You sank a ship.
+1731|Hit!
+1732|Miss… in the water.
+1733|The computer sank one of your ships.
+1734|The computer hit one of your ships.
+1735|The computer missed.
+1736|🏆 Well done, you sank the whole fleet! (+5 points)
+1737|The computer sank your whole fleet.
+1738|Here is your fleet. Change it if you like, then start the game.
+1739|Your turn: tap a square of the enemy sea.
+1740|Your fleet
+1741|Shuffle my fleet
+1742|Start the game
+1743|Computer's sea
+1744|Square {n}
+1745|🏆 Well done, you won! (+3 points)
+1746|Your turn: choose a column.
+1747|7-column grid
+1748|Column {n}
+1749|You draw a tile.
+1750|You pass your turn.
+1751|The computer passes its turn.
+1752|🏆 Well done, you won! (+4 points)
+1753|Your turn: choose a tile that matches an end.
+1754|You can't play: draw a tile.
+1755|No more tiles to draw: you pass.
+1756|The computer has {n} tiles · Stock: {m}
+1757|Domino chain
+1758|Place the first tile.
+1759|Left
+1760|Right
+1761|Draw
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|War
+1766|Old Maid
+1767|Crazy Eights
+1768|Connect 4
+1769|Checkers
+1770|Battleship
+1771|Tic-tac-toe
+1772|Dominoes
+1773|4 players · trump
+1774|Runs and sets
+1775|Tricks, oudlers
+1776|Highest card wins
+1777|Avoid the jack
+1778|Play, draw, 8!
+1779|4 in a row
+1780|Take all the pieces
+1781|Sink the fleet
+1782|With a friend or solo
+1783|Match end to end
+1784|Coming soon
+1785|This game is coming very soon.
+1786|Solo against the computer

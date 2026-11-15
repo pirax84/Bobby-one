@@ -1700,3 +1700,88 @@
 1699|Toegestaan
 1700|Geweigerd: wijzig het in de telefooninstellingen
 1701|Houd een knop ingedrukt en sleep hem naar links of rechts om zijn plek te veranderen.
+1702|Je wint deze ronde!
+1703|De computer wint deze ronde.
+1704|Oorlog!
+1705|🏆 Goed gedaan, je hebt alle kaarten gewonnen! (+3 punten)
+1706|De computer heeft dit spel gewonnen.
+1707|Tik op "Omdraaien" om te spelen.
+1708|{n} kaarten
+1709|Omdraaien
+1710|Je hebt een kaart getrokken.
+1711|De computer trok van {n}.
+1712|jij
+1713|de andere speler
+1714|Je houdt de klaverenboer: jij bent de verliezer!
+1715|🏆 Goed gedaan, je bent niet de verliezer! (+3 punten)
+1716|Je hebt geen kaarten meer: je bent gered!
+1717|Jouw beurt: trek een verborgen kaart van {n}.
+1718|computer 1
+1719|computer 2
+1720|De computer denkt na…
+1721|Computer {n}
+1722|🏆 Goed gedaan, je hebt gewonnen! (+5 punten)
+1723|Je moet een schijf slaan (slaan is verplicht).
+1724|Jouw beurt: tik op een van je schijven.
+1725|Dambord
+1726|Jouw schijf
+1727|Schijf van de computer
+1728|Mogelijk vakje
+1729|Vakje
+1730|Gezonken! Je hebt een schip tot zinken gebracht.
+1731|Raak!
+1732|Mis… in het water.
+1733|De computer heeft een van je schepen laten zinken.
+1734|De computer heeft een van je schepen geraakt.
+1735|De computer miste.
+1736|🏆 Goed gedaan, je hebt de hele vloot laten zinken! (+5 punten)
+1737|De computer heeft je hele vloot laten zinken.
+1738|Hier is je vloot. Verander hem als je wilt en start dan het spel.
+1739|Jouw beurt: tik op een vakje van de vijandelijke zee.
+1740|Jouw vloot
+1741|Mijn vloot schudden
+1742|Spel starten
+1743|Zee van de computer
+1744|Vakje {n}
+1745|🏆 Goed gedaan, je hebt gewonnen! (+3 punten)
+1746|Jouw beurt: kies een kolom.
+1747|Raster van 7 kolommen
+1748|Kolom {n}
+1749|Je trekt een steen.
+1750|Je slaat je beurt over.
+1751|De computer slaat zijn beurt over.
+1752|🏆 Goed gedaan, je hebt gewonnen! (+4 punten)
+1753|Jouw beurt: kies een steen die bij een uiteinde past.
+1754|Je kunt niet spelen: trek een steen.
+1755|Geen stenen meer: je past.
+1756|De computer heeft {n} stenen · Voorraad: {m}
+1757|Dominoketting
+1758|Leg de eerste steen.
+1759|Links
+1760|Rechts
+1761|Trekken
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Oorlog
+1766|Zwartepieten
+1767|Pesten
+1768|Vier op een rij
+1769|Dammen
+1770|Zeeslag
+1771|Boter-kaas-en-eieren
+1772|Domino
+1773|4 spelers · troef
+1774|Reeksen en drietallen
+1775|Slagen, bouts
+1776|Hoogste kaart wint
+1777|Vermijd de boer
+1778|Leg, trek, 8!
+1779|4 op een rij
+1780|Sla alle schijven
+1781|Laat de vloot zinken
+1782|Met een vriend of alleen
+1783|Leg uiteinde aan uiteinde
+1784|Binnenkort
+1785|Dit spel komt heel binnenkort.
+1786|Alleen tegen de computer

@@ -1700,3 +1700,88 @@
 1699|Lubatud
 1700|Keelatud: muuda telefoni seadetes
 1701|Hoia nuppu all ja lohista seda vasakule või paremale, et selle kohta muuta.
+1702|Sa võidad selle vooru!
+1703|Arvuti võidab selle vooru.
+1704|Sõda!
+1705|🏆 Tubli, sa võitsid kõik kaardid! (+3 punkti)
+1706|Arvuti võitis selle mängu.
+1707|Mängimiseks vajuta „Pööra”.
+1708|{n} kaarti
+1709|Pööra
+1710|Sa tõmbasid kaardi.
+1711|Arvuti tõmbas mängijalt {n}.
+1712|sina
+1713|teine mängija
+1714|Sul jäi risti soldat: sina oled must Peeter!
+1715|🏆 Tubli, sa ei ole must Peeter! (+3 punkti)
+1716|Sul pole enam kaarte: oled päästetud!
+1717|Sinu kord: tõmba varjatud kaart mängijalt {n}.
+1718|arvuti 1
+1719|arvuti 2
+1720|Arvuti mõtleb…
+1721|Arvuti {n}
+1722|🏆 Tubli, sa võitsid! (+5 punkti)
+1723|Pead nupu võtma (võtmine on kohustuslik).
+1724|Sinu kord: puuduta ühte oma nuppu.
+1725|Kabelaud
+1726|Sinu nupp
+1727|Arvuti nupp
+1728|Võimalik ruut
+1729|Ruut
+1730|Põhja! Sa uputasid laeva.
+1731|Pihtas!
+1732|Mööda… vette.
+1733|Arvuti uputas ühe sinu laeva.
+1734|Arvuti tabas ühte sinu laeva.
+1735|Arvuti lasi mööda.
+1736|🏆 Tubli, sa uputasid kogu laevastiku! (+5 punkti)
+1737|Arvuti uputas kogu sinu laevastiku.
+1738|Siin on sinu laevastik. Muuda seda soovi korral ja alusta mängu.
+1739|Sinu kord: puuduta vaenlase mere ruutu.
+1740|Sinu laevastik
+1741|Sega minu laevastik
+1742|Alusta mängu
+1743|Arvuti meri
+1744|Ruut {n}
+1745|🏆 Tubli, sa võitsid! (+3 punkti)
+1746|Sinu kord: vali veerg.
+1747|7 veeruga ruudustik
+1748|Veerg {n}
+1749|Sa tõmbad kivi.
+1750|Sa jätad käigu vahele.
+1751|Arvuti jätab käigu vahele.
+1752|🏆 Tubli, sa võitsid! (+4 punkti)
+1753|Sinu kord: vali kivi, mis sobib otsaga.
+1754|Sa ei saa käia: tõmba kivi.
+1755|Tõmmata pole enam kive: jätad vahele.
+1756|Arvutil on {n} kivi · Tald: {m}
+1757|Doominoahel
+1758|Pane esimene kivi.
+1759|Vasak
+1760|Parem
+1761|Tõmba
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Sõda
+1766|Must Peeter
+1767|Kaheksad
+1768|Neli ritta
+1769|Kabe
+1770|Laevade pommitamine
+1771|Trips-traps-trull
+1772|Doomino
+1773|4 mängijat · trump
+1774|Jadad ja kolmikud
+1775|Võtted, boutid
+1776|Kõrgeim kaart võidab
+1777|Väldi sõdurit
+1778|Pane, tõmba, 8!
+1779|4 reas
+1780|Võta kõik nupud
+1781|Uputa laevastik
+1782|Sõbraga või üksi
+1783|Pane ots otsa
+1784|Varsti
+1785|See mäng tuleb varsti.
+1786|Üksi arvuti vastu

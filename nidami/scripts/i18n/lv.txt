@@ -1700,3 +1700,88 @@
 1699|Atļauts
 1700|Noraidīts: maini tālruņa iestatījumos
 1701|Turiet pogu un velciet to pa kreisi vai pa labi, lai mainītu tās vietu.
+1702|Tu uzvari šo raundu!
+1703|Dators uzvar šo raundu.
+1704|Karš!
+1705|🏆 Malacis, tu uzvarēji visas kārtis! (+3 punkti)
+1706|Dators uzvarēja šajā spēlē.
+1707|Lai spēlētu, nospied “Apgriezt”.
+1708|Kāršu: {n}
+1709|Apgriezt
+1710|Tu paņēmi kārti.
+1711|Dators paņēma kārti no: {n}.
+1712|tu
+1713|otrs spēlētājs
+1714|Tev palika kreiču kalps: tu esi melnais Pēteris!
+1715|🏆 Malacis, tu neesi melnais Pēteris! (+3 punkti)
+1716|Kāršu vairs nav: tu esi glābts!
+1717|Tava kārta: paņem apslēptu kārti no: {n}.
+1718|dators 1
+1719|dators 2
+1720|Dators domā…
+1721|Dators {n}
+1722|🏆 Malacis, tu uzvarēji! (+5 punkti)
+1723|Tev jāsit kauliņš (sišana ir obligāta).
+1724|Tava kārta: pieskaries vienam no saviem kauliņiem.
+1725|Dambretes dēlis
+1726|Tavs kauliņš
+1727|Datora kauliņš
+1728|Iespējams lauciņš
+1729|Lauciņš
+1730|Nogremdēts! Tu nogremdēji kuģi.
+1731|Trāpīji!
+1732|Garām… ūdenī.
+1733|Dators nogremdēja vienu no taviem kuģiem.
+1734|Dators trāpīja vienam no taviem kuģiem.
+1735|Dators netrāpīja.
+1736|🏆 Malacis, tu nogremdēji visu floti! (+5 punkti)
+1737|Dators nogremdēja visu tavu floti.
+1738|Lūk, tava flote. Nomaini to, ja vēlies, un sāc spēli.
+1739|Tava kārta: pieskaries ienaidnieka jūras lauciņam.
+1740|Tava flote
+1741|Samaisīt manu floti
+1742|Sākt spēli
+1743|Datora jūra
+1744|Lauciņš {n}
+1745|🏆 Malacis, tu uzvarēji! (+3 punkti)
+1746|Tava kārta: izvēlies kolonnu.
+1747|7 kolonnu režģis
+1748|Kolonna {n}
+1749|Tu velc kauliņu.
+1750|Tu izlaid gājienu.
+1751|Dators izlaiž gājienu.
+1752|🏆 Malacis, tu uzvarēji! (+4 punkti)
+1753|Tava kārta: izvēlies kauliņu, kas der galam.
+1754|Tu nevari spēlēt: velc kauliņu.
+1755|Vairs nav ko vilkt: tu izlaid gājienu.
+1756|Datoram ir {n} kauliņi · Kaudze: {m}
+1757|Domino ķēde
+1758|Noliec pirmo kauliņu.
+1759|Pa kreisi
+1760|Pa labi
+1761|Vilkt
+1762|Belote
+1763|Rummijs
+1764|Taro
+1765|Karš
+1766|Melnais Pēteris
+1767|Astoņnieki
+1768|Četri rindā
+1769|Dambrete
+1770|Jūras kauja
+1771|Krustiņi un nullītes
+1772|Domino
+1773|4 spēlētāji · trumpis
+1774|Secības un trejnieki
+1775|Stiķi, bouti
+1776|Uzvar augstākā kārts
+1777|Izvairies no kalpa
+1778|Liec, velc, 8!
+1779|4 rindā
+1780|Nosit visus kauliņus
+1781|Nogremdē floti
+1782|Ar draugu vai vienatnē
+1783|Liec galu pie gala
+1784|Drīzumā
+1785|Šī spēle būs drīzumā.
+1786|Vienatnē pret datoru

@@ -1700,3 +1700,88 @@
 1699|Consentito
 1700|Negato: cambialo nelle impostazioni del telefono
 1701|Tieni premuto un pulsante e trascinalo a sinistra o a destra per cambiarne la posizione.
+1702|Vinci questo turno!
+1703|Il computer vince questo turno.
+1704|Battaglia!
+1705|🏆 Bravo, hai vinto tutte le carte! (+3 punti)
+1706|Il computer ha vinto questa partita.
+1707|Premi «Gira» per giocare.
+1708|{n} carte
+1709|Gira
+1710|Hai pescato una carta.
+1711|Il computer ha pescato da {n}.
+1712|tu
+1713|l'altro giocatore
+1714|Tieni il fante di fiori: sei il perdente!
+1715|🏆 Bravo, non sei il perdente! (+3 punti)
+1716|Non hai più carte: sei salvo!
+1717|Tocca a te: pesca una carta coperta da {n}.
+1718|computer 1
+1719|computer 2
+1720|Il computer sta pensando…
+1721|Computer {n}
+1722|🏆 Bravo, hai vinto! (+5 punti)
+1723|Devi catturare una pedina (la presa è obbligatoria).
+1724|Tocca a te: tocca una delle tue pedine.
+1725|Scacchiera della dama
+1726|La tua pedina
+1727|Pedina del computer
+1728|Casella possibile
+1729|Casella
+1730|Affondata! Hai affondato una nave.
+1731|Colpito!
+1732|Mancato… in acqua.
+1733|Il computer ha affondato una delle tue navi.
+1734|Il computer ha colpito una delle tue navi.
+1735|Il computer ha mancato.
+1736|🏆 Bravo, hai affondato tutta la flotta! (+5 punti)
+1737|Il computer ha affondato tutta la tua flotta.
+1738|Ecco la tua flotta. Cambiala se vuoi, poi avvia la partita.
+1739|Tocca a te: tocca una casella del mare nemico.
+1740|La tua flotta
+1741|Mescola la mia flotta
+1742|Avvia la partita
+1743|Mare del computer
+1744|Casella {n}
+1745|🏆 Bravo, hai vinto! (+3 punti)
+1746|Tocca a te: scegli una colonna.
+1747|Griglia di 7 colonne
+1748|Colonna {n}
+1749|Peschi una tessera.
+1750|Passi il turno.
+1751|Il computer passa il turno.
+1752|🏆 Bravo, hai vinto! (+4 punti)
+1753|Tocca a te: scegli una tessera adatta a un'estremità.
+1754|Non puoi giocare: pesca una tessera.
+1755|Niente più da pescare: passi.
+1756|Il computer ha {n} tessere · Mazzo: {m}
+1757|Catena di domino
+1758|Posa la prima tessera.
+1759|Sinistra
+1760|Destra
+1761|Pesca
+1762|Belote
+1763|Ramino
+1764|Tarocchi
+1765|Guerra
+1766|Uomo nero
+1767|Otto matto
+1768|Forza 4
+1769|Dama
+1770|Battaglia navale
+1771|Tris
+1772|Domino
+1773|4 giocatori · briscola
+1774|Scale e tris
+1775|Prese, bout
+1776|Vince la carta più alta
+1777|Evita il fante
+1778|Posa, pesca, 8!
+1779|4 in fila
+1780|Cattura tutte le pedine
+1781|Affonda la flotta
+1782|Con un amico o da solo
+1783|Unisci estremità a estremità
+1784|Presto
+1785|Questo gioco arriva molto presto.
+1786|Da solo contro il computer

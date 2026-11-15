@@ -1700,3 +1700,88 @@
 1699|Dovoljeno
 1700|Zavrnjeno: spremeni v nastavitvah telefona
 1701|Drži gumb in ga povleci levo ali desno, da spremeniš njegovo mesto.
+1702|V tem krogu zmagaš ti!
+1703|Računalnik zmaga v tem krogu.
+1704|Vojna!
+1705|🏆 Bravo, osvojil si vse karte! (+3 točke)
+1706|Računalnik je zmagal v tej igri.
+1707|Za igro pritisni »Obrni«.
+1708|Kart: {n}
+1709|Obrni
+1710|Potegnil si karto.
+1711|Računalnik je potegnil karto od: {n}.
+1712|ti
+1713|drugi igralec
+1714|Obdržiš križevega kmeta: ti si črni Peter!
+1715|🏆 Bravo, nisi črni Peter! (+3 točke)
+1716|Nimaš več kart: si rešen!
+1717|Na vrsti si: potegni skrito karto od: {n}.
+1718|računalnik 1
+1719|računalnik 2
+1720|Računalnik razmišlja…
+1721|Računalnik {n}
+1722|🏆 Bravo, zmagal si! (+5 točk)
+1723|Moraš vzeti figuro (jemanje je obvezno).
+1724|Na vrsti si: tapni eno od svojih figur.
+1725|Damska plošča
+1726|Tvoja figura
+1727|Figura računalnika
+1728|Možno polje
+1729|Polje
+1730|Potopljena! Potopil si ladjo.
+1731|Zadetek!
+1732|Zgrešeno… v vodo.
+1733|Računalnik je potopil eno od tvojih ladij.
+1734|Računalnik je zadel eno od tvojih ladij.
+1735|Računalnik je zgrešil.
+1736|🏆 Bravo, potopil si celotno floto! (+5 točk)
+1737|Računalnik je potopil tvojo celotno floto.
+1738|Tukaj je tvoja flota. Spremeni jo, če želiš, nato začni igro.
+1739|Na vrsti si: tapni polje sovražnikovega morja.
+1740|Tvoja flota
+1741|Premešaj mojo floto
+1742|Začni igro
+1743|Morje računalnika
+1744|Polje {n}
+1745|🏆 Bravo, zmagal si! (+3 točke)
+1746|Na vrsti si: izberi stolpec.
+1747|Mreža s 7 stolpci
+1748|Stolpec {n}
+1749|Potegneš ploščico.
+1750|Izpustiš potezo.
+1751|Računalnik izpusti potezo.
+1752|🏆 Bravo, zmagal si! (+4 točke)
+1753|Na vrsti si: izberi ploščico, ki ustreza koncu.
+1754|Ne moreš igrati: potegni ploščico.
+1755|Ni več ploščic za vleči: izpustiš.
+1756|Računalnik ima {n} ploščic · Kup: {m}
+1757|Veriga domin
+1758|Položi prvo ploščico.
+1759|Levo
+1760|Desno
+1761|Vleci
+1762|Belote
+1763|Remi
+1764|Tarot
+1765|Vojna
+1766|Črni Peter
+1767|Osmice
+1768|Štiri v vrsto
+1769|Dama
+1770|Potapljanje ladjic
+1771|Križci in krožci
+1772|Domine
+1773|4 igralci · adut
+1774|Zaporedja in trojke
+1775|Zbodi, bouti
+1776|Zmaga najvišja karta
+1777|Izogibaj se kmetu
+1778|Položi, vleci, 8!
+1779|4 v vrsti
+1780|Vzemi vse figure
+1781|Potopi floto
+1782|S prijateljem ali sam
+1783|Polagaj konec h koncu
+1784|Kmalu
+1785|Ta igra prihaja kmalu.
+1786|Sam proti računalniku

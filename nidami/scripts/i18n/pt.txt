@@ -1700,3 +1700,88 @@
 1699|Permitido
 1700|Recusado: altera nas definições do telemóvel
 1701|Mantém um botão premido e arrasta-o para a esquerda ou para a direita para mudar o lugar.
+1702|Ganhas esta ronda!
+1703|O computador ganha esta ronda.
+1704|Batalha!
+1705|🏆 Parabéns, ganhaste todas as cartas! (+3 pontos)
+1706|O computador ganhou esta partida.
+1707|Carrega em «Virar» para jogar.
+1708|{n} cartas
+1709|Virar
+1710|Tiraste uma carta.
+1711|O computador tirou de {n}.
+1712|tu
+1713|o outro jogador
+1714|Ficas com o valete de paus: és o perdedor!
+1715|🏆 Parabéns, não és o perdedor! (+3 pontos)
+1716|Já não tens cartas: estás salvo!
+1717|A tua vez: tira uma carta escondida de {n}.
+1718|computador 1
+1719|computador 2
+1720|O computador está a pensar…
+1721|Computador {n}
+1722|🏆 Parabéns, ganhaste! (+5 pontos)
+1723|Tens de capturar uma peça (captura obrigatória).
+1724|A tua vez: toca numa das tuas peças.
+1725|Tabuleiro de damas
+1726|A tua peça
+1727|Peça do computador
+1728|Casa possível
+1729|Casa
+1730|Afundado! Afundaste um barco.
+1731|Acertaste!
+1732|Falhaste… na água.
+1733|O computador afundou um dos teus barcos.
+1734|O computador acertou num dos teus barcos.
+1735|O computador falhou.
+1736|🏆 Parabéns, afundaste toda a frota! (+5 pontos)
+1737|O computador afundou toda a tua frota.
+1738|Aqui está a tua frota. Muda-a se quiseres e começa a partida.
+1739|A tua vez: toca numa casa do mar inimigo.
+1740|A tua frota
+1741|Misturar a minha frota
+1742|Começar a partida
+1743|Mar do computador
+1744|Casa {n}
+1745|🏆 Parabéns, ganhaste! (+3 pontos)
+1746|A tua vez: escolhe uma coluna.
+1747|Grelha de 7 colunas
+1748|Coluna {n}
+1749|Tiras uma peça.
+1750|Passas a vez.
+1751|O computador passa a vez.
+1752|🏆 Parabéns, ganhaste! (+4 pontos)
+1753|A tua vez: escolhe uma peça que encaixe numa ponta.
+1754|Não podes jogar: tira uma peça.
+1755|Não há mais peças: passas.
+1756|O computador tem {n} peças · Monte: {m}
+1757|Cadeia de dominó
+1758|Coloca a primeira peça.
+1759|Esquerda
+1760|Direita
+1761|Tirar
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Batalha
+1766|Rabo-de-gato
+1767|Oito maluco
+1768|Quatro em linha
+1769|Damas
+1770|Batalha naval
+1771|Jogo do galo
+1772|Dominó
+1773|4 jogadores · trunfo
+1774|Sequências e trios
+1775|Vazas, bouts
+1776|Ganha a carta mais alta
+1777|Evita o valete
+1778|Joga, tira, 8!
+1779|4 em linha
+1780|Captura todas as peças
+1781|Afunda a frota
+1782|Com um amigo ou sozinho
+1783|Encaixa ponta com ponta
+1784|Em breve
+1785|Este jogo chega muito em breve.
+1786|Sozinho contra o computador

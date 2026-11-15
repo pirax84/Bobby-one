@@ -1700,3 +1700,88 @@
 1699|Zezwolono
 1700|Odmówiono: zmień w ustawieniach telefonu
 1701|Przytrzymaj przycisk i przeciągnij go w lewo lub w prawo, aby zmienić jego miejsce.
+1702|Wygrywasz tę rundę!
+1703|Komputer wygrywa tę rundę.
+1704|Wojna!
+1705|🏆 Brawo, wygrałeś wszystkie karty! (+3 punkty)
+1706|Komputer wygrał tę partię.
+1707|Naciśnij „Odwróć”, aby grać.
+1708|Karty: {n}
+1709|Odwróć
+1710|Dobrałeś kartę.
+1711|Komputer dobrał kartę od: {n}.
+1712|ty
+1713|drugi gracz
+1714|Zostaje ci walet trefl: jesteś przegranym!
+1715|🏆 Brawo, nie jesteś przegranym! (+3 punkty)
+1716|Nie masz już kart: jesteś uratowany!
+1717|Twoja kolej: dobierz zakrytą kartę od: {n}.
+1718|komputer 1
+1719|komputer 2
+1720|Komputer myśli…
+1721|Komputer {n}
+1722|🏆 Brawo, wygrałeś! (+5 punktów)
+1723|Musisz zbić pionek (bicie jest obowiązkowe).
+1724|Twoja kolej: dotknij jednego ze swoich pionków.
+1725|Plansza do warcabów
+1726|Twój pionek
+1727|Pionek komputera
+1728|Możliwe pole
+1729|Pole
+1730|Zatopiony! Zatopiłeś statek.
+1731|Trafiony!
+1732|Pudło… woda.
+1733|Komputer zatopił jeden z twoich statków.
+1734|Komputer trafił jeden z twoich statków.
+1735|Komputer spudłował.
+1736|🏆 Brawo, zatopiłeś całą flotę! (+5 punktów)
+1737|Komputer zatopił całą twoją flotę.
+1738|Oto twoja flota. Zmień ją, jeśli chcesz, i zacznij grę.
+1739|Twoja kolej: dotknij pola na morzu wroga.
+1740|Twoja flota
+1741|Wymieszaj moją flotę
+1742|Zacznij grę
+1743|Morze komputera
+1744|Pole {n}
+1745|🏆 Brawo, wygrałeś! (+3 punkty)
+1746|Twoja kolej: wybierz kolumnę.
+1747|Siatka 7 kolumn
+1748|Kolumna {n}
+1749|Dobierasz kostkę.
+1750|Pasujesz.
+1751|Komputer pasuje.
+1752|🏆 Brawo, wygrałeś! (+4 punkty)
+1753|Twoja kolej: wybierz kostkę pasującą do końca.
+1754|Nie możesz zagrać: dobierz kostkę.
+1755|Brak kostek do dobrania: pasujesz.
+1756|Komputer ma kostek: {n} · Stos: {m}
+1757|Łańcuch domina
+1758|Połóż pierwszą kostkę.
+1759|Lewo
+1760|Prawo
+1761|Dobierz
+1762|Belote
+1763|Remik
+1764|Tarot
+1765|Wojna
+1766|Piotruś
+1767|Makao
+1768|Cztery w rzędzie
+1769|Warcaby
+1770|Statki
+1771|Kółko i krzyżyk
+1772|Domino
+1773|4 graczy · atut
+1774|Sekwensy i trójki
+1775|Lewy, bouty
+1776|Wygrywa najwyższa karta
+1777|Unikaj waleta
+1778|Kładź, dobieraj, 8!
+1779|4 w linii
+1780|Zbij wszystkie pionki
+1781|Zatop flotę
+1782|Z przyjacielem lub solo
+1783|Dokładaj koniec do końca
+1784|Wkrótce
+1785|Ta gra pojawi się wkrótce.
+1786|Solo przeciwko komputerowi

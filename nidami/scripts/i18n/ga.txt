@@ -1700,3 +1700,88 @@
 1699|Ceadaithe
 1700|Diúltaithe: athraigh sna socruithe fóin é
 1701|Coinnigh cnaipe agus tarraing é ar chlé nó ar dheis chun a áit a athrú.
+1702|Buann tú an babhta seo!
+1703|Buaileann an ríomhaire an babhta seo.
+1704|Cogadh!
+1705|🏆 Bualadh bos, bhuaigh tú na cártaí go léir! (+3 phointe)
+1706|Bhuaigh an ríomhaire an cluiche seo.
+1707|Brúigh “Iompaigh” chun imirt.
+1708|{n} cárta
+1709|Iompaigh
+1710|Tharraing tú cárta.
+1711|Tharraing an ríomhaire ó {n}.
+1712|tú
+1713|an imreoir eile
+1714|D'fhan an Jack Clubanna agat: is tusa an buaiteoir bocht!
+1715|🏆 Bualadh bos, ní tusa an buaiteoir bocht! (+3 phointe)
+1716|Níl cártaí fágtha agat: tá tú slán!
+1717|Do threo: tarraing cárta folaithe ó {n}.
+1718|ríomhaire 1
+1719|ríomhaire 2
+1720|Tá an ríomhaire ag smaoineamh…
+1721|Ríomhaire {n}
+1722|🏆 Bualadh bos, bhuaigh tú! (+5 phointe)
+1723|Caithfidh tú píosa a ghabháil (tá gabháil éigeantach).
+1724|Do threo: tadhaill ceann de do phíosaí.
+1725|Clár na ndraft
+1726|Do phíosa
+1727|Píosa an ríomhaire
+1728|Cearnóg indéanta
+1729|Cearnóg
+1730|Tumtha! Chuir tú long go tóin poill.
+1731|Buailte!
+1732|Chaill tú… san uisce.
+1733|Chuir an ríomhaire ceann de do longa go tóin poill.
+1734|Bhuail an ríomhaire ceann de do longa.
+1735|Chaill an ríomhaire.
+1736|🏆 Bualadh bos, chuir tú an loingeas ar fad go tóin poill! (+5 phointe)
+1737|Chuir an ríomhaire do loingeas ar fad go tóin poill.
+1738|Seo do loingeas. Athraigh é más mian leat, ansin tosaigh an cluiche.
+1739|Do threo: tadhaill cearnóg d'fharraige an namhad.
+1740|Do loingeas
+1741|Measc mo loingeas
+1742|Tosaigh an cluiche
+1743|Farraige an ríomhaire
+1744|Cearnóg {n}
+1745|🏆 Bualadh bos, bhuaigh tú! (+3 phointe)
+1746|Do threo: roghnaigh colún.
+1747|Greille 7 gcolún
+1748|Colún {n}
+1749|Tarraingíonn tú tíl.
+1750|Scipeann tú do threo.
+1751|Scipeann an ríomhaire a threo.
+1752|🏆 Bualadh bos, bhuaigh tú! (+4 phointe)
+1753|Do threo: roghnaigh tíl a oireann do cheann.
+1754|Ní féidir leat imirt: tarraing tíl.
+1755|Níl tíleanna fágtha le tarraingt: scipeann tú.
+1756|Tá {n} tíl ag an ríomhaire · Cruach: {m}
+1757|Slabhra dóimíneo
+1758|Cuir an chéad tíl síos.
+1759|Ar chlé
+1760|Ar dheis
+1761|Tarraing
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Cogadh
+1766|An Buaiteoir Bocht
+1767|Ochtair
+1768|Ceathair as a Chéile
+1769|Draft
+1770|Cath Cabhlaigh
+1771|Cluiche Cros agus Nialas
+1772|Dóimíneo
+1773|4 imreoir · trumpa
+1774|Seichimh agus tripleacha
+1775|Cleasanna, bouts
+1776|Buann an cárta is airde
+1777|Seachain an Jack
+1778|Cuir, tarraing, 8!
+1779|4 as a chéile
+1780|Gabh na píosaí go léir
+1781|Cuir an loingeas go tóin poill
+1782|Le cara nó leat féin
+1783|Cuir ceann le ceann
+1784|Go luath
+1785|Beidh an cluiche seo ann go han-luath.
+1786|Leat féin in aghaidh an ríomhaire

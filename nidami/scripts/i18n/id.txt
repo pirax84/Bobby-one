@@ -1700,3 +1700,88 @@
 1699|Diizinkan
 1700|Ditolak: ubah di pengaturan ponsel
 1701|Tahan tombol lalu geser ke kiri atau kanan untuk mengubah posisinya.
+1702|Kamu menang ronde ini!
+1703|Komputer menang ronde ini.
+1704|Perang!
+1705|🏆 Hebat, kamu memenangkan semua kartu! (+3 poin)
+1706|Komputer memenangkan permainan ini.
+1707|Tekan “Balik” untuk bermain.
+1708|{n} kartu
+1709|Balik
+1710|Kamu mengambil satu kartu.
+1711|Komputer mengambil kartu dari {n}.
+1712|kamu
+1713|pemain lain
+1714|Kamu memegang jack keriting: kamu yang kalah!
+1715|🏆 Hebat, kamu bukan yang kalah! (+3 poin)
+1716|Kartumu sudah habis: kamu selamat!
+1717|Giliranmu: ambil satu kartu tersembunyi dari {n}.
+1718|komputer 1
+1719|komputer 2
+1720|Komputer sedang berpikir…
+1721|Komputer {n}
+1722|🏆 Hebat, kamu menang! (+5 poin)
+1723|Kamu harus memakan satu bidak (memakan itu wajib).
+1724|Giliranmu: sentuh salah satu bidakmu.
+1725|Papan dam
+1726|Bidakmu
+1727|Bidak komputer
+1728|Kotak yang mungkin
+1729|Kotak
+1730|Tenggelam! Kamu menenggelamkan satu kapal.
+1731|Kena!
+1732|Meleset… jatuh ke air.
+1733|Komputer menenggelamkan salah satu kapalmu.
+1734|Komputer mengenai salah satu kapalmu.
+1735|Komputer meleset.
+1736|🏆 Hebat, kamu menenggelamkan seluruh armada! (+5 poin)
+1737|Komputer menenggelamkan seluruh armadamu.
+1738|Ini armadamu. Ubah jika mau, lalu mulai permainan.
+1739|Giliranmu: sentuh satu kotak di laut musuh.
+1740|Armadamu
+1741|Acak armadaku
+1742|Mulai permainan
+1743|Laut komputer
+1744|Kotak {n}
+1745|🏆 Hebat, kamu menang! (+3 poin)
+1746|Giliranmu: pilih satu kolom.
+1747|Kisi 7 kolom
+1748|Kolom {n}
+1749|Kamu mengambil satu kartu domino.
+1750|Kamu melewati giliran.
+1751|Komputer melewati giliran.
+1752|🏆 Hebat, kamu menang! (+4 poin)
+1753|Giliranmu: pilih kartu yang cocok dengan salah satu ujung.
+1754|Kamu tidak bisa main: ambil satu kartu.
+1755|Tidak ada kartu untuk diambil: kamu lewat.
+1756|Komputer punya {n} kartu · Tumpukan: {m}
+1757|Rantai domino
+1758|Letakkan kartu pertama.
+1759|Kiri
+1760|Kanan
+1761|Ambil
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Perang
+1766|Si Hitam
+1767|Delapan Gila
+1768|Empat Berjajar
+1769|Dam
+1770|Kapal Perang
+1771|Tic-tac-toe
+1772|Domino
+1773|4 pemain · truf
+1774|Urutan dan tiga sama
+1775|Trik, bout
+1776|Kartu tertinggi menang
+1777|Hindari jack
+1778|Letakkan, ambil, 8!
+1779|4 berjajar
+1780|Makan semua bidak
+1781|Tenggelamkan armada
+1782|Bersama teman atau sendiri
+1783|Sambung ujung ke ujung
+1784|Segera hadir
+1785|Permainan ini segera hadir.
+1786|Sendiri melawan komputer

@@ -1700,3 +1700,88 @@
 1699|Erlaubt
 1700|Abgelehnt: in den Handy-Einstellungen ändern
 1701|Halte eine Taste gedrückt und ziehe sie nach links oder rechts, um ihren Platz zu ändern.
+1702|Du gewinnst diese Runde!
+1703|Der Computer gewinnt diese Runde.
+1704|Krieg!
+1705|🏆 Bravo, du hast alle Karten gewonnen! (+3 Punkte)
+1706|Der Computer hat dieses Spiel gewonnen.
+1707|Tippe auf „Aufdecken“, um zu spielen.
+1708|{n} Karten
+1709|Aufdecken
+1710|Du hast eine Karte gezogen.
+1711|Der Computer hat bei {n} gezogen.
+1712|du
+1713|der andere Spieler
+1714|Du behältst den Kreuz-Bube: Du bist der Schwarze Peter!
+1715|🏆 Bravo, du bist nicht der Schwarze Peter! (+3 Punkte)
+1716|Du hast keine Karten mehr: Du bist gerettet!
+1717|Du bist dran: Ziehe eine verdeckte Karte bei {n}.
+1718|Computer 1
+1719|Computer 2
+1720|Der Computer überlegt…
+1721|Computer {n}
+1722|🏆 Bravo, du hast gewonnen! (+5 Punkte)
+1723|Du musst einen Stein schlagen (Schlagzwang).
+1724|Du bist dran: Tippe auf einen deiner Steine.
+1725|Damebrett
+1726|Dein Stein
+1727|Stein des Computers
+1728|Mögliches Feld
+1729|Feld
+1730|Versenkt! Du hast ein Schiff versenkt.
+1731|Treffer!
+1732|Daneben… ins Wasser.
+1733|Der Computer hat eines deiner Schiffe versenkt.
+1734|Der Computer hat eines deiner Schiffe getroffen.
+1735|Der Computer hat danebengeschossen.
+1736|🏆 Bravo, du hast die ganze Flotte versenkt! (+5 Punkte)
+1737|Der Computer hat deine ganze Flotte versenkt.
+1738|Hier ist deine Flotte. Ändere sie, wenn du willst, und starte dann das Spiel.
+1739|Du bist dran: Tippe auf ein Feld im gegnerischen Meer.
+1740|Deine Flotte
+1741|Meine Flotte mischen
+1742|Spiel starten
+1743|Meer des Computers
+1744|Feld {n}
+1745|🏆 Bravo, du hast gewonnen! (+3 Punkte)
+1746|Du bist dran: Wähle eine Spalte.
+1747|Raster mit 7 Spalten
+1748|Spalte {n}
+1749|Du ziehst einen Stein.
+1750|Du setzt aus.
+1751|Der Computer setzt aus.
+1752|🏆 Bravo, du hast gewonnen! (+4 Punkte)
+1753|Du bist dran: Wähle einen Stein, der an ein Ende passt.
+1754|Du kannst nicht legen: Ziehe einen Stein.
+1755|Kein Stein mehr zum Ziehen: Du setzt aus.
+1756|Der Computer hat {n} Steine · Vorrat: {m}
+1757|Dominokette
+1758|Lege den ersten Stein.
+1759|Links
+1760|Rechts
+1761|Ziehen
+1762|Belote
+1763|Rommé
+1764|Tarock
+1765|Krieg
+1766|Schwarzer Peter
+1767|Mau-Mau
+1768|Vier gewinnt
+1769|Dame
+1770|Schiffe versenken
+1771|Tic-Tac-Toe
+1772|Domino
+1773|4 Spieler · Trumpf
+1774|Folgen und Drillinge
+1775|Stiche, Trümpfe
+1776|Die höchste Karte gewinnt
+1777|Vermeide den Buben
+1778|Legen, ziehen, 8!
+1779|4 in einer Reihe
+1780|Schlage alle Steine
+1781|Versenke die Flotte
+1782|Mit einem Freund oder allein
+1783|Ende an Ende legen
+1784|Demnächst
+1785|Dieses Spiel kommt sehr bald.
+1786|Allein gegen den Computer

@@ -1700,3 +1700,88 @@
 1699|Permis
 1700|Refuzat: schimbă în setările telefonului
 1701|Ține apăsat un buton și trage-l la stânga sau la dreapta pentru a-i schimba locul.
+1702|Câștigi această rundă!
+1703|Calculatorul câștigă această rundă.
+1704|Bătălie!
+1705|🏆 Bravo, ai câștigat toate cărțile! (+3 puncte)
+1706|Calculatorul a câștigat această partidă.
+1707|Apasă „Întoarce” pentru a juca.
+1708|{n} cărți
+1709|Întoarce
+1710|Ai tras o carte.
+1711|Calculatorul a tras de la {n}.
+1712|tu
+1713|celălalt jucător
+1714|Păstrezi valetul de treflă: ești pierzătorul!
+1715|🏆 Bravo, nu ești pierzătorul! (+3 puncte)
+1716|Nu mai ai cărți: ești salvat!
+1717|Rândul tău: trage o carte ascunsă de la {n}.
+1718|calculator 1
+1719|calculator 2
+1720|Calculatorul se gândește…
+1721|Calculator {n}
+1722|🏆 Bravo, ai câștigat! (+5 puncte)
+1723|Trebuie să capturezi o piesă (captura este obligatorie).
+1724|Rândul tău: atinge una dintre piesele tale.
+1725|Tablă de dame
+1726|Piesa ta
+1727|Piesa calculatorului
+1728|Pătrat posibil
+1729|Pătrat
+1730|Scufundat! Ai scufundat o navă.
+1731|Lovit!
+1732|Ratat… în apă.
+1733|Calculatorul a scufundat una dintre navele tale.
+1734|Calculatorul a lovit una dintre navele tale.
+1735|Calculatorul a ratat.
+1736|🏆 Bravo, ai scufundat toată flota! (+5 puncte)
+1737|Calculatorul ți-a scufundat toată flota.
+1738|Iată flota ta. Schimb-o dacă vrei, apoi începe jocul.
+1739|Rândul tău: atinge un pătrat din marea inamică.
+1740|Flota ta
+1741|Amestecă flota mea
+1742|Începe jocul
+1743|Marea calculatorului
+1744|Pătrat {n}
+1745|🏆 Bravo, ai câștigat! (+3 puncte)
+1746|Rândul tău: alege o coloană.
+1747|Grilă cu 7 coloane
+1748|Coloana {n}
+1749|Tragi o piesă.
+1750|Treci rândul.
+1751|Calculatorul trece rândul.
+1752|🏆 Bravo, ai câștigat! (+4 puncte)
+1753|Rândul tău: alege o piesă care se potrivește la un capăt.
+1754|Nu poți juca: trage o piesă.
+1755|Nu mai sunt piese de tras: treci.
+1756|Calculatorul are {n} piese · Rezervă: {m}
+1757|Lanț de domino
+1758|Pune prima piesă.
+1759|Stânga
+1760|Dreapta
+1761|Trage
+1762|Belote
+1763|Remi
+1764|Tarot
+1765|Bătălie
+1766|Păcălici
+1767|Optari
+1768|Conectează 4
+1769|Dame
+1770|Bătălia navală
+1771|X și 0
+1772|Domino
+1773|4 jucători · atu
+1774|Secvențe și triplete
+1775|Levate, bouts
+1776|Cea mai mare carte câștigă
+1777|Evită valetul
+1778|Pune, trage, 8!
+1779|4 la rând
+1780|Capturează toate piesele
+1781|Scufundă flota
+1782|Cu un prieten sau singur
+1783|Potrivește capăt la capăt
+1784|În curând
+1785|Acest joc vine foarte curând.
+1786|Singur împotriva calculatorului

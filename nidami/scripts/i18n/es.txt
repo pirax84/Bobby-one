@@ -1700,3 +1700,88 @@
 1699|Permitido
 1700|Denegado: cámbialo en los ajustes del teléfono
 1701|Mantén pulsado un botón y arrástralo a la izquierda o a la derecha para cambiar su lugar.
+1702|¡Ganas esta ronda!
+1703|El ordenador gana esta ronda.
+1704|¡Batalla!
+1705|🏆 ¡Bravo, has ganado todas las cartas! (+3 puntos)
+1706|El ordenador ha ganado esta partida.
+1707|Pulsa «Dar la vuelta» para jugar.
+1708|{n} cartas
+1709|Dar la vuelta
+1710|Has robado una carta.
+1711|El ordenador ha robado de {n}.
+1712|tú
+1713|el otro jugador
+1714|Te quedas con la sota de tréboles: ¡eres el perdedor!
+1715|🏆 ¡Bravo, no eres el perdedor! (+3 puntos)
+1716|Ya no tienes cartas: ¡te has salvado!
+1717|Tu turno: roba una carta oculta de {n}.
+1718|ordenador 1
+1719|ordenador 2
+1720|El ordenador está pensando…
+1721|Ordenador {n}
+1722|🏆 ¡Bravo, has ganado! (+5 puntos)
+1723|Debes capturar una ficha (la captura es obligatoria).
+1724|Tu turno: toca una de tus fichas.
+1725|Tablero de damas
+1726|Tu ficha
+1727|Ficha del ordenador
+1728|Casilla posible
+1729|Casilla
+1730|¡Hundido! Has hundido un barco.
+1731|¡Tocado!
+1732|Fallo… agua.
+1733|El ordenador ha hundido uno de tus barcos.
+1734|El ordenador ha tocado uno de tus barcos.
+1735|El ordenador ha fallado.
+1736|🏆 ¡Bravo, has hundido toda la flota! (+5 puntos)
+1737|El ordenador ha hundido toda tu flota.
+1738|Esta es tu flota. Cámbiala si quieres y empieza la partida.
+1739|Tu turno: toca una casilla del mar enemigo.
+1740|Tu flota
+1741|Mezclar mi flota
+1742|Empezar la partida
+1743|Mar del ordenador
+1744|Casilla {n}
+1745|🏆 ¡Bravo, has ganado! (+3 puntos)
+1746|Tu turno: elige una columna.
+1747|Cuadrícula de 7 columnas
+1748|Columna {n}
+1749|Robas una ficha.
+1750|Pasas tu turno.
+1751|El ordenador pasa su turno.
+1752|🏆 ¡Bravo, has ganado! (+4 puntos)
+1753|Tu turno: elige una ficha que encaje en un extremo.
+1754|No puedes jugar: roba una ficha.
+1755|No quedan fichas: pasas.
+1756|El ordenador tiene {n} fichas · Pozo: {m}
+1757|Cadena de dominó
+1758|Coloca la primera ficha.
+1759|Izquierda
+1760|Derecha
+1761|Robar
+1762|Belote
+1763|Rummy
+1764|Tarot
+1765|Guerra
+1766|El Mono
+1767|Ocho loco
+1768|Conecta 4
+1769|Damas
+1770|Hundir la flota
+1771|Tres en raya
+1772|Dominó
+1773|4 jugadores · triunfo
+1774|Escaleras y tríos
+1775|Bazas, bueyes
+1776|Gana la carta más alta
+1777|Evita la sota
+1778|Coloca, roba, ¡8!
+1779|4 fichas en línea
+1780|Captura todas las fichas
+1781|Hunde la flota
+1782|Con un amigo o solo
+1783|Encaja de extremo a extremo
+1784|Próximamente
+1785|Este juego llega muy pronto.
+1786|Solo contra el ordenador
