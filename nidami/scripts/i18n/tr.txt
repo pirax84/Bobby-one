@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Renge göre
 1869|Değere göre
+1870|Gece mavisi
+1871|Kart ayarları
+1872|Kartların ön yüzü
+1873|Kartların arka yüzü
+1874|Yardım: grupları çerçevele
+1875|Çerçeve stili
+1876|Kalın çerçeve
+1877|Yükseltilmiş grup
+1878|Gerisi kararır
+1879|Yazılı kelimeler
+1880|4 renkli kartlar
+1881|Yardım ister misin?
+1882|Seriler ve üçlüler, öğrenmene yardım etmek için elinde çerçevelenecek.
+1883|Evet, yardımla
+1884|Hayır, klasik oyun
+1885|Bunu istediğin zaman ayarlardan değiştirebilirsin.
+1886|Seri
+1887|Üçlü
+1888|Dörtlü
+1889|Tierce
+1890|Elli
+1891|Yüz
+1892|Avuç

@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|De réir culaith
 1869|De réir luacha
+1870|Gorm oíche
+1871|Socruithe na gcártaí
+1872|Aghaidh na gcártaí
+1873|Cúl na gcártaí
+1874|Cabhair: cuir imlíne ar na grúpaí
+1875|Stíl na himlíne
+1876|Imlíne thiubh
+1877|Grúpa ardaithe
+1878|Dorchaíonn an chuid eile
+1879|Focail scríofa
+1880|Cártaí 4 dath
+1881|Ar mhaith leat cabhair?
+1882|Cuirfear imlíne ar na seicheamh agus ar na tríonna i do lámh chun cabhrú leat foghlaim.
+1883|Tá, le cabhair
+1884|Níl, cluiche clasaiceach
+1885|Is féidir leat é seo a athrú am ar bith sna socruithe.
+1886|Seicheamh
+1887|Trí cinn
+1888|Ceithre cinn
+1889|Tierce
+1890|Caoga
+1891|Céad
+1892|Dornán

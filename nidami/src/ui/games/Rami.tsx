@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { t } from "../../i18n";
 import { Fan, PlayCard, SUITS, shuffle, type Card, type Suit } from "./cards";
 import { GameShell, win } from "./shell";
+import { setLook, useLook } from "./cardlook";
 import { Rules } from "./Rules";
 
 type RC = Card & { id: number; as?: number };
@@ -77,7 +78,14 @@ function tryAdd(m: Meld, extra: RC[]): Meld | null { const r = check([...m.cards
 
 /** Rami à 2 joueurs : 13 cartes, 2 jeux + 4 jokers, ouverture à 51 points, on peut compléter toutes les combinaisons posées. */
 export function Rami() {
-  const [mode, setMode] = useState<Mode | "">("");
+  const [mode, setMode] = useState<Mode | "">(""); const lk = useLook("rami");
+  if (!lk.asked) return <div className="card col" style={{ gap: 10 }}>
+    <b>{t("Tu veux de l'aide ?")}</b>
+    <span className="small muted">{t("Les suites et les brelans seront entourés dans ta main pour t'aider à apprendre.")}</span>
+    <button type="button" className="btn" onClick={() => setLook("rami", { aid: true, asked: true })}>{t("Oui, avec l'aide")}</button>
+    <button type="button" className="btn ghost" onClick={() => setLook("rami", { aid: false, asked: true })}>{t("Non, jeu classique")}</button>
+    <span className="small muted">{t("Tu peux changer ça à tout moment dans les réglages.")}</span>
+  </div>;
   if (!mode) return <div className="card col" style={{ gap: 8 }}>
     <button type="button" className="btn" onClick={() => setMode("off")}>{t("Règles officielles")}</button>
     <span className="small muted">{t("Le Rami que tout le monde connaît : 13 cartes, ouverture à 51 points.")}</span>
@@ -95,6 +103,8 @@ function RamiGame({ mode }: { mode: Mode }) {
     const id = setTimeout(() => setG((p) => (p.turn === 1 && p.over === null ? cpuTurn(p) : p)), 1400);
     return () => clearTimeout(id);
   }, [g.turn, over]);
+  const lk = useLook("rami");
+  const grp = useMemo(() => { const m = new Map<number, { g: number; gl: string }>(); if (!lk.aid) return m; bestMelds(g.hand[0], true).melds.forEach((x, i) => x.cards.forEach((c) => m.set(c.id, { g: i % 4, gl: x.kind === "run" ? t("Suite") : x.cards.length >= 4 ? t("Carré") : t("Brelan") }))); return m; }, [lk.aid, g.hand]); // eslint-disable-line
   const meld = g.melds; const mine = g.turn === 0 && !over; const hand = sortHand(g.hand[0]);
   const stagedMelds = g.sm; const stagedTotal = stagedMelds.reduce((a, m) => a + m.pts, 0);
   const setSm = (x: G, sm: SM[], msg: string) => setG({ ...x, sm, msg });
@@ -144,7 +154,7 @@ function RamiGame({ mode }: { mode: Mode }) {
   const top = g.disc[g.disc.length - 1];
   const fondOk = useMemo(() => !!g.bottom && mine && g.phase === "draw" && secOk(g.hand[0], g.bottom, g.opened[0]), [g.bottom, g.hand, g.phase, g.turn, g.opened]); // eslint-disable-line
   return (
-    <GameShell felt status={status.trim()} over={over} onAgain={again}>
+    <GameShell felt game="rami" status={status.trim()} over={over} onAgain={again}>
       <div className="small muted">{t("L'ordinateur a {n} cartes", { n: g.hand[1].length })}{g.opened[1] ? " · ✓" : ""}</div>
       <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
         <PlayCard down w={44} label={t("Pioche")} onClick={mine && g.phase === "draw" ? drawStock : undefined} />
@@ -155,7 +165,7 @@ function RamiGame({ mode }: { mode: Mode }) {
         {meld.map((m, i) => <div key={i} role="group" aria-label={t("Combinaison {n}", { n: i + 1 })} onClick={() => addTo(i)} style={{ display: "flex", flexWrap: "wrap", gap: 2, padding: 4, borderRadius: 10, border: "1px dashed rgba(255,255,255,.4)", background: "rgba(255,255,255,.07)", cursor: sel.length && g.opened[0] ? "pointer" : "default" }}>{m.cards.map((c, k) => <PlayCard key={k} c={c.r === 0 && c.as ? { r: c.as, s: SUITS[0] as Suit } : c} w={26} tag={c.r === 0 ? "★" : undefined} />)}</div>)}
         {stagedMelds.length > 0 && <div className="small">{t("Ouverture : {n} / 51 points", { n: stagedTotal })} <button type="button" className="btn ghost sm" onClick={cancelStage}>{t("Annuler")}</button></div>}
       </div>
-      <Fan w={44} items={hand.map((c) => ({ k: c.id, s: c.r === 0 ? 9 : SUITS.indexOf(c.s), r: c.r === 1 ? 1 : c.r, node: <PlayCard c={c} w={44} sel={sel.includes(c.id)} onClick={mine && g.phase === "play" ? () => toggle(c.id) : undefined} /> }))} />
+      <Fan w={44} items={hand.map((c) => ({ k: c.id, s: c.r === 0 ? 9 : SUITS.indexOf(c.s), r: c.r === 1 ? 1 : c.r, g: grp.get(c.id)?.g, gl: grp.get(c.id)?.gl, node: <PlayCard c={c} w={44} sel={sel.includes(c.id)} onClick={mine && g.phase === "play" ? () => toggle(c.id) : undefined} /> }))} />
       {mine && g.phase === "play" && <div className="row" style={{ gap: 8 }}><button type="button" className="btn" disabled={sel.length < 3} onClick={lay}>{t("Poser")}</button><button type="button" className="btn ghost" disabled={sel.length !== 1} onClick={discard}>{t("Défausser")}</button></div>}
       <Rules text={mode === "perso" ? t("Chacun a 14 cartes. Celui qui commence pioche la 15e carte. Au fond de la pioche, une carte est retournée et visible : on ne peut la prendre que si on finit d'un seul coup (toutes ses cartes posées, 51 points minimum). Sinon on joue normalement et on défausse, cartes visibles.\nAu premier tour, on ne peut pas ramasser la défausse. Dès le deuxième tour, on peut la ramasser, mais alors il faut obligatoirement sortir (poser au moins 51 points avec cette carte).\nCombinaison : suite de 3 cartes ou plus de la même couleur, ou brelan/carré de même valeur et de couleurs différentes. Le joker remplace n'importe quelle carte. Après ouverture, on complète les combinaisons de la table. Le premier sans carte gagne.") : t("Chacun a 13 cartes. À ton tour : pioche (ou prends la défausse), pose des combinaisons si tu veux, puis défausse une carte.\nCombinaison : suite de 3 cartes ou plus de la même couleur (l'As est bas ou haut, sans boucle), ou brelan/carré de même valeur et de couleurs différentes. Le joker remplace n'importe quelle carte.\nOuverture : ta première pose doit valoir au moins 51 points (As = 11, figures = 10, As de la suite A-2-3 = 1). Ensuite tu peux compléter toutes les combinaisons de la table et remplacer un joker par la carte qu'il représente.\nLe premier sans carte gagne.")} />
     </GameShell>

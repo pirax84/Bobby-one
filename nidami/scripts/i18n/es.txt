@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Por palo
 1869|Por valor
+1870|Azul noche
+1871|Ajustes de las cartas
+1872|Cara de las cartas
+1873|Dorso de las cartas
+1874|Ayuda: rodea los grupos
+1875|Estilo del contorno
+1876|Contorno grueso
+1877|Grupo elevado
+1878|El resto se oscurece
+1879|Palabras escritas
+1880|Cartas de 4 colores
+1881|¿Quieres ayuda?
+1882|Las escaleras y los tríos se rodearán en tu mano para ayudarte a aprender.
+1883|Sí, con ayuda
+1884|No, juego clásico
+1885|Puedes cambiarlo cuando quieras en los ajustes.
+1886|Escalera
+1887|Trío
+1888|Póker
+1889|Tercia
+1890|Cincuenta
+1891|Cien
+1892|Puñado

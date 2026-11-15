@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|By suit
 1869|By value
+1870|Midnight blue
+1871|Card settings
+1872|Card face
+1873|Card back
+1874|Help: outline the groups
+1875|Outline style
+1876|Thick outline
+1877|Raised group
+1878|The rest dims
+1879|Written words
+1880|4-colour cards
+1881|Do you want help?
+1882|Runs and sets will be outlined in your hand to help you learn.
+1883|Yes, with help
+1884|No, classic game
+1885|You can change this any time in the settings.
+1886|Run
+1887|Set of 3
+1888|Four of a kind
+1889|Tierce
+1890|Fifty
+1891|Hundred
+1892|Handful

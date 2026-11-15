@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Menurut jenis
 1869|Menurut nilai
+1870|Biru malam
+1871|Pengaturan kartu
+1872|Sisi depan kartu
+1873|Sisi belakang kartu
+1874|Bantuan: lingkari kelompok
+1875|Gaya garis tepi
+1876|Garis tepi tebal
+1877|Kelompok terangkat
+1878|Sisanya menggelap
+1879|Kata tertulis
+1880|Kartu 4 warna
+1881|Mau dibantu?
+1882|Urutan dan tiga serangkai akan dilingkari di tanganmu agar lebih mudah belajar.
+1883|Ya, dengan bantuan
+1884|Tidak, permainan klasik
+1885|Kamu bisa mengubahnya kapan saja di pengaturan.
+1886|Urutan
+1887|Tiga sejenis
+1888|Empat sejenis
+1889|Tierce
+1890|Lima puluh
+1891|Seratus
+1892|Segenggam

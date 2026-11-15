@@ -1,6 +1,7 @@
 // Couleurs de NOTIIF : 14 couleurs au choix (lavande au départ), chacune en thème clair ou sombre.
 // Les valeurs exactes sont dans styles.css (variables CSS) ; ici on choisit la couleur et clair/sombre.
 export const ACCENTS = [
+  { id: "nuit", name: "Bleu nuit", dot: "#291E5B", bg: "#150F33", lbg: "#F1F3FA" },
   { id: "lavande", name: "Lavande", dot: "#9B87F5", bg: "#120F1F", lbg: "#F5F2FF" },
   { id: "turquoise", name: "Turquoise", dot: "#2FCDBE", bg: "#0B1A21", lbg: "#EEF9F7" },
   { id: "corail", name: "Corail", dot: "#FF8A6B", bg: "#1A1216", lbg: "#FDF0EC" },

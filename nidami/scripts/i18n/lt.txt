@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Pagal mastą
 1869|Pagal vertę
+1870|Naktinė mėlyna
+1871|Kortų nustatymai
+1872|Kortų priekis
+1873|Kortų nugarėlė
+1874|Pagalba: apvesti grupes
+1875|Rėmelio stilius
+1876|Storas rėmelis
+1877|Pakelta grupė
+1878|Likusios patamsėja
+1879|Žodžiais
+1880|4 spalvų kortos
+1881|Ar nori pagalbos?
+1882|Sekos ir trejetai bus apvesti tavo rankoje, kad lengviau mokytumeisi.
+1883|Taip, su pagalba
+1884|Ne, klasikinis žaidimas
+1885|Tai gali pakeisti bet kada nustatymuose.
+1886|Seka
+1887|Trejetas
+1888|Ketvertas
+1889|Tierce
+1890|Penkiasdešimt
+1891|Šimtas
+1892|Saujelė

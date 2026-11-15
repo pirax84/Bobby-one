@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Pēc masts
 1869|Pēc vērtības
+1870|Nakts zils
+1871|Kāršu iestatījumi
+1872|Kāršu priekšpuse
+1873|Kāršu mugurpuse
+1874|Palīdzība: apvilkt grupas
+1875|Apmales stils
+1876|Bieza apmale
+1877|Paceltā grupa
+1878|Pārējās satumst
+1879|Rakstīti vārdi
+1880|4 krāsu kārtis
+1881|Vai vēlies palīdzību?
+1882|Secības un trijnieki tavā rokā tiks apvilkti, lai būtu vieglāk mācīties.
+1883|Jā, ar palīdzību
+1884|Nē, klasiska spēle
+1885|To vari mainīt jebkurā laikā iestatījumos.
+1886|Secība
+1887|Trijnieks
+1888|Četrnieks
+1889|Tierce
+1890|Piecdesmit
+1891|Simts
+1892|Sauja

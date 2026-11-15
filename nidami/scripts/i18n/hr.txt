@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Po boji
 1869|Po vrijednosti
+1870|Noćno plava
+1871|Postavke karata
+1872|Lice karata
+1873|Poleđina karata
+1874|Pomoć: zaokruži skupine
+1875|Stil obruba
+1876|Debeli obrub
+1877|Podignuta skupina
+1878|Ostalo potamni
+1879|Napisane riječi
+1880|Karte u 4 boje
+1881|Želiš li pomoć?
+1882|Nizovi i trojke bit će zaokruženi u tvojoj ruci da lakše učiš.
+1883|Da, s pomoći
+1884|Ne, klasična igra
+1885|To možeš promijeniti bilo kada u postavkama.
+1886|Niz
+1887|Trojka
+1888|Četvorka
+1889|Tierce
+1890|Pedeset
+1891|Sto
+1892|Šaka

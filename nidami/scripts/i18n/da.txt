@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Efter farve
 1869|Efter værdi
+1870|Midnatsblå
+1871|Kortindstillinger
+1872|Kortenes forside
+1873|Kortenes bagside
+1874|Hjælp: ring grupperne ind
+1875|Kantstil
+1876|Tyk kant
+1877|Hævet gruppe
+1878|Resten bliver mørkere
+1879|Skrevne ord
+1880|Kort i 4 farver
+1881|Vil du have hjælp?
+1882|Rækker og tre ens ringes ind i din hånd for at hjælpe dig med at lære.
+1883|Ja, med hjælp
+1884|Nej, klassisk spil
+1885|Du kan ændre det når som helst i indstillingerne.
+1886|Række
+1887|Tre ens
+1888|Fire ens
+1889|Tierce
+1890|Halvtreds
+1891|Hundrede
+1892|Håndfuld

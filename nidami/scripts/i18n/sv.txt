@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Efter färg
 1869|Efter värde
+1870|Midnattsblå
+1871|Kortinställningar
+1872|Kortens framsida
+1873|Kortens baksida
+1874|Hjälp: ringa in grupperna
+1875|Kantstil
+1876|Tjock kant
+1877|Upphöjd grupp
+1878|Resten mörknar
+1879|Skrivna ord
+1880|Kort i 4 färger
+1881|Vill du ha hjälp?
+1882|Sviter och treor ringas in i din hand för att hjälpa dig lära dig.
+1883|Ja, med hjälp
+1884|Nej, klassiskt spel
+1885|Du kan ändra det när som helst i inställningarna.
+1886|Svit
+1887|Trea
+1888|Fyrtal
+1889|Tierce
+1890|Femtio
+1891|Hundra
+1892|Handfull

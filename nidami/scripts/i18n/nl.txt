@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Op kleur
 1869|Op waarde
+1870|Nachtblauw
+1871|Kaartinstellingen
+1872|Voorkant van de kaarten
+1873|Achterkant van de kaarten
+1874|Hulp: omcirkel de groepen
+1875|Stijl van de rand
+1876|Dikke rand
+1877|Opgetilde groep
+1878|De rest wordt donkerder
+1879|Geschreven woorden
+1880|Kaarten in 4 kleuren
+1881|Wil je hulp?
+1882|Reeksen en drietallen worden in je hand omcirkeld om je te helpen leren.
+1883|Ja, met hulp
+1884|Nee, klassiek spel
+1885|Je kunt dit altijd wijzigen in de instellingen.
+1886|Reeks
+1887|Drietal
+1888|Vierling
+1889|Tierce
+1890|Vijftig
+1891|Honderd
+1892|Handvol

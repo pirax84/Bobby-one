@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|După culoare
 1869|După valoare
+1870|Albastru de noapte
+1871|Setările cărților
+1872|Fața cărților
+1873|Spatele cărților
+1874|Ajutor: încercuiește grupurile
+1875|Stilul conturului
+1876|Contur gros
+1877|Grup ridicat
+1878|Restul se întunecă
+1879|Cuvinte scrise
+1880|Cărți în 4 culori
+1881|Vrei ajutor?
+1882|Secvențele și treimile vor fi încercuite în mâna ta ca să înveți mai ușor.
+1883|Da, cu ajutor
+1884|Nu, joc clasic
+1885|Poți schimba asta oricând din setări.
+1886|Secvență
+1887|Treime
+1888|Careu
+1889|Tierce
+1890|Cincizeci
+1891|O sută
+1892|Mână

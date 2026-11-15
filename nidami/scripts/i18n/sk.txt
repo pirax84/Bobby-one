@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Podľa farby
 1869|Podľa hodnoty
+1870|Polnočná modrá
+1871|Nastavenia kariet
+1872|Líce kariet
+1873|Rub kariet
+1874|Pomoc: obkresliť skupiny
+1875|Štýl obrysu
+1876|Hrubý obrys
+1877|Zdvihnutá skupina
+1878|Zvyšok stmavne
+1879|Písané slová
+1880|Karty v 4 farbách
+1881|Chceš pomoc?
+1882|Postupky a trojice budú v tvojej ruke obkreslené, aby si sa lepšie učil.
+1883|Áno, s pomocou
+1884|Nie, klasická hra
+1885|Môžeš to kedykoľvek zmeniť v nastaveniach.
+1886|Postupka
+1887|Trojica
+1888|Štvorica
+1889|Tierce
+1890|Päťdesiat
+1891|Sto
+1892|Hrsť

@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Skont is-sura
 1869|Skont il-valur
+1870|Blu tal-lejl
+1871|Settings tal-karti
+1872|Wiċċ tal-karti
+1873|Dahar tal-karti
+1874|Għajnuna: dawwar il-gruppi
+1875|Stil tal-kontorn
+1876|Kontorn oħxon
+1877|Grupp merfugħ
+1878|Il-bqija jidlam
+1879|Kliem miktub
+1880|Karti b'4 kuluri
+1881|Tixtieq għajnuna?
+1882|Is-sekwenzi u t-tripli se jiġu mdawrin f'idek biex tgħinek titgħallem.
+1883|Iva, bl-għajnuna
+1884|Le, logħba klassika
+1885|Tista' tbiddel dan fi kwalunkwe ħin fis-settings.
+1886|Sekwenza
+1887|Tripla
+1888|Kwadrupla
+1889|Tierce
+1890|Ħamsin
+1891|Mija
+1892|Qabda

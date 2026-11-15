@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Por naipe
 1869|Por valor
+1870|Azul-noite
+1871|Definições das cartas
+1872|Frente das cartas
+1873|Verso das cartas
+1874|Ajuda: contorna os grupos
+1875|Estilo do contorno
+1876|Contorno grosso
+1877|Grupo elevado
+1878|O resto escurece
+1879|Palavras escritas
+1880|Cartas de 4 cores
+1881|Queres ajuda?
+1882|As sequências e as trincas serão contornadas na tua mão para te ajudar a aprender.
+1883|Sim, com ajuda
+1884|Não, jogo clássico
+1885|Podes alterar isto a qualquer momento nas definições.
+1886|Sequência
+1887|Trinca
+1888|Quadra
+1889|Tierce
+1890|Cinquenta
+1891|Cem
+1892|Punhado

@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Po barvi
 1869|Po vrednosti
+1870|Polnočno modra
+1871|Nastavitve kart
+1872|Lice kart
+1873|Hrbet kart
+1874|Pomoč: obkroži skupine
+1875|Slog obrobe
+1876|Debela obroba
+1877|Dvignjena skupina
+1878|Ostalo potemni
+1879|Zapisane besede
+1880|Karte v 4 barvah
+1881|Želiš pomoč?
+1882|Zaporedja in trojice bodo v tvoji roki obkrožene, da se lažje učiš.
+1883|Da, s pomočjo
+1884|Ne, klasična igra
+1885|To lahko kadar koli spremeniš v nastavitvah.
+1886|Zaporedje
+1887|Trojica
+1888|Četverica
+1889|Tierce
+1890|Petdeset
+1891|Sto
+1892|Peščica

@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Mastide järgi
 1869|Väärtuse järgi
+1870|Südaöösinine
+1871|Kaartide seaded
+1872|Kaartide esikülg
+1873|Kaartide tagakülg
+1874|Abi: ümbritse grupid
+1875|Äärise stiil
+1876|Paks ääris
+1877|Tõstetud grupp
+1878|Ülejäänud tumenevad
+1879|Kirjutatud sõnad
+1880|4-värvilised kaardid
+1881|Kas soovid abi?
+1882|Jadad ja kolmikud ümbritsetakse sinu käes, et õppida oleks lihtsam.
+1883|Jah, abiga
+1884|Ei, klassikaline mäng
+1885|Seda saab alati seadetes muuta.
+1886|Jada
+1887|Kolmik
+1888|Nelik
+1889|Tierce
+1890|Viiskümmend
+1891|Sada
+1892|Peotäis

@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Maan mukaan
 1869|Arvon mukaan
+1870|Yönsininen
+1871|Korttien asetukset
+1872|Korttien etupuoli
+1873|Korttien takapuoli
+1874|Apu: ympyröi ryhmät
+1875|Reunan tyyli
+1876|Paksu reuna
+1877|Nostettu ryhmä
+1878|Loput tummenevat
+1879|Kirjoitetut sanat
+1880|Kortit 4 värillä
+1881|Haluatko apua?
+1882|Sarjat ja kolmoset ympyröidään kädessäsi oppimisen helpottamiseksi.
+1883|Kyllä, avulla
+1884|Ei, perinteinen peli
+1885|Voit muuttaa tämän milloin tahansa asetuksista.
+1886|Sarja
+1887|Kolmoset
+1888|Neloset
+1889|Tierce
+1890|Viisikymmentä
+1891|Sata
+1892|Kourallinen

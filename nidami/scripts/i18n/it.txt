@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Per seme
 1869|Per valore
+1870|Blu notte
+1871|Impostazioni delle carte
+1872|Fronte delle carte
+1873|Dorso delle carte
+1874|Aiuto: cerchia i gruppi
+1875|Stile del contorno
+1876|Contorno spesso
+1877|Gruppo sollevato
+1878|Il resto si scurisce
+1879|Parole scritte
+1880|Carte a 4 colori
+1881|Vuoi un aiuto?
+1882|Scale e tris saranno cerchiati nella tua mano per aiutarti a imparare.
+1883|Sì, con aiuto
+1884|No, gioco classico
+1885|Puoi cambiarlo in qualsiasi momento nelle impostazioni.
+1886|Scala
+1887|Tris
+1888|Poker
+1889|Tierce
+1890|Cinquanta
+1891|Cento
+1892|Manciata

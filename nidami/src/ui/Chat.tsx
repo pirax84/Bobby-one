@@ -145,7 +145,7 @@ export function Messages() {
 
 // ───────── Jeux : 12 jeux (cartes, plateau, mer) contre l'ordinateur ; Morpion aussi avec un ami
 import { MorpionBot, MemoryGame } from "./Solo";
-import { GameLogo, Word, GAME_KEYS } from "./games/logos";
+import { GameLogo, GAME_KEYS } from "./games/logos";
 import { Bataille } from "./games/Bataille";
 import { Aligne4 } from "./games/Aligne4";
 import { Dames } from "./games/Dames";
@@ -171,7 +171,7 @@ export function Games() {
   return (<div className="col">
     {tab ? <div className="row" style={{ gap: 8 }}><button className="btn ghost sm" onClick={back} aria-label={t("Retour")}><Ico n="back" s={18} /></button><h1 className="grow" style={{ margin: 0 }}>{gt[tab]}</h1></div> : <h1>{t("Jeux")}</h1>}
     {!tab && <><div className="gtotal"><div className="grow"><div className="muted small">{t("Ton total")}</div><b>{s.scores[me] || 0} {t("points")}</b></div><Ico n="user" s={24} /></div>
-      <div className="ggrid">{GAME_KEYS.map((k) => <button key={k} className="gcard" onClick={() => setTab(k)}><GameLogo k={k} size={76} /><b><Word w={gt[k]} s={gt[k].length > 9 ? 13 : 16} /></b><span className="muted small">{sub[k]}{ready[k] ? "" : " · " + t("Bientôt")}</span></button>)}</div>
+      <div className="ggrid">{GAME_KEYS.map((k) => <button key={k} className="gcard" onClick={() => setTab(k)}><GameLogo k={k} size={76} /><b>{gt[k]}</b><span className="muted small">{sub[k]}{ready[k] ? "" : " · " + t("Bientôt")}</span></button>)}</div>
       <div className="muted small center" style={{ textAlign: "center" }}>{t("Touche un jeu pour jouer.")}</div></>}
     {tab && ready[tab]}
     {tab && !ready[tab] && tab !== "morpion" && <div className="card col center" style={{ alignItems: "center", gap: 8 }}><GameLogo k={tab} size={96} /><b>{t("Ce jeu arrive très bientôt.")}</b></div>}

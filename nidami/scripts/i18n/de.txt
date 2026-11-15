@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Nach Farbe
 1869|Nach Wert
+1870|Nachtblau
+1871|Karteneinstellungen
+1872|Kartenvorderseite
+1873|Kartenrückseite
+1874|Hilfe: Gruppen umranden
+1875|Rahmenstil
+1876|Dicker Rahmen
+1877|Gruppe angehoben
+1878|Der Rest wird dunkler
+1879|Geschriebene Wörter
+1880|Karten in 4 Farben
+1881|Möchtest du Hilfe?
+1882|Folgen und Drillinge werden in deiner Hand umrandet, damit du leichter lernst.
+1883|Ja, mit Hilfe
+1884|Nein, klassisches Spiel
+1885|Du kannst das jederzeit in den Einstellungen ändern.
+1886|Folge
+1887|Drilling
+1888|Vierling
+1889|Tierce
+1890|Fünfzig
+1891|Hundert
+1892|Poignée

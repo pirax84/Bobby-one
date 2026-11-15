@@ -58,7 +58,7 @@ export function Huit() {
   const status = over ? (iWin ? t("🏆 Bravo, tu as gagné ! (+4 points)") : t("L'ordinateur a gagné cette partie.")) : mine ? (g.pend > 0 ? t("Tu dois piocher {n} cartes ou répondre par un 7.", { n: g.pend }) : can.length ? t("À toi : joue une carte de la même couleur ou valeur.") : t("Tu ne peux pas jouer : pioche une carte.")) : (g.msg ? g.msg + " " : "") + t("L'ordinateur réfléchit…");
   const again = () => { scored.current = false; setG(init()); };
   return (
-    <GameShell felt status={(g.msg && mine ? g.msg + " " : "") + status} over={over} onAgain={again}>
+    <GameShell felt game="huit" status={(g.msg && mine ? g.msg + " " : "") + status} over={over} onAgain={again}>
       <div className="small muted">{t("L'ordinateur a {n} cartes", { n: g.h[1].length })}</div>
       <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
         <PlayCard down w={50} label={t("Pioche")} />

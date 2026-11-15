@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Według koloru
 1869|Według wartości
+1870|Granat nocy
+1871|Ustawienia kart
+1872|Awers kart
+1873|Rewers kart
+1874|Pomoc: otocz grupy
+1875|Styl obramowania
+1876|Gruba obwódka
+1877|Podniesiona grupa
+1878|Reszta ciemnieje
+1879|Słowa napisane
+1880|Karty w 4 kolorach
+1881|Chcesz pomocy?
+1882|Sekwensy i trójki będą otoczone w twojej ręce, aby pomóc ci się uczyć.
+1883|Tak, z pomocą
+1884|Nie, gra klasyczna
+1885|Możesz to zmienić w każdej chwili w ustawieniach.
+1886|Sekwens
+1887|Trójka
+1888|Czwórka
+1889|Tierce
+1890|Pięćdziesiąt
+1891|Sto
+1892|Garść

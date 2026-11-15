@@ -1868,3 +1868,26 @@
 1867|Garde contre
 1868|Szín szerint
 1869|Érték szerint
+1870|Éjkék
+1871|Kártyabeállítások
+1872|Kártyák előlapja
+1873|Kártyák hátlapja
+1874|Segítség: körberajzolja a csoportokat
+1875|Körvonal stílusa
+1876|Vastag körvonal
+1877|Kiemelt csoport
+1878|A többi elsötétül
+1879|Kiírt szavak
+1880|4 színű kártyák
+1881|Kérsz segítséget?
+1882|A sorokat és a hármasokat bekarikázzuk a kezedben, hogy könnyebben tanulj.
+1883|Igen, segítséggel
+1884|Nem, klasszikus játék
+1885|Ezt bármikor megváltoztathatod a beállításokban.
+1886|Sor
+1887|Hármas
+1888|Négyes
+1889|Tierce
+1890|Ötven
+1891|Száz
+1892|Maroknyi

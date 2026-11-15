@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { t } from "../../i18n";
-import { Fan, SUITS, SYM, shuffle, suitColor, type Suit } from "./cards";
+import { CardCore, Fan, SUITS, SYM, inkOf, shuffle, suitColor, type Suit } from "./cards";
+import { useLook, useLookCtx } from "./cardlook";
 import { GameShell, win } from "./shell";
 import { Rules } from "./Rules";
 
@@ -92,18 +93,15 @@ function result(g: G) {
 }
 
 function TCard({ c, w = 38, sel, dim, onClick, label }: { c?: TC; w?: number; sel?: boolean; dim?: boolean; onClick?: () => void; label?: string }) {
-  const h = Math.round(w * 1.5); const isS = c && c.s !== "t" && c.s !== "x";
-  const bg = !c ? "linear-gradient(145deg,#8E7BF0,#6C58D8 55%,#3FB9C9 130%)" : c.s === "t" ? "linear-gradient(160deg,#E9E2FF 0%,#C9F2EB 100%)" : c.s === "x" ? "linear-gradient(160deg,#FFE3EE,#E2DBFF)" : "linear-gradient(160deg,#FFFFFF,#F3EFFF)";
-  const col = !c ? "#fff" : isS ? suitColor(c.s as Suit) : "#3B2F7A";
-  const st = { display: "block" as const, width: w, height: h, borderRadius: Math.round(w * 0.2), position: "relative" as const, flex: "none" as const, padding: 0, overflow: "hidden" as const, border: sel ? "2.5px solid #fff" : "1px solid rgba(255,255,255,.55)", boxShadow: sel ? "0 10px 22px rgba(60,40,140,.55), 0 0 0 2px var(--brand)" : "0 4px 10px rgba(30,20,80,.35), inset 0 1px 0 rgba(255,255,255,.8)", filter: dim ? "brightness(.72) saturate(.55)" : undefined, background: bg, color: col, fontFamily: "system-ui,-apple-system,'Segoe UI',sans-serif", fontWeight: 800, transform: sel ? "translateY(-12px) scale(1.04)" : undefined, transition: "transform .18s, box-shadow .18s", cursor: onClick ? "pointer" : "default" };
+  const { look } = useLookCtx(); const isS = !!c && c.s !== "t" && c.s !== "x";
   const aria = label || (!c ? "?" : c.s === "x" ? t("Excuse") : c.s === "t" ? t("Atout {n}", { n: c.r }) : lab(c) + SYM[c.s as Suit]);
-  const inner = !c ? null : <><span style={{ position: "absolute", left: 4, top: 3, fontSize: Math.round(w * 0.36), lineHeight: 1 }}>{lab(c)}</span>{isS ? <span style={{ position: "absolute", right: 3, bottom: 2, fontSize: Math.round(w * 0.6), lineHeight: 1 }}>{SYM[c.s as Suit]}</span> : <span style={{ position: "absolute", right: 4, bottom: 4, fontSize: Math.round(w * 0.3), opacity: 0.7 }}>{c.s === "x" ? "" : "★"}</span>}</>;
-  return onClick ? <button type="button" aria-label={aria} onClick={onClick} style={st}>{inner}</button> : <span role="img" aria-label={aria} style={st}>{inner}</span>;
+  return <CardCore w={w} hRatio={1.5} face={look.face} backN={look.back} four={look.four} down={!c} corner={c ? (c.s === "x" ? "★" : lab(c)) : ""} sym={isS ? SYM[c!.s as Suit] : ""} ink={!c ? undefined : isS ? inkOf(c.s as Suit, c.r, look.face, look.four) : look.face === "C" ? "#C9B8FF" : "#3B2F7A"} onClick={onClick} dim={dim} sel={sel} label={aria} />;
 }
 
 /** Tarot français à 4 : 78 cartes, enchères (petite, garde, garde sans, garde contre), chien et écart, Excuse, poignée, petit au bout. */
 export function Tarot() {
   const [g, setG] = useState(() => deal(Math.floor(Math.random() * 4))); const scored = useRef(false); const [sel, setSel] = useState<TC[]>([]);
+  const lk = useLook("tarot");
   const names = [t("Toi"), t("Joueur de gauche"), t("Joueur en face"), t("Joueur de droite")];
   useEffect(() => {
     if (g.phase !== "bid" || g.bidder === 0) return;
@@ -142,7 +140,7 @@ export function Tarot() {
   const sorted = (h: TC[]) => [...h].sort((a, b) => ["x", "t", ...SUITS].indexOf(a.s) - ["x", "t", ...SUITS].indexOf(b.s) || a.r - b.r);
   const showChien = g.phase === "chien" && g.best <= 2;
   return (
-    <GameShell felt status={status.trim()} over={g.phase === "end"} onAgain={again}>
+    <GameShell felt game="tarot" status={status.trim()} over={g.phase === "end"} onAgain={again}>
       {g.phase !== "bid" && <div className="small muted">{t("Preneur")} : {names[g.taker]} · {t(BIDS[g.best])}{g.phase === "play" ? ` · ${t("Plis")} ${g.tricks[0]} / ${g.tricks[1]}` : ""}</div>}
       <div style={{ display: "flex", gap: 8, width: "100%", justifyContent: "space-around" }}>{[1, 2, 3].map((s) => <div key={s} className="col small" style={{ alignItems: "center", gap: 2 }}><b>{names[s]}</b><span className="muted">{g.phase === "bid" && g.bids[s] >= 0 ? (g.bids[s] ? t(BIDS[g.bids[s]]) : t("Passe")) : t("{n} cartes", { n: g.hands[s].length })}</span></div>)}</div>
       {showChien && <div className="col" style={{ alignItems: "center", gap: 4 }}><b className="small">{t("Chien")}</b><div style={{ display: "flex", gap: 3 }}>{g.chien.map((c, i) => <TCard key={i} c={c} w={32} />)}</div></div>}
@@ -151,7 +149,7 @@ export function Tarot() {
       {g.phase === "chien" && g.taker === 0 && <div className="row" style={{ gap: 8, alignItems: "center" }}><span className="small">{t("Écart : {n} / 6", { n: sel.length })}</span><button type="button" className="btn" disabled={sel.length !== 6} onClick={() => { setG((p) => startPlay(p, 0, sel)); setSel([]); }}>{t("Écarter")}</button></div>}
       <Fan w={38} max={272} items={sorted(all0).map((c) => {
         const inChien = g.phase === "chien" && g.taker === 0;
-        return { k: c.s + c.r, s: ["x", "t", ...SUITS].indexOf(c.s), r: c.r, node: <TCard c={c} w={38} sel={sel.some((x) => same(x, c))} dim={inChien ? !pickable(c) : mine && !L.some((x) => same(x, c))} onClick={inChien ? (pickable(c) ? () => toggle(c) : undefined) : mine && L.some((x) => same(x, c)) ? () => setG((p) => play(p, 0, c)) : undefined} /> };
+        return { k: c.s + c.r, s: ["x", "t", ...SUITS].indexOf(c.s), r: c.r, g: lk.aid && c.s === "t" && all0.filter((x) => x.s === "t").length >= 10 ? 0 : undefined, gl: t("Poignée"), node: <TCard c={c} w={38} sel={sel.some((x) => same(x, c))} dim={inChien ? !pickable(c) : mine && !L.some((x) => same(x, c))} onClick={inChien ? (pickable(c) ? () => toggle(c) : undefined) : mine && L.some((x) => same(x, c)) ? () => setG((p) => play(p, 0, c)) : undefined} /> };
       })} />
       <Rules text={t("Tarot à 4 : 78 cartes (56 de couleur, 21 atouts, l'Excuse). Chacun reçoit 18 cartes, 6 forment le chien.\nEnchères : Passe, Petite, Garde, Garde sans (le chien n'est pas vu), Garde contre (le chien va aux défenseurs). Le preneur joue seul contre trois.\nAvec Petite ou Garde, le preneur prend le chien puis écarte 6 cartes (ni Roi, ni bout ; atouts seulement si nécessaire).\nIl faut fournir la couleur demandée ; sinon couper à l'atout (monter si possible). À l'atout, on monte si on peut. L'Excuse se joue quand on veut et ne gagne jamais le pli.\nLes bouts sont le 21, le 1 (petit) et l'Excuse. Points à faire : 56 avec 0 bout, 51 avec 1, 41 avec 2, 36 avec 3.\nBonus : petit au bout (le 1 gagne le dernier pli), poignée (10, 13 ou 15 atouts : 20, 30, 40), chelem (tous les plis : +200).")} />
     </GameShell>

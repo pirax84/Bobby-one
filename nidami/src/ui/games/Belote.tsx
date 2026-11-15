@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { t } from "../../i18n";
 import { Fan, PlayCard, SUITS, SYM, shuffle, suitColor, type Card, type Suit } from "./cards";
 import { GameShell, win } from "./shell";
+import { useLook } from "./cardlook";
 import { Rules } from "./Rules";
 
 const RANKS = [7, 8, 9, 10, 11, 12, 13, 1];
@@ -10,6 +11,17 @@ const TPTS: Record<number, number> = { 11: 20, 9: 14, 1: 11, 10: 10, 13: 4, 12: 
 const pts = (c: Card, tr: Suit) => (c.s === tr ? TPTS[c.r] : PPTS[c.r]);
 const order = (c: Card, tr: Suit) => (c.s === tr ? TORD : PORD).indexOf(c.r);
 const same = (a: Card, b: Card) => a.r === b.r && a.s === b.s;
+/** Aide : suites (tierce, cinquante, cent) et carrés dans la main. */
+function groupsOf(h: Card[]): Map<string, { g: number; gl: string }> {
+  const m = new Map<string, { g: number; gl: string }>(); let gi = 0;
+  for (const s of SUITS) {
+    const has = RANKS.map((r) => h.some((c) => c.s === s && c.r === r)); let i = 0;
+    while (i < 8) { if (!has[i]) { i++; continue; } let j = i; while (j + 1 < 8 && has[j + 1]) j++; const n = j - i + 1;
+      if (n >= 3) { const gl = n === 3 ? t("Tierce") : n === 4 ? t("Cinquante") : t("Cent"); for (let k = i; k <= j; k++) m.set(s + RANKS[k], { g: gi % 2, gl }); gi++; } i = j + 1; }
+  }
+  for (const r of [9, 10, 11, 12, 13, 1]) { const cs = h.filter((c) => c.r === r); if (cs.length === 4) { cs.forEach((c) => { if (!m.has(c.s + c.r)) m.set(c.s + c.r, { g: 2 + (gi % 2), gl: t("Carré") }); }); gi++; } }
+  return m;
+}
 type Play = { seat: number; card: Card };
 type G = {
   hands: Card[][]; turned: Card; stock: Card[]; dealer: number; phase: "bid1" | "bid2" | "play" | "end"; bidder: number; trump: Suit | null; taker: number;
@@ -83,6 +95,7 @@ export function Belote() {
   const res = useMemo(() => (g.phase === "end" ? result(g) : null), [g]);
   useEffect(() => { if (res && res.iWin && !scored.current) { scored.current = true; win(4); } }, [res]);
   const L = g.phase === "play" && mine && g.trick.length < 4 ? legal(g.hands[0], g.trick, g.trump!, 0) : [];
+  const lk = useLook("belote"); const grp = useMemo(() => (lk.aid ? groupsOf(g.hands[0]) : new Map<string, { g: number; gl: string }>()), [lk.aid, g.hands]);
   const names = [t("Toi"), t("Adversaire de gauche"), t("Partenaire"), t("Adversaire de droite")];
   const status = g.phase === "bid1" ? (g.bidder === 0 ? t("À toi : prends-tu à {n} ?", { n: SYM[g.turned.s] }) : t("{n} réfléchit…", { n: names[g.bidder] }))
     : g.phase === "bid2" ? (g.bidder === 0 ? t("À toi : choisis un atout ou passe.") : t("{n} réfléchit…", { n: names[g.bidder] }))
@@ -92,7 +105,7 @@ export function Belote() {
   const bid = (s: Suit | null) => setG((p) => (s ? take(p, 0, s) : nextBid(p)));
   const tap = (c: Card) => { if (L.some((x) => same(x, c))) setG((p) => playCard(p, 0, c)); };
   return (
-    <GameShell felt status={status.trim()} over={g.phase === "end"} onAgain={again}>
+    <GameShell felt game="belote" status={status.trim()} over={g.phase === "end"} onAgain={again}>
       <div className="small muted" aria-live="polite">{g.trump ? <>{t("Atout")} <b style={{ color: suitColor(g.trump), fontSize: 18 }}>{SYM[g.trump]}</b> · {t("Preneur")} : {names[g.taker]} · </> : null}{t("Nous")} {g.won[0]} · {t("Eux")} {g.won[1]}</div>
       <div style={{ display: "flex", gap: 8, width: "100%", justifyContent: "space-around", alignItems: "flex-start" }}>
         {[1, 2, 3].map((s) => <div key={s} className="col small" style={{ alignItems: "center", gap: 2 }}><b>{names[s]}</b><span className="muted">{t("{n} cartes", { n: g.hands[s].length })}</span></div>)}
@@ -101,7 +114,7 @@ export function Belote() {
       {g.phase === "play" || g.phase === "end" ? <div style={{ display: "flex", gap: 6, minHeight: 74, justifyContent: "center" }}>{g.trick.map((p) => <div key={p.seat} className="col small" style={{ alignItems: "center", gap: 2 }}><PlayCard c={p.card} w={44} /><span className="muted">{names[p.seat]}</span></div>)}</div> : null}
       {g.phase === "bid1" && g.bidder === 0 && <div className="row" style={{ gap: 8 }}><button type="button" className="btn" onClick={() => bid(g.turned.s)}>{t("Je prends")}</button><button type="button" className="btn ghost" onClick={() => bid(null)}>{t("Je passe")}</button></div>}
       {g.phase === "bid2" && g.bidder === 0 && <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>{SUITS.filter((s) => s !== g.turned.s).map((s) => <button key={s} type="button" className="btn ghost" aria-label={SYM[s]} style={{ fontSize: 24, color: suitColor(s) }} onClick={() => bid(s)}>{SYM[s]}</button>)}<button type="button" className="btn ghost" onClick={() => bid(null)}>{t("Je passe")}</button></div>}
-      <Fan w={48} items={[...g.hands[0]].sort((a, b) => SUITS.indexOf(a.s) - SUITS.indexOf(b.s) || (g.trump ? order(a, g.trump) - order(b, g.trump) : PORD.indexOf(a.r) - PORD.indexOf(b.r))).map((c) => ({ k: c.s + c.r, s: SUITS.indexOf(c.s), r: c.r, node: <PlayCard c={c} w={48} dim={g.phase === "play" && mine && !L.some((x) => same(x, c))} onClick={g.phase === "play" ? () => tap(c) : undefined} /> }))} />
+      <Fan w={48} items={[...g.hands[0]].sort((a, b) => SUITS.indexOf(a.s) - SUITS.indexOf(b.s) || (lk.aid ? RANKS.indexOf(a.r) - RANKS.indexOf(b.r) : g.trump ? order(a, g.trump) - order(b, g.trump) : PORD.indexOf(a.r) - PORD.indexOf(b.r))).map((c) => ({ k: c.s + c.r, s: SUITS.indexOf(c.s), r: c.r, g: grp.get(c.s + c.r)?.g, gl: grp.get(c.s + c.r)?.gl, node: <PlayCard c={c} w={48} dim={g.phase === "play" && mine && !L.some((x) => same(x, c))} onClick={g.phase === "play" ? () => tap(c) : undefined} /> }))} />
       <Rules text={t("Belote à 4 : toi et ton partenaire (en face) contre les 2 adversaires. 32 cartes, 8 par joueur.\nPrise : on retourne une carte. Chacun à son tour peut la prendre (sa couleur devient l'atout). Si personne ne la prend, un deuxième tour permet de choisir une autre couleur. Si tout le monde passe, on redonne.\nAtout : Valet 20, 9 14, As 11, 10 10, Roi 4, Dame 3. Autres couleurs : As 11, 10 10, Roi 4, Dame 3, Valet 2.\nIl faut fournir la couleur demandée ; sinon couper à l'atout (monter si possible), sauf si ton partenaire est maître. À l'atout, il faut monter si on peut.\nBelote-rebelote : Roi + Dame d'atout = 20 points. Dix de der : +10 au dernier pli. Capot (tous les plis) : +90.\nLe preneur doit marquer plus que les adversaires, sinon il est « dedans » : les adversaires marquent 162.")} />
     </GameShell>
   );

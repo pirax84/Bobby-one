@@ -28,7 +28,7 @@ export function Pouilleux() {
   const target = next(0, pl);
   const status = over ? (iLose ? t("Tu gardes le valet de trèfle : tu es le pouilleux !") : t("🏆 Bravo, tu n'es pas le pouilleux ! (+3 points)")) : pl[0].out ? t("Tu n'as plus de cartes : tu es sauvé !") : myTurn ? t("À toi : pioche une carte cachée chez {n}.", { n: target === 1 ? t("l'ordinateur 1") : t("l'ordinateur 2") }) : (msg ? msg + " " : "") + t("L'ordinateur réfléchit…");
   return (
-    <GameShell felt status={status.trim()} over={over} onAgain={again}>
+    <GameShell felt game="pouilleux" status={status.trim()} over={over} onAgain={again}>
       {[1, 2].map((k) => <div key={k} className="col" style={{ alignItems: "center", gap: 4, width: "100%" }}><b className="small">{t("Ordinateur {n}", { n: k })}{pl[k].out ? " ✓" : ""}</b>
         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 4 }}>{pl[k].hand.map((_, i) => <PlayCard key={i} down w={32} onClick={myTurn && target === k ? () => draw(0, i) : undefined} label={t("Carte cachée")} />)}</div></div>)}
       <b className="small">{t("Toi")}</b>
