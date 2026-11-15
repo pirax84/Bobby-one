@@ -3,7 +3,7 @@ import { useStore, actions, userOf } from "../lib/store";
 import { friendCats } from "../lib/cats";
 import { startCall } from "../lib/call";
 import { CatPicker } from "./Cats";
-import { Avatar, Ico, MicIcon, toast } from "./common";
+import { Avatar, Ico, MkTile, toast } from "./common";
 import { t, T } from "../i18n";
 
 /** Fiche d'un ami : photo, 4 gros boutons en bas (écrire, appeler, vocal, vidéo), 2 lignes (lien, catégories) et un menu ⋯ (retirer, signaler, bloquer). */
@@ -33,7 +33,7 @@ export function FriendSheet({ id, onClose, go, onReport }: { id: string; onClose
       <div className="fs-acts">
         <button onClick={dm}><i><Ico n="chat" s={26} /></i>{t("Écrire")}</button>
         <button onClick={call}><i><Ico n="phone" s={26} /></i>{t("Appeler")}</button>
-        <button onClick={dm}><i className="mic"><MicIcon size={26} /></i>{t("Vocal")}</button>
+        <button onClick={dm}><i className="mic"><MkTile k="o" size={30} /></i>{t("Vocal")}</button>
         <button onClick={visio}><i><Ico n="video" s={26} /></i>{t("Vidéo")}</button></div></>
     : sub === "tie" ? <div className="col" style={{ gap: 10 }}><h3>{t("Lien avec {name}", { name: f.name })}</h3><div className="chiprow">{([[undefined, T("Aucun")], ["family", T("Famille")], ["fav", T("Favori")]] as const).map(([k, l]) => <button key={l} className={"chip" + ((tie || undefined) === k ? " on" : "")} onClick={() => { actions.setTie(f.id, k || null); setSub(""); }}>{k === "family" ? "❤ " : k === "fav" ? "★ " : ""}{t(l)}</button>)}</div></div>
     : <div className="col" style={{ gap: 10 }}><h3>{t("Catégories")}</h3><CatPicker value={cats} onChange={(v) => actions.setFriendCats(f.id, v)} /><button className="btn" onClick={() => setSub("")}>OK</button></div>}

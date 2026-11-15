@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { micText, toast, MicIcon, Ico, useScrollLock, Modal } from "./common";
+import { micText, toast, MicIcon, MkTile, Ico, useScrollLock, Modal } from "./common";
 import { actions } from "../lib/store";
 import { soundStart, soundEnd } from "../lib/fx";
 import { FaceHide, AvatarCrop } from "./Photo";
@@ -99,7 +99,7 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
     : <>
       <video ref={vid} muted playsInline controls={false} disablePictureInPicture poster="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style={{ position: "absolute", width: 2, height: 2, opacity: 0, pointerEvents: "none" }} /><canvas ref={cv} className="cam-v live" style={{ transform: face === "user" ? "scaleX(-1)" : undefined, visibility: ready ? "visible" : "hidden" }} />
       <button className="cam-x" onClick={close} aria-label={t("Fermer la caméra")}>✕</button>
-      {mode === "voice" && <div className="cam-voice"><MicIcon size={150} /></div>}
+      {mode === "voice" && <div className="cam-voice"><MkTile k="o" size={150} /></div>}
       {!recording && mode !== "voice" && <button className="cam-flip" onClick={() => setFace(face === "user" ? "environment" : "user")} aria-label={t("Changer de caméra")}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8h12l-3-3M20 16H8l3 3" /></svg></button>}
       {recording && mode !== "voice" && <div className="cam-time">🔴 {max - (left ?? 0)}{" "}{t("s / {max} s", { max })}</div>}
       <div className="cam-bar" style={{ flexDirection: "column", gap: 14 }}>
@@ -142,7 +142,7 @@ export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; 
   const end = () => { if (!held.current) return; held.current = false; if (r.current?.state === "recording") r.current.stop(); else setOn(false); r.current = null; };
   const mm = (n: number) => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
   return (<div className="col" style={{ alignItems: "center", gap: 10, padding: "14px 0" }}>
-    <button type="button" className={"voice-mic" + (on ? " on" : "")} aria-label={t("Maintenir pour enregistrer un vocal")} onPointerDown={(e) => { e.preventDefault(); (e.target as Element).setPointerCapture?.(e.pointerId); void begin(); }} onPointerUp={end} onPointerCancel={end} onContextMenu={(e) => e.preventDefault()}><MicIcon size={64} /></button>
+    <button type="button" className={"voice-mic" + (on ? " on" : "")} aria-label={t("Maintenir pour enregistrer un vocal")} onPointerDown={(e) => { e.preventDefault(); (e.target as Element).setPointerCapture?.(e.pointerId); void begin(); }} onPointerUp={end} onPointerCancel={end} onContextMenu={(e) => e.preventDefault()}><MkTile k="o" size={80} /></button>
     <div className={"livebars" + (on ? " on" : "")} aria-hidden="true">{Array.from({ length: 13 }, (_, i) => <i key={i} style={{ animationDelay: `${(i % 6) * 0.11}s` }} />)}</div>
     <div className="muted small center" aria-live="polite">{on ? t("🔴 {mm} · relâchez pour terminer", { mm: mm(sec) }) : t("Restez appuyé sur le micro pour parler ({max} s max)", { max })}</div></div>);
 }

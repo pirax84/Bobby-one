@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, Msg } from "../lib/store";
-import { MicIcon, Ico, ago, useNow, ConfirmDel, Avatar, toast } from "./common";
+import { MicIcon, MkTile, Ico, ago, useNow, ConfirmDel, Avatar, toast } from "./common";
 import { HoldMic } from "./Recorder";
 import { AudioWave } from "./AudioWave";
 import { t } from "../i18n";
@@ -31,10 +31,10 @@ export function VoiceHome() {
     {pick && <div className="col" style={{ alignItems: "center", gap: 14, padding: "6px 0 14px" }}>
       <span className="muted small">À qui ?</span>
       <div className="qvstrip" style={{ maxWidth: "100%" }}>{who.map((i) => <button key={i.key} type="button" className={"qvpick" + (i.userId === pick.userId ? " sel" : "")} onClick={() => { setPk(i.userId!); try { localStorage.setItem("notiif-vp-last", i.userId!); } catch { /* rien */ } }}><Avatar u={s.users.find((u) => u.id === i.userId)} s={48} /><span>{i.label}</span></button>)}</div>
-      <HoldMic className="bigmic" max={60} verify={verify} onDone={(u) => { const cid = pick.conv || actions.startDm(pick.userId!); actions.send(cid, "", 0, null, undefined, u, false); toast("Vocal envoyé à " + pick.label + "."); }}><MicIcon size={64} /></HoldMic>
+      <HoldMic className="bigmic" max={60} verify={verify} onDone={(u) => { const cid = pick.conv || actions.startDm(pick.userId!); actions.send(cid, "", 0, null, undefined, u, false); toast("Vocal envoyé à " + pick.label + "."); }}><MkTile k="o" size={84} /></HoldMic>
       <span className="muted small center"><b>Maintiens</b> pour parler · relâche = envoyé<br />← glisse pour annuler · ↑ pour verrouiller</span></div>}
     <p className="muted small" style={{ margin: 0 }}>{t("Choisis avec qui parler, rien que avec ta voix.")}</p>
-    {items.map((i) => <button key={i.key} type="button" className="card row voiceitem" onClick={() => setSel(i.key)}><MicIcon size={28} /><span className="grow"><b>{i.label}</b>{i.last && <span className="muted small" style={{ display: "block" }}>{t("Vocal reçu {ago}", { ago: ago(i.last.at, now) })}</span>}</span></button>)}
+    {items.map((i) => <button key={i.key} type="button" className="card row voiceitem" onClick={() => setSel(i.key)}><MkTile k="o" size={34} /><span className="grow"><b>{i.label}</b>{i.last && <span className="muted small" style={{ display: "block" }}>{t("Vocal reçu {ago}", { ago: ago(i.last.at, now) })}</span>}</span></button>)}
     {!items.length && <p className="muted center">{t("Aucun proche pour l'instant : ajoutez des amis pour leur envoyer un vocal.")}</p>}</div>);
 }
 
@@ -57,7 +57,7 @@ function VoiceChat({ item, back }: { item: Item; back: () => void }) {
       <span className="muted center" style={{ fontSize: ".95rem", padding: "0 12px" }}>{dur === "o" ? t("Ce vocal disparaîtra après écoute") : (typeof matchMedia !== "undefined" && matchMedia("(hover: hover) and (pointer: fine)").matches ? t("Clique sur le micro pour parler, puis sur Envoyer.") : t("Maintiens pour parler. Glisse vers le haut pour verrouiller, vers le bas pour annuler."))}</span>
       <div className="row voicedur" style={{ gap: 14, justifyContent: "center", alignItems: "center" }} role="radiogroup" aria-label={t("Durée du vocal")}>
         <button type="button" role="radio" aria-checked={dur === "p"} className={"vchoice" + (dur === "p" ? " on" : "")} onClick={() => setDur("p")}>{t("Normal")}</button>
-        <HoldMic className="bigmic" max={600} onDone={send}><MicIcon size={54} /></HoldMic>
+        <HoldMic className="bigmic" max={600} onDone={send}><MkTile k="o" size={84} /></HoldMic>
         <button type="button" role="radio" aria-checked={dur === "o"} className={"vchoice" + (dur === "o" ? " on" : "")} onClick={() => setDur("o")}>{t("Éphémère")}</button></div></div>
   </div>);
 }

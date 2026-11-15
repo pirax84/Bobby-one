@@ -1280,3 +1280,20 @@ html[data-accent=blanc] .bottom .plus .mk{border:4px solid var(--bg);outline:1px
 html .bottom button .mk svg,html .bottom button .mk{padding:0!important;background:none;border-radius:0;box-shadow:none;color:inherit;stroke-width:initial!important}
 html .bottom button .mk{background:var(--mkbg);border-radius:36%;box-shadow:0 4px 10px -4px rgba(0,0,0,.45)}
 html .bottom button .mk svg{width:78%!important;height:78%!important;background:none!important}
+
+/* v277 : barre du bas — toutes les icônes en pastilles pleines (couleurs de l'appli) ; enregistrement avec le logo O */
+html .bottom button.on,html[data-theme=light] .bottom button.on{background:none!important}
+html .bottom button[data-k]>svg,html[data-theme=light] .bottom button[data-k]>svg{width:22px!important;height:22px!important;padding:9px!important;box-sizing:content-box!important;border-radius:15px!important;color:#fff!important;stroke-width:2.2!important;box-shadow:0 4px 10px -4px rgba(0,0,0,.45);background:linear-gradient(135deg,var(--brand),var(--brand2))!important}
+html:not(.zz) .bottom button[data-k=groups]>svg,html:not(.zz) .bottom button[data-k=messages]>svg,html:not(.zz) .bottom button[data-k=calls]>svg,html:not(.zz) .bottom button[data-k=settings]>svg{background:linear-gradient(135deg,#5EE0C8,#2BB8D8 60%,var(--brand))!important}
+html:not(.zz) .bottom button[data-k=friends]>svg,html:not(.zz) .bottom button[data-k=notifs]>svg,html:not(.zz) .bottom button[data-k=profile]>svg,html:not(.zz) .bottom button[data-k=events]>svg{background:linear-gradient(135deg,#FF8FA3,#E0609A)!important}
+html:not(.zz) .bottom button[data-k].on>svg{box-shadow:0 0 0 3px var(--bg2),0 0 0 5px var(--brand)!important}
+html .bottom button[data-k]{gap:4px}
+html[data-accent=citron] .bottom button[data-k]>svg,html[data-accent=miel] .bottom button[data-k]>svg,html[data-accent=gris] .bottom button[data-k]>svg,html[data-accent=beige] .bottom button[data-k]>svg{color:#2A2442!important}
+.voice-mic,.voice-mic.on{background:none!important;box-shadow:none!important;display:grid;place-items:center;padding:0}
+.voice-mic.on{animation:vpulse 1s infinite}
+.bigmic{background:none!important;border:0!important;box-shadow:none!important;width:auto!important;height:auto!important}
+
+html .bottom button:focus:not(:focus-visible){outline:none}
+html .bottom button:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:18px}
+html:not(.zz) .bottom button[data-k]>svg,html:not(.zz) .bottom button[data-k].on>svg{color:#fff!important}
+html:not(.zz)[data-accent=citron] .bottom button[data-k]>svg,html:not(.zz)[data-accent=miel] .bottom button[data-k]>svg,html:not(.zz)[data-accent=gris] .bottom button[data-k]>svg,html:not(.zz)[data-accent=beige] .bottom button[data-k]>svg{color:#2A2442!important}

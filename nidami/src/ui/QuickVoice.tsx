@@ -15,7 +15,7 @@ export function QuickVoice({ onClose }: { onClose: () => void }) {
     {!convs.length ? <p className="muted center" style={{ margin: 0 }}>Aucune conversation : écrivez d'abord à un ami depuis « Amis ».</p> : <>
       <div className="qvstrip">{convs.map((c) => { const o = other(c.id); return <button key={c.id} type="button" className={"qvpick" + (c.id === pick ? " sel" : "")} onClick={() => choose(c.id)}><Avatar u={o} s={42} /><span>{o?.name?.split(" ")[0]}</span></button>; })}</div>
       <p className="muted small center" style={{ margin: "8px 0 4px" }}>Pour <b>{other(pick)?.name}</b> · maintiens le micro</p>
-      <div style={{ display: "flex", justifyContent: "center" }}><HoldMic className="btn" max={60} verify={verify} onDone={(u) => { actions.send(pick, "", 0, null, undefined, u, false); toast("Vocal envoyé."); onClose(); }}><span style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "6px 14px" }}><MicIcon size={34} />Maintiens pour parler</span></HoldMic></div>
+      <div style={{ display: "flex", justifyContent: "center" }}><HoldMic className="btn" max={60} verify={verify} onDone={(u) => { actions.send(pick, "", 0, null, undefined, u, false); toast("Vocal envoyé."); onClose(); }}><span style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "6px 14px" }}><MkTile k="o" size={44} />Maintiens pour parler</span></HoldMic></div>
 </>}
   </div></div>;
 }

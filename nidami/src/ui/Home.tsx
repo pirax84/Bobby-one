@@ -5,7 +5,7 @@ import { Eph } from "./Vanish";
 import { createPortal } from "react-dom";
 import { useStore, getState as useStoreGet, actions, userOf, State } from "../lib/store";
 import { Post, Audience, feedFor, storiesFor, checkAccess, accessFor, originalOf, resolveRecipients, fmtSecs, VIEW_CHOICES, MAX_CUSTOM_SECS } from "../lib/engine";
-import { micText, Wreath, MicIcon, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps, isBirthday, topEmojis, bumpEmoji, Switch, useScrollLock } from "./common";
+import { micText, Wreath, MicIcon, MkTile, Avatar, Ico, Modal, toast, ago, fileToDataUrl, BG, EMOJIS, EmojiGrid, useNow, lp, ConfirmDel, pressProps, isBirthday, topEmojis, bumpEmoji, Switch, useScrollLock } from "./common";
 import { ReactorsModal, EmojiSheet, CommentSheet } from "./Reactions";
 import { WmImage, VideoWm, useCaptureGuard } from "./Wm";
 import { Recorder, Camera } from "./Recorder";
@@ -41,7 +41,7 @@ export function Stories({ me }: { me: string }) {
 }
 function VoiceBox({ p, auto, story, onEnd, onTime }: { p: { audio?: string | null; text?: string }; auto: boolean; story: boolean; onEnd?: () => void; onTime?: (cur: number, dur: number) => void }) {
   const [lv, setLv] = useState(0);
-  return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 240, flexDirection: "column", gap: 14 }}><MicIcon size={120} level={lv} /><AudioWave src={p.audio!} autoPlay={auto || story} mine onEnded={onEnd} onTime={onTime} onLevel={setLv} />{p.text && <div>{p.text}</div>}</div>;
+  return <div className="tbg" style={{ width: "min(560px,100%)", minHeight: 240, flexDirection: "column", gap: 14 }}><span style={{ display: "inline-block", transform: `scale(${1 + lv * 0.28})`, transition: "transform .08s" }}><MkTile k="o" size={120} /></span><AudioWave src={p.audio!} autoPlay={auto || story} mine onEnded={onEnd} onTime={onTime} onLevel={setLv} />{p.text && <div>{p.text}</div>}</div>;
 }
 function MediaBox({ p, label, auto = false, story = false, onEnd, onTime }: { p: { video?: string | null; audio?: string | null; text?: string; nowm?: boolean }; label: string; auto?: boolean; story?: boolean; onEnd?: () => void; onTime?: (cur: number, dur: number) => void }) {
   if (p.video) return <div style={{ width: "min(560px,100%)" }}><VideoWm src={p.video} label={label} bare={story} plain={!!p.nowm} onEnded={onEnd} onTime={onTime} /></div>;
