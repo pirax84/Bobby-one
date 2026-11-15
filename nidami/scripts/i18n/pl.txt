@@ -1690,3 +1690,12 @@
 1689|Inne
 1690|Moja relacja
 1691|Przesuń kartę w lewo: odpowiedz lub usuń
+1692|Aby wszystko działało
+1693|NOTIIF potrzebuje 3 uprawnień. Możesz je zmienić później w ustawieniach.
+1694|Powiadomienie o wiadomości, nawet gdy aplikacja jest zamknięta
+1695|Mikrofon
+1696|Wysyłanie wiadomości głosowych i rozmowy
+1697|Zdjęcia, filmy i rozmowy wideo
+1698|Zezwól na wszystko
+1699|Zezwolono
+1700|Odmówiono: zmień w ustawieniach telefonu

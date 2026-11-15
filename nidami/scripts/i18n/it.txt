@@ -1690,3 +1690,12 @@
 1689|Altri
 1690|La mia storia
 1691|Scorri una scheda a sinistra: rispondi o elimina
+1692|Per funzionare bene
+1693|NOTIIF ha bisogno di 3 autorizzazioni. Puoi cambiarle più tardi nelle impostazioni.
+1694|Ricevere un avviso per un messaggio, anche con l'app chiusa
+1695|Microfono
+1696|Inviare vocali e fare chiamate
+1697|Foto, video e videochiamate
+1698|Consenti tutto
+1699|Consentito
+1700|Negato: cambialo nelle impostazioni del telefono

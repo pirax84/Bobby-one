@@ -1690,3 +1690,12 @@
 1689|Eile
 1690|M'insint
 1691|Svaidhp cárta ar chlé: freagair nó scrios
+1692|Chun oibriú i gceart
+1693|Teastaíonn 3 chead ó NOTIIF. Is féidir leat iad a athrú níos déanaí sna socruithe.
+1694|Faigh fógra faoi theachtaireacht, fiú nuair atá an aip dúnta
+1695|Micreafón
+1696|Seol teachtaireachtaí gutha agus déan glaonna
+1697|Grianghraif, físeáin agus físghlaonna
+1698|Ceadaigh uile
+1699|Ceadaithe
+1700|Diúltaithe: athraigh sna socruithe fóin é

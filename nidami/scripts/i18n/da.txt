@@ -1690,3 +1690,12 @@
 1689|Andre
 1690|Min story
 1691|Stryg et kort til venstre: svar eller slet
+1692|For at virke ordentligt
+1693|NOTIIF har brug for 3 tilladelser. Du kan ændre dem senere i indstillingerne.
+1694|Få besked om en besked, også når appen er lukket
+1695|Mikrofon
+1696|Send talebeskeder og ring op
+1697|Fotos, videoer og videoopkald
+1698|Tillad alle
+1699|Tilladt
+1700|Afvist: ændr det i telefonens indstillinger

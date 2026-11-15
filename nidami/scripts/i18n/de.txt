@@ -1690,3 +1690,12 @@
 1689|Andere
 1690|Meine Story
 1691|Karte nach links wischen: antworten oder löschen
+1692|Damit alles funktioniert
+1693|NOTIIF braucht 3 Berechtigungen. Du kannst sie später in den Einstellungen ändern.
+1694|Bei einer Nachricht benachrichtigt werden, auch wenn die App geschlossen ist
+1695|Mikrofon
+1696|Sprachnachrichten senden und anrufen
+1697|Fotos, Videos und Videoanrufe
+1698|Alle erlauben
+1699|Erlaubt
+1700|Abgelehnt: in den Handy-Einstellungen ändern

@@ -1690,3 +1690,12 @@
 1689|Muut
 1690|Oma tarinani
 1691|Pyyhkäise korttia vasemmalle: vastaa tai poista
+1692|Toimiakseen kunnolla
+1693|NOTIIF tarvitsee 3 lupaa. Voit muuttaa ne myöhemmin asetuksista.
+1694|Saat ilmoituksen viestistä, vaikka sovellus olisi suljettu
+1695|Mikrofoni
+1696|Lähetä ääniviestejä ja soita
+1697|Kuvat, videot ja videopuhelut
+1698|Salli kaikki
+1699|Sallittu
+1700|Estetty: muuta puhelimen asetuksista

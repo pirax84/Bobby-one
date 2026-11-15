@@ -1690,3 +1690,12 @@
 1689|Oħrajn
 1690|L-istorja tiegħi
 1691|Ixxotta karta lejn ix-xellug: wieġeb jew ħassar
+1692|Biex taħdem sew
+1693|NOTIIF teħtieġ 3 permessi. Tista' tbiddilhom aktar tard fis-settings.
+1694|Ikseb notifika ta' messaġġ, anke meta l-app tkun magħluqa
+1695|Mikrofonu
+1696|Ibgħat vokali u agħmel sejħiet
+1697|Ritratti, vidjows u sejħiet bil-vidjow
+1698|Ippermetti kollox
+1699|Permess
+1700|Miċħud: biddlu fis-settings tat-telefon

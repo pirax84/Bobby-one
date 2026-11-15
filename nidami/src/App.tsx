@@ -15,6 +15,7 @@ import { Media } from "./ui/Albums";
 import { LegalView } from "./ui/Legal";
 import { Shares } from "./ui/Shares";
 import { Onboarding, needInstall } from "./ui/Auth";
+import { Perms } from "./ui/Perms";
 import { ChatBubble } from "./ui/Bubble";
 import { SearchTop } from "./ui/Search";
 import { MiniPlayer } from "./ui/Links";
@@ -154,10 +155,12 @@ export default function App() {
     const opt = { body: lastNotif.text, icon: pickedUrl("notif") || "./icon-192.png", badge: "./badge-96.png", tag: lastNotif.id, vibrate: [200, 100, 200] } as NotificationOptions;
     navigator.serviceWorker?.ready.then((r) => r.showNotification(BRAND, opt)).catch(() => { try { new Notification(BRAND, opt); } catch { /* ignoré */ } });
   }, [lastNotif?.id, pushOn]);
+  const [permsOk, setPermsOk] = useState(() => { try { return !!localStorage.getItem("notiif-perms"); } catch { return true; } });
   useEffect(() => { sessionFromReturn().then((w) => { if (w && !started) actions.start(w.name); }).catch(() => {}); }, []);
   // Pendant qu'on fait défiler la page, la barre du bas et la bulle de messages se cachent ; elles reviennent dès qu'on s'arrête.
   useEffect(() => { let tm = 0; const root = document.documentElement; const show = () => { clearTimeout(tm); root.classList.remove("moving"); }; const on = () => { root.classList.add("moving"); clearTimeout(tm); tm = window.setTimeout(show, 90); }; window.addEventListener("scroll", on, { passive: true }); window.addEventListener("scrollend", show); return () => { window.removeEventListener("scroll", on); window.removeEventListener("scrollend", show); clearTimeout(tm); root.classList.remove("moving"); }; }, []);
   if (!started || !me || !user || needInstall()) return <><Onboarding started={!!(started && me && user)} /><ToastHost /></>;
+  if (!permsOk) return <><Perms onDone={() => setPermsOk(true)} /><ToastHost /></>;
   const tab = ([k, l, i]: [V, string, string]) => <button key={k} data-k={k} className={v === k ? "on" : ""} onClick={() => go(k)} aria-label={l} aria-current={v === k ? "page" : undefined} style={{ position: "relative" }}>{i === "voice" ? <MkTile k="o" size={30} /> : <Ico n={i} />}<i>{l}</i>{badge(k) > 0 && <span className="badge" style={{ position: "absolute", top: 0, right: 4 }}>{badge(k)}</span>}</button>;
   const go = (x: string, conv?: string) => { if (x === "arrived") { setMore(false); setArrived(true); return; } if (conv) { history.pushState({ v: x, conv }, ""); setV(x as V); setMore(false); return; } if (x !== v) history.pushState({ v: x }, ""); setV(x as V); setMore(false); };
   let keys = navCfg ? navCfg.split(",") : ["home", "messages", "voice", "friends"];

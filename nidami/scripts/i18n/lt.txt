@@ -1690,3 +1690,12 @@
 1689|Kiti
 1690|Mano istorija
 1691|Perbraukite kortelę kairėn: atsakyti arba ištrinti
+1692|Kad viskas veiktų
+1693|NOTIIF reikia 3 leidimų. Vėliau juos galėsi pakeisti nustatymuose.
+1694|Gauti pranešimą apie žinutę, net kai programėlė uždaryta
+1695|Mikrofonas
+1696|Siųsti balso žinutes ir skambinti
+1697|Nuotraukos, vaizdo įrašai ir vaizdo skambučiai
+1698|Leisti viską
+1699|Leidžiama
+1700|Atmesta: pakeisk telefono nustatymuose

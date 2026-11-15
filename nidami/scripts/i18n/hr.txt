@@ -1690,3 +1690,12 @@
 1689|Ostalo
 1690|Moja priča
 1691|Povuci karticu ulijevo: odgovori ili izbriši
+1692|Za ispravan rad
+1693|NOTIIF treba 3 dopuštenja. Možeš ih kasnije promijeniti u postavkama.
+1694|Obavijest o poruci, čak i kad je aplikacija zatvorena
+1695|Mikrofon
+1696|Slanje glasovnih poruka i pozivi
+1697|Fotografije, videozapisi i videopozivi
+1698|Dopusti sve
+1699|Dopušteno
+1700|Odbijeno: promijeni u postavkama telefona

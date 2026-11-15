@@ -1690,3 +1690,12 @@
 1689|Others
 1690|My story
 1691|Swipe a card left: reply or delete
+1692|To work properly
+1693|NOTIIF needs 3 permissions. You can change them later in settings.
+1694|Get notified of a message, even when the app is closed
+1695|Microphone
+1696|Send voice messages and make calls
+1697|Photos, videos and video calls
+1698|Allow all
+1699|Allowed
+1700|Denied: change it in your phone settings

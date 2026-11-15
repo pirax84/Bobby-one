@@ -1690,3 +1690,12 @@
 1689|Ostatní
 1690|Můj příběh
 1691|Přejeďte kartu doleva: odpovědět nebo smazat
+1692|Aby vše fungovalo
+1693|NOTIIF potřebuje 3 oprávnění. Můžeš je později změnit v nastavení.
+1694|Upozornění na zprávu, i když je aplikace zavřená
+1695|Mikrofon
+1696|Posílání hlasových zpráv a volání
+1697|Fotky, videa a videohovory
+1698|Povolit vše
+1699|Povoleno
+1700|Zamítnuto: změň v nastavení telefonu

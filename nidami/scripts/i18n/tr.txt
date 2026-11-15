@@ -1690,3 +1690,12 @@
 1689|Diğerleri
 1690|Hikâyem
 1691|Kartı sola kaydır: yanıtla veya sil
+1692|Düzgün çalışması için
+1693|NOTIIF'in 3 izne ihtiyacı var. Bunları daha sonra ayarlardan değiştirebilirsin.
+1694|Uygulama kapalıyken bile mesaj bildirimi al
+1695|Mikrofon
+1696|Sesli mesaj gönder ve arama yap
+1697|Fotoğraflar, videolar ve görüntülü aramalar
+1698|Tümüne izin ver
+1699|İzin verildi
+1700|Reddedildi: telefon ayarlarından değiştir

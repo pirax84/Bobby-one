@@ -1690,3 +1690,12 @@
 1689|Egyéb
 1690|Saját történetem
 1691|Húzd balra a kártyát: válasz vagy törlés
+1692|A megfelelő működéshez
+1693|A NOTIIF-nak 3 engedélyre van szüksége. Később megváltoztathatod őket a beállításokban.
+1694|Értesítés üzenetről, akkor is, ha az alkalmazás be van zárva
+1695|Mikrofon
+1696|Hangüzenetek küldése és hívás
+1697|Fotók, videók és videóhívások
+1698|Mindent engedélyezek
+1699|Engedélyezve
+1700|Elutasítva: módosítsd a telefon beállításaiban

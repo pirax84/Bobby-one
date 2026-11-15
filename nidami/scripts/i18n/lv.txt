@@ -1690,3 +1690,12 @@
 1689|Citi
 1690|Mans stāsts
 1691|Pavelciet karti pa kreisi: atbildēt vai dzēst
+1692|Lai viss darbotos
+1693|NOTIIF nepieciešamas 3 atļaujas. Tās varēsi mainīt vēlāk iestatījumos.
+1694|Saņemt paziņojumu par ziņu, pat ja lietotne ir aizvērta
+1695|Mikrofons
+1696|Sūtīt balss ziņas un zvanīt
+1697|Foto, video un videozvani
+1698|Atļaut visu
+1699|Atļauts
+1700|Noraidīts: maini tālruņa iestatījumos

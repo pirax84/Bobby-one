@@ -1690,3 +1690,12 @@
 1689|Andra
 1690|Min story
 1691|Svep ett kort åt vänster: svara eller radera
+1692|För att fungera bra
+1693|NOTIIF behöver 3 behörigheter. Du kan ändra dem senare i inställningarna.
+1694|Få en avisering om ett meddelande, även när appen är stängd
+1695|Mikrofon
+1696|Skicka röstmeddelanden och ringa
+1697|Foton, videor och videosamtal
+1698|Tillåt alla
+1699|Tillåtet
+1700|Nekat: ändra i telefonens inställningar

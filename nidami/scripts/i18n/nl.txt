@@ -1690,3 +1690,12 @@
 1689|Anderen
 1690|Mijn story
 1691|Veeg een kaart naar links: antwoorden of wissen
+1692|Om goed te werken
+1693|NOTIIF heeft 3 toestemmingen nodig. Je kunt ze later wijzigen in de instellingen.
+1694|Een melding bij een bericht, ook als de app gesloten is
+1695|Microfoon
+1696|Spraakberichten sturen en bellen
+1697|Foto's, video's en videogesprekken
+1698|Alles toestaan
+1699|Toegestaan
+1700|Geweigerd: wijzig het in de telefooninstellingen

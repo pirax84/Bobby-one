@@ -1690,3 +1690,12 @@
 1689|Lainnya
 1690|Cerita saya
 1691|Geser kartu ke kiri: balas atau hapus
+1692|Agar berfungsi dengan baik
+1693|NOTIIF membutuhkan 3 izin. Kamu bisa mengubahnya nanti di pengaturan.
+1694|Dapat pemberitahuan pesan, bahkan saat aplikasi ditutup
+1695|Mikrofon
+1696|Kirim pesan suara dan menelepon
+1697|Foto, video, dan panggilan video
+1698|Izinkan semua
+1699|Diizinkan
+1700|Ditolak: ubah di pengaturan ponsel

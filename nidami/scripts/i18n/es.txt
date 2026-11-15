@@ -1690,3 +1690,12 @@
 1689|Otros
 1690|Mi historia
 1691|Desliza una tarjeta a la izquierda: responder o borrar
+1692|Para funcionar bien
+1693|NOTIIF necesita 3 permisos. Puedes cambiarlos más tarde en los ajustes.
+1694|Recibir aviso de un mensaje, incluso con la app cerrada
+1695|Micrófono
+1696|Enviar audios y hacer llamadas
+1697|Fotos, vídeos y videollamadas
+1698|Permitir todo
+1699|Permitido
+1700|Denegado: cámbialo en los ajustes del teléfono

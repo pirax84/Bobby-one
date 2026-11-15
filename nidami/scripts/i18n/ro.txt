@@ -1690,3 +1690,12 @@
 1689|Altele
 1690|Povestea mea
 1691|Glisează un card spre stânga: răspunde sau șterge
+1692|Pentru a funcționa bine
+1693|NOTIIF are nevoie de 3 permisiuni. Le poți schimba mai târziu în setări.
+1694|Primești o notificare la un mesaj, chiar cu aplicația închisă
+1695|Microfon
+1696|Trimite mesaje vocale și sună
+1697|Fotografii, videoclipuri și apeluri video
+1698|Permite tot
+1699|Permis
+1700|Refuzat: schimbă în setările telefonului

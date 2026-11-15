@@ -1690,3 +1690,12 @@
 1689|Muud
 1690|Minu lugu
 1691|Pühkige kaart vasakule: vasta või kustuta
+1692|Korraliku toimimise jaoks
+1693|NOTIIF vajab 3 luba. Saad neid hiljem seadetes muuta.
+1694|Saa teade sõnumist, ka siis kui rakendus on suletud
+1695|Mikrofon
+1696|Saada häälsõnumeid ja helista
+1697|Fotod, videod ja videokõned
+1698|Luba kõik
+1699|Lubatud
+1700|Keelatud: muuda telefoni seadetes
