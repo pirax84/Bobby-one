@@ -1699,3 +1699,4 @@
 1698|Zezwól na wszystko
 1699|Zezwolono
 1700|Odmówiono: zmień w ustawieniach telefonu
+1701|Przytrzymaj przycisk i przeciągnij go w lewo lub w prawo, aby zmienić jego miejsce.

@@ -1699,3 +1699,4 @@
 1698|Dovoli vse
 1699|Dovoljeno
 1700|Zavrnjeno: spremeni v nastavitvah telefona
+1701|Drži gumb in ga povleci levo ali desno, da spremeniš njegovo mesto.

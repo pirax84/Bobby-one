@@ -1699,3 +1699,4 @@
 1698|Alle erlauben
 1699|Erlaubt
 1700|Abgelehnt: in den Handy-Einstellungen ändern
+1701|Halte eine Taste gedrückt und ziehe sie nach links oder rechts, um ihren Platz zu ändern.

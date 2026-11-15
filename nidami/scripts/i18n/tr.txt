@@ -1699,3 +1699,4 @@
 1698|Tümüne izin ver
 1699|İzin verildi
 1700|Reddedildi: telefon ayarlarından değiştir
+1701|Bir düğmeye basılı tut, yerini değiştirmek için sola veya sağa sürükle.

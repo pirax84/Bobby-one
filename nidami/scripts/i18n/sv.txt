@@ -1699,3 +1699,4 @@
 1698|Tillåt alla
 1699|Tillåtet
 1700|Nekat: ändra i telefonens inställningar
+1701|Håll in en knapp och dra den åt vänster eller höger för att byta plats.

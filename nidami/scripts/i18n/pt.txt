@@ -1699,3 +1699,4 @@
 1698|Permitir tudo
 1699|Permitido
 1700|Recusado: altera nas definições do telemóvel
+1701|Mantém um botão premido e arrasta-o para a esquerda ou para a direita para mudar o lugar.

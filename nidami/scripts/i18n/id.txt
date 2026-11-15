@@ -1699,3 +1699,4 @@
 1698|Izinkan semua
 1699|Diizinkan
 1700|Ditolak: ubah di pengaturan ponsel
+1701|Tahan tombol lalu geser ke kiri atau kanan untuk mengubah posisinya.

@@ -1699,3 +1699,4 @@
 1698|Mindent engedélyezek
 1699|Engedélyezve
 1700|Elutasítva: módosítsd a telefon beállításaiban
+1701|Tartsd nyomva a gombot, majd húzd balra vagy jobbra a helyének megváltoztatásához.

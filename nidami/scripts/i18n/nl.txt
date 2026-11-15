@@ -1699,3 +1699,4 @@
 1698|Alles toestaan
 1699|Toegestaan
 1700|Geweigerd: wijzig het in de telefooninstellingen
+1701|Houd een knop ingedrukt en sleep hem naar links of rechts om zijn plek te veranderen.

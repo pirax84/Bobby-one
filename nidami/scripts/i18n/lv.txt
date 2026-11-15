@@ -1699,3 +1699,4 @@
 1698|Atļaut visu
 1699|Atļauts
 1700|Noraidīts: maini tālruņa iestatījumos
+1701|Turiet pogu un velciet to pa kreisi vai pa labi, lai mainītu tās vietu.

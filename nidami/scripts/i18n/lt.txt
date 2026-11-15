@@ -1699,3 +1699,4 @@
 1698|Leisti viską
 1699|Leidžiama
 1700|Atmesta: pakeisk telefono nustatymuose
+1701|Palaikykite mygtuką ir nuvilkite jį į kairę ar dešinę, kad pakeistumėte jo vietą.

@@ -1699,3 +1699,4 @@
 1698|Tillad alle
 1699|Tilladt
 1700|Afvist: ændr det i telefonens indstillinger
+1701|Hold en knap nede, og træk den til venstre eller højre for at skifte plads.

@@ -1699,3 +1699,4 @@
 1698|Ceadaigh uile
 1699|Ceadaithe
 1700|Diúltaithe: athraigh sna socruithe fóin é
+1701|Coinnigh cnaipe agus tarraing é ar chlé nó ar dheis chun a áit a athrú.

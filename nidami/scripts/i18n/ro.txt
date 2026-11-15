@@ -1699,3 +1699,4 @@
 1698|Permite tot
 1699|Permis
 1700|Refuzat: schimbă în setările telefonului
+1701|Ține apăsat un buton și trage-l la stânga sau la dreapta pentru a-i schimba locul.

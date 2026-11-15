@@ -1699,3 +1699,4 @@
 1698|Salli kaikki
 1699|Sallittu
 1700|Estetty: muuta puhelimen asetuksista
+1701|Pidä painiketta painettuna ja vedä sitä vasemmalle tai oikealle vaihtaaksesi sen paikkaa.

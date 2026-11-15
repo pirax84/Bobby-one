@@ -1699,3 +1699,4 @@
 1698|Allow all
 1699|Allowed
 1700|Denied: change it in your phone settings
+1701|Hold a button, then drag it left or right to change its place.

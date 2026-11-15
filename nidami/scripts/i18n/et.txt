@@ -1699,3 +1699,4 @@
 1698|Luba kõik
 1699|Lubatud
 1700|Keelatud: muuda telefoni seadetes
+1701|Hoia nuppu all ja lohista seda vasakule või paremale, et selle kohta muuta.

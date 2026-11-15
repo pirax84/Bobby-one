@@ -1699,3 +1699,4 @@
 1698|Permitir todo
 1699|Permitido
 1700|Denegado: cámbialo en los ajustes del teléfono
+1701|Mantén pulsado un botón y arrástralo a la izquierda o a la derecha para cambiar su lugar.

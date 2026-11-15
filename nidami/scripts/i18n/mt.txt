@@ -1699,3 +1699,4 @@
 1698|Ippermetti kollox
 1699|Permess
 1700|Miċħud: biddlu fis-settings tat-telefon
+1701|Żomm buttuna u kaxkarha lejn ix-xellug jew il-lemin biex tbiddel posta.
