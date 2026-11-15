@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { t } from "../i18n";
 import { actions } from "../lib/store";
 import { MkTile } from "./common";
 
 type K = "notif" | "mic" | "cam";
 const G: Record<K, string> = { notif: "linear-gradient(135deg,#FF8FA3,#E0609A)", mic: "linear-gradient(135deg,#5EE0C8,#2BB8D8 60%,var(--brand))", cam: "linear-gradient(135deg,var(--brand),var(--brand2))" };
-const SVG: Record<K, JSX.Element> = {
+const SVG: Record<K, ReactNode> = {
   notif: <path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 21h4" />,
   mic: <><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></>,
   cam: <><path d="M4 8h3l1.6-2.2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" /><circle cx="12" cy="13.4" r="3.6" /></>,
