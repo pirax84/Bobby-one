@@ -168,8 +168,10 @@ export function Games() {
   const ready: Record<string, ReactNode> = { belote: <Belote />, rami: <Rami />, tarot: <Tarot />, huit: <Huit />, bataille: <Bataille />, aligne4: <Aligne4 />, dames: <Dames />, navale: <Navale />, dominos: <Dominos />, pouilleux: <Pouilleux />, memory: <MemoryGame /> };
   const [mode, setMode] = useState<"" | "ami" | "bot">("");
   const back = () => { if (tab === "morpion" && mode) setMode(""); else { setTab(""); setMode(""); } };
+  useEffect(() => { const f = () => { setTab(""); setMode(""); }; window.addEventListener("notiif-gameback", f); return () => window.removeEventListener("notiif-gameback", f); }, []);
+  const felted = ["belote", "rami", "tarot", "bataille", "pouilleux", "huit"].includes(tab);
   return (<div className="col">
-    {tab ? <div className="row" style={{ gap: 8 }}><button className="btn ghost sm" onClick={back} aria-label={t("Retour")}><Ico n="back" s={18} /></button><h1 className="grow" style={{ margin: 0 }}>{gt[tab]}</h1></div> : <h1>{t("Jeux")}</h1>}
+    {tab && !felted ? <div className="row" style={{ gap: 8 }}><button className="btn ghost sm" onClick={back} aria-label={t("Retour")}><Ico n="back" s={18} /></button><h1 className="grow" style={{ margin: 0 }}>{gt[tab]}</h1></div> : !tab ? <h1>{t("Jeux")}</h1> : null}
     {!tab && <><div className="gtotal"><div className="grow"><div className="muted small">{t("Ton total")}</div><b>{s.scores[me] || 0} {t("points")}</b></div><Ico n="user" s={24} /></div>
       <div className="ggrid">{GAME_KEYS.map((k) => <button key={k} className="gcard" onClick={() => setTab(k)}><GameLogo k={k} size={76} /><b>{gt[k]}</b><span className="muted small">{sub[k]}{ready[k] ? "" : " · " + t("Bientôt")}</span></button>)}</div>
       <div className="muted small center" style={{ textAlign: "center" }}>{t("Touche un jeu pour jouer.")}</div></>}

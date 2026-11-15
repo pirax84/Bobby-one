@@ -1891,3 +1891,4 @@
 1890|Fifty
 1891|Hundred
 1892|Handful
+1893|Bottom · finish!

@@ -1891,3 +1891,4 @@
 1890|Ötven
 1891|Száz
 1892|Maroknyi
+1893|Alsó · fejezd be!

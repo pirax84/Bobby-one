@@ -106,7 +106,7 @@ export function Fan({ items, w, max = 280 }: { items: FanItem[]; w: number; max?
     </div>;
   };
   const bt: CSSProperties = { fontSize: 12, padding: "4px 10px" };
-  return <div style={{ width: "100%", paddingTop: 8 }}>{chunks.map((c, i) => row(c, i))}
+  return <div style={{ width: "100%", paddingTop: 8, marginTop: "auto" }}>{chunks.map((c, i) => row(c, i))}
     <div className="row" style={{ gap: 8, justifyContent: "center", marginTop: 4 }}><button type="button" className="btn ghost sm" style={bt} onClick={() => sortBy("s")}>{t("Par couleur")}</button><button type="button" className="btn ghost sm" style={bt} onClick={() => sortBy("r")}>{t("Par valeur")}</button></div>
   </div>;
 }

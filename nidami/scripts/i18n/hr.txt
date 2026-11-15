@@ -1891,3 +1891,4 @@
 1890|Pedeset
 1891|Sto
 1892|Šaka
+1893|Dno · završi!

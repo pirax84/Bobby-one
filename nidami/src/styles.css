@@ -1334,3 +1334,15 @@ html[data-accent=nuit][data-theme=light] body{background:linear-gradient(rgba(41
 html[data-accent=nuit][data-theme=light] .chip{color:#1B1840}
 html[data-accent=nuit][data-theme=light] .chip.on{color:#fff}
 html[data-theme=light][data-accent=nuit]{--tint:#291E5B}
+
+.gfull{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;align-items:center;overflow-y:auto;color:#fff;background:radial-gradient(120% 90% at 50% 0%,#5B49C8 0%,#3E3396 55%,#2A6D8C 130%);padding-top:env(safe-area-inset-top)}
+.gfhead{width:100%;display:flex;align-items:center;gap:10px;padding:12px 14px;box-sizing:border-box}
+.gfhead b{font-size:1.2rem;color:#fff}
+.gfback{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.16);color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.gfull .gstatus{color:#fff}
+.gfull .gstatus.muted{color:rgba(255,255,255,.85)!important}
+.gfullin{flex:1;border-radius:0;box-shadow:none;background:none;justify-content:flex-start;max-width:640px;box-sizing:border-box}
+.tile[data-k=voice] .tic{background:none!important;padding:0!important}
+.tile[data-k=voice] .tic>span,.tile[data-k=voice] .tic .mk{width:100%!important;height:100%!important}
+.tile[data-k=voice] .mk svg{width:74%!important;height:74%!important}
+.gfull .card{color:var(--fg)}.gfull .card summary{color:var(--fg)!important}

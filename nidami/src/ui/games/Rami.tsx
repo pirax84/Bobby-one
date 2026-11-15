@@ -156,16 +156,23 @@ function RamiGame({ mode }: { mode: Mode }) {
   return (
     <GameShell felt game="rami" status={status.trim()} over={over} onAgain={again}>
       <div className="small muted">{t("L'ordinateur a {n} cartes", { n: g.hand[1].length })}{g.opened[1] ? " · ✓" : ""}</div>
-      <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-        <PlayCard down w={44} label={t("Pioche")} onClick={mine && g.phase === "draw" ? drawStock : undefined} />
-        {g.bottom && <PlayCard c={g.bottom} w={44} label={t("Carte du fond")} tag={t("Fond")} onClick={mine && g.phase === "draw" ? fond : undefined} dim={mine && g.phase === "draw" && !fondOk} />}
-        {top ? <PlayCard c={top} w={48} label={t("Défausse")} onClick={mine && g.phase === "draw" ? drawDisc : undefined} /> : <span />}
-      </div>
+      {(() => { const pw = 56, ph = Math.round(pw * 1.42); const canF = !!g.bottom && mine && g.phase === "draw";
+        return <div style={{ position: "relative", width: pw * 2 + 44, height: ph + (g.bottom ? Math.round(pw * 0.7) : 0), margin: "4px auto 0" }}>
+          <div style={{ position: "absolute", left: 0, top: 0 }}><PlayCard down w={pw} label={t("Pioche")} onClick={mine && g.phase === "draw" ? drawStock : undefined} /></div>
+          <div style={{ position: "absolute", left: pw + 44, top: 0, zIndex: 2 }}>{top ? <PlayCard c={top} w={pw} label={t("Défausse")} onClick={mine && g.phase === "draw" ? drawDisc : undefined} /> : <span />}</div>
+          {g.bottom && <>
+            <div style={{ position: "absolute", left: pw + 44 + pw / 2 - ph / 2, top: ph - Math.round(pw * 0.45), width: ph, height: pw, zIndex: 1 }}>
+              <div style={{ position: "absolute", left: (ph - pw) / 2, top: (pw - ph) / 2, transform: "rotate(90deg)", borderRadius: Math.round(pw * 0.12), boxShadow: fondOk ? "0 0 0 3px #fff, 0 0 0 7px #19E3F2, 0 0 22px 6px #19E3F2" : undefined }}>
+                <PlayCard c={g.bottom} w={pw} label={t("Carte du fond")} onClick={canF ? fond : undefined} dim={canF && !fondOk} />
+              </div>
+            </div>
+            <span style={{ position: "absolute", left: pw + 44 + pw / 2 + ph / 2 + 8, top: ph + Math.round(pw * 0.15), whiteSpace: "nowrap", background: fondOk ? "#19E3F2" : "rgba(255,255,255,.22)", color: fondOk ? "#150F33" : "#fff", fontWeight: 800, fontSize: 12, borderRadius: 10, padding: "2px 9px", zIndex: 3 }}>{fondOk ? t("Fond · finis !") : t("Fond")}</span></>}
+        </div>; })()}
       <div className="col" style={{ width: "100%", gap: 6 }}>
         {meld.map((m, i) => <div key={i} role="group" aria-label={t("Combinaison {n}", { n: i + 1 })} onClick={() => addTo(i)} style={{ display: "flex", flexWrap: "wrap", gap: 2, padding: 4, borderRadius: 10, border: "1px dashed rgba(255,255,255,.4)", background: "rgba(255,255,255,.07)", cursor: sel.length && g.opened[0] ? "pointer" : "default" }}>{m.cards.map((c, k) => <PlayCard key={k} c={c.r === 0 && c.as ? { r: c.as, s: SUITS[0] as Suit } : c} w={26} tag={c.r === 0 ? "★" : undefined} />)}</div>)}
         {stagedMelds.length > 0 && <div className="small">{t("Ouverture : {n} / 51 points", { n: stagedTotal })} <button type="button" className="btn ghost sm" onClick={cancelStage}>{t("Annuler")}</button></div>}
       </div>
-      <Fan w={44} items={hand.map((c) => ({ k: c.id, s: c.r === 0 ? 9 : SUITS.indexOf(c.s), r: c.r === 1 ? 1 : c.r, g: grp.get(c.id)?.g, gl: grp.get(c.id)?.gl, node: <PlayCard c={c} w={44} sel={sel.includes(c.id)} onClick={mine && g.phase === "play" ? () => toggle(c.id) : undefined} /> }))} />
+      <Fan w={44} max={310} items={hand.map((c) => ({ k: c.id, s: c.r === 0 ? 9 : SUITS.indexOf(c.s), r: c.r === 1 ? 1 : c.r, g: grp.get(c.id)?.g, gl: grp.get(c.id)?.gl, node: <PlayCard c={c} w={44} sel={sel.includes(c.id)} onClick={mine && g.phase === "play" ? () => toggle(c.id) : undefined} /> }))} />
       {mine && g.phase === "play" && <div className="row" style={{ gap: 8 }}><button type="button" className="btn" disabled={sel.length < 3} onClick={lay}>{t("Poser")}</button><button type="button" className="btn ghost" disabled={sel.length !== 1} onClick={discard}>{t("Défausser")}</button></div>}
       <Rules text={mode === "perso" ? t("Chacun a 14 cartes. Celui qui commence pioche la 15e carte. Au fond de la pioche, une carte est retournée et visible : on ne peut la prendre que si on finit d'un seul coup (toutes ses cartes posées, 51 points minimum). Sinon on joue normalement et on défausse, cartes visibles.\nAu premier tour, on ne peut pas ramasser la défausse. Dès le deuxième tour, on peut la ramasser, mais alors il faut obligatoirement sortir (poser au moins 51 points avec cette carte).\nCombinaison : suite de 3 cartes ou plus de la même couleur, ou brelan/carré de même valeur et de couleurs différentes. Le joker remplace n'importe quelle carte. Après ouverture, on complète les combinaisons de la table. Le premier sans carte gagne.") : t("Chacun a 13 cartes. À ton tour : pioche (ou prends la défausse), pose des combinaisons si tu veux, puis défausse une carte.\nCombinaison : suite de 3 cartes ou plus de la même couleur (l'As est bas ou haut, sans boucle), ou brelan/carré de même valeur et de couleurs différentes. Le joker remplace n'importe quelle carte.\nOuverture : ta première pose doit valoir au moins 51 points (As = 11, figures = 10, As de la suite A-2-3 = 1). Ensuite tu peux compléter toutes les combinaisons de la table et remplacer un joker par la carte qu'il représente.\nLe premier sans carte gagne.")} />
     </GameShell>

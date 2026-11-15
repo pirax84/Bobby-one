@@ -1891,3 +1891,4 @@
 1890|Viisikymmentä
 1891|Sata
 1892|Kourallinen
+1893|Pohja · lopeta!

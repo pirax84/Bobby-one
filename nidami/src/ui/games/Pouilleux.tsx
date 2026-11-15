@@ -32,7 +32,7 @@ export function Pouilleux() {
       {[1, 2].map((k) => <div key={k} className="col" style={{ alignItems: "center", gap: 4, width: "100%" }}><b className="small">{t("Ordinateur {n}", { n: k })}{pl[k].out ? " ✓" : ""}</b>
         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 4 }}>{pl[k].hand.map((_, i) => <PlayCard key={i} down w={32} onClick={myTurn && target === k ? () => draw(0, i) : undefined} label={t("Carte cachée")} />)}</div></div>)}
       <b className="small">{t("Toi")}</b>
-      <Fan w={46} items={pl[0].hand.map((c) => ({ k: c.s + c.r, s: ["s", "c", "h", "d"].indexOf(c.s), r: c.r, node: <PlayCard c={c} w={46} /> }))} />
+      <Fan w={44} max={310} items={pl[0].hand.map((c) => ({ k: c.s + c.r, s: ["s", "c", "h", "d"].indexOf(c.s), r: c.r, node: <PlayCard c={c} w={44} /> }))} />
     </GameShell>
   );
 }

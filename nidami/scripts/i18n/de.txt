@@ -1891,3 +1891,4 @@
 1890|Fünfzig
 1891|Hundert
 1892|Poignée
+1893|Boden · beende!

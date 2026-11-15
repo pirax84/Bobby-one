@@ -1891,3 +1891,4 @@
 1890|Femtio
 1891|Hundra
 1892|Handfull
+1893|Botten · avsluta!

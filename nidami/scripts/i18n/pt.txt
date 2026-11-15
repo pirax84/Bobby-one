@@ -1891,3 +1891,4 @@
 1890|Cinquenta
 1891|Cem
 1892|Punhado
+1893|Fundo · termina!

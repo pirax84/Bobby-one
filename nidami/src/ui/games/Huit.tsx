@@ -67,7 +67,7 @@ export function Huit() {
       </div>
       {g.pick && <div className="row" style={{ gap: 8 }}>{SUITS.map((s) => <button key={s} className="btn ghost" aria-label={SYM[s]} style={{ fontSize: 26, color: suitColor(s) }} onClick={() => setG(play(g, 0, g.pick!, s))}>{SYM[s]}</button>)}</div>}
       {mine && !g.pick && (g.pend > 0 || !can.length) && <button type="button" className="btn" onClick={drawBtn}>{t("Piocher")}</button>}
-      <Fan w={52} items={g.h[0].map((c) => ({ k: c.s + c.r, s: SUITS.indexOf(c.s), r: c.r, node: <PlayCard c={c} w={52} dim={mine && !ok(c, g)} onClick={() => tap(c)} /> }))} />
+      <Fan w={50} max={310} items={g.h[0].map((c) => ({ k: c.s + c.r, s: SUITS.indexOf(c.s), r: c.r, node: <PlayCard c={c} w={50} dim={mine && !ok(c, g)} onClick={() => tap(c)} /> }))} />
       <Rules text={t("Pose une carte de la même couleur ou de la même valeur que celle du dessus.\n8 : se joue sur tout, tu choisis la couleur.\n7 : l'adversaire pioche 2 cartes (il peut répondre par un autre 7 : +2 de plus).\nAs : l'adversaire passe son tour.\nSi tu ne peux pas jouer, tu pioches une carte. Le premier sans carte gagne.")} />
     </GameShell>
   );

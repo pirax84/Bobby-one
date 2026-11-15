@@ -1891,3 +1891,4 @@
 1890|Padesát
 1891|Sto
 1892|Hrst
+1893|Spodek · dokonči!

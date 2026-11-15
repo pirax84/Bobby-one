@@ -1891,3 +1891,4 @@
 1890|Pięćdziesiąt
 1891|Sto
 1892|Garść
+1893|Spód · kończ!
