@@ -1866,3 +1866,5 @@
 1865|Garde
 1866|Garde sans
 1867|Garde contre
+1868|按花色
+1869|按点数

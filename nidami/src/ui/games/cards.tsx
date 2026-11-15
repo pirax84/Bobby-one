@@ -1,4 +1,5 @@
-import type { CSSProperties, ReactNode } from "react";
+import { useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { t } from "../../i18n";
 
 export type Suit = "s" | "c" | "h" | "d";
 export type Card = { r: number; s: Suit }; // r : 1=As, 2..10, 11=Valet, 12=Dame, 13=Roi
@@ -22,11 +23,34 @@ export function PlayCard({ c, down, w = 52, onClick, dim, sel, label, tag }: { c
   return onClick ? <button type="button" aria-label={aria} onClick={onClick} style={st}>{inner}{tg}</button> : <span role="img" aria-label={aria} style={st}>{inner}{tg}</span>;
 }
 
-/** Main en éventail : les cartes se chevauchent, celle qu'on touche ressort ; au-delà de 10 cartes, deux rangées. */
-export function Fan({ items, w, max = 330 }: { items: ReactNode[]; w: number; max?: number }) {
-  const row = (its: ReactNode[], k: number) => { const n = its.length; const step = n > 1 ? Math.min(w * 0.78, (max - w) / (n - 1)) : 0;
-    return <div key={k} style={{ display: "flex", justifyContent: "center", padding: "14px 0 2px", width: "100%" }}>{its.map((it, i) => <div key={i} style={{ marginLeft: i ? -(w - step) : 0, zIndex: i, position: "relative", flex: "none" }}>{it}</div>)}</div>; };
-  if (items.length <= 10) return row(items, 0);
-  const h = Math.ceil(items.length / 2);
-  return <div style={{ width: "100%" }}>{row(items.slice(0, h), 0)}{row(items.slice(h), 1)}</div>;
+export type FanItem = { k: string | number; s: number; r: number; node: ReactNode };
+/** Main en arc (forme de banane) : cartes côte à côte, on peut les déplacer au doigt ou les classer par couleur / par valeur. */
+export function Fan({ items, w, max = 280 }: { items: FanItem[]; w: number; max?: number }) {
+  const [ord, setOrd] = useState<(string | number)[]>([]);
+  const [drag, setDrag] = useState<{ k: string | number; dx: number } | null>(null);
+  const was = useRef(false);
+  const byK = new Map(items.map((x) => [x.k, x]));
+  const eff = [...ord.filter((k) => byK.has(k)), ...items.filter((x) => !ord.includes(x.k)).map((x) => x.k)];
+  const list = eff.map((k) => byK.get(k)!);
+  const sortBy = (mode: "s" | "r") => setOrd([...list].sort((a, b) => mode === "s" ? a.s - b.s || a.r - b.r : a.r - b.r || a.s - b.s).map((x) => x.k));
+  const chunks: FanItem[][] = list.length <= 16 ? [list] : [list.slice(0, Math.ceil(list.length / 2)), list.slice(Math.ceil(list.length / 2))];
+  const H = Math.round(w * 1.42);
+  const row = (its: FanItem[], ri: number) => {
+    const n = its.length; const step = n > 1 ? Math.min(w * 0.8, (max - w) / (n - 1)) : 0; const x0 = (max - w - (n - 1) * step) / 2;
+    const span = Math.min(18, 4 + n * 1.3);
+    const place = (i: number) => { const t = n > 1 ? (i - (n - 1) / 2) / ((n - 1) / 2) : 0; return { x: x0 + i * step, rot: t * span, dy: 12 - t * t * 12 }; };
+    const move = (k: string | number, to: number) => { const ks = its.map((x) => x.k); const from = ks.indexOf(k); ks.splice(from, 1); ks.splice(to, 0, k); const other = list.filter((x) => !ks.includes(x.k)).map((x) => x.k); setOrd(ri === 0 ? [...ks, ...other] : [...other, ...ks]); };
+    return <div key={ri} style={{ position: "relative", width: max, maxWidth: "100%", height: H + 34, margin: "0 auto", touchAction: "none" }}>
+      {its.map((it, i) => { const p = place(i); const d = drag && drag.k === it.k ? drag.dx : 0;
+        return <div key={it.k} style={{ position: "absolute", left: p.x, bottom: p.dy, zIndex: d ? 99 : i, transformOrigin: "50% 190%", transform: d ? `translate(${d}px,-16px) scale(1.06)` : `rotate(${p.rot}deg)`, transition: d ? "none" : "transform .2s, left .2s", cursor: "grab", touchAction: "none" }}
+          onClickCapture={(e) => { if (was.current) { e.stopPropagation(); e.preventDefault(); was.current = false; } }}
+          onPointerDown={(e) => { const sx = e.clientX; const el = e.currentTarget; let on = false; const mv = (ev: PointerEvent) => { const dx = ev.clientX - sx; if (!on && Math.abs(dx) > 8) { on = true; try { el.setPointerCapture(e.pointerId); } catch { /* ignoré */ } } if (on) setDrag({ k: it.k, dx }); };
+            const up = (ev: PointerEvent) => { window.removeEventListener("pointermove", mv); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); if (on) { was.current = true; setTimeout(() => { was.current = false; }, 60); const to = Math.max(0, Math.min(n - 1, Math.round(i + (ev.clientX - sx) / step))); if (to !== i) move(it.k, to); } setDrag(null); };
+            window.addEventListener("pointermove", mv); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up); }}>{it.node}</div>; })}
+    </div>;
+  };
+  const bt: CSSProperties = { fontSize: 12, padding: "4px 10px" };
+  return <div style={{ width: "100%", paddingTop: 8 }}>{chunks.map((c, i) => row(c, i))}
+    <div className="row" style={{ gap: 8, justifyContent: "center", marginTop: 4 }}><button type="button" className="btn ghost sm" style={bt} onClick={() => sortBy("s")}>{t("Par couleur")}</button><button type="button" className="btn ghost sm" style={bt} onClick={() => sortBy("r")}>{t("Par valeur")}</button></div>
+  </div>;
 }
