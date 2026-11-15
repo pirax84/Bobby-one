@@ -1306,3 +1306,14 @@ html.moving .main.ishome>.brandbar{opacity:0;transform:translateY(-120%);pointer
 html.moving .main>.top{opacity:0;transform:translateY(-120%);pointer-events:none}
 }
 @media (max-width:760px){html .main.ishome{column-gap:0!important}html .main.ishome>.brandbar{padding-right:8px!important}}
+
+/* v279 : le haut en pastilles pleines (comme la barre du bas) */
+html:not(.zz) .topr{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;gap:5px!important}
+html:not(.zz) .topr .topb,html:not(.zz) .topr .topsearch>button,html:not(.zz) .topr>button{width:40px!important;height:40px!important;border-radius:14px!important;border:0!important;color:#fff!important;box-shadow:0 4px 10px -4px rgba(0,0,0,.45)!important;background:linear-gradient(135deg,var(--brand),var(--brand2))!important}
+html:not(.zz) .topr>:nth-child(1) .topb,html:not(.zz) .topr>.topb:nth-child(1),html:not(.zz) .topr>.topsearch:nth-child(1)>button{background:linear-gradient(135deg,#5EE0C8,#2BB8D8 60%,var(--brand))!important}
+html:not(.zz) .topr>.topb:nth-child(2),html:not(.zz) .topr>.topsearch:nth-child(2)>button{background:linear-gradient(135deg,#FF8FA3,#E0609A)!important}
+html:not(.zz) .topr .topb svg,html:not(.zz) .topr .topsearch svg{color:#fff!important;stroke-width:2.2!important}
+html[data-accent=citron] .topr .topb svg,html[data-accent=miel] .topr .topb svg,html[data-accent=gris] .topr .topb svg,html[data-accent=beige] .topr .topb svg{color:#2A2442!important}
+html:not(.zz) .topme{border-radius:14px!important;overflow:hidden;box-shadow:0 4px 10px -4px rgba(0,0,0,.45)!important}
+html:not(.zz) .topme>*,html:not(.zz) .topme img{border-radius:14px!important}
+@media (max-width:760px){html:not(.zz) .topr .topb{width:38px!important;height:38px!important}html:not(.zz) .topme{width:42px;height:42px;flex:none}html:not(.zz) .topme>*{width:42px!important;height:42px!important}}
