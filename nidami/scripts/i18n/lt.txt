@@ -1683,3 +1683,10 @@
 1682|🔔 Pranešimai uždarius programą
 1683|✅ Įjungta: gausi pranešimą, net kai programa uždaryta.
 1684|⚠️ Čia neaktyvu: su šiuo įdiegimu žinutes gauni tik atidarius programą. Įdiek NOTIIF Android programą, kad gautum pranešimus ir uždarius.
+1685|Pagal asmenį
+1686|Pagal laiką
+1687|{n} naujas(-i)
+1688|Ištrinti
+1689|Kiti
+1690|Mano istorija
+1691|Perbraukite kortelę kairėn: atsakyti arba ištrinti

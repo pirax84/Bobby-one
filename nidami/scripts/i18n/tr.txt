@@ -1683,3 +1683,10 @@
 1682|🔔 Uygulama kapalıyken bildirimler
 1683|✅ Açık: uygulama kapalıyken bile bildirim alırsın.
 1684|⚠️ Burada etkin değil: bu kurulumda mesajları yalnızca uygulama açıkken alırsın. Kapalıyken bildirim almak için NOTIIF Android uygulamasını kur.
+1685|Kişiye göre
+1686|Saate göre
+1687|{n} yeni
+1688|Sil
+1689|Diğerleri
+1690|Hikâyem
+1691|Kartı sola kaydır: yanıtla veya sil

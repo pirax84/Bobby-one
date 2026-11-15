@@ -1683,3 +1683,10 @@
 1682|🔔 Notifications when the app is closed
 1683|✅ On: you get notified even when the app is closed.
 1684|⚠️ Not active here: on this installation you only get messages while the app is open. Install the NOTIIF Android app to be notified when it is closed.
+1685|By person
+1686|By time
+1687|{n} new
+1688|Delete
+1689|Others
+1690|My story
+1691|Swipe a card left: reply or delete

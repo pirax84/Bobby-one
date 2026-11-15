@@ -1683,3 +1683,10 @@
 1682|🔔 Aviseringar när appen är stängd
 1683|✅ På: du får avisering även när appen är stängd.
 1684|⚠️ Inte aktivt här: med den här installationen får du bara meddelanden när appen är öppen. Installera NOTIIF-appen för Android för att få aviseringar när den är stängd.
+1685|Per person
+1686|Per tid
+1687|{n} nytt
+1688|Radera
+1689|Andra
+1690|Min story
+1691|Svep ett kort åt vänster: svara eller radera

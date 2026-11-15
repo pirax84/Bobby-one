@@ -1683,3 +1683,10 @@
 1682|🔔 Notifikationer når appen er lukket
 1683|✅ Aktiv: du får besked, selv når appen er lukket.
 1684|⚠️ Ikke aktiv her: med denne installation får du kun beskeder, når appen er åben. Installer NOTIIF-appen til Android for at få besked, når den er lukket.
+1685|Efter person
+1686|Efter tid
+1687|{n} nyt
+1688|Slet
+1689|Andre
+1690|Min story
+1691|Stryg et kort til venstre: svar eller slet

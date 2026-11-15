@@ -1683,3 +1683,10 @@
 1682|🔔 Teavitused suletud rakenduse korral
 1683|✅ Sees: saad teavituse ka siis, kui rakendus on suletud.
 1684|⚠️ Siin pole aktiivne: selle paigaldusega saad sõnumeid ainult avatud rakenduses. Paigalda NOTIIF Androidi rakendus, et saada teavitusi ka suletuna.
+1685|Inimeste kaupa
+1686|Aja järgi
+1687|{n} uudist
+1688|Kustuta
+1689|Muud
+1690|Minu lugu
+1691|Pühkige kaart vasakule: vasta või kustuta

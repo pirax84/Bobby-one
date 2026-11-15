@@ -1683,3 +1683,10 @@
 1682|🔔 Értesítések zárt alkalmazásnál
 1683|✅ Aktív: akkor is értesítést kapsz, ha az alkalmazás zárva van.
 1684|⚠️ Itt nem aktív: ezzel a telepítéssel csak nyitott alkalmazásnál kapsz üzeneteket. Telepítsd a NOTIIF Android alkalmazást, hogy zárt állapotban is értesítést kapj.
+1685|Személyenként
+1686|Idő szerint
+1687|{n} újdonság
+1688|Törlés
+1689|Egyéb
+1690|Saját történetem
+1691|Húzd balra a kártyát: válasz vagy törlés

@@ -1683,3 +1683,10 @@
 1682|🔔 Fógraí nuair a bhíonn an aip dúnta
 1683|✅ Gníomhach: gheobhaidh tú fógra fiú nuair a bhíonn an aip dúnta.
 1684|⚠️ Níl sé gníomhach anseo: leis an suiteáil seo ní fhaigheann tú teachtaireachtaí ach nuair a bhíonn an aip oscailte. Suiteáil aip Android NOTIIF chun fógraí a fháil nuair a bhíonn sí dúnta.
+1685|De réir duine
+1686|De réir ama
+1687|{n} nua
+1688|Scrios
+1689|Eile
+1690|M'insint
+1691|Svaidhp cárta ar chlé: freagair nó scrios

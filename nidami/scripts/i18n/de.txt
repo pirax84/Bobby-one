@@ -1683,3 +1683,10 @@
 1682|🔔 Benachrichtigungen bei geschlossener App
 1683|✅ Aktiv: Du wirst auch bei geschlossener App benachrichtigt.
 1684|⚠️ Hier nicht aktiv: Bei dieser Installation erhältst du Nachrichten nur bei geöffneter App. Installiere die NOTIIF-Android-App, um auch bei geschlossener App benachrichtigt zu werden.
+1685|Nach Person
+1686|Nach Zeit
+1687|{n} Neuigkeit(en)
+1688|Löschen
+1689|Andere
+1690|Meine Story
+1691|Karte nach links wischen: antworten oder löschen

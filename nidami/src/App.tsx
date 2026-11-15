@@ -6,7 +6,7 @@ import { BRAND } from "./lib/brand";
 import { applyTheme, accentOf, ACCENTS } from "./lib/theme";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, getSaveWarn, getState } from "./lib/store";
-import { micText, MicIcon, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
+import { micText, MicIcon, MkTile, Avatar, Ico, Logo, ToastHost, Modal, toast, pressProps, Switch, isBirthday } from "./ui/common";
 import { Home, QuickCompose } from "./ui/Home";
 import { VoiceHome } from "./ui/VoiceChat";
 import { Friends, Groups, Events, Profile, Notifs, Settings, QrScreen } from "./ui/Social";
@@ -190,7 +190,7 @@ export default function App() {
     </aside>
     <nav className="bottom" aria-label={t("Navigation")}>
       {bar.slice(0, half).map(tab)}
-      {mid === "mic" ? <button className="plus micmid" onClick={() => setVoice(true)} aria-label="Envoyer un vocal"><MicIcon size={34} /></button> : <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("selfie"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><img src="./icon-192.png" alt="" width="58" height="58" /><span className="pbadge">+</span></button>}
+      {mid === "mic" ? <button className="plus micmid" onClick={() => setVoice(true)} aria-label="Envoyer un vocal"><MkTile k="o" size={66} /></button> : <button className="plus" {...pressProps(() => setAsk(true), () => setCompose("selfie"))} aria-label={t("Créer : une story ou une publication. Appui long pour un selfie vidéo")}><MkTile k="ii" size={66} /></button>}
       {bar.slice(half).map(tab)}</nav>
     <CallLayer />
     {voice && <QuickVoice onClose={() => setVoice(false)} />}

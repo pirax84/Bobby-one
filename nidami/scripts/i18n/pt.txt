@@ -1683,3 +1683,10 @@
 1682|🔔 Notificações com a app fechada
 1683|✅ Ativas: és avisado mesmo com a app fechada.
 1684|⚠️ Não ativas aqui: nesta instalação só recebes mensagens com a app aberta. Instala a app Android NOTIIF para seres avisado com a app fechada.
+1685|Por pessoa
+1686|Por hora
+1687|{n} novidade(s)
+1688|Apagar
+1689|Outros
+1690|A minha história
+1691|Deslize um cartão para a esquerda: responder ou apagar

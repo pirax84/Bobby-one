@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useStore, actions, userOf } from "../lib/store";
-import { Avatar, MicIcon, toast, pressProps } from "./common";
+import { Avatar, MicIcon, MkTile, toast, pressProps } from "./common";
 import { HoldMic } from "./Recorder";
 
 /** Vocal rapide : petit bandeau en bas. On choisit la personne, on maintient le micro ; gauche = annuler, haut = verrouiller. */
@@ -30,10 +30,10 @@ export function VoiceFab({ onOpen, kind = "voice" }: { onOpen: () => void; kind?
     onPointerUp={() => { const k = d.current; d.current = null; if (!k) return; if (k.moved) { try { localStorage.setItem("notiif-fab-" + kind, JSON.stringify(pos)); } catch { /* rien */ } } else onOpen(); }}>{kind === "media" ? <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8h3l1.6-2.2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" /><circle cx="12" cy="13.4" r="3.6" /><circle cx="17.6" cy="10.6" r=".6" fill="currentColor" /></svg> : <MicIcon size={30} />}</button>;
 }
 
-/** Petites bulles du haut (avec les stories) : le N+ ou le micro, selon le réglage. */
+/** Petites bulles du haut (avec les stories) : « Ma story » (le N) et le vocal (le O). */
 export function TopNplus() {
-  return <div className="story"><button type="button" className="plus topplus" {...pressProps(() => window.dispatchEvent(new CustomEvent("notiif-create", { detail: "ask" })), () => window.dispatchEvent(new CustomEvent("notiif-create", { detail: "selfie" })))} aria-label="Créer : une story ou une publication. Appui long pour un selfie vidéo"><img src="./icon-192.png" alt="" width="52" height="52" /><span className="pbadge">+</span></button><span className="small">Créer</span></div>;
+  return <div className="story nstory"><button type="button" className="plus topplus" {...pressProps(() => window.dispatchEvent(new CustomEvent("notiif-create", { detail: "ask" })), () => window.dispatchEvent(new CustomEvent("notiif-create", { detail: "selfie" })))} aria-label="Ma story : créer une story ou une publication. Appui long pour un selfie vidéo"><MkTile k="n" size={64} /></button><span className="small">Ma story</span></div>;
 }
 export function TopMic() {
-  return <div className="story"><button type="button" className="plus topplus topmic" onClick={() => window.dispatchEvent(new Event("notiif-voice"))} aria-label="Envoyer un vocal"><MicIcon size={28} /></button><span className="small">Vocal</span></div>;
+  return <div className="story"><button type="button" className="plus topplus topmic" onClick={() => window.dispatchEvent(new Event("notiif-voice"))} aria-label="Envoyer un vocal"><MkTile k="o" size={56} /></button><span className="small">Vocal</span></div>;
 }

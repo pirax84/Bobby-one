@@ -15,7 +15,6 @@ import { LinkCard, safeUrl } from "./Links";
 import { t } from "../i18n";
 import { MemoryCard, ArrivedModal } from "./Extras";
 import { usePeer, peerColor, PEER } from "../lib/peers";
-import { usePref } from "../lib/uipref";
 import { TopNplus } from "./QuickVoice";
 
 // ───────── Barre des stories
@@ -32,9 +31,8 @@ export function Stories({ me }: { me: string }) {
   const posts = useStore((s) => s.posts); const social = useStore((s) => s.social); const users = useStore((s) => s.users); const now = useNow(5000);
   const [open, setOpen] = useState<string | null>(null); 
   const list = storiesFor(posts, me, now, social); const byAuthor = [...new Set(list.map((p) => p.authorId))];
-  const mid = usePref("mid", "plus"); 
   return (<><div className="stories">
-    {mid === "mic" && <TopNplus />}
+    <TopNplus />
     {byAuthor.map((a) => { const u = users.find((x) => x.id === a); const seen = a !== me && list.filter((p) => p.authorId === a).every((p) => p.views[me] !== undefined);
       return <button key={a} className="story" onClick={() => setOpen(a)}><span className={"wreath" + (seen ? " seen" : "")}><Wreath {...(() => { const pv = preview(list.filter((p) => p.authorId === a), u); return pv.img || pv.video || pv.icon ? pv : { ...pv, bg: pv.bg || SGRAD[(a.charCodeAt(a.length - 1) + a.length) % SGRAD.length], letter: (u?.name || "?").trim().charAt(0).toUpperCase() }; })()} /></span><div className="ell">{a === me ? t("Moi") : (u?.name || "").split(" ")[0]}</div></button>; })}
   </div>

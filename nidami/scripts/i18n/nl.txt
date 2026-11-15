@@ -1683,3 +1683,10 @@
 1682|🔔 Meldingen bij gesloten app
 1683|✅ Actief: je krijgt ook een melding als de app gesloten is.
 1684|⚠️ Hier niet actief: bij deze installatie ontvang je berichten alleen als de app open is. Installeer de NOTIIF Android-app om ook bij een gesloten app een melding te krijgen.
+1685|Per persoon
+1686|Per tijd
+1687|{n} nieuw
+1688|Wissen
+1689|Anderen
+1690|Mijn story
+1691|Veeg een kaart naar links: antwoorden of wissen

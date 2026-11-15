@@ -1683,3 +1683,10 @@
 1682|🔔 Obvestila ob zaprti aplikaciji
 1683|✅ Vklopljeno: obvestilo dobiš tudi ob zaprti aplikaciji.
 1684|⚠️ Tukaj ni aktivno: pri tej namestitvi prejemaš sporočila le ob odprti aplikaciji. Namesti aplikacijo NOTIIF za Android, da dobiš obvestila tudi ob zaprti.
+1685|Po osebi
+1686|Po času
+1687|{n} novo
+1688|Izbriši
+1689|Drugo
+1690|Moja zgodba
+1691|Povleci kartico levo: odgovori ali izbriši

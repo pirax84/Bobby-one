@@ -1683,3 +1683,10 @@
 1682|🔔 Notifiki meta l-app tkun magħluqa
 1683|✅ Attivi: tkun avżat anki meta l-app tkun magħluqa.
 1684|⚠️ Mhux attivi hawn: b'din l-installazzjoni tirċievi l-messaġġi biss meta l-app tkun miftuħa. Installa l-app NOTIIF għall-Android biex tkun avżat meta tkun magħluqa.
+1685|Skont il-persuna
+1686|Skont il-ħin
+1687|{n} ġdid
+1688|Ħassar
+1689|Oħrajn
+1690|L-istorja tiegħi
+1691|Ixxotta karta lejn ix-xellug: wieġeb jew ħassar

@@ -1683,3 +1683,10 @@
 1682|🔔 Notificări cu aplicația închisă
 1683|✅ Active: ești anunțat chiar și cu aplicația închisă.
 1684|⚠️ Inactive aici: la această instalare primești mesaje doar cu aplicația deschisă. Instalează aplicația Android NOTIIF ca să fii anunțat și cu aplicația închisă.
+1685|După persoană
+1686|După oră
+1687|{n} noutate(ăți)
+1688|Șterge
+1689|Altele
+1690|Povestea mea
+1691|Glisează un card spre stânga: răspunde sau șterge

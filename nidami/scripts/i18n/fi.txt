@@ -1683,3 +1683,10 @@
 1682|🔔 Ilmoitukset kun sovellus on suljettu
 1683|✅ Päällä: saat ilmoituksen, vaikka sovellus olisi suljettu.
 1684|⚠️ Ei käytössä täällä: tällä asennuksella saat viestit vain kun sovellus on auki. Asenna NOTIIF Android -sovellus saadaksesi ilmoituksia suljettuna.
+1685|Henkilön mukaan
+1686|Ajan mukaan
+1687|{n} uutta
+1688|Poista
+1689|Muut
+1690|Oma tarinani
+1691|Pyyhkäise korttia vasemmalle: vastaa tai poista

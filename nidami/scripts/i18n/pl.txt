@@ -1683,3 +1683,10 @@
 1682|🔔 Powiadomienia przy zamkniętej aplikacji
 1683|✅ Aktywne: dostaniesz powiadomienie także przy zamkniętej aplikacji.
 1684|⚠️ Nieaktywne tutaj: przy tej instalacji dostajesz wiadomości tylko przy otwartej aplikacji. Zainstaluj aplikację NOTIIF na Androida, by dostawać powiadomienia przy zamkniętej.
+1685|Według osób
+1686|Według czasu
+1687|{n} nowe
+1688|Usuń
+1689|Inne
+1690|Moja relacja
+1691|Przesuń kartę w lewo: odpowiedz lub usuń

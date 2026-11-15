@@ -1683,3 +1683,10 @@
 1682|🔔 Oznámení při zavřené aplikaci
 1683|✅ Zapnuto: oznámení dostaneš i při zavřené aplikaci.
 1684|⚠️ Zde nefunguje: při této instalaci dostáváš zprávy jen při otevřené aplikaci. Nainstaluj aplikaci NOTIIF pro Android, abys dostával oznámení i při zavřené.
+1685|Podle osoby
+1686|Podle času
+1687|{n} novinek
+1688|Smazat
+1689|Ostatní
+1690|Můj příběh
+1691|Přejeďte kartu doleva: odpovědět nebo smazat

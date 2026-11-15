@@ -1239,3 +1239,40 @@ input[type=file]{max-width:100%;min-width:0}
 .card.col.center{max-width:100%;box-sizing:border-box}
 .card.col.center>*{max-width:100%}
 .card.col.center input[type=file]{width:100%}
+
+/* ───── v275 : famille de logos N · O · ii (pastilles arrondies, couleurs qui suivent le thème) ───── */
+:root{--mk-fg:#fff;--mk-w1:#B9F0E4;--mk-w2:#FFC2CE;--mk-dot:#FFC2CE;--mk-tri:#B9F0E4;--mkbg:linear-gradient(135deg,#FF8FA3,var(--brand) 55%,var(--brand2));--mkn:linear-gradient(135deg,var(--brand),var(--brand2));--mkfil:none}
+html[data-accent=citron]{--mkbg:linear-gradient(135deg,#A8E05F,#D3F0AD);--mkn:linear-gradient(135deg,#A8E05F,#D3F0AD)}
+html[data-accent=miel]{--mkbg:linear-gradient(135deg,#F2C45A,#F7DE9F);--mkn:linear-gradient(135deg,#F2C45A,#F7DE9F)}
+html[data-accent=gris]{--mkbg:linear-gradient(135deg,#C9CDD2,#E3E6E9);--mkn:linear-gradient(135deg,#C9CDD2,#E3E6E9)}
+html[data-accent=beige]{--mkbg:linear-gradient(135deg,#E3CDA4,#F0E4CC);--mkn:linear-gradient(135deg,#E3CDA4,#F0E4CC)}
+html[data-accent=citron],html[data-accent=miel],html[data-accent=gris],html[data-accent=beige]{--mk-fg:#2A2442;--mk-w1:#12A58E;--mk-w2:#E0457A;--mk-dot:#E0457A;--mk-tri:#12A58E;--mkfil:brightness(0) opacity(.85)}
+html[data-accent=blanc]{--mkbg:#fff;--mkn:#fff;--mk-fg:#3B3B3B;--mk-w1:#2CC9AE;--mk-w2:#FF8FA3;--mk-dot:#FF8FA3;--mk-tri:#2CC9AE;--mkfil:brightness(0)}
+html[data-accent=noir]{--mkbg:#1b1b1b;--mkn:#1b1b1b;--mk-fg:#fff;--mk-w1:#B9F0E4;--mk-w2:#FFC2CE;--mk-dot:#FFC2CE;--mk-tri:#B9F0E4;--mkfil:none}
+.mk{display:inline-grid;place-items:center;border-radius:36%;background:var(--mkbg);box-shadow:0 6px 16px -6px rgba(0,0,0,.5);flex:none;box-sizing:border-box}
+.mk-n{background:var(--mkn)}
+.mk-nimg{filter:var(--mkfil);display:block}
+html[data-accent=blanc] .mk{border:1px solid rgba(0,0,0,.14)}
+html[data-accent=noir] .mk{border:1.5px solid rgba(255,255,255,.32)}
+html .bottom .plus,html .bottom .plus.micmid{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;width:66px!important;height:66px!important;border-radius:0!important;margin-top:-26px!important;overflow:visible;display:grid;place-items:center;align-self:center}
+html .bottom .plus .mk{width:100%;height:100%;border:4px solid var(--bg);box-shadow:0 10px 24px -8px rgba(var(--brand-rgb),.75)}
+html[data-accent=blanc] .bottom .plus .mk{border:4px solid var(--bg);outline:1px solid rgba(0,0,0,.14);outline-offset:-5px}
+.nstory .mk{outline:2px dashed var(--brand);outline-offset:4px}
+.nstory{width:84px;padding:0}
+.story .topplus{width:auto;height:auto;border:0;background:none;box-shadow:none;border-radius:0;margin:0 auto 2px}
+/* ───── v275 : notifications en cartes par personne ───── */
+.nstory .mk{margin:6px auto 8px}
+.ncard{position:relative;background:var(--bg2);border:1px solid var(--bd);border-radius:26px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;overflow:hidden;transition:box-shadow .2s}
+.ncard::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:4px;border-radius:0 4px 4px 0;background:var(--brand)}
+.ncard.act{box-shadow:0 0 0 2px var(--brand)}
+.nchead{display:flex;align-items:center;gap:10px}
+.nbadge{min-width:24px;height:24px;padding:0 6px;border-radius:9px;background:var(--grad);color:var(--on);display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.nacts{display:flex;gap:8px;animation:nactin .18s ease-out}
+@keyframes nactin{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.nitems{display:flex;flex-direction:column;border-top:1px solid var(--bd)}
+.nit{display:flex;align-items:center;gap:8px;padding:8px 0;background:none;border:0;color:var(--fg);text-align:left;font:inherit;cursor:pointer;width:100%}
+.nit.isread{opacity:.65}
+.nit .nico{width:28px;height:28px;border-radius:10px;background:var(--card);display:grid;place-items:center;color:var(--brand);flex:none}
+.nit .ntx{font-size:.92rem;overflow-wrap:anywhere}
+.nit:focus-visible,.nchead button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+@media (min-width:900px){.npage{max-width:none}.npage>.ncard{max-width:420px}}

@@ -1683,3 +1683,10 @@
 1682|🔔 Notifikasi saat aplikasi ditutup
 1683|✅ Aktif: kamu diberi tahu meski aplikasi ditutup.
 1684|⚠️ Tidak aktif di sini: pada pemasangan ini kamu hanya menerima pesan saat aplikasi terbuka. Pasang aplikasi Android NOTIIF agar diberi tahu saat aplikasi ditutup.
+1685|Per orang
+1686|Per waktu
+1687|{n} baru
+1688|Hapus
+1689|Lainnya
+1690|Cerita saya
+1691|Geser kartu ke kiri: balas atau hapus

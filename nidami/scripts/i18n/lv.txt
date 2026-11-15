@@ -1683,3 +1683,10 @@
 1682|🔔 Paziņojumi, kad lietotne ir aizvērta
 1683|✅ Ieslēgts: tu saņemsi paziņojumu arī tad, ja lietotne ir aizvērta.
 1684|⚠️ Šeit nav aktīvs: ar šo instalāciju ziņas saņem tikai tad, kad lietotne ir atvērta. Instalē NOTIIF Android lietotni, lai saņemtu paziņojumus arī aizvērtu.
+1685|Pēc personas
+1686|Pēc laika
+1687|{n} jaunums(-i)
+1688|Dzēst
+1689|Citi
+1690|Mans stāsts
+1691|Pavelciet karti pa kreisi: atbildēt vai dzēst

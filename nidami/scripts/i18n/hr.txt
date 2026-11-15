@@ -1683,3 +1683,10 @@
 1682|🔔 Obavijesti kad je aplikacija zatvorena
 1683|✅ Uključeno: dobit ćeš obavijest i kad je aplikacija zatvorena.
 1684|⚠️ Ovdje nije aktivno: s ovom instalacijom poruke primaš samo dok je aplikacija otvorena. Instaliraj NOTIIF aplikaciju za Android da dobivaš obavijesti i kad je zatvorena.
+1685|Po osobi
+1686|Po vremenu
+1687|{n} novo
+1688|Izbriši
+1689|Ostalo
+1690|Moja priča
+1691|Povuci karticu ulijevo: odgovori ili izbriši

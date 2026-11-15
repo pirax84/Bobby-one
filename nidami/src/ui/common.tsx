@@ -176,3 +176,25 @@ export function DobFields({ d, m, y, onChange }: { d: string; m: string; y: stri
 
 /** Vrai sur un ordinateur (souris), faux sur téléphone ou tablette tactile. */
 export const isPC = () => { try { return matchMedia("(hover: hover) and (pointer: fine)").matches; } catch { return false; } };
+
+/* ───────── Les 3 logos de la famille NOTIIF : N (ma story) · O (vocal) · ii (créer). Les couleurs suivent le thème (voir .mk dans styles.css). */
+export function NMark({ size = 40 }: { size?: number }) {
+  return <img className="mk-nimg" src="./n-white.png" alt="" aria-hidden="true" width={Math.round(size * 1.15)} height={Math.round(size)} style={{ width: size * 1.1, height: "auto" }} />;
+}
+const MK_ARC = (cx: number, r: number, left: boolean) => { const a = (40 * Math.PI) / 180, x = cx + (left ? -1 : 1) * r * Math.cos(a), dy = r * Math.sin(a); return `M${x.toFixed(1)} ${(24 - dy).toFixed(1)}A${r} ${r} 0 0 ${left ? 0 : 1} ${x.toFixed(1)} ${(24 + dy).toFixed(1)}`; };
+export function OMark({ size = 40 }: { size?: number }) {
+  const id = "mko" + useId().replace(/[^a-zA-Z0-9]/g, "");
+  const k = 11.5 / 17;
+  return (<svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true"><defs><mask id={id} maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48"><rect width="48" height="48" fill="#fff" /><g transform={`translate(24 24) scale(${k.toFixed(3)}) translate(-24 -24.5)`} stroke="#000" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none"><rect x="19" y="10.5" width="10" height="18" rx="5" /><path d="M21.2 15.5h5.6M21.2 19h5.6M21.2 22.5h5.6" /><path d="M14.5 25a9.5 9.5 0 0 0 19 0M24 34.5v4M19.5 38.5h9" /></g></mask></defs>
+    <circle cx="24" cy="24" r="11.5" style={{ fill: "var(--mk-fg)" }} mask={`url(#${id})`} />
+    <g strokeLinecap="round" strokeWidth="3.2" fill="none"><path d={MK_ARC(24, 16.5, false)} style={{ stroke: "var(--mk-w1)" }} /><path d={MK_ARC(24, 16.5, true)} style={{ stroke: "var(--mk-w1)" }} /><path d={MK_ARC(24, 22, false)} style={{ stroke: "var(--mk-w2)" }} /><path d={MK_ARC(24, 22, true)} style={{ stroke: "var(--mk-w2)" }} /></g></svg>);
+}
+export function IiMark({ size = 40 }: { size?: number }) {
+  return (<svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="9" y="22" width="9" height="21" rx="4.5" style={{ fill: "var(--mk-fg)" }} /><rect x="26" y="22" width="9" height="21" rx="4.5" style={{ fill: "var(--mk-fg)" }} />
+    <path d="M9.5 6.2l9 5.8-9 5.8z" strokeWidth="2.6" strokeLinejoin="round" style={{ fill: "var(--mk-tri)", stroke: "var(--mk-tri)" }} /><circle cx="30.5" cy="12" r="5.4" style={{ fill: "var(--mk-dot)" }} />
+    <g strokeLinecap="round" strokeWidth="2.8" style={{ stroke: "var(--mk-fg)" }}><path d="M38.5 7a7 7 0 0 1 0 10" /><path d="M42.5 3.5a12 12 0 0 1 0 17" opacity=".6" /></g></svg>);
+}
+/** Pastille arrondie (forme du profil) qui contient un des 3 logos. */
+export function MkTile({ k, size = 56 }: { k: "n" | "o" | "ii"; size?: number }) {
+  return <span className={"mk mk-" + k} style={{ width: size, height: size }}>{k === "n" ? <NMark size={size * 0.56} /> : k === "o" ? <OMark size={size * 0.74} /> : <IiMark size={size * 0.74} />}</span>;
+}
