@@ -1348,3 +1348,7 @@ html[data-theme=light][data-accent=nuit]{--tint:#291E5B}
 .gfull .card{color:var(--fg)}.gfull .card summary{color:var(--fg)!important}
 .vfull .mk{background:none!important;box-shadow:none!important;border-radius:0!important;border:0!important}
 .viewer.sfull .vfull{overflow:hidden}
+.navbtn[data-k=voice] .mk{width:32px!important;height:32px!important;flex:none}
+html .navbtn[data-k=voice] svg{padding:0!important;background:none!important;border-radius:0!important;width:74%!important;height:74%!important;box-sizing:border-box}
+html[data-theme=light] .navbtn[data-k=voice] svg{width:74%!important;height:74%!important}
+html[data-theme=light] .navbtn[data-k=voice] svg,html[data-theme=dark] .navbtn[data-k=voice] svg{background:none!important;padding:0!important;border-radius:0!important;box-shadow:none!important;color:inherit}
