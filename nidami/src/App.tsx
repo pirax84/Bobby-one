@@ -175,7 +175,7 @@ export default function App() {
   const warn = getSaveWarn();
   const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button data-k={k} className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className={"shell" + (v === "messages" ? " wide" : "")}>
-    <aside className="side"><div className="brand" style={{ justifyContent: "flex-start", gap: 10 }}><Logo s={38} /><b style={{ fontSize: "1.15rem", letterSpacing: "-.02em" }}>NOTIIF</b></div>
+    <aside className="side"><div className="brand"><BrandWm bdText={bdt.text} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} /></div>
       <button type="button" className="sideme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={40} /><span className="grow ell"><b>{user.name}</b></span></button>
       <button className="btn" style={{ margin: "2px 0 8px" }} onClick={() => setAsk(true)}><Ico n="plus" s={18} />{" "}{t("Créer")}</button>
       {navItems().map(([k, l, i]) => <Item key={k} k={k} l={l} i={i} />)}
