@@ -1352,3 +1352,5 @@ html[data-theme=light][data-accent=nuit]{--tint:#291E5B}
 html .navbtn[data-k=voice] svg{padding:0!important;background:none!important;border-radius:0!important;width:74%!important;height:74%!important;box-sizing:border-box}
 html[data-theme=light] .navbtn[data-k=voice] svg{width:74%!important;height:74%!important}
 html[data-theme=light] .navbtn[data-k=voice] svg,html[data-theme=dark] .navbtn[data-k=voice] svg{background:none!important;padding:0!important;border-radius:0!important;box-shadow:none!important;color:inherit}
+.wreath .wmedia img.wbg{display:none}
+.wreath .wmedia .wfg{left:0;top:0;width:100%;height:100%;object-fit:cover;border-radius:0}
