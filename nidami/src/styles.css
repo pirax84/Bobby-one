@@ -1346,3 +1346,5 @@ html[data-theme=light][data-accent=nuit]{--tint:#291E5B}
 .tile[data-k=voice] .tic>span,.tile[data-k=voice] .tic .mk{width:100%!important;height:100%!important}
 .tile[data-k=voice] .mk svg{width:74%!important;height:74%!important}
 .gfull .card{color:var(--fg)}.gfull .card summary{color:var(--fg)!important}
+.vfull .mk{background:none!important;box-shadow:none!important;border-radius:0!important;border:0!important}
+.viewer.sfull .vfull{overflow:hidden}
