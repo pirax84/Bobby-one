@@ -69,7 +69,7 @@ function Scanner({ onCode, onClose }: { onCode: (c: string) => void; onClose: ()
   useEffect(() => { let stop = false; let stream: MediaStream | null = null; const BD = (window as any).BarcodeDetector;
     const pick = (v?: string) => { const m = v?.match(/add=(NID-[A-Z0-9]{5})/i) || v?.match(/(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : null; };
     (async () => { try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); if (ref.current) { ref.current.srcObject = stream; await ref.current.play(); }
-      let det: any = null; let jq: any = null; const cv = document.createElement("canvas"); const cx = cv.getContext("2d", { willReadFrequently: true } as any);
+      let det: any = null; let jq: any = null; const cv = document.createElement("canvas"); const cx = cv.getContext("2d", { willReadFrequently: true } as CanvasRenderingContext2DSettings) as CanvasRenderingContext2D | null;
       if (BD) { try { det = new BD({ formats: ["qr_code"] }); } catch { det = null; } }
       if (!det) jq = await loadJsQr();
       const loop = async () => { if (stop || !ref.current) return; try { const v = ref.current; let raw: string | undefined;
