@@ -1892,3 +1892,5 @@
 1891|Sto
 1892|Peščica
 1893|Dno · končaj!
+1894|Animiran začetni zaslon
+1895|Črke NOTIIF padejo v vodo, ko odprete aplikacijo. Privzeto vklopljeno.

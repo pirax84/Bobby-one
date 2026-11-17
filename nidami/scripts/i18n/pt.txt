@@ -1892,3 +1892,5 @@
 1891|Cem
 1892|Punhado
 1893|Fundo · termina!
+1894|Ecrã de abertura animado
+1895|As letras NOTIIF caem na água quando abre a app. Ativado por predefinição.

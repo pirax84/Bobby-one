@@ -1892,3 +1892,5 @@
 1891|O sută
 1892|Mână
 1893|Fund · termină!
+1894|Ecran de deschidere animat
+1895|Literele NOTIIF cad în apă când deschizi aplicația. Activat implicit.

@@ -1892,3 +1892,5 @@
 1891|Cento
 1892|Manciata
 1893|Fondo · chiudi!
+1894|Schermata di apertura animata
+1895|Le lettere NOTIIF cadono nell'acqua quando apri l'app. Attiva per impostazione predefinita.

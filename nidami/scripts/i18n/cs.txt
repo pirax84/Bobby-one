@@ -1892,3 +1892,5 @@
 1891|Sto
 1892|Hrst
 1893|Spodek · dokonči!
+1894|Animovaná úvodní obrazovka
+1895|Písmena NOTIIF padají do vody, když otevřete aplikaci. Ve výchozím nastavení zapnuto.

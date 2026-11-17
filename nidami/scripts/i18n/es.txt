@@ -1892,3 +1892,5 @@
 1891|Cien
 1892|Puñado
 1893|Fondo · ¡termina!
+1894|Pantalla de apertura animada
+1895|Las letras NOTIIF caen al agua cuando abres la app. Activada por defecto.

@@ -1892,3 +1892,5 @@
 1891|Sata
 1892|Kourallinen
 1893|Pohja · lopeta!
+1894|Animoitu avausnäyttö
+1895|NOTIIF-kirjaimet putoavat veteen, kun avaat sovelluksen. Oletuksena päällä.

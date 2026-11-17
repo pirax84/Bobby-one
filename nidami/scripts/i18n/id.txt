@@ -1892,3 +1892,5 @@
 1891|Seratus
 1892|Segenggam
 1893|Dasar · selesaikan!
+1894|Layar pembuka animasi
+1895|Huruf NOTIIF jatuh ke air saat Anda membuka aplikasi. Aktif secara default.

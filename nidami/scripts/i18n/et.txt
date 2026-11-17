@@ -1892,3 +1892,5 @@
 1891|Sada
 1892|Peotäis
 1893|Põhi · lõpeta!
+1894|Animeeritud avaekraan
+1895|NOTIIF-i tähed langevad vette, kui rakenduse avad. Vaikimisi sisse lülitatud.

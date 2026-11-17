@@ -1892,3 +1892,5 @@
 1891|Honderd
 1892|Handvol
 1893|Bodem · afsluiten!
+1894|Geanimeerd openingsscherm
+1895|De NOTIIF-letters vallen in het water als je de app opent. Standaard aan.

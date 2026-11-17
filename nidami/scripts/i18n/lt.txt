@@ -1892,3 +1892,5 @@
 1891|Šimtas
 1892|Saujelė
 1893|Dugnas · baik!
+1894|Animuotas atidarymo ekranas
+1895|Atidarius programėlę NOTIIF raidės krenta į vandenį. Pagal numatytuosius nustatymus įjungta.

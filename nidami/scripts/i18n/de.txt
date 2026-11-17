@@ -1892,3 +1892,5 @@
 1891|Hundert
 1892|Poignée
 1893|Boden · beende!
+1894|Animierter Startbildschirm
+1895|Die NOTIIF-Buchstaben fallen beim Öffnen der App ins Wasser. Standardmäßig aktiviert.

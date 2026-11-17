@@ -1892,3 +1892,5 @@
 1891|Hundrede
 1892|Håndfuld
 1893|Bund · afslut!
+1894|Animeret åbningsskærm
+1895|NOTIIF-bogstaverne falder ned i vandet, når du åbner appen. Slået til som standard.

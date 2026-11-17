@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { t } from "../i18n";
 import { INTRO_KEY } from "./Intro";
+import { Switch } from "./common";
+
+export const SPLASH_OFF = "notiif-splash-off";
+export function SplashToggle() {
+  const read = () => { try { return localStorage.getItem(SPLASH_OFF) !== "1"; } catch { return true; } };
+  const [on, setOn] = useState(read);
+  return <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Écran d'ouverture animé")}</b><div className="muted small">{t("Les lettres NOTIIF tombent dans l'eau quand vous ouvrez l'appli. Activé par défaut.")}</div></div><Switch on={on} onChange={(v) => { setOn(v); try { if (v) localStorage.removeItem(SPLASH_OFF); else localStorage.setItem(SPLASH_OFF, "1"); } catch { /* rien */ } }} label={t("Écran d'ouverture animé")} /></label>;
+}
 
 export function IntroChoice() {
   const read = () => { try { return localStorage.getItem(INTRO_KEY) || "auto"; } catch { return "auto"; } };

@@ -1892,3 +1892,5 @@
 1891|Hundred
 1892|Handful
 1893|Bottom · finish!
+1894|Animated opening screen
+1895|The NOTIIF letters drop into the water when you open the app. On by default.

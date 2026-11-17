@@ -1892,3 +1892,5 @@
 1891|Száz
 1892|Maroknyi
 1893|Alsó · fejezd be!
+1894|Animált nyitóképernyő
+1895|A NOTIIF betűi a vízbe hullanak, amikor megnyitja az alkalmazást. Alapértelmezés szerint bekapcsolva.

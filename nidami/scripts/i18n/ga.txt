@@ -1892,3 +1892,5 @@
 1891|Céad
 1892|Dornán
 1893|Bun · críochnaigh!
+1894|Scáileán oscailte beoite
+1895|Titeann litreacha NOTIIF isteach san uisce nuair a osclaíonn tú an aip. Ar siúl de réir réamhshocraithe.

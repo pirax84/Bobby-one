@@ -1892,3 +1892,5 @@
 1891|Sto
 1892|Šaka
 1893|Dno · završi!
+1894|Animirani početni zaslon
+1895|Slova NOTIIF padaju u vodu kad otvorite aplikaciju. Prema zadanim postavkama uključeno.

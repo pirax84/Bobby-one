@@ -1892,3 +1892,5 @@
 1891|Mija
 1892|Qabda
 1893|Qiegħ · spiċċa!
+1894|Skrin tal-ftuħ animat
+1895|L-ittri NOTIIF jaqgħu fl-ilma meta tiftaħ l-app. Attiv awtomatikament.

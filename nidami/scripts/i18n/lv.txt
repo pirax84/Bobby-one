@@ -1892,3 +1892,5 @@
 1891|Simts
 1892|Sauja
 1893|Apakša · beidz!
+1894|Animēts atvēršanas ekrāns
+1895|Atverot lietotni, NOTIIF burti krīt ūdenī. Pēc noklusējuma ieslēgts.

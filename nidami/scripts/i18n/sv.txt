@@ -1892,3 +1892,5 @@
 1891|Hundra
 1892|Handfull
 1893|Botten · avsluta!
+1894|Animerad startskärm
+1895|NOTIIF-bokstäverna faller ner i vattnet när du öppnar appen. På som standard.

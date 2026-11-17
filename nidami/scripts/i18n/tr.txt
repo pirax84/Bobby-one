@@ -1892,3 +1892,5 @@
 1891|Yüz
 1892|Avuç
 1893|Alt · bitir!
+1894|Animasyonlu açılış ekranı
+1895|Uygulamayı açtığınızda NOTIIF harfleri suya düşer. Varsayılan olarak açık.
