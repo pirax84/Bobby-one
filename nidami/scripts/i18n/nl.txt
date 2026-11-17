@@ -1894,3 +1894,9 @@
 1893|Bodem · afsluiten!
 1894|Geanimeerd openingsscherm
 1895|De NOTIIF-letters vallen in het water als je de app opent. Standaard aan.
+1896|Geluid van het openingsscherm
+1897|Het kleine watergeluid dat het openen van de app begeleidt. Standaard aan.
+1898|Openingsgeluid
+1899|Een klein watergeluid begeleidt het openen van de app. Je kunt het houden of uitzetten.
+1900|Geluid houden
+1901|Geluid uitzetten

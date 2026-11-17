@@ -1894,3 +1894,9 @@
 1893|Bund · afslut!
 1894|Animeret åbningsskærm
 1895|NOTIIF-bogstaverne falder ned i vandet, når du åbner appen. Slået til som standard.
+1896|Lyd på åbningsskærmen
+1897|Den lille vandlyd, der følger åbningen af appen. Slået til som standard.
+1898|Åbningslyd
+1899|En lille vandlyd følger åbningen af appen. Du kan beholde den eller slå den fra.
+1900|Behold lyden
+1901|Slå lyden fra

@@ -1894,3 +1894,9 @@
 1893|Dno · završi!
 1894|Animirani početni zaslon
 1895|Slova NOTIIF padaju u vodu kad otvorite aplikaciju. Prema zadanim postavkama uključeno.
+1896|Zvuk početnog zaslona
+1897|Mali zvuk vode koji prati otvaranje aplikacije. Prema zadanim postavkama uključeno.
+1898|Zvuk otvaranja
+1899|Mali zvuk vode prati otvaranje aplikacije. Možete ga zadržati ili isključiti.
+1900|Zadrži zvuk
+1901|Isključi zvuk

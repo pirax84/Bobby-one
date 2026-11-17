@@ -1894,3 +1894,9 @@
 1893|Apakša · beidz!
 1894|Animēts atvēršanas ekrāns
 1895|Atverot lietotni, NOTIIF burti krīt ūdenī. Pēc noklusējuma ieslēgts.
+1896|Atvēršanas ekrāna skaņa
+1897|Mazā ūdens skaņa, kas pavada lietotnes atvēršanu. Pēc noklusējuma ieslēgts.
+1898|Atvēršanas skaņa
+1899|Atverot lietotni, skan neliela ūdens skaņa. Varat to paturēt vai izslēgt.
+1900|Paturēt skaņu
+1901|Izslēgt skaņu

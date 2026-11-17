@@ -1894,3 +1894,9 @@
 1893|Spód · kończ!
 1894|Animowany ekran otwarcia
 1895|Litery NOTIIF spadają do wody po otwarciu aplikacji. Domyślnie włączone.
+1896|Dźwięk ekranu otwarcia
+1897|Mały dźwięk wody towarzyszący otwieraniu aplikacji. Domyślnie włączone.
+1898|Dźwięk otwarcia
+1899|Mały dźwięk wody towarzyszy otwieraniu aplikacji. Możesz go zostawić lub wyłączyć.
+1900|Zostaw dźwięk
+1901|Wyłącz dźwięk

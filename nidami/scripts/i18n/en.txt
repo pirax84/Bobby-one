@@ -1894,3 +1894,9 @@
 1893|Bottom · finish!
 1894|Animated opening screen
 1895|The NOTIIF letters drop into the water when you open the app. On by default.
+1896|Opening screen sound
+1897|The little water sound that goes with opening the app. On by default.
+1898|Opening sound
+1899|A little water sound goes with opening the app. You can keep it or turn it off.
+1900|Keep the sound
+1901|Turn the sound off

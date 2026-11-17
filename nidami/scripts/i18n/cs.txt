@@ -1894,3 +1894,9 @@
 1893|Spodek · dokonči!
 1894|Animovaná úvodní obrazovka
 1895|Písmena NOTIIF padají do vody, když otevřete aplikaci. Ve výchozím nastavení zapnuto.
+1896|Zvuk úvodní obrazovky
+1897|Tichý zvuk vody, který doprovází otevření aplikace. Ve výchozím nastavení zapnuto.
+1898|Zvuk při otevření
+1899|Při otevření aplikace zazní tichý zvuk vody. Můžete ho ponechat, nebo vypnout.
+1900|Ponechat zvuk
+1901|Vypnout zvuk

@@ -1894,3 +1894,9 @@
 1893|Qiegħ · spiċċa!
 1894|Skrin tal-ftuħ animat
 1895|L-ittri NOTIIF jaqgħu fl-ilma meta tiftaħ l-app. Attiv awtomatikament.
+1896|Ħoss tal-iskrin tal-ftuħ
+1897|Il-ħoss żgħir tal-ilma li jakkumpanja l-ftuħ tal-app. Attiv awtomatikament.
+1898|Ħoss tal-ftuħ
+1899|Ħoss żgħir tal-ilma jakkumpanja l-ftuħ tal-app. Tista' żommu jew titfih.
+1900|Żomm il-ħoss
+1901|Itfi l-ħoss

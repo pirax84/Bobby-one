@@ -1894,3 +1894,9 @@
 1893|Fund · termină!
 1894|Ecran de deschidere animat
 1895|Literele NOTIIF cad în apă când deschizi aplicația. Activat implicit.
+1896|Sunetul ecranului de deschidere
+1897|Micul sunet de apă care însoțește deschiderea aplicației. Activat implicit.
+1898|Sunet de deschidere
+1899|Un mic sunet de apă însoțește deschiderea aplicației. Îl poți păstra sau dezactiva.
+1900|Păstrează sunetul
+1901|Oprește sunetul

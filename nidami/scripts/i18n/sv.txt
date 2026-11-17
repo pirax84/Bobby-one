@@ -1894,3 +1894,9 @@
 1893|Botten · avsluta!
 1894|Animerad startskärm
 1895|NOTIIF-bokstäverna faller ner i vattnet när du öppnar appen. På som standard.
+1896|Ljud på startskärmen
+1897|Det lilla vattenljudet som följer med när appen öppnas. På som standard.
+1898|Öppningsljud
+1899|Ett litet vattenljud följer med när appen öppnas. Du kan behålla det eller stänga av det.
+1900|Behåll ljudet
+1901|Stäng av ljudet

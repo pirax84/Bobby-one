@@ -1894,3 +1894,9 @@
 1893|Dasar · selesaikan!
 1894|Layar pembuka animasi
 1895|Huruf NOTIIF jatuh ke air saat Anda membuka aplikasi. Aktif secara default.
+1896|Suara layar pembuka
+1897|Suara air kecil yang menyertai pembukaan aplikasi. Aktif secara default.
+1898|Suara pembuka
+1899|Suara air kecil menyertai pembukaan aplikasi. Anda bisa menyimpannya atau mematikannya.
+1900|Pertahankan suara
+1901|Matikan suara

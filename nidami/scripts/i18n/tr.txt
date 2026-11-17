@@ -1894,3 +1894,9 @@
 1893|Alt · bitir!
 1894|Animasyonlu açılış ekranı
 1895|Uygulamayı açtığınızda NOTIIF harfleri suya düşer. Varsayılan olarak açık.
+1896|Açılış ekranı sesi
+1897|Uygulama açılırken çalan küçük su sesi. Varsayılan olarak açık.
+1898|Açılış sesi
+1899|Uygulama açılırken küçük bir su sesi çalar. Tutabilir veya kapatabilirsiniz.
+1900|Sesi koru
+1901|Sesi kapat

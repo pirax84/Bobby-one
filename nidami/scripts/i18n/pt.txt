@@ -1894,3 +1894,9 @@
 1893|Fundo · termina!
 1894|Ecrã de abertura animado
 1895|As letras NOTIIF caem na água quando abre a app. Ativado por predefinição.
+1896|Som do ecrã de abertura
+1897|O pequeno som de água que acompanha a abertura da app. Ativado por predefinição.
+1898|Som de abertura
+1899|Um pequeno som de água acompanha a abertura da app. Pode mantê-lo ou desativá-lo.
+1900|Manter o som
+1901|Desativar o som

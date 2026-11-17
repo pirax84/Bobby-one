@@ -1894,3 +1894,9 @@
 1893|Pohja · lopeta!
 1894|Animoitu avausnäyttö
 1895|NOTIIF-kirjaimet putoavat veteen, kun avaat sovelluksen. Oletuksena päällä.
+1896|Avausnäytön ääni
+1897|Pieni vesiääni, joka kuuluu sovelluksen avautuessa. Oletuksena päällä.
+1898|Avausääni
+1899|Pieni vesiääni kuuluu sovelluksen avautuessa. Voit pitää sen tai kytkeä sen pois.
+1900|Pidä ääni
+1901|Mykistä ääni

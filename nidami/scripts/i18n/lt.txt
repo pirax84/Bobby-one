@@ -1894,3 +1894,9 @@
 1893|Dugnas · baik!
 1894|Animuotas atidarymo ekranas
 1895|Atidarius programėlę NOTIIF raidės krenta į vandenį. Pagal numatytuosius nustatymus įjungta.
+1896|Atidarymo ekrano garsas
+1897|Mažas vandens garsas, lydintis programėlės atidarymą. Pagal numatytuosius nustatymus įjungta.
+1898|Atidarymo garsas
+1899|Atidarant programėlę skamba mažas vandens garsas. Galite jį palikti arba išjungti.
+1900|Palikti garsą
+1901|Išjungti garsą

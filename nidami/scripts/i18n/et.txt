@@ -1894,3 +1894,9 @@
 1893|Põhi · lõpeta!
 1894|Animeeritud avaekraan
 1895|NOTIIF-i tähed langevad vette, kui rakenduse avad. Vaikimisi sisse lülitatud.
+1896|Avaekraani heli
+1897|Väike veehelin, mis saadab rakenduse avamist. Vaikimisi sisse lülitatud.
+1898|Avamisheli
+1899|Väike veehelin saadab rakenduse avamist. Võid selle alles jätta või välja lülitada.
+1900|Jäta heli
+1901|Lülita heli välja

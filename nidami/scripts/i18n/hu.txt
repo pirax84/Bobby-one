@@ -1894,3 +1894,9 @@
 1893|Alsó · fejezd be!
 1894|Animált nyitóképernyő
 1895|A NOTIIF betűi a vízbe hullanak, amikor megnyitja az alkalmazást. Alapértelmezés szerint bekapcsolva.
+1896|Nyitóképernyő hangja
+1897|A kis vízhang, amely az alkalmazás megnyitását kíséri. Alapértelmezés szerint bekapcsolva.
+1898|Megnyitási hang
+1899|Egy kis vízhang kíséri az alkalmazás megnyitását. Megtarthatja vagy kikapcsolhatja.
+1900|Hang megtartása
+1901|Hang kikapcsolása

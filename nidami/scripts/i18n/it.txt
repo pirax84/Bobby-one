@@ -1894,3 +1894,9 @@
 1893|Fondo · chiudi!
 1894|Schermata di apertura animata
 1895|Le lettere NOTIIF cadono nell'acqua quando apri l'app. Attiva per impostazione predefinita.
+1896|Suono della schermata di apertura
+1897|Il piccolo suono d'acqua che accompagna l'apertura dell'app. Attivo per impostazione predefinita.
+1898|Suono di apertura
+1899|Un piccolo suono d'acqua accompagna l'apertura dell'app. Puoi tenerlo o disattivarlo.
+1900|Mantieni il suono
+1901|Disattiva il suono

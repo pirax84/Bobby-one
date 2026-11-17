@@ -1894,3 +1894,9 @@
 1893|Bun · críochnaigh!
 1894|Scáileán oscailte beoite
 1895|Titeann litreacha NOTIIF isteach san uisce nuair a osclaíonn tú an aip. Ar siúl de réir réamhshocraithe.
+1896|Fuaim an scáileáin oscailte
+1897|An fhuaim bheag uisce a théann leis an aip a oscailt. Ar siúl de réir réamhshocraithe.
+1898|Fuaim oscailte
+1899|Téann fuaim bheag uisce leis an aip a oscailt. Is féidir leat é a choinneáil nó é a mhúchadh.
+1900|Coinnigh an fhuaim
+1901|Múch an fhuaim

@@ -1894,3 +1894,9 @@
 1893|Boden · beende!
 1894|Animierter Startbildschirm
 1895|Die NOTIIF-Buchstaben fallen beim Öffnen der App ins Wasser. Standardmäßig aktiviert.
+1896|Ton des Startbildschirms
+1897|Das kleine Wassergeräusch beim Öffnen der App. Standardmäßig aktiviert.
+1898|Öffnungston
+1899|Ein kleines Wassergeräusch begleitet das Öffnen der App. Du kannst es behalten oder ausschalten.
+1900|Ton behalten
+1901|Ton ausschalten
