@@ -1355,3 +1355,16 @@ html[data-theme=light] .navbtn[data-k=voice] svg,html[data-theme=dark] .navbtn[d
 .wreath .wmedia img.wbg{display:none}
 .wreath .wmedia .wfg{left:0;top:0;width:100%;height:100%;object-fit:cover;border-radius:0}
 @media (min-width:761px){.main>.brandbar{display:none!important}.side .brand{justify-content:center;padding:6px 0 12px}.side .brand .wm{display:block;position:relative;width:100%}.side .brand img.wmb{width:100%;height:auto;max-height:none}.side .brand img.wml{position:absolute;left:0;top:0;width:100%;height:100%}}
+
+/* Bulle Vocal : la forme de l'appli (tuile micro NOTIIF) prend toute la taille de la bulle */
+.voicefab:not(.mediafab){width:64px;height:64px;border:0;border-radius:0;background:none;box-shadow:none;overflow:visible}
+.voicefab:not(.mediafab) .mk{filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))}
+
+/* Logo NOTIIF sans ovale ni fond : les lettres seules, avec un contour très fin */
+.brand .wmb,.brandbar .wmb,.top .wmb{visibility:hidden}
+.side,.brandbar,.top,.main>.brandbar,.ishome>.brandbar{background-image:none!important}
+.brandbar,.top{background:transparent!important}
+.wml{filter:drop-shadow(.3px 0 0 rgba(185,196,255,.6)) drop-shadow(-.3px 0 0 rgba(185,196,255,.6)) drop-shadow(0 .3px 0 rgba(185,196,255,.6)) drop-shadow(0 -.3px 0 rgba(185,196,255,.6))}
+html[data-theme=light] .wml{filter:drop-shadow(.3px 0 0 rgba(18,21,79,.7)) drop-shadow(-.3px 0 0 rgba(18,21,79,.7)) drop-shadow(0 .3px 0 rgba(18,21,79,.7)) drop-shadow(0 -.3px 0 rgba(18,21,79,.7))}
+.top button,.top .topr>*{box-shadow:0 0 0 1.5px rgba(190,200,255,.85)!important}
+html[data-theme=light] .top button,html[data-theme=light] .top .topr>*{box-shadow:0 0 0 1.5px #1B1F6E!important}
