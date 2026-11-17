@@ -83,7 +83,7 @@ var snd=g("notiif-splash-sound-off")!=="1";
 try{var x=JSON.parse(g("nidami-v1")||"null"),c=x&&x.settings&&x.settings[x.me]||{};if(c.discret||c.quiet||c.fx===false)snd=false}catch(e){}
 var a=null,started=false,opened=false,done=false;
 function stopA(){try{if(a){a.pause()}}catch(e){}}
-function kill(){if(done)return;done=true;try{s.remove()}catch(e){}free()}
+function kill(){if(done)return;done=true;try{s.remove()}catch(e){}free();window.__splashEnded=true;try{window.dispatchEvent(new Event("splash-end"))}catch(e){}}
 function open(){if(opened)return;opened=true;var n=0;(function p(){var r=document.getElementById("root");if((r&&r.children.length)||n++>30){s.classList.add("open");setTimeout(kill,P.rd+80)}else setTimeout(p,50)})()}
 function go(){if(started)return;started=true;s.classList.add("go");if(mode==="min")free();else setTimeout(free,Math.max(0,P.rev-350));setTimeout(open,P.rev)}
 s.addEventListener("click",function(){stopA();started=true;free();open()});

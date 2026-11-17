@@ -10,7 +10,7 @@ const DevTag = () => <div style={{ position: "fixed", top: 0, left: "50%", trans
 // La langue est chargée avant l'affichage : pas de flash de français pour les autres langues.
 Promise.all([initLang().catch(() => {}), loadConfig(), (window as unknown as { __splashWait?: Promise<void> }).__splashWait ?? Promise.resolve()]).finally(() => createRoot(document.getElementById("root")!).render(<><App />{devUnlocked() && <DevTag />}<SplashHint /></>));
 if ("serviceWorker" in navigator && location.protocol.startsWith("http") && !/localhost|127\.0\.0\.1/.test(location.hostname)) { const had = !!navigator.serviceWorker.controller; let reloaded = false;
-  navigator.serviceWorker.addEventListener("controllerchange", () => { if (had && !reloaded) { reloaded = true; try { sessionStorage.setItem("notiif-upd-reload", "1"); } catch { /* rien */ } location.reload(); } });
+  navigator.serviceWorker.addEventListener("controllerchange", () => { if (had && !reloaded) { reloaded = true; try { sessionStorage.setItem("notiif-upd-reload", "1"); } catch { /* rien */ } const w = window as unknown as { __splashEnded?: boolean }; const go = () => setTimeout(() => location.reload(), 300); if (document.getElementById("splash") && !w.__splashEnded) window.addEventListener("splash-end", go, { once: true }); else go(); } });
   navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" }).then((r) => { void r.update(); }).catch(() => {}); }
 
 // Appui long sur une image, une photo ou une vidéo : pas de menu « télécharger / chercher avec Google ».
