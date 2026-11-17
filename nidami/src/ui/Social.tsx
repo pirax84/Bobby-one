@@ -62,7 +62,7 @@ export function MyQr({ u, noQr }: { u: User; noQr?: boolean }) {
 }
 function loadJsQr(): Promise<(d: Uint8ClampedArray, w: number, h: number) => { data: string } | null> {
   const w = window as any; if (w.jsQR) return Promise.resolve(w.jsQR);
-  return new Promise((ok, ko) => { const sc = document.createElement("script"); sc.src = "./jsQR.js?v=310"; sc.onload = () => (w.jsQR ? ok(w.jsQR) : ko(new Error("jsqr"))); sc.onerror = () => ko(new Error("jsqr")); document.head.appendChild(sc); });
+  return new Promise((ok, ko) => { const sc = document.createElement("script"); sc.src = "./jsQR.js?v=311"; sc.onload = () => (w.jsQR ? ok(w.jsQR) : ko(new Error("jsqr"))); sc.onerror = () => ko(new Error("jsqr")); document.head.appendChild(sc); });
 }
 function Scanner({ onCode, onClose }: { onCode: (c: string) => void; onClose: () => void }) {
   const ref = useRef<HTMLVideoElement>(null); const [err, setErr] = useState("");
