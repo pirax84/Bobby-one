@@ -1913,3 +1913,4 @@
 1912|Poslechnout ukázku
 1913|Při spuštění aplikace padají písmena NOTIIF do vody.
 1914|Malý zvuk vody při otevření aplikace: stiskněte kulaté tlačítko a poslechněte si ho.
+1915|QR kód byl přečten, ale není to kód přítele NOTIIF.

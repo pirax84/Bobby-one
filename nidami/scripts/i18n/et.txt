@@ -1913,3 +1913,4 @@
 1912|Kuula näidet
 1913|Rakenduse käivitamisel kukuvad NOTIIF-i tähed vette.
 1914|Väike veehelin rakenduse avamisel: puudutage ümmargust nuppu, et seda kuulda.
+1915|QR-kood loeti, aga see ei ole NOTIIF-i sõbrakood.

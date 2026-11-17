@@ -1913,3 +1913,4 @@
 1912|Lyt til eksemplet
 1913|Når appen starter, falder bogstaverne NOTIIF ned i vandet.
 1914|Den lille vandlyd, der følger åbningen af appen: tryk på den runde knap for at høre den.
+1915|QR-koden blev læst, men er ikke en NOTIIF-vennekode.

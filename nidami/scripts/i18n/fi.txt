@@ -1913,3 +1913,4 @@
 1912|Kuuntele esimerkki
 1913|Kun sovellus käynnistyy, NOTIIF-kirjaimet putoavat veteen.
 1914|Pieni vesiääni, joka kuuluu sovelluksen avautuessa: kuuntele se painamalla pyöreää painiketta.
+1915|QR-koodi luettiin, mutta se ei ole NOTIIF-kaverikoodi.

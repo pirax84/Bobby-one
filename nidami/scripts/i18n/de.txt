@@ -1913,3 +1913,4 @@
 1912|Beispiel anhören
 1913|Beim Start der App fallen die Buchstaben NOTIIF ins Wasser.
 1914|Das kleine Wassergeräusch beim Öffnen der App: Tippen Sie auf die runde Taste, um es anzuhören.
+1915|QR-Code gelesen, aber es ist kein NOTIIF-Freundescode.

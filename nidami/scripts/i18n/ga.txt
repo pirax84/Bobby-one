@@ -1913,3 +1913,4 @@
 1912|Éist leis an sampla
 1913|Nuair a thosaíonn an aip, titeann litreacha NOTIIF isteach san uisce.
 1914|An fhuaim bheag uisce a théann leis an aip a oscailt: brúigh an cnaipe cruinn chun éisteacht léi.
+1915|Léadh an cód QR, ach ní cód cara NOTIIF é.

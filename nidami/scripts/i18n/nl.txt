@@ -1913,3 +1913,4 @@
 1912|Luister naar het voorbeeld
 1913|Bij het starten van de app vallen de letters NOTIIF in het water.
 1914|Het kleine watergeluid bij het openen van de app: tik op de ronde knop om het te horen.
+1915|QR-code gelezen, maar het is geen NOTIIF-vriendencode.

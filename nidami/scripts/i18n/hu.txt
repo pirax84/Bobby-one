@@ -1913,3 +1913,4 @@
 1912|Példa meghallgatása
 1913|Az alkalmazás indulásakor a NOTIIF betűi a vízbe hullanak.
 1914|A kis vízhang az alkalmazás megnyitásakor: koppintson a kerek gombra a meghallgatásához.
+1915|A QR-kód beolvasva, de nem NOTIIF baráti kód.

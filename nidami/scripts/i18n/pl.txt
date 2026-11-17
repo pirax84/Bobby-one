@@ -1913,3 +1913,4 @@
 1912|Posłuchaj przykładu
 1913|Po uruchomieniu aplikacji litery NOTIIF wpadają do wody.
 1914|Mały dźwięk wody towarzyszący otwarciu aplikacji: naciśnij okrągły przycisk, aby go usłyszeć.
+1915|Kod QR odczytany, ale to nie jest kod znajomego NOTIIF.

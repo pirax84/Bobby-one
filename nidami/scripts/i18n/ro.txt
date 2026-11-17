@@ -1913,3 +1913,4 @@
 1912|Ascultă exemplul
 1913|La pornirea aplicației, literele NOTIIF cad în apă.
 1914|Micul sunet de apă care însoțește deschiderea aplicației: apasă butonul rotund pentru a-l auzi.
+1915|Codul QR a fost citit, dar nu este un cod de prieten NOTIIF.

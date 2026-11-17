@@ -1913,3 +1913,4 @@
 1912|Noklausīties piemēru
 1913|Palaižot lietotni, NOTIIF burti iekrīt ūdenī.
 1914|Mazā ūdens skaņa, kas skan, atverot lietotni: pieskarieties apaļajai pogai, lai to dzirdētu.
+1915|QR kods nolasīts, bet tas nav NOTIIF drauga kods.

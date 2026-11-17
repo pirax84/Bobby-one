@@ -37,8 +37,8 @@ export function Intro() {
   const P = (x: number, y: number) => ({ left: `${(x / W) * 100}%`, top: `${(y / H) * 100}%` });
   return (<div className={"intro" + (out ? " out" : "") + (e.light ? " light" : "")} onClick={() => { if (wait) { wakeAudio(); setWait(false); setReady(true); } else skip(); }} role="presentation" aria-hidden="true">
     <div className={"introwm s" + step}>
-      <img className="wmb" src={`./wm-bg-${suf}.png?v=315`} alt="" draggable={false} />
-      {CUTS.slice(0, 6).map((c, i) => <img key={i} className={"wml" + (step >= 1 ? " hop" : "")} src={`./wm-fg-${suf}.png?v=315`} alt="" draggable={false} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
+      <img className="wmb" src={`./wm-bg-${suf}.png?v=316`} alt="" draggable={false} />
+      {CUTS.slice(0, 6).map((c, i) => <img key={i} className={"wml" + (step >= 1 ? " hop" : "")} src={`./wm-fg-${suf}.png?v=316`} alt="" draggable={false} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
       {full && <>
         <span className={"ring o" + (step === 2 ? " on" : "")} style={P(214.5, 98.5)} />
         <span className={"ring d1" + (step === 3 ? " on" : "")} style={P(323, 63)} />

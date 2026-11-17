@@ -1913,3 +1913,4 @@
 1912|Išklausyti pavyzdį
 1913|Paleidus programėlę, NOTIIF raidės krinta į vandenį.
 1914|Mažas vandens garsas, girdimas atidarant programėlę: paspauskite apvalų mygtuką, kad jį išgirstumėte.
+1915|QR kodas nuskaitytas, bet tai ne NOTIIF draugo kodas.

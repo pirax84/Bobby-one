@@ -1913,3 +1913,4 @@
 1912|Lyssna på exemplet
 1913|När appen startar faller bokstäverna NOTIIF ner i vattnet.
 1914|Det lilla vattenljudet när appen öppnas: tryck på den runda knappen för att höra det.
+1915|QR-koden lästes, men det är inte en NOTIIF-vänkod.

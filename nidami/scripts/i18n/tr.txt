@@ -1913,3 +1913,4 @@
 1912|Örneği dinle
 1913|Uygulama açılırken NOTIIF harfleri suya düşer.
 1914|Uygulama açılırken çalan küçük su sesi: dinlemek için yuvarlak düğmeye dokunun.
+1915|QR kodu okundu, ancak bu bir NOTIIF arkadaş kodu değil.

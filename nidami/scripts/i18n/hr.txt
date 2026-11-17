@@ -1913,3 +1913,4 @@
 1912|Poslušaj primjer
 1913|Pri pokretanju aplikacije slova NOTIIF padaju u vodu.
 1914|Mali zvuk vode pri otvaranju aplikacije: pritisnite okrugli gumb da ga čujete.
+1915|QR kôd je pročitan, ali nije NOTIIF kôd prijatelja.
