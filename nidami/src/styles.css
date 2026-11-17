@@ -1389,3 +1389,8 @@ html .tile[data-k=voice] .tic>span,html .tile[data-k=voice] .tic .mk{width:100%!
 html .tile[data-k=voice] .mk svg,html .tile[data-k=voice] .mk img{width:68%!important;height:68%!important}
 /* Barre du bas : toutes les icônes ont le même style coloré (media, accueil, jeux, partages… = bleu azur → violet) */
 html:not(.zz) .bottom button[data-k=media]>svg,html:not(.zz) .bottom button[data-k=home]>svg,html:not(.zz) .bottom button[data-k=games]>svg,html:not(.zz) .bottom button[data-k=shares]>svg,html:not(.zz) .bottom button[data-k=legal]>svg,html:not(.zz) .bottom button[data-k=search]>svg{background:linear-gradient(135deg,#6FC3FF,#4F8BF0 55%,#8B6CF0)!important;color:#fff!important}
+/* Les 3 bulles (Messages, Vocal, Photo/vidéo) : même taille, même forme (tuile de l'appli), même style */
+html .bfab,html[data-theme] .bfab,html[data-theme][data-accent] .bfab,html:not([data-style=bold]) .bfab{width:56px!important;height:56px!important;border-radius:36%!important;border:0!important;opacity:1;background:linear-gradient(135deg,#5EE0C8,#2BB8D8 60%,#4F8BF0)!important;color:#fff!important;box-shadow:0 10px 22px -8px rgba(0,0,0,.5)!important}
+html .voicefab,html:not([data-style=bold]) .voicefab{width:56px!important;height:56px!important}
+html .voicefab.mediafab,html[data-theme] .voicefab.mediafab,html[data-theme=light] .voicefab.mediafab{border-radius:36%!important;border:0!important;background:linear-gradient(135deg,#6FC3FF,#4F8BF0 55%,#8B6CF0)!important;color:#fff!important;box-shadow:0 10px 22px -8px rgba(0,0,0,.5)!important}
+html .voicefab.mediafab svg{stroke:#fff;color:#fff}
