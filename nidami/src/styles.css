@@ -1400,3 +1400,5 @@ html:not([data-theme=light]){--ic1:#5EE0C8;--ic2:#8BE3F0;--icfg:#0E2F3A}
 html:not(.zz) .bottom button[data-k]>svg,html:not(.zz) .bottom button[data-k].on>svg,html:not(.zz) .topr .topb,html:not(.zz) .topr .topsearch>button,html:not(.zz) .topr>.topb:nth-child(n),html:not(.zz) .topr>:nth-child(n) .topb,html:not(.zz) .topr>.topsearch:nth-child(n)>button,html html .navbtn[data-k] svg,html[data-theme] .navbtn[data-k] svg{background:linear-gradient(135deg,var(--ic1),var(--ic2))!important;color:var(--icfg)!important}
 html:not(.zz) .topr .topb svg,html:not(.zz) .topr .topsearch svg{color:var(--icfg)!important}
 html:not(.zz) .bottom button[data-k]>svg,html:not(.zz) .bottom button[data-k].on>svg{color:var(--icfg)!important}
+html:not(.zz) .topme,html:not(.zz) .topme .av{background:linear-gradient(135deg,var(--ic1),var(--ic2))!important;color:var(--icfg)!important}
+html:not(.zz) .topme svg{color:var(--icfg)!important}
