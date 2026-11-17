@@ -1376,8 +1376,14 @@ html:not([data-theme=light]) .story .wreath svg g path{stroke:rgba(190,200,255,.
 /* Vocal : le logo prend toute la taille du rond, sans fond */
 .bigmic .mk{width:120px!important;height:120px!important}
 .micbtn,.btn.micbtn{background:none!important;border:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important}
-.fs-acts i.mic{background:none!important;box-shadow:none!important;width:56px;height:56px}
-.fs-acts i.mic .mk{width:56px!important;height:56px!important}
+.fs-acts i.mic{background:var(--grad)!important;box-shadow:0 8px 20px -8px rgba(var(--brand-rgb),.8)!important;width:56px;height:56px;overflow:hidden}
+.fs-acts i.mic .mk{width:100%!important;height:100%!important;background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important}
+.fs-acts i.mic .mk svg,.fs-acts i.mic .mk img{width:78%!important;height:78%!important}
 .voice-mic{width:auto!important;height:auto!important}
 .voice-mic .mk{width:104px!important;height:104px!important}
 .topplus.topmic{background:none!important;border:0!important;box-shadow:none!important}
+/* Menu (4 carrés) : la tuile Vocal a le même style que les autres */
+html .tile[data-k=voice] .tic,html[data-theme=light] .tile[data-k=voice] .tic{background:rgba(var(--brand-rgb),.16)!important;box-shadow:none!important;padding:0!important}
+html[data-theme=light] .tile[data-k=voice] .tic{background:#2A1F5C!important}
+html .tile[data-k=voice] .tic>span,html .tile[data-k=voice] .tic .mk{width:100%!important;height:100%!important;background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;filter:none}
+html .tile[data-k=voice] .mk svg,html .tile[data-k=voice] .mk img{width:68%!important;height:68%!important}
