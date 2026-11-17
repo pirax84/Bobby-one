@@ -1387,3 +1387,5 @@ html .tile[data-k=voice] .tic,html[data-theme=light] .tile[data-k=voice] .tic{ba
 html[data-theme=light] .tile[data-k=voice] .tic{background:#2A1F5C!important}
 html .tile[data-k=voice] .tic>span,html .tile[data-k=voice] .tic .mk{width:100%!important;height:100%!important;background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;filter:none}
 html .tile[data-k=voice] .mk svg,html .tile[data-k=voice] .mk img{width:68%!important;height:68%!important}
+/* Barre du bas : toutes les icônes ont le même style coloré (media, accueil, jeux, partages… = bleu azur → violet) */
+html:not(.zz) .bottom button[data-k=media]>svg,html:not(.zz) .bottom button[data-k=home]>svg,html:not(.zz) .bottom button[data-k=games]>svg,html:not(.zz) .bottom button[data-k=shares]>svg,html:not(.zz) .bottom button[data-k=legal]>svg,html:not(.zz) .bottom button[data-k=search]>svg{background:linear-gradient(135deg,#6FC3FF,#4F8BF0 55%,#8B6CF0)!important;color:#fff!important}
