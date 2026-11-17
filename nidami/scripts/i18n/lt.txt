@@ -1900,3 +1900,11 @@
 1899|Atidarant programėlę skamba mažas vandens garsas. Galite jį palikti arba išjungti.
 1900|Palikti garsą
 1901|Išjungti garsą
+1902|Pakeisti šį nustatymą?
+1903|Štai kaip pasikeis ekranas.
+1904|Prieš
+1905|Po
+1906|Taikyti
+1907|Sveika, Marie!
+1908|Peržiūra prieš keičiant nustatymą
+1909|Mažas langas parodo, kaip buvo ir kaip bus, o jūs pasirenkate taikyti ar atšaukti.

@@ -1900,3 +1900,11 @@
 1899|Egy kis vízhang kíséri az alkalmazás megnyitását. Megtarthatja vagy kikapcsolhatja.
 1900|Hang megtartása
 1901|Hang kikapcsolása
+1902|Megváltoztatod ezt a beállítást?
+1903|Ez változik a képernyőn.
+1904|Előtte
+1905|Utána
+1906|Alkalmaz
+1907|Szia, Marie!
+1908|Előnézet a beállítás módosítása előtt
+1909|Egy kis ablak megmutatja a változtatás előtti és utáni állapotot, te pedig eldöntöd, hogy alkalmazod vagy elveted.

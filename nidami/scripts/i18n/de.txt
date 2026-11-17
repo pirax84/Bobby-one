@@ -1900,3 +1900,11 @@
 1899|Ein kleines Wassergeräusch begleitet das Öffnen der App. Du kannst es behalten oder ausschalten.
 1900|Ton behalten
 1901|Ton ausschalten
+1902|Diese Einstellung ändern?
+1903|So verändert sich der Bildschirm.
+1904|Vorher
+1905|Nachher
+1906|Anwenden
+1907|Hallo Marie!
+1908|Vorschau vor dem Ändern einer Einstellung
+1909|Ein kleines Fenster zeigt vorher und nachher – du entscheidest, ob du es anwendest oder abbrichst.

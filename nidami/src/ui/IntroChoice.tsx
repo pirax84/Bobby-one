@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { t } from "../i18n";
 import { INTRO_KEY } from "./Intro";
 import { Switch } from "./common";
+import { usePreviewAsk } from "./ChangePreview";
+import { getPref, setPref } from "../lib/uipref";
 
 export const SPLASH_OFF = "notiif-splash-off";
 export const SPLASH_MUTE = "notiif-splash-sound-off";
@@ -9,10 +11,10 @@ const lget = (k: string) => { try { return localStorage.getItem(k); } catch { re
 const lset = (k: string, v: string | null) => { try { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch { /* rien */ } };
 export function SplashToggle() {
   const [on, setOn] = useState(() => lget(SPLASH_OFF) !== "1");
-  const [snd, setSnd] = useState(() => lget(SPLASH_MUTE) !== "1");
-  return <>
-    <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Écran d'ouverture animé")}</b><div className="muted small">{t("Les lettres NOTIIF tombent dans l'eau quand vous ouvrez l'appli. Activé par défaut.")}</div></div><Switch on={on} onChange={(v) => { setOn(v); lset(SPLASH_OFF, v ? null : "1"); }} label={t("Écran d'ouverture animé")} /></label>
-    {on && <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Son de l'écran d'ouverture")}</b><div className="muted small">{t("Le petit son d'eau qui accompagne l'ouverture de l'appli. Activé par défaut.")}</div></div><Switch on={snd} onChange={(v) => { setSnd(v); lset(SPLASH_MUTE, v ? null : "1"); }} label={t("Son de l'écran d'ouverture")} /></label>}
+  const [snd, setSnd] = useState(() => lget(SPLASH_MUTE) !== "1"); const pv = usePreviewAsk();
+  return <>{pv.node}
+    <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Écran d'ouverture animé")}</b><div className="muted small">{t("Les lettres NOTIIF tombent dans l'eau quand vous ouvrez l'appli. Activé par défaut.")}</div></div><Switch on={on} onChange={(v) => pv.ask({ kind: "toggle", from: on ? "1" : "0", to: v ? "1" : "0", fromLabel: t("Écran d'ouverture animé"), toLabel: t("Écran d'ouverture animé"), apply: () => { setOn(v); lset(SPLASH_OFF, v ? null : "1"); } })} label={t("Écran d'ouverture animé")} /></label>
+    {on && <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Son de l'écran d'ouverture")}</b><div className="muted small">{t("Le petit son d'eau qui accompagne l'ouverture de l'appli. Activé par défaut.")}</div></div><Switch on={snd} onChange={(v) => pv.ask({ kind: "toggle", from: snd ? "1" : "0", to: v ? "1" : "0", fromLabel: t("Son de l'écran d'ouverture"), toLabel: t("Son de l'écran d'ouverture"), apply: () => { setSnd(v); lset(SPLASH_MUTE, v ? null : "1"); } })} label={t("Son de l'écran d'ouverture")} /></label>}
     {on && <div className="muted small" style={{ opacity: .7, paddingBottom: 4 }}>Water drops dripping — Wikimedia Commons, CC BY-SA 3.0</div>}
   </>;
 }
@@ -44,4 +46,10 @@ export function IntroChoice() {
   const O: [string, string][] = [["auto", t("Automatique")], ["full", t("Toujours complète")], ["off", t("Aucune")]];
   return (<><div className="row" style={{ gap: 6 }}>{O.map(([k, l]) => <button key={k} type="button" className={"chip grow" + (v === k ? " on" : "")} aria-pressed={v === k} onClick={() => { try { localStorage.setItem(INTRO_KEY, k); } catch { /* rien */ } setV(k); if (k === "auto") window.dispatchEvent(new CustomEvent("notiif-intro-preview", { detail: { m: "full" } })); else if (k === "full") window.dispatchEvent(new CustomEvent("notiif-intro-preview", { detail: { m: "full" } })); }}>{l}</button>)}</div>
     <p className="muted small" style={{ margin: 0 }}>{t("Automatique : l'intro complète à chaque ouverture. Toucher un choix vous la montre.")}</p></>);
+}
+
+/** Réglage : montrer (ou non) l'aperçu avant/après. Activé par défaut. */
+export function PreviewPref() {
+  const [on, setOn] = useState(() => getPref("prev", "") !== "0");
+  return <label className="row" style={{ padding: "6px 0" }}><div className="grow"><b>{t("Aperçu avant de changer un réglage")}</b><div className="muted small">{t("Une petite fenêtre montre l'avant et l'après : vous choisissez d'appliquer ou d'annuler.")}</div></div><Switch on={on} onChange={(v) => { setOn(v); setPref("prev", v ? "" : "0"); }} label={t("Aperçu avant de changer un réglage")} /></label>;
 }

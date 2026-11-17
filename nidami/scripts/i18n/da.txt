@@ -1900,3 +1900,11 @@
 1899|En lille vandlyd følger åbningen af appen. Du kan beholde den eller slå den fra.
 1900|Behold lyden
 1901|Slå lyden fra
+1902|Vil du ændre denne indstilling?
+1903|Sådan ændrer det skærmen.
+1904|Før
+1905|Efter
+1906|Anvend
+1907|Hej Marie!
+1908|Vis eksempel før en indstilling ændres
+1909|Et lille vindue viser før og efter, og du vælger, om du vil anvende eller annullere.

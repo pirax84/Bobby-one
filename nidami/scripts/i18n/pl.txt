@@ -1900,3 +1900,11 @@
 1899|Mały dźwięk wody towarzyszy otwieraniu aplikacji. Możesz go zostawić lub wyłączyć.
 1900|Zostaw dźwięk
 1901|Wyłącz dźwięk
+1902|Zmienić to ustawienie?
+1903|Tak zmieni się ekran.
+1904|Przed
+1905|Po
+1906|Zastosuj
+1907|Cześć, Marie!
+1908|Podgląd przed zmianą ustawienia
+1909|Małe okno pokazuje stan przed i po zmianie, a Ty wybierasz, czy zastosować, czy anulować.

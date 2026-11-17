@@ -1900,3 +1900,11 @@
 1899|Ett litet vattenljud följer med när appen öppnas. Du kan behålla det eller stänga av det.
 1900|Behåll ljudet
 1901|Stäng av ljudet
+1902|Vill du ändra den här inställningen?
+1903|Så här ändras skärmen.
+1904|Före
+1905|Efter
+1906|Tillämpa
+1907|Hej Marie!
+1908|Förhandsgranska innan en inställning ändras
+1909|Ett litet fönster visar före och efter, och du väljer att tillämpa eller avbryta.

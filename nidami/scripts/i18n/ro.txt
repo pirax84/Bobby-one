@@ -1900,3 +1900,11 @@
 1899|Un mic sunet de apă însoțește deschiderea aplicației. Îl poți păstra sau dezactiva.
 1900|Păstrează sunetul
 1901|Oprește sunetul
+1902|Schimbi această setare?
+1903|Iată ce se schimbă pe ecran.
+1904|Înainte
+1905|După
+1906|Aplică
+1907|Salut, Marie!
+1908|Previzualizare înainte de a schimba o setare
+1909|O fereastră mică arată înainte și după, iar tu alegi dacă aplici sau anulezi.

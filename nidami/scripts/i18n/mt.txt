@@ -1900,3 +1900,11 @@
 1899|Ħoss żgħir tal-ilma jakkumpanja l-ftuħ tal-app. Tista' żommu jew titfih.
 1900|Żomm il-ħoss
 1901|Itfi l-ħoss
+1902|Tbiddel din l-issettjar?
+1903|Dan hu dak li jinbidel fuq l-iskrin.
+1904|Qabel
+1905|Wara
+1906|Applika
+1907|Bonġu Marie!
+1908|Previżjoni qabel tbiddel issettjar
+1909|Tieqa żgħira turi qabel u wara, u inti tagħżel jekk tapplikax jew tikkanċellax.

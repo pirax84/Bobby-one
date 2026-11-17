@@ -1900,3 +1900,11 @@
 1899|Pieni vesiääni kuuluu sovelluksen avautuessa. Voit pitää sen tai kytkeä sen pois.
 1900|Pidä ääni
 1901|Mykistä ääni
+1902|Muutetaanko tämä asetus?
+1903|Näin näyttö muuttuu.
+1904|Ennen
+1905|Jälkeen
+1906|Käytä
+1907|Hei Marie!
+1908|Esikatselu ennen asetuksen muuttamista
+1909|Pieni ikkuna näyttää ennen ja jälkeen, ja sinä valitset, otetaanko muutos käyttöön vai peruutetaanko se.

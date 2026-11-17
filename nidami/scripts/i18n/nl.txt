@@ -1900,3 +1900,11 @@
 1899|Een klein watergeluid begeleidt het openen van de app. Je kunt het houden of uitzetten.
 1900|Geluid houden
 1901|Geluid uitzetten
+1902|Deze instelling wijzigen?
+1903|Zo verandert het scherm.
+1904|Voor
+1905|Na
+1906|Toepassen
+1907|Hallo Marie!
+1908|Voorbeeld voordat een instelling wordt gewijzigd
+1909|Een klein venster toont voor en na, en jij kiest of je het toepast of annuleert.

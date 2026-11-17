@@ -1900,3 +1900,11 @@
 1899|Un pequeño sonido de agua acompaña la apertura de la app. Puedes conservarlo o desactivarlo.
 1900|Conservar el sonido
 1901|Quitar el sonido
+1902|¿Cambiar este ajuste?
+1903|Esto es lo que cambia en la pantalla.
+1904|Antes
+1905|Después
+1906|Aplicar
+1907|¡Hola, Marie!
+1908|Vista previa antes de cambiar un ajuste
+1909|Una ventana pequeña muestra el antes y el después, y tú eliges aplicar o cancelar.

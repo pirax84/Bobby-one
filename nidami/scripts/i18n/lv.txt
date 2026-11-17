@@ -1900,3 +1900,11 @@
 1899|Atverot lietotni, skan neliela ūdens skaņa. Varat to paturēt vai izslēgt.
 1900|Paturēt skaņu
 1901|Izslēgt skaņu
+1902|Mainīt šo iestatījumu?
+1903|Lūk, kas mainīsies ekrānā.
+1904|Pirms
+1905|Pēc
+1906|Lietot
+1907|Sveika, Marie!
+1908|Priekšskatījums pirms iestatījuma maiņas
+1909|Neliels logs parāda stāvokli pirms un pēc izmaiņas, un jūs izvēlaties lietot vai atcelt.

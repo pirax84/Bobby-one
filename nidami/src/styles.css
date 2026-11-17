@@ -1368,3 +1368,8 @@ html[data-theme=light] .navbtn[data-k=voice] svg,html[data-theme=dark] .navbtn[d
 html[data-theme=light] .top button,html[data-theme=light] .top .topr>*{box-shadow:0 0 0 1.5px #1B1F6E!important}
 html .main>.top,html .main.ishome>.top,html .main>.brandbar,html .main.ishome>.brandbar,html .ishome>.brandbar{background:transparent!important;background-image:none!important}
 html .scrolled .main>.top,html .scrolled .main.ishome>.top,html .scrolled .main.ishome>.brandbar{background:linear-gradient(var(--bg) 70%,transparent)!important}
+/* Bulles de stories : contour fin */
+.story .mk{box-shadow:0 0 0 1.5px #1B1F6E}
+.story .wreath svg g path{stroke:#1B1F6E;stroke-width:1.6px}
+html:not([data-theme=light]) .story .mk{box-shadow:0 0 0 1.5px rgba(190,200,255,.9)}
+html:not([data-theme=light]) .story .wreath svg g path{stroke:rgba(190,200,255,.9)}

@@ -1900,3 +1900,11 @@
 1899|Suara air kecil menyertai pembukaan aplikasi. Anda bisa menyimpannya atau mematikannya.
 1900|Pertahankan suara
 1901|Matikan suara
+1902|Ubah pengaturan ini?
+1903|Beginilah perubahan pada layar.
+1904|Sebelum
+1905|Sesudah
+1906|Terapkan
+1907|Halo Marie!
+1908|Pratinjau sebelum mengubah pengaturan
+1909|Jendela kecil menampilkan sebelum dan sesudah, lalu Anda memilih untuk menerapkan atau membatalkan.

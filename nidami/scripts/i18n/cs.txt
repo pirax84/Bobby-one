@@ -1900,3 +1900,11 @@
 1899|Při otevření aplikace zazní tichý zvuk vody. Můžete ho ponechat, nebo vypnout.
 1900|Ponechat zvuk
 1901|Vypnout zvuk
+1902|Změnit toto nastavení?
+1903|Takhle se změní obrazovka.
+1904|Před
+1905|Po
+1906|Použít
+1907|Ahoj Marie!
+1908|Náhled před změnou nastavení
+1909|Malé okno ukáže stav před změnou a po ní a vy se rozhodnete, zda ji použít, nebo zrušit.

@@ -1900,3 +1900,11 @@
 1899|Uygulama açılırken küçük bir su sesi çalar. Tutabilir veya kapatabilirsiniz.
 1900|Sesi koru
 1901|Sesi kapat
+1902|Bu ayar değiştirilsin mi?
+1903|Ekranda şunlar değişecek.
+1904|Önce
+1905|Sonra
+1906|Uygula
+1907|Merhaba Marie!
+1908|Bir ayarı değiştirmeden önce önizleme
+1909|Küçük bir pencere öncesini ve sonrasını gösterir; uygulamayı ya da iptal etmeyi siz seçersiniz.

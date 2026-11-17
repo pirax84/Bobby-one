@@ -1900,3 +1900,11 @@
 1899|Mali zvuk vode prati otvaranje aplikacije. Možete ga zadržati ili isključiti.
 1900|Zadrži zvuk
 1901|Isključi zvuk
+1902|Promijeniti ovu postavku?
+1903|Evo što se mijenja na zaslonu.
+1904|Prije
+1905|Poslije
+1906|Primijeni
+1907|Bok, Marie!
+1908|Pregled prije promjene postavke
+1909|Mali prozor prikazuje stanje prije i poslije, a vi birate hoćete li primijeniti ili odustati.

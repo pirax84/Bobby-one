@@ -1900,3 +1900,11 @@
 1899|Väike veehelin saadab rakenduse avamist. Võid selle alles jätta või välja lülitada.
 1900|Jäta heli
 1901|Lülita heli välja
+1902|Kas muuta seda seadet?
+1903|Nii muutub ekraan.
+1904|Enne
+1905|Pärast
+1906|Rakenda
+1907|Tere, Marie!
+1908|Eelvaade enne seadistuse muutmist
+1909|Väike aken näitab enne ja pärast olukorda ning sina valid, kas rakendada või tühistada.

@@ -1900,3 +1900,11 @@
 1899|Um pequeno som de água acompanha a abertura da app. Pode mantê-lo ou desativá-lo.
 1900|Manter o som
 1901|Desativar o som
+1902|Alterar esta definição?
+1903|Veja o que muda no ecrã.
+1904|Antes
+1905|Depois
+1906|Aplicar
+1907|Olá, Marie!
+1908|Pré-visualização antes de alterar uma definição
+1909|Uma pequena janela mostra o antes e o depois, e escolhe se quer aplicar ou cancelar.

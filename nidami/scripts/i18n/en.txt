@@ -1900,3 +1900,11 @@
 1899|A little water sound goes with opening the app. You can keep it or turn it off.
 1900|Keep the sound
 1901|Turn the sound off
+1902|Change this setting?
+1903|Here is what changes on screen.
+1904|Before
+1905|After
+1906|Apply
+1907|Hello Marie!
+1908|Preview before changing a setting
+1909|A small window shows before and after, and you choose to apply or cancel.

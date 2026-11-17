@@ -1900,3 +1900,11 @@
 1899|Téann fuaim bheag uisce leis an aip a oscailt. Is féidir leat é a choinneáil nó é a mhúchadh.
 1900|Coinnigh an fhuaim
 1901|Múch an fhuaim
+1902|An mian leat an socrú seo a athrú?
+1903|Seo an t-athrú a thiocfaidh ar an scáileán.
+1904|Roimh
+1905|Ina dhiaidh
+1906|Cuir i bhfeidhm
+1907|Dia duit, a Marie!
+1908|Réamhamharc sula n-athraítear socrú
+1909|Taispeánann fuinneog bheag an staid roimh agus tar éis, agus roghnaíonn tú an gcuirfidh tú i bhfeidhm nó an ndéanfaidh tú cealú.
