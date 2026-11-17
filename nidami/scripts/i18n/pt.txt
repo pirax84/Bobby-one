@@ -1910,3 +1910,6 @@
 1909|Uma pequena janela mostra o antes e o depois, e escolhe se quer aplicar ou cancelar.
 1910|Ativado
 1911|Desativado
+1912|Ouvir o exemplo
+1913|Ao iniciar a app, as letras NOTIIF caem na água.
+1914|O pequeno som de água que acompanha a abertura da app: toque no botão redondo para o ouvir.

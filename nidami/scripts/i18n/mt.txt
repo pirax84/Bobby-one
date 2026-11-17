@@ -1910,3 +1910,6 @@
 1909|Tieqa żgħira turi qabel u wara, u inti tagħżel jekk tapplikax jew tikkanċellax.
 1910|Mixgħul
 1911|Mitfi
+1912|Isma' l-eżempju
+1913|Meta tibda l-app, l-ittri NOTIIF jaqgħu fl-ilma.
+1914|Il-ħoss żgħir tal-ilma li jakkumpanja l-ftuħ tal-app: taqbad il-buttuna tonda biex tismgħu.

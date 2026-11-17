@@ -1910,3 +1910,6 @@
 1909|Jendela kecil menampilkan sebelum dan sesudah, lalu Anda memilih untuk menerapkan atau membatalkan.
 1910|Aktif
 1911|Nonaktif
+1912|Dengarkan contoh
+1913|Saat aplikasi dibuka, huruf NOTIIF jatuh ke dalam air.
+1914|Suara air kecil yang menyertai pembukaan aplikasi: ketuk tombol bulat untuk mendengarnya.

@@ -1910,3 +1910,6 @@
 1909|Majhno okno prikaže stanje pred spremembo in po njej, vi pa izberete, ali jo uporabite ali prekličete.
 1910|Vklopljeno
 1911|Izklopljeno
+1912|Poslušaj primer
+1913|Ob zagonu aplikacije črke NOTIIF padejo v vodo.
+1914|Majhen zvok vode ob odprtju aplikacije: tapnite okrogli gumb, da ga slišite.

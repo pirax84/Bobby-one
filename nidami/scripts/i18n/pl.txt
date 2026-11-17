@@ -1910,3 +1910,6 @@
 1909|Małe okno pokazuje stan przed i po zmianie, a Ty wybierasz, czy zastosować, czy anulować.
 1910|Włączone
 1911|Wyłączone
+1912|Posłuchaj przykładu
+1913|Po uruchomieniu aplikacji litery NOTIIF wpadają do wody.
+1914|Mały dźwięk wody towarzyszący otwarciu aplikacji: naciśnij okrągły przycisk, aby go usłyszeć.

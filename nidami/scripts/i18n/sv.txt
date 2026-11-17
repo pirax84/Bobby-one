@@ -1910,3 +1910,6 @@
 1909|Ett litet fönster visar före och efter, och du väljer att tillämpa eller avbryta.
 1910|På
 1911|Av
+1912|Lyssna på exemplet
+1913|När appen startar faller bokstäverna NOTIIF ner i vattnet.
+1914|Det lilla vattenljudet när appen öppnas: tryck på den runda knappen för att höra det.

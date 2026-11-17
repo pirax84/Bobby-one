@@ -1910,3 +1910,6 @@
 1909|Küçük bir pencere öncesini ve sonrasını gösterir; uygulamayı ya da iptal etmeyi siz seçersiniz.
 1910|Açık
 1911|Kapalı
+1912|Örneği dinle
+1913|Uygulama açılırken NOTIIF harfleri suya düşer.
+1914|Uygulama açılırken çalan küçük su sesi: dinlemek için yuvarlak düğmeye dokunun.

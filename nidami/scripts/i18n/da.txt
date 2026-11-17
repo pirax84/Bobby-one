@@ -1910,3 +1910,6 @@
 1909|Et lille vindue viser før og efter, og du vælger, om du vil anvende eller annullere.
 1910|Til
 1911|Fra
+1912|Lyt til eksemplet
+1913|Når appen starter, falder bogstaverne NOTIIF ned i vandet.
+1914|Den lille vandlyd, der følger åbningen af appen: tryk på den runde knap for at høre den.

@@ -1910,3 +1910,6 @@
 1909|A small window shows before and after, and you choose to apply or cancel.
 1910|On
 1911|Off
+1912|Listen to the example
+1913|When the app starts, the NOTIIF letters fall into the water.
+1914|The little water sound that plays when the app opens: tap the round button to hear it.

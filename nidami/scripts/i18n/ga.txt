@@ -1910,3 +1910,6 @@
 1909|Taispeánann fuinneog bheag an staid roimh agus tar éis, agus roghnaíonn tú an gcuirfidh tú i bhfeidhm nó an ndéanfaidh tú cealú.
 1910|Ar siúl
 1911|Díghníomhach
+1912|Éist leis an sampla
+1913|Nuair a thosaíonn an aip, titeann litreacha NOTIIF isteach san uisce.
+1914|An fhuaim bheag uisce a théann leis an aip a oscailt: brúigh an cnaipe cruinn chun éisteacht léi.

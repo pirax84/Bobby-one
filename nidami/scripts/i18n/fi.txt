@@ -1910,3 +1910,6 @@
 1909|Pieni ikkuna näyttää ennen ja jälkeen, ja sinä valitset, otetaanko muutos käyttöön vai peruutetaanko se.
 1910|Päällä
 1911|Pois
+1912|Kuuntele esimerkki
+1913|Kun sovellus käynnistyy, NOTIIF-kirjaimet putoavat veteen.
+1914|Pieni vesiääni, joka kuuluu sovelluksen avautuessa: kuuntele se painamalla pyöreää painiketta.

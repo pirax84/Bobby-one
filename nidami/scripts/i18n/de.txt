@@ -1910,3 +1910,6 @@
 1909|Ein kleines Fenster zeigt vorher und nachher – du entscheidest, ob du es anwendest oder abbrichst.
 1910|An
 1911|Aus
+1912|Beispiel anhören
+1913|Beim Start der App fallen die Buchstaben NOTIIF ins Wasser.
+1914|Das kleine Wassergeräusch beim Öffnen der App: Tippen Sie auf die runde Taste, um es anzuhören.

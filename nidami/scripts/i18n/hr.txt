@@ -1910,3 +1910,6 @@
 1909|Mali prozor prikazuje stanje prije i poslije, a vi birate hoćete li primijeniti ili odustati.
 1910|Uključeno
 1911|Isključeno
+1912|Poslušaj primjer
+1913|Pri pokretanju aplikacije slova NOTIIF padaju u vodu.
+1914|Mali zvuk vode pri otvaranju aplikacije: pritisnite okrugli gumb da ga čujete.

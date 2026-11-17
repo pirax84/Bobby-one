@@ -1910,3 +1910,6 @@
 1909|Egy kis ablak megmutatja a változtatás előtti és utáni állapotot, te pedig eldöntöd, hogy alkalmazod vagy elveted.
 1910|Be
 1911|Ki
+1912|Példa meghallgatása
+1913|Az alkalmazás indulásakor a NOTIIF betűi a vízbe hullanak.
+1914|A kis vízhang az alkalmazás megnyitásakor: koppintson a kerek gombra a meghallgatásához.

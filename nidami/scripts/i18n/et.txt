@@ -1910,3 +1910,6 @@
 1909|Väike aken näitab enne ja pärast olukorda ning sina valid, kas rakendada või tühistada.
 1910|Sees
 1911|Väljas
+1912|Kuula näidet
+1913|Rakenduse käivitamisel kukuvad NOTIIF-i tähed vette.
+1914|Väike veehelin rakenduse avamisel: puudutage ümmargust nuppu, et seda kuulda.

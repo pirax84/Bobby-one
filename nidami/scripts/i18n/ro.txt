@@ -1910,3 +1910,6 @@
 1909|O fereastră mică arată înainte și după, iar tu alegi dacă aplici sau anulezi.
 1910|Activat
 1911|Dezactivat
+1912|Ascultă exemplul
+1913|La pornirea aplicației, literele NOTIIF cad în apă.
+1914|Micul sunet de apă care însoțește deschiderea aplicației: apasă butonul rotund pentru a-l auzi.

@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { Modal } from "./common";
 import { ACCENTS, accentOf } from "../lib/theme";
 import { getPref } from "../lib/uipref";
@@ -6,7 +6,7 @@ import { t } from "../i18n";
 
 /** « Aperçu avant de changer un réglage » : une petite feuille montre l'avant et l'après, on applique ou on annule. */
 export type PvKind = "mode" | "fs" | "accent" | "style" | "toggle";
-type Ask = { kind: PvKind; from: string; to: string; fromLabel: string; toLabel: string; apply: () => void };
+type Ask = { kind: PvKind; from: string; to: string; fromLabel: string; toLabel: string; apply: () => void; desc?: string; demo?: "splash" };
 
 const sysDark = () => { try { return window.matchMedia("(prefers-color-scheme: dark)").matches; } catch { return false; } };
 export const previewOn = () => getPref("prev", "") !== "0";
@@ -35,11 +35,25 @@ function Mock({ kind, v, label }: { kind: PvKind; v: string; label: string }) {
   return <Box bg="var(--card, #F5F2FF)" fg="var(--text, #1B1F6E)"><div><b style={{ fontSize: 13 }}>{label}</b><div style={{ margin: "10px auto 0", width: 46, height: 26, borderRadius: 99, background: on ? "#4A55D6" : "rgba(120,120,160,.45)", position: "relative" }}><span style={{ position: "absolute", top: 3, left: on ? 23 : 3, width: 20, height: 20, borderRadius: "50%", background: "#fff", transition: "left .2s" }} /></div></div></Box>;
 }
 
+
+function SplashDemo() {
+  const [on, setOn] = useState(false); const au = useRef<HTMLAudioElement | null>(null); const [k, setK] = useState(0);
+  const stop = () => { try { au.current?.pause(); } catch { /* rien */ } au.current = null; setOn(false); };
+  const play = () => { if (on) { stop(); return; } setK((x) => x + 1); setOn(true); try { const a = new Audio("./sounds/ouverture/complete.mp3"); a.volume = 0.9; au.current = a; a.onended = () => setOn(false); void a.play().catch(() => setOn(false)); } catch { setOn(false); } };
+  return <div className="row" style={{ gap: 12, alignItems: "center", background: "var(--card, #F5F2FF)", border: "1px solid rgba(120,120,160,.35)", borderRadius: 16, padding: 12 }}>
+    <style>{"@keyframes pvdrop{0%{transform:translateY(-26px);opacity:0}60%{transform:translateY(3px);opacity:1}100%{transform:translateY(0);opacity:1}}"}</style>
+    <div key={k} className="grow" style={{ textAlign: "center", fontWeight: 900, fontSize: 26, letterSpacing: 3, minHeight: 40, overflow: "hidden" }} aria-hidden="true">{"NOTIIF".split("").map((c, i) => <span key={i} style={{ display: "inline-block", animation: on ? `pvdrop .5s ${i * 0.18}s both` : "none" }}>{c}</span>)}</div>
+    <button type="button" className="btn" style={{ width: 52, height: 52, minWidth: 52, borderRadius: "50%", padding: 0 }} onClick={play} aria-label={on ? t("Arrêter") : t("Écouter l'exemple")}>{on ? "■" : "▶"}</button>
+  </div>;
+}
+
 export function usePreviewAsk() {
   const [a, setA] = useState<Ask | null>(null);
   const ask = (x: Ask) => { if (x.from === x.to) return; if (!previewOn()) { x.apply(); return; } setA(x); };
   const node = a ? <Modal title={t("Changer ce réglage ?")} onClose={() => setA(null)}>
     <div className="col" style={{ gap: 12 }}>
+      {a.desc && <p style={{ margin: 0 }}>{a.desc}</p>}
+      {a.demo === "splash" && <SplashDemo />}
       <p className="muted small" style={{ margin: 0 }}>{t("Voilà ce que ça change à l'écran.")}</p>
       <div className="row" style={{ gap: 10, alignItems: "stretch" }}>
         <div className="col grow" style={{ gap: 6 }}><Mock kind={a.kind} v={a.from} label={a.fromLabel} /><div className="small center"><b>{t("Avant")}</b> · {a.fromLabel}</div></div>

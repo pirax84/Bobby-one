@@ -1910,3 +1910,6 @@
 1909|Malé okno ukáže stav před změnou a po ní a vy se rozhodnete, zda ji použít, nebo zrušit.
 1910|Zapnuto
 1911|Vypnuto
+1912|Poslechnout ukázku
+1913|Při spuštění aplikace padají písmena NOTIIF do vody.
+1914|Malý zvuk vody při otevření aplikace: stiskněte kulaté tlačítko a poslechněte si ho.

@@ -1910,3 +1910,6 @@
 1909|Een klein venster toont voor en na, en jij kiest of je het toepast of annuleert.
 1910|Aan
 1911|Uit
+1912|Luister naar het voorbeeld
+1913|Bij het starten van de app vallen de letters NOTIIF in het water.
+1914|Het kleine watergeluid bij het openen van de app: tik op de ronde knop om het te horen.

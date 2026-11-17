@@ -119,7 +119,7 @@ export function useNow(ms = 1000) { const [tx, setT] = useState(Date.now()); use
 /** Interrupteur (à la place des cases à cocher). */
 export function Switch({ on, onChange, label, noPreview }: { on: boolean; onChange: (v: boolean) => void; label: string; noPreview?: boolean }) {
   const pv = usePreviewAsk();
-  const click = () => { const v = !on; if (noPreview) { onChange(v); return; } pv.ask({ kind: "toggle", from: on ? "1" : "0", to: v ? "1" : "0", fromLabel: t(on ? "Activé" : "Désactivé"), toLabel: t(v ? "Activé" : "Désactivé"), apply: () => onChange(v) }); };
+  const click = (e: React.MouseEvent<HTMLButtonElement>) => { const v = !on; const row = e.currentTarget.closest("label,.row"); const desc = row?.querySelector(".muted")?.textContent || undefined; if (noPreview) { onChange(v); return; } pv.ask({ kind: "toggle", from: on ? "1" : "0", to: v ? "1" : "0", fromLabel: t(on ? "Activé" : "Désactivé"), toLabel: t(v ? "Activé" : "Désactivé"), desc: desc || label, apply: () => onChange(v) }); };
   return <><button type="button" role="switch" aria-checked={on} aria-label={label} className={"switch" + (on ? " on" : "")} onClick={click}><span /></button>{pv.node}</>;
 }
 
