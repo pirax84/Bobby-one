@@ -75,7 +75,7 @@ try{sessionStorage.setItem("notiif-splash","1")}catch(e){}
 var today=new Date().toDateString(),mode;
 if(!g("notiif-splash-seen")){mode="full";st("notiif-splash-seen","1");st("notiif-splash-day",today)}
 else if(g("notiif-splash-day")!==today){mode="short";st("notiif-splash-day",today)}
-else{mode="min";if(!g("notiif-splash-hint-done"))st("notiif-splash-hint","1")}
+else{mode="min";if(!g("notiif-splash-hint2-done"))st("notiif-splash-hint","1")}
 s.className="m-"+mode;
 var P={full:{rev:2000,rd:500,src:"complete"},short:{rev:900,rd:400,src:"courte"},min:{rev:340,rd:300,src:"minimale"}}[mode];
 (function(){var w=s.querySelector(".spw").getBoundingClientRect();s.style.setProperty("--cx",(w.left+w.width*.6446)+"px");s.style.setProperty("--cy",(w.top+w.height*.3383)+"px")})();

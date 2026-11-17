@@ -60,12 +60,22 @@ export function MyQr({ u, noQr }: { u: User; noQr?: boolean }) {
     <hr /><div className="col" style={{ width: "100%" }}><b>{t("Qui peut me trouver ?")}</b>{D.map(([k, l, tx]) => <label key={k} className="row" style={{ alignItems: "flex-start" }}><input type="radio" name="disc" checked={u.discover === k} onChange={() => { actions.setDiscover(k); toast(t("Réglage enregistré.")); }} style={{ width: 22, height: 22, marginTop: 2 }} /><span><b>{l}</b><div className="muted small">{tx}</div></span></label>)}
       <div className="row"><input className="inp" value={h} onChange={(e) => setH(e.target.value)} aria-label={t("Pseudo")} /><button className="btn sm" onClick={() => toast(actions.setHandle(h).msg)}>{t("Enregistrer le pseudo")}</button></div></div></div>);
 }
+function loadJsQr(): Promise<(d: Uint8ClampedArray, w: number, h: number) => { data: string } | null> {
+  const w = window as any; if (w.jsQR) return Promise.resolve(w.jsQR);
+  return new Promise((ok, ko) => { const sc = document.createElement("script"); sc.src = "./jsQR.js?v=309"; sc.onload = () => (w.jsQR ? ok(w.jsQR) : ko(new Error("jsqr"))); sc.onerror = () => ko(new Error("jsqr")); document.head.appendChild(sc); });
+}
 function Scanner({ onCode, onClose }: { onCode: (c: string) => void; onClose: () => void }) {
   const ref = useRef<HTMLVideoElement>(null); const [err, setErr] = useState("");
   useEffect(() => { let stop = false; let stream: MediaStream | null = null; const BD = (window as any).BarcodeDetector;
-    if (!BD) { setErr(t("Ce navigateur ne sait pas lire les QR codes. Utilisez l'appareil photo du téléphone : il ouvrira le lien NOTIIF tout seul.")); return; }
-    (async () => { try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); if (ref.current) { ref.current.srcObject = stream; await ref.current.play(); } const det = new BD({ formats: ["qr_code"] });
-      const loop = async () => { if (stop || !ref.current) return; try { const r = await det.detect(ref.current); const v = r[0]?.rawValue as string | undefined; const m = v?.match(/add=(NID-[A-Z0-9]{5})/i) || v?.match(/(NID-[A-Z0-9]{5})/i); if (m) { onCode(m[1].toUpperCase()); return; } } catch {} setTimeout(loop, 300); }; loop(); } catch { setErr(t("Caméra indisponible ou refusée.")); } })();
+    const pick = (v?: string) => { const m = v?.match(/add=(NID-[A-Z0-9]{5})/i) || v?.match(/(NID-[A-Z0-9]{5})/i); return m ? m[1].toUpperCase() : null; };
+    (async () => { try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); if (ref.current) { ref.current.srcObject = stream; await ref.current.play(); }
+      let det: any = null; let jq: any = null; const cv = document.createElement("canvas"); const cx = cv.getContext("2d", { willReadFrequently: true } as any);
+      if (BD) { try { det = new BD({ formats: ["qr_code"] }); } catch { det = null; } }
+      if (!det) jq = await loadJsQr();
+      const loop = async () => { if (stop || !ref.current) return; try { const v = ref.current; let raw: string | undefined;
+        if (det) { const r = await det.detect(v); raw = r[0]?.rawValue; }
+        else if (jq && cx && v.videoWidth) { const k = Math.min(1, 640 / v.videoWidth); cv.width = Math.round(v.videoWidth * k); cv.height = Math.round(v.videoHeight * k); cx.drawImage(v, 0, 0, cv.width, cv.height); const im = cx.getImageData(0, 0, cv.width, cv.height); raw = jq(im.data, im.width, im.height)?.data; }
+        const c = pick(raw); if (c) { onCode(c); return; } } catch { /* on réessaie */ } setTimeout(loop, 250); }; loop(); } catch { setErr(t("Caméra indisponible ou refusée.")); } })();
     return () => { stop = true; stream?.getTracks().forEach((tx) => tx.stop()); }; }, []);
   return (<Modal title={t("Scanner un QR code")} onClose={onClose}><div className="col">{err ? <p className="muted">{err}</p> : <video ref={ref} playsInline muted style={{ width: "100%", borderRadius: 16 }} />}</div></Modal>);
 }

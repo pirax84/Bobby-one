@@ -21,13 +21,13 @@ export function SplashToggle() {
 export function SplashHint() {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    if (lget("notiif-splash-hint") !== "1" || lget("notiif-splash-hint-done")) return;
+    if (lget("notiif-splash-hint") !== "1" || lget("notiif-splash-hint2-done")) return;
     const a = window.setTimeout(() => setShow(true), 1400);
-    const b = window.setTimeout(() => { lset("notiif-splash-hint-done", "1"); lset("notiif-splash-hint", null); setShow(false); }, 11000);
+    const b = window.setTimeout(() => { lset("notiif-splash-hint2-done", "1"); lset("notiif-splash-hint", null); setShow(false); }, 11000);
     return () => { clearTimeout(a); clearTimeout(b); };
   }, []);
   if (!show) return null;
-  const done = (mute: boolean) => { if (mute) lset(SPLASH_MUTE, "1"); lset("notiif-splash-hint-done", "1"); lset("notiif-splash-hint", null); setShow(false); };
+  const done = (mute: boolean) => { if (mute) lset(SPLASH_MUTE, "1"); lset("notiif-splash-hint2-done", "1"); lset("notiif-splash-hint", null); setShow(false); };
   return <div role="dialog" aria-label={t("Son d'ouverture")} style={{ position: "fixed", left: 16, right: 16, bottom: "calc(16px + env(safe-area-inset-bottom, 0px))", zIndex: 9990, maxWidth: 420, margin: "0 auto", padding: "16px 18px", borderRadius: 22, background: "#262B86", color: "#F1F3FF", border: "1px solid rgba(142,155,255,.5)", boxShadow: "0 12px 30px rgba(0,0,0,.4)" }}>
     <b style={{ fontSize: 17 }}>{t("Son d'ouverture")}</b>
     <div style={{ fontSize: 13.5, opacity: .85, margin: "4px 0 12px" }}>{t("Un petit son d'eau accompagne l'ouverture de l'appli. Vous pouvez le garder ou le couper.")}</div>
