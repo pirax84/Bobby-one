@@ -1373,3 +1373,11 @@ html .scrolled .main>.top,html .scrolled .main.ishome>.top,html .scrolled .main.
 .story .wreath svg g path{stroke:#1B1F6E;stroke-width:1.6px}
 html:not([data-theme=light]) .story .mk{box-shadow:0 0 0 1.5px rgba(190,200,255,.9)}
 html:not([data-theme=light]) .story .wreath svg g path{stroke:rgba(190,200,255,.9)}
+/* Vocal : le logo prend toute la taille du rond, sans fond */
+.bigmic .mk{width:120px!important;height:120px!important}
+.micbtn,.btn.micbtn{background:none!important;border:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important}
+.fs-acts i.mic{background:none!important;box-shadow:none!important;width:56px;height:56px}
+.fs-acts i.mic .mk{width:56px!important;height:56px!important}
+.voice-mic{width:auto!important;height:auto!important}
+.voice-mic .mk{width:104px!important;height:104px!important}
+.topplus.topmic{background:none!important;border:0!important;box-shadow:none!important}
