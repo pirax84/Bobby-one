@@ -19,7 +19,7 @@ function plan(): "full" | "short" | "none" {
   set("notiif-intro-seen", "1"); set("notiif-intro-day", new Date().toDateString());
   return "full";
 }
-const W = 524, H = 184, CUTS = [0, 354, 502, 616, 678, 751, 1048];
+const W = 524, H = 184, CUTS = [0, 354, 502, 616, 678, 757, 1048];
 export function Intro() {
   const [mode, setMode] = useState(plan); const [out, setOut] = useState(false); const [gone, setGone] = useState(mode === "none"); const [step, setStep] = useState(0); const [run, setRun] = useState(0); const [ready, setReady] = useState(false); const [wait, setWait] = useState(false); const then = useRef<"short" | "">(""); const e = useRef(env()).current;
   useEffect(() => { const f = (ev: Event) => { const d = (ev as CustomEvent<{ m: "full" | "short"; then?: "short" }>).detail; then.current = d.then || ""; setMode(d.m); setOut(false); setStep(0); setGone(false); setRun((r) => r + 1); }; window.addEventListener("notiif-intro-preview", f); return () => window.removeEventListener("notiif-intro-preview", f); }, []);
@@ -37,8 +37,8 @@ export function Intro() {
   const P = (x: number, y: number) => ({ left: `${(x / W) * 100}%`, top: `${(y / H) * 100}%` });
   return (<div className={"intro" + (out ? " out" : "") + (e.light ? " light" : "")} onClick={() => { if (wait) { wakeAudio(); setWait(false); setReady(true); } else skip(); }} role="presentation" aria-hidden="true">
     <div className={"introwm s" + step}>
-      <img className="wmb" src={`./wm-bg-${suf}.png?v=311`} alt="" draggable={false} />
-      {CUTS.slice(0, 6).map((c, i) => <img key={i} className={"wml" + (step >= 1 ? " hop" : "")} src={`./wm-fg-${suf}.png?v=311`} alt="" draggable={false} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
+      <img className="wmb" src={`./wm-bg-${suf}.png?v=312`} alt="" draggable={false} />
+      {CUTS.slice(0, 6).map((c, i) => <img key={i} className={"wml" + (step >= 1 ? " hop" : "")} src={`./wm-fg-${suf}.png?v=312`} alt="" draggable={false} style={{ ["--i" as string]: i, clipPath: `inset(0 ${100 - CUTS[i + 1] / 10.48}% 0 ${c / 10.48}%)` }} />)}
       {full && <>
         <span className={"ring o" + (step === 2 ? " on" : "")} style={P(214.5, 98.5)} />
         <span className={"ring d1" + (step === 3 ? " on" : "")} style={P(323, 63)} />
