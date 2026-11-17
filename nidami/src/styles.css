@@ -1394,3 +1394,9 @@ html .bfab,html[data-theme] .bfab,html[data-theme][data-accent] .bfab,html:not([
 html .voicefab,html:not([data-style=bold]) .voicefab{width:56px!important;height:56px!important}
 html .voicefab.mediafab,html[data-theme] .voicefab.mediafab,html[data-theme=light] .voicefab.mediafab{border-radius:36%!important;border:0!important;background:linear-gradient(135deg,#6FC3FF,#4F8BF0 55%,#8B6CF0)!important;color:#fff!important;box-shadow:0 10px 22px -8px rgba(0,0,0,.5)!important}
 html .voicefab.mediafab svg{stroke:#fff;color:#fff}
+/* Couleur unique des icônes (choix B, turquoise doux) : barre du bas, boutons du haut, menu PC */
+html[data-theme=light]{--ic1:#0E9AA7;--ic2:#2BB8D8;--icfg:#fff}
+html:not([data-theme=light]){--ic1:#5EE0C8;--ic2:#8BE3F0;--icfg:#0E2F3A}
+html:not(.zz) .bottom button[data-k]>svg,html:not(.zz) .bottom button[data-k].on>svg,html:not(.zz) .topr .topb,html:not(.zz) .topr .topsearch>button,html:not(.zz) .topr>.topb:nth-child(n),html:not(.zz) .topr>:nth-child(n) .topb,html:not(.zz) .topr>.topsearch:nth-child(n)>button,html html .navbtn[data-k] svg,html[data-theme] .navbtn[data-k] svg{background:linear-gradient(135deg,var(--ic1),var(--ic2))!important;color:var(--icfg)!important}
+html:not(.zz) .topr .topb svg,html:not(.zz) .topr .topsearch svg{color:var(--icfg)!important}
+html:not(.zz) .bottom button[data-k]>svg,html:not(.zz) .bottom button[data-k].on>svg{color:var(--icfg)!important}
