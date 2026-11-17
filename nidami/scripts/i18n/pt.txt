@@ -1908,3 +1908,5 @@
 1907|Olá, Marie!
 1908|Pré-visualização antes de alterar uma definição
 1909|Uma pequena janela mostra o antes e o depois, e escolhe se quer aplicar ou cancelar.
+1910|Ativado
+1911|Desativado

@@ -122,7 +122,7 @@ function SignUp() {
         {minor && <div className="col" style={{ gap: 8, textAlign: "left" }}><div className="card small">{t("Moins de 18 ans ? Un parent choisit le code parental ici.")}</div>
           <Fld label={t("Code parental (4 chiffres)")}><input className="inp" inputMode="numeric" type="password" maxLength={4} value={kid} onChange={(e) => setKid(e.target.value.replace(/\D/g, ""))} autoComplete="off" /></Fld>
           <Fld label={t("Écris-le encore une fois")}><input className="inp" inputMode="numeric" type="password" maxLength={4} value={kid2} onChange={(e) => setKid2(e.target.value.replace(/\D/g, ""))} autoComplete="off" /></Fld></div>}
-        <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch on={ok} onChange={setOk} label={t("J'accepte les conditions")} /><span>{tn("J'ai 15 ans ou plus et j'accepte les {legalBtn}.", { legalBtn })}</span></label></>}
+        <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch noPreview on={ok} onChange={setOk} label={t("J'accepte les conditions")} /><span>{tn("J'ai 15 ans ou plus et j'accepte les {legalBtn}.", { legalBtn })}</span></label></>}
       {info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}
       <div className="row" style={{ gap: 8 }}>{step > 1 && <button type="button" className="btn ghost grow" onClick={() => { setStep(step - 1); setInfo(""); }}>{t("Retour")}</button>}
         <button className="btn grow" disabled={busy} style={okStep(step) ? undefined : { opacity: .55 }}>{step < 4 ? t("Continuer") : on ? t("Créer mon compte") : t("Essayer en mode démo")}</button></div>

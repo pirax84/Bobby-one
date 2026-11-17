@@ -1908,3 +1908,5 @@
 1907|Cześć, Marie!
 1908|Podgląd przed zmianą ustawienia
 1909|Małe okno pokazuje stan przed i po zmianie, a Ty wybierasz, czy zastosować, czy anulować.
+1910|Włączone
+1911|Wyłączone

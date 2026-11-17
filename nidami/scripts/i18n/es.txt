@@ -1908,3 +1908,5 @@
 1907|¡Hola, Marie!
 1908|Vista previa antes de cambiar un ajuste
 1909|Una ventana pequeña muestra el antes y el después, y tú eliges aplicar o cancelar.
+1910|Activado
+1911|Desactivado

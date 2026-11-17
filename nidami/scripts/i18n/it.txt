@@ -1908,3 +1908,5 @@
 1907|Ciao Marie!
 1908|Anteprima prima di cambiare un'impostazione
 1909|Una piccola finestra mostra il prima e il dopo, e tu scegli se applicare o annullare.
+1910|Attivo
+1911|Disattivo

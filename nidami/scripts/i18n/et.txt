@@ -1908,3 +1908,5 @@
 1907|Tere, Marie!
 1908|Eelvaade enne seadistuse muutmist
 1909|Väike aken näitab enne ja pärast olukorda ning sina valid, kas rakendada või tühistada.
+1910|Sees
+1911|Väljas

@@ -1908,3 +1908,5 @@
 1907|Szia, Marie!
 1908|Előnézet a beállítás módosítása előtt
 1909|Egy kis ablak megmutatja a változtatás előtti és utáni állapotot, te pedig eldöntöd, hogy alkalmazod vagy elveted.
+1910|Be
+1911|Ki

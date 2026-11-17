@@ -1908,3 +1908,5 @@
 1907|Hei Marie!
 1908|Esikatselu ennen asetuksen muuttamista
 1909|Pieni ikkuna näyttää ennen ja jälkeen, ja sinä valitset, otetaanko muutos käyttöön vai peruutetaanko se.
+1910|Päällä
+1911|Pois

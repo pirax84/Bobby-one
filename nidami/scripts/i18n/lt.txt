@@ -1908,3 +1908,5 @@
 1907|Sveika, Marie!
 1908|Peržiūra prieš keičiant nustatymą
 1909|Mažas langas parodo, kaip buvo ir kaip bus, o jūs pasirenkate taikyti ar atšaukti.
+1910|Įjungta
+1911|Išjungta

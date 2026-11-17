@@ -1908,3 +1908,5 @@
 1907|Salut, Marie!
 1908|Previzualizare înainte de a schimba o setare
 1909|O fereastră mică arată înainte și după, iar tu alegi dacă aplici sau anulezi.
+1910|Activat
+1911|Dezactivat

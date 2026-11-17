@@ -1908,3 +1908,5 @@
 1907|Bok, Marie!
 1908|Pregled prije promjene postavke
 1909|Mali prozor prikazuje stanje prije i poslije, a vi birate hoćete li primijeniti ili odustati.
+1910|Uključeno
+1911|Isključeno

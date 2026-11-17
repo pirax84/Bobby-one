@@ -1908,3 +1908,5 @@
 1907|Hej Marie!
 1908|Förhandsgranska innan en inställning ändras
 1909|Ett litet fönster visar före och efter, och du väljer att tillämpa eller avbryta.
+1910|På
+1911|Av

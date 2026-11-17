@@ -1908,3 +1908,5 @@
 1907|Hallo Marie!
 1908|Vorschau vor dem Ändern einer Einstellung
 1909|Ein kleines Fenster zeigt vorher und nachher – du entscheidest, ob du es anwendest oder abbrichst.
+1910|An
+1911|Aus

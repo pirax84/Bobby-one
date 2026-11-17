@@ -1908,3 +1908,5 @@
 1907|Ahoj Marie!
 1908|Náhľad pred zmenou nastavenia
 1909|Malé okno ukáže stav pred zmenou a po nej a vy sa rozhodnete, či ju použijete, alebo zrušíte.
+1910|Zapnuté
+1911|Vypnuté

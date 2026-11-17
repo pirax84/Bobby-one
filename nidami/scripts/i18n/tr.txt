@@ -1908,3 +1908,5 @@
 1907|Merhaba Marie!
 1908|Bir ayarı değiştirmeden önce önizleme
 1909|Küçük bir pencere öncesini ve sonrasını gösterir; uygulamayı ya da iptal etmeyi siz seçersiniz.
+1910|Açık
+1911|Kapalı

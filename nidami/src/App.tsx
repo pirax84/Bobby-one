@@ -216,7 +216,7 @@ export default function App() {
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("selfie"); }}><span className="grow"><b>{t("🤳 Selfie")}</b><small>{t("Photo ou vidéo, plein écran")}</small></span></button>
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("photo"); }}><span className="grow"><b>{"🖼️ "}{t("Photo de la galerie")}</b><small>{t("Visible dans la bulle de vos amis")}</small></span></button>
       <button className="btn bigbtn" onClick={() => { setAsk(false); setCompose("saudio"); }}><span className="grow"><b>{micText(t("🎤 Vocal"))}</b><small>{t("Ta voix en story, 24 h")}</small></span></button>
-      <label className="row small" style={{ gap: 8 }}><Switch on={wall} onChange={setWall} label={t("Garder aussi sur mon mur")} /><span>{t("Garder aussi sur mon mur")}</span></label>
+      <label className="row small" style={{ gap: 8 }}><Switch noPreview on={wall} onChange={setWall} label={t("Garder aussi sur mon mur")} /><span>{t("Garder aussi sur mon mur")}</span></label>
       <b className="small muted">{t("Sur le mur (reste affiché)")}</b>
       <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("text"); }}><span className="grow"><b>{t("✏️ Écrire un texte")}</b></span></button>
       <button className="btn bigbtn alt" onClick={() => { setAsk(false); setCompose("audio"); }}><span className="grow"><b>{micText(t("🎤 Message vocal"))}</b></span></button>

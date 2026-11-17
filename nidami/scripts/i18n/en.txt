@@ -1908,3 +1908,5 @@
 1907|Hello Marie!
 1908|Preview before changing a setting
 1909|A small window shows before and after, and you choose to apply or cancel.
+1910|On
+1911|Off

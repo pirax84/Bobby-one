@@ -2,6 +2,7 @@ import { usePeer, peerColor, PEER } from "../lib/peers";
 import { ReactNode, useEffect, useId, useState } from "react";
 import { useStore, type User } from "../lib/store";
 import { t, T, locale } from "../i18n";
+import { usePreviewAsk } from "./ChangePreview";
 
 const P: Record<string, string> = {
   sun: "M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4",
@@ -116,8 +117,10 @@ export function EmojiGrid({ onPick, onClose }: { onPick: (e: string) => void; on
 export function useNow(ms = 1000) { const [tx, setT] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setT(Date.now()), ms); return () => clearInterval(i); }, [ms]); return tx; }
 
 /** Interrupteur (à la place des cases à cocher). */
-export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boolean) => void; label: string }) {
-  return <button type="button" role="switch" aria-checked={on} aria-label={label} className={"switch" + (on ? " on" : "")} onClick={() => onChange(!on)}><span /></button>;
+export function Switch({ on, onChange, label, noPreview }: { on: boolean; onChange: (v: boolean) => void; label: string; noPreview?: boolean }) {
+  const pv = usePreviewAsk();
+  const click = () => { const v = !on; if (noPreview) { onChange(v); return; } pv.ask({ kind: "toggle", from: on ? "1" : "0", to: v ? "1" : "0", fromLabel: t(on ? "Activé" : "Désactivé"), toLabel: t(v ? "Activé" : "Désactivé"), apply: () => onChange(v) }); };
+  return <><button type="button" role="switch" aria-checked={on} aria-label={label} className={"switch" + (on ? " on" : "")} onClick={click}><span /></button>{pv.node}</>;
 }
 
 /** Appui long (ou clic droit) : renvoie les gestes à poser sur un élément. */

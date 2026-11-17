@@ -1908,3 +1908,5 @@
 1907|Sveika, Marie!
 1908|Priekšskatījums pirms iestatījuma maiņas
 1909|Neliels logs parāda stāvokli pirms un pēc izmaiņas, un jūs izvēlaties lietot vai atcelt.
+1910|Ieslēgts
+1911|Izslēgts

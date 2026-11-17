@@ -1908,3 +1908,5 @@
 1907|Hej Marie!
 1908|Vis eksempel før en indstilling ændres
 1909|Et lille vindue viser før og efter, og du vælger, om du vil anvende eller annullere.
+1910|Til
+1911|Fra
