@@ -1926,3 +1926,51 @@
 1925|Tocca per iniziare
 1926|Area di gioco: tocca per mandare la particella nel nucleo
 1927|Vite: {n}
+1928|Prisma
+1929|Abbina, combina, esplodi
+1930|{n} stelle su 3
+1931|Nessuna mossa: rimescolamento automatico
+1932|Monete insufficienti
+1933|Tocca una gemma per romperla
+1934|Raggiungi {n} punti
+1935|Raccogli {n} gemme
+1936|Rompi {n} blocchi di ghiaccio
+1937|Acquista per {n} monete
+1938|Facile
+1939|Difficile
+1940|Sfida contro {name}
+1941|Audio attivo
+1942|Audio disattivato
+1943|Punteggio: {n}
+1944|Area di gioco: trascina una gemma per spostarla
+1945|+{n} monete
+1946|Livello successivo
+1947|Mappa dei livelli
+1948|Fallito! Mosse esaurite.
+1949|+5 mosse
+1950|Hai battuto {name}! {a} a {b}
+1951|Hai perso contro {name}. {a} a {b}
+1952|Martello
+1953|Rimescola
+1954|Vite esaurite. Prossima vita tra {m} min
+1955|+1 martello
+1956|+1 rimescolamento
+1957|+1 mosse bonus
+1958|Vite: +{n}
+1959|Monete: {n}
+1960|Pagina precedente
+1961|Livelli da {a} a {b}
+1962|Pagina successiva
+1963|{name} è qui
+1964|Vai al livello
+1965|Classifica
+1966|Per livello
+1967|Per punteggio
+1968|Sfida
+1969|Giocatori dimostrativi: giocano sul tuo telefono, senza server.
+1970|Il tuo nickname
+1971|Gioca il livello {n}
+1972|Regalo del giorno
+1973|Giorno {n} di accesso
+1974|Torna domani per un nuovo regalo!
+1975|Allinea 3 o più gemme. Trascina una gemma per scambiarla con la vicina.

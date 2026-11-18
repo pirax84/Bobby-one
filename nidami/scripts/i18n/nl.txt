@@ -1926,3 +1926,51 @@
 1925|Tik om te starten
 1926|Speelveld: tik om het deeltje in de kern te sturen
 1927|Levens: {n}
+1928|Prisma
+1929|Match, combineer, laat ontploffen
+1930|{n} van de 3 sterren
+1931|Geen zetten meer: automatisch schudden
+1932|Niet genoeg munten
+1933|Tik op een edelsteen om hem te breken
+1934|Haal {n} punten
+1935|Verzamel {n} edelstenen
+1936|Breek {n} ijsblokken
+1937|Koop voor {n} munten
+1938|Makkelijk
+1939|Moeilijk
+1940|Uitdaging tegen {name}
+1941|Geluid aan
+1942|Geluid uit
+1943|Score: {n}
+1944|Speelveld: sleep een edelsteen om hem te verplaatsen
+1945|+{n} munten
+1946|Volgend level
+1947|Levelkaart
+1948|Mislukt! Geen zetten meer.
+1949|+5 zetten
+1950|Je versloeg {name}! {a} tegen {b}
+1951|Je verloor van {name}. {a} tegen {b}
+1952|Hamer
+1953|Schudden
+1954|Geen levens meer. Volgend leven over {m} min
+1955|+1 hamer
+1956|+1 schudden
+1957|+1 bonuszetten
+1958|Levens: +{n}
+1959|Munten: {n}
+1960|Vorige pagina
+1961|Levels {a} tot {b}
+1962|Volgende pagina
+1963|{name} is hier
+1964|Ga naar level
+1965|Ranglijst
+1966|Op level
+1967|Op score
+1968|Uitdagen
+1969|Demospelers: ze spelen op je telefoon, zonder server.
+1970|Je bijnaam
+1971|Speel level {n}
+1972|Dagelijkse beloning
+1973|Dag {n} van inloggen
+1974|Kom morgen terug voor een nieuw cadeau!
+1975|Maak rijen van 3 of meer edelstenen. Sleep een edelsteen om hem te wisselen met zijn buur.

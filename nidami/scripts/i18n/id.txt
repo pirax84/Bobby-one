@@ -1926,3 +1926,51 @@
 1925|Ketuk untuk mulai
 1926|Area permainan: ketuk untuk mengirim partikel ke inti
 1927|Nyawa: {n}
+1928|Prisma
+1929|Cocokkan, gabungkan, ledakkan
+1930|{n} dari 3 bintang
+1931|Tidak ada langkah: diacak otomatis
+1932|Koin tidak cukup
+1933|Ketuk permata untuk memecahkannya
+1934|Capai {n} poin
+1935|Kumpulkan {n} permata
+1936|Pecahkan {n} balok es
+1937|Beli seharga {n} koin
+1938|Mudah
+1939|Sulit
+1940|Tantangan melawan {name}
+1941|Suara aktif
+1942|Suara mati
+1943|Skor: {n}
+1944|Area permainan: seret permata untuk memindahkannya
+1945|+{n} koin
+1946|Level berikutnya
+1947|Peta level
+1948|Gagal! Tidak ada langkah lagi.
+1949|+5 langkah
+1950|Kamu mengalahkan {name}! {a} lawan {b}
+1951|Kamu kalah dari {name}. {a} lawan {b}
+1952|Palu
+1953|Acak
+1954|Nyawa habis. Nyawa berikutnya dalam {m} menit
+1955|+1 palu
+1956|+1 acak
+1957|+1 langkah bonus
+1958|Nyawa: +{n}
+1959|Koin: {n}
+1960|Halaman sebelumnya
+1961|Level {a} sampai {b}
+1962|Halaman berikutnya
+1963|{name} ada di sini
+1964|Ke level
+1965|Papan peringkat
+1966|Menurut level
+1967|Menurut skor
+1968|Tantang
+1969|Pemain demo: mereka bermain di ponselmu, tanpa server.
+1970|Nama panggilanmu
+1971|Mainkan level {n}
+1972|Hadiah harian
+1973|Hari ke-{n} masuk
+1974|Kembali besok untuk hadiah baru!
+1975|Sejajarkan 3 permata atau lebih. Seret permata untuk menukarnya dengan tetangganya.

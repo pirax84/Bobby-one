@@ -1926,3 +1926,51 @@
 1925|Tryk for at starte
 1926|Spilområde: tryk for at sende partiklen ind i kernen
 1927|Liv: {n}
+1928|Prisme
+1929|Match, kombiner, spræng
+1930|{n} af 3 stjerner
+1931|Ingen træk tilbage: automatisk blanding
+1932|Ikke nok mønter
+1933|Tryk på en ædelsten for at knuse den
+1934|Nå {n} point
+1935|Saml {n} ædelsten
+1936|Knus {n} isblokke
+1937|Køb for {n} mønter
+1938|Let
+1939|Svær
+1940|Udfordring mod {name}
+1941|Lyd til
+1942|Lyd fra
+1943|Point: {n}
+1944|Spilområde: træk en ædelsten for at flytte den
+1945|+{n} mønter
+1946|Næste niveau
+1947|Niveaukort
+1948|Fejlet! Ingen træk tilbage.
+1949|+5 træk
+1950|Du slog {name}! {a} mod {b}
+1951|Du tabte til {name}. {a} mod {b}
+1952|Hammer
+1953|Bland
+1954|Ingen liv tilbage. Næste liv om {m} min
+1955|+1 hammer
+1956|+1 blanding
+1957|+1 bonustræk
+1958|Liv: +{n}
+1959|Mønter: {n}
+1960|Forrige side
+1961|Niveau {a} til {b}
+1962|Næste side
+1963|{name} er her
+1964|Gå til niveau
+1965|Rangliste
+1966|Efter niveau
+1967|Efter point
+1968|Udfordr
+1969|Demospillere: de spiller på din telefon, uden server.
+1970|Dit kaldenavn
+1971|Spil niveau {n}
+1972|Dagens gave
+1973|Dag {n} i træk
+1974|Kom tilbage i morgen for en ny gave!
+1975|Få 3 eller flere ædelsten på række. Træk en ædelsten for at bytte den med naboen.

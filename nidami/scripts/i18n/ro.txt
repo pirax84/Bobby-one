@@ -1926,3 +1926,51 @@
 1925|Atinge pentru a începe
 1926|Zona de joc: atinge pentru a trimite particula în nucleu
 1927|Vieți: {n}
+1928|Prismă
+1929|Potrivește, combină, explodează
+1930|{n} din 3 stele
+1931|Nu mai sunt mutări: amestecare automată
+1932|Monede insuficiente
+1933|Atinge o piatră pentru a o sparge
+1934|Atinge {n} puncte
+1935|Strânge {n} pietre
+1936|Sparge {n} blocuri de gheață
+1937|Cumpără cu {n} monede
+1938|Ușor
+1939|Greu
+1940|Provocare cu {name}
+1941|Sunet activat
+1942|Sunet dezactivat
+1943|Scor: {n}
+1944|Zona de joc: trage o piatră pentru a o muta
+1945|+{n} monede
+1946|Nivelul următor
+1947|Harta nivelurilor
+1948|Ratat! Nu mai sunt mutări.
+1949|+5 mutări
+1950|Ai învins-o pe {name}! {a} la {b}
+1951|Ai pierdut în fața lui {name}. {a} la {b}
+1952|Ciocan
+1953|Amestecă
+1954|Nu mai ai vieți. Următoarea viață în {m} min
+1955|+1 ciocan
+1956|+1 amestecare
+1957|+1 mutări bonus
+1958|Vieți: +{n}
+1959|Monede: {n}
+1960|Pagina anterioară
+1961|Nivelurile {a}–{b}
+1962|Pagina următoare
+1963|{name} este aici
+1964|Mergi la nivel
+1965|Clasament
+1966|După nivel
+1967|După scor
+1968|Provoacă
+1969|Jucători demo: joacă pe telefonul tău, fără server.
+1970|Porecla ta
+1971|Joacă nivelul {n}
+1972|Cadoul zilei
+1973|Ziua {n} de conectare
+1974|Revino mâine pentru un cadou nou!
+1975|Aliniază 3 sau mai multe pietre. Trage o piatră pentru a o schimba cu vecina ei.

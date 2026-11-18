@@ -1926,3 +1926,51 @@
 1925|Pieskarieties, lai sāktu
 1926|Spēles laukums: pieskarieties, lai nosūtītu daļiņu kodolā
 1927|Dzīvības: {n}
+1928|Prizma
+1929|Savieno, kombinē, uzspridzini
+1930|{n} no 3 zvaigznēm
+1931|Gājienu vairs nav: automātiska sajaukšana
+1932|Nepietiek monētu
+1933|Pieskarieties dārgakmenim, lai to sasistu
+1934|Sasniedziet {n} punktus
+1935|Savāciet {n} dārgakmeņus
+1936|Sasitiet {n} ledus blokus
+1937|Pirkt par {n} monētām
+1938|Viegli
+1939|Grūti
+1940|Izaicinājums pret {name}
+1941|Skaņa ieslēgta
+1942|Skaņa izslēgta
+1943|Rezultāts: {n}
+1944|Spēles laukums: velciet dārgakmeni, lai to pārvietotu
+1945|+{n} monētas
+1946|Nākamais līmenis
+1947|Līmeņu karte
+1948|Neizdevās! Gājienu vairs nav.
+1949|+5 gājieni
+1950|Jūs uzvarējāt spēlētāju {name}! {a} pret {b}
+1951|Jūs zaudējāt spēlētājam {name}. {a} pret {b}
+1952|Āmurs
+1953|Sajaukt
+1954|Dzīvību nav. Nākamā dzīvība pēc {m} min
+1955|+1 āmurs
+1956|+1 sajaukšana
+1957|+1 bonusa gājieni
+1958|Dzīvības: +{n}
+1959|Monētas: {n}
+1960|Iepriekšējā lapa
+1961|Līmeņi {a}–{b}
+1962|Nākamā lapa
+1963|{name} ir šeit
+1964|Doties uz līmeni
+1965|Līderu saraksts
+1966|Pēc līmeņa
+1967|Pēc rezultāta
+1968|Izaicināt
+1969|Demonstrācijas spēlētāji: viņi spēlē jūsu tālrunī, bez servera.
+1970|Jūsu segvārds
+1971|Spēlēt {n}. līmeni
+1972|Dienas dāvana
+1973|{n}. pieteikšanās diena
+1974|Atgriezieties rīt pēc jaunas dāvanas!
+1975|Salieciet rindā 3 vai vairāk dārgakmeņus. Velciet dārgakmeni, lai to apmainītu ar kaimiņu.

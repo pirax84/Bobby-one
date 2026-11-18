@@ -1926,3 +1926,51 @@
 1925|Dotaknite se za začetek
 1926|Igralno polje: dotaknite se, da pošljete delec v jedro
 1927|Življenja: {n}
+1928|Prizma
+1929|Povezuj, kombiniraj, razstreli
+1930|{n} od 3 zvezdic
+1931|Ni več potez: samodejno mešanje
+1932|Premalo kovancev
+1933|Dotaknite se dragulja, da ga razbijete
+1934|Dosezite {n} točk
+1935|Zberite {n} draguljev
+1936|Razbijte {n} ledenih blokov
+1937|Kupi za {n} kovancev
+1938|Lahko
+1939|Težko
+1940|Izziv proti igralcu {name}
+1941|Zvok vklopljen
+1942|Zvok izklopljen
+1943|Rezultat: {n}
+1944|Igralno polje: povlecite dragulj, da ga premaknete
+1945|+{n} kovancev
+1946|Naslednja raven
+1947|Zemljevid ravni
+1948|Neuspeh! Ni več potez.
+1949|+5 potez
+1950|Premagali ste igralca {name}! {a} proti {b}
+1951|Izgubili ste proti igralcu {name}. {a} proti {b}
+1952|Kladivo
+1953|Premešaj
+1954|Ni več življenj. Naslednje življenje čez {m} min
+1955|+1 kladivo
+1956|+1 mešanje
+1957|+1 bonus poteze
+1958|Življenja: +{n}
+1959|Kovanci: {n}
+1960|Prejšnja stran
+1961|Ravni {a}–{b}
+1962|Naslednja stran
+1963|{name} je tukaj
+1964|Pojdi na raven
+1965|Lestvica
+1966|Po ravni
+1967|Po rezultatu
+1968|Izzovi
+1969|Demo igralci: igrajo na vašem telefonu, brez strežnika.
+1970|Vaš vzdevek
+1971|Igraj raven {n}
+1972|Darilo dneva
+1973|{n}. dan prijave
+1974|Vrnite se jutri po novo darilo!
+1975|Postavite 3 ali več draguljev v vrsto. Povlecite dragulj, da ga zamenjate s sosednjim.

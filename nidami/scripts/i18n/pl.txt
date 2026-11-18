@@ -1926,3 +1926,51 @@
 1925|Dotknij, aby zacząć
 1926|Pole gry: dotknij, aby wysłać cząstkę do rdzenia
 1927|Życia: {n}
+1928|Pryzmat
+1929|Łącz, kombinuj, wysadzaj
+1930|{n} z 3 gwiazdek
+1931|Brak ruchów: automatyczne tasowanie
+1932|Za mało monet
+1933|Dotknij klejnotu, aby go rozbić
+1934|Zdobądź {n} punktów
+1935|Zbierz {n} klejnotów
+1936|Rozbij {n} bloków lodu
+1937|Kup za {n} monet
+1938|Łatwy
+1939|Trudny
+1940|Wyzwanie: {name}
+1941|Dźwięk włączony
+1942|Dźwięk wyłączony
+1943|Wynik: {n}
+1944|Pole gry: przeciągnij klejnot, aby go przesunąć
+1945|+{n} monet
+1946|Następny poziom
+1947|Mapa poziomów
+1948|Porażka! Brak ruchów.
+1949|+5 ruchów
+1950|Pokonałeś gracza {name}! {a} do {b}
+1951|Przegrałeś z graczem {name}. {a} do {b}
+1952|Młotek
+1953|Tasowanie
+1954|Brak żyć. Następne życie za {m} min
+1955|+1 młotek
+1956|+1 tasowanie
+1957|+1 dodatkowe ruchy
+1958|Życia: +{n}
+1959|Monety: {n}
+1960|Poprzednia strona
+1961|Poziomy {a}–{b}
+1962|Następna strona
+1963|{name} jest tutaj
+1964|Przejdź do poziomu
+1965|Ranking
+1966|Według poziomu
+1967|Według wyniku
+1968|Rzuć wyzwanie
+1969|Gracze demo: grają na Twoim telefonie, bez serwera.
+1970|Twój pseudonim
+1971|Zagraj poziom {n}
+1972|Dzienny prezent
+1973|Dzień {n} logowania
+1974|Wróć jutro po nowy prezent!
+1975|Ułóż 3 lub więcej klejnotów w linii. Przeciągnij klejnot, aby zamienić go z sąsiednim.

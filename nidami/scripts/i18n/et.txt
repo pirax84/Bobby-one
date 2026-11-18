@@ -1926,3 +1926,51 @@
 1925|Alustamiseks puuduta
 1926|Mänguala: puuduta, et saata osake tuuma
 1927|Elud: {n}
+1928|Prisma
+1929|Sobita, kombineeri, lase plahvatada
+1930|{n} 3-st tähest
+1931|Käike pole: automaatne segamine
+1932|Münte pole piisavalt
+1933|Puuduta vääriskivi, et see purustada
+1934|Saavuta {n} punkti
+1935|Kogu {n} vääriskivi
+1936|Purusta {n} jääplokki
+1937|Osta {n} mündi eest
+1938|Lihtne
+1939|Raske
+1940|Väljakutse: {name}
+1941|Heli sees
+1942|Heli väljas
+1943|Punktid: {n}
+1944|Mänguala: lohista vääriskivi, et seda liigutada
+1945|+{n} münti
+1946|Järgmine tase
+1947|Tasemekaart
+1948|Ebaõnnestus! Käike pole enam.
+1949|+5 käiku
+1950|Võitsid mängija {name}! {a} : {b}
+1951|Kaotasid mängijale {name}. {a} : {b}
+1952|Haamer
+1953|Sega
+1954|Elusid pole. Järgmine elu {m} min pärast
+1955|+1 haamer
+1956|+1 segamine
+1957|+1 lisakäigud
+1958|Elud: +{n}
+1959|Mündid: {n}
+1960|Eelmine leht
+1961|Tasemed {a}–{b}
+1962|Järgmine leht
+1963|{name} on siin
+1964|Mine tasemele
+1965|Edetabel
+1966|Taseme järgi
+1967|Punktide järgi
+1968|Esita väljakutse
+1969|Demomängijad: nad mängivad sinu telefonis, serverita.
+1970|Sinu hüüdnimi
+1971|Mängi taset {n}
+1972|Päevatoetus
+1973|{n}. sisselogimispäev
+1974|Tule homme tagasi uue kingituse järele!
+1975|Joonda 3 või rohkem vääriskivi. Lohista vääriskivi, et see naabriga vahetada.

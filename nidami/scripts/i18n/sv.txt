@@ -1926,3 +1926,51 @@
 1925|Tryck för att starta
 1926|Spelyta: tryck för att skicka partikeln in i kärnan
 1927|Liv: {n}
+1928|Prisma
+1929|Para ihop, kombinera, spräng
+1930|{n} av 3 stjärnor
+1931|Inga drag kvar: automatisk blandning
+1932|Inte tillräckligt med mynt
+1933|Tryck på en ädelsten för att krossa den
+1934|Nå {n} poäng
+1935|Samla {n} ädelstenar
+1936|Krossa {n} isblock
+1937|Köp för {n} mynt
+1938|Lätt
+1939|Svår
+1940|Utmaning mot {name}
+1941|Ljud på
+1942|Ljud av
+1943|Poäng: {n}
+1944|Spelyta: dra en ädelsten för att flytta den
+1945|+{n} mynt
+1946|Nästa nivå
+1947|Nivåkarta
+1948|Misslyckades! Inga drag kvar.
+1949|+5 drag
+1950|Du slog {name}! {a} mot {b}
+1951|Du förlorade mot {name}. {a} mot {b}
+1952|Hammare
+1953|Blanda
+1954|Inga liv kvar. Nästa liv om {m} min
+1955|+1 hammare
+1956|+1 blandning
+1957|+1 bonusdrag
+1958|Liv: +{n}
+1959|Mynt: {n}
+1960|Föregående sida
+1961|Nivå {a} till {b}
+1962|Nästa sida
+1963|{name} är här
+1964|Gå till nivå
+1965|Topplista
+1966|Efter nivå
+1967|Efter poäng
+1968|Utmana
+1969|Demospelare: de spelar på din telefon, utan server.
+1970|Ditt smeknamn
+1971|Spela nivå {n}
+1972|Dagens present
+1973|Dag {n} i rad
+1974|Kom tillbaka i morgon för en ny present!
+1975|Lägg 3 eller fler ädelstenar på rad. Dra en ädelsten för att byta plats med grannen.

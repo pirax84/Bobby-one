@@ -1926,3 +1926,51 @@
 1925|Bakstelėkite, kad pradėtumėte
 1926|Žaidimo laukas: bakstelėkite, kad dalelė keliautų į šerdį
 1927|Gyvybės: {n}
+1928|Prizmė
+1929|Sujunk, derink, sprogdink
+1930|{n} iš 3 žvaigždučių
+1931|Nebėra ėjimų: automatinis maišymas
+1932|Nepakanka monetų
+1933|Bakstelėkite brangakmenį, kad jį sudaužytumėte
+1934|Pasiekite {n} taškų
+1935|Surinkite {n} brangakmenių
+1936|Sudaužykite {n} ledo blokų
+1937|Pirkti už {n} monetų
+1938|Lengva
+1939|Sunku
+1940|Iššūkis prieš {name}
+1941|Garsas įjungtas
+1942|Garsas išjungtas
+1943|Rezultatas: {n}
+1944|Žaidimo laukas: vilkite brangakmenį, kad jį perkeltumėte
+1945|+{n} monetų
+1946|Kitas lygis
+1947|Lygių žemėlapis
+1948|Nepavyko! Ėjimų nebėra.
+1949|+5 ėjimai
+1950|Nugalėjote žaidėją {name}! {a} : {b}
+1951|Pralaimėjote žaidėjui {name}. {a} : {b}
+1952|Kūjis
+1953|Maišyti
+1954|Gyvybių nebėra. Kita gyvybė po {m} min.
+1955|+1 kūjis
+1956|+1 maišymas
+1957|+1 papildomi ėjimai
+1958|Gyvybės: +{n}
+1959|Monetos: {n}
+1960|Ankstesnis puslapis
+1961|Lygiai {a}–{b}
+1962|Kitas puslapis
+1963|{name} yra čia
+1964|Eiti į lygį
+1965|Lyderių lentelė
+1966|Pagal lygį
+1967|Pagal rezultatą
+1968|Mesti iššūkį
+1969|Demonstraciniai žaidėjai: žaidžia jūsų telefone, be serverio.
+1970|Jūsų slapyvardis
+1971|Žaisti {n} lygį
+1972|Dienos dovana
+1973|{n}-oji prisijungimo diena
+1974|Grįžkite rytoj naujos dovanos!
+1975|Išrikiuokite 3 ar daugiau brangakmenių. Vilkite brangakmenį, kad sukeistumėte jį su kaimynu.

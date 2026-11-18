@@ -1926,3 +1926,51 @@
 1925|Klepnutím začnete
 1926|Herní pole: klepnutím pošlete částici do jádra
 1927|Životy: {n}
+1928|Hranol
+1929|Spojuj, kombinuj, vyhazuj do vzduchu
+1930|{n} ze 3 hvězd
+1931|Žádné tahy: automatické zamíchání
+1932|Nedostatek mincí
+1933|Klepnutím na drahokam jej rozbijete
+1934|Získejte {n} bodů
+1935|Seberte {n} drahokamů
+1936|Rozbijte {n} ledových bloků
+1937|Koupit za {n} mincí
+1938|Snadná
+1939|Těžká
+1940|Výzva proti hráči {name}
+1941|Zvuk zapnut
+1942|Zvuk vypnut
+1943|Skóre: {n}
+1944|Herní pole: přetažením drahokamu jej přesunete
+1945|+{n} mincí
+1946|Další úroveň
+1947|Mapa úrovní
+1948|Nepovedlo se! Už nejsou žádné tahy.
+1949|+5 tahů
+1950|Porazili jste hráče {name}! {a} : {b}
+1951|Prohráli jste s hráčem {name}. {a} : {b}
+1952|Kladivo
+1953|Zamíchat
+1954|Žádné životy. Další život za {m} min
+1955|+1 kladivo
+1956|+1 zamíchání
+1957|+1 bonusové tahy
+1958|Životy: +{n}
+1959|Mince: {n}
+1960|Předchozí strana
+1961|Úrovně {a}–{b}
+1962|Další strana
+1963|{name} je tady
+1964|Přejít na úroveň
+1965|Žebříček
+1966|Podle úrovně
+1967|Podle skóre
+1968|Vyzvat
+1969|Ukázkoví hráči: hrají na vašem telefonu, bez serveru.
+1970|Vaše přezdívka
+1971|Hrát úroveň {n}
+1972|Denní dárek
+1973|{n}. den přihlášení
+1974|Vraťte se zítra pro nový dárek!
+1975|Seřaďte 3 nebo více drahokamů do řady. Přetažením drahokamu jej vyměníte se sousedním.

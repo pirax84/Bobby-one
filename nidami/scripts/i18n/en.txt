@@ -1926,3 +1926,51 @@
 1925|Tap to start
 1926|Play area: tap to send the particle into the core
 1927|Lives: {n}
+1928|Prism
+1929|Match, combine, explode
+1930|{n} out of 3 stars
+1931|No moves left: automatic shuffle
+1932|Not enough coins
+1933|Tap a gem to break it
+1934|Reach {n} points
+1935|Collect {n} gems
+1936|Break {n} ice blocks
+1937|Buy for {n} coins
+1938|Easy
+1939|Hard
+1940|Challenge vs {name}
+1941|Sound on
+1942|Sound off
+1943|Score: {n}
+1944|Play area: drag a gem to move it
+1945|+{n} coins
+1946|Next level
+1947|Level map
+1948|Failed! No moves left.
+1949|+5 moves
+1950|You beat {name}! {a} to {b}
+1951|You lost to {name}. {a} to {b}
+1952|Hammer
+1953|Shuffle
+1954|No lives left. Next life in {m} min
+1955|+1 hammer
+1956|+1 shuffle
+1957|+1 bonus moves
+1958|Lives: +{n}
+1959|Coins: {n}
+1960|Previous page
+1961|Levels {a} to {b}
+1962|Next page
+1963|{name} is here
+1964|Go to level
+1965|Leaderboard
+1966|By level
+1967|By score
+1968|Challenge
+1969|Demo players: they play on your phone, no server.
+1970|Your nickname
+1971|Play level {n}
+1972|Daily gift
+1973|Day {n} of login
+1974|Come back tomorrow for a new gift!
+1975|Match 3 or more gems. Drag a gem to swap it with its neighbor.

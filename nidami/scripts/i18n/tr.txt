@@ -1926,3 +1926,51 @@
 1925|Başlamak için dokunun
 1926|Oyun alanı: parçacığı çekirdeğe göndermek için dokunun
 1927|Can: {n}
+1928|Prizma
+1929|Eşleştir, birleştir, patlat
+1930|3 yıldızdan {n}
+1931|Hamle kalmadı: otomatik karıştırma
+1932|Yeterli jeton yok
+1933|Kırmak için bir mücevhere dokunun
+1934|{n} puana ulaşın
+1935|{n} mücevher toplayın
+1936|{n} buz bloğu kırın
+1937|{n} jetonla satın al
+1938|Kolay
+1939|Zor
+1940|{name} ile meydan okuma
+1941|Ses açık
+1942|Ses kapalı
+1943|Puan: {n}
+1944|Oyun alanı: bir mücevheri sürükleyerek taşıyın
+1945|+{n} jeton
+1946|Sonraki seviye
+1947|Seviye haritası
+1948|Olmadı! Hamle kalmadı.
+1949|+5 hamle
+1950|{name} oyuncusunu yendiniz! {a} - {b}
+1951|{name} oyuncusuna kaybettiniz. {a} - {b}
+1952|Çekiç
+1953|Karıştır
+1954|Can kalmadı. Sonraki can {m} dk sonra
+1955|+1 çekiç
+1956|+1 karıştırma
+1957|+1 bonus hamle
+1958|Can: +{n}
+1959|Jeton: {n}
+1960|Önceki sayfa
+1961|{a}–{b}. seviyeler
+1962|Sonraki sayfa
+1963|{name} burada
+1964|Seviyeye git
+1965|Sıralama
+1966|Seviyeye göre
+1967|Puana göre
+1968|Meydan oku
+1969|Demo oyuncular: telefonunuzda oynarlar, sunucu yoktur.
+1970|Takma adınız
+1971|{n}. seviyeyi oyna
+1972|Günlük hediye
+1973|{n}. giriş günü
+1974|Yeni hediye için yarın gelin!
+1975|3 veya daha fazla mücevheri yan yana getirin. Bir mücevheri komşusuyla değiştirmek için sürükleyin.

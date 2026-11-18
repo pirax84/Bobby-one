@@ -1926,3 +1926,51 @@
 1925|Tapáil chun tosú
 1926|Limistéar cluiche: tapáil chun an cháithnín a sheoladh isteach sa chroílár
 1927|Saolta: {n}
+1928|Priosma
+1929|Meaitseáil, comhcheangail, pléasc
+1930|{n} as 3 réalta
+1931|Níl aon bhogadh fágtha: measctha uathoibríoch
+1932|Níl go leor boinn agat
+1933|Tapáil gemstone chun é a bhriseadh
+1934|Bain {n} pointe amach
+1935|Bailigh {n} gemstone
+1936|Bris {n} bloc oighir
+1937|Ceannaigh ar {n} bonn
+1938|Éasca
+1939|Deacair
+1940|Dúshlán in aghaidh {name}
+1941|Fuaim ar siúl
+1942|Fuaim múchta
+1943|Scór: {n}
+1944|Limistéar cluiche: tarraing gemstone chun é a bhogadh
+1945|+{n} bonn
+1946|An chéad leibhéal eile
+1947|Léarscáil leibhéal
+1948|Theip ort! Níl aon bhogadh fágtha.
+1949|+5 bhogadh
+1950|Bhuaigh tú ar {name}! {a} in aghaidh {b}
+1951|Chaill tú in aghaidh {name}. {a} in aghaidh {b}
+1952|Casúr
+1953|Measc
+1954|Níl aon saol fágtha. An chéad saol eile i gceann {m} nóim
+1955|+1 casúr
+1956|+1 measc
+1957|+1 bhogadh bónais
+1958|Saolta: +{n}
+1959|Boinn: {n}
+1960|An leathanach roimhe
+1961|Leibhéil {a} go {b}
+1962|An chéad leathanach eile
+1963|Tá {name} anseo
+1964|Téigh go leibhéal
+1965|Clár ceannais
+1966|De réir leibhéil
+1967|De réir scóir
+1968|Tabhair dúshlán
+1969|Imreoirí taispeána: imríonn siad ar do ghuthán, gan freastalaí.
+1970|Do leasainm
+1971|Imir leibhéal {n}
+1972|Bronntanas an lae
+1973|Lá {n} logála isteach
+1974|Tar ar ais amárach le haghaidh bronntanas nua!
+1975|Ailínigh 3 gemstone nó níos mó. Tarraing gemstone chun é a mhalartú leis an gceann in aice leis.

@@ -1926,3 +1926,51 @@
 1925|Dodirnite za početak
 1926|Igraće polje: dodirnite da pošaljete česticu u jezgru
 1927|Životi: {n}
+1928|Prizma
+1929|Spoji, kombiniraj, raznesi
+1930|{n} od 3 zvjezdice
+1931|Nema više poteza: automatsko miješanje
+1932|Nema dovoljno novčića
+1933|Dodirnite dragulj da ga razbijete
+1934|Dosegnite {n} bodova
+1935|Skupite {n} dragulja
+1936|Razbijte {n} blokova leda
+1937|Kupi za {n} novčića
+1938|Lako
+1939|Teško
+1940|Izazov protiv igrača {name}
+1941|Zvuk uključen
+1942|Zvuk isključen
+1943|Rezultat: {n}
+1944|Igraće polje: povucite dragulj da ga pomaknete
+1945|+{n} novčića
+1946|Sljedeća razina
+1947|Karta razina
+1948|Neuspjeh! Nema više poteza.
+1949|+5 poteza
+1950|Pobijedili ste igrača {name}! {a} : {b}
+1951|Izgubili ste od igrača {name}. {a} : {b}
+1952|Čekić
+1953|Promiješaj
+1954|Nema života. Sljedeći život za {m} min
+1955|+1 čekić
+1956|+1 miješanje
+1957|+1 bonus potezi
+1958|Životi: +{n}
+1959|Novčići: {n}
+1960|Prethodna stranica
+1961|Razine {a}–{b}
+1962|Sljedeća stranica
+1963|{name} je ovdje
+1964|Idi na razinu
+1965|Ljestvica
+1966|Po razini
+1967|Po rezultatu
+1968|Izazovi
+1969|Demo igrači: igraju na vašem telefonu, bez poslužitelja.
+1970|Vaš nadimak
+1971|Igraj razinu {n}
+1972|Dnevni dar
+1973|{n}. dan prijave
+1974|Vratite se sutra po novi dar!
+1975|Poredajte 3 ili više dragulja u niz. Povucite dragulj da ga zamijenite sa susjednim.

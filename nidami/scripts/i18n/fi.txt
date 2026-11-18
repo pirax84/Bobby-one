@@ -1926,3 +1926,51 @@
 1925|Aloita napauttamalla
 1926|Pelialue: napauta lähettääksesi hiukkasen ytimeen
 1927|Henget: {n}
+1928|Prisma
+1929|Yhdistä, yhdistele, räjäytä
+1930|{n} / 3 tähteä
+1931|Ei siirtoja: automaattinen sekoitus
+1932|Kolikot eivät riitä
+1933|Napauta jalokiveä rikkoaksesi sen
+1934|Saavuta {n} pistettä
+1935|Kerää {n} jalokiveä
+1936|Riko {n} jääpalikkaa
+1937|Osta {n} kolikolla
+1938|Helppo
+1939|Vaikea
+1940|Haaste: {name}
+1941|Ääni päällä
+1942|Ääni pois
+1943|Pisteet: {n}
+1944|Pelialue: vedä jalokivi siirtääksesi sen
+1945|+{n} kolikkoa
+1946|Seuraava taso
+1947|Tasokartta
+1948|Epäonnistui! Siirrot loppuivat.
+1949|+5 siirtoa
+1950|Voitit pelaajan {name}! {a}–{b}
+1951|Hävisit pelaajalle {name}. {a}–{b}
+1952|Vasara
+1953|Sekoita
+1954|Henget loppu. Seuraava henki {m} min kuluttua
+1955|+1 vasara
+1956|+1 sekoitus
+1957|+1 bonussiirrot
+1958|Henget: +{n}
+1959|Kolikot: {n}
+1960|Edellinen sivu
+1961|Tasot {a}–{b}
+1962|Seuraava sivu
+1963|{name} on täällä
+1964|Siirry tasolle
+1965|Tulostaulu
+1966|Tason mukaan
+1967|Pisteiden mukaan
+1968|Haasta
+1969|Demopelaajat: he pelaavat puhelimellasi, ilman palvelinta.
+1970|Lempinimesi
+1971|Pelaa taso {n}
+1972|Päivän lahja
+1973|Kirjautumispäivä {n}
+1974|Tule huomenna takaisin uuden lahjan vuoksi!
+1975|Aseta 3 tai useampi jalokivi riviin. Vedä jalokivi vaihtaaksesi sen naapurin kanssa.

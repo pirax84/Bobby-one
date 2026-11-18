@@ -1926,3 +1926,51 @@
 1925|Zum Starten tippen
 1926|Spielfeld: Tippen Sie, um das Teilchen in den Kern zu schicken
 1927|Leben: {n}
+1928|Prisma
+1929|Kombinieren und explodieren lassen
+1930|{n} von 3 Sternen
+1931|Keine Züge mehr: automatisches Mischen
+1932|Nicht genug Münzen
+1933|Tippe auf einen Edelstein, um ihn zu zerstören
+1934|Erreiche {n} Punkte
+1935|Sammle {n} Edelsteine
+1936|Zerstöre {n} Eisblöcke
+1937|Für {n} Münzen kaufen
+1938|Leicht
+1939|Schwer
+1940|Duell gegen {name}
+1941|Ton an
+1942|Ton aus
+1943|Punkte: {n}
+1944|Spielfeld: Ziehe einen Edelstein, um ihn zu bewegen
+1945|+{n} Münzen
+1946|Nächstes Level
+1947|Levelkarte
+1948|Verloren! Keine Züge mehr.
+1949|+5 Züge
+1950|Du hast {name} geschlagen! {a} zu {b}
+1951|Du hast gegen {name} verloren. {a} zu {b}
+1952|Hammer
+1953|Mischen
+1954|Keine Leben mehr. Nächstes Leben in {m} Min.
+1955|+1 Hammer
+1956|+1 Mischen
+1957|+1 Bonuszüge
+1958|Leben: +{n}
+1959|Münzen: {n}
+1960|Vorherige Seite
+1961|Level {a} bis {b}
+1962|Nächste Seite
+1963|{name} ist hier
+1964|Zu Level springen
+1965|Rangliste
+1966|Nach Level
+1967|Nach Punkten
+1968|Herausfordern
+1969|Demo-Spieler: Sie spielen auf deinem Handy, ohne Server.
+1970|Dein Spitzname
+1971|Level {n} spielen
+1972|Tägliches Geschenk
+1973|Tag {n} in Folge
+1974|Komm morgen wieder für ein neues Geschenk!
+1975|Bringe 3 oder mehr Edelsteine in eine Reihe. Ziehe einen Edelstein, um ihn mit seinem Nachbarn zu tauschen.

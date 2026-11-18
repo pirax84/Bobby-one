@@ -1926,3 +1926,51 @@
 1925|Koppintson a kezdéshez
 1926|Játéktér: koppintson, hogy a részecskét a magba küldje
 1927|Életek: {n}
+1928|Prizma
+1929|Párosíts, kombinálj, robbants
+1930|{n} a 3 csillagból
+1931|Nincs több lépés: automatikus keverés
+1932|Nincs elég érme
+1933|Koppints egy drágakőre, hogy összetörd
+1934|Érj el {n} pontot
+1935|Gyűjts {n} drágakövet
+1936|Törj össze {n} jégtömböt
+1937|Vásárlás {n} érméért
+1938|Könnyű
+1939|Nehéz
+1940|Kihívás ellene: {name}
+1941|Hang be
+1942|Hang ki
+1943|Pontszám: {n}
+1944|Játéktér: húzz egy drágakövet az áthelyezéséhez
+1945|+{n} érme
+1946|Következő szint
+1947|Szintek térképe
+1948|Nem sikerült! Nincs több lépés.
+1949|+5 lépés
+1950|Legyőzted: {name}! {a} – {b}
+1951|Vesztettél ellene: {name}. {a} – {b}
+1952|Kalapács
+1953|Keverés
+1954|Nincs több élet. Következő élet {m} perc múlva
+1955|+1 kalapács
+1956|+1 keverés
+1957|+1 bónusz lépések
+1958|Életek: +{n}
+1959|Érmék: {n}
+1960|Előző oldal
+1961|{a}–{b}. szint
+1962|Következő oldal
+1963|{name} itt van
+1964|Ugrás a szintre
+1965|Ranglista
+1966|Szint szerint
+1967|Pontszám szerint
+1968|Kihívás
+1969|Demó játékosok: a telefonodon játszanak, szerver nélkül.
+1970|Becenved
+1971|{n}. szint játszása
+1972|Napi ajándék
+1973|{n}. bejelentkezési nap
+1974|Gyere vissza holnap egy új ajándékért!
+1975|Állíts egy sorba 3 vagy több drágakövet. Húzz egy drágakövet, hogy felcseréld a szomszédjával.

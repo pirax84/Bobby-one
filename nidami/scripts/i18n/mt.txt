@@ -1926,3 +1926,51 @@
 1925|Agħmel tap biex tibda
 1926|Żona tal-logħba: agħmel tap biex tibgħat il-partiċella fil-qalba
 1927|Ħajjiet: {n}
+1928|Prisma
+1929|Qabbel, ikkombina, tfarrak
+1930|{n} minn 3 stilel
+1931|M'hemmx aktar mososs: taħlit awtomatiku
+1932|Muniti insuffiċjenti
+1933|Agħmel tap fuq ġawhra biex tkissirha
+1934|Laħaq {n} punti
+1935|Iġbor {n} ġawhar
+1936|Kisser {n} blokok tas-silġ
+1937|Ixtri għal {n} muniti
+1938|Faċli
+1939|Diffiċli
+1940|Sfida kontra {name}
+1941|Ħoss mixgħul
+1942|Ħoss mitfi
+1943|Punteġġ: {n}
+1944|Żona tal-logħba: kaxkar ġawhra biex tmexxiha
+1945|+{n} muniti
+1946|Il-livell li jmiss
+1947|Mappa tal-livelli
+1948|Falliment! M'hemmx aktar mososs.
+1949|+5 mososs
+1950|Rbaħt kontra {name}! {a} kontra {b}
+1951|Tlift kontra {name}. {a} kontra {b}
+1952|Martell
+1953|Ħallat
+1954|M'hemmx aktar ħajjiet. Il-ħajja li jmiss f'{m} min
+1955|+1 martell
+1956|+1 ħlit
+1957|+1 mososs bonus
+1958|Ħajjiet: +{n}
+1959|Muniti: {n}
+1960|Il-paġna ta' qabel
+1961|Livelli {a} sa {b}
+1962|Il-paġna li jmiss
+1963|{name} qiegħed hawn
+1964|Mur fil-livell
+1965|Klassifika
+1966|Skont il-livell
+1967|Skont il-punteġġ
+1968|Isfida
+1969|Plejers demo: jilagħbu fuq it-telefon tiegħek, mingħajr server.
+1970|Il-laqam tiegħek
+1971|Ilgħab il-livell {n}
+1972|Rigal tal-ġurnata
+1973|Jum {n} ta' login
+1974|Ejja lura għada għal rigal ġdid!
+1975|Ordna 3 ġawhriet jew aktar f'ringiela. Kaxkar ġawhra biex tbiddilha ma' dik ta' ħdejha.
