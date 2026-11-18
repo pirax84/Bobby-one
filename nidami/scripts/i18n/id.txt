@@ -1914,3 +1914,15 @@
 1913|Saat aplikasi dibuka, huruf NOTIIF jatuh ke dalam air.
 1914|Suara air kecil yang menyertai pembukaan aplikasi: ketuk tombol bulat untuk mendengarnya.
 1915|Kode QR terbaca, tetapi bukan kode teman NOTIIF.
+1916|Inti
+1917|Satu ketukan, satu irama
+1918|Ketuk layar saat partikel melewati zona yang bersinar.
+1919|Level {n}
+1920|Kombo ×{n}
+1921|Sempurna!
+1922|Level {n} selesai!
+1923|Kalah! Anda mencapai level {n}.
+1924|Level terbaik: {n}
+1925|Ketuk untuk mulai
+1926|Area permainan: ketuk untuk mengirim partikel ke inti
+1927|Nyawa: {n}

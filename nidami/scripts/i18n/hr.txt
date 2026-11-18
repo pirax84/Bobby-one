@@ -1914,3 +1914,15 @@
 1913|Pri pokretanju aplikacije slova NOTIIF padaju u vodu.
 1914|Mali zvuk vode pri otvaranju aplikacije: pritisnite okrugli gumb da ga čujete.
 1915|QR kôd je pročitan, ali nije NOTIIF kôd prijatelja.
+1916|Jezgra
+1917|Jedan dodir, jedan ritam
+1918|Dodirnite zaslon kad čestica prođe kroz svijetleću zonu.
+1919|Razina {n}
+1920|Combo ×{n}
+1921|Savršeno!
+1922|Razina {n} prijeđena!
+1923|Izgubili ste! Došli ste do razine {n}.
+1924|Najbolja razina: {n}
+1925|Dodirnite za početak
+1926|Igraće polje: dodirnite da pošaljete česticu u jezgru
+1927|Životi: {n}

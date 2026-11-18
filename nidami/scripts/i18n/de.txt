@@ -1914,3 +1914,15 @@
 1913|Beim Start der App fallen die Buchstaben NOTIIF ins Wasser.
 1914|Das kleine Wassergeräusch beim Öffnen der App: Tippen Sie auf die runde Taste, um es anzuhören.
 1915|QR-Code gelesen, aber es ist kein NOTIIF-Freundescode.
+1916|Kern
+1917|Ein Tipp, ein Rhythmus
+1918|Tippen Sie auf den Bildschirm, wenn das Teilchen durch die leuchtende Zone fliegt.
+1919|Level {n}
+1920|Combo ×{n}
+1921|Perfekt!
+1922|Level {n} geschafft!
+1923|Verloren! Sie haben Level {n} erreicht.
+1924|Bestes Level: {n}
+1925|Zum Starten tippen
+1926|Spielfeld: Tippen Sie, um das Teilchen in den Kern zu schicken
+1927|Leben: {n}

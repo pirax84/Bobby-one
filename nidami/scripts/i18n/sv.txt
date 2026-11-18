@@ -1914,3 +1914,15 @@
 1913|När appen startar faller bokstäverna NOTIIF ner i vattnet.
 1914|Det lilla vattenljudet när appen öppnas: tryck på den runda knappen för att höra det.
 1915|QR-koden lästes, men det är inte en NOTIIF-vänkod.
+1916|Kärna
+1917|En tryckning, en rytm
+1918|Tryck på skärmen när partikeln passerar den lysande zonen.
+1919|Nivå {n}
+1920|Kombo ×{n}
+1921|Perfekt!
+1922|Nivå {n} klarad!
+1923|Förlorat! Du nådde nivå {n}.
+1924|Bästa nivå: {n}
+1925|Tryck för att starta
+1926|Spelyta: tryck för att skicka partikeln in i kärnan
+1927|Liv: {n}

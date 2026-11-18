@@ -1914,3 +1914,15 @@
 1913|La pornirea aplicației, literele NOTIIF cad în apă.
 1914|Micul sunet de apă care însoțește deschiderea aplicației: apasă butonul rotund pentru a-l auzi.
 1915|Codul QR a fost citit, dar nu este un cod de prieten NOTIIF.
+1916|Nucleu
+1917|O atingere, un ritm
+1918|Atinge ecranul când particula trece prin zona luminoasă.
+1919|Nivelul {n}
+1920|Combo ×{n}
+1921|Perfect!
+1922|Nivelul {n} terminat!
+1923|Ai pierdut! Ai ajuns la nivelul {n}.
+1924|Cel mai bun nivel: {n}
+1925|Atinge pentru a începe
+1926|Zona de joc: atinge pentru a trimite particula în nucleu
+1927|Vieți: {n}

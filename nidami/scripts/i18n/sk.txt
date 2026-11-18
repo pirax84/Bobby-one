@@ -1914,3 +1914,15 @@
 1913|Pri spustení aplikácie padajú písmená NOTIIF do vody.
 1914|Malý zvuk vody pri otvorení aplikácie: stlačte okrúhle tlačidlo a vypočujte si ho.
 1915|QR kód bol prečítaný, ale nie je to kód priateľa NOTIIF.
+1916|Jadro
+1917|Jeden dotyk, jeden rytmus
+1918|Klepnite na obrazovku, keď častica prejde svietiacou zónou.
+1919|Úroveň {n}
+1920|Kombo ×{n}
+1921|Perfektné!
+1922|Úroveň {n} splnená!
+1923|Prehra! Dosiahli ste úroveň {n}.
+1924|Najlepšia úroveň: {n}
+1925|Klepnutím začnete
+1926|Herné pole: klepnutím pošlete časticu do jadra
+1927|Životy: {n}

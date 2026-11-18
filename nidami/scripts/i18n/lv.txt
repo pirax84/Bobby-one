@@ -1914,3 +1914,15 @@
 1913|Palaižot lietotni, NOTIIF burti iekrīt ūdenī.
 1914|Mazā ūdens skaņa, kas skan, atverot lietotni: pieskarieties apaļajai pogai, lai to dzirdētu.
 1915|QR kods nolasīts, bet tas nav NOTIIF drauga kods.
+1916|Kodols
+1917|Viens pieskāriens, viens ritms
+1918|Pieskarieties ekrānam, kad daļiņa šķērso mirdzošo zonu.
+1919|{n}. līmenis
+1920|Kombo ×{n}
+1921|Perfekti!
+1922|{n}. līmenis pabeigts!
+1923|Zaudējāt! Sasniedzāt {n}. līmeni.
+1924|Labākais līmenis: {n}
+1925|Pieskarieties, lai sāktu
+1926|Spēles laukums: pieskarieties, lai nosūtītu daļiņu kodolā
+1927|Dzīvības: {n}

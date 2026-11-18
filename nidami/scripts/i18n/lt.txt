@@ -1914,3 +1914,15 @@
 1913|Paleidus programėlę, NOTIIF raidės krinta į vandenį.
 1914|Mažas vandens garsas, girdimas atidarant programėlę: paspauskite apvalų mygtuką, kad jį išgirstumėte.
 1915|QR kodas nuskaitytas, bet tai ne NOTIIF draugo kodas.
+1916|Šerdis
+1917|Vienas bakstelėjimas, vienas ritmas
+1918|Bakstelėkite ekraną, kai dalelė praeina per švytinčią zoną.
+1919|{n} lygis
+1920|Kombo ×{n}
+1921|Puiku!
+1922|{n} lygis įveiktas!
+1923|Pralaimėjote! Pasiekėte {n} lygį.
+1924|Geriausias lygis: {n}
+1925|Bakstelėkite, kad pradėtumėte
+1926|Žaidimo laukas: bakstelėkite, kad dalelė keliautų į šerdį
+1927|Gyvybės: {n}

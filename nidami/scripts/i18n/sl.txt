@@ -1914,3 +1914,15 @@
 1913|Ob zagonu aplikacije črke NOTIIF padejo v vodo.
 1914|Majhen zvok vode ob odprtju aplikacije: tapnite okrogli gumb, da ga slišite.
 1915|Koda QR je prebrana, vendar ni koda prijatelja NOTIIF.
+1916|Jedro
+1917|En dotik, en ritem
+1918|Dotaknite se zaslona, ko delec zapelje skozi svetleče območje.
+1919|Raven {n}
+1920|Kombo ×{n}
+1921|Odlično!
+1922|Raven {n} opravljena!
+1923|Izgubili ste! Dosegli ste raven {n}.
+1924|Najboljša raven: {n}
+1925|Dotaknite se za začetek
+1926|Igralno polje: dotaknite se, da pošljete delec v jedro
+1927|Življenja: {n}

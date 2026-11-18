@@ -1914,3 +1914,15 @@
 1913|Bij het starten van de app vallen de letters NOTIIF in het water.
 1914|Het kleine watergeluid bij het openen van de app: tik op de ronde knop om het te horen.
 1915|QR-code gelezen, maar het is geen NOTIIF-vriendencode.
+1916|Kern
+1917|Eén tik, één ritme
+1918|Tik op het scherm wanneer het deeltje door de oplichtende zone gaat.
+1919|Level {n}
+1920|Combo ×{n}
+1921|Perfect!
+1922|Level {n} gehaald!
+1923|Verloren! Je hebt level {n} bereikt.
+1924|Beste level: {n}
+1925|Tik om te starten
+1926|Speelveld: tik om het deeltje in de kern te sturen
+1927|Levens: {n}

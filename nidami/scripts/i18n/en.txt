@@ -1914,3 +1914,15 @@
 1913|When the app starts, the NOTIIF letters fall into the water.
 1914|The little water sound that plays when the app opens: tap the round button to hear it.
 1915|QR code read, but it's not a NOTIIF friend code.
+1916|Core
+1917|One tap, one rhythm
+1918|Tap the screen when the particle passes through the glowing zone.
+1919|Level {n}
+1920|Combo ×{n}
+1921|Perfect!
+1922|Level {n} cleared!
+1923|Game over! You reached level {n}.
+1924|Best level: {n}
+1925|Tap to start
+1926|Play area: tap to send the particle into the core
+1927|Lives: {n}

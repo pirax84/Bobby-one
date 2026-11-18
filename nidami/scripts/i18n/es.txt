@@ -1914,3 +1914,15 @@
 1913|Al iniciar la app, las letras NOTIIF caen en el agua.
 1914|El pequeño sonido de agua que acompaña la apertura de la app: toque el botón redondo para escucharlo.
 1915|Código QR leído, pero no es un código de amigo de NOTIIF.
+1916|Núcleo
+1917|Un toque, un ritmo
+1918|Toca la pantalla cuando la partícula pase por la zona luminosa.
+1919|Nivel {n}
+1920|Combo ×{n}
+1921|¡Perfecto!
+1922|¡Nivel {n} superado!
+1923|¡Perdiste! Llegaste al nivel {n}.
+1924|Mejor nivel: {n}
+1925|Toca para empezar
+1926|Zona de juego: toca para enviar la partícula al núcleo
+1927|Vidas: {n}

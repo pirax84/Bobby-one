@@ -1914,3 +1914,15 @@
 1913|Po uruchomieniu aplikacji litery NOTIIF wpadają do wody.
 1914|Mały dźwięk wody towarzyszący otwarciu aplikacji: naciśnij okrągły przycisk, aby go usłyszeć.
 1915|Kod QR odczytany, ale to nie jest kod znajomego NOTIIF.
+1916|Rdzeń
+1917|Jedno dotknięcie, jeden rytm
+1918|Dotknij ekranu, gdy cząstka przechodzi przez świecącą strefę.
+1919|Poziom {n}
+1920|Combo ×{n}
+1921|Perfekcyjnie!
+1922|Poziom {n} ukończony!
+1923|Przegrana! Doszedłeś do poziomu {n}.
+1924|Najlepszy poziom: {n}
+1925|Dotknij, aby zacząć
+1926|Pole gry: dotknij, aby wysłać cząstkę do rdzenia
+1927|Życia: {n}

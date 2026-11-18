@@ -1914,3 +1914,15 @@
 1913|Uygulama açılırken NOTIIF harfleri suya düşer.
 1914|Uygulama açılırken çalan küçük su sesi: dinlemek için yuvarlak düğmeye dokunun.
 1915|QR kodu okundu, ancak bu bir NOTIIF arkadaş kodu değil.
+1916|Çekirdek
+1917|Tek dokunuş, tek ritim
+1918|Parçacık parlayan bölgeden geçerken ekrana dokunun.
+1919|Seviye {n}
+1920|Kombo ×{n}
+1921|Mükemmel!
+1922|Seviye {n} tamamlandı!
+1923|Kaybettiniz! {n}. seviyeye ulaştınız.
+1924|En iyi seviye: {n}
+1925|Başlamak için dokunun
+1926|Oyun alanı: parçacığı çekirdeğe göndermek için dokunun
+1927|Can: {n}

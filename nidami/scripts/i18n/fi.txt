@@ -1914,3 +1914,15 @@
 1913|Kun sovellus käynnistyy, NOTIIF-kirjaimet putoavat veteen.
 1914|Pieni vesiääni, joka kuuluu sovelluksen avautuessa: kuuntele se painamalla pyöreää painiketta.
 1915|QR-koodi luettiin, mutta se ei ole NOTIIF-kaverikoodi.
+1916|Ydin
+1917|Yksi napautus, yksi rytmi
+1918|Napauta näyttöä, kun hiukkanen kulkee hohtavan alueen läpi.
+1919|Taso {n}
+1920|Kombo ×{n}
+1921|Täydellinen!
+1922|Taso {n} läpi!
+1923|Hävisit! Pääsit tasolle {n}.
+1924|Paras taso: {n}
+1925|Aloita napauttamalla
+1926|Pelialue: napauta lähettääksesi hiukkasen ytimeen
+1927|Henget: {n}

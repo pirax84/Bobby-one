@@ -1914,3 +1914,15 @@
 1913|Nuair a thosaíonn an aip, titeann litreacha NOTIIF isteach san uisce.
 1914|An fhuaim bheag uisce a théann leis an aip a oscailt: brúigh an cnaipe cruinn chun éisteacht léi.
 1915|Léadh an cód QR, ach ní cód cara NOTIIF é.
+1916|Croílár
+1917|Tapáil amháin, rithim amháin
+1918|Tapáil an scáileán nuair a théann an cáithnín tríd an gcrios glóthach.
+1919|Leibhéal {n}
+1920|Combo ×{n}
+1921|Foirfe!
+1922|Leibhéal {n} críochnaithe!
+1923|Caillte! Shroich tú leibhéal {n}.
+1924|An leibhéal is fearr: {n}
+1925|Tapáil chun tosú
+1926|Limistéar cluiche: tapáil chun an cháithnín a sheoladh isteach sa chroílár
+1927|Saolta: {n}

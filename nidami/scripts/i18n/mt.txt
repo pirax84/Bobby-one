@@ -1914,3 +1914,15 @@
 1913|Meta tibda l-app, l-ittri NOTIIF jaqgħu fl-ilma.
 1914|Il-ħoss żgħir tal-ilma li jakkumpanja l-ftuħ tal-app: taqbad il-buttuna tonda biex tismgħu.
 1915|Il-kodiċi QR inqara, imma mhuwiex kodiċi ta' ħabib NOTIIF.
+1916|Qalba
+1917|Tap wieħed, ritmu wieħed
+1918|Agħmel tap fuq l-iskrin meta l-partiċella tgħaddi miż-żona li tiddi.
+1919|Livell {n}
+1920|Combo ×{n}
+1921|Perfett!
+1922|Livell {n} lest!
+1923|Tlift! Wasalt għal-livell {n}.
+1924|L-aħjar livell: {n}
+1925|Agħmel tap biex tibda
+1926|Żona tal-logħba: agħmel tap biex tibgħat il-partiċella fil-qalba
+1927|Ħajjiet: {n}

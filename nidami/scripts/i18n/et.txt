@@ -1914,3 +1914,15 @@
 1913|Rakenduse käivitamisel kukuvad NOTIIF-i tähed vette.
 1914|Väike veehelin rakenduse avamisel: puudutage ümmargust nuppu, et seda kuulda.
 1915|QR-kood loeti, aga see ei ole NOTIIF-i sõbrakood.
+1916|Tuum
+1917|Üks puudutus, üks rütm
+1918|Puuduta ekraani, kui osake läbib helendavat tsooni.
+1919|Tase {n}
+1920|Kombo ×{n}
+1921|Täiuslik!
+1922|Tase {n} läbitud!
+1923|Kaotus! Jõudsid tasemele {n}.
+1924|Parim tase: {n}
+1925|Alustamiseks puuduta
+1926|Mänguala: puuduta, et saata osake tuuma
+1927|Elud: {n}

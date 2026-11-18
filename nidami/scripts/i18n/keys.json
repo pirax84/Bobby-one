@@ -1914,5 +1914,17 @@
 "Écouter l'exemple",
 "Au lancement de l'appli, les lettres NOTIIF tombent dans l'eau.",
 "Le petit son d'eau qui accompagne l'ouverture de l'appli : appuyez sur le bouton rond pour l'écouter.",
-"QR code lu, mais ce n'est pas un code d'ami NOTIIF."
+"QR code lu, mais ce n'est pas un code d'ami NOTIIF.",
+"Noyau",
+"Un tap, un rythme",
+"Touche l'écran quand la particule passe dans la zone lumineuse.",
+"Niveau {n}",
+"Combo ×{n}",
+"Parfait !",
+"Niveau {n} réussi !",
+"Perdu ! Tu as atteint le niveau {n}.",
+"Meilleur niveau : {n}",
+"Touche pour commencer",
+"Zone de jeu : touche pour envoyer la particule dans le noyau",
+"Vies : {n}"
 ]

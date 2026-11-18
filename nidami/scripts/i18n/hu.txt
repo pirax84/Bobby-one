@@ -1914,3 +1914,15 @@
 1913|Az alkalmazás indulásakor a NOTIIF betűi a vízbe hullanak.
 1914|A kis vízhang az alkalmazás megnyitásakor: koppintson a kerek gombra a meghallgatásához.
 1915|A QR-kód beolvasva, de nem NOTIIF baráti kód.
+1916|Mag
+1917|Egy koppintás, egy ritmus
+1918|Koppintson a képernyőre, amikor a részecske áthalad a fénylő zónán.
+1919|{n}. szint
+1920|Kombó ×{n}
+1921|Tökéletes!
+1922|A(z) {n}. szint teljesítve!
+1923|Vesztettél! Elérted a(z) {n}. szintet.
+1924|Legjobb szint: {n}
+1925|Koppintson a kezdéshez
+1926|Játéktér: koppintson, hogy a részecskét a magba küldje
+1927|Életek: {n}
