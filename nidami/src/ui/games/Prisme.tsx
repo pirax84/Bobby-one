@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactElement } from "react";
 import { t } from "../../i18n";
 import { actions, useStore } from "../../lib/store";
 
@@ -94,7 +94,7 @@ function Stars({ n, s = 16 }: { n: number; s?: number }) {
 }
 const Coin = ({ s = 16 }: { s?: number }) => <svg width={s} height={s} viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#FF8A6B" /><circle cx="12" cy="12" r="6.5" fill="none" stroke="#fff" strokeWidth="1.6" opacity=".8" /></svg>;
 const Life = ({ s = 16 }: { s?: number }) => <svg width={s} height={s} viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C4 15 2.5 9.5 6 6.5c3-2.4 5 0 6 2 1-2 3-4.4 6-2 3.500 3 2 8.500-6 14.500z" fill="#E5679C" /></svg>;
-const IC: Record<string, JSX.Element> = {
+const IC: Record<string, ReactElement> = {
   hammer: <><path d="M14 4l6 6-3 3-6-6z" /><path d="M11.500 8.500L4 16l4 4 7.500-7.500" /></>,
   shuffle: <><path d="M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4" /><path d="M18 4l3 3-3 3M18 14l3 3-3 3" /></>,
   extra: <path d="M12 5v14M5 12h14" />,
@@ -172,7 +172,7 @@ function Play({ sv, commit, spec, opp, onBack, onNext, onRetry }: PlayProps) {
         const z = q.pop()!; const r = Math.floor(z / 100), c = z % 100; const gm = B.g[r][c]; if (!gm) continue;
         if (gm.sp === "h") for (let i = 0; i < n; i++) add(r, i);
         else if (gm.sp === "v") for (let i = 0; i < n; i++) add(i, c);
-        else if (gm.sp === "b") for (let dr = -2; dr <= 2; dr++) for (let dc = -2; dc <= 2; dc++) if (Math.abs(dr) + Math.abs(dc) <= 2) add(r + dr, c + dc);
+        else if (gm.sp === "b") { for (let dr = -2; dr <= 2; dr++) for (let dc = -2; dc <= 2; dc++) if (Math.abs(dr) + Math.abs(dc) <= 2) add(r + dr, c + dc); }
         else if (gm.sp === "r") { const cnt = Array(6).fill(0); B.g.forEach((row) => row.forEach((o) => { if (o && o.sp !== "r") cnt[o.k]++; })); const best = cnt.indexOf(Math.max(...cnt)); for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) if (B.g[i][j]?.k === best && B.g[i][j]!.sp !== "r") add(i, j); }
       }
     };
