@@ -9,8 +9,9 @@ import { LEGAL } from "@/lib/legal";
 import { FlashHost } from "./Flash";
 import { NAV as NAV_ALL, usePhone, Bobby, speak, stopSpeak, Fab, ToastHost } from "./ui";
 import { useT, LANGS, RTL } from "@/lib/i18n";
+import { DocsV, VaultV, SendersV } from "./Docs";
 import { PermissionsCard, BotV, HomeV, TextV, WebV, ImageV, CallsV, ThreatsV, FamilyV, CommunityV, SettingsV } from "./views";
-const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: TextV, web: WebV, image: ImageV, qr: ImageV, calls: CallsV, threats: ThreatsV, family: FamilyV, community: CommunityV, settings: SettingsV };
+const VIEWS: Record<View, () => JSX.Element> = { home: HomeV, chat: BotV, text: TextV, web: WebV, image: ImageV, qr: ImageV, calls: CallsV, threats: ThreatsV, family: FamilyV, community: CommunityV, settings: SettingsV, docs: DocsV, vault: VaultV, senders: SendersV };
 const STEPS = [["Bonjour, je suis Bobby.", "Je suis votre gardien personnel. Je vérifie messages, sites, appels et QR codes avant que vous ne fassiez une erreur."], ["Simple, comme une conversation", "Collez un message ou une adresse, je vous dis en clair si vous pouvez avoir confiance. Sans jargon."], ["Bobby veille sur vous.", "Protégez aussi vos proches grâce au mode famille et aux alertes de la communauté."], ["Quelques autorisations", "Pour mieux vous protéger, Bobby peut vous envoyer des alertes, connaître votre pays et écouter votre voix. Tout est facultatif."]];
 const BOTTOM: View[] = ["home", "calls", "chat", "community"];
 const NAV = NAV_ALL; const DESC = (id: View) => NAV.find((n) => n.id === id)!;
@@ -67,7 +68,7 @@ export default function App() {
   const V = VIEWS[!phone && view === "calls" ? "home" : view];
   const NV = phone ? NAV : NAV.filter((n) => n.id !== "calls");
   const nav = (id: View) => { go(id); setMore(false); window.scrollTo({ top: 0 }); };
-  const groups = ["", "Vérifier", "Protéger"]; const inMore = !BOTTOM.includes(view);
+  const groups = ["", "Vérifier", "Démarches", "Protéger"]; const inMore = !BOTTOM.includes(view);
   const item = (n: (typeof NAV)[0]) => <button type="button" key={n.id} onClick={() => nav(n.id)} aria-current={view === n.id ? "page" : undefined} className="flex items-center gap-3 px-4 py-2.5 rounded-2xl text-start transition w-full" style={view === n.id ? { background: "var(--soft)", color: "var(--brand)", fontWeight: 600 } : { color: "var(--mute)" }}><n.icon size={18} />{t(n.label)}</button>;
   return (<div className="min-h-screen md:flex">
     <aside className="hidden md:flex flex-col w-64 shrink-0 p-4 gap-1 sticky top-0 h-screen overflow-y-auto border-e" style={{ borderColor: "var(--bd)" }}>

@@ -3,7 +3,7 @@ import { Explain } from "./Explain";
 import { Where } from "./Where";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Bot, Mic as MicI, Volume2, VolumeX, Home, MessageSquareWarning, Globe, Image as Img, QrCode, PhoneCall, Siren, Users, Radio, Settings, Loader2, Check, X } from "lucide-react";
+import { Bot, Mic as MicI, Volume2, VolumeX, Home, MessageSquareWarning, Globe, Image as Img, QrCode, PhoneCall, Siren, Users, Radio, Settings, Loader2, Check, X, FileText, Lock, Ban } from "lucide-react";
 import { META, levelOf, Result } from "@/lib/engine";
 import { isApp, nSpeak, nStopSpeak } from "@/lib/native";
 import { useS, type View } from "@/lib/store";
@@ -26,6 +26,9 @@ export const NAV: { id: View; label: string; icon: any; desc: string; group: str
   { id: "threats", label: "Centre des menaces", icon: Siren, desc: "Reconnaître les arnaques", group: "Protéger" },
   { id: "family", label: "Famille", icon: Users, desc: "Protéger vos proches", group: "Protéger" },
   { id: "community", label: "Communauté", icon: Radio, desc: "Signalements en direct", group: "Protéger" },
+  { id: "docs", label: "Remplir un document", icon: FileText, desc: "Vérifier puis pré-remplir", group: "Démarches" },
+  { id: "vault", label: "Coffre-fort", icon: Lock, desc: "Mes informations Perso et Pro", group: "Démarches" },
+  { id: "senders", label: "Expéditeurs bloqués", icon: Ban, desc: "Adresses et domaines refusés", group: "Démarches" },
   { id: "settings", label: "Paramètres", icon: Settings, desc: "Personnaliser Bobby", group: "" },
 ];
 export const Bobby = ({ s = 48 }: { s?: number }) => (
@@ -67,7 +70,7 @@ export function ToastHost() {
   const toast = useS((s) => s.toast); const t = useT(); const col = { ok: "#22C55E", warn: "#F59E0B", bad: "#EF4444", info: "var(--brand)" };
   return (<div className="fixed top-3 inset-x-0 z-[70] flex justify-center px-4 pointer-events-none" style={{ paddingTop: "env(safe-area-inset-top)" }}><AnimatePresence>{toast && <motion.div key={toast.id} role="status" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -30, opacity: 0 }} className="card px-4 py-3 text-sm font-medium flex items-center gap-2 shadow-lg" style={{ background: "var(--solid)", borderColor: col[toast.tone] }}><span className="w-2 h-2 rounded-full" style={{ background: col[toast.tone] }} />{t(toast.text)}</motion.div>}</AnimatePresence></div>);
 }
-const GO: [RegExp, View][] = [[/accueil/i, "home"], [/texte|message|sms|mail/i, "text"], [/site|web|lien/i, "web"], [/image|photo|capture|qr/i, "image"], [/appel|t[ée]l[ée]phone|num[ée]ro/i, "calls"], [/menace|danger/i, "threats"], [/famille|proches/i, "family"], [/communaut[ée]|signal/i, "community"], [/r[ée]glage|param[èe]tre|option/i, "settings"]];
+const GO: [RegExp, View][] = [[/document|formulaire|d[ée]marche|remplir/i, "docs"], [/coffre/i, "vault"], [/exp[ée]diteur|quarantaine/i, "senders"], [/accueil/i, "home"], [/texte|message|sms|mail/i, "text"], [/site|web|lien/i, "web"], [/image|photo|capture|qr/i, "image"], [/appel|t[ée]l[ée]phone|num[ée]ro/i, "calls"], [/menace|danger/i, "threats"], [/famille|proches/i, "family"], [/communaut[ée]|signal/i, "community"], [/r[ée]glage|param[èe]tre|option/i, "settings"]];
 export function Fab() {
   const { settings: s, set, go, ask } = useS(); const t = useT(); const [lis, setLis] = useState(false); const [msg, setMsg] = useState(""); const vo = s.voice !== false;
   const hear = () => {

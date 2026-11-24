@@ -13,6 +13,7 @@ import { ocr, decodeQr, realText } from "@/lib/vision";
 import { contactsSupported, pickContacts } from "@/lib/contacts";
 import { platformOf } from "@/lib/platforms";
 import { analyzeNumber, NumResult } from "@/lib/numbers";
+import { withBlocked } from "@/lib/senders";
 import { askNotif, askMic, notifState, alertDanger, clearBobbyNotifications, PermState } from "@/lib/perm";
 import { NAV, usePhone, Bobby, Gauge, Badge, Report, Title, Toggle, Busy, speak, stopSpeak, Mic, listen, ERR } from "./ui";
 import { LEGAL } from "@/lib/legal";
@@ -89,14 +90,14 @@ export function HomeV() {
   const check = async (v = q) => {
     const x = v.trim(); if (x.length < 3) { setErr("Écrivez ou collez d'abord un message ou une adresse."); return; }
     setErr(""); setRes(null); setB(true); await wait(900);
-    const u0 = looksLikeUrl(x) ? analyzeUrl(x) : null; const lv = u0 ? await live(x) : null; const u = u0 ? applyLive(u0, lv) : null; const r = u || analyzeText(x); scan(u ? "web" : "text", x, r); setRes({ r, web: !!u, lv }); setQ(""); setB(false);
+    const u0 = looksLikeUrl(x) ? analyzeUrl(x) : null; const lv = u0 ? await live(x) : null; const u = u0 ? applyLive(u0, lv) : null; const r = withBlocked(u || analyzeText(x), x, useS.getState().blockedSenders); scan(u ? "web" : "text", x, r); setRes({ r, web: !!u, lv }); setQ(""); setB(false);
   };
   useEffect(() => { if (incoming) { const x = incoming; setIncoming(null); setQ(x); check(x); } }, [incoming]);
   const paste = async () => { try { const x = await navigator.clipboard.readText(); if (x) { setQ(x); setRes(null); setErr(""); } else notify("Le presse-papiers est vide.", "warn"); } catch { notify("Impossible de coller ici : faites un appui long dans la case, puis « Coller ».", "warn"); } };
   const avg = history.length ? Math.round(history.reduce((a, h) => a + h.score, 0) / history.length) : null;
   const stats: [string, string | number, string, View][] = [["Moyenne de mes vérifications", avg === null ? "—" : avg + "/100", avg === null ? "var(--mute)" : META[levelOf(avg)].color, "threats"], ["Vérifications faites", protectedToday, "var(--brand)", "text"], ["Menaces détectées", blocked, "#EF4444", "calls"], ["Mes signalements", reported.length, "#F59E0B", "community"]];
   const code = LANGS[lang]?.code || "fr"; const days = Array.from({ length: 7 }, (_, i) => { try { return new Intl.DateTimeFormat(code, { weekday: "narrow" }).format(new Date(2024, 0, 1 + i)); } catch { return "·"; } }); const bars = [12, 18, 9, 24, 15, 31, 20];
-  const phoneUi = usePhone(); const tools = NAV.filter((n) => ["text", "web", "image", "calls", "threats"].includes(n.id) && (phoneUi || n.id !== "calls"));
+  const phoneUi = usePhone(); const tools = NAV.filter((n) => ["docs", "text", "web", "image", "calls", "threats"].includes(n.id) && (phoneUi || n.id !== "calls"));
   return (<div className="space-y-5">
     <InstallCard />
     <section className="card p-5 md:p-6 space-y-4">
@@ -125,7 +126,7 @@ export function HomeV() {
 export function TextV() {
   const t = useT(); const scan = useScan(); const [v, setV] = useState(""); const [r, setR] = useState<Result | null>(null); const [b, setB] = useState(false); const [auto, setAuto] = useState(0); const runRef = useRef<() => void>(() => {});
   useEffect(() => { if (auto) setTimeout(() => runRef.current(), 0); }, [auto]);
-  const run = async () => { setB(true); setR(null); await wait(850); const x = analyzeText(v); scan("text", v, x); setR(x); setV(""); setB(false); };
+  const run = async () => { setB(true); setR(null); await wait(850); const x = withBlocked(analyzeText(v), v, useS.getState().blockedSenders); scan("text", v, x); setR(x); setV(""); setB(false); };
   runRef.current = run;
   return (<div><Title t="Analyse des messages" d="SMS, mails, WhatsApp, Telegram : copiez le message, puis collez-le ici." />
     {isApp() && <NativeInbox onPick={(x) => { setV(x.slice(0, 5000)); setR(null); setAuto((k) => k + 1); }} />}
@@ -138,7 +139,7 @@ export function TextV() {
 
 export function WebV() {
   const t = useT(); const scan = useScan(); const [u, setU] = useState(""); const [r, setR] = useState<UrlResult | null>(null); const [lv, setLv] = useState<Live | null>(null); const [b, setB] = useState(false); const [err, setErr] = useState("");
-  const run = async (v = u) => { setU(v); setErr(""); setR(null); setB(true); const x0 = analyzeUrl(v); const l = x0 ? await live(v) : null; await wait(500); setB(false); if (!x0) { setErr("Cette adresse ne me semble pas valide. Exemple : exemple.fr"); return; } const x = applyLive(x0, l); scan("web", x.domain, x); setLv(l); setR(x); setU(""); };
+  const run = async (v = u) => { setU(v); setErr(""); setR(null); setB(true); const x0 = analyzeUrl(v); const l = x0 ? await live(v) : null; await wait(500); setB(false); if (!x0) { setErr("Cette adresse ne me semble pas valide. Exemple : exemple.fr"); return; } const x = withBlocked(applyLive(x0, l), v, useS.getState().blockedSenders); scan("web", x.domain, x); setLv(l); setR(x); setU(""); };
   return (<div><Title t="Analyse site web" d="Collez l'adresse d'un site avant d'y entrer vos informations." />
     <div className="card p-5 space-y-4"><div className="flex gap-2 flex-col sm:flex-row"><input className="inp" dir="ltr" inputMode="url" aria-label={t("Adresse du site")} placeholder="https://…" value={u} onChange={(e) => setU(e.target.value)} onKeyDown={(e) => e.key === "Enter" && u && run()} /><button type="button" className="btn" disabled={!u || b} onClick={() => run()}>{t("Vérifier")}</button><ImportBtn onText={(x) => { const m = x.match(/(?:https?:\/\/|www\.)[^\s"'<>)]+|\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}(?:\/[^\s"'<>)]*)?/i); if (m) { setU(m[0]); setErr(""); } else setErr("Je ne trouve pas d'adresse de site dans ce fichier."); }} /><Mic onText={(x) => setU(x.replace(/\s+/g, "").replace(/point/gi, "."))} /></div>
       <div className="flex flex-wrap gap-2">{EX_W.map((x) => <button type="button" key={x} className="btn2" dir="ltr" onClick={() => run(x)}>{x.replace(/https?:\/\//, "")}</button>)}</div>{err && <p className="text-sm" role="alert" style={{ color: "#F59E0B" }}>{t(err)}</p>}</div>
@@ -165,7 +166,7 @@ export function ImageV() {
       const code = await decodeQr(f).catch(() => null); if (code) setQr(code);
       const all = (code ? [realText(text) ? text : "", code] : [text]).join("\n").trim();
       if (!code && !realText(text)) { setErr("Je ne trouve ni texte lisible, ni QR code lisible dans cette image. S'il s'agit d'un QR code : photo bien droite, entière, bien éclairée et sans reflet (les QR codes décorés avec un logo sont parfois plus difficiles à lire). Sinon, essayez une capture plus nette."); setB(false); return; }
-      setTxt(realText(text) ? text : ""); const x = await analyzeAny(all); scan("image", text || code || "image", x.r); setRes(x);
+      setTxt(realText(text) ? text : ""); const x0 = await analyzeAny(all); const x = { ...x0, r: withBlocked(x0.r, all, useS.getState().blockedSenders) }; scan("image", text || code || "image", x.r); setRes(x);
     } catch { setErr("Une erreur est survenue en lisant l'image. Réessayez."); }
     setB(false);
   };

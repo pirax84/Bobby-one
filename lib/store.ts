@@ -1,8 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-export type View = "home" | "chat" | "text" | "web" | "image" | "qr" | "calls" | "threats" | "family" | "community" | "settings";
+import { EMPTY_VAULT, type ProfileKind, type Vault } from "./vault";
+import type { SenderRule } from "./senders";
+export type View = "home" | "chat" | "text" | "web" | "image" | "qr" | "calls" | "threats" | "family" | "community" | "settings" | "docs" | "vault" | "senders";
 export interface Settings { lang: string; notif: boolean; privacy: boolean; theme: "dark" | "light"; security: "Standard" | "Renforcé" | "Maximum"; voice?: boolean; voiceName?: string; deep?: boolean; pitch?: number; rate?: number; country?: string; ghost?: boolean; micOn?: boolean; flash?: boolean; geoOn?: boolean; }
 export interface Scan { id: number; kind: "text" | "web" | "image" | "qr" | "call"; label: string; score: number; level: string; at: number; }
+export interface QItem { id: number; name: string; sender: string; at: number; reasons: string[]; excerpt: string; }
 export interface Toast { id: number; text: string; tone: "ok" | "warn" | "bad" | "info"; }
 interface S {
   view: View; go: (v: View) => void; onboarded: boolean; setup: boolean; finish: () => void; emergency: string; setEmergency: (x: string) => void;
@@ -17,6 +20,10 @@ interface S {
   sharedFile: File | null; setSharedFile: (f: File | null) => void;
   flashing: { level: string; score: number; id: number } | null; setFlashing: (f: { level: string; score: number } | null) => void;
   toast: Toast | null; notify: (text: string, tone?: Toast["tone"]) => void;
+  vault: Vault; setField: (p: ProfileKind, k: string, v: string) => void;
+  profile: ProfileKind; setProfile: (p: ProfileKind) => void;
+  blockedSenders: SenderRule[]; addSender: (r: SenderRule) => void; removeSender: (v: string) => void;
+  quarantine: QItem[]; toQuarantine: (q: Omit<QItem, "id" | "at">) => void; dropQuarantine: (id: number) => void;
 }
 let tid = 1;
 export const useS = create<S>()(persist((set) => ({
@@ -31,5 +38,9 @@ export const useS = create<S>()(persist((set) => ({
   contacts: [], setContacts: (contacts) => set({ contacts }),
   sharedFile: null, setSharedFile: (sharedFile) => set({ sharedFile }),
   flashing: null, setFlashing: (f) => set({ flashing: f ? { ...f, id: Date.now() } : null }),
+  vault: EMPTY_VAULT, setField: (p, k, v) => set((s) => ({ vault: { ...s.vault, [p]: { ...s.vault[p], [k]: v } } })),
+  profile: "PERSONAL", setProfile: (profile) => set({ profile }),
+  blockedSenders: [], addSender: (r) => set((s) => ({ blockedSenders: [r, ...s.blockedSenders.filter((x) => x.v !== r.v)] })), removeSender: (v) => set((s) => ({ blockedSenders: s.blockedSenders.filter((x) => x.v !== v) })),
+  quarantine: [], toQuarantine: (q) => set((s) => ({ quarantine: [{ ...q, id: Date.now() + Math.random(), at: Date.now() }, ...s.quarantine].slice(0, 50) })), dropQuarantine: (id) => set((s) => ({ quarantine: s.quarantine.filter((x) => x.id !== id) })),
   toast: null, notify: (text, tone = "ok") => { const id = tid++; set({ toast: { id, text, tone } }); setTimeout(() => set((s) => (s.toast?.id === id ? { toast: null } : s)), 3800); },
-}), { name: "bobby-one", version: 4, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; if (v < 4) o = { ...o, settings: { ...o.settings, voiceName: "", pitch: 0.75 } }; return o; }, partialize: (s) => ({ setup: s.setup, emergency: s.emergency, blockedNums: s.blockedNums, contacts: s.contacts, onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history }) }));
+}), { name: "bobby-one", version: 4, migrate: (st: any, v: number) => { let o = st; if (v < 2) o = { ...o, protectedToday: 0, blocked: 0, history: [] }; if (v < 3) o = { ...o, settings: { ...o.settings, voice: false } }; if (v < 4) o = { ...o, settings: { ...o.settings, voiceName: "", pitch: 0.75 } }; return o; }, partialize: (s) => ({ setup: s.setup, emergency: s.emergency, blockedNums: s.blockedNums, contacts: s.contacts, onboarded: s.onboarded, settings: s.settings, reported: s.reported, protectedToday: s.protectedToday, blocked: s.blocked, history: s.history, vault: s.vault, profile: s.profile, blockedSenders: s.blockedSenders, quarantine: s.quarantine }) }));
