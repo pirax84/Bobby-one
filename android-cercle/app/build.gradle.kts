@@ -22,17 +22,23 @@ android {
     }
 
     signingConfigs {
+        // La clé est secrète : elle n'est JAMAIS dans le dépôt. GitHub la fournit au moment de construire
+        // (secret du dépôt), via les variables SIGNING_KEYSTORE_FILE et SIGNING_PASSWORD.
         create("cercle") {
-            storeFile = file("cercle.keystore")
-            storePassword = "cerclepass"
-            keyAlias = "cercle"
-            keyPassword = "cerclepass"
+            val ks = System.getenv("SIGNING_KEYSTORE_FILE")
+            if (ks != null) {
+                storeFile = file(ks)
+                storeType = "pkcs12"
+                storePassword = System.getenv("SIGNING_PASSWORD")
+                keyAlias = "release"
+                keyPassword = System.getenv("SIGNING_PASSWORD")
+            }
         }
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("cercle")
+            if (System.getenv("SIGNING_KEYSTORE_FILE") != null) signingConfig = signingConfigs.getByName("cercle")
             isMinifyEnabled = false
         }
     }

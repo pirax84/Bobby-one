@@ -2,3 +2,6 @@ build/
 .gradle/
 local.properties
 *.iml
+*.keystore
+*.jks
+*.p12
