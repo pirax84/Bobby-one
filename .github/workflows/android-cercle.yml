@@ -52,7 +52,8 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          mkdir -p /tmp/ci && { echo "status: ${{ steps.build.outcome }}"; echo "run: ${{ github.run_number }}"; grep -nE "^e: |error:|FAILED|What went wrong|Caused by|Could not|BUILD " build.log | head -80; echo ----; tail -60 build.log; } > /tmp/ci/build-log.txt
+          touch build.log
+          mkdir -p /tmp/ci && { echo "status: ${{ steps.build.outcome }}"; echo "run: ${{ github.run_number }}"; grep -nE "^e: |error:|FAILED|What went wrong|Caused by|Could not|BUILD " build.log | head -80 || true; [ -s build.log ] || echo "La construction n'a pas démarré : vérifier le secret NOTIIF_SIGNING."; echo ----; tail -60 build.log; } > /tmp/ci/build-log.txt
           git checkout --orphan ci-logs-cercle
           git rm -rf --quiet . || true
           cp /tmp/ci/build-log.txt build-log.txt
@@ -68,3 +69,9 @@ jobs:
           cp android-cercle/app/build/outputs/apk/release/app-release.apk notiif.apk
           gh release delete notiif-android-latest --yes --cleanup-tag || true
           gh release create notiif-android-latest notiif.apk --title "NOTIIF pour Android" --notes "Version ${{ github.run_number }} — à installer directement sur le téléphone." --latest=false
+          # Lien fixe utilisé par l'appli et la page Android : branche « notiif-apk » (toujours la dernière version).
+          mkdir -p /tmp/apk && cp notiif.apk /tmp/apk/notiif.apk && cd /tmp/apk
+          git init -q && git checkout -q -b notiif-apk
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git add notiif.apk && git commit -q -m "NOTIIF Android, version ${{ github.run_number }}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" notiif-apk

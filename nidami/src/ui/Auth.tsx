@@ -9,7 +9,7 @@ import { t, tn } from "../i18n";
 // L'événement d'installation arrive tôt : on l'écoute dès le chargement du fichier.
 let deferred: any = null; const subs = new Set<() => void>();
 if (typeof window !== "undefined") { window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferred = e; subs.forEach((f) => f()); }); window.addEventListener("appinstalled", () => { deferred = null; subs.forEach((f) => f()); }); }
-const APK = "https://github.com/pirax84/Bobby-one/releases/download/notiif-android-latest/notiif.apk";
+const APK = "https://github.com/pirax84/Bobby-one/raw/notiif-apk/notiif.apk";
 const isApp = () => /CercleApp/.test(navigator.userAgent);
 const isAndroid = () => /Android/.test(navigator.userAgent);
 const standalone = () => typeof window !== "undefined" && (isApp() || window.matchMedia?.("(display-mode: standalone)").matches || (navigator as any).standalone === true);
