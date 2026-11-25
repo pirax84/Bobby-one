@@ -1402,3 +1402,14 @@ html:not(.zz) .topr .topb svg,html:not(.zz) .topr .topsearch svg{color:var(--icf
 html:not(.zz) .bottom button[data-k]>svg,html:not(.zz) .bottom button[data-k].on>svg{color:var(--icfg)!important}
 html:not(.zz) .topme,html:not(.zz) .topme .av{background:linear-gradient(135deg,var(--ic1),var(--ic2))!important;color:var(--icfg)!important}
 html:not(.zz) .topme svg{color:var(--icfg)!important}
+
+/* Connexion : messages bien visibles et centrés (aux couleurs de l'appli, lisibles en clair et en sombre) */
+.authnote{width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:16px 14px;border-radius:18px;background:rgba(var(--brand-rgb),.09);border:1.5px solid rgba(var(--brand-rgb),.35);color:var(--fg)}
+.authnote.alert{background:rgba(var(--brand2-rgb),.10);border-color:rgba(var(--brand2-rgb),.55)}
+.authnote.ok{background:rgba(var(--brand-rgb),.12);border-color:rgba(var(--brand-rgb),.5)}
+.authnote-ic{font-size:1.9rem;line-height:1}
+.authnote-t{font-size:1.08rem}
+.authnote-x{font-size:.97rem;line-height:1.45}
+.authnote-b{width:100%;gap:8px;margin-top:6px}
+.authforgot{align-self:center;background:none;border:0;padding:6px 10px;font:inherit;font-weight:700;color:var(--brand2);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.authforgot:hover{opacity:.8}

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { actions } from "../lib/store";
-import { PROVIDERS, serverOn, oauthUrl, emailSignUp, emailLogin, type Prov } from "../lib/auth";
+import { useEffect, useState, type ReactNode } from "react";
+import { actions, getState } from "../lib/store";
+import { PROVIDERS, serverOn, oauthUrl, emailSignUp, emailLogin, sendReset, setNewPassword, pendingRecovery, clearRecovery, readRecovery, type Prov, type ErrCode } from "../lib/auth";
 import { Logo, Modal, toast, Switch, DobFields, ageFrom, fileToDataUrl } from "./common";
 import { setKidCode } from "./Kid";
 import { LegalView } from "./Legal";
@@ -64,8 +64,63 @@ function PwField({ value, onChange, label, hint, tone, autoComplete }: { value: 
 }
 function Fld({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) { return <label className="col" style={{ gap: 3, textAlign: "left" }}><span className="muted small">{label}</span>{children}{hint && <span className="muted small">{hint}</span>}</label>; }
 
+/** Message bien visible et centré (remplace le petit texte coloré) : icône, titre, explication, boutons d'action. */
+export function Notice({ icon, title, text, kind = "info", children }: { icon: string; title?: string; text: ReactNode; kind?: "info" | "ok" | "alert"; children?: ReactNode }) {
+  return <div className={"authnote " + kind} role={kind === "alert" ? "alert" : "status"} aria-live="polite">
+    <div className="authnote-ic" aria-hidden="true">{icon}</div>
+    {title && <b className="authnote-t">{title}</b>}
+    <div className="authnote-x">{text}</div>
+    {children && <div className="col authnote-b">{children}</div>}
+  </div>;
+}
+const mailRe = /^\S+@\S+\.\S+$/;
+/** « Mot de passe oublié » : on écrit son e-mail, le serveur envoie un lien pour choisir un nouveau mot de passe. */
+export function ForgotForm({ initial = "", onBack }: { initial?: string; onBack?: () => void }) {
+  const [email, setEmail] = useState(initial); const [busy, setBusy] = useState(false); const [sent, setSent] = useState(""); const [err, setErr] = useState(""); const [wait, setWait] = useState(0);
+  useEffect(() => { if (wait <= 0) return; const id = setTimeout(() => setWait(wait - 1), 1000); return () => clearTimeout(id); }, [wait]);
+  const go = async (e?: React.FormEvent) => { e?.preventDefault(); setErr(""); const m = email.trim(); if (!mailRe.test(m)) { setErr(t("Écrivez une adresse e-mail valide.")); return; }
+    setBusy(true); const r = await sendReset(m); setBusy(false); if (r.ok) { setSent(m); setWait(60); } else { setErr(r.msg); if (r.code === "toomany") setWait(60); } };
+  if (sent) return <div className="col" style={{ width: "100%", gap: 10 }}>
+    <Notice kind="ok" icon="✉️" title={t("E-mail envoyé")} text={<>{tn("Si un compte NOTIIF existe avec l'adresse {email}, un e-mail arrive dans quelques minutes. Ouvrez-le et touchez le lien pour choisir un nouveau mot de passe. Pensez à regarder dans les courriers indésirables.", { email: <b>{sent}</b> })}{isApp() && <><br /><br />{t("Le lien s'ouvre dans le navigateur du téléphone : choisissez-y votre nouveau mot de passe, puis revenez dans l'appli NOTIIF pour vous connecter.")}</>}</>} />
+    {err && <Notice kind="alert" icon="⚠️" text={err} />}
+    <button type="button" className="btn ghost" disabled={busy || wait > 0} onClick={() => void go()}>{wait > 0 ? tn("Renvoyer dans {n} s", { n: wait }) : t("Renvoyer l'e-mail")}</button>
+    {onBack && <button type="button" className="btn" onClick={onBack}>{t("Retour à la connexion")}</button>}
+  </div>;
+  return <form className="col" style={{ width: "100%", gap: 10 }} onSubmit={go} noValidate>
+    <p className="muted" style={{ margin: 0, textAlign: "center" }}>{t("Écrivez l'adresse e-mail de votre compte : nous vous envoyons un lien pour choisir un nouveau mot de passe.")}</p>
+    <Fld label={t("Adresse e-mail")}><input className="inp" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" autoFocus /></Fld>
+    {err && <Notice kind="alert" icon="⚠️" text={err} />}
+    <button className="btn" disabled={busy || wait > 0}>{wait > 0 ? tn("Renvoyer dans {n} s", { n: wait }) : t("Envoyer le lien")}</button>
+    {onBack && <button type="button" className="btn ghost" onClick={onBack}>{t("Retour à la connexion")}</button>}
+  </form>;
+}
+/** Retour depuis le lien de l'e-mail : fenêtre au centre pour choisir le nouveau mot de passe (PC et Android). */
+export function RecoveryGate() {
+  const [rc, setRc] = useState(() => pendingRecovery()); const [pw, setPw] = useState(""); const [pw2, setPw2] = useState(""); const [busy, setBusy] = useState(false); const [err, setErr] = useState<{ msg: string; code?: ErrCode } | null>(null); const [done, setDone] = useState<string | null>(null);
+  useEffect(() => { const h = () => { const r = readRecovery(); if (r) { setRc(r); setDone(null); setErr(null); } }; window.addEventListener("hashchange", h); return () => window.removeEventListener("hashchange", h); }, []);
+  if (!rc) return null;
+  const close = () => { clearRecovery(); setRc(null); };
+  const expired = "error" in rc || err?.code === "expired";
+  const save = async (e: React.FormEvent) => { e.preventDefault(); setErr(null);
+    if (pw.length < 8) return setErr({ msg: t("Le mot de passe doit avoir 8 caractères ou plus.") });
+    if (pw !== pw2) return setErr({ msg: t("Les deux mots de passe ne sont pas pareils.") });
+    setBusy(true); const r = await setNewPassword(pw); setBusy(false); if (r.ok) setDone(r.who?.name || ""); else setErr({ msg: r.msg, code: r.code }); };
+  const finish = () => { if (done !== null && !getState().started) actions.start(done || t("Moi"), "", ""); close(); };
+  return <Modal title={t("Nouveau mot de passe")} onClose={done !== null ? finish : close}><div className="col" style={{ gap: 12, alignItems: "center" }}>
+    <Logo s={64} />
+    {done !== null ? <Notice kind="ok" icon="✅" title={t("Mot de passe changé")} text={t("C'est fait : votre nouveau mot de passe est enregistré et vous êtes connecté.")}><button type="button" className="btn" onClick={finish}>{t("Continuer")}</button></Notice>
+    : expired ? <><Notice kind="alert" icon="⏳" title={t("Ce lien ne marche plus")} text={t("Il a expiré ou a déjà servi. Demandez un nouveau lien ci-dessous.")} /><ForgotForm /></>
+    : <form className="col" style={{ width: "100%", gap: 10 }} onSubmit={save} noValidate>
+      <p className="muted" style={{ margin: 0, textAlign: "center" }}>{t("Choisissez votre nouveau mot de passe.")}</p>
+      <PwField label={t("Nouveau mot de passe")} value={pw} onChange={setPw} hint={t("8 caractères ou plus")} autoComplete="new-password" />
+      <PwField label={t("Écris-le encore une fois")} value={pw2} onChange={setPw2} tone={pw2.length > 0} autoComplete="new-password" hint={pw2.length === 0 ? undefined : pw === pw2 ? t("✓ Les deux sont pareils") : t("✗ Ce n'est pas pareil, regarde bien")} />
+      {err && <Notice kind="alert" icon="⚠️" text={err.msg} />}
+      <button className="btn" disabled={busy}>{t("Enregistrer mon nouveau mot de passe")}</button></form>}
+  </div></Modal>;
+}
+
 function SignUp() {
-  const [mode, setMode] = useState<"new" | "old">("new"); const [step, setStep] = useState(1);
+  const [mode, setMode] = useState<"new" | "old" | "forgot">("new"); const [exists, setExists] = useState(false); const [code, setCode] = useState<ErrCode | undefined>(); const [step, setStep] = useState(1);
   const [email, setEmail] = useState(""); const [pw, setPw] = useState(""); const [pw2, setPw2] = useState("");
   const [name, setName] = useState(""); const [last, setLast] = useState(""); const [pseudo, setPseudo] = useState(""); const [dob, setDob] = useState<[string, string, string]>(["", "", ""]);
   const [country, setCountry] = useState(""); const [city, setCity] = useState(""); const [phone, setPhone] = useState(""); const [photo, setPhoto] = useState<string | undefined>();
@@ -84,17 +139,23 @@ function SignUp() {
   const next = () => { if (!okStep(step)) { setInfo(why(step)); return; } setInfo(""); if (step < 4) setStep(step + 1); else void finish(); };
   const finish = async () => { setBusy(true);
     if (!on) { actions.start((name.trim() + " " + last.trim()).slice(0, 30), "", pseudo); await saveAll(); setBusy(false); return; }
-    const r = await emailSignUp(email.trim(), pw, (name.trim() + " " + last.trim()).slice(0, 30), extra()); setBusy(false); setInfo(r.msg); if (r.who) { actions.start(r.who.name, "", pseudo); await saveAll(); } };
-  const login = async (e: React.FormEvent) => { e.preventDefault(); setBusy(true); const r = await emailLogin(email.trim(), pw); setBusy(false); setInfo(r.msg); if (r.who) actions.start(r.who.name, "", ""); };
+    const r = await emailSignUp(email.trim(), pw, (name.trim() + " " + last.trim()).slice(0, 30), extra()); setBusy(false);
+    if (r.code === "exists") { setInfo(""); setExists(true); return; } setInfo(r.msg); setCode(r.code); if (r.who) { actions.start(r.who.name, "", pseudo); await saveAll(); } };
+  const login = async (e: React.FormEvent) => { e.preventDefault(); setBusy(true); const r = await emailLogin(email.trim(), pw); setBusy(false); setCode(r.code); setInfo(r.who ? "" : r.msg); if (r.who) actions.start(r.who.name, "", ""); };
+  const toLogin = () => { setExists(false); setMode("old"); setStep(1); setPw(""); setPw2(""); setInfo(""); setCode(undefined); };
+  const toForgot = () => { setExists(false); setMode("forgot"); setInfo(""); setCode(undefined); };
   const pickPhoto = async (f?: File) => { if (!f) return; try { setPhoto(await fileToDataUrl(f, 240, 0.8)); } catch { toast(t("Image illisible.")); } };
   const titles = ["", t("Ton compte"), t("Ton nom"), t("Où tu habites"), t("Presque fini")];
   return (<div className="card col center" style={{ alignItems: "center", gap: 12, padding: 26 }}>
-    <Logo s={mode === "new" ? 84 : 110} /><h1 style={{ fontSize: "1.5rem", letterSpacing: "-.03em" }}>{mode === "new" ? t("Créer mon compte") : t("Me connecter")}</h1>
+    <Logo s={mode === "new" ? 84 : 110} /><h1 style={{ fontSize: "1.5rem", letterSpacing: "-.03em" }}>{mode === "new" ? t("Créer mon compte") : mode === "forgot" ? t("Mot de passe oublié") : t("Me connecter")}</h1>
     {(window as any).__NOTIIF_DEV__ === true && <><button type="button" className="btn" style={{ width: "100%" }} onClick={() => { actions.start("Créateur", "", ""); actions.updateProfile({ birthday: "01-01", byear: 1990 }); }}>{"🛠 Entrer en mode test (sans compte)"}</button>
       <div className="muted small">{"— ou me connecter avec un vrai compte —"}</div></>}
-    {mode === "old" ? (on ? <form className="col" style={{ width: "100%" }} onSubmit={login}>
+    {mode === "forgot" ? <ForgotForm initial={email} onBack={toLogin} />
+    : mode === "old" ? (on ? <form className="col" style={{ width: "100%" }} onSubmit={login}>
         <Fld label={t("Adresse e-mail")}><input className="inp" type="email" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="E-mail" autoComplete="email" required /></Fld>
         <PwField label={t("Mot de passe")} value={pw} onChange={setPw} autoComplete="current-password" />
+        <button type="button" className="authforgot" onClick={toForgot}>{t("Mot de passe oublié ?")}</button>
+        {info && <Notice kind="alert" icon="⚠️" text={info}>{code === "badlogin" && <button type="button" className="btn ghost" onClick={toForgot}>{t("Mot de passe oublié ?")}</button>}</Notice>}
         <button className="btn" disabled={busy || pw.length < 8 || !email}>{t("Me connecter")}</button>
         <button type="button" className="btn ghost" onClick={() => { setMode("new"); setInfo(""); }}>{t("Je n'ai pas encore de compte")}</button></form>
       : <div className="col" style={{ width: "100%" }}><p className="muted small" style={{ margin: 0 }}>{t("Les vrais comptes demandent un serveur, qui n'est pas encore relié.")}</p><button type="button" className="btn ghost" onClick={() => { setMode("new"); setInfo(""); }}>{t("Je n'ai pas encore de compte")}</button></div>)
@@ -123,11 +184,14 @@ function SignUp() {
           <Fld label={t("Code parental (4 chiffres)")}><input className="inp" inputMode="numeric" type="password" maxLength={4} value={kid} onChange={(e) => setKid(e.target.value.replace(/\D/g, ""))} autoComplete="off" /></Fld>
           <Fld label={t("Écris-le encore une fois")}><input className="inp" inputMode="numeric" type="password" maxLength={4} value={kid2} onChange={(e) => setKid2(e.target.value.replace(/\D/g, ""))} autoComplete="off" /></Fld></div>}
         <label className="row small muted" style={{ textAlign: "left", alignItems: "flex-start" }}><Switch noPreview on={ok} onChange={setOk} label={t("J'accepte les conditions")} /><span>{tn("J'ai 15 ans ou plus et j'accepte les {legalBtn}.", { legalBtn })}</span></label></>}
-      {info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}
+      {info && <Notice kind={step === 4 && on && !code && /Compte créé|Ouvrez l'e-mail/.test(info) ? "ok" : "alert"} icon={code ? "⚠️" : "ℹ️"} text={info} />}
       <div className="row" style={{ gap: 8 }}>{step > 1 && <button type="button" className="btn ghost grow" onClick={() => { setStep(step - 1); setInfo(""); }}>{t("Retour")}</button>}
         <button className="btn grow" disabled={busy} style={okStep(step) ? undefined : { opacity: .55 }}>{step < 4 ? t("Continuer") : on ? t("Créer mon compte") : t("Essayer en mode démo")}</button></div>
       <button type="button" className="btn ghost" onClick={() => { setMode("old"); setInfo(""); }}>{t("J'ai déjà un compte")}</button></form>}
-    {mode === "old" && info && <div className="small" role="status" style={{ color: "var(--warm)", textAlign: "left" }}>{info}</div>}
+    {exists && <Modal title={t("Ce compte existe déjà")} onClose={() => setExists(false)}><div className="col" style={{ gap: 12, alignItems: "center" }}>
+      <Notice kind="alert" icon="👤" text={<>{t("Un compte existe déjà avec cette adresse e-mail. Connectez-vous ou réinitialisez votre mot de passe.")}<br /><b>{email.trim()}</b></>}>
+        <button type="button" className="btn" onClick={toLogin}>{t("Me connecter")}</button>
+        <button type="button" className="btn ghost" onClick={toForgot}>{t("Mot de passe oublié ?")}</button></Notice></div></Modal>}
     {prov && <Modal title={prov.label} onClose={() => setProv(null)}><div className="col"><p style={{ margin: 0 }}>{prov.soon}</p><p className="muted small" style={{ margin: 0 }}>{t("Pour l'instant, vous pouvez essayer l'application en mode démo, sur cet appareil, avec des amis fictifs.")}</p><button className="btn" onClick={() => setProv(null)}>{t("Compris, j'essaie en mode démo")}</button></div></Modal>}
     {legal && <Modal title={t("Documents juridiques")} onClose={() => setLegal(false)}><div style={{ textAlign: "left" }}><LegalView /></div></Modal>}
   </div>);
