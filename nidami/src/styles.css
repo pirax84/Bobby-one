@@ -777,7 +777,6 @@ html[data-theme=light] .navbtn[data-k=profile] svg{background:#5A2619;color:#FF8
 html[data-theme=light] .navbtn[data-k=settings] svg{background:#0E4A4A;color:#2FCDBE!important}
 html[data-theme=light] .navbtn[data-k=legal] svg{background:#2A1F5C;color:#9B87F5!important}
 html[data-theme=light] .navbtn[data-k=search] svg{background:#2A1F5C;color:#9B87F5!important}
-html[data-theme=light] .navbtn[data-k=voice] svg{background:#fff;box-shadow:inset 0 0 0 2px #2A1F5C}
 html[data-theme=light] .navbtn{opacity:1;color:var(--fg)}
 html[data-theme=light] .tile{background:rgba(var(--brand-rgb),.1)}
 
@@ -1348,10 +1347,6 @@ html[data-theme=light][data-accent=nuit]{--tint:#291E5B}
 .gfull .card{color:var(--fg)}.gfull .card summary{color:var(--fg)!important}
 .vfull .mk{background:none!important;box-shadow:none!important;border-radius:0!important;border:0!important}
 .viewer.sfull .vfull{overflow:hidden}
-.navbtn[data-k=voice] .mk{width:32px!important;height:32px!important;flex:none}
-html .navbtn[data-k=voice] svg{padding:0!important;background:none!important;border-radius:0!important;width:74%!important;height:74%!important;box-sizing:border-box}
-html[data-theme=light] .navbtn[data-k=voice] svg{width:74%!important;height:74%!important}
-html[data-theme=light] .navbtn[data-k=voice] svg,html[data-theme=dark] .navbtn[data-k=voice] svg{background:none!important;padding:0!important;border-radius:0!important;box-shadow:none!important;color:inherit}
 .wreath .wmedia img.wbg{display:none}
 .wreath .wmedia .wfg{left:0;top:0;width:100%;height:100%;object-fit:cover;border-radius:0}
 @media (min-width:761px){.main>.brandbar{display:none!important}.side .brand{justify-content:center;padding:6px 0 12px}.side .brand .wm{display:block;position:relative;width:100%}.side .brand img.wmb{width:100%;height:auto;max-height:none}.side .brand img.wml{position:absolute;left:0;top:0;width:100%;height:100%}}

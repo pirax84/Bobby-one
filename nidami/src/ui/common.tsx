@@ -5,6 +5,8 @@ import { t, T, locale } from "../i18n";
 import { usePreviewAsk } from "./ChangePreview";
 
 const P: Record<string, string> = {
+  // Micro NOTIIF dessiné au trait (micro + ondes de chaque côté), pour les listes où toutes les icônes ont le même style.
+  micw: "M12 4.5a2.3 2.3 0 0 1 2.3 2.3v3.9a2.3 2.3 0 0 1-4.6 0V6.8A2.3 2.3 0 0 1 12 4.5zM8.6 10.4a3.4 3.4 0 0 0 6.8 0M12 13.8v2.6M10 16.4h4M6 8.2c-.9 1.6-.9 3.6 0 5.2M18 8.2c.9 1.6.9 3.6 0 5.2M3.2 6.4c-1.6 2.8-1.6 6 0 8.8M20.8 6.4c1.6 2.8 1.6 6 0 8.8",
   sun: "M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4",
   moon: "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",
   palette: "M12 3a9 9 0 1 0 0 18c1.2 0 2-.8 2-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8zM7.5 11h.01M10 7.5h.01M14.5 7.5h.01",

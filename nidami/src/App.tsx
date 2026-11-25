@@ -176,7 +176,7 @@ export default function App() {
     : <Soon title={t("Appels audio et vidéo")} icon="📞" why={t("Les appels demandent un serveur de connexion (WebRTC). Ils seront ajoutés quand le serveur NOTIIF sera en place.")} />;
   const page = kidOn() && !kidOk && (v === "settings" || v === "profile" || v === "friends") ? <PinGate onOk={() => setKidOk(true)} /> : page0;
   const warn = getSaveWarn();
-  const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button data-k={k} className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
+  const Item = ({ k, l, i }: { k: V; l: string; i: string }) => <button data-k={k} className={"navbtn" + (v === k ? " on" : "")} onClick={() => go(k)} aria-current={v === k ? "page" : undefined}><Ico n={i === "voice" ? "micw" : i} />{l}{badge(k) > 0 && <span className="badge" style={{ marginLeft: "auto" }}>{badge(k)}</span>}</button>;
   return (<div className={"shell" + (v === "messages" ? " wide" : "")}>
     <aside className="side"><div className="brand"><BrandWm bdText={bdt.text} onHome={() => { go("home"); window.scrollTo({ top: 0 }); }} id={accentOf(accent).id} light={light} sound={fxOn} /></div>
       <button type="button" className="sideme" onClick={() => go("profile")} aria-label={t("Mon profil")}><Avatar u={user} s={40} /><span className="grow ell"><b>{user.name}</b></span></button>
