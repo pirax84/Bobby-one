@@ -17,6 +17,8 @@ class NotiifFcm : FirebaseMessagingService() {
 
     override fun onMessageReceived(msg: RemoteMessage) {
         val d = msg.data
+        // Firebase fonctionne sur ce téléphone : on arrête la veille de secours (plus d'appels au serveur en boucle).
+        if (!NotiifService.fcmOk(this)) { getSharedPreferences("notiif_fcm", Context.MODE_PRIVATE).edit().putBoolean("ok", true).apply(); try { NotiifService.stop(this) } catch (e: Exception) { } }
         if (d.isEmpty() || NotiifService.visible) return
         val id = d["id"] ?: System.currentTimeMillis().toString()
         if (!NotiifService.claim(id)) return
@@ -42,5 +44,6 @@ class NotiifFcm : FirebaseMessagingService() {
         val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, chId) else Notification.Builder(this)
         b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
         nm.notify(("m" + sender).hashCode(), b.build())
+        BubbleService.addUnread(this)
     }
 }

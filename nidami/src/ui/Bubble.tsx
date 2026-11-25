@@ -1,3 +1,4 @@
+import { useFloatPos } from "../lib/floatpos";
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, userOf, Conv } from "../lib/store";
 import { micText, Avatar, Ico, useNow, EmojiGrid, toast, lp, ConfirmDel, useScrollLock } from "./common";
@@ -18,8 +19,10 @@ export function ChatBubble({ openFull, openList }: { openFull: (convId: string) 
   const total = convs.reduce((a, c) => a + unread(c), 0);
   const [tab, setTab] = useState<"conv" | "amis" | "groupes">("conv"); const swipe = useRef<number | null>(null); const [moreOpen, setMoreOpen] = useState(false); const friends = (s.social.friends[me] || []).map((id) => userOf(s, id)).filter(Boolean) as NonNullable<ReturnType<typeof userOf>>[]; const [del, setDel] = useState<string | null>(null); const [open, setOpen] = useState(false); const [sel, setSel] = useState<string | null>(null); const [txt, setTxt] = useState("");
   const [pop, setPop] = useState<{ id: string; who: string; text: string } | null>(null);
-  const [pos, setPos] = useState<{ x: number; y: number } | null>(() => { try { const j = JSON.parse(localStorage.getItem("notiif-bubble") || "null"); return j && typeof j.x === "number" && typeof j.y === "number" ? j : null; } catch { return null; } }); const posRef = useRef(pos); const drag = useRef<{ dx: number; dy: number; sx: number; sy: number; moved: boolean } | null>(null);
-  const prev = useRef(total); const end = useRef<HTMLDivElement>(null);
+  const [pos, setPos, savePos] = useFloatPos("notiif-bubble", 56); const drag = useRef<{ dx: number; dy: number; sx: number; sy: number; moved: boolean } | null>(null);
+  const prev = useRef(total);
+  // Le nombre de non-lus s'affiche aussi sur la bulle Android par-dessus les autres applis.
+  useEffect(() => { try { (window as any).CercleNative?.setUnread?.(total); } catch { /* ignoré */ } }, [total]); const end = useRef<HTMLDivElement>(null);
   const groups = s.social.groups.filter((g) => g.memberIds.includes(me) && convs.some((x) => x.groupId === g.id));
   const groupUnread = groups.reduce((a, g) => a + (convs.filter((x) => x.groupId === g.id).reduce((b, x) => b + unread(x), 0)), 0);
   const title = (c: Conv) => c.title || c.memberIds.filter((m) => m !== me).map((m) => userOf(s, m)?.name).join(", ");
@@ -53,8 +56,9 @@ export function ChatBubble({ openFull, openList }: { openFull: (convId: string) 
     </div>}
     {!open && <button className="bfab" style={pos ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto", touchAction: "none" } : { touchAction: "none" }}
       onPointerDown={(e) => { const r = e.currentTarget.getBoundingClientRect(); drag.current = { dx: e.clientX - r.left, dy: e.clientY - r.top, sx: e.clientX, sy: e.clientY, moved: false }; try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* ignoré */ } }}
-      onPointerMove={(e) => { const d = drag.current; if (!d) return; if (!d.moved && Math.hypot(e.clientX - d.sx, e.clientY - d.sy) < 8) return; d.moved = true; const p = { x: Math.min(Math.max(4, e.clientX - d.dx), window.innerWidth - 56), y: Math.min(Math.max(4, e.clientY - d.dy), window.innerHeight - 56) }; posRef.current = p; setPos(p); }}
-      onPointerUp={() => { const d = drag.current; drag.current = null; if (d?.moved) { try { localStorage.setItem("notiif-bubble", JSON.stringify(posRef.current)); } catch { /* ignoré */ } } else { if (matchMedia("(hover: hover) and (pointer: fine)").matches) setOpen(true); else openList(); setPop(null); } }}
+      onPointerMove={(e) => { const d = drag.current; if (!d) return; if (!d.moved && Math.hypot(e.clientX - d.sx, e.clientY - d.sy) < 8) return; d.moved = true; setPos({ x: e.clientX - d.dx, y: e.clientY - d.dy }); }}
+      onPointerCancel={() => { if (drag.current?.moved) savePos(); drag.current = null; }}
+      onPointerUp={() => { const d = drag.current; drag.current = null; if (d?.moved) savePos(); else { if (matchMedia("(hover: hover) and (pointer: fine)").matches) setOpen(true); else openList(); setPop(null); } }}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openList(); setPop(null); } }}
       aria-label={t("Messages") + (total ? ` (${total} non lus)` : "")}><Ico n="chat" s={26} />{total > 0 && <span className="badge" style={{ position: "absolute", top: -4, right: -4 }}>{total}</span>}</button>}
   </>);

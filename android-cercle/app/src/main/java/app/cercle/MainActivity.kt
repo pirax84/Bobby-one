@@ -29,8 +29,11 @@ import android.webkit.WebViewClient
 
 class MainActivity : Activity() {
     companion object {
-        const val HOME = "https://pirax84.github.io/Bobby-one/"
-        const val HOST = "pirax84.github.io"
+        // Une seule adresse officielle : notiif.vercel.app (l'ancienne adresse GitHub renvoie vers elle).
+        const val HOME = "https://notiif.vercel.app/"
+        const val HOST = "notiif.vercel.app"
+        const val OLD_HOST = "pirax84.github.io"
+        fun ours(u: Uri) = u.scheme == "https" && (u.host == HOST || (u.host == OLD_HOST && (u.path ?: "").startsWith("/Bobby-one")))
         const val RC_FILE = 1
         const val RC_PERM = 2
         const val RC_NOTIF = 3
@@ -43,8 +46,8 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Empêche les captures d'écran et l'enregistrement de l'écran, et masque l'aperçu dans les applications récentes.
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        // Protection contre les captures d'écran : activée par défaut, réglable dans l'appli (Paramètres > Confidentialité).
+        applySecure(getSharedPreferences("notiif", Context.MODE_PRIVATE).getBoolean("secure", true))
         web = WebView(this)
         web.setBackgroundColor(0xFF0F172A.toInt())
         setContentView(web)
@@ -62,7 +65,7 @@ class MainActivity : Activity() {
         web.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val u = request.url
-                if (u.scheme == "https" && u.host == HOST && (u.path ?: "").startsWith("/Bobby-one")) return false
+                if (ours(u)) return false
                 if (u.scheme == "https" || u.scheme == "http") { try { startActivity(Intent(this@MainActivity, LinkActivity::class.java).putExtra("url", u.toString())) } catch (e: Exception) { } }
                 return true
             }
@@ -108,8 +111,25 @@ class MainActivity : Activity() {
         /** Donne au service de veille la session du compte (adresse du serveur, clé publique, jetons) pour qu'il surveille les nouveaux messages. */
         @JavascriptInterface fun setSession(url: String, key: String, access: String, refresh: String, uid: String) {
             getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().putString("url", url).putString("key", key).putString("access", access).putString("refresh", refresh).putString("uid", uid).apply()
-            runOnUiThread { try { NotiifService.start(this@MainActivity) } catch (e: Exception) { } }
+            runOnUiThread { try { NotiifService.startIfNeeded(this@MainActivity) } catch (e: Exception) { } }
         }
+        /** Bloquer (true) ou autoriser (false) les captures d'écran dans NOTIIF. */
+        @JavascriptInterface fun setSecure(on: Boolean) {
+            getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().putBoolean("secure", on).apply()
+            runOnUiThread { applySecure(on) }
+        }
+        @JavascriptInterface fun isSecure(): Boolean = getSharedPreferences("notiif", Context.MODE_PRIVATE).getBoolean("secure", true)
+        /** Bulle NOTIIF par-dessus les autres applis : autorisation Android « Afficher par-dessus d'autres applis ». */
+        @JavascriptInterface fun canOverlay(): Boolean = android.provider.Settings.canDrawOverlays(this@MainActivity)
+        @JavascriptInterface fun askOverlay() {
+            runOnUiThread { try { startActivity(Intent(android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))) } catch (e: Exception) { } }
+        }
+        @JavascriptInterface fun setOverlay(on: Boolean) { getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().putBoolean("overlay", on).apply() }
+        @JavascriptInterface fun isOverlay(): Boolean = BubbleService.enabled(this@MainActivity)
+        @JavascriptInterface fun setUnread(n: Int) { BubbleService.setUnread(this@MainActivity, n) }
+        /** La veille de secours tourne-t-elle encore (Firebase pas encore confirmé) ? */
+        @JavascriptInterface fun pushDirect(): Boolean = NotiifService.fcmOk(this@MainActivity)
+        @JavascriptInterface fun appVersion(): String = try { packageManager.getPackageInfo(packageName, 0).versionName ?: "" } catch (e: Exception) { "" }
         /** Amis silencieux (aucune notification) et prioritaires, choisis dans l'application. */
         @JavascriptInterface fun setPrefs(mute: String, prio: String) {
             getSharedPreferences("notiif", Context.MODE_PRIVATE).edit().putString("mute", mute).putString("prio", prio).apply()
@@ -133,10 +153,6 @@ class MainActivity : Activity() {
             if (!hasNotifPermission()) return
             val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             NotiifService.channels(this@MainActivity)
-            if (false) {
-                val ch = NotificationChannel(CHANNEL, "Messages et activité", NotificationManager.IMPORTANCE_HIGH)
-                ch.enableVibration(true); ch.vibrationPattern = longArrayOf(0, 200, 100, 200); nm.createNotificationChannel(ch)
-            }
             val nid = (System.currentTimeMillis() % 100000).toInt()
             val it = Intent(this@MainActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
             if (conv.isNotEmpty()) it.putExtra("conv", conv)
@@ -161,7 +177,11 @@ class MainActivity : Activity() {
         val d = i?.data
         val conv = i?.getStringExtra("conv")
         if (!conv.isNullOrEmpty()) return HOME + "#open=" + conv
-        return if (i?.action == Intent.ACTION_VIEW && d != null && d.host == HOST) d.toString() else HOME
+        if (i?.action == Intent.ACTION_VIEW && d != null && ours(d)) {
+            // Ancien lien GitHub : on garde seulement la partie après « # » (ex. invitation) sur la nouvelle adresse.
+            return if (d.host == HOST) d.toString() else HOME + (d.fragment?.let { "#$it" } ?: "")
+        }
+        return HOME
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -185,8 +205,13 @@ class MainActivity : Activity() {
         }
     }
 
-    override fun onResume() { super.onResume(); NotiifService.visible = true }
-    override fun onPause() { NotiifService.visible = false; super.onPause() }
+    private fun applySecure(on: Boolean) {
+        if (on) window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        else window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+    }
+
+    override fun onResume() { super.onResume(); NotiifService.visible = true; BubbleService.hide(this) }
+    override fun onPause() { NotiifService.visible = false; BubbleService.show(this); super.onPause() }
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {

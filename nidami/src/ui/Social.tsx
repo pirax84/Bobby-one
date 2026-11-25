@@ -326,7 +326,8 @@ export function Settings({ go }: { go?: (v: any) => void }) {
       <b className="small" style={{ marginTop: 6 }}>{t("Quelles notifications recevoir ?")}</b>
       {([["messages", t("💬 Messages")], ["friends", t("👋 Demandes d'amis")], ["home", t("📰 Publications et stories")], ["shares", t("🔁 Partages")], ["events", t("📅 Événements")], ["groups", t("👥 Groupes")], ["media", t("🖼 Albums")], ["games", t("🎮 Jeux")]] as const).map(([k, l]) => <label key={k} className="row" style={{ padding: "4px 0" }}><span className="grow">{l}</span><Switch on={cfg.nt?.[k] !== false} label={t("Notifications : {l}", { l })} onChange={(v) => actions.setNotifType(k, v)} /></label>)}
       {cfg.push && <button className="chip" style={{ alignSelf: "flex-start" }} onClick={() => { navigator.serviceWorker?.ready.then((r) => r.showNotification("NOTIIF", { body: t("Test : tout fonctionne ✅"), icon: "./icon-192.png" })).catch(() => toast(t("Impossible d'afficher la notification de test."))); }}>{t("Envoyer un test")}</button>}
-      <p className="muted small" style={{ margin: 0 }}>{t("Honnêtement : pour l'instant, les notifications s'affichent quand l'application est ouverte ou en arrière-plan. Les recevoir application fermée demande le serveur (envoi à distance), prévu avec la connexion de vrais comptes. Appels : bientôt.")}</p></div>
+      <p className="muted small" style={{ margin: 0 }}>{pc ? t("Sur ordinateur, vous êtes prévenu même quand NOTIIF est fermé, tant que le navigateur (Chrome, Edge ou Firefox) tourne en arrière-plan.") : t("Sur le téléphone, l'appli NOTIIF vous prévient même quand elle est fermée.")}</p></div>
+    {!pc && <NativeExtras />}
     </>}
     {sec === "notifs" && nt === "fx" && <>
     <div className="card col" style={{ gap: 4 }}><h3>{t("Mes 4 effets favoris")}</h3><p className="muted small" style={{ margin: 0 }}>{t("Ils s'affichent en premier dans les conversations. Les autres restent sous le bouton « + ».")}</p>
@@ -392,4 +393,23 @@ export function Settings({ go }: { go?: (v: any) => void }) {
     <div className="card col"><h3>{t("🔁 Changer de membre (démo)")}</h3><p className="muted small">{t("Pour tester les durées par personne : publiez une photo de 5 s pour Céline et Thomas, puis passez de l'un à l'autre.")}</p><div className="tabs" style={{ flexWrap: "wrap" }}>{s.users.filter((u) => u.id === s.me || (s.social.friends[s.me] || []).includes(u.id) || u.demo || s.users.length).map((u) => <button key={u.id} className={"chip" + (u.id === s.me ? " on" : "")} onClick={() => { actions.switchUser(u.id); toast(t("Vous êtes maintenant {name}.", { name: u.name })); }}>{u.name}</button>)}</div></div>
     </>}
   </div>);
+}
+
+/** Réglages propres à l'appli Android : bulle par-dessus les autres applis, protection contre les captures d'écran. */
+function NativeExtras() {
+  const nat = (window as any).CercleNative; const [, re] = useState(0);
+  // Au retour de l'écran d'autorisation d'Android, on relit l'état.
+  useEffect(() => { const h = () => { if (document.visibilityState === "visible") re((x) => x + 1); }; document.addEventListener("visibilitychange", h); return () => document.removeEventListener("visibilitychange", h); }, []);
+  if (!nat) return null;
+  const old = !nat.setSecure || !nat.setOverlay;
+  if (old) return <div className="card"><p className="muted small" style={{ margin: 0 }}>{t("Mettez à jour l'appli Android NOTIIF pour avoir ce réglage.")}</p></div>;
+  let can = false, ov = false, sec = true; try { can = !!nat.canOverlay(); ov = !!nat.isOverlay(); sec = !!nat.isSecure(); } catch { /* ignoré */ }
+  return <>
+    <div className="card col" style={{ gap: 6 }}><h3>{t("🫧 Bulle par-dessus les autres applis")}</h3>
+      <label className="row"><span className="grow"><span className="muted small" style={{ display: "block" }}>{t("Quand NOTIIF est en arrière-plan, une petite bulle reste à l'écran avec le nombre de messages. Touchez-la pour revenir, glissez-la tout en bas pour la cacher.")}</span></span>
+        <Switch on={ov && can} label={t("🫧 Bulle par-dessus les autres applis")} onChange={(v) => { try { nat.setOverlay(v); if (v && !nat.canOverlay()) { toast(t("Autorisez « Afficher par-dessus d'autres applis » pour NOTIIF, puis revenez ici.")); nat.askOverlay(); } } catch { /* ignoré */ } re((x) => x + 1); }} /></label></div>
+    <div className="card col" style={{ gap: 6 }}><h3>{t("🔒 Captures d'écran")}</h3>
+      <label className="row"><span className="grow"><b>{t("Bloquer les captures d'écran")}</b><span className="muted small" style={{ display: "block" }}>{t("Personne ne peut faire de capture ni filmer l'écran de NOTIIF. Coupez-le le temps d'envoyer une capture, par exemple pour signaler un problème.")}</span></span>
+        <Switch on={sec} label={t("Bloquer les captures d'écran")} onChange={(v) => { try { nat.setSecure(v); } catch { /* ignoré */ } re((x) => x + 1); }} /></label></div>
+  </>;
 }

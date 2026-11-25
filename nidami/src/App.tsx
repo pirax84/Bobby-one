@@ -140,7 +140,10 @@ export default function App() {
   }, [fxList, fxOn, meId]);
   useEffect(() => { startSync(); }, []);
   const pendConv = useRef(""); const [hk, setHk] = useState(0); const nConvs = useStore((x) => x.convs.length + ":" + x.convs.reduce((a, c) => a + c.msgs.length, 0));
-  useEffect(() => { const rd = () => { const m = /open=(sbc_[0-9a-f-]+)(~a)?/.exec(location.hash); if (m) { pendConv.current = m[1] + (m[2] ? "~a" : ""); setHk((x) => x + 1); } }; rd(); window.addEventListener("hashchange", rd); return () => window.removeEventListener("hashchange", rd); }, []);
+  useEffect(() => { const rd = () => { const m = /open=(sb[cg]_[0-9a-f-]+)(~a)?/.exec(location.hash); if (m) { pendConv.current = m[1] + (m[2] ? "~a" : ""); setHk((x) => x + 1); } }; rd(); window.addEventListener("hashchange", rd);
+    // Clic sur une notification de l'ordinateur alors que NOTIIF est déjà ouvert : on ouvre la bonne conversation.
+    const sw = (e: MessageEvent) => { const c = e.data?.notiifOpen; if (typeof c === "string" && /^sb[cg]_[0-9a-f-]+$/.test(c)) { pendConv.current = c; setHk((x) => x + 1); } }; navigator.serviceWorker?.addEventListener("message", sw);
+    return () => { window.removeEventListener("hashchange", rd); navigator.serviceWorker?.removeEventListener("message", sw); }; }, []);
   const [qrOpen, setQrOpen] = useState(false); useEffect(() => { const h = () => setQrOpen(true); window.addEventListener("notiif-qr", h); return () => window.removeEventListener("notiif-qr", h); }, []);
   useEffect(() => { const h = (e: Event) => openConvFull(String((e as CustomEvent).detail)); window.addEventListener("notiif-open-conv", h); return () => window.removeEventListener("notiif-open-conv", h); }, []);
   useEffect(() => { const raw = pendConv.current; const voice = raw.endsWith("~a"); const id = voice ? raw.slice(0, -2) : raw; if (!id || !getState().convs.some((c) => c.id === id)) return; pendConv.current = ""; try { history.replaceState(history.state, "", location.pathname + location.search); } catch {} if (voice) { history.pushState({ v: "voice", voice: "u:sb_" + id.slice(4) }, ""); setV("voice"); } else openConvFull(id); }, [nConvs, meId, hk]);

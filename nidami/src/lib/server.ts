@@ -55,8 +55,41 @@ export async function listRequests(): Promise<Request[]> {
 }
 export const requestFriend = (code: string) => req("POST", "/rest/v1/rpc/request_friend", { p_code: code });
 export const acceptRequest = (id: string, cats: string[] = []) => req("POST", "/rest/v1/rpc/accept_request", { p_id: id, p_cats: cats });
-export const sendMessage = (to: string, body: string, fx?: string, id?: string, media?: { kind: string; data: string }) => req("POST", "/rest/v1/messages", { ...(id ? { id } : {}), sender: getSess()?.uid, recipient: to, body, fx: fx || null, ...(media ? { media_kind: media.kind, media: media.data } : {}) }, "return=minimal");
-export async function getMedia(id: string): Promise<string | null> { const r = await req("GET", `/rest/v1/messages?id=eq.${id}&select=media`); return Array.isArray(r.data) && r.data[0]?.media ? String(r.data[0].media) : null; }
+/* ——— Fichiers (vocaux, photos, vidéos) : rangés dans le « Stockage » du serveur, la base ne garde qu'une petite adresse « sb:… ».
+   Si le Stockage n'est pas encore prêt sur le serveur, on garde l'ancienne méthode (fichier dans le message) : rien ne casse. */
+const BUCKET = "notiif-media";
+let storageOk = true;
+function dataToBlob(d: string): Blob | null {
+  const m = /^data:([^;,]+)?(;base64)?,(.*)$/s.exec(d); if (!m) return null;
+  try { const bin = m[2] ? atob(m[3]) : decodeURIComponent(m[3]); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new Blob([u], { type: m[1] || "application/octet-stream" }); } catch { return null; }
+}
+const extOf = (type: string) => (type.split("/")[1] || "bin").split(";")[0].replace(/[^a-z0-9]/gi, "").slice(0, 5) || "bin";
+/** Envoie le fichier au Stockage ; renvoie « sb:chemin » si c'est réussi, sinon le fichier tel quel (ancienne méthode). */
+export async function storeMedia(data: string, id?: string): Promise<string> {
+  const s = getSess(); const tk = await token(); if (!storageOk || !s || !tk || !data.startsWith("data:") || data.length < 4096) return data;
+  const b = dataToBlob(data); if (!b) return data;
+  const path = `${s.uid}/${id || (crypto.randomUUID?.() || String(Date.now()) + Math.random().toString(36).slice(2))}.${extOf(b.type)}`;
+  try {
+    const r = await fetch(`${SB_URL}/storage/v1/object/${BUCKET}/${path}`, { method: "POST", headers: { apikey: SB_KEY, Authorization: "Bearer " + tk, "Content-Type": b.type, "x-upsert": "true", "cache-control": "31536000" }, body: b });
+    if (r.ok) return "sb:" + path;
+    if (r.status === 404 || r.status === 400) storageOk = false; // pas encore de Stockage sur le serveur : on n'insiste pas
+  } catch { /* hors ligne : ancienne méthode */ }
+  return data;
+}
+const mediaCache = new Map<string, string>();
+/** Transforme « sb:chemin » en fichier lisible par l'appli (et garde l'ancienne méthode telle quelle). */
+export async function readMedia(v: string | null | undefined): Promise<string | null> {
+  if (!v) return null; if (!v.startsWith("sb:")) return v;
+  const hit = mediaCache.get(v); if (hit) return hit;
+  const tk = await token(); if (!tk) return null;
+  try {
+    const r = await fetch(`${SB_URL}/storage/v1/object/authenticated/${BUCKET}/${v.slice(3)}`, { headers: { apikey: SB_KEY, Authorization: "Bearer " + tk } }); if (!r.ok) return null;
+    const blob = await r.blob(); const url = await new Promise<string>((ok, ko) => { const f = new FileReader(); f.onload = () => ok(String(f.result)); f.onerror = ko; f.readAsDataURL(blob); });
+    mediaCache.set(v, url); if (mediaCache.size > 60) mediaCache.delete(mediaCache.keys().next().value as string); return url;
+  } catch { return null; }
+}
+export const sendMessage = async (to: string, body: string, fx?: string, id?: string, media?: { kind: string; data: string }) => req("POST", "/rest/v1/messages", { ...(id ? { id } : {}), sender: getSess()?.uid, recipient: to, body, fx: fx || null, ...(media ? { media_kind: media.kind, media: await storeMedia(media.data, id) } : {}) }, "return=minimal");
+export async function getMedia(id: string): Promise<string | null> { const r = await req("GET", `/rest/v1/messages?id=eq.${id}&select=media`); return Array.isArray(r.data) && r.data[0]?.media ? readMedia(String(r.data[0].media)) : null; }
 export async function allMessages(): Promise<Msg[]> { let r = await req("GET", "/rest/v1/messages?order=created_at.desc&limit=300&select=id,sender,recipient,body,fx,created_at,media_kind"); if (!r.ok) r = await req("GET", "/rest/v1/messages?order=created_at.desc&limit=300&select=id,sender,recipient,body,fx,created_at"); return Array.isArray(r.data) ? (r.data as Msg[]).reverse() : []; }
 export async function thread(friend: string): Promise<Msg[]> {
   const me = getSess()?.uid; if (!me) return [];
@@ -129,8 +162,8 @@ export async function listGroups(): Promise<Grp[] | null> {
   return (g.data as { id: string; name: string }[]).map((x) => ({ id: x.id, name: x.name, members: (m.data as { group_id: string; user_id: string }[]).filter((y) => y.group_id === x.id).map((y) => ({ id: y.user_id, name: nm[y.user_id] || "?" })) }));
 }
 export async function groupMessages(): Promise<GMsg[] | null> { const r = await req("GET", "/rest/v1/group_messages?order=created_at.desc&limit=300&select=id,group_id,sender,body,fx,created_at,media_kind"); return r.ok && Array.isArray(r.data) ? (r.data as GMsg[]) : null; }
-export const sendGroupMessage = (gid: string, body: string, fx?: string, id?: string, media?: { kind: string; data: string }) => req("POST", "/rest/v1/group_messages", { ...(id ? { id } : {}), group_id: gid, sender: getSess()?.uid, body, fx: fx || null, ...(media ? { media_kind: media.kind, media: media.data } : {}) }, "return=minimal");
-export async function getGroupMedia(id: string): Promise<string | null> { const r = await req("GET", `/rest/v1/group_messages?id=eq.${id}&select=media`); return Array.isArray(r.data) && r.data[0]?.media ? String(r.data[0].media) : null; }
+export const sendGroupMessage = async (gid: string, body: string, fx?: string, id?: string, media?: { kind: string; data: string }) => req("POST", "/rest/v1/group_messages", { ...(id ? { id } : {}), group_id: gid, sender: getSess()?.uid, body, fx: fx || null, ...(media ? { media_kind: media.kind, media: await storeMedia(media.data, id) } : {}) }, "return=minimal");
+export async function getGroupMedia(id: string): Promise<string | null> { const r = await req("GET", `/rest/v1/group_messages?id=eq.${id}&select=media`); return Array.isArray(r.data) && r.data[0]?.media ? readMedia(String(r.data[0].media)) : null; }
 export async function createGroup(name: string, members: string[]): Promise<string | null> {
   const me = getSess()?.uid; if (!me) return null; const id = crypto.randomUUID();
   const g = await req("POST", "/rest/v1/groups", { id, name: name.slice(0, 40), created_by: me }, "return=minimal"); if (!g.ok) return null;

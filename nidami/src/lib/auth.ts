@@ -3,8 +3,10 @@ import { saveSession } from "./server";
 // Connexion / inscription. Tout passe par le serveur Supabase (adresse et clé publique dans .env.local).
 // Sans serveur relié, l'application reste en « mode démo » sur l'appareil. NON TESTÉ sur un vrai serveur.
 const env = ((import.meta as unknown as { env?: Record<string, string> }).env) || {};
-export const SB_URL: string = env.VITE_SUPABASE_URL || "";
-export const SB_KEY: string = env.VITE_SUPABASE_ANON_KEY || "";
+// Adresse et clé PUBLIQUE du serveur (la même que sur l'ancienne adresse GitHub) : le site notiif.vercel.app s'en sert aussi.
+// Cette clé est faite pour être publique (elle est visible dans toute page web) ; la sécurité vient des règles du serveur.
+export const SB_URL: string = env.VITE_SUPABASE_URL || "https://jtymrohpjhiukjreqewb.supabase.co";
+export const SB_KEY: string = env.VITE_SUPABASE_ANON_KEY || "sb_publishable_2jGaV3B9eU2ITaI_9TgAvQ_fVOewCZA";
 export const serverLive = () => !!SB_URL && !!SB_KEY && !/VOTRE-PROJET/.test(SB_URL);
 export const serverOn = () => !!SB_URL && !!SB_KEY && !/VOTRE-PROJET/.test(SB_URL); // le serveur (comptes, amis, messages) est actif dans toutes les versions
 

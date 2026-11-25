@@ -7,6 +7,8 @@ import { presenceNow } from "./presence";
 import { soundTyping } from "./fx";
 import { startCallWatch } from "./call";
 import { actions, setSbOut, setSbReact, getState, isTomb } from "./store";
+import { startLive, liveOk } from "./live";
+import { syncWebPush } from "./webpush";
 
 /** Relie le serveur à l'écran Messages : amis réels, messages et effets reçus d'un autre appareil. Actif seulement dans la version développeur, avec un compte connecté. */
 let timer: ReturnType<typeof setInterval> | null = null; let busy = false; let primed = false;
@@ -24,7 +26,7 @@ async function regPush(uid: string) {
   const r = await req("POST", "/rest/v1/push_tokens?on_conflict=token", { user_id: uid, token: tk }, "resolution=merge-duplicates,return=minimal"); if (r.ok) pushReg = tk;
 }
 const pull = async () => {
-  const t00 = Date.now(); const s = getSess(); if (s) { toNative(s); void regPush(s.uid); } if (!s || busy || document.visibilityState === "hidden") return; busy = true;
+  const t00 = Date.now(); const s = getSess(); if (s) { toNative(s); void regPush(s.uid); void syncWebPush(!!getState().settings[getState().me]?.push); } if (!s || busy || (document.visibilityState === "hidden" && !hiddenOk())) return; busy = true; lastPull = Date.now();
   try { const [fr, msgs, rxs] = await Promise.all([listFriends(), allMessages(), allReactions()]);
     if (Date.now() - lastGroups > 4000) { lastGroups = Date.now(); const gl = await listGroups(); if (gl) groupsCache = gl; }
     const gm = await groupMessages();
@@ -39,8 +41,16 @@ let activeConv = ""; export const setActiveConv = (id: string) => { activeConv =
 export function typingPing(convId: string, kind: "text" | "audio" | "video" = "text") { if (!convId.startsWith("sbc_") || Date.now() - (lastPing[kind] || 0) < 2500) return; lastPing[kind] = Date.now(); void sendTyping(convId.slice(4), kind); }
 /** Pendant un enregistrement (vocal ou vidéo) : signal répété toutes les 2 s. Renvoie la fonction qui l'arrête. */
 export function recordLoop(kind: "audio" | "video"): () => void { const id = activeConv; if (!id) return () => {}; typingPing(id, kind); const iv = setInterval(() => typingPing(id, kind), 2000); return () => clearInterval(iv); }
+/** Sur ordinateur, on continue à recevoir (plus lentement) quand l'onglet est caché : les notifications de l'ordinateur marchent. */
+const isNative = () => !!(window as any).CercleNative;
+const hiddenOk = () => !isNative();
+let lastPull = 0; let lastTyping = 0; let soon: ReturnType<typeof setTimeout> | undefined;
+/** Rythme : temps réel branché → simple vérification toutes les 20 s ; sinon toutes les 3 s ; onglet caché sur PC → toutes les 15 s. */
+const pullEvery = () => document.visibilityState === "hidden" ? 15000 : liveOk() ? 20000 : 3000;
+const typingEvery = () => liveOk() ? 10000 : 2000;
+const pullSoon = () => { clearTimeout(soon); soon = setTimeout(() => void pull(), 150); };
 const watchTyping = async () => {
-  if (!getSess() || document.visibilityState === "hidden") return;
+  if (!getSess() || document.visibilityState === "hidden") return; lastTyping = Date.now();
   const ids = await typingNow(); if (!ids.length) return;
   actions.sbTyping(ids, tKinds);
   for (const id of ids) { const l = heard.get(id) || 0; if (Date.now() - l > 9000) soundTyping(); heard.set(id, Date.now()); }
@@ -49,6 +59,9 @@ export function startSync() {
   if (!serverLive() || timer) return;
   setSbOut((convId, body, fx, id, media) => { if (convId.startsWith("sbg_")) void sendGroupMessage(convId.slice(4), body, fx, id, media); else if (convId.startsWith("sbc_")) void sendMessage(convId.slice(4), body, fx, id, media); });
   setSbReact((id, e) => { void setReaction(id, e); });
-  startCallWatch(); void pull(); timer = setInterval(() => void pull(), 1000); setInterval(() => void watchTyping(), 1000); const hb = () => { if (!getSess()) return; pushNative(); if (document.visibilityState === "hidden") heartbeatAway(); else void heartbeat(presenceNow()); }; hb(); setInterval(hb, 8000); document.addEventListener("visibilitychange", hb); window.addEventListener("pagehide", () => heartbeatAway());
+  startCallWatch(); void pull();
+  timer = setInterval(() => { const n = Date.now(); if (n - lastPull >= pullEvery()) void pull(); if (n - lastTyping >= typingEvery()) void watchTyping(); }, 1000);
+  startLive((k) => { if (k === "typing") void watchTyping(); else pullSoon(); });
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") pullSoon(); }); const hb = () => { if (!getSess()) return; pushNative(); if (document.visibilityState === "hidden") heartbeatAway(); else void heartbeat(presenceNow()); }; hb(); setInterval(hb, 8000); document.addEventListener("visibilitychange", hb); window.addEventListener("pagehide", () => heartbeatAway());
 }
 export function stopSync() { if (timer) clearInterval(timer); timer = null; setSbOut(null); }

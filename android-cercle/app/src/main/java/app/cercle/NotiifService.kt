@@ -66,6 +66,15 @@ class NotiifService : Service() {
         }
         }
         fun stop(ctx: Context) { ctx.stopService(Intent(ctx, NotiifService::class.java)) }
+        /** Firebase a déjà livré au moins une notification sur ce téléphone : la veille de secours n'est plus utile. */
+        fun fcmOk(ctx: Context) = ctx.getSharedPreferences("notiif_fcm", Context.MODE_PRIVATE).getBoolean("ok", false)
+        /** Lance la veille de secours seulement si un compte est connecté et que Firebase n'a pas encore fait ses preuves. */
+        fun startIfNeeded(ctx: Context) {
+            val p = ctx.getSharedPreferences("notiif", Context.MODE_PRIVATE)
+            if (p.getString("uid", null).isNullOrEmpty() || p.getString("url", null).isNullOrEmpty()) return
+            if (fcmOk(ctx)) { stop(ctx); return }
+            start(ctx)
+        }
     }
 
     @Volatile private var running = false
@@ -79,17 +88,21 @@ class NotiifService : Service() {
         channels(this)
         val pi = PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, CH_SVC) else Notification.Builder(this)
-        val n = b.setContentTitle("NOTIIF").setContentText("Je surveille tes messages").setSmallIcon(R.drawable.ic_notif).setContentIntent(pi).setOngoing(true).build()
+        val n = b.setContentTitle("NOTIIF").setContentText("Veille des messages (en attendant les notifications directes)").setSmallIcon(R.drawable.ic_notif).setContentIntent(pi).setOngoing(true).build()
         if (Build.VERSION.SDK_INT >= 29) startForeground(1, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC) else startForeground(1, n)
+        if (fcmOk(this)) { stopSelf(); return START_NOT_STICKY }
         if (!running) {
             running = true
             worker = Thread {
                 var k = 0
+                // Veille de secours, plus économe : « en train d'écrire » toutes les 5 s, messages toutes les 10 s.
+                // Dès que Firebase a livré une notification, elle s'arrête d'elle-même (Firebase prend le relais, sans batterie).
                 while (running) {
+                    if (fcmOk(this)) { running = false; stopSelf(); break }
                     try { typing() } catch (e: Exception) { }
-                    if (k % 3 == 0) { try { poll() } catch (e: Exception) { } }
+                    if (k % 2 == 0) { try { poll() } catch (e: Exception) { } }
                     k++
-                    try { Thread.sleep(2000) } catch (e: InterruptedException) { break }
+                    try { Thread.sleep(5000) } catch (e: InterruptedException) { break }
                 }
             }.also { it.isDaemon = true; it.start() }
         }
@@ -179,6 +192,7 @@ class NotiifService : Service() {
             val b = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, chId) else Notification.Builder(this)
             b.setContentTitle(who).setContentText(body).setSmallIcon(R.drawable.ic_notif).setColor(0xFF0A838B.toInt()).setContentIntent(pi).setAutoCancel(true)
             nm.notify(("m" + m.getString("sender")).hashCode(), b.build())
+            BubbleService.addUnread(this)
         }
         p.edit().putString("last", last).apply()
     }

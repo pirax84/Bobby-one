@@ -11,13 +11,18 @@ import { t } from "../i18n";
 import { recordLoop } from "../lib/sync";
 
 /** Enregistre un selfie vidéo ou un vocal (durée limitée). Rend le résultat en « data URL ». */
+/** Vocal léger : la voix reste nette, mais le fichier pèse environ 5 fois moins (60 s ≈ 180 Ko). */
+function mkAudioRec(s: MediaStream): MediaRecorder { try { return new MediaRecorder(s, { audioBitsPerSecond: 24000 }); } catch { return new MediaRecorder(s); } }
+
 export function Recorder({ kind, max = 10, onDone, onCancel, onPhoto }: { kind: "video" | "audio"; max?: number; onDone: (url: string) => void; onCancel: () => void; onPhoto?: (url: string) => void }) {
   const vid = useRef<HTMLVideoElement>(null); const rec = useRef<MediaRecorder | null>(null); const stream = useRef<MediaStream | null>(null); const [left, setLeft] = useState<number | null>(null); const [ready, setReady] = useState(false);
   const stop = () => stream.current?.getTracks().forEach((tx) => tx.stop());
   useEffect(() => { let dead = false; (async () => {
     try { const st = await navigator.mediaDevices.getUserMedia(kind === "video" ? { video: { facingMode: "user", width: 480, height: 480 }, audio: true } : { audio: true }); if (dead) { st.getTracks().forEach((tx) => tx.stop()); return; } stream.current = st; if (vid.current) { vid.current.srcObject = st; void vid.current.play().catch(() => {}); } setReady(true); }
     catch { toast(kind === "video" ? t("Caméra ou micro indisponible ou refusé.") : t("Micro indisponible ou refusé.")); onCancel(); } })(); return () => { dead = true; stop(); }; }, []);
-  const start = () => { const st = stream.current; if (!st) return; const r = new MediaRecorder(st, kind === "video" ? { videoBitsPerSecond: 250000, audioBitsPerSecond: 32000 } : undefined); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data); let n = max; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
+  // Si l'appli passe en arrière-plan pendant l'enregistrement : on l'arrête sans rien envoyer.
+  useEffect(() => { const away = () => { const r = rec.current; if (document.visibilityState !== "hidden" || r?.state !== "recording") return; r.onstop = null; r.stop(); stop(); setLeft(null); toast(t("Enregistrement interrompu : rien n'a été envoyé.")); onCancel(); }; document.addEventListener("visibilitychange", away); return () => document.removeEventListener("visibilitychange", away); }, []);
+  const start = () => { const st = stream.current; if (!st) return; const r = new MediaRecorder(st, kind === "video" ? { videoBitsPerSecond: 250000, audioBitsPerSecond: 32000 } : { audioBitsPerSecond: 24000 }); const ch: Blob[] = []; r.ondataavailable = (e) => ch.push(e.data); let n = max; setLeft(n); const iv = setInterval(() => { n--; setLeft(Math.max(n, 0)); }, 1000);
     r.onstop = () => { clearInterval(iv); stop(); setLeft(null); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: ((r.mimeType || "audio/webm").split(";")[0]) })); };
     soundStart(); r.start(); { const sp = recordLoop(kind === "video" ? "video" : "audio"); r.addEventListener("stop", sp); } rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), max * 1000); };
   return <div className="card col" style={{ alignItems: "center", gap: 8 }}>
@@ -34,11 +39,14 @@ export function HoldMic({ onDone, className = "btn", max = 60, verify = false, c
   const stopTick = () => { if (iv.current) { clearInterval(iv.current); iv.current = undefined; } };
   const begin = async () => {
     stopPlayer(); setPrev(null); review.current = verify; lockedR.current = false; setLocked(false); held.current = true; cancel.current = false; setCancelUi(false); setOn(true); setSec(0); t0.current = Date.now(); stopTick(); iv.current = window.setInterval(() => setSec(Math.floor((Date.now() - t0.current) / 1000)), 250);
-    try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((tx) => tx.stop()); stopTick(); setOn(false); return; } st.current = s; const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => ch.push(e.data);
+    try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((tx) => tx.stop()); stopTick(); setOn(false); return; } st.current = s; const rec = mkAudioRec(s); const ch: Blob[] = []; rec.ondataavailable = (e) => ch.push(e.data);
       rec.onstop = () => { lockedR.current = false; setLocked(false); stopTick(); s.getTracks().forEach((tx) => tx.stop()); setOn(false); if (cancel.current) return toast(t("Vocal annulé.")); if (Date.now() - t0.current < 600) return toast(pc ? t("Trop court : parlez un peu plus longtemps.") : t("Maintenez le bouton enfoncé pour parler.")); const fr = new FileReader(); fr.onload = () => { if (review.current) { setPrev(String(fr.result)); return; } soundEnd(); onDone(String(fr.result)); }; fr.readAsDataURL(new Blob(ch, { type: ((rec.mimeType || "audio/webm").split(";")[0]) })); };
       soundStart(); rec.start(); { const sp = recordLoop("audio"); rec.addEventListener("stop", sp); } r.current = rec; setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000); } catch { held.current = false; stopTick(); setOn(false); setDenied(true); }
   };
   const end = () => { if (!held.current) return; held.current = false; if (r.current?.state === "recording") r.current.stop(); else if (!st.current) { stopTick(); setOn(false); } r.current = null; st.current = null; };
+  // Appel qui arrive, écran qui s'éteint, autre appli ouverte pendant l'enregistrement : on arrête proprement
+  // et on garde le vocal en brouillon à réécouter (jamais envoyé tout seul, jamais perdu).
+  useEffect(() => { if (!on) return; const away = () => { if (document.visibilityState !== "hidden" || !held.current) return; review.current = true; cancel.current = false; end(); toast(t("Enregistrement interrompu : réécoutez votre vocal avant de l'envoyer.")); }; document.addEventListener("visibilitychange", away); window.addEventListener("pagehide", away); return () => { document.removeEventListener("visibilitychange", away); window.removeEventListener("pagehide", away); }; }, [on]);
   useEffect(() => { if (!pc || !(on && locked) || prev) return; const k = (e: KeyboardEvent) => { if (e.key === "Enter") { e.preventDefault(); end(); } else if (e.key === "Escape") { cancel.current = true; end(); } }; window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [on, locked, prev]);
   const mm = (n: number) => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
   return <><button type="button" className={className} aria-label={t("Maintenir pour enregistrer un vocal")} onClick={() => { if (!pc || on || prev) return; void begin().then(() => { if (held.current) { lockedR.current = true; setLocked(true); } }); }} onPointerDown={(e) => { if (pc) return; e.preventDefault(); x0.current = e.clientX; y0.current = e.clientY; (e.target as Element).setPointerCapture?.(e.pointerId); void begin(); }}
@@ -78,7 +86,7 @@ export function Camera({ onVideo, onPhoto, onAudio, onClose, max = 10, withPhoto
     soundStart(); r.start(250); { const sp = recordLoop("video"); r.addEventListener("stop", sp); } rec.current = r; setTimeout(() => r.state === "recording" && r.stop(), max * 1000);
   };
   const VMAX = 60;
-  const vStart = () => { const st = stream.current; if (!st || !ready) return; const at = st.getAudioTracks(); if (!at.length) return toast(t("Micro indisponible ou refusé.")); vheld.current = true; vt0.current = Date.now(); setVsec(0); const r = new MediaRecorder(new MediaStream(at)); const ch: Blob[] = []; r.ondataavailable = (e) => e.data.size && ch.push(e.data);
+  const vStart = () => { const st = stream.current; if (!st || !ready) return; const at = st.getAudioTracks(); if (!at.length) return toast(t("Micro indisponible ou refusé.")); vheld.current = true; vt0.current = Date.now(); setVsec(0); const r = mkAudioRec(new MediaStream(at)); const ch: Blob[] = []; r.ondataavailable = (e) => e.data.size && ch.push(e.data);
     r.onstop = () => { if (viv.current) { clearInterval(viv.current); viv.current = undefined; } setLeft(null); if (cancelled.current) return; if (Date.now() - vt0.current < 600) return toast(t("Maintenez le bouton enfoncé pour parler.")); stop(); const fr = new FileReader(); fr.onload = () => setRes({ audio: String(fr.result) }); fr.readAsDataURL(new Blob(ch, { type: (r.mimeType || "audio/webm").split(";")[0] })); };
     soundStart(); r.start(250); { const sp = recordLoop("audio"); r.addEventListener("stop", sp); } vrec.current = r; setLeft(0); viv.current = window.setInterval(() => setVsec(Math.floor((Date.now() - vt0.current) / 1000)), 250); setTimeout(() => r.state === "recording" && r.stop(), VMAX * 1000); };
   const vEnd = () => { if (!vheld.current) return; vheld.current = false; if (vrec.current?.state === "recording") vrec.current.stop(); vrec.current = null; };
@@ -134,7 +142,7 @@ export function VoicePad({ onDone, max = 60 }: { onDone: (url: string) => void; 
   const begin = async () => {
     stopPlayer(); held.current = true; setOn(true); setSec(0); t0.current = Date.now();
     try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); if (!held.current) { s.getTracks().forEach((tx) => tx.stop()); setOn(false); return; }
-      const rec = new MediaRecorder(s); const ch: Blob[] = []; rec.ondataavailable = (e) => e.data.size && ch.push(e.data);
+      const rec = mkAudioRec(s); const ch: Blob[] = []; rec.ondataavailable = (e) => e.data.size && ch.push(e.data);
       rec.onstop = () => { clear(); s.getTracks().forEach((tx) => tx.stop()); setOn(false); if (Date.now() - t0.current < 600) return toast(t("Maintenez le micro enfoncé pour parler.")); const fr = new FileReader(); fr.onload = () => onDone(String(fr.result)); fr.readAsDataURL(new Blob(ch, { type: (rec.mimeType || "audio/webm").split(";")[0] })); };
       rec.start(250); { const sp = recordLoop("audio"); rec.addEventListener("stop", sp); } r.current = rec; iv.current = window.setInterval(() => setSec(Math.floor((Date.now() - t0.current) / 1000)), 250); setTimeout(() => rec.state === "recording" && rec.stop(), max * 1000);
     } catch { held.current = false; setOn(false); toast(t("Micro indisponible ou refusé.")); }
